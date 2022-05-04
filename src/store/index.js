@@ -1,9 +1,8 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex';
+import survey from './modules/survey';
 
 export default createStore({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  modules: {
+    survey,
+  },
 });

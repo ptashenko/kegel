@@ -1,0 +1,65 @@
+<template>
+  <div class="answer__div">
+    <button
+      class="answer"
+      @click="saveHistory"
+      :class="{'active': selected === answer}"
+    >
+      {{ answer }}
+    </button>
+  </div>
+</template>
+
+<script>
+import history from '@/mixins/history';
+
+export default {
+  name: 'Question-radio-component',
+  data() {
+    return {
+      active: '',
+    };
+  },
+  props: {
+    answer: {
+      required: true,
+      type: String,
+    },
+  },
+  mixins: [history],
+};
+</script>
+
+<style lang="scss" scoped>
+.answer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: grey;
+  border-radius: 20px;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 150%;
+  width: 100%;
+  cursor: pointer;
+  transition: #cecece;
+  height: 70px;
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    height: 53px;
+  }
+
+  &.active {
+    background-color: #111113;
+    color: white;
+  }
+
+  &__div {
+    flex-grow: 1;
+    width: 100%;
+    padding: 0 4px;
+  }
+}
+</style>

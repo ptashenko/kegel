@@ -1,7 +1,7 @@
 <template>
   <template v-if="content.answer">
     <div class="survey h-100">
-      <div class="container-main is-page">
+      <div class="container-main is-page" :data-step="content.steps">
         <steps v-if="content.steps !== false" />
         <questions
           :survey="content"
@@ -46,5 +46,6 @@ export default {
 <style lang="scss" scoped>
 .survey {
   background-color: white;
+  padding: 0 32px;
 }
 </style>

@@ -30,17 +30,18 @@ export default {
 
 <style scoped lang="scss">
 .answer {
+  font-family: "SF Pro Text Medium";
   width: 100%;
   padding: 0 20px;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 150%;
+  font-size: 14px;
+  line-height: 21px;
   text-align: left;
   height: 53px;
-  background-color: grey;
+  background-color: #F1F3F9;
   border: none;
-  border-radius: 20px;
-  transition: #cecece;
+  border-radius: 9px;
+  transition: 0.2s;
   cursor: pointer;
   position: relative;
 
@@ -61,6 +62,7 @@ export default {
   }
 
   &.active {
+    font-family: "SF Pro Text Bold";
     background-color: #111113;
     color: white;
     font-weight: bold;

@@ -82,10 +82,11 @@ export default {
 
   &.dark {
     background: none;
-
+    
     &:before {
       background: linear-gradient(180deg, rgba(17, 17, 19, 0) 0%, #111113 29.7%);
     }
+    
   }
 
   @media (max-width: 480px) {

@@ -1,12 +1,8 @@
 <template>
   <button :class="theme" class="btn">
-    <svg class="prev-icon" width="13" height="10" v-if="icon === 'prev'">
-      <use xlink:href="@/assets/images/sprite.svg#arrow-prev"></use>
-    </svg>
+    <img src="@/assets/images/arrow-prev.svg" class="btn__prev" alt="" v-if="icon === 'prev'">
     <span>{{ text }}</span>
-    <svg class="next-icon" width="13" height="10" v-if="icon === 'next'">
-      <use xlink:href="@/assets/images/sprite.svg#arrow-next"></use>
-    </svg>
+    <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" v-if="icon === 'next'">
   </button>
 </template>
 
@@ -32,8 +28,7 @@ export default {
 <style lang="scss" scoped>
 .btn {
   width: 100%;
-  height: 55px;
-  border-radius: 20px;
+  border-radius: 9px;
   background-color: #cecece;
   border: none;
   color: white;
@@ -43,17 +38,29 @@ export default {
   font-weight: 500;
   font-size: 18px;
   cursor: pointer;
-  transition: 0.2s #cecece;
-  padding: 0 35px;
+  transition: 0.2s;
+  padding: 18px 38px;
+  font-family: "SF Pro Text Medium";
 
   @media (max-width: 480px) {
     padding: 0 10px;
   }
-
+  &__next{
+    margin: 0 12px;
+  }
+  &__prev{
+    margin: 0 12px;
+  }
   &:focus {
     box-shadow: 0 0 0 3px rgba(#3E3E3E, .3);
   }
+  &.dark {
+    background: #111113;
 
+    &:hover {
+      background-color: #1B1B1E;
+    }
+  }
   &.light {
     background: #F1F3F9;
     color: #4A4A4B;

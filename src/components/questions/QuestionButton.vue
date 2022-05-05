@@ -35,15 +35,15 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: grey;
-  border-radius: 20px;
+  background: #F1F3F9;
+  border-radius: 9px;
   border: none;
   font-weight: 700;
   font-size: 18px;
   line-height: 150%;
   width: 100%;
   cursor: pointer;
-  transition: #cecece;
+  transition: 0.2s;
   height: 70px;
 
   @media (max-width: 480px) {

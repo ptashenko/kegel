@@ -9,10 +9,7 @@
       <div class="jumbotron__text">
         Select a goal to get step-by-step plan
       </div>
-
-      <svg class="icon" width="18" height="32">
-        <use xlink:href="@/assets/images/arrow-down.png"></use>
-      </svg>
+      <img src="@/assets/images/arrow-down.png" alt="arrow down" class="jumbotron__img">
     </div>
   </div>
 
@@ -39,7 +36,11 @@
   <div class="footer">
     <div class="container-main">
       <div class="advantage" v-for="advantage in advantages" :key="advantage.title">
-        <img src="@/assets/images/logo.png" :alt="advantage.title">
+        <img 
+        :src="advantage.img" 
+        :alt="advantage.title"
+        :style="{  width: advantage.width + 'px' }"
+        >
         <div class="advantage__title">{{ advantage.title }}</div>
         <div class="advantage__text">{{ advantage.text }}</div>
         <a
@@ -57,8 +58,8 @@
           Warsaw, Twarda 18, 00-105
         </span>
         <div class="footer__terms">
-          <a href="">Privacy Policy</a>
-          <a href="">Terms & Conditions</a>
+          <a href="https://appercut.co/privacy-policy.html">Privacy Policy</a>
+          <a href="https://appercut.co/terms.html">Terms & Conditions</a>
         </div>
       </div>
     </div>
@@ -77,12 +78,16 @@ export default {
           title: 'Dr. Kegel: For Men’s Health',
           text: 'is a complex approach to strengthen male intimate health',
           logo: 'logo',
+          img: require(`../assets/images/logo_footer.png`),
+          width: 44
         },
         {
           title: 'Need support?',
           text: 'Contact Customer Service if you have any questions. We\'ll be sure to help you.',
           email: 'support@kegel.men',
           logo: 'subtract',
+          img: require(`../assets/images/Subtract.png`),
+          width: 48
         },
       ],
     };
@@ -119,6 +124,9 @@ export default {
 </script>
 
 <style lang="scss">
+body{
+  margin: 0;
+}
 .jumbotron {
   background: transparent url('@/assets/images/header.png') no-repeat bottom center/cover;
   height: 500px;
@@ -132,34 +140,48 @@ export default {
   padding-bottom: 20px;
 
   &__title {
-    font-weight: 600;
+    font-family: "SF-Pro-Display-Bold";
+    font-weight: 700;
     font-size: 32px;
-    line-height: 1.2;
+    line-height: 38.19px;
     text-align: center;
     text-shadow: 0 0 17px #FFFFFF;
   }
 
+  &__img {
+    width: 18px;
+    height: auto;
+    margin: 15px 0;
+  }
+
   .container-main {
     background-color: transparent;
+    position: relative;
+    top: 70px;
   }
 
   &__text {
+    color: #111113;
+    font-family: "SF-Pro-Display-Semibold";
     font-size: 18px;
     line-height: 150%;
     margin: 15px 0;
+    opacity: 76%;
   }
 }
 
 .navigation {
   &__section {
     padding-bottom: 30px;
-    background-color: white;
     padding-top: 15px;
+    padding: 65px 32px 32px;
+    background-color: #FFFFFF;
   }
 
   &__item {
+    font-family: "SF Pro Text Bold";
     color: white;
-    border-radius: 20px;
+    border-radius: 9px;
     text-align: center;
     text-decoration: none;
     display: flex;
@@ -168,16 +190,18 @@ export default {
     align-items: center;
     padding: 14px 20px;
     font-weight: bold;
+    font-weight: 700;
     position: relative;
     font-size: 16px;
     border: none;
     width: 100%;
     line-height: 1.2;
     cursor: pointer;
+    transition: .4s;
 
     &:hover {
       &:after {
-        background-color: red;
+        background-color: #1B1B1E;
       }
     }
 
@@ -188,13 +212,14 @@ export default {
 
     &:before {
       content: '';
-      background: linear-gradient(rgb(217, 217, 217), #111113);
+      transition: .2s;
+      background: linear-gradient(rgb(255, 255, 255), #111113);
       position: absolute;
-      left: -1px;
-      top: -1px;
-      bottom: -1px;
-      right: -1px;
-      border-radius: 20px;
+      left: -2px;
+      top: -2px;
+      bottom: -2px;
+      right: -2px;
+      border-radius: 9px;
     }
 
     &:after {
@@ -204,12 +229,13 @@ export default {
       right: 0;
       bottom: 0;
       top: 0;
-      transition: #cecece;
+      transition: .2s;
       background: #111113;
-      border-radius: 20px;
+      border-radius: 9px;
     }
 
     span {
+      font-family: "SF Pro Text Medium";
       font-size: 14px;
       margin-top: 4px;
       font-weight: 500;
@@ -221,16 +247,17 @@ export default {
   }
 
   &__text {
+    font-family: "SF Pro Text Light";
     color: #111113;
     opacity: .5;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 32px;
     line-height: 1.5;
   }
 }
 
 .footer {
-  padding: 50px 0;
+  padding: 51px 0px 50px;
   background: rgba(196, 196, 196, 0.2);
 
   &__info {
@@ -263,21 +290,26 @@ export default {
   text-align: center;
 
   &__title {
+    font-family: "SF-Pro-Display-Bold";
     margin: 16px 0 8px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 20px;
     line-height: 24px;
   }
 
   &__text {
+    font-family: "SF Pro Text Regular";
+    font-size: 14px;
+    font-weight: 400;
     opacity: .65;
-    line-height: 1.5;
+    line-height: 21px;
+    padding: 0px 32px;
   }
 
   &__email {
     margin-top: 8px;
     display: block;
-    color: color(red);
+    color: #E44240;
     text-decoration: none;
   }
 

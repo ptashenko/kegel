@@ -1,0 +1,17 @@
+body {
+    font-family: "SF Pro Text Regular";
+    background-color: #ECEEF0
+}
+
+body>#app>.dark-layout {
+    background-color: #111113
+}
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.container {
+    position: relative;
+}

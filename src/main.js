@@ -6,12 +6,13 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import '@/assets/scss/style.scss';
+import '@/assets/scss/styles.scss';
+import '@/assets/scss/fonts.scss';
 
 createApp(App)
-  .use(svg4everybody)
-  .use(store)
-  .use(router)
-  .component('header-layout', Header)
-  .component('footer-controls', FooterControls)
-  .mount('#app');
+    .use(svg4everybody)
+    .use(store)
+    .use(router)
+    .component('header-layout', Header)
+    .component('footer-controls', FooterControls)
+    .mount('#app');

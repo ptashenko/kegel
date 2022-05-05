@@ -1,7 +1,7 @@
 <template>
   <header-layout :fixed="true" :dark="true"/>
 
-  <div class="h2">
+  <div class="questions__title">
     {{ survey.title }}
   </div>
 
@@ -98,8 +98,13 @@ export default {
     @media (max-width: 480px) {
       font-size: 16px;
     }
+    
   }
-
+  &__title{
+    font-family: "SF-Pro-Display-Bold"; 
+    font-size: 20px;
+    padding: 92px 0 32px;
+  }
   &__thumbnail {
     margin-bottom: 30px;
     text-align: center;

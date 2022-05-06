@@ -45,6 +45,7 @@ export default {
   cursor: pointer;
   transition: 0.2s;
   height: 70px;
+  max-width: 73px;
 
   @media (max-width: 480px) {
     font-size: 16px;
@@ -60,6 +61,7 @@ export default {
     flex-grow: 1;
     width: 100%;
     padding: 0 4px;
+    max-width: 73px;
   }
 }
 </style>

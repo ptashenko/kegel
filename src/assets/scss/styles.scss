@@ -1,10 +1,37 @@
 body {
     font-family: "SF Pro Text Regular";
-    background-color: #ECEEF0
+    background-color: #ECEEF0;
+    @media (max-width: 480px) {
+        background-color: #FFFFFF;
+    }
 }
 
-body>#app>.dark-layout {
-    background-color: #111113
+.dark-layout.light {
+    background-color: #FFFFFF;
+    .review {
+        color: #111113
+    }
+    .btn {
+        padding: 18px 18px;
+    }
+}
+
+.dark-layout {
+    background-color: #111113;
+    padding: 100px 32px 0px;
+    min-height: calc(100vh - 100px);
+    .steps__col.active {
+        background-color: #E44240
+    }
+    .steps span {
+        background-color: #E44240
+    }
+    .review {
+        color: #FFFFFF
+    }
+    .layout__button {
+        color: #FFFFFF
+    }
 }
 
 #app {
@@ -14,4 +41,30 @@ body>#app>.dark-layout {
 
 .container {
     position: relative;
+}
+
+.container-main {
+    padding-bottom: 50px;
+    @media (max-width: 480px) {
+        padding-bottom: 150px;
+    }
+}
+
+.container-main.home {
+    padding-bottom: 32px;
+    @media (max-width: 480px) {
+        padding-bottom: 32px;
+    }
+}
+
+header .container-main {
+    padding-bottom: 50px;
+    @media (max-width: 480px) {
+        padding-bottom: 0px;
+    }
+}
+
+.dark-layout .btn__prev {
+    filter: invert(1);
+    opacity: 1!important;
 }

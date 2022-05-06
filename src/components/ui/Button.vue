@@ -29,7 +29,6 @@ export default {
 .btn {
   width: 100%;
   border-radius: 9px;
-  background-color: #cecece;
   border: none;
   color: white;
   display: flex;
@@ -43,13 +42,13 @@ export default {
   font-family: "SF Pro Text Medium";
 
   @media (max-width: 480px) {
-    padding: 0 10px;
+    padding: 18px 38px;
   }
   &__next{
-    margin: 0 12px;
+    margin: 0 0 0 12px;
   }
   &__prev{
-    margin: 0 12px;
+    margin: 0 12px 0 0;
   }
   &:focus {
     box-shadow: 0 0 0 3px rgba(#3E3E3E, .3);
@@ -72,11 +71,11 @@ export default {
 
   &.red {
     position: relative;
-    background: red;
-    border-radius: 20px;
+    background: rgba(228, 66, 64, 1);
+    border-radius: 9px;
 
     &:hover {
-      background-color: #F5423F;
+      background-color: rgba(245, 66, 63, 1);
     }
 
     svg {
@@ -90,10 +89,10 @@ export default {
   }
 
   &.grey {
-    background: #282828;
+    background: rgba(40, 40, 40, 1);
 
     &:hover {
-      background-color: #373737;
+      background-color: rgba(55, 55, 55, 1);
     }
 
     & > * {

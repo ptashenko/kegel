@@ -1,8 +1,9 @@
 <template>
   <template v-if="content.answer">
     <div class="survey h-100">
-      <div class="container-main is-page" :data-step="content.steps">
-        <steps v-if="content.steps !== false" />
+      <!-- <div class="container-main is-page" :data-step="content.steps"> -->
+      <div class="container-main is-page SurveyVuew">
+        <!-- <steps v-if="content.steps !== false" /> -->
         <questions
           :survey="content"
         />
@@ -25,7 +26,7 @@ import Reviews from '@/layouts/Reviews.vue';
 import Standart from '@/layouts/Standart.vue';
 import Questions from '@/layouts/Questions.vue';
 import { mapGetters } from 'vuex';
-import Steps from '@/components/Steps.vue';
+// import Steps from '@/components/Steps.vue';
 
 export default {
   components: {
@@ -35,7 +36,7 @@ export default {
     Reviews,
     Standart,
     Questions,
-    Steps,
+    // Steps,
   },
   computed: {
     ...mapGetters(['content', 'track']),

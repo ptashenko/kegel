@@ -2,7 +2,11 @@
   <header-layout :fixed="true" :dark="false"/>
 
   <div class="dark-layout">
-    <div class="container-main is-page">
+    <div class="block__steps" :data-step="content.steps">
+      <steps v-if="content.steps !== false" />
+    </div>
+
+    <div class="container-main is-page KegalReview">
       <div class="h2 text-center">
         {{ content.title }}
       </div>
@@ -20,6 +24,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import Steps from '@/components/Steps.vue';
 import Review from '@/components/Review.vue';
 import Processing from '@/components/Processing.vue';
 
@@ -28,6 +33,7 @@ export default {
   components: {
     Processing,
     Review,
+    Steps
   },
   props: {
     content: {
@@ -45,7 +51,12 @@ export default {
 .container-main.is-page {
   padding-bottom: 30px;
 }
-
+.h2{
+  font-family: "SF-Pro-Display-Bold"; 
+  font-size: 20px;
+  color: #FFFFFF;
+  text-align: center;
+}
 .peoples {
   text-align: center;
   margin: 30px 0;

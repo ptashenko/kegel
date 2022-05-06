@@ -5,14 +5,10 @@
         <div class="review__title">{{ reviewItem.title }}</div>
         <div class="review__rating">
           <div v-for="i in reviewItem.rating" :key="i">
-            <svg width="18" height="18" class="star-yellow">
-              <use xlink:href="@/assets/images/sprite.svg#star"></use>
-            </svg>
+            <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
           </div>
           <div v-for="i in Number(5 - reviewItem.rating)" :key="i">
-            <svg width="18" height="18" class="star-dark">
-              <use xlink:href="@/assets/images/sprite.svg#star"></use>
-            </svg>
+            <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
           </div>
         </div>
       </div>
@@ -110,9 +106,8 @@ export default {
     margin-top: 5px;
 
     div {
-      margin-right: 5px;
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
 
       @media (max-width: 480px) {
         width: 14px;
@@ -128,10 +123,15 @@ export default {
 }
 
 .star-yellow {
-  fill: #FE9B1A;
+  max-width: 14px;;
+  height: auto;
 }
 
 .star-dark {
   fill: white;
 }
+.h2{
+  font-family: "SF-Pro-Display-Bold";
+}
+
 </style>

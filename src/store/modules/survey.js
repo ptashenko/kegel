@@ -65,21 +65,39 @@ const state = () => ({
     ],
     reviews: {
         1: {
-            title: 'The effect is great',
-            text: 'After 4 weeks of kegels, I have no trouble getting and maintaining erection. If you’re struggling as I did, try these exercises',
-            name: 'Chauchooo',
-            rating: 4,
+            title: 'Nice',
+            text: 'Just 1 month of training and my erection is stronger. I’m happy with the results',
+            name: 'RpgEpic123',
+            rating: 5,
         },
         2: {
-            title: 'The effect is great',
-            text: 'After 4 weeks of kegels, I have no trouble getting and maintaining erection. If you’re struggling as I did, try these exercises',
-            name: 'Chauchooo',
-            rating: 2,
+            title: 'Best of the best',
+            text: 'My erection is getting harder with each training day',
+            name: 'RawJunky',
+            rating: 5,
         },
         3: {
-            title: 'I’m glad I found these exercises',
-            text: 'I’ve been doing Kegel exercises for 2 weeks now and I increased my stamina for real! I feel more confident with my partner. You should try Kegels as well',
-            name: 'JiggySpot',
+            title: 'Thank you Kegel',
+            text: 'As I reached my 50s I thought my heydays were over. But thanks to kegels I feel like I’m 20 again!',
+            name: 'FizzliviSphema',
+            rating: 5,
+        },
+        4: {
+            title: 'Sex booster',
+            text: 'Doing Kegels for about 2 months and I can definitely tell that my stamina has really increased. Now I can last for an entire night',
+            name: 'RpgEpic123',
+            rating: 5,
+        },
+        5: {
+            title: 'Daily training paid off',
+            text: 'Now I last sooo much longer. This is amazing!',
+            name: 'UgaraticKroolKat',
+            rating: 5,
+        },
+        6: {
+            title: 'Guys, you must try it',
+            text: 'I followed this kegel plan and now my performance is at its peak! Guys, this is a real game-changer - don’t sleep on it',
+            name: 'Amteleronnnnn',
             rating: 5,
         },
     },
@@ -104,6 +122,7 @@ const state = () => ({
         {
             id: 3,
             title: 'How old are you?',
+            steps: true,
             answer: {
                 style: 'radio',
                 answerList: [
@@ -184,7 +203,7 @@ const state = () => ({
             thumbnail: 's3.svg',
             buttons: [{
                 id: 1,
-                logo: '1',
+                logo: 'logo_source_1',
                 title: 'The Nuffield Somerset Hospital',
                 text: 'Source:',
             }, ],
@@ -235,7 +254,7 @@ const state = () => ({
             id: 13,
             title: '75.5% of men improved their erections with Kegel exercises',
             layoutName: 'KegelReview',
-            reviews: [1, 2],
+            reviews: [1],
         },
         {
             id: 14,
@@ -326,7 +345,7 @@ const state = () => ({
             title: 'Based on your personal goals you can',
             layoutName: 'Reviews',
             thumbnail: 'OK_pp1.png',
-            reviews: [1, 2],
+            reviews: [1, 2, 3, 4, 5, 6],
         },
         {
             id: 21,
@@ -376,11 +395,18 @@ const state = () => ({
             layoutName: 'standart',
             thumbnail: '4.jpg',
             buttons: [{
-                id: 1,
-                logo: '1',
-                title: 'the Sapienza University',
-                text: 'Source:',
-            }, ],
+                    id: 1,
+                    logo: 'logo_source_1',
+                    title: 'The Nuffield Somerset Hospital',
+                    text: 'Source:',
+                },
+                {
+                    id: 2,
+                    logo: 'logo_source_2',
+                    title: 'the Sapienza University',
+                    text: 'Source:',
+                },
+            ],
         },
         {
             id: 25,

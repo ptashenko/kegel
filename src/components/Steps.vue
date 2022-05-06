@@ -43,21 +43,21 @@ export default {
 <style lang="scss" scoped>
 .steps {
   height: 6px;
-  background-color: grey;
+  background-color: #F1F3F9;
   width: 100%;
   max-width: 400px;
-  margin: 0 auto 40px;
+  margin: 0 auto 32px;
   display: flex;
   align-items: center;
   position: relative;
   justify-content: space-between;
 
   &.light {
-    background-color: #2C2C2E;
+    background-color: #F1F3F9;
 
     .steps {
       &__col {
-        background-color: #2C2C2E;
+        background-color: #111113;
       }
     }
 
@@ -87,11 +87,11 @@ export default {
     }
 
     &.active {
-      background-color: white;
+      background-color: #111113;
     }
 
     &:not(.active) {
-      background-color: grey;
+      background-color: #F1F3F9;
     }
   }
 }

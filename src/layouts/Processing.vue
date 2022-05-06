@@ -2,7 +2,7 @@
   <header-layout :fixed="true" :dark="false"/>
 
   <div class="dark-layout">
-    <div class="container-main is-page">
+    <div class="container-main is-page Processing__layouts">
       <processing />
 
       <div class="layout__thumbnail">

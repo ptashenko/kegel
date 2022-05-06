@@ -1,6 +1,10 @@
 <template>
   <header-layout :fixed="true" :dark="true"/>
 
+  <div class="block__steps" :data-step="content.steps">
+    <steps v-if="content.steps !== false" />
+  </div>
+  
   <div class="questions__title">
     {{ survey.title }}
   </div>
@@ -55,6 +59,8 @@
 <script>
 import Question from '@/components/questions/Question.vue';
 import QuestionRadio from '@/components/questions/QuestionButton.vue';
+import { mapGetters } from 'vuex';
+import Steps from '@/components/Steps.vue';
 import history from '@/mixins/history';
 import nextContentUrl from '@/mixins/contollers';
 
@@ -64,11 +70,13 @@ export default {
       const list = this.survey.answer.answerList;
       return `Rate from ${list[0]} to ${list[list.length - 1]}`;
     },
+    ...mapGetters(['content', 'track'])
   },
   name: 'Question-layout',
   components: {
     QuestionRadio,
     Question,
+    Steps
   },
   methods: {
     image(path) {
@@ -87,6 +95,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.block__steps{
+  position: relative;
+    padding-top: 100px;
+}
 .questions {
   &__rate {
     opacity: 0.75;
@@ -103,7 +115,7 @@ export default {
   &__title{
     font-family: "SF-Pro-Display-Bold"; 
     font-size: 20px;
-    padding: 92px 0 32px;
+    padding: 0px 0 32px;
   }
   &__thumbnail {
     margin-bottom: 30px;
@@ -132,7 +144,7 @@ export default {
   &__list {
     &--flex {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       margin: 0 -8px;
       padding-bottom: 0;
     }

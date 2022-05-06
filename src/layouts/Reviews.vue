@@ -2,7 +2,7 @@
   <header-layout :fixed="true"/>
 
   <div class="dark-layout light">
-    <div class="container-main is-page">
+    <div class="container-main is-page Reviews">
       <div class="h2 text-center">
         {{ content.title }}
       </div>
@@ -111,9 +111,14 @@ export default {
     max-width: 400px;
   }
 }
-
+.text-center{
+  
+  text-align: center;
+}
 .h2 {
   margin-bottom: 16px;
+  font-family: "SF-Pro-Display-Bold";
+  line-height:32.4px;
   font-size: 24px;
 }
 </style>

@@ -2,7 +2,7 @@
   <header-layout :fixed="true"/>
 
   <div class="dark-layout light">
-    <div class="container-main is-page">
+    <div class="container-main is-page wait">
       <steps/>
 
       <div class="wait__content">

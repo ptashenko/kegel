@@ -1,7 +1,7 @@
 <template>
   <header-layout :fixed="true" :dark="false"/>
 
-  <div class="jumbotron">
+  <div class="jumbotron home">
     <div class="container-main">
       <div class="jumbotron__title">
         Stay hard & last long without pills
@@ -13,8 +13,8 @@
     </div>
   </div>
 
-  <div class="navigation__section">
-    <div class="container-main">
+  <div class="navigation__section home">
+    <div class="container-main home">
       <div class="navigation__items">
         <button
           class="navigation__item"
@@ -157,7 +157,11 @@ body{
   .container-main {
     background-color: transparent;
     position: relative;
-    top: 70px;
+    top: 120px;
+
+    @media (max-width: 480px) {
+      top: 230px;
+    }
   }
 
   &__text {
@@ -259,6 +263,9 @@ body{
 .footer {
   padding: 51px 0px 50px;
   background: rgba(196, 196, 196, 0.2);
+  .container-main{
+    padding-bottom: 32px;
+  }
 
   &__info {
     margin-top: 65px;

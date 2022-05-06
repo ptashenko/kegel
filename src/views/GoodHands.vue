@@ -2,7 +2,7 @@
   <header-layout :fixed="true"/>
 
   <div class="dark-layout light">
-    <div class="container-main is-page">
+    <div class="container-main is-page GoodHands">
       <div class="h2">You're in good hands</div>
       <img src="@/assets/images/map.svg" alt="" height="200">
       <p>More than 1.575.179 men got closer to their goal thanks to this Kegel Training Plan</p>
@@ -18,7 +18,7 @@
       :buttonNext="{
         text: 'Continue',
         icon: 'next',
-        click: () => {},
+        click: () => {$router.push('/');},
         theme: 'red'
       }"
     />

@@ -46,6 +46,7 @@ export default {
     line-height: 150%;
     margin-bottom: 8px;
     text-align: center;
+    color: #FFFFFF;
   }
 
   &__bar {
@@ -60,6 +61,7 @@ export default {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    color: #FFFFFF;
 
     span {
       &:first-child {
@@ -70,7 +72,7 @@ export default {
   }
 
   &__percent {
-    background-color: color(red);
+    background-color: #E44240;
     position: absolute;
     left: 0;
     top: 0;

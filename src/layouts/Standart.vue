@@ -2,13 +2,15 @@
   <header-layout :fixed="true" :dark="false"/>
 
   <div class="dark-layout">
-    <div class="container-main is-page">
+    <div class="container-main is-page standart">
+
+
       <steps
-        :light="true"
-        v-if="content.layoutName.toLowerCase() === 'standart'"
+        :light="false"
+        v-if="content.id > 3 && content.id !== 35 && content.id !== 48"
       />
 
-      <div class="h2">
+      <div class="h2 layout__title">
         {{ content.title }}
       </div>
 
@@ -88,6 +90,8 @@ export default {
 <style scoped lang="scss">
 .h2 {
   text-align: center;
+  color: #FFFFFF;
+  font-family: "SF-Pro-Display-Bold";
 }
 
 .layout {
@@ -152,14 +156,17 @@ export default {
   }
 
   &__bottom-text {
+    font-family: "SF Pro Text Regular";
     font-weight: 400;
     font-size: 18px;
     margin-top: 32px;
     line-height: 150%;
     text-align: center;
+    color: #FFFFFF;
 
     @media (max-width: 480px) {
-      font-size: 14px;
+      font-size: 16px;
+      line-height: 24px;
     }
   }
 }

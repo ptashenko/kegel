@@ -42,7 +42,7 @@ export default {
   font-family: "SF Pro Text Medium";
 
   @media (max-width: 480px) {
-    padding: 18px 38px;
+    padding: 18px 18px;
   }
   &__next{
     margin: 0 0 0 12px;

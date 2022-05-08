@@ -1,6 +1,6 @@
 <template>
   <div class="loading">
-    <div class="loading__title">Connecting to the database</div>
+    <div class="loading__title">Processing...</div>
 
     <div class="loading__bar">
       <span>{{ percent }}%</span>

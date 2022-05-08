@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import svg4everybody from 'svg4everybody';
+import moment from 'moment';
 import Header from '@/components/Header.vue';
 import FooterControls from '@/components/FooterControls.vue';
 import Steps from '@/components/Steps.vue';
@@ -13,6 +14,7 @@ import '@/assets/scss/fonts.scss';
 
 createApp(App)
     .use(svg4everybody)
+    .use(moment)
     .use(store)
     .use(router)
     .component('header-layout', Header)

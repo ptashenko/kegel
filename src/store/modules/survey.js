@@ -14,15 +14,14 @@ const state = () => ({
                 { id: 1, separation: true },
                 { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 },
                 { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10 },
-                { id: 11 }, { id: 12 }, { id: 13 },
-                { id: 14, separation: true },
-                { id: 15 },
-                { id: 16 }, { id: 17 }, { id: 18 }, { id: 19 }, { id: 20 },
-                { id: 21 }, { id: 22 }, { id: 23 },
-                { id: 24, separation: true },
-                { id: 25 }, { id: 26 }, { id: 27 }, { id: 28 },
-                { id: 29 }, { id: 30 },
-                { id: 31 }, { id: 32 }, { id: 33 },
+                { id: 11 }, { id: 12 },
+                { id: 13, separation: true },
+                { id: 14 }, { id: 15 }, { id: 16 }, { id: 17 },
+                { id: 18 }, { id: 20 }, { id: 21 }, { id: 22 },
+                { id: 23 },
+                { id: 24, separation: true }, { id: 25 }, { id: 26 }, { id: 27 },
+                { id: 28 }, { id: 29 }, { id: 30 }, { id: 31 },
+                { id: 32 }, { id: 321 }, { id: 33 },
                 { id: 34, separation: true },
             ],
         },
@@ -32,15 +31,16 @@ const state = () => ({
             text: 'Last up to 7x longer',
             layouts: [
                 { id: 1, separation: true },
-                { id: 35 }, { id: 3 }, { id: 21 }, { id: 22 },
-                { id: 6 }, { id: 37 }, { id: 38 }, { id: 39 },
-                { id: 40 }, { id: 41 },
-                { id: 15, separation: true },
-                { id: 17 }, { id: 42 }, { id: 43 }, { id: 56 },
-                { id: 20 }, { id: 44 }, { id: 45 }, { id: 8 }, { id: 46 },
+                { id: 35 }, { id: 3 }, { id: 21 }, { id: 351 },
+                { id: 352 }, { id: 37 }, { id: 38 }, { id: 39 },
+                { id: 40 }, { id: 401 },
+                { id: 41, separation: true },
+                { id: 14 }, { id: 15 }, { id: 42 }, { id: 43 },
+                { id: 56 }, { id: 57 }, { id: 44 }, { id: 45 }, { id: 451 }, { id: 46 },
                 { id: 47, separation: true },
-                { id: 26 }, { id: 27 }, { id: 28 }, { id: 29 },
-                { id: 30 }, { id: 31 }, { id: 32 }, { id: 33 },
+                { id: 25 }, { id: 26 }, { id: 27 }, { id: 28 }, { id: 29 },
+                { id: 30 }, { id: 31 }, { id: 32 },
+                { id: 321 }, { id: 33 },
                 { id: 34, separation: true },
             ],
         },
@@ -50,15 +50,16 @@ const state = () => ({
             text: 'I just want to maximize my intimate wellness',
             layouts: [
                 { id: 1, separation: true },
-                { id: 35 }, { id: 48 }, { id: 3 }, { id: 49 },
+                { id: 35 }, { id: 6 }, { id: 3 }, { id: 49 },
                 { id: 50 }, { id: 21 }, { id: 22 }, { id: 51 },
-                { id: 44 }, { id: 45 }, { id: 8 }, { id: 13 },
-                { id: 15, separation: true },
-                { id: 17 }, { id: 52 }, { id: 53 }, { id: 20 },
+                { id: 44 }, { id: 45 }, { id: 453 },
+                { id: 13, separation: true },
+                { id: 14 }, { id: 15 }, { id: 17 },
+                { id: 53 }, { id: 20 },
                 { id: 54 }, { id: 26 }, { id: 55 },
                 { id: 28, separation: true },
-                { id: 29 }, { id: 30 }, { id: 31 }, { id: 32 },
-                { id: 28 }, { id: 33 },
+                { id: 29 }, { id: 30 }, { id: 31 },
+                { id: 32 }, { id: 321 }, { id: 33 },
                 { id: 34, separation: true },
             ],
         },
@@ -123,6 +124,7 @@ const state = () => ({
             id: 3,
             title: 'How old are you?',
             steps: true,
+            active: true,
             answer: {
                 style: 'radio',
                 answerList: [
@@ -252,15 +254,18 @@ const state = () => ({
         },
         {
             id: 13,
+            active: true,
             title: '75.5% of men improved their erections with Kegel exercises',
             layoutName: 'KegelReview',
             reviews: [1],
         },
         {
             id: 14,
-            title: 'How satisfied were you with your sex life this month?',
+            title: 'How satisfied were you with your sex life 6 months ago?',
             answer: {
                 style: 'buttons',
+                textLeft: 'Not satisfied',
+                textRight: 'Very satisfied',
                 answerList: [
                     '1',
                     '2',
@@ -272,9 +277,11 @@ const state = () => ({
         },
         {
             id: 15,
-            title: 'How satisfied were you with your sex life 6 months ago?',
+            title: 'How satisfied were you with your sex life this month?',
             answer: {
                 style: 'buttons',
+                textLeft: 'Not satisfied',
+                textRight: 'Very satisfied',
                 answerList: [
                     '1',
                     '2',
@@ -289,6 +296,8 @@ const state = () => ({
             title: 'How much do you worry about having problems with erection?',
             answer: {
                 style: 'buttons',
+                textLeft: 'I don\'t  worry',
+                textRight: 'I\'m very worried',
                 answerList: [
                     '1',
                     '2',
@@ -300,9 +309,11 @@ const state = () => ({
         },
         {
             id: 17,
-            title: 'How satisfied were you with your sex life this month?',
+            title: 'How much erection problems affect your relationship with your partner?',
             answer: {
                 style: 'buttons',
+                textLeft: 'They doesn\'t affect',
+                textRight: 'They affect a lot',
                 answerList: [
                     '1',
                     '2',
@@ -314,9 +325,11 @@ const state = () => ({
         },
         {
             id: 18,
-            title: 'How much erection problems affect your relationship with your partner?',
+            title: 'How strongly problems with erection affect your quality of life?',
             answer: {
                 style: 'buttons',
+                textLeft: 'They doesn\'t affect',
+                textRight: 'They affect a lot',
                 answerList: [
                     '1',
                     '2',
@@ -391,22 +404,15 @@ const state = () => ({
         },
         {
             id: 24,
-            title: 'Men who perform Kegel exercises can increase their sexual stamina up to 7x',
+            title: `Men who perform Kegel exercises can increase their sexual stamina up to 7x `,
             layoutName: 'standart',
             thumbnail: '4.jpg',
             buttons: [{
-                    id: 1,
-                    logo: 'logo_source_1',
-                    title: 'The Nuffield Somerset Hospital',
-                    text: 'Source:',
-                },
-                {
-                    id: 2,
-                    logo: 'logo_source_2',
-                    title: 'the Sapienza University',
-                    text: 'Source:',
-                },
-            ],
+                id: 1,
+                logo: 'logo_source_2',
+                title: 'the Sapienza University',
+                text: 'Source:',
+            }, ],
         },
         {
             id: 25,
@@ -427,6 +433,8 @@ const state = () => ({
             title: 'How would you rate your libido now?',
             answer: {
                 style: 'buttons',
+                textLeft: 'Low',
+                textRight: 'High',
                 answerList: [
                     '1',
                     '2',
@@ -502,6 +510,13 @@ const state = () => ({
             layoutName: 'Processing',
         },
         {
+            id: 321,
+            title: 'Based on your personal goals you can',
+            layoutName: 'Reviews',
+            thumbnail: 'OK_pp1.png',
+            reviews: [1, 2, 3, 4, 5, 6],
+        },
+        {
             id: 33,
             title: 'How often do you exercise?',
             answer: {
@@ -532,9 +547,31 @@ const state = () => ({
         {
             id: 35,
             title: 'Your sexual stamina depends on the Pelvic Floor (PF) muscle tone',
-            thumbnail: '2.png',
+            thumbnail: '3.png',
             layoutName: 'standart',
             text: 'Thanks to the strong PF muscles you can delay ejaculation as long as you want',
+        },
+        {
+            id: 351,
+            title: 'How often does it happen that your sex lasts less than 2 minutes?',
+            layoutName: 'Reviews',
+            answer: {
+                style: 'radio',
+                answerList: [
+                    'Rarely',
+                    'Half of the time',
+                    'Most of the time',
+                    'All the time',
+                    'I don\'t want to answer',
+                ],
+            },
+        },
+        {
+            id: 352,
+            title: 'Just like any other muscle in the body, your PF muscles weaken without training',
+            thumbnail: '3.png',
+            layoutName: 'standart',
+            text: 'Weak PF muscles can\'t let you compress the urethra enough to delay ejaculation as long as you want',
         },
         {
             id: 36,
@@ -576,7 +613,7 @@ const state = () => ({
             thumbnail: '4.jpg',
             buttons: [{
                 id: 1,
-                logo: '1',
+                logo: 'logo_source_2',
                 title: 'the Sapienza University',
                 text: 'Source:',
             }, ],
@@ -586,6 +623,18 @@ const state = () => ({
             title: 'How hard is it for you to control your ejaculation during masturbation?',
             answer: {
                 style: 'buttons',
+                textLeft: 'Not hard',
+                textRight: 'Very hard',
+                answerList: [1, 2, 3, 4, 5],
+            },
+        },
+        {
+            id: 401,
+            title: 'How hard is it for you to control your ejaculation during sex?',
+            answer: {
+                style: 'buttons',
+                textLeft: 'Not hard',
+                textRight: 'Very hard',
                 answerList: [1, 2, 3, 4, 5],
             },
         },
@@ -600,6 +649,8 @@ const state = () => ({
             title: 'How much do you worry about ejaculating earlier than you want?',
             answer: {
                 style: 'buttons',
+                textLeft: 'I don\'t  worry',
+                textRight: 'I\'m very worried',
                 answerList: [
                     '1',
                     '2',
@@ -659,6 +710,32 @@ const state = () => ({
             },
         },
         {
+            id: 451,
+            title: 'Can you have sex 2 times in a row?',
+            answer: {
+                style: 'radio',
+                answerList: [
+                    'Yes, without any problems',
+                    'Yes, but I must try hard',
+                    'No, I can\'t',
+                    'I don\'t want to answer',
+                ],
+            },
+        },
+        {
+            id: 453,
+            title: 'Can you have sex 2 times in a row?',
+            answer: {
+                style: 'radio',
+                answerList: [
+                    'Yes, without any problems',
+                    'Yes, but I must try hard',
+                    'No, I can\'t',
+                    'I don\'t want to answer',
+                ],
+            },
+        },
+        {
             id: 46,
             title: 'Do you want to strengthen your erection?',
             answer: {
@@ -676,7 +753,7 @@ const state = () => ({
             thumbnail: 'PE_s5.png',
             buttons: [{
                 id: 1,
-                logo: '1',
+                logo: 'logo_source_2',
                 title: 'The Nuffield Somerset Hospital',
                 text: 'Source:',
             }, ],
@@ -709,13 +786,13 @@ const state = () => ({
             thumbnail: 's3.svg',
             buttons: [{
                     id: 1,
-                    logo: '1',
+                    logo: 'logo_source_1',
                     title: 'The Nuffield Somerset Hospital',
                     text: 'Source:',
                 },
                 {
                     id: 2,
-                    logo: '1',
+                    logo: 'logo_source_2',
                     title: 'the Sapienza University',
                     text: 'Source:',
                 },
@@ -725,10 +802,10 @@ const state = () => ({
             id: 51,
             title: 'Men who perform Kegel exercises can increase their stamina up to 7 times',
             layoutName: 'standart',
-            thumbnail: '6.svg',
+            thumbnail: '4.jpg',
             buttons: [{
                 id: 1,
-                logo: '1',
+                logo: 'logo_source_2',
                 title: 'the Sapienza University',
                 text: 'Source:',
             }, ],
@@ -793,6 +870,13 @@ const state = () => ({
                     'I don\'t want to answer',
                 ],
             },
+        },
+        {
+            id: 57,
+            title: 'Based on your personal goals you can',
+            layoutName: 'Reviews',
+            thumbnail: 'OK_pp1.png',
+            reviews: [1, 2, 3, 4, 5, 6],
         },
     ],
 });

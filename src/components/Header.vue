@@ -2,8 +2,8 @@
   <header :class="{'is-fixed': fixed}">
     <div class="container-main">
       <router-link :to="{name: 'home'}">
-        <img src="@/assets/images/logo-dark.png" alt="" width="150" v-if="dark">
-        <img src="@/assets/images/logo.png" alt="" width="150" v-else>
+        <img src="@/assets/images/logo-dark.png" alt="" width="120" v-if="dark">
+        <img src="@/assets/images/logo.png" alt="" width="120" v-else>
       </router-link>
     </div>
   </header>

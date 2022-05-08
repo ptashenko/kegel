@@ -4,18 +4,14 @@
       class="steps__col"
       v-for="separation in layoutSeparations"
       :key="separation"
-      :class="{'active': separations.indexOf(separation) !== -1}"
+      :class="{'active': separations.indexOf(separation) !== -1 }"
     >
-      <svg
-        width="18"
-        height="18"
-        v-if="separations.indexOf(separation) !== -1"
-      >
-        <use xlink:href="@/assets/images/sprite.svg#check-light" v-if="light"></use>
-        <use xlink:href="@/assets/images/sprite.svg#check" v-else></use>
-      </svg>
+    <div v-if="separations.indexOf(separation) !== -1 || this.num">
+      <img src="@/assets/images/icon_active_black.png" alt="check" v-if="light">
+      <img src="@/assets/images/icon_active_white.png" alt="check" v-else>
     </div>
-    <span :style="`width: ${loadPercent}%`"></span>
+    </div>
+    <span :style="`width: ${loadPercent}%`"> {{clg}} </span>
   </div>
 </template>
 
@@ -24,11 +20,20 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'Steps-item',
+  data(){
+    return {
+      num: true
+    }
+  },
   computed: {
     ...mapGetters(['layoutSeparations', 'content', 'separations', 'track']),
     loadPercent() {
-      const index = this.track.layouts.findIndex((layout) => layout.id === this.content.id);
+      const index = ( this.track.layouts.findIndex((layout) => layout.id === this.content.id) );
       return ((index / this.track.layouts.length) * 100).toFixed(2);
+    },
+    clg(){
+      let mmm = (this.track.layouts.findIndex((layout) => layout.active === this.content.active))
+      return console.log( mmm )
     },
   },
   props: {
@@ -88,10 +93,6 @@ export default {
 
     &.active {
       background-color: #111113;
-    }
-
-    &:not(.active) {
-      background-color: #F1F3F9;
     }
   }
 }

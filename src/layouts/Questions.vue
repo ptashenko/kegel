@@ -35,8 +35,8 @@
   </div>
 
   <div v-if="survey.answer.style === 'buttons'" class="questions__lvl">
-    <div>Not hard</div>
-    <div>Very hard</div>
+    <div>{{survey.answer.textLeft}}</div>
+    <div>{{survey.answer.textRight}}</div>
   </div>
 
   <footer-controls
@@ -65,10 +65,19 @@ import history from '@/mixins/history';
 import nextContentUrl from '@/mixins/contollers';
 
 export default {
+  data(){
+    return{
+      num: 0,
+    }
+    
+  },
   computed: {
     rateTo() {
+      if(5 > this.num){
+        this.num++
+      }
       const list = this.survey.answer.answerList;
-      return `Rate from ${list[0]} to ${list[list.length - 1]}`;
+      return `Rate from ${this.num} to ${list[list.length - 1]}`;
     },
     ...mapGetters(['content', 'track'])
   },

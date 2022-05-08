@@ -10,11 +10,19 @@
       <div class="date">
         [цель] and [доп .цель]
 
-        <span>by [дата]</span>
+        <span>by {{moment().format("DD MMMM")}}</span>
       </div>
 
       <div class=" layout__thumbnail">
         <img src="@/assets/images/content/reviews.svg" :alt="content.title">
+        <div class="block__data">
+          <p class="block__data__item">{{moment().add(0,'month').format("MMM")}}</p>
+          <p class="block__data__item">{{moment().add(1,'month').format("MMM")}}</p>
+          <p class="block__data__item">{{moment().add(2,'month').format("MMM")}}</p>
+          <p class="block__data__item">{{moment().add(3,'month').format("MMM")}}</p>
+          <p class="block__data__item">{{moment().add(4,'month').format("MMM")}}</p>
+          <p class="block__data__item">{{moment().add(5,'month').format("MMM")}}</p>
+        </div>
       </div>
 
       <div class="desc text-center">
@@ -46,6 +54,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import nextContentUrl from '@/mixins/contollers';
 import Review from '@/components/Review.vue';
 
@@ -60,6 +69,9 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/content/${path}`);
     },
+    moment(){
+      return moment();
+    }
   },
   props: {
     content: {

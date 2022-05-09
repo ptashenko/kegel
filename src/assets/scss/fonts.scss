@@ -46,3 +46,10 @@
     src: url("~@/assets/fonts/SF-Pro-Display-Semibold.otf") format("truetype");
     font-weight: 600;
 }
+
+@font-face {
+    font-family: "SF-Pro-Display-Medium";
+    src: local("SF-Pro-Display-Medium");
+    src: url("~@/assets/fonts/SF-Pro-Display-Medium.otf") format("truetype");
+    font-weight: 500;
+}

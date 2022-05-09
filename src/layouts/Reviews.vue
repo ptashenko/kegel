@@ -8,9 +8,15 @@
       </div>
 
       <div class="date">
-        [цель] and [доп .цель]
-
-        <span>by {{moment().format("DD MMMM")}}</span>
+        <div >
+          {{ track.purpose }}
+        </div>
+        <div v-if="content.id !== 20 && 54">
+          and  {{ track.addpurpose }}
+        </div>
+      
+        <span v-if="content.id == 20 && 54">by {{moment().add(getRandomArbitrary(7, 13),'days').format("DD")}}  {{moment().add(4,'month').format("MMM")}}</span>
+        <span v-else>by {{moment().add(getRandomArbitrary(1, 7),'days').format("DD")}}  {{moment().add(4,'month').format("MMM")}}</span>
       </div>
 
       <div class=" layout__thumbnail">
@@ -55,12 +61,16 @@
 
 <script>
 import moment from 'moment';
+import { mapGetters } from 'vuex';
 import nextContentUrl from '@/mixins/contollers';
 import Review from '@/components/Review.vue';
 
 export default {
   name: 'Kegel-review-layout',
   mixins: [nextContentUrl],
+  computed: {
+    ...mapGetters(['tracks', 'contentBy']),
+  },
   components: {
     Review,
   },
@@ -71,6 +81,9 @@ export default {
     },
     moment(){
       return moment();
+    },
+    getRandomArbitrary(min, max){
+      return Math.random() * (max - min) + min;
     }
   },
   props: {

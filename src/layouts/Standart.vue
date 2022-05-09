@@ -7,7 +7,7 @@
 
       <steps
         :light="false"
-        v-if="content.id > 3 && content.id !== 35 && content.id !== 48"
+        v-if="content.id > 3 && content.id !== 35 && content.id !== 353 && content.id !== 61"
       />
 
       <div class="h2 layout__title">

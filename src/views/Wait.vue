@@ -6,13 +6,23 @@
       <steps/>
 
       <div class="wait__content">
-        <img src="@/assets/images/wait/animation.svg" alt="">
+        
+        <div class="d-flex  align-items-center block">
+          <img src="@/assets/images/wait/animation.svg" alt="animation">
+          <div class="d-flex flex-column">
+            <p class="wait__text__animate">Just a moment...</p>
+            <p class="wait__text__animate">Your plan is being created</p>
+          </div>
+        </div>
+        
 
         <template
           v-for="(step, index) in steps"
           :key="step.title"
         >
           <div v-show="step.active">
+
+
             <div class="wait__image">
               <img :src="image(index + 1)" alt="" width="310" height="310">
             </div>
@@ -100,6 +110,14 @@ export default {
 }
 
 .wait {
+  &__text__animate{
+    font-family: "SF-Pro-Display-Medium";
+    font-size: 14px;
+    line-height: 135%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
   &__image {
     text-align: center;
     margin: 15px 0;
@@ -111,6 +129,26 @@ export default {
 
   &__content {
     text-align: center;
+    
+    .h2{
+      max-width: 450px;
+      margin: 0 auto;
+      font-size: 24px;
+      
+      @media (max-width: 480px) {
+        font-size: 20px;
+      }
+    }
+    .d-flex.block{
+      background-color: #F9F9F9;
+      border-radius: 54px;
+      padding: 7px;
+      max-width: 311px ;
+      margin: 54px auto;
+      @media (max-width: 480px) {
+        margin: 38px auto;
+      }
+    }
   }
 }
 

@@ -199,6 +199,8 @@ body{
     font-size: 16px;
     border: none;
     width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
     line-height: 1.2;
     cursor: pointer;
     transition: .4s;
@@ -255,6 +257,8 @@ body{
     color: #111113;
     opacity: .5;
     text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
     margin-top: 32px;
     line-height: 1.5;
   }

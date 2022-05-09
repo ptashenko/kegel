@@ -12,13 +12,13 @@
       :buttonBack="{
         text: 'Back',
         icon: 'prev',
-        click: () => $router.go(-1),
+        click: '/survey/321',
         theme: 'light'
       }"
       :buttonNext="{
         text: 'Continue',
         icon: 'next',
-        click: () => {$router.push('/');},
+        click: '/AfterMap',
         theme: 'red'
       }"
     />
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Good-hands-layout',
 };
@@ -43,7 +44,7 @@ img {
 }
 
 p {
-  font-weight: 400;
+  font-family: "SF Pro Text Semibold";
   font-size: 16px;
   line-height: 150%;
 }

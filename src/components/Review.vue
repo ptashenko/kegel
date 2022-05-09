@@ -53,7 +53,7 @@ export default {
   padding: 15px;
   border-radius: 10px;
   margin: 0 auto;
-  max-width: 400px;
+  max-width: 370px;
   background-color: #F1F1F1;
 
   &:not(.light) {

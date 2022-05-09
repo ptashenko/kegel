@@ -50,7 +50,7 @@ export default {
   height: 6px;
   background-color: #F1F3F9;
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   margin: 0 auto 32px;
   display: flex;
   align-items: center;

@@ -50,8 +50,10 @@ export default {
 }
 
 .layout__thumbnail{
-  margin: 0 -30px;
-
+  margin: 0 10px;
+  @media (max-width: 480px) {
+    margin: 0 -30px;
+  }
   img {
     width: 100%;
   }

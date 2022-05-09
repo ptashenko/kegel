@@ -2,8 +2,8 @@
   <header :class="{'is-fixed': fixed}">
     <div class="container-main">
       <router-link :to="{name: 'home'}">
-        <img src="@/assets/images/logo-dark.png" alt="" width="120" v-if="dark">
-        <img src="@/assets/images/logo.png" alt="" width="120" v-else>
+        <img src="@/assets/images/logo-dark.png" alt="logo" class="logo" v-if="dark">
+        <img src="@/assets/images/logo.png" alt="logo" class="logo" v-else>
       </router-link>
     </div>
   </header>
@@ -42,6 +42,12 @@ header {
 
   .container-main {
     background-color: transparent;
+    .logo{
+      width: 150px;
+      @media (max-width: 480px) {
+        width: 120px;
+      }
+    }
   }
 }
 </style>

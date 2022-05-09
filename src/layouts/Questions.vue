@@ -123,11 +123,16 @@ export default {
   }
   &__title{
     font-family: "SF-Pro-Display-Bold"; 
-    font-size: 20px;
+    font-size: 24px;
+    text-align: center;
     padding: 0px 0 32px;
+    @media (max-width: 480px) {
+      font-size: 20px;
+      text-align: left;
+    }
   }
   &__thumbnail {
-    margin-bottom: 30px;
+    margin-bottom: 32px;
     text-align: center;
 
     img {
@@ -138,7 +143,9 @@ export default {
 
   &__lvl {
     display: flex;
-    margin-top: 15px;
+    max-width: 390px;
+    margin: 0 auto;
+    margin-top: 16px;
     justify-content: space-between;
     opacity: 0.75;
     font-size: 18px;

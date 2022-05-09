@@ -12,7 +12,7 @@ body {
         color: #111113
     }
     .btn {
-        padding: 18px 18px;
+        padding: 18px 38px;
     }
     .steps__col.active {
         background-color: #111113
@@ -120,12 +120,53 @@ header .container-main {
     display: flex;
     justify-content: center;
     &__item {
-        margin: 0 12px;
+        margin: 12px 3.4% 0;
         font-size: 12px;
         color: #111113;
+        @media (max-width: 480px) {
+            margin: 9px 3.4% 0;
+        }
     }
+}
+
+.h2 {
+    font-family: "SF-Pro-Display-Bold";
+    font-size: 20px;
+    text-align: center;
 }
 
 .h-100 {
     height: 100vh;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.align-items-center {
+    align-items: center
+}
+
+.align-items-start {
+    align-items: flex-start
+}
+
+.justify-content-beetwen {
+    justify-content: space-between;
+}
+
+.justify-content-center {
+    justify-content: center;
 }

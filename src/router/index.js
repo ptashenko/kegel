@@ -3,7 +3,7 @@ import notFound from '@/views/NotFound.vue';
 import HomeView from '@/views/HomeView.vue';
 import SurveyView from '@/views/SurveyView.vue';
 import Wait from '@/views/Wait.vue';
-import AboutView from '@/views/AboutView.vue';
+import AfterMap from '@/views/AfterMap.vue';
 import GoodHands from '@/views/GoodHands.vue';
 
 const routes = [{
@@ -27,9 +27,9 @@ const routes = [{
         component: GoodHands,
     },
     {
-        path: '/AboutView',
-        name: 'AboutView',
-        component: AboutView,
+        path: '/AfterMap',
+        name: 'AfterMap',
+        component: AfterMap,
     },
     {
         path: '/:pathMatch(.*)',

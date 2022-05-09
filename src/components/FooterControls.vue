@@ -101,8 +101,10 @@ export default {
   }
 
   & > * {
-
-    padding: 0 2.5px;
+    padding: 0 8px;
+    @media (max-width: 480px) {
+      padding: 0 2.5px;
+    }
   }
 }
 

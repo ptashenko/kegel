@@ -38,7 +38,7 @@ export default {
   font-size: 18px;
   cursor: pointer;
   transition: 0.2s;
-  padding: 18px 38px;
+  padding: 18px 45px;
   font-family: "SF Pro Text Medium";
 
   @media (max-width: 480px) {

@@ -9,6 +9,8 @@ const state = () => ({
     tracks: [{
             id: 1,
             title: 'Treat ED',
+            purpose: 'Strengthen erection',
+            addpurpose: 'Increase sexual stamina',
             text: 'Get & stay hard easier',
             layouts: [
                 { id: 1, separation: true },
@@ -28,6 +30,8 @@ const state = () => ({
         {
             id: 2,
             title: 'Treat PE',
+            purpose: 'Increase sexual stamina',
+            addpurpose: 'Strengthen erection',
             text: 'Last up to 7x longer',
             layouts: [
                 { id: 1, separation: true },
@@ -47,10 +51,12 @@ const state = () => ({
         {
             id: 3,
             title: 'I’m ok',
+            purpose: 'Improve sexual performance',
+            addpurpose: 'Strengthen erection',
             text: 'I just want to maximize my intimate wellness',
             layouts: [
                 { id: 1, separation: true },
-                { id: 35 }, { id: 6 }, { id: 3 }, { id: 49 },
+                { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },
                 { id: 50 }, { id: 21 }, { id: 22 }, { id: 51 },
                 { id: 44 }, { id: 45 }, { id: 453 },
                 { id: 13, separation: true },
@@ -99,6 +105,12 @@ const state = () => ({
             title: 'Guys, you must try it',
             text: 'I followed this kegel plan and now my performance is at its peak! Guys, this is a real game-changer - don’t sleep on it',
             name: 'Amteleronnnnn',
+            rating: 5,
+        },
+        7: {
+            title: 'I’m glad I found these exercises',
+            text: 'I’ve been doing Kegel exercises for 2 weeks now and I increased my stamina for real! I feel more confident with my partner. You should try Kegels as well',
+            name: 'JiggySpot',
             rating: 5,
         },
     },
@@ -166,8 +178,16 @@ const state = () => ({
         },
         {
             id: 6,
-            title: 'Just like any other muscle in the body, your PF muscles weaken without training',
+            title: 'The quality of your erection also depends on the Pelvic Floor (PF) muscle tone',
             text: 'Weak PF muscles can\'t hold blood in penis well. This leads to erection problems',
+            thumbnail: '2.png',
+            layoutName: 'standart',
+            buttonsText: ['Back', 'I got it'],
+        },
+        {
+            id: 61,
+            title: 'The quality of your erection also depends on the Pelvic Floor (PF) muscle tone',
+            text: 'The PF muscles help to fill penis with blood and prevent its outflow, so you can get & maintain strong erection',
             thumbnail: '2.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
@@ -552,6 +572,14 @@ const state = () => ({
             text: 'Thanks to the strong PF muscles you can delay ejaculation as long as you want',
         },
         {
+            id: 353,
+            title: 'Your sexual stamina depends on the Pelvic Floor (PF) muscle tone',
+            thumbnail: '3.png',
+            layoutName: 'standart',
+            text: 'Thanks to the strong PF muscles you can delay ejaculation as long as you want',
+            buttonsText: ['Back', 'Continue'],
+        },
+        {
             id: 351,
             title: 'How often does it happen that your sex lasts less than 2 minutes?',
             layoutName: 'Reviews',
@@ -642,7 +670,7 @@ const state = () => ({
             id: 41,
             title: '8/10 men improved their stamina with Kegel exercises',
             layoutName: 'KegelReview',
-            reviews: [3],
+            reviews: [7],
         },
         {
             id: 42,

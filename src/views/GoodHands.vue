@@ -18,7 +18,7 @@
       :buttonNext="{
         text: 'Continue',
         icon: 'next',
-        click: '/AfterMap',
+        click: router.push('AfterMap'),
         theme: 'red'
       }"
     />

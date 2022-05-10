@@ -25,7 +25,7 @@ import Processing from '@/layouts/Processing.vue';
 import Reviews from '@/layouts/Reviews.vue';
 import Standart from '@/layouts/Standart.vue';
 import Questions from '@/layouts/Questions.vue';
-import AfterMap from '@/views/AfterMap.vue';
+import AfterMap from '@/views/TimePlan.vue';
 import { mapGetters } from 'vuex';
 // import Steps from '@/components/Steps.vue';
 

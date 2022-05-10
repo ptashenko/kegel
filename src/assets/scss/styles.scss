@@ -6,6 +6,13 @@ body {
     }
 }
 
+.steps__col:first-child {
+    background-color: #111113;
+    img {
+        opacity: 0;
+    }
+}
+
 .dark-layout.light {
     background-color: #FFFFFF;
     .review {
@@ -16,6 +23,12 @@ body {
     }
     .steps__col.active {
         background-color: #111113
+    }
+    .steps__col.active:first-child {
+        background-color: #111113;
+        img {
+            opacity: 0;
+        }
     }
 }
 

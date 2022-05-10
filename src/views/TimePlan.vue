@@ -2,9 +2,7 @@
   <header-layout :fixed="true" :dark="true"/>
 
   <div class="dark-layout light">
-    
-
-    <div class="container-main is-page AfterMap">
+    <div class="container-main is-page TimePlan">
       <div class="h2 text-center">
         This is how much it took to create your plan
       </div>
@@ -25,13 +23,14 @@
     <footer-controls
       :buttonBack="{
         text: 'Back',
-        click:() => $router.go(-1),
+        click: back,
         icon: 'prev',
         theme: 'light'
       }"
       :buttonNext="{
         icon: 'next',
         text: 'I got it',
+        click: btnClick ,
         theme: 'red'
       }"
     />
@@ -39,12 +38,26 @@
   </div>
 </template>
 <script>
+import { mapGetters} from 'vuex';
+import nextContentUrl from '@/mixins/contollers';
 
 
 export default {
-  name: 'AboutView',
+  name: 'TimePlan',
+  components:{
+  },
+  computed: {
+    ...mapGetters(['content', 'track']),
+  },
+  methods: {
+    btnClick() {
+      this.$router.push({ path: '/TrustedSources'})
+    },
+  },
+  mixins: [nextContentUrl],
 
 }
+
 </script>
 <style lang="scss" scoped>
 .h2 {

@@ -99,7 +99,7 @@ export default {
       } else {
         this.$router.push({ name: 'goodHands' });
       }
-    }, 5000);
+    }, 1000);
   },
 };
 </script>

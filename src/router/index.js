@@ -3,7 +3,9 @@ import notFound from '@/views/NotFound.vue';
 import HomeView from '@/views/HomeView.vue';
 import SurveyView from '@/views/SurveyView.vue';
 import Wait from '@/views/Wait.vue';
-import AfterMap from '@/views/AfterMap.vue';
+import TimePlan from '@/views/TimePlan.vue';
+import TrustedSources from '@/views/TrustedSources.vue';
+import AnalizAnswer from '@/views/AnalizAnswer.vue';
 import GoodHands from '@/views/GoodHands.vue';
 
 const routes = [{
@@ -27,9 +29,19 @@ const routes = [{
         component: GoodHands,
     },
     {
-        path: '/AfterMap',
-        name: 'AfterMap',
-        component: AfterMap,
+        path: '/TimePlan',
+        name: 'TimePlan',
+        component: TimePlan,
+    },
+    {
+        path: '/TrustedSources',
+        name: 'TrustedSources',
+        component: TrustedSources,
+    },
+    {
+        path: '/AnalizAnswer',
+        name: 'AnalizAnswer',
+        component: AnalizAnswer,
     },
     {
         path: '/:pathMatch(.*)',

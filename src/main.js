@@ -11,6 +11,7 @@ import store from './store';
 import '@/assets/scss/styles.scss';
 import '@/assets/scss/fonts.scss';
 
+
 createApp(App)
     .use(svg4everybody)
     .use(moment)

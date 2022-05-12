@@ -23,7 +23,7 @@
     <footer-controls
       :buttonBack="{
         text: 'Back',
-        click: back,
+        click: btnBack,
         icon: 'prev',
         theme: 'light'
       }"
@@ -52,6 +52,9 @@ export default {
   methods: {
     btnClick() {
       this.$router.push({ path: '/TrustedSources'})
+    },
+    btnBack() {
+      this.$router.push({ path: '/Good-hands'})
     },
   },
   mixins: [nextContentUrl],

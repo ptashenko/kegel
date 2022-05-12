@@ -108,6 +108,35 @@
         </div>
       </div>
 
+      <div v-for="(reviewItem, key)  in base" :key="key" >
+        <div class="review light" :class="{'active': key == this.numreview}">
+        <div class="review__top">
+          <div>
+            <div class="review__title">{{ reviewItem.title }}</div>
+            <div class="review__rating">
+              <div v-for="i in reviewItem.rating" :key="i">
+                <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+              </div>
+              <div v-for="i in Number(5 - reviewItem.rating)" :key="i">
+                <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+              </div>
+            </div>
+          </div>
+
+          <div class="review__name">
+            {{ reviewItem.name }}
+          </div>
+        </div>
+
+        <div class="review__text">
+          {{ reviewItem.text }}
+        </div>
+      </div>
+
+      </div>
+      
+
+
       <vpopup
         textTitle="Do you want to enhance the orgasms?"
         v-if="popupVisible"
@@ -135,8 +164,10 @@
       </vpopup>
     </div>
   </div>
+  <div>{{lengthReviews}}</div>
 </template>
 <script>
+
 import vpopup from '@/components/modal/v-popup.vue';
 import btnComponent from '@/components/questions/btnPopup.vue';
 import analizProcessing from '@/components/ui/analizProcessing.vue';
@@ -160,6 +191,9 @@ export default {
       loadProsentTwo:0,
       loadProsentTree: 0,
       loadProsentFoo:0,
+      base: {},
+      numreview: 0,
+      track: 0
     }
   },
   watch:{
@@ -179,11 +213,30 @@ export default {
       }
     },
   },
+  computed:{
+    products(){
+        return this.$store.state.review.msgPE
+    },
+    lengthReviews(){
+      var json = localStorage.getItem('track');
+      var obj = JSON.parse(json);
+      this.track = obj.id
+      if(this.track == 3){
+        this.base =  this.$store.state.review.msgOK
+      }else if(this.track == 2){
+        this.base = this.$store.state.review.msgPE
+      }else{
+        this.base = this.$store.state.review.msgED
+      }
+      return console.log(this.track);  ; 
+    }
+  },
   methods:{
     showModal(){
       this.popupVisible = true
       this.isActiveNo = this.isActiveYes = this.closeActive = false
       this.isLoad = false
+      clearInterval(this.numrew);
     },
     closePopup(e){
       let x = e.target
@@ -191,18 +244,11 @@ export default {
         this.popupVisible = false
         this.isLoad = true
         this.mystop = 100
-        this.ased()      
+        this.ased()  
+        this.numrew 
+        this.numReview()
       }
     },
-    // clousePopupLoad(){
-    //   let x = e.target
-    //   if(x.classList.contains('active')){
-    //     this.popupVisible = false
-    //     this.isLoad = false
-    //     this.mystop = 100
-    //     this.ased()
-    //   }
-    // },
     BtnActiveYes(){
       this.isActiveYes = this.closeActive = true 
       this.isActiveNo = false
@@ -244,11 +290,29 @@ export default {
           this.loadProsentFoo += 1;
         } else {
           clearInterval();
+          this.$router.push({ path: '/EmailAdress'})
         }
       }, 100);
     },
+    numReview(){
+      setInterval(() => {
+        if (this.numreview < (this.base.length - 1)) {
+          this.numreview += 1;
+        } else{
+          this.numreview = 0
+        }
+      }, 3000);
+    }
   },
   mounted() {
+    const numrew = setInterval(() => {
+      if (this.numreview < 2) {
+        this.numreview += 1;
+        
+      } else {
+        clearInterval(numrew);
+      }
+    }, 3000);
     const as = setInterval(() => {
       if (this.percent < this.mystop) {
         this.percent += 1;
@@ -258,11 +322,17 @@ export default {
       }
     }, 100);
   },
+  
 }
 
 </script>
 <style lang="scss" scoped>
-
+.review{
+  display: none;
+}
+.review.active{
+  display: block;
+}
 .review__animate{
   width: 17px;
   height: 17px;
@@ -351,5 +421,84 @@ export default {
     bottom: 0;
     width: 20%;
   }
+}
+// reviews
+
+.review {
+  padding: 15px;
+  border-radius: 10px;
+  margin: 64px auto 0;
+  max-width: 370px;
+  background-color: #F1F1F1;
+
+  &:not(.light) {
+    background-color: #1D1D1F;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 150%;
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+  }
+
+  &__name {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    opacity: .5;
+
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+  }
+
+  &__rating {
+    display: flex;
+    margin-top: 5px;
+
+    div {
+      width: 14px;
+      height: 14px;
+
+      @media (max-width: 480px) {
+        width: 14px;
+        height: 14px;
+
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+}
+
+.star-yellow {
+  max-width: 14px;;
+  height: auto;
 }
 </style>

@@ -90,7 +90,7 @@ export default {
     },
   },
   mounted() {
-    setInterval(() => {
+    const list = setInterval(() => {
       const index = this.steps.findIndex((step) => step.active === true);
       // eslint-disable-next-line no-param-reassign,no-return-assign
       this.steps.forEach((step) => step.active = false);
@@ -98,8 +98,9 @@ export default {
         this.steps[index + 1].active = true;
       } else {
         this.$router.push({ name: 'goodHands' });
+        clearInterval(list);
       }
-    }, 1000);
+    }, 5000);
   },
 };
 </script>

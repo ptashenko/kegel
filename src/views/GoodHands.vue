@@ -11,14 +11,14 @@
     <footer-controls
       :buttonBack="{
         text: 'Back',
+        click: btnBack,
         icon: 'prev',
-        click: '/survey/321',
         theme: 'light'
       }"
       :buttonNext="{
-        text: 'Continue',
         icon: 'next',
-        click: router.push('AfterMap'),
+        text: 'Continue',
+        click: btnClick ,
         theme: 'red'
       }"
     />
@@ -29,6 +29,14 @@
 
 export default {
   name: 'Good-hands-layout',
+  methods:{
+    btnClick() {
+      this.$router.push({ path: '/TimePlan'})
+    },
+    btnBack() {
+      this.$router.push({ path: '/survey/31'})
+    },
+  }
 };
 </script>
 

@@ -26,7 +26,7 @@
     <footer-controls
       :buttonBack="{
         text: 'Back',
-        click:back,
+        click: btnBack,
         icon: 'prev',
         theme: 'light'
       }"
@@ -106,6 +106,9 @@ export default {
   methods: {
     btnClick() {
       this.$router.push({ path: '/AnalizAnswer'})
+    },
+     btnBack() {
+      this.$router.push({ path: '/TimePlan'})
     },
     buttonIcon(name) {
       return require(`../assets/images/icons/layout-buttons/${name}.svg`);

@@ -7,6 +7,7 @@ import TimePlan from '@/views/TimePlan.vue';
 import TrustedSources from '@/views/TrustedSources.vue';
 import AnalizAnswer from '@/views/AnalizAnswer.vue';
 import GoodHands from '@/views/GoodHands.vue';
+import EmailAdress from '@/views/EmailAdress.vue';
 
 const routes = [{
         path: '/',
@@ -42,6 +43,11 @@ const routes = [{
         path: '/AnalizAnswer',
         name: 'AnalizAnswer',
         component: AnalizAnswer,
+    },
+    {
+        path: '/EmailAdress',
+        name: 'EmailAdress',
+        component: EmailAdress,
     },
     {
         path: '/:pathMatch(.*)',

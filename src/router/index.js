@@ -8,6 +8,7 @@ import TrustedSources from '@/views/TrustedSources.vue';
 import AnalizAnswer from '@/views/AnalizAnswer.vue';
 import GoodHands from '@/views/GoodHands.vue';
 import EmailAdress from '@/views/EmailAdress.vue';
+import LandingView from '@/views/LandingView.vue';
 
 const routes = [{
         path: '/',
@@ -48,6 +49,11 @@ const routes = [{
         path: '/EmailAdress',
         name: 'EmailAdress',
         component: EmailAdress,
+    },
+    {
+        path: '/LandingView',
+        name: 'LandingView',
+        component: LandingView,
     },
     {
         path: '/:pathMatch(.*)',

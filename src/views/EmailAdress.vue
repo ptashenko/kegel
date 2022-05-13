@@ -10,7 +10,7 @@
           <img src="@/assets/images/icons/email_img.svg" alt="email">
           <div class="d-flex flex-column">
             <div class="h2">
-              Enter email adress
+              {{title}}
             </div>
             <p class="email__content__text">to get your Kegel Training Plan & {{ purpose }}</p>
             <form action="">
@@ -29,6 +29,7 @@
             <button 
               class="v-popup__submit_btn"
               :class="{active: closeActive}"
+              @click="next"
             >
             See my plan
             </button>
@@ -68,10 +69,13 @@ export default {
       email: null,
       isEmailTouched: false,
       upValue: '',
+      title:'Enter email adress'
     };
   },
   methods: {
-    
+    next(){
+      this.$router.push({ name: 'LandingView' });
+    },
   },
   watch:{
     upValue(value) {

@@ -280,6 +280,8 @@ const state = () => ({
             title: 'How hard is your erection during masturbation?',
             answer: {
                 style: 'buttons',
+                textLeft: 'Not hard',
+                textRight: 'Very hard',
                 answerList: [
                     '1',
                     '2',
@@ -294,6 +296,8 @@ const state = () => ({
             title: 'How hard is your erection during sex?',
             answer: {
                 style: 'buttons',
+                textLeft: 'Not hard',
+                textRight: 'Very hard',
                 answerList: [
                     '1',
                     '2',

@@ -261,6 +261,10 @@ body{
     margin: 0 auto;
     margin-top: 32px;
     line-height: 1.5;
+    font-size: 14px;
+    @media (max-width:480px) {
+      font-size: 12px;
+    }
   }
 }
 

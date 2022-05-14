@@ -44,6 +44,7 @@ export default {
   transition: 0.2s;
   cursor: pointer;
   position: relative;
+  color: #111113;
 
   @media (max-width: 480px) {
     font-size: 14px;

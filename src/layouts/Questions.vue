@@ -73,11 +73,8 @@ export default {
   },
   computed: {
     rateTo() {
-      if(5 > this.num){
-        this.num++
-      }
       const list = this.survey.answer.answerList;
-      return `Rate from ${this.num} to ${list[list.length - 1]}`;
+      return `Rate from 1 to ${list[list.length - 1]}`;
     },
     ...mapGetters(['content', 'track'])
   },
@@ -126,6 +123,7 @@ export default {
     font-size: 24px;
     text-align: center;
     padding: 0px 0 32px;
+    line-height:135%;
     @media (max-width: 480px) {
       font-size: 20px;
       text-align: left;

@@ -1,10 +1,10 @@
 <template>
   <header :class="{'is-fixed': fixed}">
     <div class="container-main">
-      <router-link :to="{name: 'home'}">
+      <!-- <router-link :to="{name: 'home'}"> -->
         <img src="@/assets/images/logo-dark.png" alt="logo" class="logo" v-if="dark">
         <img src="@/assets/images/logo.png" alt="logo" class="logo" v-else>
-      </router-link>
+      <!-- </router-link> -->
     </div>
   </header>
 </template>

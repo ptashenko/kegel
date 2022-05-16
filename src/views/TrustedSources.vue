@@ -4,22 +4,12 @@
   <div class="dark-layout light">
     <div class="container-main is-page TimePlan">
       <div class="h2 text-center">
-        This is how much it took to create your plan
+        These are some of the trusted sources that have been used
       </div>
 
 
-      <div class="layout__buttons" v-if="icons">
-        <div class="bg-fixed-top"></div>
-        <div class="layout__button" v-for="icon in icons" :key="icon.id">
-          <div class="layout__button-icon" v-if="icon.logo">
-            <img :src="buttonIcon(icon.logo)" :alt="icon.title">
-          </div>
-          <div>
-            <p>{{ icon.text }}</p>
-            <p>{{ icon.title }}</p>
-          </div>
-        </div>
-        <div class="bg-fixed-bottom"></div>
+      <div class="layout__buttons">
+          <img src="@/assets/images/content/animation_sorces.png">
       </div>
       
 
@@ -131,42 +121,9 @@ export default {
 }
 .layout {
   &__buttons{
-    margin-top: 32px ;
-    height:320px ;
-    overflow-y: auto;
-    -ms-overflow-style: none;
-    position: relative;
-    .bg-fixed-top{
-      position: fixed;
-      width: 100%;
-      max-width: 500px;
-      height: 50px;
-      background: linear-gradient(to top, #ffffff00, #ffffff);
-    }
-    .bg-fixed-top::after{
-      content:"";
-      position: fixed;
-      width: 100%;
-      max-width: 500px;
-      height: 50px;
-      background: linear-gradient(to top, #ffffff, #ffffff00);
-      top: 435px;
-      @media (max-width: 528px) {
-        top: 460px;
-      }
-    }
-  }
-   
-  &__buttons::-webkit-scrollbar{
-      width: 0;
-      height: 0;
-}
-  &__button{
-    border-radius: 17px;
-    padding: 14px;
-    background: #F9F9F9;
-    max-width: 270px;
-    margin: 0 auto;
+    text-align: center;
+    max-width: 400px;
+    margin: 17px auto;
   }
   &__title {
     font-weight: 600;

@@ -158,7 +158,8 @@ const state = () => ({
         {
             id: 2,
             title: 'The quality of your erection depends on the Pelvic Floor (PF) muscle tone',
-            text: 'The PF muscles help to fill penis with blood and prevent its outflow, so you can get & maintain hard erection',
+            text: 'The PF muscles help to fill penis with blood and prevent its outflow, so you can get & maintain ',
+            textBold: 'hard erection',
             thumbnail: '2.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
@@ -210,7 +211,9 @@ const state = () => ({
         {
             id: 6,
             title: 'The quality of your erection also depends on the Pelvic Floor (PF) muscle tone',
-            text: 'Weak PF muscles can\'t hold blood in penis well. This leads to erection problems',
+            text: 'Weak PF muscles ',
+            textBold: ' can\'t hold blood ',
+            AfterTextBold: ' in penis well. This leads to erection problems',
             thumbnail: '2.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
@@ -310,7 +313,8 @@ const state = () => ({
         {
             id: 13,
             active: true,
-            title: '75.5% of men improved their erections with Kegel exercises',
+            title: ' of men improved their erections with Kegel exercises',
+            tilteRed: '75.5% ',
             layoutName: 'KegelReview',
             reviews: [1],
         },
@@ -459,7 +463,8 @@ const state = () => ({
         },
         {
             id: 24,
-            title: `Men who perform Kegel exercises can increase their sexual stamina up to 7x `,
+            title: `Men who perform Kegel exercises can increase their sexual stamina up to `,
+            afterTilteRed: '7x',
             layoutName: 'standart',
             thumbnail: '4.jpg',
             buttons: [{
@@ -474,6 +479,8 @@ const state = () => ({
             title: 'How would you rate your libido (sex drive) 1 year ago?',
             answer: {
                 style: 'buttons',
+                textLeft: 'Low',
+                textRight: 'High',
                 answerList: [
                     '1',
                     '2',
@@ -551,6 +558,8 @@ const state = () => ({
             title: 'How healthy is your diet?',
             answer: {
                 style: 'buttons',
+                textLeft: 'Unhealthy',
+                textRight: 'Healthy',
                 answerList: [
                     '1',
                     '2',
@@ -590,6 +599,8 @@ const state = () => ({
             title: 'How often do you get stressed?',
             answer: {
                 style: 'buttons',
+                textLeft: 'I don\'t stress',
+                textRight: 'I stress a lot',
                 answerList: [
                     '1',
                     '2',

@@ -12,6 +12,7 @@
 
       <div class="h2 layout__title">
         {{ content.title }}
+        <span class="red" v-if="content.afterTilteRed !== false">{{ content.afterTilteRed }}</span>
       </div>
 
       <div class="layout__thumbnail full" v-if="content.thumbnail">
@@ -25,6 +26,8 @@
 
       <div class="layout__bottom-text" v-if="content.text">
         {{ content.text }}
+        <span class="bold-text" v-if="content.textBold">{{ content.textBold }}</span>
+        <span class="after__text__bold" v-if="content.AfterTextBold">{{ content.AfterTextBold }}</span>
       </div>
 
       <div class="layout__buttons" v-if="content.buttons">
@@ -168,6 +171,11 @@ export default {
       font-size: 16px;
       line-height: 24px;
     }
+
   }
+ 
 }
+ .bold-text{
+    font-family: "SF Pro Text Semibold";
+  }
 </style>

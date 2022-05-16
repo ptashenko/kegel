@@ -8,7 +8,10 @@
 
     <div class="container-main is-page KegalReview">
       <div class="h2 text-center">
+        <span class="red" v-if="content.tilteRed !== false">{{content.tilteRed}}</span>
+        <span v-else></span>
         {{ content.title }}
+        
       </div>
 
       <div class="peoples">
@@ -66,4 +69,5 @@ export default {
     width: 100%;
   }
 }
+
 </style>

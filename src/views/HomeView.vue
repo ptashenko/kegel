@@ -273,6 +273,8 @@ body{
   background: rgba(196, 196, 196, 0.2);
   .container-main{
     padding-bottom: 32px;
+    max-width: 350px;
+    margin: 0 auto;
   }
 
   &__info {

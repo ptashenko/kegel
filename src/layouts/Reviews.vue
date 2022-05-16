@@ -15,19 +15,21 @@
           and  {{ track.addpurpose }}
         </div>
       
-        <span v-if="content.id == 20 && 54">by {{moment().add(getRandomArbitrary(7, 13),'days').format("DD")}}  {{moment().add(4,'month').format("MMM")}}</span>
-        <span v-else>by {{moment().add(getRandomArbitrary(1, 7),'days').format("DD")}}  {{moment().add(4,'month').format("MMM")}}</span>
+        <span  class="red" v-if="content.id == 20 && 54">by {{moment().add(getRandomArbitrary(7, 13),'days').format("DD")}}  {{moment().add(4,'month').format("MMMM")}}</span>
+        <span class="red" v-else>by {{moment().add(getRandomArbitrary(1, 7),'days').format("DD")}}  {{moment().add(4,'month').format("MMMM")}}</span>
       </div>
 
       <div class=" layout__thumbnail">
         <img src="@/assets/images/content/reviews.svg" :alt="content.title">
-        <div class="block__data">
-          <p class="block__data__item">{{moment().add(0,'month').format("MMM")}}</p>
-          <p class="block__data__item">{{moment().add(1,'month').format("MMM")}}</p>
-          <p class="block__data__item">{{moment().add(2,'month').format("MMM")}}</p>
-          <p class="block__data__item">{{moment().add(3,'month').format("MMM")}}</p>
-          <p class="block__data__item">{{moment().add(4,'month').format("MMM")}}</p>
-          <p class="block__data__item">{{moment().add(5,'month').format("MMM")}}</p>
+        <div  style="max-width:450px; margin: 0 auto">
+          <div class="block__data">
+            <p class="block__data__item">{{moment().add(0,'month').format("MMM")}}</p>
+            <p class="block__data__item">{{moment().add(1,'month').format("MMM")}}</p>
+            <p class="block__data__item">{{moment().add(2,'month').format("MMM")}}</p>
+            <p class="block__data__item">{{moment().add(3,'month').format("MMM")}}</p>
+            <p class="block__data__item">{{moment().add(4,'month').format("MMM")}}</p>
+            <p class="block__data__item">{{moment().add(5,'month').format("MMM")}}</p>
+          </div>
         </div>
       </div>
 
@@ -100,11 +102,14 @@ export default {
   padding-top: 50px;
 
   &__title {
-    font-weight: 600;
+    font-family: "SF-Pro-Display-Semibold";
     font-size: 18px;
     line-height: 150%;
     margin-bottom: 25px;
     text-align: center;
+    @media (max-width:480px) {
+      font-size: 16px;
+    }
   }
 }
 
@@ -126,14 +131,15 @@ export default {
   font-size: 14px;
   line-height: 150%;
   opacity: .5;
-  margin-top: 25px;
+  margin: 25px auto 0;
+  max-width: 400px;
 }
 
 .layout__thumbnail {
   text-align: center;
   img {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
   }
 }
 .text-center{

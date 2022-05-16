@@ -104,7 +104,13 @@ export default {
 
 <style lang="scss" scoped>
 .h2 {
+  font-family: "SF-Pro-Display-Semibold";
   margin: 24px auto 8px;
+  line-height: 135%;
+  font-size: 24px;
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 }
 .email__content{
   form{
@@ -112,12 +118,16 @@ export default {
   }
   &__text{
     font-family: "SF Pro Text Regular";
-    font-size: 14px;
+    font-size: 18px;
     line-height: 135%;  
     color: #111113;
     opacity: 0.75;
-    margin: 0;
+    margin: 0 auto;
     text-align: center;
+    max-width: 400px;
+    @media (max-width: 480px) {
+    font-size: 14px;
+  }
   }
   label{
     position: relative;
@@ -180,14 +190,15 @@ export default {
     opacity: 0.5;
     text-align: center;
     margin: 32px auto;
+    max-width: 400px;
     @media (max-width:480px) {
       font-size: 10px;
     }
   }
   .block-fixed{
-    position: fixed;
+    position: relative;
     bottom: 32px;
-    margin: 0 auto;
+    margin: 480px auto 0;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -196,12 +207,14 @@ export default {
     width: 540px;
     @media (max-width:480px) {
         max-width: 310px;
+        margin: 270px auto 0;
       }
     .email__content__text__small{
-      max-width: 430px;
-      font-size: 10px;
+      max-width: 520px;
+      font-size: 14px;
       @media (max-width:480px) {
         max-width: 310px;
+        font-size: 10px;
       }
     }
   }
@@ -211,7 +224,6 @@ export default {
     display: flex;
     justify-content: center;
     margin-top: 15px;
-
     a {
       text-decoration: underline;
       color: #111113;
@@ -220,13 +232,6 @@ export default {
       line-height: 135%; 
       color: #111113;
       opacity: 0.5;
-      &:first-child {
-        &:after {
-          content: '|';
-          margin-right: 16px;
-          padding-left: 16px;
-        }
-      }
     }
   }
 }

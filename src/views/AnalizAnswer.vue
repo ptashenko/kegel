@@ -12,8 +12,7 @@
       <div class="loading as"
         @click="openPopup"
       >
-        <div class="loading__title"></div>
-        <div class="text__percent d-flex justify-content-beetwen">
+        <div class="text__percent d-flex justify-content-beetwen" :class="{'active': percent > 0}">
           <div>
             Intimate health indicators
           </div>
@@ -25,7 +24,7 @@
             >
               <img src="@/assets/images/icons/preview.svg" alt="check">
             </div>
-            <div style="width: 45px; text-align: center;">
+            <div class="number__procent">
               {{ percent }}%
             </div>
           </div>
@@ -37,7 +36,7 @@
       </div>
       <div class="loading as">
         <div class="loading__title"></div>
-        <div class="text__percent d-flex justify-content-beetwen">
+        <div class="text__percent d-flex justify-content-beetwen" :class="{'active': loadProsentTwo > 0}">
           <div>
             Sexual behaviours
           </div>
@@ -49,7 +48,7 @@
             >
               <img src="@/assets/images/icons/preview.svg" alt="check">
             </div>
-            <div style="width: 45px; text-align: center;">
+            <div  class="number__procent">
               {{ loadProsentTwo }}%
             </div>
           </div>
@@ -61,7 +60,7 @@
       </div>
       <div class="loading as">
         <div class="loading__title"></div>
-        <div class="text__percent d-flex justify-content-beetwen">
+        <div class="text__percent d-flex justify-content-beetwen" :class="{'active': loadProsentTree > 0}">
           <div>
             Lifestyle
           </div>
@@ -73,7 +72,7 @@
             >
               <img src="@/assets/images/icons/preview.svg" alt="check">
             </div>
-            <div style="width: 45px; text-align: center;">
+            <div  class="number__procent">
               {{ loadProsentTree }}%
             </div>
           </div>
@@ -85,7 +84,7 @@
       </div>
       <div class="loading as">
         <div class="loading__title"></div>
-        <div class="text__percent d-flex justify-content-beetwen">
+        <div class="text__percent d-flex justify-content-beetwen" :class="{'active': loadProsentFoo > 0}">
           <div>
             Creating your plan
           </div>
@@ -97,7 +96,7 @@
             >
               <img src="@/assets/images/icons/preview.svg" alt="check">
             </div>
-            <div style="width: 45px; text-align: center;">
+            <div  class="number__procent">
               {{ loadProsentFoo }}%
             </div>
           </div>
@@ -301,7 +300,7 @@ export default {
         } else{
           this.numreview = 0
         }
-      }, 3000);
+      }, 4000);
     }
   },
   mounted() {
@@ -312,7 +311,7 @@ export default {
       } else {
         clearInterval(numrew);
       }
-    }, 3000);
+    }, 4000);
     const as = setInterval(() => {
       if (this.percent < this.mystop) {
         this.percent += 1;
@@ -371,11 +370,24 @@ export default {
 .v-popup__submit_btn.active{
   background-color: #111113;
 }
-  .text__percent{
-  font-size: 14px;
+.text__percent{
+  font-size: 18px;
   line-height: 150%;
   font-family: "SF Pro Text Semibold";
   color: #111113;
+  opacity: 0.75;
+  margin-bottom: 4px;
+  @media (max-width: 480px) {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+}
+.number__procent{
+  width: 45px; 
+  text-align: right;
+}
+.text__percent.active{
+  opacity: 1;
 }
 .loading {
   max-width: 400px;

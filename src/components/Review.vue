@@ -51,10 +51,13 @@ export default {
 <style lang="scss" scoped>
 .review {
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 11px;
   margin: 0 auto;
   max-width: 370px;
-  background-color: #F1F1F1;
+  background-color: #F9F9F9;
+  @media (max-width: 480px) {
+    border-radius: 9px;
+  }
 
   &:not(.light) {
     background-color: #1D1D1F;

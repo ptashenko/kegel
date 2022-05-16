@@ -1,9 +1,15 @@
 body {
     font-family: "SF Pro Text Regular";
-    background-color: #ECEEF0;
-    @media (max-width: 480px) {
-        background-color: #111113;
-    }
+    background: #E5E5E5;
+    @media (max-width: 480px) {}
+}
+
+body .container {
+    background: #FFFFFF;
+}
+
+.red {
+    color: #E44240;
 }
 
 .steps__col:first-child {
@@ -87,7 +93,10 @@ body {
         background-color: #E44240
     }
     .review {
-        color: #FFFFFF
+        color: #FFFFFF;
+        &__title {
+            font-family: "SF Pro Text Bold";
+        }
     }
     .layout__button {
         color: #FFFFFF
@@ -131,13 +140,14 @@ header .container-main {
 
 .block__data {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    margin: 0 12%;
     &__item {
-        margin: 12px 3.4% 0;
+        margin: 12px 0 0;
         font-size: 12px;
         color: #111113;
         @media (max-width: 480px) {
-            margin: 9px 3.4% 0;
+            margin: 9px 0 0;
         }
     }
 }
@@ -182,4 +192,10 @@ header .container-main {
 
 .justify-content-center {
     justify-content: center;
+}
+
+@media (max-width: 480px) {
+    .dark-layout.light .btn {
+        padding: 18px 15px;
+    }
 }

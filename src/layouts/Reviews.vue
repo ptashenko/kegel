@@ -8,11 +8,12 @@
       </div>
 
       <div class="date">
-        <div >
+        <div class="purpose">
           {{ track.purpose }}
         </div>
-        <div v-if="content.id !== 20 && 54">
-          and  {{ track.addpurpose }}
+
+        <div class="purpose" v-if="content.id !== 20 && 54">
+          <span>and</span> {{ track.addpurpose }}
         </div>
       
         <span  class="red" v-if="content.id == 20 && 54">by {{moment().add(getRandomArbitrary(7, 13),'days').format("DD")}}  {{moment().add(4,'month').format("MMMM")}}</span>
@@ -98,6 +99,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.purpose{
+  font-family: "SF Pro Text Semibold";
+  font-size: 18px;
+  span{
+    font-size: 18px;
+    font-family: 'SF Pro Text Regular';
+    @media (max-width:480px) {
+      font-size: 16px;
+    }
+  }
+  @media (max-width:480px) {
+    font-size: 16px;
+  }
+}
 .reviews {
   padding-top: 50px;
 
@@ -116,13 +131,14 @@ export default {
 .date {
   margin: 15px 0 35px;
   text-align: center;
-  font-weight: 600;
   font-size: 18px;
   line-height: 150%;
 
-  span {
+  span.red {
     display: block;
     color: color(red);
+    font-family: "SF Pro Text Bold";
+    font-size: 20px;
   }
 }
 

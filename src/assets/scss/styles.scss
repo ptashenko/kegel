@@ -144,10 +144,11 @@ header .container-main {
     margin: 0 12%;
     &__item {
         margin: 12px 0 0;
-        font-size: 12px;
+        font-size: 17px;
         color: #111113;
         @media (max-width: 480px) {
             margin: 9px 0 0;
+            font-size: 12px;
         }
     }
 }

@@ -11,8 +11,9 @@
       />
 
       <div class="h2 layout__title">
-        {{ content.title }}
+        <span v-if="content.title !== false">{{ content.title }}</span>
         <span class="red" v-if="content.afterTilteRed !== false">{{ content.afterTilteRed }}</span>
+        <span v-if="content.afterTilteText !== false">{{ content.afterTilteText }}</span>
       </div>
 
       <div class="layout__thumbnail full" v-if="content.thumbnail">
@@ -25,6 +26,8 @@
       </div>
 
       <div class="layout__bottom-text" v-if="content.text">
+        <span v-if="content.aftertext">{{ content.aftertext }}</span>
+        <span class="bold-text" v-if="content.textbold">{{ content.textbold }}</span>
         {{ content.text }}
         <span class="bold-text" v-if="content.textBold">{{ content.textBold }}</span>
         <span class="after__text__bold" v-if="content.AfterTextBold">{{ content.AfterTextBold }}</span>
@@ -94,7 +97,7 @@ export default {
 .h2 {
   text-align: center;
   color: #FFFFFF;
-  font-family: "SF-Pro-Display-Bold";
+  font-family: "SF-Pro-Display-Semibold";
 }
 
 .layout {
@@ -104,9 +107,11 @@ export default {
     line-height: 135%;
     text-align: center;
     margin-bottom: 32px;
+    
 
     @media (max-width: 480px) {
       font-size: 20px;
+      padding: 0 10px;
     }
   }
 

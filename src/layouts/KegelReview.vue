@@ -15,7 +15,13 @@
       </div>
 
       <div class="peoples">
-        <img src="@/assets/images/peoples.svg" alt="">
+
+        <lottie-animation 
+          v-if="content.thumbnail"
+          class="animation" 
+          ref="anim"
+          :animationData="require(`@/assets/images/json/${content.thumbnail}`)"
+        />
       </div>
 
       <review v-for="id in content.reviews" :key="id" :id="id"/>
@@ -36,7 +42,7 @@ export default {
   components: {
     Processing,
     Review,
-    Steps
+    Steps,
   },
   props: {
     content: {
@@ -47,6 +53,9 @@ export default {
   computed: {
     ...mapGetters(['review']),
   },
+  methods: {
+    
+  }
 };
 </script>
 
@@ -55,7 +64,7 @@ export default {
   padding-bottom: 30px;
 }
 .h2{
-  font-family: "SF-Pro-Display-Bold"; 
+  font-family: "SF-Pro-Display-Semibold"; 
   font-size: 20px;
   color: #FFFFFF;
   text-align: center;

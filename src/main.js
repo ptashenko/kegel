@@ -7,14 +7,18 @@ import Steps from '@/components/Steps.vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import LottieAnimation from "lottie-web-vue";
 
 import '@/assets/scss/styles.scss';
 import '@/assets/scss/fonts.scss';
 
 
+export {}
+
 createApp(App)
     .use(svg4everybody)
     .use(moment)
+    .use(LottieAnimation)
     .use(store)
     .use(router)
     .component('header-layout', Header)

@@ -3,6 +3,13 @@
 
   <div class="jumbotron home">
     <div class="container-main">
+        <!-- <lottie-animation
+          class="animation" 
+          ref="anim"
+          :animationData="require('@/assets/images/json/ED_s4.json')"
+        /> -->
+        
+
       <div class="jumbotron__title">
         Stay hard & last long without pills
       </div>
@@ -71,6 +78,9 @@ import { mapGetters, mapMutations } from 'vuex';
 import HeaderLayout from '@/components/Header.vue';
 
 export default {
+  components: {
+    HeaderLayout,
+  },
   data() {
     return {
       advantages: [
@@ -114,9 +124,6 @@ export default {
       });
     },
   },
-  components: {
-    HeaderLayout,
-  },
   mounted() {
     this.clearHistory();
   },
@@ -124,6 +131,12 @@ export default {
 </script>
 
 <style lang="scss">
+.animation {
+    display: block; 
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
 body{
   margin: 0;
 }

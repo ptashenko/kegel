@@ -58,9 +58,9 @@ const state = () => ({
                 { id: 1, separation: true },
                 { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },
                 { id: 50 }, { id: 21 }, { id: 22 }, { id: 51 },
-                { id: 44 }, { id: 45 }, { id: 453 },
+                { id: 44 }, { id: 450 }, { id: 453 },
                 { id: 13, separation: true },
-                { id: 14 }, { id: 15 }, { id: 17 },
+                { id: 14 }, { id: 15 }, { id: 52 },
                 { id: 53 }, { id: 20 },
                 { id: 54 }, { id: 26 }, { id: 55 },
                 { id: 28, separation: true },
@@ -144,6 +144,12 @@ const state = () => ({
             name: 'JiggySpot',
             rating: 5,
         },
+        8: {
+            title: 'The effect is great',
+            text: 'After 4 weeks of kegels, I have no trouble getting and maintaining erection. If you’re struggling as I did, try these exercises',
+            name: 'Chauchooo',
+            rating: 5,
+        },
     },
     contents: [{
             id: 1,
@@ -221,7 +227,8 @@ const state = () => ({
         {
             id: 61,
             title: 'The quality of your erection also depends on the Pelvic Floor (PF) muscle tone',
-            text: 'The PF muscles help to fill penis with blood and prevent its outflow, so you can get & maintain strong erection',
+            text: 'The PF muscles help to fill penis with blood and prevent its outflow, so you can get & maintain ',
+            textBold: ' strong erection',
             thumbnail: '2.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
@@ -315,8 +322,9 @@ const state = () => ({
             active: true,
             title: ' of men improved their erections with Kegel exercises',
             tilteRed: '75.5% ',
+            thumbnail: 'ED_s4.json',
             layoutName: 'KegelReview',
-            reviews: [1],
+            reviews: [8],
         },
         {
             id: 14,
@@ -615,14 +623,18 @@ const state = () => ({
             title: 'Your sexual stamina depends on the Pelvic Floor (PF) muscle tone',
             thumbnail: '3.png',
             layoutName: 'standart',
-            text: 'Thanks to the strong PF muscles you can delay ejaculation as long as you want',
+            aftertext: 'Thanks to the strong PF muscles you can ',
+            textbold: ' delay ejaculation ',
+            text: ' as long as you want',
         },
         {
             id: 353,
             title: 'Your sexual stamina depends on the Pelvic Floor (PF) muscle tone',
             thumbnail: '3.png',
             layoutName: 'standart',
-            text: 'Thanks to the strong PF muscles you can delay ejaculation as long as you want',
+            aftertext: 'Thanks to the strong PF muscles you can ',
+            textbold: ' delay ejaculation ',
+            text: ' as long as you want',
             buttonsText: ['Back', 'Continue'],
         },
         {
@@ -643,9 +655,11 @@ const state = () => ({
         {
             id: 352,
             title: 'Just like any other muscle in the body, your PF muscles weaken without training',
-            thumbnail: '3.png',
+            thumbnail: 'gif_ed_s1.png',
             layoutName: 'standart',
-            text: 'Weak PF muscles can\'t let you compress the urethra enough to delay ejaculation as long as you want',
+            aftertext: 'Weak PF muscles ',
+            textbold: ' can\'t let you compress the urethra enough ',
+            text: ' to delay ejaculation as long as you want',
         },
         {
             id: 36,
@@ -682,7 +696,9 @@ const state = () => ({
         },
         {
             id: 39,
-            title: 'You can strengthen your PF muscles & increase sexual stamina up to 7x by doing Kegel exercises',
+            title: 'You can strengthen your PF muscles & increase sexual stamina up to ',
+            afterTilteRed: '7x',
+            afterTilteText: ' by doing Kegel exercises',
             layoutName: 'standart',
             thumbnail: '4.jpg',
             buttons: [{
@@ -715,6 +731,7 @@ const state = () => ({
         {
             id: 41,
             title: '8/10 men improved their stamina with Kegel exercises',
+            thumbnail: 'ED_s4.json',
             layoutName: 'KegelReview',
             reviews: [7],
         },
@@ -784,6 +801,20 @@ const state = () => ({
             },
         },
         {
+            id: 450,
+            title: 'Have you ever failed to get a full erection for sex?',
+            answer: {
+                style: 'radio',
+                answerList: [
+                    'It never happened',
+                    'It happens rarely',
+                    'It happens often',
+                    'It happens always',
+                    'I don\'t want to answer',
+                ],
+            },
+        },
+        {
             id: 451,
             title: 'Can you have sex 2 times in a row?',
             answer: {
@@ -822,7 +853,8 @@ const state = () => ({
         },
         {
             id: 47,
-            title: '75.5% of men improved their erections with Kegel exercises',
+            afterTilteRed: '75.5%',
+            afterTilteText: ' of men improved their erections with Kegel exercises',
             layoutName: 'standart',
             thumbnail: 'PE_s5.png',
             buttons: [{
@@ -844,6 +876,8 @@ const state = () => ({
             title: 'How satisfied are you with your sexual performance?',
             answer: {
                 style: 'buttons',
+                textLeft: 'Not satisfied',
+                textRight: 'Very satisfied',
                 answerList: [
                     '1',
                     '2',
@@ -857,7 +891,7 @@ const state = () => ({
             id: 50,
             title: 'You can strengthen your PF muscles & improve sexual performance by doing Kegel exercises',
             layoutName: 'standart',
-            thumbnail: 's3.svg',
+            thumbnail: 'OK_s3.svg',
             buttons: [{
                     id: 1,
                     logo: 'logo_source_1',
@@ -874,7 +908,8 @@ const state = () => ({
         },
         {
             id: 51,
-            title: 'Men who perform Kegel exercises can increase their stamina up to 7 times',
+            title: 'Men who perform Kegel exercises can increase their stamina up to ',
+            afterTilteRed: '7 times',
             layoutName: 'standart',
             thumbnail: '4.jpg',
             buttons: [{

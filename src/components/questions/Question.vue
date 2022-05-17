@@ -32,12 +32,11 @@ export default {
 .answer {
   font-family: "SF Pro Text Medium";
   width: 100%;
-  padding: 0 20px;
+  padding: 15px 60px 15px 20px;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
   text-align: left;
-  height: 53px;
   background-color: #F1F3F9;
   border: none;
   border-radius: 9px;

@@ -93,6 +93,120 @@ export default {
                 rating: 5,
             },
         ],
+        msgOkLand: [{
+                title: 'Sex booster',
+                text: 'Doing Kegels for about 2 months and I can definitely tell that my stamina has really increased. Now I can last for an entire night',
+                name: 'MasterBest069',
+                rating: 5,
+            },
+            {
+                title: 'Nice',
+                text: 'Just 1 month of training and my erection is stronger. I’m happy with the results',
+                name: 'RpgEpic123',
+                rating: 5,
+            },
+            {
+                title: 'Guys, you must try it',
+                text: 'I followed this kegel plan and now my performance is at its peak! Guys, this is a real game-changer - don’t sleep on it',
+                name: 'Amteleronnnnn',
+                rating: 5,
+            },
+            {
+                title: 'Daily training paid off',
+                text: 'Now I last sooo much longer. This is amazing!',
+                name: 'UgaraticKroolKat',
+                rating: 5,
+            },
+            {
+                title: 'Best of the best',
+                text: 'My erection is getting harder with each training day',
+                name: 'RawJunky',
+                rating: 5,
+            },
+            {
+                title: 'Thank you Kegel',
+                text: 'As I reached my 50s I thought my heydays were over. But thanks to kegels I feel like I’m 20 again! ',
+                name: 'FizzliviSphema',
+                rating: 5,
+            },
+        ],
+        msgPeLand: [{
+                title: 'Sex booster',
+                text: 'Doing Kegels for about 2 months and I can definitely tell that my stamina has really increased. Now I can last for an entire night',
+                name: 'RpgEpic123',
+                rating: 5,
+            },
+            {
+                title: 'Daily training paid off',
+                text: 'Now I last sooo much longer. This is amazing!',
+                name: 'UgaraticKroolKat',
+                rating: 5,
+            },
+            {
+                title: 'Guys, you must try it',
+                text: 'I followed this kegel plan and now my performance is at its peak! Guys, this is a real game-changer - don’t sleep on it',
+                name: 'Amteleronnnnn',
+                rating: 5,
+            },
+            {
+                title: 'Nice',
+                text: 'Just 1 month of training and my erection is stronger. I’m happy with the results',
+                name: 'RpgEpic123',
+                rating: 5,
+            },
+            {
+                title: 'Best of the best',
+                text: 'My erection is getting harder with each training day',
+                name: 'RawJunky',
+                rating: 5,
+            },
+            {
+                title: 'Thank you Kegel',
+                text: 'As I reached my 50s I thought my heydays were over. But thanks to kegels I feel like I’m 20 again! ',
+                name: 'FizzliviSphema',
+                rating: 5,
+            },
+        ],
+        msgEdLand: [{
+                title: 'Nice',
+                text: 'Just 1 month of training and my erection is stronger. I’m happy with the results',
+                name: 'RpgEpic123',
+                rating: 5,
+            },
+            {
+                title: 'Best of the best',
+                text: 'My erection is getting harder with each training day',
+                name: 'RawJunky',
+                rating: 5,
+            },
+            {
+                title: 'Thank you Kegel',
+                text: 'As I reached my 50s I thought my heydays were over. But thanks to kegels I feel like I’m 20 again! ',
+                name: 'FizzliviSphema',
+                rating: 5,
+            },
+            {
+                title: 'Sex booster',
+                text: 'Doing Kegels for about 2 months and I can definitely tell that my stamina has really increased. Now I can last for an entire night',
+                name: 'RpgEpic123',
+                rating: 5,
+            },
+            {
+                title: 'Daily training paid off',
+                text: 'Now I last sooo much longer. This is amazing!',
+                name: 'UgaraticKroolKat',
+                rating: 5,
+            },
+            {
+                title: 'Guys, you must try it',
+                text: 'I followed this kegel plan and now my performance is at its peak! Guys, this is a real game-changer - don’t sleep on it',
+                name: 'Amteleronnnnn',
+                rating: 5,
+            },
+
+
+
+        ],
     },
     getters: {
         get_msg(state) {
@@ -103,6 +217,9 @@ export default {
         },
         get_msgED(state) {
             return state.msgED
+        },
+        get_msgOkLand(state) {
+            return state.msgOkLand
         }
     },
     actions: {
@@ -114,7 +231,10 @@ export default {
         },
         add_new_msgED(context, data) {
             context.commit('add_msgED', data)
-        }
+        },
+        add_new_msgOkLand(context, data) {
+            context.commit('add_msgOkLand', data)
+        },
     },
     mutations: {
         add_msg(state, data) {
@@ -125,6 +245,9 @@ export default {
         },
         add_msgED(state, data) {
             state.msgPE.push(data.msgED)
-        }
+        },
+        add_msgOkLand(state, data) {
+            state.msgOkLand.push(data.msgOkLand)
+        },
     }
 }

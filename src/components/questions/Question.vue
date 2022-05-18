@@ -51,8 +51,8 @@ export default {
 
   &:before {
     content: '';
-    width: 23px;
-    height: 23px;
+    width: 24px;
+    height: 24px;
     background-color: white;
     position: absolute;
     right: 20px;
@@ -68,8 +68,15 @@ export default {
     font-weight: bold;
 
     &:before {
-      background-color: transparent;
-      background-image: url("@/assets/images/icons/check.svg");
+      // background-color: transparent;
+      background-color: white;
+      background-image: url("@/assets/images/icons/check_no_bg_black.svg");
+      background-repeat: no-repeat;
+      background-position: 60% 55%;
+      background-size:65%;
+      @media (max-width:480px) {
+        background-position: 60% 57%;
+      }
     }
   }
 

@@ -29,7 +29,7 @@
             <button 
               class="v-popup__submit_btn"
               :class="{active: closeActive}"
-              @click="next"
+              @click="nextUrl"
             >
             See my plan
             </button>
@@ -73,8 +73,8 @@ export default {
     };
   },
   methods: {
-    next(){
-      this.$router.push({ name: 'LandingView' });
+    nextUrl(){
+        this.$router.push({ name: 'LandingView' });
     },
   },
   watch:{

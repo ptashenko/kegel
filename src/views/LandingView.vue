@@ -1,32 +1,39 @@
 <template>
-{{displayLine}}
+<div class="landing">
   <header-layout :fixed="true"/>
+  {{MyScrollFixed}}
+  {{MyScrollModal}}
   <div 
     class="fixed" 
     :class="{'active': blockFixed}"
   >
     <div class="fixed__timer">
       <p class="fixed__timer__text">7-day free trial offer expires in:</p>
-      <div class="fixed__timer__number"> XX:XX</div>
+      <div class="fixed__timer__number"> 
+        <countdown />
+      </div>
     </div>
   </div>
   
   <div class="dark-layout light" >
-    <div class="container-main is-page">
+    <div class="container-main is-page land">
       <div class="landing__content">
         <div class="d-flex align-items-center justify-content-center flex-column">
-          <div class="d-flex flex-column">
+          <div class="d-flex flex-column block__timer" >
             <div class="h2">
               Your Kegel Plan to {{ purpose }} is ready!
             </div>
             <p class="p-14">The personal trial is <b>reserved for 15 minutes:</b></p>
             <div class="layout__buttons">
-              <div class="layout__button"  @click="onScroll">
+              <div id="blockScroll" class="layout__button"  @click="onScroll">
                 <div class="layout__button-icon">
                   <img src="@/assets/images/icons/icon_timer.svg" alt="icon">
                 </div>
                 <div>
-                  <p>Time left: XX:XX</p>
+                  <p>
+                    Time left: 
+                    <countdown />
+                  </p>
                   <p>Scroll down to start!</p>
                 </div>
               </div>
@@ -58,6 +65,14 @@
               Kegel Plan Benefits
             </div>
             <ul>
+              <li class="li">
+                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
+                Reach your goal and {{textpurpose}}
+              </li>
+              <li class="li">
+                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
+                Reach your goal and {{textaddpurpose}}
+              </li>
               <li class="li"  v-for="benefit in Benefits" :key="benefit.id">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
                 {{benefit}}
@@ -66,8 +81,7 @@
             
 
 
-
-
+          
 
 
           </div>
@@ -81,34 +95,36 @@
       PRICE TODAY
     </div>
   </div>
-  <div class="d-flex mw-450 align-items-center justify-content-beetwen">
+  <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
     <div>
       7-day trial*
     </div>
     <div>
-      <span class="opac_5">$19.88</span>
-      <span>$1</span>
+      <span class="opac_5 line">${{oldprice}}</span>
+      <span>${{price}}</span>
     </div>
   </div>
+  <hr>
   <div class="mw-450 trial_description opac_5">
-    *You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results
+    <i>*You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
   </div>
   <div class="price">
     <div class="price__text">
       PRICE AFTER TRIAL
     </div>
   </div>
-  <div class="d-flex mw-450 align-items-center justify-content-beetwen">
+  <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
     <div>
       12 weeks plan
     </div>
-    <div class="d-flex flex-column align-items-end">
-      <span>$79.2*</span>
-      <span>(just $6.60/week)</span>
+    <div class="after d-flex flex-column align-items-end">
+      <span class="bold">$79.2*</span>
+      <span class="small">(just $6.60/week)</span>
     </div>
   </div>
+  <hr>
   <div class="mw-450 trial_description opac_5">
-    *Billed on [дата] unless cancelled beforehand
+    <i>*Billed on [дата] unless cancelled beforehand</i>
   </div>
   <div class="d-flex flex-column  mw-450">
     <div class="reviews__title">Customer reviews</div>
@@ -148,31 +164,53 @@
   />
 
   <vpopup
-    textTitle="Do you want to enhance the orgasms?"
+  class="popup_wraper"
+    textTitle=""
     v-if="popupVisible"
   > 
-    <div class="h2"></div>
-    <btnComponent
+    <p>
+      In view of the pandemic and global health crisis, we are offering the option to try out Kegel Plan for as little as $1 for a 7-day trial*.
+    </p>
+    <p class="bold">
+      Money shouldn't stand in the way of a perfect intimate health and well-being goals. So choose an amount that you think is reasonable to try us out.
+    </p>
+    <p>
+      It costs up $9.73 to cover our expenses for the trial, but please choose an amount you're comfortable with.
+    </p>
+    <p class="bold desktop-center">
+      Choose comfortable amount:
+    </p>
+    <div class="block-btn d-flex align-items-start justify-content-beetwen vw-450">
+      <button
+      class="v-popup__btn"
       :class="{ active: isActiveYes }"
-      @clickBtn="BtnActiveYes"
-      answer="Yes, I do"
+      @click="BtnActiveYes"
     >
-    </btnComponent>
-    <btnComponent
-      :class="{ active: isActiveNo }"
-      @clickBtn="BtnActiveNo"
-      answer="No, I don't"
-    >
-    </btnComponent>
+    $1
+    </button>
+    <div class="d-flex flex-column align-items-end">
+      <button
+        class="v-popup__btn"
+        :class="{ active: isActiveNo }"
+        @click="BtnActiveNo"
+      >
+      $9.73
+      </button>
+      <p class="small">Most popular choice*</p>
+    </div>
+    
+    </div>
+    
     <button 
       class="v-popup__submit_btn"
       :class="{active: closeActive}"
       @click="closePopup"
     >
-    Ok 
+    See my plan
     </button>
+    <p class="text__bottom_btn">*7-day trial</p>
   </vpopup>
-
+</div>
 
 </template>
 <script>
@@ -181,7 +219,7 @@ import moment from 'moment';
 import ButtonField from '@/components/ui/Button.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import btnComponent from '@/components/questions/btnPopup.vue';
-
+import countdown from '@/components/Countdown.vue';
 
 export default {
   name: 'LandingView',
@@ -189,21 +227,19 @@ export default {
     ButtonField,
     vpopup,
     btnComponent,
+    countdown
   },
   data() {
     return {
-      blockFixed: true,
+      blockFixed: false,
       ggg:0,
       textBtn:'Start my plan',
       textpurpose:'',
       textaddpurpose:'',
-      closeActive: false,
       email: null,
       isEmailTouched: false,
       upValue: '',
       Benefits: [
-          'Reach your goal and [цель]',
-          '[доп .цель]',
           'Pill-free approach',
           'Long-lasting improvement',
           'Takes 5 min a day',
@@ -213,7 +249,12 @@ export default {
       numreview: 0,
       track: 0,
       popupVisible: false,
-      scrollPosition: 0
+      isActiveYes: false,
+      isActiveNo: false,
+      closeActive: false,
+      scrollPosition: 0,
+      price: 1,
+      oldprice: 19.88,
     };
   },
   methods: {
@@ -227,39 +268,62 @@ export default {
       console.log('Добавить ленд');
     },
     showModal(){
+      let body = document.querySelector('body')
+      body.classList.add('fixed');
       this.popupVisible = true
+      
     },
-    pr(num){
-      this.ggg = num;
-      console.log(this.ggg);
+    closePopup(e){
+      let body = document.querySelector('body')
+      let x = e.target
+      if(x.classList.contains('active')){
+        this.popupVisible = false
+        body.classList.remove('fixed');
+      }
+    },
+    BtnActiveYes(){
+      this.isActiveYes = this.closeActive = true 
+      this.isActiveNo = false
+      this.price = 1
+      this.oldprice = 19.88
+    },
+    BtnActiveNo(){
+      this.isActiveYes = false
+      this.isActiveNo = this.closeActive = true
+      this.price = 9.73
+      this.oldprice = 19.88
     },
   },
   watch:{
-  
+    ggg(){
+      if(this.ggg == 1){
+        this.showModal()
+      }
+    },
+
   },
   computed: {
-    displayLine(){
-      let scrolling = 0
-      window.addEventListener('scroll', function() {
-            scrolling = pageYOffset;
-            this.pr(scrolling)
-            return this.pr()
-      })
-      if(scrolling >= 300){
-        this.blockFixed = false 
-        console.log(scrolling);   
-      }
+    MyScrollFixed(){
+      document.addEventListener('scroll', (e) => {
+        let x = window.scrollY
+        if(x>310){
+          this.blockFixed = true
+        }else{
+          this.blockFixed = false
+        }
+      });
       
-      return console.log(scrolling);
     },
-    
+    MyScrollModal(){
+        document.addEventListener('scroll', (e) => {
+        let x = window.scrollY
+        if(x>400){
+          this.ggg = 1
+        }else{
+        }
+      })
+    },
     ...mapGetters(['tracks']),
-    purpose(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
-      this.textpurpose = obj.purpose
-      return this.textpurpose;
-    },
     purpose(){
       var json = localStorage.getItem('track');
       var obj = JSON.parse(json);
@@ -287,23 +351,121 @@ export default {
     },
   },
   mounted() {
+
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.v-popup__submit_btn{
-      background-color: #CACACA;
-      border:none;
-      border-radius: 9px;
-      padding: 16px 64px;
-      font-family: "SF Pro Text Medium";
-      font-size: 18px;
-      line-height: 135%;
-      color: #ffffff;
-      margin-top: 32px;
+.landing{
+  padding-bottom: 32px;
+}
+.block__timer .p-14{
+  margin-bottom: 16px;
+}
+.container-main{
+  @media (max-width:480px) {
+    padding-bottom: 50px;
+  }
+}
+.answer{
+  width: 45%;
+}
+hr{
+  color: #F1F3F9;
+  background: #F1F3F9;
+  border: none;
+  height: 1px;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 0;
+  @media (max-width:480px) {
+    max-width: 320px;
+  }
+}
+.popup_wraper{
+  p{
+    font-size: 16px;
+    margin-bottom: 16px;
+    line-height: 150%;
+    @media (max-width:480px) {
+      font-size: 14px;
     }
+  }
+  p.bold{
+    font-family: "SF Pro Text Semibold";
+  }
+  p.small{
+    position: relative;
+    text-align: center;
+    width: 125px;
+    font-size: 10px;
+    line-height: 135%;
+    margin-top: 18px;
+    margin-bottom: 0;
+    opacity: 0.75;
+  }
+  .text__bottom_btn{
+    font-size: 12px;
+    line-height: 135%;
+    margin-top: 8px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  .desktop-center{
+    text-align: center;
+    margin: 8px 0 12px;
+    @media (max-width:480px) {
+      text-align: left;
+      width: 100%;
+    }
+  }
+}
+.small::before{
+  content: "";
+  width: 1px;
+  height: 14px;
+  position: absolute;
+  display: block;
+  background: #11111350;
+  top: -15px;
+  left: 50%;
+}
+.v-popup{
+  max-width: 260px;
+  top: 20px;
+}
+.block-btn{
+    width: 100%;
+    max-width: 270px;
+  }
+.v-popup__submit_btn, .v-popup__btn{
+  background-color: #CACACA;
+  border:none;
+  border-radius: 9px;
+  padding: 16px 37px;
+  font-family: "SF Pro Text Medium";
+  font-size: 18px;
+  line-height: 135%;
+  color: #ffffff;
+  margin-top: 32px;
+}
 .v-popup__submit_btn.active{
+  background: #E44240;
+}
+.v-popup__btn{
+  margin-top: 0px;
+  color: #111113;
+  background: #F1F3F9;
+  width: 125px;
+  padding: 20px 35px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v-popup__btn.active{
+  color: #FFFFFF;
   background-color: #111113;
 }
 // fixed timer
@@ -323,7 +485,7 @@ export default {
     text-align: center;
     padding: 16px 32px;
     background: #111113;
-    z-index: 999;
+    z-index: 2;
     color: #FFFFFF;
     top:0; left:0; right:0;
     @media (max-width:600px) {
@@ -340,7 +502,7 @@ export default {
 }
 .footer-controls__button{
   max-width: 310px;
-  margin: 48px auto;
+  margin: 48px auto 0;
 }
 // reviews
 .reviews__title {
@@ -438,11 +600,17 @@ export default {
   margin: 16px auto;
   padding: 0 32px;
 }
+
 .opac_5{
   opacity: 0.5;
 }
+.line{
+  text-decoration: line-through;
+  margin-right: 4px;
+}
 .trial_description{
-  padding: 33px 32px 25px;
+  padding: 16px 32px 25px;
+  margin: 0 auto;
 }
 .price{
   background: #F1F3F9;
@@ -459,6 +627,7 @@ export default {
 ul{
   max-width: 310px;
   margin: 0 auto;
+  padding: 0;
   li.li {
     list-style-type: none;
     display: flex;
@@ -503,102 +672,19 @@ ul{
   }
 
 }
-.email__content{
-  form{
-    text-align: center;
-  }
-  &__text{
-    font-family: "SF Pro Text Regular";
+.price__today{
+  font-size: 16px;
+  @media (max-width:480px) {
     font-size: 14px;
-    line-height: 135%;  
-    color: #111113;
-    opacity: 0.75;
-    margin: 0;
-    text-align: center;
   }
-  label{
-    position: relative;
-    text-align: center;
-    input{
-      background: #F1F3F9;
-      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.04);
-      border-radius: 9px;
-      border:none;
+  .after{
+    .bold{
+      font-family: "SF Pro Text Semibold";
+    }
+    .small{
       font-size: 14px;
-      padding: 17px;
-      line-height: 135%;
-      color: #111113;
-      margin: 32px 0;
-      width: 375px;
-      position: relative;
-      @media (max-width: 480px) {
-        width: 275px;
-      }
-      &:focus,:active{
-        border: none;
-      }
-    }
-    input::placeholder{
-      color: #111113;
-      opacity: 0.5;
-    }
-    .lock{
-      position: relative;
-      width: 17px;
-      img{
-        position: absolute;
-        top: 0px;
-        right: 20px;
-      }
-    }
-  }
-  .v-popup__submit_btn{
-      background-color: #CACACA;
-      border:none;
-      border-radius: 9px;
-      padding: 16px 16px;
-      font-family: "SF Pro Text Medium";
-      font-size: 18px;
-      line-height: 135%;
-      color: #ffffff;
-      margin: 0 auto;
-      width: 165px;
-      
-  }
-  .v-popup__submit_btn.active{
-    background-color: #E44240;
-    cursor: pointer;
-  }
-  &__text__small{
-    font-family: "SF Pro Text Regular";
-    font-size: 14px;
-    line-height: 135%; 
-    color: #111113;
-    opacity: 0.5;
-    text-align: center;
-    margin: 32px auto;
-    @media (max-width:480px) {
-      font-size: 10px;
-    }
-  }
-  .block-fixed{
-    position: fixed;
-    bottom: 32px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    width: 540px;
-    @media (max-width:480px) {
-        max-width: 310px;
-      }
-    .email__content__text__small{
-      max-width: 430px;
-      font-size: 10px;
       @media (max-width:480px) {
-        max-width: 310px;
+        font-size: 11px;
       }
     }
   }
@@ -663,11 +749,12 @@ ul{
   }
 
   &__thumbnail {
-    margin-bottom: 32px;
+    margin: 32px auto;
     text-align: center;
-
+    width: 100%;
+    max-width: 450px;
     img {
-      max-width: 100%;
+      width: 100%;
       height: auto;
     }
   }

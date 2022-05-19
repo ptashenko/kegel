@@ -434,5 +434,83 @@ export default {
     width: 20%;
   }
 }
- 
+// review
+.review {
+  padding: 15px;
+  border-radius: 10px;
+  margin: 64px auto 0;
+  max-width: 370px;
+  background-color: #F1F1F1;
+  
+  &:not(.light) {
+    background-color: #1D1D1F;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 150%;
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+  }
+
+  &__name {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    opacity: .5;
+
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+  }
+
+  &__rating {
+    display: flex;
+    margin-top: 5px;
+
+    div {
+      width: 14px;
+      height: 14px;
+
+      @media (max-width: 480px) {
+        width: 14px;
+        height: 14px;
+
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+}
+
+.star-yellow {
+  max-width: 14px;;
+  height: auto;
+}
+
 </style>

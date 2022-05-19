@@ -4,8 +4,13 @@ body {
     @media (max-width: 480px) {}
 }
 
+body.fixed {
+    overflow-y: hidden;
+}
+
 body .container {
     background: #FFFFFF;
+    // height: 100vh;
 }
 
 .red {
@@ -17,6 +22,10 @@ body .container {
     img {
         opacity: 0;
     }
+}
+
+p {
+    margin: 0;
 }
 
 .dark-layout.light {
@@ -203,4 +212,8 @@ header .container-main {
     .dark-layout.light .btn {
         padding: 18px 15px;
     }
+}
+
+#app .popup_wraper {
+    overflow-y: hidden;
 }

@@ -41,6 +41,7 @@ export default {
     justify-content: center;
     align-items: center;
     position: absolute;
+    z-index: 9;
     top: 0;
     left: 0;
     right: 0;
@@ -49,24 +50,27 @@ export default {
   }
   .v-popup{
     position: fixed;
-    top: 227px;
+    z-index: 9999999;
+    top: 5%;
     width: 100%;
-    max-width: 452px;
-    padding: 32px 24px 24px;
+    max-width: 400px;
+    padding: 24px 24px 24px;
     background: #ffffff;
     margin: 0 auto;
     border-radius: 9px;
     @media (max-width:480px) {
-      max-width: 310px;
+      max-width: 260px;
     }
     &__content, &__footer{
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      margin-top: 32px;
+      margin-top: 0px;
     }
-    
+    .h2{
+      margin-bottom: 18px;
+    }
   }
   
 </style>

@@ -30,11 +30,10 @@
                   <img src="@/assets/images/icons/icon_timer.svg" alt="icon">
                 </div>
                 <div>
-                  <p>
-                    Time left: 
-                    <countdown />
+                  <p class="d-flex timer__text">
+                    Time left:	&nbsp;  <countdown />
                   </p>
-                  <p>Scroll down to start!</p>
+                  <p class="timer__start">Scroll down to start!</p>
                 </div>
               </div>
             </div>
@@ -160,8 +159,99 @@
     text='Start my plan'
     theme="Back"
     class="footer-controls__button red"
-    @click="showModal"
+    @click="showModal2"
   />
+  <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
+    <div class="after"> 
+      <span class="bold">Payment method</span>
+    </div>
+    <div class="d-flex flex-column align-items-end">
+      <span class="cursor opacity-75" @click="showModal3">Why now?</span>
+    </div>
+  </div>
+  <div class="mw-450 d-flex mb-32">
+    <p class="fs-16-14">
+      <i>
+        You will only be charged ${{price}} for your 7-day trial.
+      </i>
+    </p>
+  </div>
+  <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <button class="pay cursor">
+        <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
+      </button>
+      <button class="pay cursor">
+        <img src="@/assets/images/icons/google_pay.svg" alt="apple_pay">
+      </button>
+    </div>
+    <div class="d-flex align-items-center justify-content-beetwen">
+      <button class="pay small mr-2 cursor">
+        <img src="@/assets/images/icons/paypal.svg" alt="apple_pay">
+      </button>
+      <button class="pay small ml-2 cursor">
+        <img src="@/assets/images/icons/card.svg" alt="apple_pay">
+      </button>
+    </div>
+    <div class="w-100 d-flex flex-column align-items-center justify-content-center">
+      <button class="aple_pay d-flex align-items-center justify-content-beetwen cursor">
+        Buy with
+        <img src="@/assets/images/icons/apple_pay_white.svg" alt="apple_pay">
+      </button>
+      <button class="Pay_pay d-flex align-items-center justify-content-beetwen cursor">
+        <img src="@/assets/images/icons/PayPal_img_2.svg" alt="apple_pay">Buy Now
+      </button>
+    </div>
+    <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
+      <div class="d-flex align-items-center star">
+        <img src="@/assets/images/star.png" alt="star">
+        <img src="@/assets/images/star.png" alt="star">
+        <img src="@/assets/images/star.png" alt="star">
+        <img src="@/assets/images/star.png" alt="star">
+        <img src="@/assets/images/star.png" alt="star">
+      </div>
+      <div class="d-flex align-items-center">
+        <img src="@/assets/images/icons/out.svg" alt="out">
+      </div>
+      <p> <span class="bold">28k</span> 5-star ratings</p>
+    </div>
+  </div>
+  <div class="mw-450 d-flex flex-column mb-32">
+    <div class="item-li d-flex align-items-center">
+      <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
+      <p class="fs-16-14">
+        7-day trial for ${{price}}
+      </p>
+    </div>
+    <div class="item-li d-flex align-items-center">
+      <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
+      <p class="fs-16-14">
+        You will get an email confirmation every time your subscription renews
+      </p>
+    </div>
+  </div>
+  <div class="block__text mw-450">
+    <p class="title">Your information is safe</p>
+    <p class="fs-16-14">We will not sell or rent your personal contact information for any marketing purposes.</p>
+  </div>
+  <div class="block__text mw-450">
+    <p class="title">Secure checkout</p>
+    <p class="fs-16-14">All information is encrypted and transmitted using Secure Sockets Layer protocol.</p>
+  </div>
+  <div class="block__text mw-450">
+    <p class="title">Need help?</p>
+    <p class="fs-16-14">Contact us here: <a href="mailto:support@kegel.men">support@kegel.men</a></p>
+  </div>
+  <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
+    <button class="btn_bottom">
+      Get my plan
+    </button>
+  </div>
+  <div class="mw-450 d-flex flex-column mb-32">
+    <p class="text-description">
+      <span class="bold">Your 7-day trial will last until [Месяц, День, Год] [Время].</span> You may cancel at any time before <span class="bold">[Месяц, День, Год] [Время]</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
+    </p>
+  </div>
 
   <vpopup
   class="popup_wraper"
@@ -210,6 +300,53 @@
     </button>
     <p class="text__bottom_btn">*7-day trial</p>
   </vpopup>
+  <vpopup
+  class="popup_wraper"
+    textTitle=""
+    v-if="popupVisible2"
+  > 
+    <h2>Trial commitment</h2>
+    <p>
+      Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to [цель] and [доп. цель].
+    </p>
+    <p>
+      Reaching your goal is as easy as following the Kegel Plan we prepare for you.
+    </p>
+    <p>
+      The latest studies support Kegel exercises and consider them as the first-line approach to treat intimate health problems. It's easy, safe, and effective way to improve men's health, quality of life and maintain a perfect relationship with your partner.
+    </p>
+    <p>
+      Our users tell us they have experienced great improvements by following our Kegel Plan - so try it, and see the results for yourself!
+    </p>
+    
+    <button 
+      class="v-popup__submit_btn active"
+      :class="{active: closeActive}"
+      @click="closePopup2"
+    >
+    I'm in
+    </button>
+  </vpopup>
+  <vpopup
+  class="popup_wraper"
+    textTitle=""
+    v-if="popupVisible3"
+  > 
+    <h2>Why now?</h2>
+    <p>
+      We ask for your payment information now so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.
+    </p>
+    <p>
+      If you cancel anytime before the end of the 7-day trial, you won't be charged.
+    </p>
+    <button 
+      class="v-popup__submit_btn active"
+      :class="{active: closeActive}"
+      @click="closePopup3"
+    >
+    Got it
+    </button>
+  </vpopup>
 </div>
 
 </template>
@@ -249,6 +386,8 @@ export default {
       numreview: 0,
       track: 0,
       popupVisible: false,
+      popupVisible2:false,
+      popupVisible3:false,
       isActiveYes: false,
       isActiveNo: false,
       closeActive: false,
@@ -271,13 +410,38 @@ export default {
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
-      
+    },
+    showModal2(){
+      let body = document.querySelector('body')
+      body.classList.add('fixed');
+      this.popupVisible2 = true
+    },
+    showModal3(){
+      let body = document.querySelector('body')
+      body.classList.add('fixed');
+      this.popupVisible3 = true
     },
     closePopup(e){
       let body = document.querySelector('body')
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible = false
+        body.classList.remove('fixed');
+      }
+    },
+    closePopup2(e){
+      let body = document.querySelector('body')
+      let x = e.target
+      if(x.classList.contains('active')){
+        this.popupVisible2 = false
+        body.classList.remove('fixed');
+      }
+    },
+    closePopup3(e){
+      let body = document.querySelector('body')
+      let x = e.target
+      if(x.classList.contains('active')){
+        this.popupVisible3 = false
         body.classList.remove('fixed');
       }
     },
@@ -357,6 +521,168 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cursor{
+  cursor: pointer;
+}
+.text-description{
+  font-size: 14px;
+  line-height: 150%;
+  opacity: 0.5; 
+  text-align: center;
+  .bold{
+    font-family: "SF Pro Text Semibold";
+  }
+  @media (max-width:480px) {
+    font-size: 12px;
+  }
+}
+.btn_bottom{
+  background: #E44240;
+  color:#FFFFFF;
+  border-radius: 9px;
+  border:none;
+  margin-bottom:10px ;
+  width: 310px;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 16px 0;
+  margin: 48px 0;
+  cursor: pointer;
+  &:focus{
+    background: #F5423F;
+  }
+}
+.block__text{
+  margin-bottom: 24px;
+  line-height: 150%;
+  .title{
+    font-family: "SF-Pro-Display-Semibold";
+    margin-bottom: 12px;
+  }
+  a{
+    color: #E44240;
+  }
+}
+.item-li{
+  margin-top: 16px;
+  line-height: 150%;
+  .check{
+    margin-right: 15px;
+  }
+}
+
+.block-pay{
+  width: 310px;
+  .w-100{
+    width: 100%;
+    margin-top: 48px;
+  }
+  .flex-wrap{
+    flex-wrap: wrap;
+    width: 380px;
+    margin-top: 48px;
+    @media (max-width:480px) {
+      max-width: 270px;
+      justify-content: center;
+    }
+    p{
+      font-family: "SF Pro Text Regular";
+      font-size: 16px;
+      .bold{
+        font-family: "SF Pro Text Semibold";
+      }
+      @media (max-width:480px) {
+        font-size: 14px;
+        margin-top: 11px;
+      }
+    }
+  }
+  .star{
+    img{
+      max-width: 20px;
+      height: auto;
+    }
+    @media (max-width:480px) {
+      margin-right: 9px;
+    }
+  }
+  button.pay{
+    background: #F9F9F9;
+    border: 2px solid #F9F9F9;
+    border-radius: 9px;
+    margin-bottom:10px ;
+    max-width: 310px;
+    &:focus{
+      background: rgba(87, 115, 214, 0.1);
+      border: 2px solid #5773D6;
+    }
+  }
+  button.pay.small{
+    max-width: 150px;
+    img{
+      width: 100%;
+    }
+  }
+  .aple_pay{
+    background: #111113;
+    color: #FFFFFF;
+    border: 3px solid #111113;
+    border-radius: 100px;
+    margin-bottom:10px ;
+    width: 100%;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 15px 65px;
+    font-family: "SF Pro Text Semibold";
+    &:focus{
+      background: #1B1B1E;
+      border: 3px solid #C7C7C7;
+    }
+  }
+  .Pay_pay{
+    background: #FFBB1B;
+    color: #2D2F2F;
+    border: 3px solid #FFBB1B;
+    border-radius: 100px;
+    margin-bottom:10px ;
+    width: 100%;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 15px 55px;
+    font-family: "SF Pro Text Regular";
+    &:focus{
+      background: #FFBB1B;
+      border: 3px solid #F3F3F3;
+    }
+  }
+}
+.ml-2{
+  margin-left: 2px;
+}
+.mr-2{
+  margin-right: 2px;
+}
+.mw-450{
+  max-width: 450px;
+  margin: 16px auto;
+  padding: 0 32px;
+}
+.mw-300{
+  max-width: 300px;
+  margin: 0px auto;
+}
+.mb-32{
+  margin-bottom: 48px;
+  @media (max-width:480px) {
+    margin-bottom: 32px;
+  }
+}
+.fs-16-14{
+  font-size: 16px;
+  @media (max-width:480px) {
+    font-size: 14px;
+  }
+}
 .landing{
   padding-bottom: 32px;
 }
@@ -383,7 +709,31 @@ hr{
     max-width: 320px;
   }
 }
+.payment{
+  margin: 84px auto 33px;
+  @media (max-width:480px) {
+    margin: 64px auto 33px;
+  }
+  p{
+    font-size: 16px;
+    margin-bottom: 16px;
+    line-height: 150%;
+  }
+  .bold{
+    font-family: "SF-Pro-Display-Semibold";
+  }
+  .opacity-75{
+    opacity: 0.75;
+    font-family: "SF-Pro-Display-Medium";
+    @media (max-width:480px) {
+      font-size: 14px;
+    }
+  }
+}
 .popup_wraper{
+  h2{
+    margin: 0 0 16px;
+  }
   p{
     font-size: 16px;
     margin-bottom: 16px;
@@ -503,6 +853,7 @@ hr{
 .footer-controls__button{
   max-width: 310px;
   margin: 48px auto 0;
+  z-index: 0;
 }
 // reviews
 .reviews__title {
@@ -595,11 +946,7 @@ hr{
 }
 
 // 
-.mw-450{
-  max-width: 450px;
-  margin: 16px auto;
-  padding: 0 32px;
-}
+
 
 .opac_5{
   opacity: 0.5;
@@ -701,12 +1048,20 @@ ul{
     
   }
 }
-
+.timer__text{
+  font-size: 16px;
+  line-height: 150%;
+  font-family: "SF Pro Text Bold"; 
+}
+.timer__start{
+  font-size: 14px;
+  line-height: 150%;
+  opacity: 0.75;
+  
+}
 .layout {
   &__buttons{
     margin-bottom: 32px;
-    // overflow-y: auto;
-    // -ms-overflow-style: none;
     position: relative;
     .bg-fixed-top{
       position: fixed;
@@ -807,12 +1162,15 @@ ul{
     }
   }
 } 
-a:active, a:focus { outline: none; }
 
-input, textarea {outline:none;}
-input:active, textarea:active {outline:none;}
+
+input, textarea{outline:none;}
+input:active, textarea:active{outline:none;}
 :focus {outline:none;}
 textarea {resize:none;}
 textarea {resize:vertical;}
 textarea {resize:horizontal;}
+
+
+
 </style>

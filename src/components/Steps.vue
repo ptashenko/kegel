@@ -6,13 +6,14 @@
       :key="separation"
       :class="{'active': separations.indexOf(separation) !== -1 }"
     >
-    <div v-if="separations.indexOf(separation) !== -1 || this.num">
+    <div v-if="separations.indexOf(separation) !== -1 ">
       <img src="@/assets/images/icon_active_black.png" alt="check" v-if="light">
       <img src="@/assets/images/icon_active_white.png" alt="check" v-else>
     </div>
     </div>
-    <span :style="`width: ${loadPercent}%`"> {{clg}} </span>
+    <span :style="`width: ${loadPercent}%`">  </span>
   </div>
+  {{clg}}
 </template>
 
 <script>
@@ -29,11 +30,20 @@ export default {
     ...mapGetters(['layoutSeparations', 'content', 'separations', 'track']),
     loadPercent() {
       const index = ( this.track.layouts.findIndex((layout) => layout.id === this.content.id) );
+      console.log(index);
+      console.log(((index / this.track.layouts.length) * 100).toFixed(2));
       return ((index / this.track.layouts.length) * 100).toFixed(2);
     },
     clg(){
       let mmm = (this.track.layouts.findIndex((layout) => layout.active === this.content.active))
-      return console.log( mmm )
+      let mas = Object.keys(this.track.layouts);
+      let separation = this.separation
+      for(var key in mas)
+      {
+        if(mas[key]==separation)
+        console.log(mas);
+      }
+      console.log( this.track.layouts.length )
     },
   },
   props: {

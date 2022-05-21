@@ -8,6 +8,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import LottieAnimation from "lottie-web-vue";
+import VueScrollTo from "vue-scrollto"
 
 import '@/assets/scss/styles.scss';
 import '@/assets/scss/fonts.scss';
@@ -19,6 +20,7 @@ createApp(App)
     .use(svg4everybody)
     .use(moment)
     .use(LottieAnimation)
+    .use(VueScrollTo)
     .use(store)
     .use(router)
     .component('header-layout', Header)

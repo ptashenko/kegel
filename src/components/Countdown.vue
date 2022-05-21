@@ -1,7 +1,12 @@
 <template>
 	<div class="countdown">
 	    <div class="time-unite created">
-	        <div class="time-unite-value">{{ minutes }} : {{ seconds }}</div>
+	        <div class="time-unite-value">
+						<span v-if="minutes < 10 ">0{{ minutes }}</span> 
+						<span v-else>{{ minutes }}</span> 
+						: 
+						<span v-if="seconds < 10 ">0{{ seconds }}</span> 
+						<span v-else>{{ seconds }}</span> </div>
 	    </div>
 	</div>
 </template>

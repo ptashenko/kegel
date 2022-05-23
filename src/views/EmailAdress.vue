@@ -29,7 +29,7 @@
             <button 
               class="v-popup__submit_btn"
               :class="{active: closeActive}"
-              @click="nextUrl"
+              @click.prevent="nextUrl"
             >
             See my plan
             </button>

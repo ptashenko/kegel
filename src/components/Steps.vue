@@ -1,12 +1,12 @@
 <template>
-  <div class="steps" :class="{'light': light}" v-if="layoutSeparations">
+  <div class="steps" :class="{'light': light}" v-if="layoutSeparationsIds">
     <div
       class="steps__col"
-      v-for="separation in layoutSeparations"
+      v-for="separation in layoutSeparationsIds"
       :key="separation"
-      :class="{'active': separations.indexOf(separation) !== -1 }"
+      :class="{'active': separations.indexOf(separation) !== -1 || loadPercent >= 100}"
     >
-    <div v-if="separations.indexOf(separation) !== -1 ">
+    <div v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100 ">
       <img src="@/assets/images/icon_active_black.png" alt="check" v-if="light">
       <img src="@/assets/images/icon_active_white.png" alt="check" v-else>
     </div>
@@ -27,23 +27,32 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['layoutSeparations', 'content', 'separations', 'track']),
+    ...mapGetters(['layoutSeparationsIds','layoutSeparations', 'content', 'separations', 'track']),
     loadPercent() {
-      const index = ( this.track.layouts.findIndex((layout) => layout.id === this.content.id) );
+      const index = ( this.track.layouts.findIndex((layout) => layout.id === this.content.id) ) ;
+      let myStep = 0;
       console.log(index);
-      console.log(((index / this.track.layouts.length) * 100).toFixed(2));
-      return ((index / this.track.layouts.length) * 100).toFixed(2);
+      
+      if(index <= this.layoutSeparations[1]){
+        myStep = (((index / this.layoutSeparations[1]) * 100).toFixed(2))/3;
+        console.log(myStep)
+      }else if(index <= this.layoutSeparations[2] && index > this.layoutSeparations[1]){
+        myStep = 33.33 + ((((index - this.layoutSeparations[1]) / (this.layoutSeparations[2] - this.layoutSeparations[1])) * 100).toFixed(2))/3;
+        console.log(myStep)
+      }else{
+        myStep = 66.67 + ((((index - this.layoutSeparations[2]) / (this.layoutSeparations[3] - this.layoutSeparations[2])) * 100).toFixed(2))/3;
+        console.log(myStep)
+      }
+      return myStep
+      // console.log(((index / this.track.layouts.length) * 100).toFixed(2));
+      // return (((index / this.layoutSeparations[1]) * 100).toFixed(2))/4;
+      // return ((index / this.track.layouts.length) * 100).toFixed(2);
     },
     clg(){
-      let mmm = (this.track.layouts.findIndex((layout) => layout.active === this.content.active))
-      let mas = Object.keys(this.track.layouts);
-      let separation = this.separation
-      for(var key in mas)
-      {
-        if(mas[key]==separation)
-        console.log(mas);
-      }
-      console.log( this.track.layouts.length )
+      // console.log( mas[1].id)
+      // console.log( this.track.layouts.layout)
+      // console.log( this.track.layouts )
+      console.log(this.layoutSeparations)
     },
   },
   props: {

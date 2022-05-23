@@ -1072,16 +1072,55 @@ const getters = {
     review: (state) => (id) => state.reviews[id],
     layoutSeparations: (state) => {
         const ids = [];
+        const xxx = [];
+        const res = [];
         state.track.layouts.forEach((layout) => {
             if (layout.separation) {
                 console.log(ids.indexOf(layout.id) === -1);
+
                 if (ids.indexOf(layout.id) === -1) {
                     ids.push(layout.id);
                 }
             }
         });
-        console.log(ids);
-        return ids;
+        // перезаписать в массив
+        state.track.layouts.forEach((layout) => {
+            if (layout.id) {
+                if (xxx.indexOf(layout.id) === -1) {
+                    xxx.push(layout.id);
+                }
+            }
+        });
+
+        function findMatch(arraySmall, arrayLarge) {
+            for (var i = 0; i < arrayLarge.length; i++) {
+                for (var j = 0; j < arraySmall.length; j++) {
+                    if (arrayLarge[i] === arraySmall[j]) {
+                        res.push(i);
+                    }
+                }
+            }
+            return res;
+        }
+        findMatch(ids, xxx);
+        // start
+        // end
+        console.log(res);
+        return res;
+    },
+    layoutSeparationsIds: (state) => {
+        const rob = [];
+        state.track.layouts.forEach((layout) => {
+            if (layout.separation) {
+                if (rob.indexOf(layout.id) === -1) {
+
+                    rob.push(layout.id);
+                }
+            }
+
+        });
+        console.log(rob);
+        return rob;
     },
     separations: (state) => state.separations,
 };

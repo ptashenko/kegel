@@ -65,9 +65,12 @@ export default {
 }
 .h2{
   font-family: "SF-Pro-Display-Semibold"; 
-  font-size: 20px;
+  font-size: 24px;
   color: #FFFFFF;
   text-align: center;
+  @media (max-width:480px) {
+    font-size: 20px;
+  }
 }
 .peoples {
   text-align: center;

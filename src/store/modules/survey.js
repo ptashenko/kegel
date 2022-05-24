@@ -1069,6 +1069,17 @@ const getters = {
 
         return nextContent ? nextContent.id : false;
     },
+    prevContentId: (state) => {
+        const mas = [];
+        state.track.layouts.forEach((layout) => {
+            if (layout.id) {
+                if (mas.indexOf(layout.id) === -1) {
+                    mas.push(layout.id);
+                }
+            }
+        })
+        return mas
+    },
     review: (state) => (id) => state.reviews[id],
     layoutSeparations: (state) => {
         const ids = [];
@@ -1105,7 +1116,7 @@ const getters = {
         findMatch(ids, xxx);
         // start
         // end
-        console.log(res);
+        // console.log(xxx);
         return res;
     },
     layoutSeparationsIds: (state) => {

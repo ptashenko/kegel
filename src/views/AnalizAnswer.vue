@@ -284,12 +284,12 @@ export default {
       }, 100);
     },
     loadFoo(){
-      setInterval(() => {
+    let refreshId = setInterval(() => {
         if (this.loadProsentFoo < 100) {
           this.loadProsentFoo += 1;
         } else {
-          clearInterval();
-          this.$router.push({ path: '/EmailAdress'})
+          this.$router.push({ path: '/EmailAdress'});
+          clearInterval(refreshId);
         }
       }, 100);
     },

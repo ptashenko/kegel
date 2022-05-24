@@ -13,27 +13,27 @@
               {{title}}
             </div>
             <p class="email__content__text">to get your Kegel Training Plan & {{ purpose }}</p>
-            <form action="">
-            <label for="email">
-              <input 
-                v-model="upValue"
-                id="email" 
-                class="email" 
-                type="email" 
-                placeholder="Your email here"
+            
+              <label for="email">
+                <input 
+                  v-model="upValue"
+                  id="email" 
+                  class="email" 
+                  type="email" 
+                  placeholder="Your email here"
+                >
+                <span class="lock">
+                  <img src="@/assets/images/icons/lock.svg" alt="img">
+                </span>
+              </label>
+              <div 
+                class="v-popup__submit_btn"
+                :class="{active: closeActive}"
+                @click="nextUrl"
               >
-              <span class="lock">
-                <img src="@/assets/images/icons/lock.svg" alt="img">
-              </span>
-            </label>
-            <button 
-              class="v-popup__submit_btn"
-              :class="{active: closeActive}"
-              @click.prevent="nextUrl"
-            >
-            See my plan
-            </button>
-            </form>
+              See my plan
+              </div>
+           
             <p class="email__content__text__small">
               Your data is perfectly safe. We won't share your personal information with third parties.
             </p>
@@ -74,7 +74,12 @@ export default {
   },
   methods: {
     nextUrl(){
-        this.$router.push({ name: 'LandingView' });
+      if(this.closeActive){
+        this.$router.push('LandingView');
+        return;
+      }else{
+        console.log('Введите email');
+      } 
     },
   },
   watch:{
@@ -176,7 +181,7 @@ export default {
       color: #ffffff;
       margin: 0 auto;
       width: 165px;
-      
+      text-align: center;
   }
   .v-popup__submit_btn.active{
     background-color: #E44240;

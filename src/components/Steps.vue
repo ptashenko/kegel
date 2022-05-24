@@ -1,14 +1,14 @@
 <template>
   <div class="steps" :class="{'light': light}" v-if="layoutSeparationsIds">
     <div
-      class="steps__col"
+      class="steps__col d-flex"
       v-for="separation in layoutSeparationsIds"
       :key="separation"
       :class="{'active': separations.indexOf(separation) !== -1 || loadPercent >= 100}"
     >
-    <div v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100 ">
-      <img src="@/assets/images/icon_active_black.png" alt="check" v-if="light">
-      <img src="@/assets/images/icon_active_white.png" alt="check" v-else>
+    <div class="d-flex align-items-center justify-content-center w-100" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100 ">
+      <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" v-if="light">
+      <img src="@/assets/images/icons/check_no_bg.svg" alt="check" v-else>
     </div>
     </div>
     <span :style="`width: ${loadPercent}%`">  </span>
@@ -31,17 +31,17 @@ export default {
     loadPercent() {
       const index = ( this.track.layouts.findIndex((layout) => layout.id === this.content.id) ) ;
       let myStep = 0;
-      console.log(index);
+      // console.log(index);
       
       if(index <= this.layoutSeparations[1]){
         myStep = (((index / this.layoutSeparations[1]) * 100).toFixed(2))/3;
-        console.log(myStep)
+        // console.log(myStep)
       }else if(index <= this.layoutSeparations[2] && index > this.layoutSeparations[1]){
         myStep = 33.33 + ((((index - this.layoutSeparations[1]) / (this.layoutSeparations[2] - this.layoutSeparations[1])) * 100).toFixed(2))/3;
-        console.log(myStep)
+        // console.log(myStep)
       }else{
         myStep = 66.67 + ((((index - this.layoutSeparations[2]) / (this.layoutSeparations[3] - this.layoutSeparations[2])) * 100).toFixed(2))/3;
-        console.log(myStep)
+        // console.log(myStep)
       }
       return myStep
       // console.log(((index / this.track.layouts.length) * 100).toFixed(2));
@@ -52,7 +52,7 @@ export default {
       // console.log( mas[1].id)
       // console.log( this.track.layouts.layout)
       // console.log( this.track.layouts )
-      console.log(this.layoutSeparations)
+      // console.log(this.layoutSeparations)
     },
   },
   props: {

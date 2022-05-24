@@ -52,7 +52,7 @@ p {
     img {
         position: relative;
         z-index: 1;
-        width: 18px;
+        width: 10px;
     }
 }
 
@@ -204,13 +204,17 @@ header .container-main {
     justify-content: space-between;
 }
 
+.w-100 {
+    width: 100%;
+}
+
 .justify-content-center {
     justify-content: center;
 }
 
 @media (max-width: 480px) {
     .dark-layout.light .btn {
-        padding: 18px 15px;
+        padding: 18px 10px;
     }
 }
 

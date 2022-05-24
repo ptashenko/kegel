@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Full Access to the Dr. Kegel App with a 7-day free trial</title>
+</head>
+
+<body>
+    <div id="solid-payment-form-container"></div>
+    <div id="apple-pay-button-container"></div>
+
+    <script src="https://cdn.solidgate.com/js/solid-form.js"></script>
+    <script>
+        let solidback_url = "https://int2.kegel.men/api/solidgate/init";
+        let qParams = new URLSearchParams(window.location.search);
+
+        let solidback_response;
+
+        let solidback_xhr = new XMLHttpRequest();
+        solidback_xhr.open("POST", solidback_url);
+
+        solidback_xhr.setRequestHeader("Accept", "application/json");
+        solidback_xhr.setRequestHeader("Content-Type", "application/json");
+
+        solidback_xhr.onreadystatechange = function() {
+            if (solidback_xhr.readyState === 4) {
+                solidback_response = JSON.parse(solidback_xhr.response);
+                const form = PaymentFormSdk.init({
+                    merchantData: {
+                        merchant: solidback_response.merchant,
+                        signature: solidback_response.signature,
+                        paymentIntent: solidback_response.payment_intent
+                    },
+                    formParams: {
+                        enabled: true,
+                        submitButtonText: 'Pay',
+                        allowSubmit: true,
+                        isCardHolderVisible: true,
+                        headerText: 'Enter your debit or credit card details (from merchant)',
+                        titleText: 'Card info (from merchant)',
+                        formTypeClass: 'default',
+                        googleFontLink: '//fonts.googleapis.com/css2?family=DM+Sans:ital@1&display=swap'
+                    },
+                    styles: {
+                        submit_button: {
+                            'background-color': 'red',
+                            'font-size': '16px',
+                            'font-weight': 'bold',
+                            ':hover': {
+                                'background-color': 'green'
+                            },
+                            form_body: {
+                                'font-family': 'DM Sans'
+                            }
+                        }
+                    },
+                    applePayButtonParams: {
+                        enabled: true,
+                        containerId: 'apple-pay-button-container',
+                        color: 'black',
+                        type: 'plain'
+
+                    }
+                })
+
+                form.on('fail', (e) => {
+                    const body = e.data
+
+                })
+
+                form.on('mounted', (e) => {
+                    const body = e.data
+
+                })
+
+                form.on('success', (e) => {
+                    const body = e.data
+                })
+            }
+        };
+
+        let solidback_data = `{
+    "product_id": "1b70fc9a-7ddb-4970-bd60-dcc0a805bda9",
+    "platform": "WEB",
+    "order_description": "",
+    "customer_email": "${qParams.get('email')}",
+    "apple_pay_merchant_name": "Dr. Kegel Trial 7-Day"
+}`;
+
+        solidback_xhr.send(solidback_data);
+
+    </script>
+</body>

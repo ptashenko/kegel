@@ -1,8 +1,8 @@
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, state } from 'vuex';
 
 export default {
     computed: {
-        ...mapGetters(['nextContentId', 'contentBy', 'content', 'track']),
+        ...mapGetters(['nextContentId', 'layoutSeparationsIds', 'prevContentId', 'contentBy', 'content', 'track']),
     },
     methods: {
         ...mapMutations(['saveContent', 'setSeparator']),
@@ -19,7 +19,16 @@ export default {
             }
         },
         back() {
-            this.$router.go(-1);
+            let contentId = this.content.id
+            let prevContent = this.prevContentId
+            let foundIndex = prevContent.findIndex(n => n == contentId)
+            let sepor = this.layoutSeparationsIds
+            const passed = sepor.some(n => n == prevContent[foundIndex - 1]);
+            if (passed) {
+                this.$router.go(-2);
+            } else {
+                this.$router.go(-1);
+            }
         },
         route() {
             if (this.nextContentId !== false) {

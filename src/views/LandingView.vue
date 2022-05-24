@@ -161,7 +161,7 @@
     text='Start my plan'
     theme="Back"
     class="footer-controls__button red"
-    @click="showModal2"
+    @click="showModal2()"
   />
   <div class="step_2" v-if="step_2">
     <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
@@ -181,12 +181,14 @@
     </div>
     <div id="paypal" class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <div class="d-flex flex-column align-items-center justify-content-center">
-        <button class="pay cursor">
-          <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
-        </button>
-        <button class="pay cursor">
-          <img src="@/assets/images/icons/google_pay.svg" alt="apple_pay">
-        </button>
+        <div id="solid-payment-form-container">
+          <button class="pay cursor">
+            <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
+          </button>
+          <button class="pay cursor">
+            <img src="@/assets/images/icons/google_pay.svg" alt="apple_pay">
+          </button>
+        </div>
       </div>
       <div class="d-flex align-items-center justify-content-beetwen">
         <button class="pay small mr-2 cursor">
@@ -197,13 +199,15 @@
         </button>
       </div>
       <div class="w-100 d-flex flex-column align-items-center justify-content-center">
-        <button class="aple_pay d-flex align-items-center justify-content-beetwen cursor">
-          Buy with
-          <img src="@/assets/images/icons/apple_pay_white.svg" alt="apple_pay">
-        </button>
-        <button class="Pay_pay d-flex align-items-center justify-content-beetwen cursor">
-          <img src="@/assets/images/icons/PayPal_img_2.svg" alt="apple_pay">Buy Now
-        </button>
+        <div id="apple-pay-button-container">
+          <button class="aple_pay d-flex align-items-center justify-content-beetwen cursor">
+            Buy with
+            <img src="@/assets/images/icons/apple_pay_white.svg" alt="apple_pay">
+          </button>
+          <button class="Pay_pay d-flex align-items-center justify-content-beetwen cursor">
+            <img src="@/assets/images/icons/PayPal_img_2.svg" alt="apple_pay">Buy Now
+          </button>
+        </div>
       </div>
       <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
         <div class="d-flex align-items-center star">
@@ -412,9 +416,6 @@ export default {
     getRandomArbitrary(min, max){
       return Math.random() * (max - min) + min;
     },
-    addLand(){
-      console.log('Добавить ленд');
-    },
     showModal(){
       let body = document.querySelector('body')
       body.classList.add('fixed');
@@ -476,7 +477,7 @@ export default {
   watch:{
     ggg(){
       if(this.ggg == 1){
-        this.showModal()
+        this.showModal("this.popupVisible" , false)
       }
     },
 

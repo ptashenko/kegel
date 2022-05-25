@@ -70,37 +70,6 @@ const state = () => ({
             ],
         },
     ],
-    reviewsED: {
-        count: 1
-    },
-    reviewsRE: {
-        1: {
-            title: 'Nice',
-            text: 'Just 1 month of training and my erection is stronger. I’m happy with the results',
-            name: 'RpgEpic123',
-            rating: 5,
-        },
-        2: {
-            title: 'Best of the best',
-            text: 'My erection is getting harder with each training day',
-            name: 'RawJunky',
-            rating: 5,
-        },
-    },
-    reviewsOK: {
-        1: {
-            title: 'Nice',
-            text: 'Just 1 month of training and my erection is stronger. I’m happy with the results',
-            name: 'RpgEpic123',
-            rating: 5,
-        },
-        2: {
-            title: 'Best of the best',
-            text: 'My erection is getting harder with each training day',
-            name: 'RawJunky',
-            rating: 5,
-        },
-    },
     reviews: {
         1: {
             title: 'Nice',

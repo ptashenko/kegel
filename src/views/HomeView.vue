@@ -16,7 +16,13 @@
       <div class="jumbotron__text">
         Select a goal to get step-by-step plan
       </div>
-      <img src="@/assets/images/arrow-down.png" alt="arrow down" class="jumbotron__img">
+      <div class="str">
+        <lottie-animation 
+          class="" 
+          ref="anim"
+          :animationData="require(`@/assets/images/json/main_arrow.json`)"
+        />
+      </div>
     </div>
   </div>
 
@@ -31,6 +37,13 @@
         >
           <b>{{ track.title }}</b>
           <span>{{ track.text }}</span>
+          <lottie-animation 
+            v-if="track.id == 1"
+            class="animation hand"
+            ref="anim"
+            :animationData="require(`@/assets/images/json/main_hand.json`)"
+            :pauseAnimation="playState"
+          />
         </button>
       </div>
 
@@ -71,10 +84,12 @@
       </div>
     </div>
   </div>
+  {{dataP1}}
 </template>
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
+import moment from 'moment';
 import HeaderLayout from '@/components/Header.vue';
 
 export default {
@@ -100,10 +115,19 @@ export default {
           width: 48
         },
       ],
+      numhand: 0,
+      playState: false
     };
   },
   computed: {
     ...mapGetters(['tracks', 'contentBy']),
+    dataP1(){
+      moment();
+      let dataPP1_day = moment().add((Math.random() * (13 - 7) + 7),'days').format("DD");
+      let dataPP1_month = moment().add(4,'month').format("MMMM");
+      let dadanew = `${dataPP1_day} ${dataPP1_month}`
+      return (this.$store.commit('SET_DATAPP1', dadanew))
+    }
   },
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),
@@ -133,9 +157,19 @@ export default {
 <style lang="scss">
 .animation {
     display: block; 
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
+}
+.str{
+  width: 20px;
+  height: auto;
+  text-align: center;
+  margin: 0 auto;
+}
+.hand{
+  position: absolute!important;
+  max-width: 50px;
+  height: auto;
+  top: 10px;
+  right: 10px;
 }
 body{
   margin: 0;

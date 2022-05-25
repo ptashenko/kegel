@@ -1,5 +1,11 @@
 <template>
-  <div class="review" :class="{light: light}">
+  <div 
+    class="review" 
+    :class="{
+      light: light,
+      active: active
+    }"
+  >
     <div class="review__top">
       <div>
         <div class="review__title">{{ reviewItem.title }}</div>
@@ -40,8 +46,13 @@ export default {
       required: true,
       type: Boolean,
     },
+    
     light: {
       default: false,
+      type: Boolean,
+    },
+    active: {
+      default: true,
       type: Boolean,
     },
   },

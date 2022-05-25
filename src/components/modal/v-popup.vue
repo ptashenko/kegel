@@ -40,7 +40,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     z-index: 9;
     top: 0;
     left: 0;
@@ -51,15 +51,17 @@ export default {
   .v-popup{
     position: fixed;
     z-index: 9999999;
-    top: 5%;
     width: 100%;
     max-width: 400px;
     padding: 24px 24px 24px;
     background: #ffffff;
     margin: 0 auto;
     border-radius: 9px;
+    overflow-y: auto;
+    max-height: 80vh;
+    display: flex;
     @media (max-width:480px) {
-      max-width: 260px;
+      max-width: 300px;
     }
     &__content, &__footer{
       display: flex;

@@ -12,11 +12,12 @@
           {{ track.purpose }}
         </div>
 
-        <div class="purpose" v-if="content.id !== 20 && 54">
+        <!-- <div class="purpose" v-if="content.id !== 20 && 54"> -->
+        {{dataP1}}
+        <div class="purpose" v-if="this.$store.state.dataPurporse.addpurpose">
           <span>and</span> {{ track.addpurpose }}
         </div>
-      
-        <span  class="red" v-if="content.id == 20 && 54">by {{moment().add(getRandomArbitrary(7, 13),'days').format("DD")}}  {{moment().add(4,'month').format("MMMM")}}</span>
+        <span  class="red" v-if="content.id == 20 && 54">by {{dataPP1}}</span>
         <span class="red" v-else>by {{moment().add(getRandomArbitrary(1, 7),'days').format("DD")}}  {{moment().add(4,'month').format("MMMM")}}</span>
       </div>
 
@@ -40,7 +41,12 @@
 
       <div class="reviews">
         <div class="reviews__title">Customer reviews</div>
-        <review v-for="id in content.reviews" :key="id" :id="id" :light="true"/>
+        <review 
+          v-for="id in content.reviews" 
+          :key="id" 
+          :id="id" 
+          :light="true"
+        />
       </div>
     </div>
 
@@ -71,8 +77,27 @@ import Review from '@/components/Review.vue';
 export default {
   name: 'Kegel-review-layout',
   mixins: [nextContentUrl],
+  data(){
+    return{
+      base: {},
+      numreview: 2,
+      dataPP1: this.$store.state.dataPurporse.dataPP1,
+    }
+  },
   computed: {
     ...mapGetters(['tracks', 'contentBy']),
+    
+    // dataP1(){
+    //   moment();
+    //   let dataPP1_day = moment().add((Math.random() * (13 - 7) + 7),'days').format("DD");
+    //   let dataPP1_month = moment().add(4,'month').format("MMMM");
+    //   let dadanew = `${dataPP1_day} ${dataPP1_month}`
+    //   this.$store.commit('SET_DATAPP1', dadanew)
+    //   this.dataPP1 = this.$store.state.dataPurporse.dataPP1
+    //   console.log(this.dataPP1);
+    //   return this.dataPP1 
+    //   // 
+    // }
   },
   components: {
     Review,
@@ -87,7 +112,7 @@ export default {
     },
     getRandomArbitrary(min, max){
       return Math.random() * (max - min) + min;
-    }
+    },
   },
   props: {
     content: {

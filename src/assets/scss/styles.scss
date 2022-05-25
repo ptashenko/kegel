@@ -63,7 +63,7 @@ p {
             img {
                 position: relative;
                 z-index: 1;
-                width: 18px;
+                width: 10px;
                 filter: invert(0);
             }
         }
@@ -91,7 +91,7 @@ p {
         img {
             position: relative;
             z-index: 1;
-            width: 18px;
+            width: 12px;
             filter: invert(0.8);
         }
     }
@@ -231,4 +231,5 @@ header .container-main {
     background: none;
     margin-top: 40px;
     cursor: pointer;
+    width: 100%;
 }

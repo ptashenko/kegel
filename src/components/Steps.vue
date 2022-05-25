@@ -6,7 +6,7 @@
       :key="separation"
       :class="{'active': separations.indexOf(separation) !== -1 || loadPercent >= 100}"
     >
-    <div class="d-flex align-items-center justify-content-center w-100" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100 ">
+    <div class="d-flex align-items-center justify-content-center w-100" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100">
       <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" v-if="light">
       <img src="@/assets/images/icons/check_no_bg.svg" alt="check" v-else>
     </div>
@@ -47,12 +47,6 @@ export default {
       // console.log(((index / this.track.layouts.length) * 100).toFixed(2));
       // return (((index / this.layoutSeparations[1]) * 100).toFixed(2))/4;
       // return ((index / this.track.layouts.length) * 100).toFixed(2);
-    },
-    clg(){
-      // console.log( mas[1].id)
-      // console.log( this.track.layouts.layout)
-      // console.log( this.track.layouts )
-      // console.log(this.layoutSeparations)
     },
   },
   props: {

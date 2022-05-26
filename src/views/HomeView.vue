@@ -85,6 +85,7 @@
     </div>
   </div>
   {{dataP1}}
+  {{dataP2}}
 </template>
 
 <script>
@@ -123,11 +124,17 @@ export default {
     ...mapGetters(['tracks', 'contentBy']),
     dataP1(){
       moment();
-      let dataPP1_day = moment().add((Math.random() * (13 - 7) + 7),'days').format("DD");
-      let dataPP1_month = moment().add(4,'month').format("MMMM");
-      let dadanew = `${dataPP1_day} ${dataPP1_month}`
-      return (this.$store.commit('SET_DATAPP1', dadanew))
+      let dataPP1_day = moment().add((Math.random() * (134 - 127) + 127),'days').format("MMMM DD");
+      sessionStorage.setItem('data1', dataPP1_day);
+      return (this.$store.commit('SET_DATAPP1', dataPP1_day))
+    },
+    dataP2(){
+      moment();
+      let dataPP2_day = moment().add((Math.random() * (120 - 113) + 113),'days').format("MMMM DD");
+      sessionStorage.setItem('data2', dataPP2_day);
+      return (this.$store.commit('SET_DATAPP2', dataPP2_day))
     }
+
   },
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),
@@ -150,6 +157,8 @@ export default {
   },
   mounted() {
     this.clearHistory();
+
+    
   },
 };
 </script>

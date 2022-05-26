@@ -15,7 +15,7 @@
     </div>
   </div>
   
-  <div class="dark-layout light" >
+  <div class="dark-layout light" id="topPage">
     <div class="container-main is-page land">
       <div class="landing__content">
         <div class="d-flex align-items-center justify-content-center flex-column">
@@ -45,7 +45,14 @@
               <div>
                 and  {{ addpurpose }}
               </div>
-              <span class="by">by {{moment().add(getRandomArbitrary(1, 7),'days').format("DD")}}  {{moment().add(3,'month').format("MMM")}}</span>
+              <div class="by ">
+                <span>by &nbsp;</span>
+                <div class="">
+                  <transition name="slide-fade">
+                    <span v-if="show" class="block__anim">{{dataPP2}}</span> 
+                  </transition> 
+                </div>
+              </div>
             </div>
 
             <div class=" layout__thumbnail">
@@ -66,11 +73,11 @@
             <ul>
               <li class="li">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                Reach your goal and {{textpurpose}}
+                Reach your goal and {{ purpose }}
               </li>
               <li class="li">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                Reach your goal and {{textaddpurpose}}
+                Reach your goal and {{ addpurpose }}
               </li>
               <li class="li"  v-for="benefit in Benefits" :key="benefit.id">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
@@ -123,7 +130,7 @@
   </div>
   <hr>
   <div class="mw-450 trial_description opac_5">
-    <i>*Billed on [дата] unless cancelled beforehand</i>
+    <i>*Billed on {{moment().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
   </div>
   <div class="d-flex flex-column  mw-450">
     <div class="reviews__title">Customer reviews</div>
@@ -200,7 +207,10 @@
       </div>
       <div class="w-100 d-flex flex-column align-items-center justify-content-center">
         <div id="apple-pay-button-container">
-          <button class="aple_pay d-flex align-items-center justify-content-beetwen cursor">
+          <button 
+            class="aple_pay d-flex align-items-center justify-content-beetwen cursor"
+            @click="nextUrl"
+          >
             Buy with
             <img src="@/assets/images/icons/apple_pay_white.svg" alt="apple_pay">
           </button>
@@ -256,7 +266,7 @@
     </div>
     <div class="mw-450 d-flex flex-column mb-32">
       <p class="text-description">
-        <span class="bold">Your 7-day trial will last until [Месяц, День, Год] [Время].</span> You may cancel at any time before <span class="bold">[Месяц, День, Год] [Время]</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
+        <span class="bold">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
       </p>
     </div>
   </div>
@@ -381,10 +391,10 @@ export default {
     return {
       VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
+      // dataPP2: sessionStorage.getItem('data2'),
+      dataPP2:'September 25',
       ggg:0,
       textBtn:'Start my plan',
-      textpurpose:'',
-      textaddpurpose:'',
       email: null,
       isEmailTouched: false,
       upValue: '',
@@ -407,14 +417,17 @@ export default {
       scrollPosition: 0,
       price: 1,
       oldprice: 19.88,
+      numanimate: 1,
+      show: false
     };
-  },
+  },     
   methods: {
+    nextUrl(){
+      VueScrollTo.scrollTo('#topPage');
+      this.$router.push('PlanFinal')
+    },
     moment(){
       return moment();
-    },
-    getRandomArbitrary(min, max){
-      return Math.random() * (max - min) + min;
     },
     showModal(){
       let body = document.querySelector('body')
@@ -462,12 +475,14 @@ export default {
       this.isActiveNo = false
       this.price = 1
       this.oldprice = 19.88
+      sessionStorage.setItem('price', 1);
     },
     BtnActiveNo(){
       this.isActiveYes = false
       this.isActiveNo = this.closeActive = true
       this.price = 9.73
       this.oldprice = 19.88
+      sessionStorage.setItem('price', 9.73);
     },
     showReview(){
       this.numreview = this.numreview + 2;
@@ -507,14 +522,13 @@ export default {
     purpose(){
       var json = localStorage.getItem('track');
       var obj = JSON.parse(json);
-      this.textpurpose = obj.purpose
-      return this.textpurpose;
+      return obj.purpose;
     },
     addpurpose(){
       var json = localStorage.getItem('track');
       var obj = JSON.parse(json);
-      this.textaddpurpose = obj.addpurpose
-      return this.textaddpurpose;
+      return obj.addpurpose;
+      
     },
     lengthReviews(){
       var json = localStorage.getItem('track');
@@ -531,12 +545,68 @@ export default {
     },
   },
   mounted() {
+    const numanim = setInterval(() => {
+      if (this.numanimate == 1) {
+        this.numanimate += 1
+        this.show = true;
+      }else if(this.numanimate == 2){
+        this.numanimate += 1
+        this.show = false;
+        this.dataPP2 = 'September 23'
+      }else if(this.numanimate == 3){
+        this.numanimate += 1
+        this.show = true;
+      }else if(this.numanimate == 4){
+        this.numanimate += 1
+        this.show = false;
+        this.dataPP2 = 'September 21'
+      }else if(this.numanimate == 5){
+        this.numanimate += 1
+        this.show = true;
+      }else if(this.numanimate == 6){
+        this.numanimate += 1
+        this.show = false;
+        this.dataPP2 = 'September 19'
+      }else if(this.numanimate == 7){
+        this.numanimate += 1
+        this.show = true;
+      }else{
+        clearInterval(numanim);
+      }
 
+    }, 1000);
   },
 };
 </script>
 
 <style lang="scss" scoped>
+// start animate
+// .block__anim{
+//   position: absolute;
+// }
+// .slide-fade{
+//   display: block;
+//   transform: translateX(0px);
+// }
+.block__anim{
+  position: absolute;
+  transform: translate(0);
+}
+.slide-fade-leave-active,
+.slide-fade-enter-active {
+  transition: all .2s ease-out;
+}
+
+.slide-fade-enter-from{
+  transform: translateY(-50%)!important;
+  opacity: 0;
+}
+
+.slide-fade-leave-to {
+  transform: translateY(50%)!important;
+  opacity: 0;
+}
+// end animate
 .cursor{
   cursor: pointer;
 }
@@ -1064,7 +1134,11 @@ ul{
     font-weight: 700;
     font-size: 20px;
     line-height: 150%;
-    
+    display: flex;
+    width: 100%;
+    max-width: 190px;
+    margin: 0 auto;
+    position: relative;
   }
 }
 .timer__text{

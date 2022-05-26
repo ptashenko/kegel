@@ -74,9 +74,11 @@ export default {
 }
 .peoples {
   text-align: center;
-  margin: 30px 0;
-
-  img {
+  margin: 30px auto;
+  display: block;
+  max-width: 400px;
+  width: 100%;
+  svg {
     max-width: 400px;
     width: 100%;
   }

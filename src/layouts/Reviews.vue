@@ -14,11 +14,11 @@
 
         <!-- <div class="purpose" v-if="content.id !== 20 && 54"> -->
         {{dataP1}}
-        <div class="purpose" v-if="this.$store.state.dataPurporse.addpurpose">
+        <div class="purpose" v-if="content.id !== 20 && 54">
           <span>and</span> {{ track.addpurpose }}
         </div>
         <span  class="red" v-if="content.id == 20 && 54">by {{dataPP1}}</span>
-        <span class="red" v-else>by {{moment().add(getRandomArbitrary(1, 7),'days').format("DD")}}  {{moment().add(4,'month').format("MMMM")}}</span>
+        <span class="red" v-else>by {{dataPP2}}</span>
       </div>
 
       <div class=" layout__thumbnail">
@@ -81,23 +81,12 @@ export default {
     return{
       base: {},
       numreview: 2,
-      dataPP1: this.$store.state.dataPurporse.dataPP1,
+      dataPP1: sessionStorage.getItem('data1'),
+      dataPP2: sessionStorage.getItem('data2'),
     }
   },
   computed: {
     ...mapGetters(['tracks', 'contentBy']),
-    
-    // dataP1(){
-    //   moment();
-    //   let dataPP1_day = moment().add((Math.random() * (13 - 7) + 7),'days').format("DD");
-    //   let dataPP1_month = moment().add(4,'month').format("MMMM");
-    //   let dadanew = `${dataPP1_day} ${dataPP1_month}`
-    //   this.$store.commit('SET_DATAPP1', dadanew)
-    //   this.dataPP1 = this.$store.state.dataPurporse.dataPP1
-    //   console.log(this.dataPP1);
-    //   return this.dataPP1 
-    //   // 
-    // }
   },
   components: {
     Review,

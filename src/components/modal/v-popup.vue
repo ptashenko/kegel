@@ -60,6 +60,7 @@ export default {
     overflow-y: auto;
     max-height: 80vh;
     display: flex;
+    flex-direction: column;
     @media (max-width:480px) {
       max-width: 300px;
     }

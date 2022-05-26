@@ -9,6 +9,7 @@ import AnalizAnswer from '@/views/AnalizAnswer.vue';
 import GoodHands from '@/views/GoodHands.vue';
 import EmailAdress from '@/views/EmailAdress.vue';
 import LandingView from '@/views/LandingView.vue';
+import PlanFinal from '@/views/PlanFinal.vue';
 
 const routes = [{
         path: '/',
@@ -56,6 +57,11 @@ const routes = [{
         component: LandingView,
     },
     {
+        path: '/PlanFinal',
+        name: 'PlanFinal',
+        component: PlanFinal,
+    },
+    {
         path: '/:pathMatch(.*)',
         component: notFound,
     },
@@ -64,6 +70,9 @@ const routes = [{
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    scrollBehavior(to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    }
 });
 
 export default router;

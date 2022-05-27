@@ -3,12 +3,7 @@
 
   <div class="jumbotron home">
     <div class="container-main">
-        <!-- <lottie-animation
-          class="animation" 
-          ref="anim"
-          :animationData="require('@/assets/images/json/ED_s4.json')"
-        /> -->
-        
+      
 
       <div class="jumbotron__title">
         Stay hard & last long without pills
@@ -18,14 +13,21 @@
       </div>
       <div class="str">
         <lottie-animation 
-          class="" 
-          ref="anim"
+          ref="animstr"
           :animationData="require(`@/assets/images/json/main_arrow.json`)"
+          :loop="true"
+          :autoPlay="true"
+          :speed="1"
+          @loopComplete="loopComplete"
+          @complete="complete"
+          @enterFrame="enterFrame"
+          @segmentStart="segmentStart"
+          @stopped="stopped"
         />
       </div>
     </div>
   </div>
-
+  {{myHand}}
   <div class="navigation__section home">
     <div class="container-main home">
       <div class="navigation__items">
@@ -39,10 +41,18 @@
           <span>{{ track.text }}</span>
           <lottie-animation 
             v-if="track.id == 1"
-            class="animation hand"
-            ref="anim"
+            :class="{ active: isActiveHand }"
+            class="animationHand"
+            ref="animhand"
             :animationData="require(`@/assets/images/json/main_hand.json`)"
-            :pauseAnimation="playState"
+            :loop="true"
+            :autoPlay="true"
+            :speed="1"
+            @loopComplete="loopComplete"
+            @complete="complete"
+            @enterFrame="enterFrame"
+            @segmentStart="segmentStart"
+            @stopped="stopped"
           />
         </button>
       </div>
@@ -117,7 +127,8 @@ export default {
         },
       ],
       numhand: 0,
-      playState: false
+      playState: false,
+      isActiveHand: false
     };
   },
   computed: {
@@ -133,8 +144,19 @@ export default {
       let dataPP2_day = moment().add((Math.random() * (120 - 113) + 113),'days').format("MMMM DD");
       sessionStorage.setItem('data2', dataPP2_day);
       return (this.$store.commit('SET_DATAPP2', dataPP2_day))
+    },
+    myHand(){
+      // this.$refs.animhand.stop()
+    const animated = setInterval(() => {
+        if (this.numhand < 10) {
+          
+          this.numhand += 1;
+        } else {
+          this.isActiveHand = true
+          clearInterval(animated);
+        }
+      }, 1000);
     }
-
   },
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),
@@ -157,13 +179,24 @@ export default {
   },
   mounted() {
     this.clearHistory();
-
+    
     
   },
 };
 </script>
 
 <style lang="scss">
+.animationHand{
+  display: none;
+  position: absolute!important;
+  max-width: 50px;
+  height: auto;
+  top: 10px;
+  right: 10px;
+}
+.animationHand.active{
+  display: block;
+}
 .animation {
     display: block; 
 }
@@ -174,11 +207,7 @@ export default {
   margin: 0 auto;
 }
 .hand{
-  position: absolute!important;
-  max-width: 50px;
-  height: auto;
-  top: 10px;
-  right: 10px;
+  
 }
 body{
   margin: 0;

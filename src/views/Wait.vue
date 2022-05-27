@@ -8,11 +8,19 @@
       <div class="wait__content">
         
         <div class="d-flex  align-items-center block">
-          <img src="@/assets/images/wait/animation.svg" alt="animation">
-          <div class="d-flex flex-column">
-            <p class="wait__text__animate">Just a moment...</p>
-            <p class="wait__text__animate">Your plan is being created</p>
-          </div>
+          <lottie-animation 
+            class="Just"
+            ref="animJust"
+            :animationData="require(`@/assets/images/json/f1_loader.json`)"
+            :loop="true"
+            :autoPlay="true"
+            :speed="1"
+            @loopComplete="loopComplete"
+            @complete="complete"
+            @enterFrame="enterFrame"
+            @segmentStart="segmentStart"
+            @stopped="stopped"
+          />
         </div>
         
 
@@ -86,7 +94,7 @@ export default {
   methods: {
     image(name) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
-      return require(`@/assets/images/wait/${name}.svg`);
+      return require(`@/assets/images/wait/${name}.png`);
     },
   },
   mounted() {

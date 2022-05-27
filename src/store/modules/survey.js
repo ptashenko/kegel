@@ -123,7 +123,8 @@ const state = () => ({
     contents: [{
             id: 1,
             title: 'Do you know about Pelvic Floor (PF) muscles?',
-            thumbnail: '1.jpg',
+            video: 'q1.mp4',
+            thumbnail: '1.png',
             steps: false,
             answer: {
                 style: 'radio',

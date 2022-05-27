@@ -4,7 +4,7 @@
   <div class="dark-layout light">
     <div class="container-main is-page TimePlan">
       <div class="h2 text-center">
-        Analyzing the answers...
+        {{title}}
       </div>
       
       
@@ -17,12 +17,21 @@
             Intimate health indicators
           </div>
           <div class="d-flex align-items-center"> 
-            <div 
-              class="review__animate d-flex" 
-              :class="{'loadanime': isLoad}"
-              v-if="percent < 100"
-            >
-              <img src="@/assets/images/icons/preview.svg" alt="check">
+            <div class="d-flex">
+              <lottie-animation 
+                class="check"
+                :class="{ active: isActiveCheck_1 }"
+                ref="animed"
+                :animationData="require(`@/assets/images/json/f5_loader.json`)"
+                :loop="mytrue"
+                :autoPlay="true"
+                :speed="1"
+                @loopComplete="loopComplete"
+                @complete="complete"
+                @enterFrame="enterFrame"
+                @segmentStart="segmentStart"
+                @stopped="stopped"
+              />
             </div>
             <div class="number__procent">
               {{ percent }}%
@@ -41,12 +50,21 @@
             Sexual behaviours
           </div>
           <div class="d-flex align-items-center"> 
-            <div 
-              class="review__animate d-flex" 
-              :class="{'loadanime': isLoad}"
-              v-if="loadProsentTwo < 100 && loadProsentTwo !== 0"
-            >
-              <img src="@/assets/images/icons/preview.svg" alt="check">
+            <div class="d-flex">
+              <lottie-animation 
+                class="check"
+                :class="{ active: isActiveCheck_2 }"
+                ref="anim"
+                :animationData="require(`@/assets/images/json/f5_loader.json`)"
+                :loop="mytrue"
+                :autoPlay="true"
+                :speed="1"
+                @loopComplete="loopComplete"
+                @complete="complete"
+                @enterFrame="enterFrame"
+                @segmentStart="segmentStart"
+                @stopped="stopped"
+              />
             </div>
             <div  class="number__procent">
               {{ loadProsentTwo }}%
@@ -65,12 +83,21 @@
             Lifestyle
           </div>
           <div class="d-flex align-items-center"> 
-            <div 
-              class="review__animate d-flex" 
-              :class="{'loadanime': isLoad}"
-              v-if="loadProsentTree < 100 && loadProsentTree !== 0"
-            >
-              <img src="@/assets/images/icons/preview.svg" alt="check">
+            <div class="d-flex">
+              <lottie-animation 
+                class="check"
+                :class="{ active: isActiveCheck_3 }"
+                ref="anim"
+                :animationData="require(`@/assets/images/json/f5_loader.json`)"
+                :loop="mytrue"
+                :autoPlay="true"
+                :speed="1"
+                @loopComplete="loopComplete"
+                @complete="complete"
+                @enterFrame="enterFrame"
+                @segmentStart="segmentStart"
+                @stopped="stopped"
+              />
             </div>
             <div  class="number__procent">
               {{ loadProsentTree }}%
@@ -89,12 +116,21 @@
             Creating your plan
           </div>
           <div class="d-flex align-items-center"> 
-            <div 
-              class="review__animate d-flex" 
-              :class="{'loadanime': isLoad}"
-              v-if="loadProsentFoo < 100 && loadProsentFoo !== 0"
-            >
-              <img src="@/assets/images/icons/preview.svg" alt="check">
+            <div class="d-flex">
+              <lottie-animation 
+                class="check"
+                :class="{ active: isActiveCheck_4 }"
+                ref="anim"
+                :animationData="require(`@/assets/images/json/f5_loader.json`)"
+                :loop="mytrue"
+                :autoPlay="true"
+                :speed="1"
+                @loopComplete="loopComplete"
+                @complete="complete"
+                @enterFrame="enterFrame"
+                @segmentStart="segmentStart"
+                @stopped="stopped"
+              />
             </div>
             <div  class="number__procent">
               {{ loadProsentFoo }}%
@@ -180,6 +216,11 @@ export default {
   },
   data(){
     return{
+      title:'Analyzing the answers...',
+      isActiveCheck_1: true,
+      isActiveCheck_2: false,
+      isActiveCheck_3: false,
+      isActiveCheck_4: false,
       popupVisible: false,
       isActiveYes: false,
       isActiveNo: false,
@@ -192,10 +233,14 @@ export default {
       loadProsentFoo:0,
       base: {},
       numreview: 0,
-      track: 0
+      track: 0,
+      mytrue: true
     }
   },
   watch:{
+    mytrue(){
+      console.log(this.mytrue);
+    },
     percent(){
       if(this.percent == 100){
         this.loadTwo()
@@ -240,6 +285,8 @@ export default {
     closePopup(e){
       let x = e.target
       if(x.classList.contains('active')){
+        this.isActiveCheck_1 = true
+        this.$refs.animed.play()
         this.popupVisible = false
         this.isLoad = true
         this.mystop = 100
@@ -261,34 +308,41 @@ export default {
         if (this.percent < this.mystop) {
           this.percent += 1;
         } else {
+          this.isActiveCheck_1 = false
           clearInterval();
         }
       }, 100);
     },
     loadTwo(){
+      this.isActiveCheck_2 = true
       setInterval(() => {
         if (this.loadProsentTwo < 100) {
           this.loadProsentTwo += 1;
         } else {
+          this.isActiveCheck_2 = false
           clearInterval();
         }
       }, 100);
     },
     loadTree(){
+      this.isActiveCheck_3 = true
       setInterval(() => {
         if (this.loadProsentTree < 100) {
           this.loadProsentTree += 1;
         } else {
+          this.isActiveCheck_3 = false
           clearInterval();
         }
       }, 100);
     },
     loadFoo(){
-    let refreshId = setInterval(() => {
+      this.isActiveCheck_4 = true
+      let refreshId = setInterval(() => {
         if (this.loadProsentFoo < 100) {
           this.loadProsentFoo += 1;
         } else {
-          this.$router.push({ path: '/EmailAdress'});
+          this.isActiveCheck_2 = false
+          this.$router.push({ name: 'EmailAdress'});
           clearInterval(refreshId);
         }
       }, 100);
@@ -316,8 +370,11 @@ export default {
       if (this.percent < this.mystop) {
         this.percent += 1;
       } else {
-        clearInterval(as);
+        this.isActiveCheck_1 = true
+        this.$refs.animed.pause()
         this.showModal()
+        clearInterval(as);
+        
       }
     }, 100);
   },
@@ -326,6 +383,18 @@ export default {
 
 </script>
 <style lang="scss" scoped>
+.check{
+  display: none;
+  width: 20px;
+  height: 20px;
+  @media (max-width:480px) {
+    width: 16px;
+    height: 16px;
+  }
+}
+.check.active{
+  display: block;
+}
 .review{
   display: none;
 }

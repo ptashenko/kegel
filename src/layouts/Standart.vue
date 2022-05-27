@@ -24,6 +24,14 @@
           height="200"
         >
       </div>
+      <div class="layout__thumbnail full" v-if="content.video">
+        <img
+          :src="video(content.video)"
+          :alt="content.title"
+          width="400"
+          height="200"
+        >
+      </div>
 
       <div class="layout__bottom-text" v-if="content.text">
         <span v-if="content.aftertext">{{ content.aftertext }}</span>
@@ -81,6 +89,10 @@ export default {
   },
   mixins: [nextContentUrl],
   methods: {
+    video(put) {
+      // eslint-disable-next-line global-require,import/no-dynamic-require
+      return require(`@/assets/video/${put}`);
+    },
     image(path) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/content/${path}`);

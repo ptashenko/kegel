@@ -4,12 +4,12 @@
   <div class="dark-layout light">
     <div class="container-main is-page TimePlan">
       <div class="h2 text-center">
-        These are some of the trusted sources that have been used
+        {{title}}
       </div>
 
 
       <div class="layout__buttons">
-          <img src="@/assets/images/content/animation_sorces.png">
+          <img src="@/assets/images/content/icons.png">
       </div>
       
 
@@ -41,45 +41,8 @@ export default {
   components:{
   },
   data() {
-      return {
-        icons: [
-          {
-            id: 1 ,
-            title: 'National Center for ',
-            text: 'Biotechnology Information',
-            logo: 'logo_1',
-          },
-          {
-            id: 2 ,
-            title: 'Advances in Nutrition.',
-            text: ' Oxford Academic',
-            logo: `logo_2`,
-          },
-          {
-            id: 3 ,
-            title: 'Harvard Medical School',
-            text: '',
-            logo: 'logo_3',
-          },
-          {
-            id: 4 ,
-            title: 'Harvard University',
-            text: '',
-            logo: `logo_4`,
-          },
-          {
-            id: 5 ,
-            title: 'Harvard Medical School',
-            text: '',
-            logo: 'logo_3',
-          },
-          {
-            id: 6 ,
-            title: 'Harvard University',
-            text: '',
-            logo: `logo_4`,
-          },
-      ],
+    return {
+      title:'These are some of the trusted sources that have been used',
     };
   },
 
@@ -95,10 +58,10 @@ export default {
   },
   methods: {
     btnClick() {
-      this.$router.push({ path: '/AnalizAnswer'})
+      this.$router.push({ name: 'AnalizAnswer'})
     },
-     btnBack() {
-      this.$router.push({ path: '/TimePlan'})
+    btnBack() {
+      this.$router.push({ name: 'TimePlan'})
     },
     buttonIcon(name) {
       return require(`../assets/images/icons/layout-buttons/${name}.svg`);
@@ -113,7 +76,9 @@ export default {
     font-family: "SF-Pro-Display-Bold";
     font-size: 24px;
     text-align: center;
-
+  @media (max-width:480px) {
+    font-size: 20px;
+  }
 }
 .d-flex{
   display: flex;
@@ -122,8 +87,11 @@ export default {
 .layout {
   &__buttons{
     text-align: center;
-    max-width: 400px;
+    max-width: 450px;
     margin: 17px auto;
+    img{
+      width: 100%;
+    }
   }
   &__title {
     font-weight: 600;

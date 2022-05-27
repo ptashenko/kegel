@@ -3,8 +3,8 @@
 
   <div class="dark-layout light">
     <div class="container-main is-page GoodHands">
-      <div class="h2">You're in good hands</div>
-      <img src="@/assets/images/map.svg" alt="" height="200">
+      <div class="h2">{{title}}</div>
+      <img src="@/assets/images/content/map.png" alt="map" height="200">
       <p>More than <span> 1.575.179 </span> men got closer to their goal thanks to this Kegel Training Plan</p>
     </div>
 
@@ -29,9 +29,14 @@
 
 export default {
   name: 'Good-hands-layout',
+  data(){
+    return{
+      title:'You\'re in good hands'
+    }
+  },
   methods:{
     btnClick() {
-      this.$router.push({ path: '/TimePlan'})
+      this.$router.push({ name: 'TimePlan'})
     },
     btnBack() {
       this.$router.push({ path: '/survey/31'})

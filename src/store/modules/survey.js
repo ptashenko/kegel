@@ -124,7 +124,8 @@ const state = () => ({
             id: 1,
             title: 'Do you know about Pelvic Floor (PF) muscles?',
             video: 'q1.mp4',
-            thumbnail: '1.png',
+            // thumbnail: '1.jpg',
+            layoutName: 'standart',
             steps: false,
             answer: {
                 style: 'radio',

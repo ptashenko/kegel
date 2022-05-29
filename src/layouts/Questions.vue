@@ -8,7 +8,19 @@
   <div class="questions__title">
     {{ survey.title }}
   </div>
-
+  <div class="questions__thumbnail" v-if="survey.video">
+    {{autoPlay}}
+    <video  class="questions__thumbnail" width="400" height="240" ref="videoPlayer">
+      <source
+        :src="video(survey.video)"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div>
+    <!-- <button @click="play">play</button> -->
+  </div> 
   <div class="questions__thumbnail" v-if="survey.thumbnail">
     <img
       :src="image(survey.thumbnail)"
@@ -68,6 +80,7 @@ export default {
   data(){
     return{
       num: 0,
+      timePlay: 0,
     }
     
   },
@@ -75,6 +88,17 @@ export default {
     rateTo() {
       const list = this.survey.answer.answerList;
       return `Rate from 1 to ${list[list.length - 1]}`;
+    },
+    autoPlay() {
+    const videoplay = setInterval(() => {
+        if (this.timePlay == 0) {
+          this.play()
+          this.timePlay += 1
+        } else {
+          this.play()
+          clearInterval(videoplay);
+        }
+      }, 2000);
     },
     ...mapGetters(['content', 'track'])
   },
@@ -89,6 +113,13 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/content/${path}`);
     },
+    video(path) {
+      // eslint-disable-next-line global-require,import/no-dynamic-require
+      return require(`@/assets/video/${path}`);
+    },
+    play() {
+      this.$refs.videoPlayer.play();
+    },
   },
   mixins: [history, nextContentUrl],
   props: {
@@ -97,6 +128,9 @@ export default {
       type: [Object],
     },
   },
+  mounted() {
+    
+  }
 };
 </script>
 

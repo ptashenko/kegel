@@ -15,7 +15,16 @@
         <span class="red" v-if="content.afterTilteRed !== false">{{ content.afterTilteRed }}</span>
         <span v-if="content.afterTilteText !== false">{{ content.afterTilteText }}</span>
       </div>
-      
+      <div class="questions__thumbnail" v-if="content.video">
+        {{autoPlay}}
+        <video  class="video" ref="videoPlayer">
+          <source
+            :src="video(content.video)"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
       <div class="layout__thumbnail full" v-if="content.thumbnail">
         <img
@@ -74,7 +83,8 @@ export default {
   name: 'Standart-layout',
   data(){
     return{
-      yourMethod: true
+      yourMethod: true,
+      timePlay: 0,
     }
   },
   props: {
@@ -92,13 +102,32 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/content/${path}`);
     },
+    video(path) {
+      // eslint-disable-next-line global-require,import/no-dynamic-require
+      return require(`@/assets/video/${path}`);
+    },
+    play() {
+      this.$refs.videoPlayer.play();
+    },
     buttonIcon(name) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/icons/layout-buttons/${name}.svg`);
     },
     
   },
-
+  computed:{
+    autoPlay() {
+    const videoplayquestion = setInterval(() => {
+        if (this.timePlay < 30) {
+          this.play()
+          this.timePlay += 1
+        } else {
+          // this.play()
+          clearInterval(videoplayquestion);
+        }
+      }, 1000);
+    },
+  }
 };
 </script>
 
@@ -133,7 +162,14 @@ export default {
       height: auto;
     }
   }
-
+  &__thumbnail{
+    margin-bottom: 32px;
+    text-align: center;
+    .video{
+      max-width: 520px;
+      width: 100%;
+    }
+  }
   &__button {
     font-weight: 500;
     font-size: 14px;
@@ -189,6 +225,10 @@ export default {
   }
  
 }
+.video{
+      max-width: 520px;
+      width: 100%;
+    }
  .bold-text{
     font-family: "SF Pro Text Semibold";
   }

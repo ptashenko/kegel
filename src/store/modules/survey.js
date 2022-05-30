@@ -124,7 +124,6 @@ const state = () => ({
             id: 1,
             title: 'Do you know about Pelvic Floor (PF) muscles?',
             video: 'q1.mp4',
-            // thumbnail: '1.jpg',
             layoutName: 'standart',
             steps: false,
             answer: {
@@ -137,7 +136,7 @@ const state = () => ({
             title: 'The quality of your erection depends on the Pelvic Floor (PF) muscle tone',
             text: 'The PF muscles help to fill penis with blood and prevent its outflow, so you can get & maintain ',
             textBold: 'hard erection',
-            thumbnail: '2.png',
+            video: 'ED_s1.mp4',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
         },
@@ -200,7 +199,7 @@ const state = () => ({
             title: 'The quality of your erection also depends on the Pelvic Floor (PF) muscle tone',
             text: 'The PF muscles help to fill penis with blood and prevent its outflow, so you can get & maintain ',
             textBold: ' strong erection',
-            thumbnail: '2.png',
+            video: 'ED_s1.mp4',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
         },
@@ -592,7 +591,7 @@ const state = () => ({
         {
             id: 35,
             title: 'Your sexual stamina depends on the Pelvic Floor (PF) muscle tone',
-            thumbnail: '3.png',
+            video: 'PE_s1.mp4',
             layoutName: 'standart',
             aftertext: 'Thanks to the strong PF muscles you can ',
             textbold: ' delay ejaculation ',
@@ -601,7 +600,7 @@ const state = () => ({
         {
             id: 353,
             title: 'Your sexual stamina depends on the Pelvic Floor (PF) muscle tone',
-            thumbnail: '3.png',
+            video: 'PE_s1.mp4',
             layoutName: 'standart',
             aftertext: 'Thanks to the strong PF muscles you can ',
             textbold: ' delay ejaculation ',
@@ -626,7 +625,7 @@ const state = () => ({
         {
             id: 352,
             title: 'Just like any other muscle in the body, your PF muscles weaken without training',
-            thumbnail: 'gif_ed_s1.png',
+            video: 's2.mp4',
             layoutName: 'standart',
             aftertext: 'Weak PF muscles ',
             textbold: ' can\'t let you compress the urethra enough ',

@@ -10,7 +10,7 @@
   </div>
   <div class="questions__thumbnail" v-if="survey.video">
     {{autoPlay}}
-    <video  class="questions__thumbnail" width="400" height="240" ref="videoPlayer">
+    <video  class="video" ref="videoPlayer">
       <source
         :src="video(survey.video)"
         type="video/mp4"
@@ -91,14 +91,14 @@ export default {
     },
     autoPlay() {
     const videoplay = setInterval(() => {
-        if (this.timePlay == 0) {
+        if (this.timePlay < 30) {
           this.play()
           this.timePlay += 1
         } else {
-          this.play()
+          // this.play()
           clearInterval(videoplay);
         }
-      }, 2000);
+      }, 1000);
     },
     ...mapGetters(['content', 'track'])
   },
@@ -187,7 +187,10 @@ export default {
     }
   }
 }
-
+.video{
+      max-width: 520px;
+      width: 100%;
+    }
 .answer {
   &__list {
     &--flex {

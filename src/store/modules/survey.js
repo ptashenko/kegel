@@ -61,7 +61,7 @@ const state = () => ({
                 { id: 44 }, { id: 450 }, { id: 453 },
                 { id: 13, separation: true },
                 { id: 14 }, { id: 15 }, { id: 52 },
-                { id: 53 }, { id: 20 },
+                { id: 53 }, { id: 201 },
                 { id: 54 }, { id: 26 }, { id: 55 },
                 { id: 28, separation: true },
                 { id: 29 }, { id: 30 }, { id: 31 },
@@ -190,7 +190,7 @@ const state = () => ({
             text: 'Weak PF muscles ',
             textBold: ' can\'t hold blood ',
             AfterTextBold: ' in penis well. This leads to erection problems',
-            thumbnail: '2.png',
+            video: 's2.mp4',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
         },
@@ -200,7 +200,7 @@ const state = () => ({
             text: 'The PF muscles help to fill penis with blood and prevent its outflow, so you can get & maintain ',
             textBold: ' strong erection',
             video: 'ED_s1.mp4',
-            layoutName: 'standart',
+            layoutName: 'StandartTwo',
             buttonsText: ['Back', 'I got it'],
         },
         {
@@ -394,7 +394,16 @@ const state = () => ({
             id: 20,
             title: 'Based on your personal goals you can',
             layoutName: 'Reviews',
-            thumbnail: 'OK_pp1.png',
+            ref: "EDcan",
+            thumbnail: 'ED.json',
+            reviews: [1, 2, 3, 4, 5, 6],
+        },
+        {
+            id: 201,
+            title: 'Based on your personal goals you can',
+            layoutName: 'Reviews',
+            ref: "EDcan",
+            thumbnail: 'PE.json',
             reviews: [1, 2, 3, 4, 5, 6],
         },
         {
@@ -433,6 +442,7 @@ const state = () => ({
             layoutName: 'Reviews',
             answer: {
                 style: 'radio',
+                answerClass: 'sexual',
                 answerList: [
                     'Yes, I\'d like to',
                     'No, I don\'t want to',
@@ -555,7 +565,14 @@ const state = () => ({
             id: 321,
             title: 'Based on your personal goals you can',
             layoutName: 'Reviews',
-            thumbnail: 'OK_pp1.png',
+            thumbnail: 'PE.json',
+            reviews: [1, 2, 3, 4, 5, 6],
+        },
+        {
+            id: 322,
+            title: 'Based on your personal goals you can',
+            layoutName: 'Reviews',
+            thumbnail: 'PE.json',
             reviews: [1, 2, 3, 4, 5, 6],
         },
         {
@@ -815,6 +832,7 @@ const state = () => ({
             title: 'Do you want to strengthen your erection?',
             answer: {
                 style: 'radio',
+                answerClass: 'sexual',
                 answerList: [
                     'Yes, I\'d like to',
                     'No, I don\'t want to',
@@ -921,6 +939,8 @@ const state = () => ({
             title: 'How would you rate your libido (sex drive) 1 years ago?',
             answer: {
                 style: 'buttons',
+                textLeft: 'Low',
+                textRight: 'High',
                 answerList: ['1', '2', '3', '4', '5'],
             },
         },
@@ -954,7 +974,7 @@ const state = () => ({
             id: 57,
             title: 'Based on your personal goals you can',
             layoutName: 'Reviews',
-            thumbnail: 'OK_pp1.png',
+            thumbnail: 'PE.json',
             reviews: [1, 2, 3, 4, 5, 6],
         },
     ],

@@ -96,6 +96,7 @@
   </div>
   {{dataP1}}
   {{dataP2}}
+  {{dataP3}}
 </template>
 
 <script>
@@ -135,15 +136,39 @@ export default {
     ...mapGetters(['tracks', 'contentBy']),
     dataP1(){
       moment();
-      let dataPP1_day = moment().add((Math.random() * (134 - 127) + 127),'days').format("MMMM DD");
+      let dataPP1_day = moment().add((134),'days').format("MMMM DD");
+      let dataPP12_day = moment().add((136),'days').format("MMMM DD");
+      let dataPP13_day = moment().add((138),'days').format("MMMM DD");
+      let dataPP14_day = moment().add((140),'days').format("MMMM DD");
       sessionStorage.setItem('data1', dataPP1_day);
+      sessionStorage.setItem('data12', dataPP12_day);
+      sessionStorage.setItem('data13', dataPP13_day);
+      sessionStorage.setItem('data14', dataPP14_day);
       return (this.$store.commit('SET_DATAPP1', dataPP1_day))
     },
     dataP2(){
       moment();
-      let dataPP2_day = moment().add((Math.random() * (120 - 113) + 113),'days').format("MMMM DD");
+      let dataPP2_day = moment().add((120),'days').format("MMMM DD");
+      let dataPP22_day = moment().add((124),'days').format("MMMM DD");
+      let dataPP23_day = moment().add((128),'days').format("MMMM DD");
+      let dataPP24_day = moment().add((132),'days').format("MMMM DD");
       sessionStorage.setItem('data2', dataPP2_day);
+      sessionStorage.setItem('data22', dataPP22_day);
+      sessionStorage.setItem('data23', dataPP23_day);
+      sessionStorage.setItem('data24', dataPP24_day);
       return (this.$store.commit('SET_DATAPP2', dataPP2_day))
+    },
+    dataP3(){
+      moment();
+      let dataPP3_day = moment().add((106),'days').format("MMMM DD");
+      let dataPP32_day = moment().add((110),'days').format("MMMM DD");
+      let dataPP33_day = moment().add((114),'days').format("MMMM DD");
+      let dataPP34_day = moment().add((118),'days').format("MMMM DD");
+      sessionStorage.setItem('data3', dataPP3_day);
+      sessionStorage.setItem('data32', dataPP32_day);
+      sessionStorage.setItem('data33', dataPP33_day);
+      sessionStorage.setItem('data34', dataPP34_day);
+      return (this.$store.commit('SET_DATAPP2', dataPP3_day))
     },
     myHand(){
       // this.$refs.animhand.stop()

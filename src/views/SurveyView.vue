@@ -24,6 +24,7 @@ import KegelReview from '@/layouts/KegelReview.vue';
 import Processing from '@/layouts/Processing.vue';
 import Reviews from '@/layouts/Reviews.vue';
 import Standart from '@/layouts/Standart.vue';
+import StandartTwo from '@/layouts/StandartTwo.vue';
 import Questions from '@/layouts/Questions.vue';
 import AfterMap from '@/views/TimePlan.vue';
 import { mapGetters } from 'vuex';
@@ -36,6 +37,7 @@ export default {
     Processing,
     Reviews,
     Standart,
+    StandartTwo,
     Questions,
     AfterMap
     // Steps,
@@ -50,5 +52,6 @@ export default {
 .survey {
   background-color: white;
   padding: 0 32px;
+  height: 100%;
 }
 </style>

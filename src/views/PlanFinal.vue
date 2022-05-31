@@ -57,7 +57,7 @@
         <p class="bold">
             Total
           </p>
-          <span class="bold"><span>$80</span> $36</span>
+          <span class="bold"><span class="opacity_05 underline">$80</span> ${{pricenew}}</span>
       </div>
       <button-field
         text='Skip trial and start plan'
@@ -117,6 +117,7 @@ export default {
       popupVisible: false,
       addToDo: false,
       price: sessionStorage.getItem('price'),
+      pricenew: 60, 
       trial: 20 - sessionStorage.getItem('price')
     }
   },
@@ -161,6 +162,7 @@ export default {
         this.popupVisible = false
         body.classList.remove('fixed');
         this.addToDo = true
+        this.pricenew = 44
       }
     },
   },

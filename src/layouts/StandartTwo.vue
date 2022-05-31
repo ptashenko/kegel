@@ -15,10 +15,8 @@
         <span class="red" v-if="content.afterTilteRed !== false">{{ content.afterTilteRed }}</span>
         <span v-if="content.afterTilteText !== false">{{ content.afterTilteText }}</span>
       </div>
-      
+      {{autoPlay}}
       <div class="questions__thumbnail" v-if="content.video">
-        {{autoPlay}}
-        {{reload}}
         <video  class="video" ref="videoPlayer">
           <source
             :src="video(content.video)"
@@ -82,7 +80,7 @@ import Steps from '@/components/Steps.vue';
 import nextContentUrl from '@/mixins/contollers';
 
 export default {
-  name: 'Standart-layout',
+  name: 'StandartTwo-layout',
   data(){
     return{
       yourMethod: true,
@@ -100,9 +98,6 @@ export default {
   },
   mixins: [nextContentUrl],
   methods: {
-    reload(){
-      window.location.reload()
-    },
     image(path) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/content/${path}`);

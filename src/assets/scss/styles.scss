@@ -233,3 +233,48 @@ header .container-main {
     cursor: pointer;
     width: 100%;
 }
+
+.date {
+    text-align: center;
+    margin-bottom: 59px;
+    .by {
+        font-family: "SF Pro Text Bold";
+        color: #E44240;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 150%;
+        display: flex;
+        width: 100%;
+        max-width: 190px;
+        margin: 0 auto;
+        position: relative;
+    }
+}
+
+.block__anim {
+    position: absolute;
+    transform: translate(0);
+}
+
+.slide-fade-leave-active,
+.slide-fade-enter-active {
+    transition: all .2s ease-out;
+}
+
+.slide-fade-enter-from {
+    transform: translateY(-50%)!important;
+    opacity: 0;
+}
+
+.slide-fade-leave-to {
+    transform: translateY(50%)!important;
+    opacity: 0;
+}
+
+.opacity_05 {
+    opacity: .5;
+}
+
+.underline {
+    text-decoration: line-through
+}

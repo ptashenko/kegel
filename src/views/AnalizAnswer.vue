@@ -272,7 +272,7 @@ export default {
       }else{
         this.base = this.$store.state.review.msgED
       }
-      return console.log(this.track);  ; 
+      return console.log(this.track); 
     }
   },
   methods:{

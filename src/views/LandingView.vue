@@ -49,14 +49,26 @@
                 <span>by &nbsp;</span>
                 <div class="">
                   <transition name="slide-fade">
-                    <span v-if="show" class="block__anim">{{dataPP2}}</span> 
+                    <span v-if="show" class="block__anim">{{dataPP3}}</span> 
                   </transition> 
                 </div>
               </div>
             </div>
 
             <div class=" layout__thumbnail">
-              <img src="@/assets/images/content/reviews.svg" alt="img">
+              <lottie-animation 
+                class="animation" 
+                ref="content.ref"
+                :animationData="imageitem"
+                :loop="false"
+                :autoPlay="true"
+                :speed="1"
+                @loopComplete="loopComplete"
+                @complete="complete"
+                @enterFrame="enterFrame"
+                @segmentStart="segmentStart"
+                @stopped="stopped"
+              />
               <div class="block__data">
                 <p class="block__data__item">{{moment().add(0,'month').format("MMM")}}</p>
                 <p class="block__data__item">{{moment().add(1,'month').format("MMM")}}</p>
@@ -250,7 +262,7 @@
     </div>
     <div class="block__text mw-450">
       <p class="title">Need help?</p>
-      <p class="fs-16-14">Contact us here: <a href="mailto:support@kegel.men">support@kegel.men</a></p>
+      <p class="fs-16-14">Contact us here: <span class="red">support@kegel.men</span></p>
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <button class="btn_bottom" v-scroll-to="'#paypal'">
@@ -411,7 +423,8 @@ export default {
       price: 1,
       oldprice: 19.88,
       numanimate: 1,
-      show: false
+      show: false,
+      imageitem: require(`@/assets/images/json/Step_1_1.json`)
     };
   },     
   methods: {
@@ -491,6 +504,17 @@ export default {
 
   },
   computed: {
+    imagechart(){
+      var json = localStorage.getItem('track');
+      var obj = JSON.parse(json);
+      this.track = obj.id
+      if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'No'){
+        this.imageitem = require(`@/assets/images/json/Step_1_2.json`);
+      }else{
+        this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
+      }
+      return console.log(this.imageitem); 
+    },
     MyScrollFixed(){
       document.addEventListener('scroll', (e) => {
         let x = window.scrollY
@@ -540,26 +564,27 @@ export default {
   mounted() {
     const numanim = setInterval(() => {
       if (this.numanimate == 1) {
+        this.dataPP3 = sessionStorage.getItem('data34')
         this.numanimate += 1
         this.show = true;
       }else if(this.numanimate == 2){
         this.numanimate += 1
         this.show = false;
-        this.dataPP2 = 'September 23'
+        this.dataPP3 = sessionStorage.getItem('data33')
       }else if(this.numanimate == 3){
         this.numanimate += 1
         this.show = true;
       }else if(this.numanimate == 4){
         this.numanimate += 1
         this.show = false;
-        this.dataPP2 = 'September 21'
+        this.dataPP3 = sessionStorage.getItem('data32')
       }else if(this.numanimate == 5){
         this.numanimate += 1
         this.show = true;
       }else if(this.numanimate == 6){
         this.numanimate += 1
         this.show = false;
-        this.dataPP2 = 'September 19'
+        this.dataPP3 = sessionStorage.getItem('data3')
       }else if(this.numanimate == 7){
         this.numanimate += 1
         this.show = true;
@@ -573,33 +598,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// start animate
-// .block__anim{
-//   position: absolute;
-// }
-// .slide-fade{
-//   display: block;
-//   transform: translateX(0px);
-// }
-.block__anim{
-  position: absolute;
-  transform: translate(0);
-}
-.slide-fade-leave-active,
-.slide-fade-enter-active {
-  transition: all .2s ease-out;
-}
 
-.slide-fade-enter-from{
-  transform: translateY(-50%)!important;
-  opacity: 0;
-}
 
-.slide-fade-leave-to {
-  transform: translateY(50%)!important;
-  opacity: 0;
-}
-// end animate
 .cursor{
   cursor: pointer;
 }

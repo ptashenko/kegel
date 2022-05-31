@@ -48,14 +48,15 @@ export default {
 <style lang="scss" scoped>
 .footer-controls {
   height: 100px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   text-align: center;
   margin: 25px auto 0;
-
+  @media (max-width:480px) {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
+  }
   & > * {
     position: relative;
     z-index: 3;
@@ -63,12 +64,14 @@ export default {
 
   &:before {
     content: '';
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
     top: 0;
+    @media (max-width:480px) {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
+    }
   }
 
   @media (max-width: 480px) {

@@ -14,15 +14,44 @@
 
         <!-- <div class="purpose" v-if="content.id !== 20 && 54"> -->
         {{dataP1}}
-        <div class="purpose" v-if="content.id !== 20 && 54">
+        {{btnAddPurpose}}
+        {{imagePE}}
+        <div class="purpose" v-if="AddPurpose">
           <span>and</span> {{ track.addpurpose }}
         </div>
-        <span  class="red" v-if="content.id == 20 && 54">by {{dataPP1}}</span>
-        <span class="red" v-else>by {{dataPP2}}</span>
+        <div  class="red by" v-if="content.id == 20 || content.id == 57 ">
+          <span>by &nbsp;</span> 
+          <div class="">
+            <transition name="slide-fade">
+              <span v-if="show" class="block__anim">{{dataPP1}}</span> 
+            </transition> 
+          </div>
+        </div>
+        <div class="red by" v-else>
+          <span>by &nbsp;</span> 
+          <div class="">
+            <transition name="slide-fade">
+              <span v-if="show" class="block__anim">{{dataPP2}}</span> 
+            </transition> 
+          </div>
+        </div>
       </div>
 
       <div class=" layout__thumbnail">
-        <img src="@/assets/images/content/reviews.svg" :alt="content.title">
+        <lottie-animation 
+          class="animation" 
+          ref="content.ref"
+          :animationData="imageitem"
+          :loop="false"
+          :autoPlay="true"
+          :speed="1"
+          @loopComplete="loopComplete"
+          @complete="complete"
+          @enterFrame="enterFrame"
+          @segmentStart="segmentStart"
+          @stopped="stopped"
+        />
+
         <div  style="max-width:450px; margin: 0 auto">
           <div class="block__data">
             <p class="block__data__item">{{moment().add(0,'month').format("MMM")}}</p>
@@ -83,10 +112,32 @@ export default {
       numreview: 2,
       dataPP1: sessionStorage.getItem('data1'),
       dataPP2: sessionStorage.getItem('data2'),
+      AddPurpose:false,
+      imageitem: this.image(this.content.thumbnail),
+      numanimate: 1,
+      show: false
     }
   },
   computed: {
     ...mapGetters(['tracks', 'contentBy']),
+    btnAddPurpose(){
+      if(sessionStorage.getItem('resbtn') == 'Yes'){
+        this.AddPurpose = true
+      }else{
+        this.AddPurpose = false
+      } 
+    },
+    imagePE(){
+      var json = localStorage.getItem('track');
+      var obj = JSON.parse(json);
+      this.track = obj.id
+      if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes'){
+        this.imageitem = require(`@/assets/images/json/ED.json`);
+      }else if(this.track.id == 3){
+        this.AddPurpose = true
+      }
+      return console.log(this.imageitem); 
+    }
   },
   components: {
     Review,
@@ -94,7 +145,7 @@ export default {
   methods: {
     image(path) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
-      return require(`@/assets/images/content/${path}`);
+      return require(`@/assets/images/json/${path}`);
     },
     moment(){
       return moment();
@@ -109,6 +160,42 @@ export default {
       type: Object,
     },
   },
+  mounted(){
+    const numanim = setInterval(() => {
+      if (this.numanimate == 1) {
+        this.dataPP1 = sessionStorage.getItem('data14')
+        this.dataPP2 = sessionStorage.getItem('data24')
+        this.numanimate += 1
+        this.show = true;
+      }else if(this.numanimate == 2){
+        this.numanimate += 1
+        this.show = false;
+        this.dataPP1 = sessionStorage.getItem('data13')
+        this.dataPP2 = sessionStorage.getItem('data23')
+      }else if(this.numanimate == 3){
+        this.numanimate += 1
+        this.show = true;
+      }else if(this.numanimate == 4){
+        this.numanimate += 1
+        this.show = false;
+        this.dataPP1 = sessionStorage.getItem('data12')
+        this.dataPP2 = sessionStorage.getItem('data22')
+      }else if(this.numanimate == 5){
+        this.numanimate += 1
+        this.show = true;
+      }else if(this.numanimate == 6){
+        this.numanimate += 1
+        this.show = false;
+        this.dataPP1 = sessionStorage.getItem('data1')
+        this.dataPP2 = sessionStorage.getItem('data2')
+      }else if(this.numanimate == 7){
+        this.numanimate += 1
+        this.show = true;
+      }else{
+        clearInterval(numanim);
+      }
+    }, 1000);
+  }
 };
 </script>
 
@@ -167,9 +254,10 @@ export default {
 
 .layout__thumbnail {
   text-align: center;
-  img {
+  .animation {
     width: 100%;
     max-width: 450px;
+    margin: 0 auto;
   }
 }
 .text-center{

@@ -8,10 +8,12 @@ export default {
         ...mapMutations(['saveContent', 'setSeparator']),
         next() {
             if (this.nextContentId !== false) {
-                this.$router.push({
-                    name: 'survey',
-                    params: { survey: this.nextContentId },
-                });
+                window.scrollTo(0, 0),
+                    this.$router.push({
+                        name: 'survey',
+                        params: { survey: this.nextContentId },
+                    });
+
             } else {
                 this.$router.push({
                     name: 'wait',

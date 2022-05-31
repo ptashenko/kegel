@@ -29,6 +29,21 @@
       height="200"
     >
   </div>
+  <div class="questions__thumbnail" v-if="survey.json">
+    <lottie-animation 
+        class="animation" 
+        ref="survey.ref"
+        :animationData="json(survey.json)"
+        :loop="false"
+        :autoPlay="true"
+        :speed="1"
+        @loopComplete="loopComplete"
+        @complete="complete"
+        @enterFrame="enterFrame"
+        @segmentStart="segmentStart"
+        @stopped="stopped"
+      />
+  </div>
 
   <div v-if="survey.answer.style === 'buttons'" class="questions__rate">
     {{ rateTo }}
@@ -38,11 +53,15 @@
     class="answer__list"
     :class="survey.answer.style === 'buttons' ? 'answer__list--flex' : ''"
   >
+  {{mybtn}}
     <component
       :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'"
       v-for="answer in survey.answer.answerList"
+      :class="survey.answer.answerClass"
+      @click="myAvesomeClickFunction"
       :key="answer.id"
       :answer="answer"
+      
     />
   </div>
 
@@ -77,38 +96,45 @@ import history from '@/mixins/history';
 import nextContentUrl from '@/mixins/contollers';
 
 export default {
+  name: 'Question-layout',
   data(){
     return{
       num: 0,
       timePlay: 0,
     }
-    
+  },
+  watch:{
+
   },
   computed: {
+    
     rateTo() {
       const list = this.survey.answer.answerList;
       return `Rate from 1 to ${list[list.length - 1]}`;
     },
     autoPlay() {
     const videoplay = setInterval(() => {
-        if (this.timePlay < 30) {
+        if (this.timePlay == 0) {
           this.play()
           this.timePlay += 1
         } else {
-          // this.play()
           clearInterval(videoplay);
         }
       }, 1000);
     },
     ...mapGetters(['content', 'track'])
   },
-  name: 'Question-layout',
+  
   components: {
     QuestionRadio,
     Question,
     Steps
   },
   methods: {
+    json(json) {
+      // eslint-disable-next-line global-require,import/no-dynamic-require
+      return require(`@/assets/images/json/${json}`);
+    },
     image(path) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/content/${path}`);
@@ -119,6 +145,15 @@ export default {
     },
     play() {
       this.$refs.videoPlayer.play();
+    },
+    myAvesomeClickFunction(e){
+      let str = [] 
+      str = e.target.innerText
+      str = str.split(',')[0]
+      console.log(e.target);
+      if (e.target.classList.contains('sexual')){
+        sessionStorage.setItem('resbtn', str);
+      }
     },
   },
   mixins: [history, nextContentUrl],
@@ -164,9 +199,9 @@ export default {
     }
   }
   &__thumbnail {
-    margin-bottom: 32px;
+    margin: 32px auto 0;
     text-align: center;
-
+    max-width: 450px;
     img {
       max-width: 100%;
       height: auto;
@@ -190,6 +225,7 @@ export default {
 .video{
       max-width: 520px;
       width: 100%;
+      margin: 0 auto;
     }
 .answer {
   &__list {

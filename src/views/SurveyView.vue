@@ -52,6 +52,6 @@ export default {
 .survey {
   background-color: white;
   padding: 0 32px;
-  height: 100%;
+  height: 100vh;
 }
 </style>

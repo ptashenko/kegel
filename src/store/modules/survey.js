@@ -186,7 +186,7 @@ const state = () => ({
         },
         {
             id: 6,
-            title: 'The quality of your erection also depends on the Pelvic Floor (PF) muscle tone',
+            title: 'Just like any other muscle in the body, your PF muscles weaken without training',
             text: 'Weak PF muscles ',
             textBold: ' can\'t hold blood ',
             AfterTextBold: ' in penis well. This leads to erection problems',
@@ -511,7 +511,7 @@ const state = () => ({
         {
             id: 28,
             title: 'Kegel exercises are better than medications',
-            thumbnail: 'OK_s6.png',
+            thumbnail: 'ED_s6.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
         },
@@ -584,8 +584,8 @@ const state = () => ({
                     'Every day',
                     'Several times a week',
                     'Once a week',
-                    'Once a month',
-                    'I don\'t drink at all',
+                    'Several times a month',
+                    'I don\'t exercise at all',
                 ],
             },
         },

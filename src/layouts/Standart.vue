@@ -18,7 +18,6 @@
       
       <div class="questions__thumbnail" v-if="content.video">
         {{autoPlay}}
-        {{reload}}
         <video  class="video" ref="videoPlayer">
           <source
             :src="video(content.video)"
@@ -100,9 +99,6 @@ export default {
   },
   mixins: [nextContentUrl],
   methods: {
-    reload(){
-      window.location.reload()
-    },
     image(path) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/content/${path}`);

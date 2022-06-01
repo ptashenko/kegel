@@ -13,17 +13,19 @@
       </div>
       <div class="str">
         <lottie-animation 
-          ref="animstr"
-          :animationData="require(`@/assets/images/json/main_arrow.json`)"
-          :loop="true"
-          :autoPlay="true"
-          :speed="1"
-          @loopComplete="loopComplete"
-          @complete="complete"
-          @enterFrame="enterFrame"
-          @segmentStart="segmentStart"
-          @stopped="stopped"
-        />
+            ref="arrowmain"
+            class="animationArrow"
+            :class="{ active: isActiveHand }"
+            :animationData="require(`@/assets/images/json/main_arrow.json`)"
+            :loop="true"
+            :autoPlay="true"
+            :speed="1"
+            @loopComplete="loopComplete"
+            @complete="complete"
+            @enterFrame="enterFrame"
+            @segmentStart="segmentStart"
+            @stopped="stopped"
+          />
       </div>
     </div>
   </div>
@@ -128,7 +130,6 @@ export default {
         },
       ],
       numhand: 0,
-      playState: false,
       isActiveHand: false
     };
   },
@@ -171,8 +172,7 @@ export default {
       return (this.$store.commit('SET_DATAPP2', dataPP3_day))
     },
     myHand(){
-      // this.$refs.animhand.stop()
-    const animated = setInterval(() => {
+      const animated = setInterval(() => {
         if (this.numhand < 10) {
           
           this.numhand += 1;
@@ -185,10 +185,6 @@ export default {
   },
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),
-    advantageImage(name) {
-      // eslint-disable-next-line global-require,import/no-dynamic-require
-      return require(`@/assets/images/icons/${name}.svg`);
-    },
     getData(track) {
       const content = this.contentBy({
         field: 'id',
@@ -201,23 +197,33 @@ export default {
         params: { survey: content.id },
       });
     },
+    arrow(){
+      this.$refs.arrowmain.play()
+    }
   },
   mounted() {
     this.clearHistory();
-    
     
   },
 };
 </script>
 
 <style lang="scss">
+// .animationArrow{
+//   display: block;
+//   position: absolute!important;
+//   width: 30px;
+//   height: 84px;
+//   top: 0px;
+//   right: 50%;
+// }
 .animationHand{
   display: none;
   position: absolute!important;
-  max-width: 50px;
+  width: 84px;
   height: auto;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: -10px;
 }
 .animationHand.active{
   display: block;
@@ -230,9 +236,6 @@ export default {
   height: auto;
   text-align: center;
   margin: 0 auto;
-}
-.hand{
-  
 }
 body{
   margin: 0;

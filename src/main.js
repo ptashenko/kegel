@@ -9,6 +9,7 @@ import router from './router';
 import store from './store';
 import LottieAnimation from "lottie-web-vue";
 import VueScrollTo from "vue-scrollto"
+import VideoBackground from 'vue-responsive-video-background-player'
 
 import '@/assets/scss/styles.scss';
 import '@/assets/scss/fonts.scss';
@@ -26,4 +27,5 @@ createApp(App)
     .component('header-layout', Header)
     .component('footer-controls', FooterControls)
     .component('Steps-item', Steps)
+    .component('video-background', VideoBackground)
     .mount('#app');

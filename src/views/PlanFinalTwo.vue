@@ -4,77 +4,67 @@
   <div class="dark-layout light">
     <div class="container-main is-page Final">
       <div class="mw-520">
-        <div class="h2 text-center">
-          Looking to increase your chance of success by 4 times? 
+        <div 
+          v-if="active" 
+          class="h2 text-center"
+          :class="{active: active}"
+        >
+          Add Groin Fitness 
+          <p>to accelerate the result</p>
         </div>
-        <div class="purpose">
-          <p>Studies show that people feel more obligated to follow through with something once they've made a strong commitment.</p>
-          <p>This principle also applies to improving intimate health. You can <span>{{ purpose }}</span> and <span>{{ addpurpose }}</span>. You just need to commit.</p>
-          <p>Kegel Plan users who have a strong commitment at the beginning are 4 times more likely to achieve improvements, than users who choose trial</p>
+        <div v-else class="h2 text-center">
+          <span class="blue"> Final Offer:</span> get Groin Fitness at the best deal!
         </div>
       </div>
       <div class="mw-450">
-        <div class=" layout__thumbnail">
-          <img src="@/assets/images/content/Step_2_img.png" :alt="Step_2_img">
-        </div>
-
-        <div class="desc text-center">
-          *According to studies, it needs 12 weeks of Kegel exercises to achieve improvements. Kegel Plan users who have strong commitment are 4 times more likely to finish 12 weeks of Kegel exercises, than users who choose trial
-        </div>
+        <video-background 
+          :src="require('@/assets/video/PE_s1.mp4')"
+          style="height: 260px; width: 100%" 
+          
+        >
+        </video-background>
       </div>
-      <div class="price">
-        <div class="price__text">
-          PRICE TODAY
-        </div>
-      </div>
-      <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-          <p class="">
-            12-week plan with trial
+      <div class="mw-450 d-flex flex-column mb-32">
+        <div class="item-li d-flex align-items-center">
+          <img v-if="active" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+          <img v-else class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+          <p class="fs-16-14">
+            Build groin muscles strength & flexibility
           </p>
-          <span class="bold">$80-${{price}}</span>
-      </div>
-      <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-        <p class="">
-          Skip trial
-        </p>
-        <span class="bold">-${{trial}}</span>
-      </div>
-      <div v-if="addToDo">
-        <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-          <p class="bg_blue">
-            20% off
-          </p>
-          <span class="bold">-$16</span>
         </div>
-        <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-          <p class="">
-              Total saving
-            </p>
-            <span class="bold"> $36</span>
-        </div>
-      </div>
-      <div class="price__today mt-32 d-flex mw-450 align-items-center justify-content-beetwen">
-        <p class="bold">
-            Total
+        <div class="item-li d-flex align-items-center">
+          <img v-if="active" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+          <img v-else class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+          <p class="fs-16-14">
+            Increase blood flow to intimate organs
           </p>
-          <span class="bold"><span class="opacity_05 underline">$80</span> ${{pricenew}}</span>
+        </div>
+        <div class="item-li d-flex align-items-center">
+          <img v-if="active" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+          <img v-else class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+          <p class="fs-16-14">
+            Every exercise has video & audio instructions from the coach
+          </p>
+        </div>
+        <img v-if="active" class="diskont" src="@/assets/images/icons/diskont_red.svg" alt="">
+        <img v-else class="diskont" src="@/assets/images/icons/diskont_blue.svg" alt="">
       </div>
       <button-field
-        text='Skip trial and start plan'
+        text='Add to my plan'
         theme="Back"
-        class="footer-controls__button red"
-        @click="nextUrl"
+        class="footer-controls__button "
+        :class="{ 'bg-blue': !active, 'red': active }"
       />
       <div 
         class="btn_popup"
         @click="showModal"
       >
-      Continue with trial &gt;
+      I don’t want to accelerate my results &gt;
       </div>
     </div>
     <div class="mw-520">
       <div class="footer__text">
-        When you click "Skip Trial and Start Plan", your original trial payment will be charged $60. Your payment method will then be automatically charged $60 every 3 months (your "subscription period") until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of a subscription period, you will not receive a partial refund.
+        *Your account will be charged immediately for the add-on services or products selected. Add-on items do not come with a free trial. Sales tax included in order total.
       </div>
     </div>  
 
@@ -82,20 +72,30 @@
   </div>
     <vpopup
     class="popup_wraper"
-    textTitle="Are you sure?"
+    textTitle="Did you know?"
     v-if="popupVisible"
   > 
     <p>
-      We want to help you succeed. Your chances of that increase if you make a commitment now.
+      <b>Groin Fitness</b> improves blood flow to the groin, which has a big impact on sexual performance.
     </p>
     <p>
-      If you skip your trial and start your plan today, we'll refund your trial payment AND take <b> an extra 20% off </b>your total.
+      Bad blood flow to the groin area can put you at <b> 50-70% </b> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
     </p>
+    <img src="@/assets/images/content/Final_modal.png" alt="">
+    <p class="opacity_05 text-center" style="font-size: 12px">
+      *This diagram is a non-personalized illustration based on scientific research.
+    </p>
+    <div class="block_blue d-flex align-items-center">
+      <img src="@/assets/images/icons/icon_present.svg" alt="">
+      <p>We want you to be successful, so we're offering <b> 25% off </b> the Groin Fitness just for you!</p>
+    </div>
+
     <button 
       class="v-popup__submit_btn red active"
       @click="closePopup"
     >
     Continue
+    <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" >
     </button>
   </vpopup>
 </template>
@@ -108,18 +108,11 @@ import vpopup from '@/components/modal/v-popup.vue';
 import ButtonField from '@/components/ui/Button.vue';
 
 export default {
-  name: 'PlanFinal',
+  name: ' ',
   data(){
     return{
-      base: {},
-      numreview: 2,
-      dataPP1: sessionStorage.getItem('data1'),
-      dataPP2: sessionStorage.getItem('data2'),
       popupVisible: false,
-      addToDo: false,
-      price: sessionStorage.getItem('price'),
-      pricenew: 60, 
-      trial: 20 - sessionStorage.getItem('price')
+      active: true
     }
   },
   computed: {
@@ -141,19 +134,6 @@ export default {
     ButtonField,
   },
   methods: {
-    nextUrl(){
-      this.$router.push('PlanFinalTwo')
-    },
-    image(path) {
-      // eslint-disable-next-line global-require,import/no-dynamic-require
-      return require(`@/assets/images/content/${path}`);
-    },
-    moment(){
-      return moment();
-    },
-    getRandomArbitrary(min, max){
-      return Math.random() * (max - min) + min;
-    },
     showModal(){
       let body = document.querySelector('body')
       body.classList.add('fixed');
@@ -165,8 +145,7 @@ export default {
       if(x.classList.contains('active')){
         this.popupVisible = false
         body.classList.remove('fixed');
-        this.addToDo = true
-        this.pricenew = 44
+        this.active = false
       }
     },
   },
@@ -176,6 +155,8 @@ export default {
       type: Object,
     },
   },
+  mounted(){
+  }
 };
 </script>
 
@@ -185,10 +166,36 @@ export default {
     margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
-    font-size: 30px;
+    font-size: 32px;
+    line-height: 135%;
     @media (max-width:480px) {
       font-size: 24px;
     }
+  }
+  .h2.active {
+    margin-bottom: 32px;
+    font-family: "SF-Pro-Display-Bold";
+    line-height: 135%;
+    font-size: 36px;
+    line-height: 135%;
+    @media (max-width:480px) {
+      font-size: 32px;
+    }
+    p{
+      font-family: "SF-Pro-Display-Medium";
+      font-size: 24px;
+      line-height: 135%;
+      @media (max-width:480px) {
+        font-size: 20px;
+      }
+    }
+
+  }
+  .blue{
+    color: #5773D6;
+  }
+  .bg-blue{
+    background: #5773D6;
   }
   .purpose{
     font-family: "SF Pro Text Regular";
@@ -207,7 +214,10 @@ export default {
   }
   .mw-450{
     max-width: 450px;
-    margin: 0 auto;
+    margin: 47px auto 48px;
+    @media (max-width:480px) {
+      margin: 32px auto 32px;
+    }
     .layout__thumbnail{
       display: block;
       max-width: 450px;
@@ -216,13 +226,27 @@ export default {
         width: 100%;
       }
     }
-    .desc{
-      font-family: "SF Pro Text Light";
-      font-size: 14px;
+    .item-li{
       line-height: 150%;
-      opacity: 0.5;
-      text-align: center;
-      margin-bottom: 48px;
+      margin-top: 16px;
+      font-size: 18px;
+      @media (max-width:480px) {
+        font-size: 14px;
+      }
+      .check{
+        margin-right: 18px;
+        width: 18px;
+        @media (max-width:480px) {
+          width: 13px;
+        }
+      }
+    }
+    .diskont{
+      width: 100%;
+      margin: 50px 0 0px;
+      @media (max-width:480px) {
+        margin: 28px 0 0px;
+      }
     }
   }
   .price{
@@ -259,6 +283,9 @@ export default {
         color: #ffffff;
         font-size: 16px;
         line-height: 150%;
+        :hover{
+          background: #5773D6;
+        }
       }
     }
     &__today.mt-32{
@@ -267,7 +294,7 @@ export default {
   }
   .footer-controls__button{
     max-width: 310px;
-    margin: 48px auto 0;
+    margin: 0 auto 0;
     z-index: 0;
   }
   .btn_popup{
@@ -331,6 +358,37 @@ export default {
     b{
       font-family: "SF Pro Text Medium";
     }
+  }
+  img{
+    width: 100%;
+    margin: 24px 0 16px;
+  }
+  .block_blue{
+    padding: 16px 24px;
+    background: #5773D6;
+    width: 100%;
+    margin:0 -20px ;
+    color: #ffffff;
+    img{
+      max-width: 70px;
+      margin: 0;
+    }
+    p{
+      margin: 0;
+      margin-left: 16px;
+      font-size: 16px;
+
+      @media (max-width:480px) {
+        font-size: 13px;
+      }
+    }
+  }
+  .v-popup__submit_btn{
+    background: #5773D6;
+  }
+  .btn__next{
+    max-width: 14px;
+    margin: 0 0 0 12px;
   }
 }
 </style>

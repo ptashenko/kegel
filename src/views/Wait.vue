@@ -149,8 +149,6 @@ export default {
       }
     }
     .d-flex.block{
-      background-color: #F9F9F9;
-      border-radius: 54px;
       padding: 7px;
       max-width: 311px ;
       margin: 54px auto;

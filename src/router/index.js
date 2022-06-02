@@ -10,6 +10,7 @@ import GoodHands from '@/views/GoodHands.vue';
 import EmailAdress from '@/views/EmailAdress.vue';
 import LandingView from '@/views/LandingView.vue';
 import PlanFinal from '@/views/PlanFinal.vue';
+import PlanFinalTwo from '@/views/PlanFinalTwo.vue';
 
 const routes = [{
         path: '/',
@@ -60,6 +61,11 @@ const routes = [{
         path: '/PlanFinal',
         name: 'PlanFinal',
         component: PlanFinal,
+    },
+    {
+        path: '/PlanFinalTwo',
+        name: 'PlanFinalTwo',
+        component: PlanFinalTwo,
     },
     {
         path: '/:pathMatch(.*)',

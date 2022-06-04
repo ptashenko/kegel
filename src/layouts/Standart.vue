@@ -17,22 +17,18 @@
       </div>
       
       <div class="questions__thumbnail" v-if="content.video">
-        {{autoPlay}}
-        <video  class="video" ref="videoPlayer">
-          <source
-            :src="video(content.video)"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+        <video-background 
+          :src="video(content.video)"
+          :poster="video(content.poster)"
+          class="video"
+        >
+        </video-background>
       </div>
 
       <div class="layout__thumbnail full" v-if="content.thumbnail">
         <img
           :src="image(content.thumbnail)"
           :alt="content.title"
-          width="400"
-          height="200"
         > 
       </div>
       
@@ -107,9 +103,6 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/video/${path}`);
     },
-    play() {
-      this.$refs.videoPlayer.play();
-    },
     buttonIcon(name) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/icons/layout-buttons/${name}.svg`);
@@ -117,17 +110,6 @@ export default {
     
   },
   computed:{
-    autoPlay() {
-    
-    const videoplayquestion = setInterval(() => {
-        if (this.timePlay == 0) {
-          this.play()
-          this.timePlay += 1
-        } else {
-          clearInterval(videoplayquestion);
-        }
-      }, 1000);
-    },
   },
   mounted(){
       
@@ -162,7 +144,8 @@ export default {
     text-align: center;
 
     img {
-      max-width: 100%;
+      width: 100%;
+      max-width: 450px;
       height: auto;
     }
   }
@@ -236,4 +219,19 @@ export default {
  .bold-text{
     font-family: "SF Pro Text Semibold";
   }
+  .video {
+    max-height: 340px;
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 14px;
+    @media (max-width: 480px) {
+        max-height: 240px;
+    }
+    @media (max-width:440px) {
+        max-height: 220px;
+    }
+    @media (max-width:400px) {
+        max-height: 200px;
+    }
+}
 </style>

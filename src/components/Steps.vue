@@ -31,22 +31,15 @@ export default {
     loadPercent() {
       const index = ( this.track.layouts.findIndex((layout) => layout.id === this.content.id) ) ;
       let myStep = 0;
-      // console.log(index);
       
       if(index <= this.layoutSeparations[1]){
         myStep = (((index / this.layoutSeparations[1]) * 100).toFixed(2))/3;
-        // console.log(myStep)
       }else if(index <= this.layoutSeparations[2] && index > this.layoutSeparations[1]){
         myStep = 33.33 + ((((index - this.layoutSeparations[1]) / (this.layoutSeparations[2] - this.layoutSeparations[1])) * 100).toFixed(2))/3;
-        // console.log(myStep)
       }else{
         myStep = 66.67 + ((((index - this.layoutSeparations[2]) / (this.layoutSeparations[3] - this.layoutSeparations[2])) * 100).toFixed(2))/3;
-        // console.log(myStep)
       }
       return myStep
-      // console.log(((index / this.track.layouts.length) * 100).toFixed(2));
-      // return (((index / this.layoutSeparations[1]) * 100).toFixed(2))/4;
-      // return ((index / this.track.layouts.length) * 100).toFixed(2);
     },
   },
   props: {
@@ -92,6 +85,7 @@ export default {
     bottom: 0;
     transition: .2s;
     background-color: #111113;
+    border-radius: 5px;
   }
 
   &__col {

@@ -20,11 +20,6 @@
             :loop="true"
             :autoPlay="true"
             :speed="1"
-            @loopComplete="loopComplete"
-            @complete="complete"
-            @enterFrame="enterFrame"
-            @segmentStart="segmentStart"
-            @stopped="stopped"
           />
       </div>
     </div>
@@ -49,12 +44,6 @@
             :animationData="require(`@/assets/images/json/main_hand.json`)"
             :loop="true"
             :autoPlay="true"
-            :speed="1"
-            @loopComplete="loopComplete"
-            @complete="complete"
-            @enterFrame="enterFrame"
-            @segmentStart="segmentStart"
-            @stopped="stopped"
           />
         </button>
       </div>
@@ -75,13 +64,12 @@
         >
         <div class="advantage__title">{{ advantage.title }}</div>
         <div class="advantage__text">{{ advantage.text }}</div>
-        <a
-          :href="`mailto:${advantage.email}`"
+        <p
           class="advantage__email"
           v-if="advantage.email"
         >
           {{ advantage.email }}
-        </a>
+        </p>
       </div>
 
       <div class="footer__info">
@@ -91,6 +79,7 @@
         </span>
         <div class="footer__terms">
           <a href="https://appercut.co/privacy-policy.html">Privacy Policy</a>
+          <div class="line">|</div>
           <a href="https://appercut.co/terms.html">Terms & Conditions</a>
         </div>
       </div>
@@ -130,17 +119,20 @@ export default {
         },
       ],
       numhand: 0,
-      isActiveHand: false
+      isActiveHand: false,
+      randomData: 0
     };
   },
   computed: {
     ...mapGetters(['tracks', 'contentBy']),
+    
     dataP1(){
+      this.randomData = (Math.floor(Math.random() * (140 - 132 + 1)) + 132);
       moment();
-      let dataPP1_day = moment().add((134),'days').format("MMMM DD");
-      let dataPP12_day = moment().add((136),'days').format("MMMM DD");
-      let dataPP13_day = moment().add((138),'days').format("MMMM DD");
-      let dataPP14_day = moment().add((140),'days').format("MMMM DD");
+      let dataPP1_day = moment().add((this.randomData),'days').format("MMMM DD");
+      let dataPP12_day = moment().add((this.randomData + 2),'days').format("MMMM DD");
+      let dataPP13_day = moment().add((this.randomData + 4),'days').format("MMMM DD");
+      let dataPP14_day = moment().add((this.randomData + 6),'days').format("MMMM DD");
       sessionStorage.setItem('data1', dataPP1_day);
       sessionStorage.setItem('data12', dataPP12_day);
       sessionStorage.setItem('data13', dataPP13_day);
@@ -149,10 +141,10 @@ export default {
     },
     dataP2(){
       moment();
-      let dataPP2_day = moment().add((120),'days').format("MMMM DD");
-      let dataPP22_day = moment().add((124),'days').format("MMMM DD");
-      let dataPP23_day = moment().add((128),'days').format("MMMM DD");
-      let dataPP24_day = moment().add((132),'days').format("MMMM DD");
+      let dataPP2_day = moment().add((this.randomData - 14),'days').format("MMMM DD");
+      let dataPP22_day = moment().add((this.randomData - 10),'days').format("MMMM DD");
+      let dataPP23_day = moment().add((this.randomData - 6),'days').format("MMMM DD");
+      let dataPP24_day = moment().add((this.randomData - 2),'days').format("MMMM DD");
       sessionStorage.setItem('data2', dataPP2_day);
       sessionStorage.setItem('data22', dataPP22_day);
       sessionStorage.setItem('data23', dataPP23_day);
@@ -161,10 +153,10 @@ export default {
     },
     dataP3(){
       moment();
-      let dataPP3_day = moment().add((106),'days').format("MMMM DD");
-      let dataPP32_day = moment().add((110),'days').format("MMMM DD");
-      let dataPP33_day = moment().add((114),'days').format("MMMM DD");
-      let dataPP34_day = moment().add((118),'days').format("MMMM DD");
+      let dataPP3_day = moment().add((this.randomData - 28),'days').format("MMMM DD");
+      let dataPP32_day = moment().add((this.randomData - 24),'days').format("MMMM DD");
+      let dataPP33_day = moment().add((this.randomData - 20),'days').format("MMMM DD");
+      let dataPP34_day = moment().add((this.randomData - 16),'days').format("MMMM DD");
       sessionStorage.setItem('data3', dataPP3_day);
       sessionStorage.setItem('data32', dataPP32_day);
       sessionStorage.setItem('data33', dataPP33_day);
@@ -185,6 +177,9 @@ export default {
   },
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),
+    getRandomInt(max,min) {
+      console.log(Math.floor(Math.random() * (max - min + 1)) + min); 
+    },
     getData(track) {
       const content = this.contentBy({
         field: 'id',
@@ -209,14 +204,6 @@ export default {
 </script>
 
 <style lang="scss">
-// .animationArrow{
-//   display: block;
-//   position: absolute!important;
-//   width: 30px;
-//   height: 84px;
-//   top: 0px;
-//   right: 50%;
-// }
 .animationHand{
   display: none;
   position: absolute!important;
@@ -404,14 +391,9 @@ body{
     a {
       text-decoration: underline;
       color: #111113;
-
-      &:first-child {
-        &:after {
-          content: '|';
-          margin-right: 16px;
-          padding-left: 16px;
-        }
-      }
+    }
+    .line{
+      margin: 0 16px;
     }
   }
 }

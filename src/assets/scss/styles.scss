@@ -59,7 +59,7 @@ p {
 .dark-layout {
     .wait {
         .steps__col.active {
-            background-color: #2C2C2E;
+            background-color: #111113;
             img {
                 position: relative;
                 z-index: 1;
@@ -68,12 +68,12 @@ p {
             }
         }
         .steps {
-            background-color: #2C2C2E;
+            background-color: #111113;
             img {
                 filter: invert(0);
             }
             span {
-                background-color: #2C2C2E;
+                background-color: #111113;
             }
         }
     }
@@ -84,10 +84,10 @@ p {
     padding: 100px 32px 0px;
     min-height: calc(100vh - 100px);
     .steps {
-        background-color: #2C2C2E;
+        background-color: #111113;
     }
     .steps__col {
-        background-color: #2C2C2E;
+        background-color: #111113;
         img {
             position: relative;
             z-index: 1;
@@ -248,6 +248,7 @@ header .container-main {
         max-width: 190px;
         margin: 0 auto;
         position: relative;
+        padding-left: 50px;
     }
 }
 
@@ -277,4 +278,20 @@ header .container-main {
 
 .underline {
     text-decoration: line-through
+}
+
+.video {
+    max-height: 280px;
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 14px;
+    @media (max-width: 480px) {
+        max-height: 240px;
+    }
+    @media (max-width:440px) {
+        max-height: 220px;
+    }
+    @media (max-width:400px) {
+        max-height: 200px;
+    }
 }

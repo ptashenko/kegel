@@ -9,17 +9,14 @@
     {{ survey.title }}
   </div>
   <div class="questions__thumbnail" v-if="survey.video">
-    {{autoPlay}}
-    <video  class="video" ref="videoPlayer">
-      <source
-        :src="video(survey.video)"
-        type="video/mp4"
-      />
-      Your browser does not support the video tag.
-    </video>
+    <video-background 
+      :src="video(content.video)"
+      :poster="video(content.poster)"
+      class="video"
+    >
+    </video-background>
   </div>
   <div>
-    <!-- <button @click="play">play</button> -->
   </div> 
   <div class="questions__thumbnail" v-if="survey.thumbnail">
     <img
@@ -112,16 +109,6 @@ export default {
       const list = this.survey.answer.answerList;
       return `Rate from 1 to ${list[list.length - 1]}`;
     },
-    autoPlay() {
-    const videoplay = setInterval(() => {
-        if (this.timePlay == 0) {
-          this.play()
-          this.timePlay += 1
-        } else {
-          clearInterval(videoplay);
-        }
-      }, 1000);
-    },
     ...mapGetters(['content', 'track'])
   },
   
@@ -142,9 +129,6 @@ export default {
     video(path) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/video/${path}`);
-    },
-    play() {
-      this.$refs.videoPlayer.play();
     },
     myAvesomeClickFunction(e){
       let str = [] 
@@ -199,7 +183,7 @@ export default {
     }
   }
   &__thumbnail {
-    margin: 32px auto 0;
+    margin: 32px auto 32px;
     text-align: center;
     max-width: 450px;
     img {

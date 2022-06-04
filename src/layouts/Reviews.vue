@@ -194,7 +194,7 @@ export default {
       }else{
         clearInterval(numanim);
       }
-    }, 1000);
+    }, 500);
   }
 };
 </script>

@@ -14,12 +14,6 @@
             :animationData="require(`@/assets/images/json/f1_loader.json`)"
             :loop="true"
             :autoPlay="true"
-            :speed="1"
-            @loopComplete="loopComplete"
-            @complete="complete"
-            @enterFrame="enterFrame"
-            @segmentStart="segmentStart"
-            @stopped="stopped"
           />
         </div>
         
@@ -117,7 +111,9 @@ export default {
 .h2 {
   margin: 0;
 }
-
+.Just{
+  width: 100%;
+}
 .wait {
   &__text__animate{
     font-family: "SF-Pro-Display-Medium";

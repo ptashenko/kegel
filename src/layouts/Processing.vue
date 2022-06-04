@@ -6,7 +6,7 @@
       <processing />
 
       <div class="layout__thumbnail">
-        <img src="@/assets/images/content/process.svg" alt="">
+        <img src="@/assets/images/content/s7.png" alt="">
       </div>
     </div>
   </div>

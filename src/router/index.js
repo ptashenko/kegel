@@ -11,6 +11,7 @@ import EmailAdress from '@/views/EmailAdress.vue';
 import LandingView from '@/views/LandingView.vue';
 import PlanFinal from '@/views/PlanFinal.vue';
 import PlanFinalTwo from '@/views/PlanFinalTwo.vue';
+import CodeQR from '@/views/CodeQR.vue';
 
 const routes = [{
         path: '/',
@@ -66,6 +67,11 @@ const routes = [{
         path: '/PlanFinalTwo',
         name: 'PlanFinalTwo',
         component: PlanFinalTwo,
+    },
+    {
+        path: '/CodeQR',
+        name: 'CodeQR',
+        component: CodeQR,
     },
     {
         path: '/:pathMatch(.*)',

@@ -18,9 +18,9 @@
       </div>
       <div class="mw-450">
         <video-background 
-          :src="require('@/assets/video/PE_s1.mp4')"
-          style="height: 260px; width: 100%" 
-          
+          :src="require('@/assets/video/mini_vid.mp4')"
+          :poster="require(`@/assets/video/mini_vid.png`)"
+          class="video"
         >
         </video-background>
       </div>
@@ -54,6 +54,7 @@
         theme="Back"
         class="footer-controls__button "
         :class="{ 'bg-blue': !active, 'red': active }"
+        @click="nextUrl"
       />
       <div 
         class="btn_popup"
@@ -101,7 +102,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 import { mapGetters } from 'vuex';
 import Review from '@/components/Review.vue';
 import vpopup from '@/components/modal/v-popup.vue';
@@ -134,6 +134,17 @@ export default {
     ButtonField,
   },
   methods: {
+    video(path) {
+      // eslint-disable-next-line global-require,import/no-dynamic-require
+      return require(`@/assets/video/${path}`);
+    },
+    image(path) {
+      // eslint-disable-next-line global-require,import/no-dynamic-require
+      return require(`@/assets/video/${path}`);
+    },
+    nextUrl(){
+      this.$router.push('CodeQR')
+    },
     showModal(){
       let body = document.querySelector('body')
       body.classList.add('fixed');
@@ -312,7 +323,21 @@ export default {
     margin: 0 auto;
     display: block;
   }
-  
+  .video{
+    max-height: 260px; 
+    height: 100vh; 
+    max-width: 100%;
+    border-radius: 14px;
+    @media (max-width:480px) {
+      max-height: 210px;
+    }
+    @media (max-width:440px) {
+      max-height: 195px;
+    }
+    @media (max-width:400px) {
+      max-height: 180px;
+    }
+  }
 }
 .footer__text{
     font-family: "SF Pro Text Light";

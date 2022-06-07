@@ -84,7 +84,7 @@
         text: content.buttonsText ? content.buttonsText[0] : 'Back',
         icon: 'prev',
         click: back,
-        theme: 'light'
+        theme: 'light prevBtnReviews'
       }"
       :buttonNext="{
         icon: false,

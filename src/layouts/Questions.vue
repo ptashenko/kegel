@@ -58,7 +58,6 @@
       @click="myAvesomeClickFunction"
       :key="answer.id"
       :answer="answer"
-      
     />
   </div>
 

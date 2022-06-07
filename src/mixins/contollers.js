@@ -2,12 +2,14 @@ import { mapGetters, mapMutations, state } from 'vuex';
 
 export default {
     computed: {
-        ...mapGetters(['nextContentId', 'layoutSeparationsIds', 'prevContentId', 'contentBy', 'content', 'track']),
+        ...mapGetters(['myPrewContentId', 'nextContentId', 'layoutSeparationsIds', 'prevContentId', 'contentBy', 'content', 'track']),
     },
     methods: {
         ...mapMutations(['saveContent', 'setSeparator']),
         next() {
+            console.log(this.nextContentId);
             if (this.nextContentId !== false) {
+
                 window.scrollTo(0, 0),
                     this.$router.push({
                         name: 'survey',
@@ -31,6 +33,29 @@ export default {
             } else {
                 this.$router.go(-1);
             }
+
+
+            // let mmm = this.$store.state.survey.contents.find(x => x.id === this.myPrewContentId)
+            // var json = localStorage.getItem('track');
+            // var obj = JSON.parse(json);
+            // console.log(obj.layouts);
+            // console.log(mmm.id);
+
+            // console.log(this.nextContentId);
+
+
+            // if (mmm.layoutName === "KegelReview" || mmm.layoutName === "Processing") {
+            //     console.log('Зашел в go KegelReview');
+            //     this.$router.push({
+            //         name: 'survey',
+            //         params: { survey: (this.myPrewContentId - 1) },
+            //     });
+            // } else {
+            //     this.$router.push({
+            //         name: 'survey',
+            //         params: { survey: mmm.id },
+            //     });
+            // }
         },
         route() {
             if (this.nextContentId !== false) {

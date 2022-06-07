@@ -15,15 +15,13 @@
         <span class="red" v-if="content.afterTilteRed !== false">{{ content.afterTilteRed }}</span>
         <span v-if="content.afterTilteText !== false">{{ content.afterTilteText }}</span>
       </div>
-      {{autoPlay}}
       <div class="questions__thumbnail" v-if="content.video">
-        <video  class="video" ref="videoPlayer">
-          <source
-            :src="video(content.video)"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+        <video-background 
+          :src="video(content.video)"
+          :poster="video(content.poster)"
+          class="video"
+        >
+        </video-background>
       </div>
 
       <div class="layout__thumbnail full" v-if="content.thumbnail">
@@ -84,7 +82,6 @@ export default {
   data(){
     return{
       yourMethod: true,
-      timePlay: 0,
     }
   },
   props: {
@@ -106,9 +103,6 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/video/${path}`);
     },
-    play() {
-      this.$refs.videoPlayer.play();
-    },
     buttonIcon(name) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/icons/layout-buttons/${name}.svg`);
@@ -116,17 +110,6 @@ export default {
     
   },
   computed:{
-    autoPlay() {
-    
-    const videoplayquestion = setInterval(() => {
-        if (this.timePlay == 0) {
-          this.play()
-          this.timePlay += 1
-        } else {
-          clearInterval(videoplayquestion);
-        }
-      }, 1000);
-    },
   },
   mounted(){
       

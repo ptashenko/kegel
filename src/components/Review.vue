@@ -88,7 +88,7 @@ export default {
     font-weight: 700;
     font-size: 18px;
     line-height: 150%;
-
+    max-width: 80%;
     @media (max-width: 480px) {
       font-size: 14px;
     }

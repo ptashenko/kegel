@@ -1,6 +1,8 @@
 <template>
   <div class="loading">
-    <div class="loading__title">Processing...</div>
+    <div class="loading__title">
+      <slot></slot>
+      </div>
 
     <div class="loading__bar">
       <span>{{ percent }}%</span>
@@ -10,6 +12,7 @@
 </template>
 
 <script>
+import history from '@/mixins/history';
 import nextContentUrl from '@/mixins/contollers';
 
 export default {
@@ -19,7 +22,7 @@ export default {
       percent: 0,
     };
   },
-  mixins: [nextContentUrl],
+  mixins: [history, nextContentUrl],
   mounted() {
     const $i = setInterval(() => {
       if (this.percent < 100) {

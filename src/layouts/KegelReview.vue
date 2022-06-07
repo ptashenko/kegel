@@ -26,7 +26,9 @@
 
       <review v-for="id in content.reviews" :key="id" :id="id"/>
 
-      <processing />
+      <processing>
+        Connecting to the database
+      </processing>
     </div>
   </div>
 </template>

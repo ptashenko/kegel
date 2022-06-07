@@ -3,7 +3,10 @@
 
   <div class="dark-layout">
     <div class="container-main is-page Processing__layouts">
-      <processing />
+      <processing>
+        Processing...
+      </processing>
+
 
       <div class="layout__thumbnail">
         <img src="@/assets/images/content/s7.png" alt="">
@@ -26,9 +29,13 @@ export default {
       required: true,
       type: Object,
     },
+    survey: {
+      required: true,
+      type: [Object],
+    },
   },
   computed: {
-    ...mapGetters(['review']),
+    ...mapGetters(['review','content', 'track']),
   },
 };
 </script>

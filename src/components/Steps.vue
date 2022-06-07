@@ -29,9 +29,15 @@ export default {
   computed: {
     ...mapGetters(['layoutSeparationsIds','layoutSeparations', 'content', 'separations', 'track']),
     loadPercent() {
-      const index = ( this.track.layouts.findIndex((layout) => layout.id === this.content.id) ) ;
+
+      const index = ( this.track.layouts.findIndex((layout) => layout.id == this.content.id) ) ;
       let myStep = 0;
-      
+
+      console.log(this.content);
+      console.log(this.content.id);
+      console.log(index);
+      console.log(this.track.layouts);
+
       if(index <= this.layoutSeparations[1]){
         myStep = (((index / this.layoutSeparations[1]) * 100).toFixed(2))/3;
       }else if(index <= this.layoutSeparations[2] && index > this.layoutSeparations[1]){

@@ -17,13 +17,13 @@ const state = () => ({
                 { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 },
                 { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10 },
                 { id: 11 }, { id: 12 },
-                { id: 13, separation: true },
+                { id: 333, separation: true },
                 { id: 14 }, { id: 15 }, { id: 16 }, { id: 17 },
                 { id: 18 }, { id: 20 }, { id: 21 }, { id: 22 },
                 { id: 23 },
                 { id: 24, separation: true }, { id: 25 }, { id: 26 }, { id: 27 },
                 { id: 28 }, { id: 29 }, { id: 30 }, { id: 31 },
-                { id: 32 }, { id: 321 }, { id: 33 },
+                { id: 32 }, { id: 322 }, { id: 33 },
                 { id: 34, separation: true },
             ],
         },
@@ -59,13 +59,13 @@ const state = () => ({
                 { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },
                 { id: 50 }, { id: 21 }, { id: 22 }, { id: 51 },
                 { id: 44 }, { id: 450 }, { id: 453 },
-                { id: 13, separation: true },
+                { id: 333, separation: true },
                 { id: 14 }, { id: 15 }, { id: 52 },
                 { id: 53 }, { id: 201 },
                 { id: 54 }, { id: 26 }, { id: 55 },
                 { id: 28, separation: true },
                 { id: 29 }, { id: 30 }, { id: 31 },
-                { id: 32 }, { id: 321 }, { id: 33 },
+                { id: 32 }, { id: 323 }, { id: 33 },
                 { id: 34, separation: true },
             ],
         },
@@ -292,13 +292,14 @@ const state = () => ({
             },
         },
         {
-            id: 13,
+            id: 333,
             active: true,
             title: ' of men improved their erections with Kegel exercises',
             tilteRed: '75.5% ',
             thumbnail: 'ED_s4.json',
             layoutName: 'KegelReview',
             reviews: [8],
+            proc: 'Connecting to the database'
         },
         {
             id: 14,
@@ -408,7 +409,7 @@ const state = () => ({
             layoutName: 'Reviews',
             ref: "EDcan",
             thumbnail: 'PE.json',
-            reviews: [1, 2, 3, 4, 5, 6],
+            reviews: [4, 1, 6, 5, 2, 3],
         },
         {
             id: 21,
@@ -570,7 +571,7 @@ const state = () => ({
             title: 'Based on your personal goals you can',
             layoutName: 'Reviews',
             thumbnail: 'PE.json',
-            reviews: [1, 2, 3, 4, 5, 6],
+            reviews: [4, 5, 6, 1, 2, 3],
         },
         {
             id: 322,
@@ -578,6 +579,13 @@ const state = () => ({
             layoutName: 'Reviews',
             thumbnail: 'PE.json',
             reviews: [1, 2, 3, 4, 5, 6],
+        },
+        {
+            id: 323,
+            title: 'Based on your personal goals you can',
+            layoutName: 'Reviews',
+            thumbnail: 'PE.json',
+            reviews: [4, 1, 6, 5, 2, 3],
         },
         {
             id: 33,
@@ -724,7 +732,8 @@ const state = () => ({
         },
         {
             id: 41,
-            title: '8/10 men improved their stamina with Kegel exercises',
+            title: ' men improved their stamina with Kegel exercises',
+            tilteRed: '8/10 ',
             thumbnail: 'ED_s4.json',
             layoutName: 'KegelReview',
             reviews: [7],
@@ -854,7 +863,7 @@ const state = () => ({
             thumbnail: 'PE_s5.png',
             buttons: [{
                 id: 1,
-                logo: 'logo_source_2',
+                logo: 'logo_source_1',
                 title: 'The Nuffield Somerset Hospital',
                 text: 'Source:',
             }, ],
@@ -982,7 +991,7 @@ const state = () => ({
             title: 'Based on your personal goals you can',
             layoutName: 'Reviews',
             thumbnail: 'PE.json',
-            reviews: [1, 2, 3, 4, 5, 6],
+            reviews: [4, 5, 6, 1, 2, 3],
         },
     ],
 });
@@ -1039,6 +1048,32 @@ const getters = {
             value,
         } = props;
         return state.contents.find((content) => content[field] === Number(value));
+    },
+    myPrewContentId: (state) => {
+        const {
+            track,
+            content,
+            contents,
+        } = state;
+        let index = null;
+        track.layouts.forEach((layout) => {
+            if (layout.id === content.id) {
+                index = track.layouts.indexOf(layout);
+            }
+        });
+        const myPrewContentId = contents.find((content) => {
+            let result = null;
+
+            if (track.layouts[index - 1]) {
+                if (track.layouts[index - 1].id === content.id) {
+                    result = content;
+                }
+            }
+
+            return result;
+        });
+
+        return myPrewContentId ? myPrewContentId.id : false;
     },
     nextContentId: (state) => {
         const {

@@ -295,3 +295,7 @@ header .container-main {
         max-height: 200px;
     }
 }
+
+.dark-layout .prevBtnReviews .btn__prev {
+    filter: invert(0);
+}

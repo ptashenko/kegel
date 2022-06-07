@@ -39,7 +39,7 @@ export default {
     Standart,
     StandartTwo,
     Questions,
-    AfterMap
+    AfterMap,
     // Steps,
   },
   computed: {

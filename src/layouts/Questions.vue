@@ -50,7 +50,7 @@
     class="answer__list"
     :class="survey.answer.style === 'buttons' ? 'answer__list--flex' : ''"
   >
-  {{mybtn}}
+  
     <component
       :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'"
       v-for="answer in survey.answer.answerList"
@@ -65,12 +65,12 @@
     <div>{{survey.answer.textLeft}}</div>
     <div>{{survey.answer.textRight}}</div>
   </div>
-
+  
   <footer-controls
     :buttonBack="{
         text: 'Back',
         icon: 'prev',
-        click: back,
+        click: backHome,
         theme: 'light'
       }"
     :buttonNext="{
@@ -99,16 +99,13 @@ export default {
       timePlay: 0,
     }
   },
-  watch:{
-
-  },
   computed: {
     
     rateTo() {
       const list = this.survey.answer.answerList;
       return `Rate from 1 to ${list[list.length - 1]}`;
     },
-    ...mapGetters(['content', 'track'])
+    ...mapGetters(['content', 'track', 'myPrewContentId'])
   },
   
   components: {
@@ -117,6 +114,19 @@ export default {
     Steps
   },
   methods: {
+    backHome(){
+      if(this.survey.id === 1){
+        console.log(this.survey.id);
+        this.$router.push({
+          name: 'home',
+        });
+      }
+      else{
+        console.log(this.survey.id);
+        this.back()
+      }
+      
+    },
     json(json) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/json/${json}`);
@@ -133,7 +143,7 @@ export default {
       let str = [] 
       str = e.target.innerText
       str = str.split(',')[0]
-      console.log(e.target);
+      // console.log(e.target);
       if (e.target.classList.contains('sexual')){
         sessionStorage.setItem('resbtn', str);
       }
@@ -182,7 +192,7 @@ export default {
     }
   }
   &__thumbnail {
-    margin: 32px auto 32px;
+    margin: 0px auto 32px;
     text-align: center;
     max-width: 450px;
     img {

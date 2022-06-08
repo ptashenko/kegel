@@ -2,41 +2,39 @@
   <div class="steps" :class="{'light': light}" v-if="layoutSeparationsIds">
     <div
       class="steps__col d-flex"
-      v-for="separation in layoutSeparationsIds"
+      v-for="(separation, index) in layoutSeparationsIds"
       :key="separation"
-      :class="{'active': separations.indexOf(separation) !== -1 || loadPercent >= 100}"
+      :class="{active: index < this.$store.state.survey.layotStep}"
     >
+    <!-- <div class="d-flex align-items-center justify-content-center w-100" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100"> -->
     <div class="d-flex align-items-center justify-content-center w-100" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100">
-      <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" v-if="light">
-      <img src="@/assets/images/icons/check_no_bg.svg" alt="check" v-else>
+      <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker" :class="{active: index < this.$store.state.survey.layotStep}" alt="check" v-if="light">
+      <img src="@/assets/images/icons/check_no_bg.svg" class="checker" :class="{active: index < this.$store.state.survey.layotStep}" alt="check" v-else>
     </div>
     </div>
     <span :style="`width: ${loadPercent}%`">  </span>
   </div>
-  {{clg}}
+
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import nextContentUrl from '@/mixins/contollers';
 
 export default {
   name: 'Steps-item',
+  mixins: [nextContentUrl],
   data(){
     return {
-      num: true
+      num: true,
+      activeDisplay: this.$store.state.survey.layotStep
     }
   },
   computed: {
     ...mapGetters(['layoutSeparationsIds','layoutSeparations', 'content', 'separations', 'track']),
     loadPercent() {
-
       const index = ( this.track.layouts.findIndex((layout) => layout.id == this.content.id) ) ;
       let myStep = 0;
-
-      console.log(this.content);
-      console.log(this.content.id);
-      console.log(index);
-      console.log(this.track.layouts);
 
       if(index <= this.layoutSeparations[1]){
         myStep = (((index / this.layoutSeparations[1]) * 100).toFixed(2))/3;
@@ -48,6 +46,9 @@ export default {
       return myStep
     },
   },
+  watch:{
+    
+  } ,
   props: {
     light: {
       default: false,

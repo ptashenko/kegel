@@ -424,7 +424,9 @@ export default {
     text-align: center;
 
 }
-
+.v-popup{
+  padding: 32px 24px 24px
+}
 .v-popup__submit_btn{
       background-color: #CACACA;
       border:none;
@@ -459,7 +461,7 @@ export default {
   opacity: 1;
 }
 .loading {
-  max-width: 400px;
+  max-width: 450px;
   margin: 25px auto 0;
   width: 100%;
 
@@ -501,6 +503,7 @@ export default {
     top: 0;
     bottom: 0;
     width: 20%;
+    border-radius: 5px;
   }
 }
 // review

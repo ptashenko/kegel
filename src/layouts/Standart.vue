@@ -52,7 +52,7 @@
           </div>
         </div>
       </div>
-
+      
       <footer-controls
         :dark="true"
         :buttonBack="{
@@ -110,8 +110,10 @@ export default {
     
   },
   computed:{
+    
   },
   mounted(){
+    
       
   }
 };

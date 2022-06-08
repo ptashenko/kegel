@@ -2,20 +2,17 @@ import { mapGetters, mapMutations, state } from 'vuex';
 
 export default {
     computed: {
-        ...mapGetters(['myPrewContentId', 'nextContentId', 'layoutSeparationsIds', 'prevContentId', 'contentBy', 'content', 'track']),
+        ...mapGetters(['myPrewContentId', 'myPrewTwoContentId', 'nextContentId', 'layoutSeparationsIds', 'contentBy', 'content', 'track']),
     },
     methods: {
         ...mapMutations(['saveContent', 'setSeparator']),
         next() {
-            console.log(this.nextContentId);
             if (this.nextContentId !== false) {
-
                 window.scrollTo(0, 0),
                     this.$router.push({
                         name: 'survey',
                         params: { survey: this.nextContentId },
                     });
-
             } else {
                 this.$router.push({
                     name: 'wait',
@@ -23,39 +20,26 @@ export default {
             }
         },
         back() {
-            let contentId = this.content.id
-            let prevContent = this.prevContentId
-            let foundIndex = prevContent.findIndex(n => n == contentId)
-            let sepor = this.layoutSeparationsIds
-            const passed = sepor.some(n => n == prevContent[foundIndex - 1]);
-            if (passed) {
-                this.$router.go(-2);
+
+            // let contentId = this.content.id
+            // let prevContent = this.prevContentId
+            // let foundIndex = prevContent.findIndex(n => n == contentId)
+            // let sepor = this.layoutSeparationsIds
+            let infolayout = this.$store.state.survey.contents.find(x => x.id === this.myPrewContentId)
+            if (infolayout.layoutName === "KegelReview" || infolayout.layoutName === "Processing") {
+                // this.$router.go(-2);
+                this.$router.push({
+                    name: 'survey',
+                    params: { survey: this.myPrewTwoContentId },
+                });
             } else {
                 this.$router.go(-1);
+                // console.log(' Поле layoutName нет ');
+                // this.$router.push({
+                //     name: 'survey',
+                //     params: { survey: this.myPrewContentId },
+                // });
             }
-
-
-            // let mmm = this.$store.state.survey.contents.find(x => x.id === this.myPrewContentId)
-            // var json = localStorage.getItem('track');
-            // var obj = JSON.parse(json);
-            // console.log(obj.layouts);
-            // console.log(mmm.id);
-
-            // console.log(this.nextContentId);
-
-
-            // if (mmm.layoutName === "KegelReview" || mmm.layoutName === "Processing") {
-            //     console.log('Зашел в go KegelReview');
-            //     this.$router.push({
-            //         name: 'survey',
-            //         params: { survey: (this.myPrewContentId - 1) },
-            //     });
-            // } else {
-            //     this.$router.push({
-            //         name: 'survey',
-            //         params: { survey: mmm.id },
-            //     });
-            // }
         },
         route() {
             if (this.nextContentId !== false) {
@@ -71,11 +55,31 @@ export default {
         $route() {
             this.route();
         },
+        loadPercent(newloadPercent, oldloadPercent) {
+            console.log(this.$store.state.survey.layotStep);
+            if (newloadPercent < 31) {
+                console.log(newloadPercent);
+                this.$store.state.survey.layotStep = 1
+                console.log(this.$store.state.survey.layotStep);
+            } else if (newloadPercent > 32 && newloadPercent < 64) {
+                console.log(newloadPercent);
+                this.$store.state.survey.layotStep = 2
+            } else if (newloadPercent > 65 && newloadPercent < 99) {
+                console.log(newloadPercent);
+                this.$store.state.survey.layotStep = 3
+            } else if (newloadPercent > 99) {
+                console.log(newloadPercent);
+                this.$store.state.survey.layotStep = 4
+            }
+        }
     },
     mounted() {
         this.route();
 
         this.track.layouts.forEach((layout) => {
+            // console.log(layout.id);
+            // console.log(this.content.id);
+            // console.log(this.setSeparator);
             if (layout.id === this.content.id) {
                 if (layout.separation !== undefined) {
                     this.setSeparator(this.content.id);

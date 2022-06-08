@@ -4,7 +4,7 @@
   <div class="dark-layout light">
     <div class="container-main is-page GoodHands">
       <div class="h2">{{title}}</div>
-      <img src="@/assets/images/content/map.png" alt="map" height="200">
+      <img class="map" src="@/assets/images/content/map.png" alt="map">
       <p>More than <span> 1.575.179 </span> men got closer to their goal thanks to this Kegel Training Plan</p>
     </div>
 
@@ -39,14 +39,18 @@ export default {
       this.$router.push({ name: 'TimePlan'})
     },
     btnBack() {
-      this.$router.push({ path: '/survey/31'})
+      this.$router.push({ name: 'wait'})
     },
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
+.map{
+  width: 100%;
+  max-width: 450px;
+  margin: 32px auto;
+}
 .container-main {
   text-align: center;
 }

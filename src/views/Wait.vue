@@ -26,7 +26,7 @@
 
 
             <div class="wait__image">
-              <img :src="image(index + 1)" alt="" width="310" height="310">
+              <img :src="image(index + 1)" alt="">
             </div>
 
             <div class="h2 text-center">
@@ -125,10 +125,12 @@ export default {
   }
   &__image {
     text-align: center;
-    margin: 15px 0;
-
+    margin: 15px auto;
+    max-width: 400px;
+    height: auto;
     img {
-      max-width: 100%;
+      max-width: 400px;
+      width: 100%;
     }
   }
 

@@ -6,6 +6,7 @@ const state = () => ({
     track: {},
     content: {},
     separations: [],
+    layotStep: 1,
     tracks: [{
             id: 1,
             title: 'Treat ED',
@@ -24,7 +25,7 @@ const state = () => ({
                 { id: 24, separation: true }, { id: 25 }, { id: 26 }, { id: 27 },
                 { id: 28 }, { id: 29 }, { id: 30 }, { id: 31 },
                 { id: 32 }, { id: 322 }, { id: 33 },
-                { id: 34, separation: true },
+                { id: 34, separation: true }
             ],
         },
         {
@@ -45,7 +46,7 @@ const state = () => ({
                 { id: 25 }, { id: 26 }, { id: 27 }, { id: 28 }, { id: 29 },
                 { id: 30 }, { id: 31 }, { id: 32 },
                 { id: 321 }, { id: 33 },
-                { id: 34, separation: true },
+                { id: 34, separation: true }
             ],
         },
         {
@@ -66,7 +67,7 @@ const state = () => ({
                 { id: 28, separation: true },
                 { id: 29 }, { id: 30 }, { id: 31 },
                 { id: 32 }, { id: 323 }, { id: 33 },
-                { id: 34, separation: true },
+                { id: 34, separation: true }
             ],
         },
     ],
@@ -1020,7 +1021,6 @@ const mutations = {
         state.content = {};
         addItem('content', {});
         state.separations = [];
-        console.log(state.separations);
         addItem('separations', []);
     },
     saveTrack(state, track) {
@@ -1049,6 +1049,29 @@ const getters = {
         } = props;
         return state.contents.find((content) => content[field] === Number(value));
     },
+    myPrewTwoContentId: (state) => {
+        const {
+            track,
+            content,
+            contents,
+        } = state;
+        let index = null;
+        track.layouts.forEach((layout) => {
+            if (layout.id === content.id) {
+                index = track.layouts.indexOf(layout);
+            }
+        });
+        const myPrewTwoContentId = contents.find((content) => {
+            let result = null;
+            if (track.layouts[index - 2]) {
+                if (track.layouts[index - 2].id === content.id) {
+                    result = content;
+                }
+            }
+            return result;
+        });
+        return myPrewTwoContentId ? myPrewTwoContentId.id : false;
+    },
     myPrewContentId: (state) => {
         const {
             track,
@@ -1063,16 +1086,13 @@ const getters = {
         });
         const myPrewContentId = contents.find((content) => {
             let result = null;
-
             if (track.layouts[index - 1]) {
                 if (track.layouts[index - 1].id === content.id) {
                     result = content;
                 }
             }
-
             return result;
         });
-
         return myPrewContentId ? myPrewContentId.id : false;
     },
     nextContentId: (state) => {
@@ -1105,6 +1125,7 @@ const getters = {
         const mas = [];
         state.track.layouts.forEach((layout) => {
             if (layout.id) {
+                console.log(layout.id);
                 if (mas.indexOf(layout.id) === -1) {
                     mas.push(layout.id);
                 }
@@ -1119,14 +1140,11 @@ const getters = {
         const res = [];
         state.track.layouts.forEach((layout) => {
             if (layout.separation) {
-                console.log(ids.indexOf(layout.id) === -1);
-
                 if (ids.indexOf(layout.id) === -1) {
                     ids.push(layout.id);
                 }
             }
         });
-        // перезаписать в массив
         state.track.layouts.forEach((layout) => {
             if (layout.id) {
                 if (xxx.indexOf(layout.id) === -1) {
@@ -1146,9 +1164,6 @@ const getters = {
             return res;
         }
         findMatch(ids, xxx);
-        // start
-        // end
-        // console.log(xxx);
         return res;
     },
     layoutSeparationsIds: (state) => {
@@ -1156,13 +1171,11 @@ const getters = {
         state.track.layouts.forEach((layout) => {
             if (layout.separation) {
                 if (rob.indexOf(layout.id) === -1) {
-
                     rob.push(layout.id);
                 }
             }
 
         });
-        console.log(rob);
         return rob;
     },
     separations: (state) => state.separations,

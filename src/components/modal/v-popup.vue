@@ -53,7 +53,7 @@ export default {
     z-index: 9999999;
     width: 100%;
     max-width: 400px;
-    padding: 24px 24px 24px;
+    padding: 32px 24px 24px;
     background: #ffffff;
     margin: 0 auto;
     border-radius: 9px;

@@ -38,12 +38,20 @@
               </div>
             </div>
             <div id="trigger1" class="date">
-              <div >
+              <div class="text-purpose">
+                <span class="">
                 Based on your personal goals you can 
-                {{ purpose }}
+                </span>
+                <br>
+                <span class="text-bold">
+                  {{ purpose }}
+                </span>
               </div>
-              <div>
-                and  {{ addpurpose }}
+              <div class="text-purpose">
+                and
+                <span class="text-bold">
+                  {{ addpurpose }}
+                </span>
               </div>
               <div class="by ">
                 <span>by &nbsp;</span>
@@ -85,7 +93,7 @@
             <ul>
               <li class="li">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                Reach your goal and {{ purpose }}
+                <p>Reach your goal and <b class="text-bold"> {{ purpose }} </b></p>
               </li>
               <li class="li">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
@@ -194,20 +202,20 @@
     <div id="paypal" class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <div class="d-flex flex-column align-items-center justify-content-center">
         <div id="solid-payment-form-container">
-          <button class="pay cursor">
+          <button class="pay cursor" v-if="apple_pay">
             <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
           </button>
-          <button class="pay cursor">
+          <button class="pay cursor" v-else>
             <img src="@/assets/images/icons/google_pay.svg" alt="apple_pay">
           </button>
         </div>
       </div>
       <div class="d-flex align-items-center justify-content-beetwen">
         <button class="pay small mr-2 cursor">
-          <img src="@/assets/images/icons/paypal.svg" alt="apple_pay">
+          <img src="@/assets/images/icons/paypal.png" alt="apple_pay">
         </button>
         <button class="pay small ml-2 cursor">
-          <img src="@/assets/images/icons/card.svg" alt="apple_pay">
+          <img src="@/assets/images/icons/card.png" alt="apple_pay">
         </button>
       </div>
       <div class="w-100 d-flex flex-column align-items-center justify-content-center">
@@ -215,12 +223,13 @@
           <button 
             class="aple_pay d-flex align-items-center justify-content-beetwen cursor"
             @click="nextUrl"
+            v-if="apple_pay"
           >
-            Buy with
+            Buy with&nbsp;
             <img src="@/assets/images/icons/apple_pay_white.svg" alt="apple_pay">
           </button>
-          <button class="Pay_pay d-flex align-items-center justify-content-beetwen cursor">
-            <img src="@/assets/images/icons/PayPal_img_2.svg" alt="apple_pay">Buy Now
+          <button v-else class="Pay_pay d-flex align-items-center justify-content-beetwen cursor">
+            <img src="@/assets/images/icons/PayPal_img_2.svg" alt="apple_pay">&nbsp;Buy Now
           </button>
         </div>
       </div>
@@ -396,6 +405,7 @@ export default {
     return {
       VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
+      apple_pay: true, 
       // dataPP2: sessionStorage.getItem('data2'),
       dataPP2:'September 25',
       ggg:0,
@@ -592,7 +602,7 @@ export default {
         clearInterval(numanim);
       }
 
-    }, 1000);
+    }, 500);
   },
 };
 </script>
@@ -1078,7 +1088,7 @@ ul{
   margin: 0px auto 8px;
   font-size: 30px;
   line-height: 150%;
-  margin: 32px auto 24px;
+  margin: 0px auto 24px;
   @media (max-width:480px) {
     font-size: 24px;
   }
@@ -1248,7 +1258,16 @@ ul{
     }
   }
 } 
-
+.text-purpose{
+  font-size: 18px;
+  line-height: 150%;
+  @media (max-width:480px) {
+    font-size: 16px;
+  }
+}
+.text-bold{
+  font-family: "SF Pro Text Semibold";
+}
 
 input, textarea{outline:none;}
 input:active, textarea:active{outline:none;}

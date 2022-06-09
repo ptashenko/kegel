@@ -424,9 +424,7 @@ export default {
     text-align: center;
 
 }
-.v-popup{
-  padding: 32px 24px 24px
-}
+
 .v-popup__submit_btn{
       background-color: #CACACA;
       border:none;

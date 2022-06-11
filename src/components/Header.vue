@@ -6,6 +6,7 @@
         <img src="@/assets/images/Logo_white.png" alt="logo" class="logo" v-else>
       <!-- </router-link> -->
     </div>
+    {{bgBody}}
   </header>
 </template>
 
@@ -22,6 +23,27 @@ export default {
       type: Boolean,
     },
   },
+  data(){
+    return{
+      bgTheBody: '#000000'
+    }
+  },
+  computed:{
+    bgBody(){
+      let mediaQuery = window.matchMedia('(max-width: 480px)');
+      if (mediaQuery.matches) {
+         if(this.dark){
+          console.log(' Фон должен быть чорный ');
+          document.body.style.backgroundColor = '#ffffff';
+        }else {
+          console.log(' Фон должен быть белый ');
+          document.body.style.backgroundColor = '#111113';
+        }
+      }
+
+     
+    }
+  }
 };
 </script>
 

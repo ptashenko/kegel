@@ -1,6 +1,8 @@
 <template>
   <header-layout :fixed="true"/>
-
+  {{dataP1}}
+  {{btnAddPurpose}}
+  {{imagePE}}
   <div class="dark-layout light">
     <div class="container-main is-page Reviews">
       <div class="h2 text-center">
@@ -8,17 +10,9 @@
       </div>
 
       <div class="date">
-        <div class="purpose">
-          {{ track.purpose }}
-        </div>
-
-        <!-- <div class="purpose" v-if="content.id !== 20 && 54"> -->
-        {{dataP1}}
-        {{btnAddPurpose}}
-        {{imagePE}}
-        <div class="purpose" v-if="AddPurpose">
-          <span>and</span> {{ track.addpurpose }}
-        </div>
+          <div class="purpose">
+            {{ track.purpose }} <span v-if="AddPurpose"><span class="width-400"> and</span> {{ track.addpurpose }}</span>
+          </div>
         <div  class="red by" v-if="content.id == 20 || content.id == 57 ">
           <span>by &nbsp;</span> 
           <div class="">
@@ -128,15 +122,15 @@ export default {
       } 
     },
     imagePE(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
+      let json = localStorage.getItem('track');
+      let obj = JSON.parse(json);
       this.track = obj.id
       if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes'){
         this.imageitem = require(`@/assets/images/json/ED.json`);
       }else if(this.track.id == 3){
         this.AddPurpose = true
       }
-      return console.log(this.imageitem); 
+      return  console.log(this.imageitem);
     }
   },
   components: {
@@ -203,7 +197,7 @@ export default {
 .purpose{
   font-family: "SF Pro Text Semibold";
   font-size: 18px;
-  span{
+  .width-400{
     font-size: 18px;
     font-family: 'SF Pro Text Regular';
     @media (max-width:480px) {

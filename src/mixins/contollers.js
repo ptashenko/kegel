@@ -33,12 +33,12 @@ export default {
                     params: { survey: this.myPrewTwoContentId },
                 });
             } else {
-                this.$router.go(-1);
-                // console.log(' Поле layoutName нет ');
-                // this.$router.push({
-                //     name: 'survey',
-                //     params: { survey: this.myPrewContentId },
-                // });
+                // this.$router.go(-1);
+                console.log(' Поле layoutName нет ');
+                this.$router.push({
+                    name: 'survey',
+                    params: { survey: this.myPrewContentId },
+                });
             }
         },
         route() {

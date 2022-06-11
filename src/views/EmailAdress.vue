@@ -43,8 +43,8 @@
                 By giving your email address you can also receive offers from Appercut Sp. z o.o. You can unsubscribe at any time.
               </p>
               <div class="footer__terms">
-                <a href="https://appercut.co/privacy-policy.html">Privacy Policy</a>
-                <a href="https://appercut.co/terms.html">Terms &amp; Conditions</a>
+                <a href="https://appercut.co/terms.html">Terms</a>
+                <a href="https://appercut.co/privacy-policy.html">Policy</a>
               </div>
             </div>
           </div>
@@ -237,6 +237,7 @@ export default {
       line-height: 135%; 
       color: #111113;
       opacity: 0.5;
+      margin: 0 15px;
     }
   }
 }

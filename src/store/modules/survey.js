@@ -124,7 +124,7 @@ const state = () => ({
     contents: [{
             id: 1,
             title: 'Do you know about Pelvic Floor (PF) muscles?',
-            video: 'q1.mp4',
+            video: 'ED_q1.mp4',
             poster: 'q1.png',
             layoutName: 'standart',
             steps: false,
@@ -578,14 +578,14 @@ const state = () => ({
             id: 322,
             title: 'Based on your personal goals you can',
             layoutName: 'Reviews',
-            thumbnail: 'PE.json',
+            thumbnail: 'ED.json',
             reviews: [1, 2, 3, 4, 5, 6],
         },
         {
             id: 323,
             title: 'Based on your personal goals you can',
             layoutName: 'Reviews',
-            thumbnail: 'PE.json',
+            thumbnail: 'ED.json',
             reviews: [4, 1, 6, 5, 2, 3],
         },
         {
@@ -896,7 +896,7 @@ const state = () => ({
             id: 50,
             title: 'You can strengthen your PF muscles & improve sexual performance by doing Kegel exercises',
             layoutName: 'standart',
-            thumbnail: 'OK_s3.svg',
+            thumbnail: 'OK_s3.png',
             buttons: [{
                     id: 1,
                     logo: 'logo_source_1',
@@ -1070,7 +1070,7 @@ const getters = {
             }
             return result;
         });
-        return myPrewTwoContentId ? myPrewTwoContentId.id : false;
+        return myPrewTwoContentId.id;
     },
     myPrewContentId: (state) => {
         const {
@@ -1093,7 +1093,7 @@ const getters = {
             }
             return result;
         });
-        return myPrewContentId ? myPrewContentId.id : false;
+        return myPrewContentId.id;
     },
     nextContentId: (state) => {
         const {

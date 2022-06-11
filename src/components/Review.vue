@@ -91,7 +91,7 @@ export default {
    
     @media (max-width: 480px) {
       font-size: 14px;
-      max-width: 85%;
+      max-width: 100%;
     }
   }
 

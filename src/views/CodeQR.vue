@@ -17,7 +17,7 @@
               Important
             </p>
           </div>
-          <p class="text"><b>Use only the button or QR code below!</b> If you'll try to use other ways to download the app you'll have to complete the questionnaire and make a purchase again</p>
+          <p class="text"><span class="text-bold">Use only the button or QR code below!</span> If you'll try to use other ways to download the app you'll have to complete the questionnaire and make a purchase again</p>
         </div>
         <button-field
           text='Add to my plan'
@@ -110,7 +110,7 @@ export default {
     margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
-    font-size: 36px;
+    font-size: 30px;
     line-height: 135%;
     @media (max-width:480px) {
       font-size: 24px;
@@ -136,6 +136,9 @@ export default {
       font-size: 16px;
       line-height: 150%;
       margin-top: 16px;
+      .text-bold{
+        font-family: "SF Pro Text Semibold";
+      }
       @media (max-width:480px) {
         font-size: 14px;
       }

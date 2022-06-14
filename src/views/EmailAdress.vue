@@ -57,6 +57,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import VueScrollTo from "vue-scrollto";
 
 export default {
   name: 'EmailAdress',
@@ -64,6 +65,7 @@ export default {
   },
   data() {
     return {
+      VueScrollTo: require('vue-scrollto'),
       textpurpose:'',
       closeActive: false,
       email: null,
@@ -75,6 +77,7 @@ export default {
   methods: {
     nextUrl(){
       if(this.closeActive){
+        VueScrollTo.scrollTo('.dark-layout');
         this.$router.push('LandingView');
         return;
       }else{

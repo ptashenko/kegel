@@ -46,8 +46,6 @@
                 <span class="text-bold">
                   {{ purpose }}
                 </span>
-              </div>
-              <div class="text-purpose">
                 and
                 <span class="text-bold">
                   {{ addpurpose }}
@@ -86,7 +84,7 @@
                 <p class="block__data__item">{{moment().add(5,'month').format("MMM")}}</p>
               </div>
             </div>
-            <p class="p-14 opac_5">*This diagram is a non personalized data based on scientific research</p>
+            <p class="p-14 opac_5 bottom_img">*This diagram is a non personalized data based on scientific research</p>
             <div class="h2 inside">
               Kegel Plan Benefits
             </div>
@@ -242,7 +240,7 @@
           <img src="@/assets/images/star.png" alt="star">
         </div>
         <div class="d-flex align-items-center">
-          <img src="@/assets/images/icons/out.svg" alt="out">
+          <img src="@/assets/images/icons/out48.svg" alt="out">
         </div>
         <p> <span class="bold">28k</span> 5-star ratings</p>
       </div>
@@ -332,13 +330,14 @@
     <p class="text__bottom_btn">*7-day trial</p>
   </vpopup>
   <vpopup
-  class="popup_wraper"
-    textTitle=""
+  class="popup_wraper trial"
+    textTitle="Trial commitment"
     v-if="popupVisible2"
   > 
-    <h2>Trial commitment</h2>
+  
+                  
     <p>
-      Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to [цель] and [доп. цель].
+      Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to {{ purpose }} and {{ addpurpose }}.
     </p>
     <p>
       Reaching your goal is as easy as following the Kegel Plan we prepare for you.
@@ -439,7 +438,7 @@ export default {
   },     
   methods: {
     nextUrl(){
-      VueScrollTo.scrollTo('#topPage');
+      VueScrollTo.scrollTo('.dark-layout');
       this.$router.push('PlanFinal')
     },
     moment(){
@@ -822,6 +821,8 @@ hr{
 .popup_wraper{
   h2{
     margin: 0 0 16px;
+    font-family: "SF-Pro-Display-Semibold";
+    font-size:24px;
   }
   p{
     font-size: 16px;
@@ -860,6 +861,7 @@ hr{
     }
   }
 }
+
 .small::before{
   content: "";
   width: 1px;
@@ -1087,23 +1089,27 @@ ul{
 .h2 {
   margin: 0px auto 8px;
   font-size: 30px;
-  line-height: 150%;
+  line-height: 135%;
   margin: 0px auto 24px;
+  font-family: "SF-Pro-Display-Semibold";
   @media (max-width:480px) {
     font-size: 24px;
   }
 }
 .h2.inside {
-  font-family: "SF Pro Text Semibold";
+  font-family: "SF-Pro-Display-Bold";
   font-size: 20px;
-  font-weight: 600;
+  margin-top: 16px;
 }
 .dark-layout{
   padding: 84px 32px 0px;
   .p-14{
-    font-size: 14px;
+    font-size: 16px;
     text-align: center;
     line-height: 150%;
+    @media (max-width:480px) {
+      font-size: 14px;
+    }
   }
   .opac_5{
     opacity: 0.5;
@@ -1130,7 +1136,7 @@ ul{
 }
 .date{
   text-align: center;
-  margin-bottom: 59px;
+  margin-bottom: 0px;
   .by{
     font-family: "SF Pro Text Bold";
     color: #E44240;
@@ -1268,6 +1274,16 @@ ul{
 .text-bold{
   font-family: "SF Pro Text Semibold";
 }
+.bottom_img{
+  font-size: 14px!important;
+  max-width: 450px;
+  margin: 0 auto;
+}
+.fixed__timer, .fixed__timer__text{
+  font-family: "SF Pro Text Bold";
+}
+
+
 
 input, textarea{outline:none;}
 input:active, textarea:active{outline:none;}

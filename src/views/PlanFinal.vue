@@ -89,7 +89,7 @@
       We want to help you succeed. Your chances of that increase if you make a commitment now.
     </p>
     <p>
-      If you skip your trial and start your plan today, we'll refund your trial payment AND take <b> an extra 20% off </b>your total.
+      If you skip your trial and start your plan today, we'll refund your trial payment AND take <span class="text-bold"> an extra 20% off </span>your total.
     </p>
     <button 
       class="v-popup__submit_btn red active"
@@ -328,8 +328,8 @@ export default {
     font-family: "SF Pro Text Regular";
     opacity: 0.75;
     margin-bottom: 16px;
-    b{
-      font-family: "SF Pro Text Medium";
+    .text-bold{
+      font-family: "SF Pro Text Semibold";
     }
   }
 }

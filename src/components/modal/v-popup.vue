@@ -75,5 +75,16 @@ export default {
       margin-bottom: 18px;
     }
   }
-  
+  .popup_wraper{
+    .v-popup{
+      padding: 24px;
+      .h2{
+        font-size: 24px;
+        line-height: 135%;
+        @media (max-width:480px) {
+          font-size: 20px;
+        }
+      }
+    }
+  }
 </style>

@@ -39,6 +39,7 @@
         </p>
         <span class="bold">-${{trial}}</span>
       </div>
+      <hr v-if="!addToDo">
       <div v-if="addToDo">
         <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
           <p class="bg_blue">
@@ -52,8 +53,9 @@
             </p>
             <span class="bold"> $36</span>
         </div>
+        <hr>
       </div>
-      <div class="price__today mt-32 d-flex mw-450 align-items-center justify-content-beetwen">
+      <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
         <p class="bold">
             Total
           </p>
@@ -65,9 +67,15 @@
         class="footer-controls__button red"
         @click="nextUrl"
       />
-      <div 
+      <div v-if="btnModal"
         class="btn_popup"
         @click="showModal"
+      >
+      Continue with trial &gt;
+      </div>
+      <div v-else
+        class="btn_popup"
+        @click="nextUrl"
       >
       Continue with trial &gt;
       </div>
@@ -119,7 +127,8 @@ export default {
       addToDo: false,
       price: sessionStorage.getItem('price'),
       pricenew: 60, 
-      trial: 20 - sessionStorage.getItem('price')
+      trial: 20 - sessionStorage.getItem('price'),
+      btnModal: true
     }
   },
   computed: {
@@ -167,6 +176,7 @@ export default {
         body.classList.remove('fixed');
         this.addToDo = true
         this.pricenew = 44
+        this.btnModal = false
       }
     },
   },
@@ -285,7 +295,18 @@ export default {
     margin: 0 auto;
     display: block;
   }
-  
+  hr{
+    color: #F1F3F9;
+    background: #F1F3F9;
+    border: none;
+    height: 1px;
+    max-width: 450px;
+    margin: 16px auto 0;
+    padding: 0;
+    @media (max-width:480px) {
+      max-width: 320px;
+    }
+  }
 }
 .footer__text{
     font-family: "SF Pro Text Light";

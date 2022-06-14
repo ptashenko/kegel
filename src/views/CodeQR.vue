@@ -20,7 +20,7 @@
           <p class="text"><span class="text-bold">Use only the button or QR code below!</span> If you'll try to use other ways to download the app you'll have to complete the questionnaire and make a purchase again</p>
         </div>
         <button-field
-          text='Add to my plan'
+          text='Download now'
           theme="Back"
           class="footer-controls__button "
           :class="{ 'bg-blue': !active, 'red': active }"

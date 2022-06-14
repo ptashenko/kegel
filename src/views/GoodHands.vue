@@ -46,6 +46,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.h2 {
+  font-family: "SF-Pro-Display-Semibold";
+  line-height: 135%;
+  font-size: 24px;
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
+}
 .map{
   width: 100%;
   max-width: 450px;

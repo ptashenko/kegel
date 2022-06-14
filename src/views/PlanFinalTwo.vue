@@ -46,8 +46,8 @@
             Every exercise has video & audio instructions from the coach
           </p>
         </div>
-        <img v-if="active" class="diskont" src="@/assets/images/icons/diskont_red.svg" alt="">
-        <img v-else class="diskont" src="@/assets/images/icons/diskont_blue.svg" alt="">
+        <img v-if="active" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="">
+        <img v-else class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="">
       </div>
       <button-field
         text='Add to my plan'
@@ -56,14 +56,21 @@
         :class="{ 'bg-blue': !active, 'red': active }"
         @click="nextUrl"
       />
-      <div 
+      
+      <div v-if="active"
         class="btn_popup"
         @click="showModal"
       >
       I don’t want to accelerate my results &gt;
       </div>
+      <div v-else
+        class="btn_popup"
+        @click="nextUrl"
+      >
+      I give up accelerated results forever &gt;
+      </div>
     </div>
-    <div class="mw-520">
+    <div class="mw-520"> 
       <div class="footer__text">
         *Your account will be charged immediately for the add-on services or products selected. Add-on items do not come with a free trial. Sales tax included in order total.
       </div>
@@ -77,18 +84,18 @@
     v-if="popupVisible"
   > 
     <p>
-      <b>Groin Fitness</b> improves blood flow to the groin, which has a big impact on sexual performance.
+      <span class="text-semibold">Groin Fitness</span> improves blood flow to the groin, which has a big impact on sexual performance.
     </p>
     <p>
-      Bad blood flow to the groin area can put you at <b> 50-70% </b> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
+      Bad blood flow to the groin area can put you at <span class="text-semibold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
     </p>
     <img src="@/assets/images/content/Final_modal.png" alt="">
-    <p class="opacity_05 text-center" style="font-size: 12px">
+    <p class="opacity_05 text-center text-bottom-img">
       *This diagram is a non-personalized illustration based on scientific research.
     </p>
     <div class="block_blue d-flex align-items-center">
       <img src="@/assets/images/icons/icon_present.svg" alt="">
-      <p>We want you to be successful, so we're offering <b> 25% off </b> the Groin Fitness just for you!</p>
+      <p>We want you to be successful, so we're offering <span class="text-bold"> 25% off </span> the Groin Fitness just for you!</p>
     </div>
 
     <button 
@@ -112,7 +119,7 @@ export default {
   data(){
     return{
       popupVisible: false,
-      active: true
+      active: true,
     }
   },
   computed: {
@@ -317,7 +324,9 @@ export default {
     opacity: 0.5;  
     margin: 16px auto 48px;  
     cursor: pointer;
+    
   }
+  
   .mw-520{
     max-width: 520px;
     margin: 0 auto;
@@ -380,19 +389,30 @@ export default {
     font-family: "SF Pro Text Regular";
     opacity: 0.75;
     margin-bottom: 16px;
-    b{
-      font-family: "SF Pro Text Medium";
-    }
+    .text-semibold{
+        font-family: "SF Pro Text Semibold";
+      }
+      .text-bold{
+        font-family: "SF Pro Text Bold";
+      }
   }
   img{
     width: 100%;
     margin: 24px 0 16px;
   }
+  .text-bottom-img{
+    font-size: 14px;
+    opacity: 0.5;
+    font-family: "SF Pro Text Light";
+    @media (max-width:480px) {
+      font-size: 12px;
+    }
+  }
   .block_blue{
     padding: 16px 24px;
     background: #5773D6;
     width: 100%;
-    margin:0 -20px ;
+    margin:0 -21px ;
     color: #ffffff;
     img{
       max-width: 70px;

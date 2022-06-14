@@ -73,7 +73,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .h2 {
-    font-family: "SF-Pro-Display-Bold";
+    font-family: "SF-Pro-Display-Semibold";
     font-size: 24px;
     text-align: center;
   @media (max-width:480px) {
@@ -87,7 +87,7 @@ export default {
 .layout {
   &__buttons{
     text-align: center;
-    max-width: 450px;
+    max-width: 400px;
     margin: 17px auto;
     img{
       width: 100%;

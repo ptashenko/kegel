@@ -62,7 +62,7 @@ export default {
   }
 
   &.active {
-    font-family: "SF Pro Text Bold";
+    font-family: "SF Pro Text Semibold";
     background-color: #111113;
     color: white;
     font-weight: bold;

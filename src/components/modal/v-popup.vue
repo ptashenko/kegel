@@ -87,4 +87,9 @@ export default {
       }
     }
   }
+  .analize{
+    .h2{
+      font-family: "SF-Pro-Display-Semibold";
+    }
+  }
 </style>

@@ -181,7 +181,7 @@
     class="footer-controls__button red"
     @click="showModal2()"
   />
-  <div class="step_2" v-if="step_2">
+  <div  id="paypal" class="step_2" v-if="step_2">
     <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
       <div class="after"> 
         <span class="bold">Payment method</span>
@@ -197,7 +197,7 @@
         </i>
       </p>
     </div>
-    <div id="paypal" class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
+    <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <div class="d-flex flex-column align-items-center justify-content-center">
         <div id="solid-payment-form-container">
           <button class="pay cursor" v-if="apple_pay">
@@ -405,7 +405,6 @@ export default {
       VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
       apple_pay: true, 
-      // dataPP2: sessionStorage.getItem('data2'),
       dataPP2:'September 25',
       ggg:0,
       textBtn:'Start my plan',

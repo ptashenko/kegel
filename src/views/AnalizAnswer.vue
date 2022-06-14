@@ -173,10 +173,10 @@
 
 
       <vpopup
+        class="analize"
         textTitle="Do you want to enhance the orgasms?"
         v-if="popupVisible"
       > 
-        <div class="h2"></div>
         <btnComponent
           :class="{ active: isActiveYes }"
           @clickBtn="BtnActiveYes"
@@ -419,10 +419,12 @@ export default {
 }
 
 .h2 {
-    font-family: "SF-Pro-Display-Bold";
-    font-size: 24px;
-    text-align: center;
-
+  font-family: "SF-Pro-Display-Semibold"!important;
+  font-size: 24px;
+  text-align: center;
+  @media (max-width:480px) {
+    font-size: 20px;
+  }
 }
 
 .v-popup__submit_btn{

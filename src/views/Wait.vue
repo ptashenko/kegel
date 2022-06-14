@@ -141,7 +141,7 @@ export default {
       max-width: 450px;
       margin: 0 auto;
       font-size: 24px;
-      
+      font-family: "SF-Pro-Display-Semibold";
       @media (max-width: 480px) {
         font-size: 20px;
       }
@@ -149,9 +149,9 @@ export default {
     .d-flex.block{
       padding: 7px;
       max-width: 311px ;
-      margin: 54px auto;
+      margin: 54px auto 17px;
       @media (max-width: 480px) {
-        margin: 38px auto;
+        margin: 38px auto 16px;
       }
     }
   }

@@ -1,6 +1,7 @@
 <template>
   <header-layout :fixed="true"/>
-
+  {{btnAddPurpose}}
+  {{imagePE}}
   <div class="dark-layout light">
     <div class="container-main is-page Final">
       <div class="mw-520">
@@ -9,11 +10,17 @@
         </div>
         <div class="purpose">
           <p>Studies show that people feel more obligated to follow through with something once they've made a strong commitment.</p>
-          <p>This principle also applies to improving intimate health. You can <span>{{ purpose }}</span> and <span>{{ addpurpose }}</span>. You just need to commit.</p>
+          <p>This principle also applies to improving intimate health. You can 
+            <span>{{ purpose }}
+            <span v-if="AddPurpose">
+              <span class="width-400"> and</span> 
+              {{ track.addpurpose }}</span>. 
+              You just need to commit.
+            </p>
           <p>Kegel Plan users who have a strong commitment at the beginning are 4 times more likely to achieve improvements, than users who choose trial</p>
-        </div>
+        </div>                    
       </div>
-      <div class="mw-450">
+      <div class="mw-450"> 
         <div class=" layout__thumbnail">
           <img src="@/assets/images/content/Step_2_img.png" :alt="Step_2_img">
         </div>
@@ -128,7 +135,8 @@ export default {
       price: sessionStorage.getItem('price'),
       pricenew: 60, 
       trial: 20 - sessionStorage.getItem('price'),
-      btnModal: true
+      btnModal: true,
+      AddPurpose:false,
     }
   },
   computed: {
@@ -143,6 +151,24 @@ export default {
       var obj = JSON.parse(json);
       return obj.addpurpose;
     },
+    btnAddPurpose(){
+      if(sessionStorage.getItem('resbtn') == 'Yes'){
+        this.AddPurpose = true
+      }else{
+        this.AddPurpose = false
+      } 
+    },
+    imagePE(){
+      let json = localStorage.getItem('track');
+      let obj = JSON.parse(json);
+      this.track = obj.id
+      if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes'){
+        this.imageitem = require(`@/assets/images/json/ED.json`);
+      }else if(this.track.id == 3){
+        this.AddPurpose = true
+      }
+      return  console.log(this.imageitem);
+    }
   },
   components: {
     Review,

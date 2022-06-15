@@ -14,41 +14,54 @@ export default {
                         params: { survey: this.nextContentId },
                     });
             } else {
-                this.$router.push({
-                    name: 'wait',
-                });
+                window.scrollTo(0, 0),
+                    this.$router.push({
+                        name: 'wait',
+                    });
             }
+            console.log(this.nextContentId);
+        },
+        cont() {
+            const content = this.contentBy({
+                field: 'id',
+                value: this.$route.params.survey,
+            });
+            return content
         },
         back() {
-
-            // let contentId = this.content.id
-            // let prevContent = this.prevContentId
-            // let foundIndex = prevContent.findIndex(n => n == contentId)
-            // let sepor = this.layoutSeparationsIds
             let infolayout = this.$store.state.survey.contents.find(x => x.id === this.myPrewContentId)
             if (infolayout.layoutName === "KegelReview" || infolayout.layoutName === "Processing") {
-                // this.$router.go(-2);
                 this.$router.push({
                     name: 'survey',
                     params: { survey: this.myPrewTwoContentId },
                 });
             } else {
-                // this.$router.go(-1);
                 console.log(' Поле layoutName нет ');
-                this.$router.push({
-                    name: 'survey',
-                    params: { survey: this.myPrewContentId },
-                });
+                console.log(this.myPrewContentId);
+                console.log(this.cont().id);
+                if (this.cont().id > 1) {
+                    this.$router.push({
+                        name: 'survey',
+                        params: { survey: this.myPrewContentId },
+                    });
+                } else {
+                    console.log('controller');
+                    this.$router.push({ name: 'home' })
+                }
+
             }
         },
         route() {
-            if (this.nextContentId !== false) {
-                const content = this.contentBy({
-                    field: 'id',
-                    value: this.$route.params.survey,
-                });
-                this.saveContent(content);
-            }
+            // if (this.nextContentId !== undefined) {
+            const content = this.contentBy({
+                field: 'id',
+                value: this.$route.params.survey,
+            });
+            this.saveContent(content);
+            // console.log(content.id);
+            // } else {
+            //     console.log("Находим ошибку");
+            // }
         },
     },
     watch: {

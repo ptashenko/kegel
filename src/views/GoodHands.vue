@@ -39,7 +39,10 @@ export default {
       this.$router.push({ name: 'TimePlan'})
     },
     btnBack() {
-      this.$router.push({ name: 'wait'})
+      this.$router.push({
+          name: 'survey',
+          params: { survey: 34 },
+      });
     },
   }
 };

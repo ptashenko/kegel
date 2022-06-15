@@ -1188,9 +1188,11 @@ const actions = {
     },
     getContent({ commit }) {
         const content = getItem('content');
+        console.log(content);
         commit('saveContent', content);
-
+        console.log(Object.values(content).length);
         if (Object.values(content).length === 0) {
+            console.log('survey');
             router.push({ name: 'home' });
         }
     },

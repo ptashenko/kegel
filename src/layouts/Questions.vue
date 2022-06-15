@@ -77,7 +77,7 @@
         text: 'Next',
         icon: 'next',
         disabled: !selected,
-        click: next,
+        click: nextWait,
         theme: 'dark'
       }"
   />
@@ -118,7 +118,7 @@ export default {
       if(this.survey.id === 1){
         console.log(this.survey.id);
         this.$router.push({
-          name: 'home',
+          path: '/',
         });
       }
       else{
@@ -126,6 +126,18 @@ export default {
         this.back()
       }
       
+    },
+    nextWait(){
+      if(this.survey.id === 34){
+        console.log(this.survey.id);
+        this.$router.push({
+          name: 'wait',
+        });
+      }
+      else{
+        console.log(this.survey.id);
+        this.next()
+      }
     },
     json(json) {
       // eslint-disable-next-line global-require,import/no-dynamic-require

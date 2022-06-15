@@ -43,7 +43,7 @@ export default {
       }else{
         myStep = 66.67 + ((((index - this.layoutSeparations[2]) / (this.layoutSeparations[3] - this.layoutSeparations[2])) * 100).toFixed(2))/3;
       }
-      return myStep
+      return myStep                       
     },
   },
   watch:{

@@ -129,6 +129,8 @@ export default {
     dataP1(){
       this.randomData = (Math.floor(Math.random() * (140 - 132 + 1)) + 132);
       moment();
+      let x =Math.floor(Math.random( ) * (22 - 16 + 1)) + 16
+      console.log(x);
       let dataPP1_day = moment().add((this.randomData),'days').format("MMMM DD");
       let dataPP12_day = moment().add((this.randomData + 2),'days').format("MMMM DD");
       let dataPP13_day = moment().add((this.randomData + 4),'days').format("MMMM DD");

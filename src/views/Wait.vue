@@ -141,7 +141,7 @@ export default {
       max-width: 450px;
       margin: 0 auto;
       font-size: 24px;
-      font-family: "SF-Pro-Display-Semibold";
+      font-family: "SF-Pro-Display-Bold";
       @media (max-width: 480px) {
         font-size: 20px;
       }

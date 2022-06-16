@@ -127,14 +127,12 @@ export default {
     ...mapGetters(['tracks', 'contentBy']),
     
     dataP1(){
-      this.randomData = (Math.floor(Math.random() * (140 - 132 + 1)) + 132);
+      this.randomData = (Math.floor(Math.random( ) * (22 - 16 + 1)) + 16);
       moment();
-      let x =Math.floor(Math.random( ) * (22 - 16 + 1)) + 16
-      console.log(x);
-      let dataPP1_day = moment().add((this.randomData),'days').format("MMMM DD");
-      let dataPP12_day = moment().add((this.randomData + 2),'days').format("MMMM DD");
-      let dataPP13_day = moment().add((this.randomData + 4),'days').format("MMMM DD");
-      let dataPP14_day = moment().add((this.randomData + 6),'days').format("MMMM DD");
+      let dataPP1_day =  moment().add(4,'month').format("MMMM") + ' ' + this.randomData ;
+      let dataPP12_day =  moment().add(4,'month').format("MMMM") + ' ' + (this.randomData + 2) ;
+      let dataPP13_day =  moment().add(4,'month').format("MMMM") + ' ' + (this.randomData + 4) ;
+      let dataPP14_day =  moment().add(4,'month').format("MMMM") + ' ' + (this.randomData + 6) ;
       sessionStorage.setItem('data1', dataPP1_day);
       sessionStorage.setItem('data12', dataPP12_day);
       sessionStorage.setItem('data13', dataPP13_day);
@@ -143,10 +141,11 @@ export default {
     },
     dataP2(){
       moment();
-      let dataPP2_day = moment().add((this.randomData - 14),'days').format("MMMM DD");
-      let dataPP22_day = moment().add((this.randomData - 10),'days').format("MMMM DD");
-      let dataPP23_day = moment().add((this.randomData - 6),'days').format("MMMM DD");
-      let dataPP24_day = moment().add((this.randomData - 2),'days').format("MMMM DD");
+
+      let dataPP2_day = moment().add(4,'month').format("MMMM") + ' ' + (this.randomData - 14) ;
+      let dataPP22_day = moment().add(4,'month').format("MMMM") + ' ' + (this.randomData - 10);
+      let dataPP23_day = moment().add(4,'month').format("MMMM") + ' ' + (this.randomData - 6);
+      let dataPP24_day = moment().add(4,'month').format("MMMM") + ' ' + (this.randomData - 2);
       sessionStorage.setItem('data2', dataPP2_day);
       sessionStorage.setItem('data22', dataPP22_day);
       sessionStorage.setItem('data23', dataPP23_day);
@@ -155,15 +154,33 @@ export default {
     },
     dataP3(){
       moment();
-      let dataPP3_day = moment().add((this.randomData - 28),'days').format("MMMM DD");
-      let dataPP32_day = moment().add((this.randomData - 24),'days').format("MMMM DD");
-      let dataPP33_day = moment().add((this.randomData - 20),'days').format("MMMM DD");
-      let dataPP34_day = moment().add((this.randomData - 16),'days').format("MMMM DD");
-      sessionStorage.setItem('data3', dataPP3_day);
-      sessionStorage.setItem('data32', dataPP32_day);
-      sessionStorage.setItem('data33', dataPP33_day);
-      sessionStorage.setItem('data34', dataPP34_day);
-      return (this.$store.commit('SET_DATAPP2', dataPP3_day))
+      let ppp = this.randomData
+      console.log(ppp);
+      function days(numer, param, key){
+        if(ppp < numer){
+          let m3 = moment().add(3,'month').daysInMonth()
+          let ost = m3 - (numer - ppp)
+          console.log(m3);
+          let param = moment().add(3,'month').format("MMMM") + ' ' + ost ;
+          sessionStorage.setItem(key, param);
+        }else if(ppp == numer){
+          let m3 = moment().add(3,'month').daysInMonth()
+          let param = moment().add(3,'month').format("MMMM") + ' ' + m3 ;
+          sessionStorage.setItem(key, param);
+        }else{
+          console.log('другая функция');
+          let ost = ppp - numer
+          let param = moment().add(4,'month').format("MMMM") + ' ' + ost ;
+          sessionStorage.setItem(key, param);
+        }
+        
+        return param
+      }
+      days(28, 'dataPP3_day', 'data3')
+      days(24, 'dataPP32_day', 'data32')
+      days(20, 'dataPP33_day', 'data33')
+      days(16, 'dataPP34_day', 'data34')
+    
     },
     myHand(){
       const animated = setInterval(() => {

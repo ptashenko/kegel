@@ -111,8 +111,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+input[type="email"]{font-size:1em;}
 .h2 {
-  font-family: "SF-Pro-Display-Semibold";
+  font-family: "SF-Pro-Display-Bold";
   margin: 24px auto 8px;
   line-height: 135%;
   font-size: 24px;
@@ -145,7 +146,7 @@ export default {
       box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.04);
       border-radius: 9px;
       border:none;
-      font-size: 14px;
+      font-size: 16px;
       padding: 17px;
       line-height: 135%;
       color: #111113;

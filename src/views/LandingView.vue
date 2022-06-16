@@ -23,7 +23,7 @@
             <div class="h2">
               Your Kegel Plan to {{ purpose }} is ready!
             </div>
-            <p class="p-14">The personal trial is <b>reserved for 15 minutes:</b></p>
+            <p class="p-14">The personal trial is <span class="text-bold">reserved for 15 minutes:</span></p>
             <div class="layout__buttons">
               <div id="blockScroll" class="layout__button"  @click="onScroll">
                 <div class="layout__button-icon">
@@ -95,11 +95,23 @@
               </li>
               <li class="li">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                Reach your goal and {{ addpurpose }}
+                {{ addpurpose }}
               </li>
-              <li class="li"  v-for="benefit in Benefits" :key="benefit.id">
+              <li class="li">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                {{benefit}}
+                Pill-free approach
+              </li>
+              <li class="li">
+                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
+                Long-lasting improvement
+              </li>
+              <li class="li">
+                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
+                Takes <span class="text-bold">&nbsp;5 min a day</span>
+              </li>
+              <li class="li">
+                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
+                More happiness for you and for your partner
               </li>
             </ul>
           </div>
@@ -118,7 +130,7 @@
     </div>
     <div>
       <span class="opac_5 line">${{oldprice}}</span>
-      <span>${{price}}</span>
+      <span class="text-bold">${{price}}</span>
     </div>
   </div>
   <hr>
@@ -172,16 +184,17 @@
       </div>
       
     </div>
-    <button class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
+    <button  id="paypal" class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
   </div>
 
   <button-field
+    v-if="!step_2"
     text='Start my plan'
     theme="Back"
     class="footer-controls__button red"
     @click="showModal2()"
   />
-  <div  id="paypal" class="step_2" v-if="step_2">
+  <div class="step_2" v-if="step_2">
     <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
       <div class="after"> 
         <span class="bold">Payment method</span>
@@ -360,10 +373,9 @@
   </vpopup>
   <vpopup
   class="popup_wraper"
-    textTitle=""
+    textTitle="Why now?"
     v-if="popupVisible3"
   > 
-    <h2>Why now?</h2>
     <p>
       We ask for your payment information now so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.
     </p>
@@ -371,7 +383,7 @@
       If you cancel anytime before the end of the 7-day trial, you won't be charged.
     </p>
     <button 
-      class="v-popup__submit_btn active"
+      class="v-popup__submit_btn min180 active"
       :class="{active: closeActive}"
       @click="closePopup3"
     >
@@ -412,12 +424,6 @@ export default {
       isEmailTouched: false,
       upValue: '',
       step_2: false,
-      Benefits: [
-          'Pill-free approach',
-          'Long-lasting improvement',
-          'Takes 5 min a day',
-          'More happiness for you and for your partner',
-      ],
       base: {},
       numreview: 3,
       track: 0,
@@ -820,7 +826,7 @@ hr{
 .popup_wraper{
   h2{
     margin: 0 0 16px;
-    font-family: "SF-Pro-Display-Semibold";
+    font-family: "SF-Pro-Display-Bold";
     font-size:24px;
   }
   p{
@@ -890,6 +896,9 @@ hr{
   color: #ffffff;
   margin-top: 32px;
 }
+.v-popup__submit_btn.min180{
+  min-width: 180px;
+}
 .v-popup__submit_btn.active{
   background: #E44240;
 }
@@ -912,7 +921,6 @@ hr{
 .fixed{
   max-width: 536px;
   opacity: 0;
-  transition: .3s;
   @media (max-width:600px) {
     max-width: 600px;
   }
@@ -980,10 +988,9 @@ hr{
   }
 
   &__title {
-    font-weight: 700;
     font-size: 18px;
     line-height: 150%;
-
+    font-family: "SF Pro Text Bold";
     @media (max-width: 480px) {
       font-size: 14px;
     }
@@ -1051,6 +1058,10 @@ hr{
 .trial_description{
   padding: 16px 32px 25px;
   margin: 0 auto;
+  line-height: 150%;
+  @media (max-width:480px) {
+    font-size: 14px;
+  }
 }
 .price{
   background: #F1F3F9;
@@ -1062,6 +1073,9 @@ hr{
     font-family: "SF-Pro-Display-Semibold";
     font-size: 16px;
     line-height: 150%;
+    @media (max-width:480px) {
+      font-size: 14px;
+    }
   }
 }
 ul{
@@ -1082,6 +1096,13 @@ ul{
       display: flex;
       margin-right: 23px;
     }
+    span.text-bold{
+      font-family: "SF Pro Text Semibold";
+      display: block;
+      width: 100%;
+      margin-right: 0;
+      height: 150%
+    }
   }
 }
 
@@ -1090,7 +1111,7 @@ ul{
   font-size: 30px;
   line-height: 135%;
   margin: 0px auto 24px;
-  font-family: "SF-Pro-Display-Semibold";
+  font-family: "SF-Pro-Display-Bold";
   @media (max-width:480px) {
     font-size: 24px;
   }
@@ -1154,7 +1175,7 @@ ul{
   line-height: 150%;
   font-family: "SF Pro Text Bold"; 
 }
-.timer__start{
+.layout__button .timer__start{
   font-size: 14px;
   line-height: 150%;
   opacity: 0.75;

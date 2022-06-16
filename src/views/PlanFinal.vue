@@ -15,6 +15,7 @@
             <span v-if="AddPurpose">
               <span class="width-400"> and</span> 
               {{ track.addpurpose }}</span>. 
+            </span>
               You just need to commit.
             </p>
           <p>Kegel Plan users who have a strong commitment at the beginning are 4 times more likely to achieve improvements, than users who choose trial</p>
@@ -31,7 +32,7 @@
       </div>
       <div class="price">
         <div class="price__text">
-          PRICE TODAY
+          Price breakdown
         </div>
       </div>
       <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
@@ -88,8 +89,11 @@
       </div>
     </div>
     <div class="mw-520">
-      <div class="footer__text">
+      <div class="footer__text" v-if="!addToDo">
         When you click "Skip Trial and Start Plan", your original trial payment will be charged $60. Your payment method will then be automatically charged $60 every 3 months (your "subscription period") until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of a subscription period, you will not receive a partial refund.
+      </div>
+      <div class="footer__text" v-else>
+        When you click "Skip Trial and Start Plan", your original trial payment will be charged $44. Your payment method will then be automatically charged $44 every 3 months (your "subscription period") until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of a subscription period, you will not receive a partial refund.
       </div>
     </div>  
 

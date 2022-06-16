@@ -6,7 +6,6 @@
       :key="separation"
       :class="{active: index < this.$store.state.survey.layotStep}"
     >
-    <!-- <div class="d-flex align-items-center justify-content-center w-100" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100"> -->
     <div class="d-flex align-items-center justify-content-center w-100" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100">
       <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker" :class="{active: index < this.$store.state.survey.layotStep}" alt="check" v-if="light">
       <img src="@/assets/images/icons/check_no_bg.svg" class="checker" :class="{active: index < this.$store.state.survey.layotStep}" alt="check" v-else>

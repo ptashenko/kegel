@@ -64,10 +64,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .h2 {
-    font-family: "SF-Pro-Display-Semibold";
+    font-family: "SF-Pro-Display-Bold";
     font-size: 24px;
     text-align: center;
-
+  @media (max-width:480px) {
+    font-size: 20px;
+  }
 }
   .d-flex{
     justify-content: center;

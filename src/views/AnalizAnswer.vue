@@ -419,7 +419,7 @@ export default {
 }
 
 .h2 {
-  font-family: "SF-Pro-Display-Semibold"!important;
+  font-family: "SF-Pro-Display-Bold";
   font-size: 24px;
   text-align: center;
   @media (max-width:480px) {

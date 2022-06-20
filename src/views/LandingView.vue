@@ -3,6 +3,8 @@
   <header-layout :fixed="true"/>
   {{MyScrollFixed}}
   {{MyScrollModal}}
+  {{btnAddPurpose}}
+  {{imagechart}}
   <div 
     class="fixed" 
     :class="{'active': blockFixed}"
@@ -46,10 +48,7 @@
                 <span class="text-bold">
                   {{ purpose }}
                 </span>
-                and
-                <span class="text-bold">
-                  {{ addpurpose }}
-                </span>
+                <span v-if="AddPurposeCom"><span class="width-400"> and</span> <span class="text-bold">{{ addpurpose }}</span></span>
               </div>
               <div class="by ">
                 <span>by &nbsp;</span>
@@ -62,6 +61,7 @@
             </div>
 
             <div class=" layout__thumbnail">
+              <div v-if="imgProba">1_2.json</div>
               <lottie-animation 
                 class="animation" 
                 ref="content.ref"
@@ -203,6 +203,7 @@
         <span class="cursor opacity-75" @click="showModal3">Why now?</span>
       </div>
     </div>
+    <hr>
     <div class="mw-450 d-flex mb-32">
       <p class="fs-16-14">
         <i>
@@ -300,13 +301,13 @@
     textTitle=""
     v-if="popupVisible"
   > 
-    <p>
+    <p class="opasity_75">
       In view of the pandemic and global health crisis, we are offering the option to try out Kegel Plan for as little as $1 for a 7-day trial*.
     </p>
-    <p class="bold">
+    <p class="bold opasity_75       ">
       Money shouldn't stand in the way of a perfect intimate health and well-being goals. So choose an amount that you think is reasonable to try us out.
     </p>
-    <p>
+    <p class="opasity_75">
       It costs up $9.73 to cover our expenses for the trial, but please choose an amount you're comfortable with.
     </p>
     <p class="bold desktop-center">
@@ -350,7 +351,7 @@
   
                   
     <p>
-      Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to {{ purpose }} and {{ addpurpose }}.
+      Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to <span class="text-bold"> {{ purpose }} <span v-if="AddPurposeCom"><span class="width-400"> and </span>{{ addpurpose }}</span></span>.
     </p>
     <p>
       Reaching your goal is as easy as following the Kegel Plan we prepare for you.
@@ -438,7 +439,9 @@ export default {
       oldprice: 19.88,
       numanimate: 1,
       show: false,
-      imageitem: require(`@/assets/images/json/Step_1_1.json`)
+      imageitem: require(`@/assets/images/json/Step_1_1.json`),
+      imgProba: false,
+      AddPurposeCom: false
     };
   },     
   methods: {
@@ -518,16 +521,23 @@ export default {
 
   },
   computed: {
-    imagechart(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
+    jsLocal(){
+      let json = localStorage.getItem('track');
+      let obj = JSON.parse(json);
       this.track = obj.id
-      if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'No'){
-        this.imageitem = require(`@/assets/images/json/Step_1_2.json`);
+      return this.track
+    },
+    imagechart(){
+      if(this.jsLocal == 2){
+        if(sessionStorage.getItem('resbtn') == 'Yes'){
+          this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
+        }else{
+          this.imageitem = require(`@/assets/images/json/Step_1_2.json`);
+          this.imgProba = true
+        }
       }else{
         this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
       }
-      return console.log(this.imageitem); 
     },
     MyScrollFixed(){
       document.addEventListener('scroll', (e) => {
@@ -558,8 +568,16 @@ export default {
     addpurpose(){
       var json = localStorage.getItem('track');
       var obj = JSON.parse(json);
+      console.log(obj.addpurpose);
       return obj.addpurpose;
       
+    },
+    btnAddPurpose(){
+      if(sessionStorage.getItem('resbtn') == 'Yes'){
+        this.AddPurposeCom = true
+      }else{
+        this.AddPurposeCom = false
+      } 
     },
     lengthReviews(){
       var json = localStorage.getItem('track');
@@ -567,6 +585,7 @@ export default {
       this.track = obj.id
       if(this.track == 3){
         this.base =  this.$store.state.review.msgOkLand
+        this.AddPurposeCom = true
       }else if(this.track == 2){
         this.base = this.$store.state.review.msgPeLand
       }else{
@@ -803,9 +822,9 @@ hr{
   }
 }
 .payment{
-  margin: 84px auto 33px;
+  margin: 84px auto 16px;
   @media (max-width:480px) {
-    margin: 64px auto 33px;
+    margin: 64px auto 16px;
   }
   p{
     font-size: 16px;
@@ -837,8 +856,14 @@ hr{
       font-size: 14px;
     }
   }
+  p.opasity_75{
+    opacity: 0.75;
+  }
   p.bold{
     font-family: "SF Pro Text Semibold";
+  }
+  span.width-400{
+    font-family: "SF Pro Text Regular";
   }
   p.small{
     position: relative;

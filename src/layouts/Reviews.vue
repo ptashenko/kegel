@@ -10,7 +10,7 @@
       </div>
 
       <div class="date">
-          <div class="purpose">
+          <div class="purpose" >
             {{ track.purpose }} <span v-if="AddPurpose"><span class="width-400"> and</span> {{ track.addpurpose }}</span>
           </div>
         <div  class="red by" v-if="content.id == 20 || content.id == 57 ">

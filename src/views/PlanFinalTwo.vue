@@ -355,6 +355,9 @@ export default {
     opacity: 0.5;
     text-align: center;
     padding-bottom: 48px;
+    @media (max-width:480px) {
+      font-size: 12px;
+    }
   }
 .v-popup__submit_btn, .v-popup__btn{
   background-color: rgb(228, 66, 64);

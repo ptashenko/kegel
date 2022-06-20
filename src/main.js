@@ -16,7 +16,9 @@ import '@/assets/scss/fonts.scss';
 
 
 export {}
-
+router.afterEach((to, from, next) => {
+    window.scrollTo(0, 0);
+})
 createApp(App)
     .use(svg4everybody)
     .use(moment)

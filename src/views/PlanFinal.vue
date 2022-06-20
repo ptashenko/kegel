@@ -14,7 +14,7 @@
             <span>{{ purpose }}
             <span v-if="AddPurpose">
               <span class="width-400"> and</span> 
-              {{ track.addpurpose }}</span>. 
+              {{ addpurpose }}</span>. 
             </span>
               You just need to commit.
             </p>
@@ -155,18 +155,25 @@ export default {
       var obj = JSON.parse(json);
       return obj.addpurpose;
     },
+    jsLocal(){
+      let json = localStorage.getItem('track');
+      let obj = JSON.parse(json);
+      this.track = obj.id
+      return this.track
+    },
     btnAddPurpose(){
       if(sessionStorage.getItem('resbtn') == 'Yes'){
         this.AddPurpose = true
       }else{
-        this.AddPurpose = false
+        if(this.jsLocal === 3 ){
+          this.AddPurpose = true
+        }else{
+          this.AddPurpose = false
+        }
       } 
     },
     imagePE(){
-      let json = localStorage.getItem('track');
-      let obj = JSON.parse(json);
-      this.track = obj.id
-      if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes'){
+      if(this.jsLocal == 2 && sessionStorage.getItem('resbtn') == 'Yes'){
         this.imageitem = require(`@/assets/images/json/ED.json`);
       }else if(this.track.id == 3){
         this.AddPurpose = true
@@ -263,6 +270,9 @@ export default {
       opacity: 0.5;
       text-align: center;
       margin-bottom: 48px;
+      @media (max-width:480px) {
+        font-size: 12px;
+      }
     }
   }
   .price{
@@ -345,6 +355,9 @@ export default {
     opacity: 0.5;
     text-align: center;
     padding-bottom: 48px;
+    @media (max-width:480px) {
+      font-size: 12px;
+    }
   }
 .v-popup__submit_btn, .v-popup__btn{
   background-color: rgb(228, 66, 64);

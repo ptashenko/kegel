@@ -1,4 +1,5 @@
 <template>
+
   <header-layout :fixed="true" :dark="true"/>
 
   <div class="block__steps" :data-step="content.steps">
@@ -45,7 +46,7 @@
   <div v-if="survey.answer.style === 'buttons'" class="questions__rate">
     {{ rateTo }}
   </div>
-
+<TransitionGroup name="layot">
   <div
     class="answer__list"
     :class="survey.answer.style === 'buttons' ? 'answer__list--flex' : ''"
@@ -60,7 +61,7 @@
       :answer="answer"
     />
   </div>
-
+</TransitionGroup>
   <div v-if="survey.answer.style === 'buttons'" class="questions__lvl">
     <div>{{survey.answer.textLeft}}</div>
     <div>{{survey.answer.textRight}}</div>
@@ -81,6 +82,7 @@
         theme: 'dark'
       }"
   />
+
 </template>
 
 <script>
@@ -241,5 +243,20 @@ export default {
       padding-bottom: 0;
     }
   }
+}
+.layot-enter-active{
+    transition: all 0.5s ease;
+  }
+.layot-leave-active {
+  transition: all 0.5s ease;
+}
+  
+.layot-enter-from{
+  opacity: 0;
+  transform: translateY(50px);
+}
+.layot-leave-to {
+  opacity: 0;
+  transform: translateY(50px);
 }
 </style>

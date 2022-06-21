@@ -43,7 +43,7 @@ export default {
   line-height: 150%;
   width: 100%;
   cursor: pointer;
-  transition: 0.2s;
+  // transition: 0.2s;
   height: 70px;
   max-width: 73px;
   color: #111113;

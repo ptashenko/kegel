@@ -42,7 +42,7 @@ export default {
   background-color: #F1F3F9;
   border: none;
   border-radius: 9px;
-  transition: 0.2s;
+  // transition: 0.2s;
   cursor: pointer;
   position: relative;
   color: #111113;

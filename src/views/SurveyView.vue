@@ -1,20 +1,19 @@
 <template>
-  <template v-if="content.answer">
-    <div class="survey h-100">
-      <div class="container-main is-page SurveyVuew">
-        <questions
-          :survey="content"
+    <template v-if="content.answer">
+        <div class="survey h-100">
+          <div class="container-main is-page SurveyVuew">
+            <questions
+              :survey="content"
+            />
+          </div>
+        </div>
+    </template>
+    <template v-else>
+        <component
+          :is="content.layoutName"
+          :content="content"
         />
-      </div>
-    </div>
-  </template>
-  <template v-else>
-    <component
-      :is="content.layoutName"
-      :content="content"
-    />
-  </template>
-  
+    </template>
 </template>
 
 <script>
@@ -56,4 +55,14 @@ export default {
   padding: 0 32px;
   height: 100vh;
 }
+.translate-enter-active,
+  .translate-leave-active {
+    transition: all 0.5s ease;
+  }
+  
+  .translate-enter-from,
+  .translate-leave-to {
+    opacity: 0;
+    transform: translateY(50px);
+  }
 </style>

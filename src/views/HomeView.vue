@@ -1,10 +1,9 @@
 <template>
+<!-- {{bgBodyMain}} -->
   <header-layout :fixed="true" :dark="false"/>
-
+  
   <div class="jumbotron home">
     <div class="container-main">
-      
-
       <div class="jumbotron__title">
         Stay hard & last long without pills
       </div>
@@ -213,12 +212,20 @@ export default {
     },
     arrow(){
       this.$refs.arrowmain.play()
-    }
+    },
+    bgBodyMain(){
+      let mediaQuery = window.matchMedia('(max-width: 480px)');
+      if (mediaQuery.matches) {
+          console.log(' Фон должен быть чорный для главной');
+          document.body.style.backgroundColor = '#ffffff';
+      }
+    },
   },
   mounted() {
-    this.clearHistory();
-    
+    this.clearHistory()
+    this.bgBodyMain()
   },
+
 };
 </script>
 

@@ -1,7 +1,18 @@
 <template>
-<!-- {{bgBodyMain}} -->
+
+<div class="preloader" v-if="loading">
+  <div class="block-loader">
+    <lottie-animation 
+      class="check"
+      ref="anim"
+      :animationData="require(`@/assets/images/json/f5_loader.json`)"
+      :loop="true"
+      :autoPlay="true"
+      :speed="1"
+    />
+  </div>
+</div>
   <header-layout :fixed="true" :dark="false"/>
-  
   <div class="jumbotron home">
     <div class="container-main">
       <div class="jumbotron__title">
@@ -23,6 +34,7 @@
       </div>
     </div>
   </div>
+  {{preload}}
   {{myHand}}
   <div class="navigation__section home">
     <div class="container-main home">
@@ -52,7 +64,6 @@
       </div>
     </div>
   </div>
-
   <div class="footer">
     <div class="container-main">
       <div class="advantage" v-for="advantage in advantages" :key="advantage.title">
@@ -100,6 +111,7 @@ export default {
   },
   data() {
     return {
+      loading: this.$store.getters.LOADER,
       advantages: [
         {
           title: 'Dr. Kegel: For Men’s Health',
@@ -191,6 +203,18 @@ export default {
           clearInterval(animated);
         }
       }, 1000);
+    },
+    preload(){
+      console.log(this.$store.getters.LOADER);
+      if(this.$store.getters.LOADER == true){
+        setTimeout(() => {
+          this.loading = false;
+          this.$store.commit('setLOADER', false);
+        }, 2000);
+      }else{
+        console.log(' Переход не с главной');
+      }
+        
     }
   },
   methods: {
@@ -210,9 +234,6 @@ export default {
         params: { survey: content.id },
       });
     },
-    arrow(){
-      this.$refs.arrowmain.play()
-    },
     bgBodyMain(){
       let mediaQuery = window.matchMedia('(max-width: 480px)');
       if (mediaQuery.matches) {
@@ -220,10 +241,12 @@ export default {
           document.body.style.backgroundColor = '#ffffff';
       }
     },
+    
   },
   mounted() {
     this.clearHistory()
     this.bgBodyMain()
+    
   },
 
 };
@@ -454,5 +477,26 @@ body{
   &:not(:last-child) {
     margin-bottom: 50px;
   }
+}
+.preloader{
+  z-index: 999;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  overflow-y: hidden;
+}
+.block-loader{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.check{
+  width: 48px;
+  height: auto;
+  
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <header-layout :fixed="true"/>
 
-  <div class="dark-layout light">
+  <div class="dark-layout light" id="topPage">
     <div class="container-main is-page Final">
       <div class="mw-520">
         <div 
@@ -113,11 +113,13 @@ import { mapGetters } from 'vuex';
 import Review from '@/components/Review.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import ButtonField from '@/components/ui/Button.vue';
+import VueScrollTo from "vue-scrollto";
 
 export default {
   name: ' ',
   data(){
     return{
+      VueScrollTo: require('vue-scrollto'),
       popupVisible: false,
       active: true,
     }
@@ -161,6 +163,7 @@ export default {
       let body = document.querySelector('body')
       let x = e.target
       if(x.classList.contains('active')){
+        VueScrollTo.scrollTo('#topPage');
         this.popupVisible = false
         body.classList.remove('fixed');
         this.active = false
@@ -390,7 +393,7 @@ export default {
     font-size: 16px;
     line-height: 150%;
     font-family: "SF Pro Text Regular";
-    opacity: 0.75;
+    opacity: 1;
     margin-bottom: 16px;
     .text-semibold{
         font-family: "SF Pro Text Semibold";

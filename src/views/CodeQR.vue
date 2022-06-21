@@ -239,7 +239,7 @@ export default {
     display: block;
   }
   .footer-controls__button{
-    max-width: 310px;
+    max-width: 230px;
     margin: 48px auto 0;
     z-index: 0;
   }
@@ -271,6 +271,7 @@ export default {
 
 .v-popup__submit_btn, .v-popup__btn{
   background-color: rgb(228, 66, 64);
+  max-width: 230px;
   border:none;
   border-radius: 9px;
   padding: 16px 37px;

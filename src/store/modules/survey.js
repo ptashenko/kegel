@@ -7,6 +7,7 @@ const state = () => ({
     content: {},
     separations: [],
     layotStep: 1,
+    loader: true,
     tracks: [{
             id: 1,
             title: 'Treat ED',
@@ -93,7 +94,7 @@ const state = () => ({
         4: {
             title: 'Sex booster',
             text: 'Doing Kegels for about 2 months and I can definitely tell that my stamina has really increased. Now I can last for an entire night',
-            name: 'RpgEpic123',
+            name: 'MasterBest069',
             rating: 5,
         },
         5: {
@@ -305,6 +306,7 @@ const state = () => ({
         {
             id: 14,
             title: 'How satisfied were you with your sex life 6 months ago?',
+            layoutName: 'Questions',
             answer: {
                 style: 'buttons',
                 textLeft: 'Not satisfied',
@@ -321,6 +323,7 @@ const state = () => ({
         {
             id: 15,
             title: 'How satisfied were you with your sex life this month?',
+            layoutName: 'Questions',
             answer: {
                 style: 'buttons',
                 textLeft: 'Not satisfied',
@@ -337,6 +340,7 @@ const state = () => ({
         {
             id: 16,
             title: 'How much do you worry about having problems with erection?',
+            layoutName: 'Questions',
             answer: {
                 style: 'buttons',
                 textLeft: 'I don\'t  worry',
@@ -998,6 +1002,9 @@ const state = () => ({
 });
 
 const mutations = {
+    setLOADER: (state, payload) => {
+        state.loader = payload;
+    },
     saveVariant(state, variant) {
         state.activeVariant = variant;
     },
@@ -1042,6 +1049,9 @@ const getters = {
     history: (state) => (questionAnchor) => state.history[questionAnchor],
     content: (state) => state.content,
     track: (state) => state.track,
+    LOADER: state => {
+        return state.loader;
+    },
     contentBy: (state) => (props) => {
         const {
             field,
@@ -1182,6 +1192,9 @@ const getters = {
 };
 
 const actions = {
+    LOADER(context, data) {
+        context.commit('LOADER', data)
+    },
     getTrack({ commit }) {
         const track = getItem('track');
         commit('saveTrack', track);

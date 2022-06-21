@@ -51,7 +51,7 @@
                 <span v-if="AddPurposeCom"><span class="width-400"> and</span> <span class="text-bold">{{ addpurpose }}</span></span>
               </div>
               <div class="by ">
-                <span>by &nbsp;</span>
+                <span class="m20">by &nbsp;</span>
                 <div class="">
                   <transition name="slide-fade">
                     <span v-if="show" class="block__anim">{{dataPP3}}</span> 
@@ -350,21 +350,21 @@
   > 
   
                   
-    <p>
+    <p class="opasity_75">
       Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to <span class="text-bold"> {{ purpose }} <span v-if="AddPurposeCom"><span class="width-400"> and </span>{{ addpurpose }}</span></span>.
     </p>
-    <p>
+    <p class="opasity_75">
       Reaching your goal is as easy as following the Kegel Plan we prepare for you.
     </p>
-    <p>
+    <p class="opasity_75">
       The latest studies support Kegel exercises and consider them as the first-line approach to treat intimate health problems. It's easy, safe, and effective way to improve men's health, quality of life and maintain a perfect relationship with your partner.
     </p>
-    <p>
+    <p class="opasity_75">
       Our users tell us they have experienced great improvements by following our Kegel Plan - so try it, and see the results for yourself!
     </p>
     
     <button 
-      class="v-popup__submit_btn active"
+      class="v-popup__submit_btn min180 active"
       :class="{active: closeActive}"
       @click="closePopup2"
       v-scroll-to="'#paypal'"
@@ -377,10 +377,10 @@
     textTitle="Why now?"
     v-if="popupVisible3"
   > 
-    <p>
+    <p class="opasity_75">
       We ask for your payment information now so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.
     </p>
-    <p>
+    <p class="opasity_75">
       If you cancel anytime before the end of the 7-day trial, you won't be charged.
     </p>
     <button 
@@ -675,11 +675,13 @@ export default {
     color: #E44240;
   }
 }
-.item-li{
-  margin-top: 16px;
+.li{
+  margin-top: 0px;
   line-height: 150%;
   .check{
     margin-right: 15px;
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -1116,8 +1118,8 @@ ul{
     margin-bottom: 16px;
     line-height: 150%;
     span{
-      width: 13px;
-      height: 10px;
+      width: 16px;
+      height: auto;
       display: flex;
       margin-right: 23px;
     }
@@ -1190,9 +1192,11 @@ ul{
     line-height: 150%;
     display: flex;
     width: 100%;
-    max-width: 190px;
     margin: 0 auto;
     position: relative;
+    .m20{
+      margin-left: -20px;
+    }
   }
 }
 .timer__text{

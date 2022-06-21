@@ -3,7 +3,37 @@
 
   <div class="dark-layout light">
     <div class="container-main is-page wait">
-      <steps/>
+      <!-- <steps/> -->
+
+
+      <div class="steps">
+        <div class="steps__col d-flex">
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <!-- <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker active" alt="check"> -->
+            <img src="@/assets/images/icons/check_no_bg.svg" class="checker" alt="check">
+          </div>
+        </div>
+        <div class="steps__col d-flex">
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <!-- <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker active" alt="check"> -->
+            <img src="@/assets/images/icons/check_no_bg.svg" class="checker" alt="check">
+          </div>
+        </div>
+        <div class="steps__col d-flex">
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <!-- <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker active" alt="check"> -->
+            <img src="@/assets/images/icons/check_no_bg.svg" class="checker" alt="check">
+          </div>
+        </div>
+        <div class="steps__col d-flex">
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <!-- <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker active" alt="check"> -->
+            <img src="@/assets/images/icons/check_no_bg.svg" class="checker" alt="check">
+          </div>
+        </div>
+
+        <span style="`width: 100%`">  </span>
+      </div>
 
       <div class="wait__content">
         
@@ -165,4 +195,57 @@ export default {
 {
   opacity: 0;
 }
+// Step
+.steps {
+  height: 6px;
+  background-color: #F1F3F9;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto 32px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
+
+  &.light {
+    background-color: #F1F3F9;
+
+    .steps {
+      &__col {
+        background-color: #111113;
+      }
+    }
+
+    span {
+      background-color: color(red);
+    }
+  }
+
+  span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: .2s;
+    background-color: #111113;
+    border-radius: 5px;
+  }
+
+  &__col {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+
+    svg {
+      position: relative;
+      z-index: 4;
+    }
+
+    &.active {
+      background-color: #111113;
+    }
+  }
+}
+
 </style>

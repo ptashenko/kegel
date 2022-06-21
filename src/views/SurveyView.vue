@@ -28,6 +28,7 @@ import AfterMap from '@/views/TimePlan.vue';
 import { mapGetters } from 'vuex';
 import Steps from '@/components/Steps.vue';
 import nextContentUrl from '@/mixins/contollers';
+import { Transition} from 'vue'
 
 export default {
   mixins: [nextContentUrl],
@@ -41,6 +42,7 @@ export default {
     Questions,
     AfterMap,
     Steps,
+    Transition
   },
   computed: {
     ...mapGetters(['content', 'track']),
@@ -55,14 +57,5 @@ export default {
   padding: 0 32px;
   height: 100vh;
 }
-.translate-enter-active,
-  .translate-leave-active {
-    transition: all 0.5s ease;
-  }
-  
-  .translate-enter-from,
-  .translate-leave-to {
-    opacity: 0;
-    transform: translateY(50px);
-  }
+
 </style>

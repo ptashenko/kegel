@@ -1,88 +1,91 @@
 <template>
+    <header-layout :fixed="true" :dark="true"/>
 
-  <header-layout :fixed="true" :dark="true"/>
+    <div class="block__steps" :data-step="content.steps">
+      <steps v-if="content.steps !== false" />
+    </div>
+    <transition name="slide" mode="out-in">
+      <div
+      v-if="show"
+      >
+        <div class="questions__title">
+          {{ survey.title }}
+        </div>
 
-  <div class="block__steps" :data-step="content.steps">
-    <steps v-if="content.steps !== false" />
-  </div>
-  
-  <div class="questions__title">
-    {{ survey.title }}
-  </div>
-  <div class="questions__thumbnail" v-if="survey.video">
-    <video-background 
-      :src="video(content.video)"
-      :poster="video(content.poster)"
-      class="video"
-    >
-    </video-background>
-  </div>
-  <div>
-  </div> 
-  <div class="questions__thumbnail" v-if="survey.thumbnail">
-    <img
-      :src="image(survey.thumbnail)"
-      :alt="survey.title"
-      width="400"
-      height="200"
-    >
-  </div>
-  <div class="questions__thumbnail" v-if="survey.json">
-    <lottie-animation 
-        class="animation" 
-        ref="survey.ref"
-        :animationData="json(survey.json)"
-        :loop="false"
-        :autoPlay="true"
-        :speed="1"
-        @loopComplete="loopComplete"
-        @complete="complete"
-        @enterFrame="enterFrame"
-        @segmentStart="segmentStart"
-        @stopped="stopped"
-      />
-  </div>
+        <div class="questions__thumbnail" v-if="survey.video">
+          <video-background 
+            :src="video(content.video)"
+            :poster="video(content.poster)"
+            class="video"
+          >
+          </video-background>
+        </div>
+        <div>
+        </div> 
+        <div class="questions__thumbnail" v-if="survey.thumbnail">
+          <img
+            :src="image(survey.thumbnail)"
+            :alt="survey.title"
+            width="400"
+            height="200"
+          >
+        </div>
+        <div class="questions__thumbnail" v-if="survey.json">
+          <lottie-animation 
+              class="animation" 
+              ref="survey.ref"
+              :animationData="json(survey.json)"
+              :loop="false"
+              :autoPlay="true"
+              :speed="1"
+              @loopComplete="loopComplete"
+              @complete="complete"
+              @enterFrame="enterFrame"
+              @segmentStart="segmentStart"
+              @stopped="stopped"
+            />
+        </div>
 
-  <div v-if="survey.answer.style === 'buttons'" class="questions__rate">
-    {{ rateTo }}
-  </div>
-<TransitionGroup name="layot">
-  <div
-    class="answer__list"
-    :class="survey.answer.style === 'buttons' ? 'answer__list--flex' : ''"
-  >
-  
-    <component
-      :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'"
-      v-for="answer in survey.answer.answerList"
-      :class="survey.answer.answerClass"
-      @click="myAvesomeClickFunction"
-      :key="answer.id"
-      :answer="answer"
+        <div v-if="survey.answer.style === 'buttons'" class="questions__rate">
+          {{ rateTo }}
+        </div>
+        <div
+          class="answer__list"
+          :class="survey.answer.style === 'buttons' ? 'answer__list--flex' : ''"
+        >
+        
+          <component
+            :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'"
+            v-for="answer in survey.answer.answerList"
+            :class="survey.answer.answerClass"
+            @click="myAvesomeClickFunction"
+            :key="answer.id"
+            :answer="answer"
+          />
+        
+        </div>
+        <div v-if="survey.answer.style === 'buttons'" class="questions__lvl">
+          <div>{{survey.answer.textLeft}}</div>
+          <div>{{survey.answer.textRight}}</div>
+        </div>
+      </div>
+    </transition>
+    <footer-controls
+      :buttonBack="{
+          text: 'Back',
+          icon: 'prev',
+          click: backHome,
+          theme: 'light'
+        }"
+      :buttonNext="{
+          text: 'Next',
+          icon: 'next',
+          disabled: !selected,
+          click: nextWait,
+          theme: 'dark'
+        }"
     />
-  </div>
-</TransitionGroup>
-  <div v-if="survey.answer.style === 'buttons'" class="questions__lvl">
-    <div>{{survey.answer.textLeft}}</div>
-    <div>{{survey.answer.textRight}}</div>
-  </div>
-  
-  <footer-controls
-    :buttonBack="{
-        text: 'Back',
-        icon: 'prev',
-        click: backHome,
-        theme: 'light'
-      }"
-    :buttonNext="{
-        text: 'Next',
-        icon: 'next',
-        disabled: !selected,
-        click: nextWait,
-        theme: 'dark'
-      }"
-  />
-
+    
 </template>
 
 <script>
@@ -93,12 +96,15 @@ import Steps from '@/components/Steps.vue';
 import history from '@/mixins/history';
 import nextContentUrl from '@/mixins/contollers';
 
+
 export default {
   name: 'Question-layout',
   data(){
     return{
       num: 0,
       timePlay: 0,
+      show:true,
+      layotname: [2, 6, 61, 9, 333, 14, 20, 201, 23, 24, 28, 32, 321, 322, 323, 35, 353, 351, 352, 36, 39, 41, 47, 48, 50, 51, 57]
     }
   },
   computed: {
@@ -107,57 +113,65 @@ export default {
       const list = this.survey.answer.answerList;
       return `Rate from 1 to ${list[list.length - 1]}`;
     },
-    ...mapGetters(['content', 'track', 'myPrewContentId'])
+    ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId'])
   },
   
   components: {
     QuestionRadio,
     Question,
-    Steps
+    Steps,
+    
   },
   methods: {
     backHome(){
       if(this.survey.id === 1){
-        console.log(this.survey.id);
         this.$router.push({
           path: '/',
         });
       }
       else{
-        console.log(this.survey.id);
-        this.back()
+        if(this.layotname.includes(this.myPrewContentId)){
+          this.back()
+        }else{
+          this.show= false
+          setTimeout(() => {
+            this.show= true
+            this.back()
+          }, 500);
+        }
       }
-      
     },
     nextWait(){
       if(this.survey.id === 34){
-        console.log(this.survey.id);
         this.$router.push({
           name: 'wait',
         });
       }
       else{
-        console.log(this.survey.id);
-        this.next()
+        if(this.layotname.includes(this.nextContentId)){
+          this.next()
+        }else{
+          this.show= false
+          setTimeout(() => {
+            this.show= true
+            this.next()
+          }, 500);
+        }
       }
     },
     json(json) {
-      // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/json/${json}`);
     },
     image(path) {
-      // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/content/${path}`);
     },
     video(path) {
-      // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/video/${path}`);
     },
     myAvesomeClickFunction(e){
       let str = [] 
       str = e.target.innerText
       str = str.split(',')[0]
-      // console.log(e.target);
       if (e.target.classList.contains('sexual')){
         sessionStorage.setItem('resbtn', str);
       }
@@ -244,19 +258,11 @@ export default {
     }
   }
 }
-.layot-enter-active{
-    transition: all 0.5s ease;
-  }
-.layot-leave-active {
-  transition: all 0.5s ease;
+.slide-enter-active, .slide-leave-active {
+  transition: opacity .5s ease
 }
-  
-.layot-enter-from{
-  opacity: 0;
-  transform: translateY(50px);
-}
-.layot-leave-to {
-  opacity: 0;
-  transform: translateY(50px);
+
+.slide-enter-from, .slide-leave-to {
+  opacity: 0
 }
 </style>

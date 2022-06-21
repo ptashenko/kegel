@@ -52,16 +52,11 @@ export default {
             }
         },
         route() {
-            // if (this.nextContentId !== undefined) {
             const content = this.contentBy({
                 field: 'id',
                 value: this.$route.params.survey,
             });
             this.saveContent(content);
-            // console.log(content.id);
-            // } else {
-            //     console.log("Находим ошибку");
-            // }
         },
     },
     watch: {
@@ -90,9 +85,6 @@ export default {
         this.route();
 
         this.track.layouts.forEach((layout) => {
-            // console.log(layout.id);
-            // console.log(this.content.id);
-            // console.log(this.setSeparator);
             if (layout.id === this.content.id) {
                 if (layout.separation !== undefined) {
                     this.setSeparator(this.content.id);

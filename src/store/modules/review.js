@@ -133,7 +133,7 @@ export default {
         msgPeLand: [{
                 title: 'Sex booster',
                 text: 'Doing Kegels for about 2 months and I can definitely tell that my stamina has really increased. Now I can last for an entire night',
-                name: 'RpgEpic123',
+                name: 'MasterBest069',
                 rating: 5,
             },
             {
@@ -188,7 +188,7 @@ export default {
             {
                 title: 'Sex booster',
                 text: 'Doing Kegels for about 2 months and I can definitely tell that my stamina has really increased. Now I can last for an entire night',
-                name: 'RpgEpic123',
+                name: 'MasterBest069',
                 rating: 5,
             },
             {

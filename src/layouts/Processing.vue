@@ -46,7 +46,7 @@ export default {
   margin: 30px 0;
 
   img {
-    max-width: 400px;
+    max-width: 100%;
     width: 100%;
   }
 }
@@ -57,7 +57,7 @@ export default {
 }
 
 .layout__thumbnail{
-  margin: 0 10px;
+  margin: 0 -32px;
   @media (max-width: 480px) {
     margin: 0 -30px;
   }

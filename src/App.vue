@@ -1,4 +1,5 @@
 <template>
+  
   <div id="topApp" class="container">
     <transition name="translate" mode="out-in">
       <router-view/>
@@ -10,6 +11,11 @@
 import { mapActions } from 'vuex';
 
 export default {
+  data() {
+    return {
+      
+    };
+  },
   methods: {
     ...mapActions(['getContent', 'getTrack', 'getHistory', 'getSeparators']),
   },
@@ -18,18 +24,20 @@ export default {
     this.getTrack();
     this.getHistory();
     this.getSeparators();
+    
   },
 };
 </script>
 <style lang="scss" scoped>
+
   .translate-enter-active,
   .translate-leave-active {
-    transition: all 0.5s ease;
+    transition: all 1s ease;
   }
   
   .translate-enter-from,
   .translate-leave-to {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(0px);
   }
 </style>

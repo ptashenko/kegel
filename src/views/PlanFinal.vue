@@ -11,10 +11,11 @@
         <div class="purpose">
           <p>Studies show that people feel more obligated to follow through with something once they've made a strong commitment.</p>
           <p>This principle also applies to improving intimate health. You can 
-            <span>{{ purpose }}
+            <span>{{ purpose }}<span v-if="!AddPurpose">.</span>
             <span v-if="AddPurpose">
               <span class="width-400"> and</span> 
-              {{ addpurpose }}</span>. 
+              {{ addpurpose }}.
+            </span>
             </span>
               You just need to commit.
             </p>
@@ -140,7 +141,7 @@ export default {
       pricenew: 60, 
       trial: 20 - sessionStorage.getItem('price'),
       btnModal: true,
-      AddPurpose:false,
+      AddPurpose:true,
     }
   },
   computed: {
@@ -148,6 +149,7 @@ export default {
     purpose(){
       var json = localStorage.getItem('track');
       var obj = JSON.parse(json);
+      console.log(obj.purpose);
       return obj.purpose;
     },
     addpurpose(){
@@ -188,7 +190,12 @@ export default {
   },
   methods: {
     nextUrl(){
-      this.$router.push('PlanFinalTwo')
+      let mediaQuery = window.matchMedia('(max-width: 480px)');
+      if (mediaQuery.matches) {
+        this.$router.push('PlanFinalTwo')
+      }else{
+        this.$router.push('CodeQR')
+      }
     },
     image(path) {
       // eslint-disable-next-line global-require,import/no-dynamic-require

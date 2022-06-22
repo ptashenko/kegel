@@ -207,8 +207,11 @@ export default {
     preload(){
       console.log(this.$store.getters.LOADER);
       if(this.$store.getters.LOADER == true){
+        let body = document.querySelector('body')
+        body.classList.add('fixed');
         setTimeout(() => {
-          this.loading = false;
+          body.classList.remove('fixed');
+          this.loading = false
           this.$store.commit('setLOADER', false);
         }, 2000);
       }else{

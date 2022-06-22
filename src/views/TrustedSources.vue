@@ -3,6 +3,7 @@
 
   <div class="dark-layout light">
     <div class="container-main is-page TimePlan">
+      
       <div class="h2 text-center">
         {{title}}
       </div>
@@ -27,6 +28,8 @@
         theme: 'red'
       }"
     />
+
+
     </div>
   </div>
 </template>

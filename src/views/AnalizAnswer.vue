@@ -277,6 +277,8 @@ export default {
   },
   methods:{
     showModal(){
+      let body = document.querySelector('body')
+      body.classList.add('fixed');
       this.popupVisible = true
       this.isActiveNo = this.isActiveYes = this.closeActive = false
       this.isLoad = false
@@ -284,7 +286,9 @@ export default {
     },
     closePopup(e){
       let x = e.target
+      let body = document.querySelector('body')
       if(x.classList.contains('active')){
+        body.classList.remove('fixed');
         this.isActiveCheck_1 = true
         this.$refs.animed.play()
         this.popupVisible = false

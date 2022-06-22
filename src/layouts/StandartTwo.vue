@@ -4,7 +4,10 @@
   <div class="dark-layout">
     <div class="container-main is-page standart">
 
-
+    <transition name="slide" mode="out-in">
+    <div
+    v-if="show"
+    >
       <steps
         :light="false"
         v-if="content.id > 3 && content.id !== 35 && content.id !== 353 && content.id !== 61"
@@ -59,16 +62,18 @@
         :buttonBack="{
         text: content.buttonsText ? content.buttonsText[0] : 'Back',
         icon: 'prev',
-        click: back,
+        click: backURL,
         theme: 'grey'
       }"
         :buttonNext="{
         icon: 'next',
         text: content.buttonsText ? content.buttonsText[1] : 'I got it',
-        click: next,
+        click: nextURL,
         theme: 'red'
       }"
       />
+      </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -82,6 +87,8 @@ export default {
   data(){
     return{
       yourMethod: true,
+      show:true,
+      layotname: [353, 61]
     }
   },
   props: {
@@ -107,7 +114,30 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/icons/layout-buttons/${name}.svg`);
     },
-    
+    backURL(){
+      console.log(this.nextContentId);
+      if(this.layotname.includes(this.myPrewContentId)){
+        this.show= false
+        setTimeout(() => {
+          this.show= true
+          this.back()
+        }, 500);
+        
+      }else{
+        this.back()
+      }
+    },
+    nextURL(){
+      if(this.layotname.includes(this.nextContentId)){
+        this.show= false
+        setTimeout(() => {
+          this.show= true
+          this.next()
+        }, 500);
+      }else{
+       this.next()
+      }
+    },
   },
   computed:{
   },
@@ -218,4 +248,11 @@ export default {
  .bold-text{
     font-family: "SF Pro Text Semibold";
   }
+  .slide-enter-active, .slide-leave-active {
+  transition: opacity .5s ease
+}
+
+.slide-enter-from, .slide-leave-to {
+  opacity: 0
+}
 </style>

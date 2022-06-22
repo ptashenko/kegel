@@ -189,7 +189,7 @@ export default {
     ButtonField,
   },
   methods: {
-    nextUrl(){
+    nextUrl(){ 
       let mediaQuery = window.matchMedia('(max-width: 480px)');
       if (mediaQuery.matches) {
         this.$router.push('PlanFinalTwo')

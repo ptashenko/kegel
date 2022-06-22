@@ -47,7 +47,7 @@
           />
         </div>
         
-
+      <TransitionGroup name="slider" mode="out-in">
         <template
           v-for="(step, index) in steps"
           :key="step.title"
@@ -64,6 +64,8 @@
             </div>
           </div>
         </template>
+      </TransitionGroup>
+
       </div>
     </div>
   </div>
@@ -79,6 +81,7 @@ export default {
   },
   data() {
     return {
+      show:true,
       steps: [
         {
           title: 'Kegel exercises are supported by the multinational studies',
@@ -128,6 +131,7 @@ export default {
       this.steps.forEach((step) => step.active = false);
       if (this.steps[index + 1]) {
         this.steps[index + 1].active = true;
+        this.show= true
       } else {
         this.$router.push({ name: 'goodHands' });
         clearInterval(list);
@@ -247,5 +251,23 @@ export default {
     }
   }
 }
-
+// .slider-move, .slider-enter-active, .slider-leave-active {
+//   transition: opacity 1s ease
+// }
+.slider-leave-active {
+  transition: transform .5s cubic-bezier(1.0, 0.5, 0.8, 1.0), opacity 1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slider-enter-active{
+  transition: transform .5s cubic-bezier(1.0, 0.5, 0.8, 1.0), opacity .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slider-leave-to {
+  transform: translateX(-300px);
+  opacity: 0;
+}
+// .slider-enter-from, .slider-leave-to {
+//   opacity: 0
+// }
+.slider-leave-active {
+  position: absolute;
+}
 </style>

@@ -32,7 +32,7 @@ export default {
 
   .translate-enter-active,
   .translate-leave-active {
-    transition: all 1s ease;
+    transition: all .65s ease;
   }
   
   .translate-enter-from,

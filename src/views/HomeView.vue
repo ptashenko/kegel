@@ -60,7 +60,7 @@
       </div>
 
       <div class="navigation__text">
-        *Results vary depending on your starting point, goals, and effort.
+        *Results may vary depending on your starting point, goals, and effort.
       </div>
     </div>
   </div>

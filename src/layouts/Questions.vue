@@ -130,6 +130,7 @@ export default {
         });
       }
       else{
+        this.show= false
         if(this.layotname.includes(this.myPrewContentId)){
           this.back()
         }else{

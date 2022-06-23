@@ -322,7 +322,7 @@ const state = () => ({
         },
         {
             id: 15,
-            title: 'How satisfied were you with your sex life this month?',
+            title: 'How satisfied were you with your sex life last month?',
             layoutName: 'Questions',
             answer: {
                 style: 'buttons',
@@ -356,7 +356,7 @@ const state = () => ({
         },
         {
             id: 17,
-            title: 'How much erection problems affect your relationship with your partner?',
+            title: 'How much do erection problems affect the relationship with your partner?',
             answer: {
                 style: 'buttons',
                 textLeft: 'They doesn\'t affect',
@@ -372,10 +372,10 @@ const state = () => ({
         },
         {
             id: 18,
-            title: 'How strongly problems with erection affect your quality of life?',
+            title: 'How much problems with erection affect your quality of life?',
             answer: {
                 style: 'buttons',
-                textLeft: 'They doesn\'t affect',
+                textLeft: 'They don\'t affect',
                 textRight: 'They affect a lot',
                 answerList: [
                     '1',
@@ -426,13 +426,13 @@ const state = () => ({
                     'Less than 2 minutes',
                     '2-7 minutes',
                     '7-15 minutes',
-                    '15 or more minutes',
+                    '15 minutes or more',
                 ],
             },
         },
         {
             id: 22,
-            title: 'How often does it happen that your sex lasts less than 2 minutes?',
+            title: 'How often your sex lasts less than 2 minutes?',
             layoutName: 'Reviews',
             answer: {
                 style: 'radio',
@@ -441,7 +441,6 @@ const state = () => ({
                     'Rarely',
                     'Half of the time',
                     'Most of the time',
-                    'All the time',
                     'I don\'t want to answer',
                 ],
             },
@@ -512,7 +511,6 @@ const state = () => ({
                 answerList: [
                     'Yes, every time',
                     'I take them sometimes',
-                    'Yes, but rarely',
                     'No, I don\'t',
                     'I don\'t want to answer',
                 ],
@@ -630,7 +628,7 @@ const state = () => ({
             layoutName: 'standart',
             aftertext: 'Thanks to the strong PF muscles you can ',
             textbold: ' delay ejaculation ',
-            text: ' as long as you want',
+            text: ' for as long as you want',
         },
         {
             id: 353,
@@ -640,7 +638,7 @@ const state = () => ({
             layoutName: 'standart',
             aftertext: 'Thanks to the strong PF muscles you can ',
             textbold: ' delay ejaculation ',
-            text: ' as long as you want',
+            text: ' for as long as you want',
             buttonsText: ['Back', 'Continue'],
         },
         {
@@ -650,11 +648,11 @@ const state = () => ({
             answer: {
                 style: 'radio',
                 answerList: [
+                    'Never',
                     'Rarely',
                     'Half of the time',
                     'Most of the time',
                     'All the time',
-                    'I don\'t want to answer',
                 ],
             },
         },
@@ -666,7 +664,7 @@ const state = () => ({
             layoutName: 'standart',
             aftertext: 'Weak PF muscles ',
             textbold: ' can\'t let you compress the urethra enough ',
-            text: ' to delay ejaculation as long as you want',
+            text: ' to delay ejaculation for as long as you want',
         },
         {
             id: 36,
@@ -690,7 +688,7 @@ const state = () => ({
         },
         {
             id: 38,
-            title: 'How long would you like your sex to last?',
+            title: 'How long should ideal sex last in your opinion?',
             answer: {
                 style: 'radio',
                 answerList: [
@@ -707,7 +705,7 @@ const state = () => ({
             afterTilteRed: '7x',
             afterTilteText: ' by doing Kegel exercises',
             layoutName: 'standart',
-            thumbnail: 'ED_s5.png',
+            thumbnail: 'ED_s5_img.png',
             buttons: [{
                 id: 1,
                 logo: 'logo_source_2',
@@ -863,7 +861,7 @@ const state = () => ({
         {
             id: 47,
             afterTilteRed: '75.5%',
-            afterTilteText: ' of men improved their erections with Kegel exercises',
+            afterTilteText: ' of men improved their erection with Kegel exercises',
             layoutName: 'standart',
             thumbnail: 'PE_s5.png',
             buttons: [{
@@ -920,7 +918,7 @@ const state = () => ({
             title: 'Men who perform Kegel exercises can increase their stamina up to ',
             afterTilteRed: '7 times',
             layoutName: 'standart',
-            thumbnail: 'ED_s5.png',
+            thumbnail: 'ED_s5_img.png',
             buttons: [{
                 id: 1,
                 logo: 'logo_source_2',
@@ -957,7 +955,7 @@ const state = () => ({
         },
         {
             id: 54,
-            title: 'How would you rate your libido (sex drive) 1 years ago?',
+            title: 'How would you rate your libido (sex drive) 1 year ago?',
             answer: {
                 style: 'buttons',
                 textLeft: 'Low',
@@ -973,7 +971,6 @@ const state = () => ({
                 answerList: [
                     'Yes, every time',
                     'I take them sometimes',
-                    'Yes, but rarely',
                     'No, I don\'t',
                     'I don\'t want to answer',
                 ],

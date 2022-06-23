@@ -3,11 +3,6 @@
   
   <div class="dark-layout">
     <div class="container-main is-page standart">
-      <transition name="slide" mode="out-in">
-      <div
-      v-if="show"
-      >
-
       <steps
         :light="false"
         v-if="content.id > 3 && content.id !== 35 && content.id !== 353 && content.id !== 61"
@@ -71,8 +66,6 @@
         theme: 'red'
       }"
       />
-      </div>
-      </transition>
     </div>
   </div>
 </template>
@@ -88,8 +81,6 @@ export default {
     return{
       yourMethod: true,
       timePlay: 0,
-      show:true,
-      layotname: [353, 61]
     }
   },
   props: {
@@ -116,30 +107,10 @@ export default {
       return require(`@/assets/images/icons/layout-buttons/${name}.svg`);
     },
     backURL(){
-      console.log(this.nextContentId);
-      if(this.layotname.includes(this.myPrewContentId)){
-        this.show= false
-        setTimeout(() => {
-          console.log('возврат назад');
-          this.show= true
-          this.back()
-        }, 500);
-        
-      }else{
-        this.back()
-      }
+      this.back()
     },
     nextURL(){
-      
-      if(this.layotname.includes(this.nextContentId)){
-        this.show= false
-        setTimeout(() => {
-          this.show= true
-          this.next()
-        }, 500);
-      }else{
-       this.next()
-      }
+      this.next()
     },
   },
   computed:{

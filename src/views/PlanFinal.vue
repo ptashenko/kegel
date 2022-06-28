@@ -19,7 +19,9 @@
             </span>
               You just need to commit.
             </p>
-          <p>Kegel Plan users who have a strong commitment at the beginning are 4 times more likely to achieve improvements, than users who choose trial</p>
+          <p>
+            Kegel Plan users who have a strong commitment at the beginning are 4 times more likely to achieve improvements, than users who choose trial. 
+          </p>
         </div>                    
       </div>
       <div class="mw-450"> 
@@ -28,7 +30,7 @@
         </div>
 
         <div class="desc text-center">
-          *According to studies, it needs 12 weeks of Kegel exercises to achieve improvements. Kegel Plan users who have strong commitment are 4 times more likely to finish 12 weeks of Kegel exercises, than users who choose trial
+          *According to studies, it takes 12 weeks of Kegel exercises to achieve improvements. Kegel Plan users who have strong commitment are 4 times more likely to finish 12 weeks of Kegel exercises, than users who choose trial
         </div>
       </div>
       <div class="price">
@@ -316,12 +318,15 @@ export default {
         color: #ffffff;
         font-size: 16px;
         line-height: 150%;
+        border: 0px solid #5773d681;
+        animation: blick .75s ease-in-out infinite;
       }
     }
     &__today.mt-32{
       margin-top: 32px;
     }
   }
+  
   .footer-controls__button{
     max-width: 310px;
     margin: 48px auto 0;
@@ -354,6 +359,11 @@ export default {
       max-width: 320px;
     }
   }
+}
+@keyframes blick {
+  0% {box-shadow:0px 0px 0px 0px #5773d681;}
+  50%{box-shadow:0px 0px 0px 4px #5773d681;}
+  100%{box-shadow:0px 0px 0px 0px #5773d681;}
 }
 .footer__text{
     font-family: "SF Pro Text Light";

@@ -47,24 +47,27 @@
           />
         </div>
         
-      <TransitionGroup name="slider" mode="out-in">
+      
+        <div></div>
         <template
           v-for="(step, index) in steps"
           :key="step.title"
         >
-          <div v-show="step.active">
+          <Transition name="slider" mode="out-in" appear>
+            <div v-if="step.active" class="wail__block__img">
 
 
-            <div class="wait__image">
-              <img :src="image(index + 1)" alt="">
+              <div class="wait__image">
+                <img :src="image(index + 1)" alt="">
+              </div>
+
+              <div class="h2 text-center">
+                {{ step.title }}
+              </div>
             </div>
-
-            <div class="h2 text-center">
-              {{ step.title }}
-            </div>
-          </div>
+          </Transition>
         </template>
-      </TransitionGroup>
+      
 
       </div>
     </div>
@@ -108,7 +111,7 @@ export default {
           active: false,
         },
         {
-          title: 'If you miss training, that\'s okay',
+          title: 'If you miss a training session, that\'s okay',
           active: false,
         },
         {
@@ -170,7 +173,8 @@ export default {
 
   &__content {
     text-align: center;
-    
+    position: relative;
+    display: block;
     .h2{
       max-width: 450px;
       margin: 0 auto;
@@ -192,7 +196,7 @@ export default {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .65s;
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */
@@ -251,23 +255,21 @@ export default {
     }
   }
 }
-// .slider-move, .slider-enter-active, .slider-leave-active {
-//   transition: opacity 1s ease
-// }
-.slider-leave-active {
-  transition: transform .5s cubic-bezier(1.0, 0.5, 0.8, 1.0), opacity 1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slider-enter-active{
-  transition: transform .5s cubic-bezier(1.0, 0.5, 0.8, 1.0), opacity .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slider-leave-to {
-  transform: translateX(0px);
-  opacity: 0;
-}
-// .slider-enter-from, .slider-leave-to {
-//   opacity: 0
-// }
-.slider-leave-active {
+.wail__block__img{
+  width: 100%;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.slider-enter-active,
+.slider-leave-active {
+  transition: all 1s ease;
+}
+
+.slider-enter-from,
+.slider-leave-to {
+  opacity: 0;
 }
 </style>

@@ -223,11 +223,4 @@ export default {
  .bold-text{
     font-family: "SF Pro Text Semibold";
   }
-  .slide-enter-active, .slide-leave-active {
-  transition: opacity .5s ease
-}
-
-.slide-enter-from, .slide-leave-to {
-  opacity: 0
-}
 </style>

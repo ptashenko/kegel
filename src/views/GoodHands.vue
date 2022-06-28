@@ -1,6 +1,6 @@
 <template>
   <header-layout :fixed="true"/>
-
+  <Transition name="slider" mode="out-in" appear>
   <div class="dark-layout light">
     <div class="container-main is-page GoodHands">
       <div class="h2">{{title}}</div>
@@ -23,6 +23,7 @@
       }"
     />
   </div>
+  </Transition>
 </template>
 
 <script>
@@ -79,5 +80,13 @@ p {
     font-family: "SF Pro Text Semibold";
   }
 }
+.slider-enter-active,
+.slider-leave-active {
+  transition: all 0.65s ease;
+}
 
+.slider-enter-from,
+.slider-leave-to {
+  opacity: 0;
+}
 </style>

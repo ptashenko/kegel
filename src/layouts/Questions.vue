@@ -11,7 +11,6 @@
         <div class="questions__title">
           {{ survey.title }}
         </div>
-
         <div class="questions__thumbnail" v-if="survey.video">
           <video-background 
             :src="video(content.video)"
@@ -104,7 +103,7 @@ export default {
       num: 0,
       timePlay: 0,
       show:true,
-      layotname: [2, 6, 61, 9, 333, 14, 20, 201, 23, 24, 28, 32, 321, 322, 323, 35, 353, 351, 352, 36, 39, 41, 47, 48, 50, 51, 57]
+      layotname: [2, 6, 61, 9, 333, 14, 20, 201, 24, 28, 32, 321, 322, 323, 35, 353, 352, 36, 39, 41, 47, 48, 50, 51, 57]
     }
   },
   computed: {

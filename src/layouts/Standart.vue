@@ -240,11 +240,5 @@ export default {
         max-height: 200px;
     }
 }
-.slide-enter-active, .slide-leave-active {
-  transition: opacity .5s ease
-}
 
-.slide-enter-from, .slide-leave-to {
-  opacity: 0
-}
 </style>

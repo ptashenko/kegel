@@ -1,110 +1,113 @@
 <template>
 
-<div class="preloader" v-if="loading">
-  <div class="block-loader">
-    <lottie-animation 
-      class="check"
-      ref="anim"
-      :animationData="require(`@/assets/images/json/f5_loader.json`)"
-      :loop="true"
-      :autoPlay="true"
-      :speed="1"
-    />
-  </div>
-</div>
-  <header-layout :fixed="true" :dark="false"/>
-  <div class="jumbotron home">
-    <div class="container-main">
-      <div class="jumbotron__title">
-        Stay hard & last long without pills
-      </div>
-      <div class="jumbotron__text">
-        Select a goal to get step-by-step plan
-      </div>
-      <div class="str">
-        <lottie-animation 
-            ref="arrowmain"
-            class="animationArrow"
-            :class="{ active: isActiveHand }"
-            :animationData="require(`@/assets/images/json/main_arrow.json`)"
-            :loop="true"
-            :autoPlay="true"
-            :speed="1"
-          />
-      </div>
+  <div class="preloader" v-if="loading">
+    <div class="block-loader">
+      <lottie-animation 
+        class="check"
+        ref="anim"
+        :animationData="require(`@/assets/images/json/f5_loader.json`)"
+        :loop="true"
+        :autoPlay="true"
+        :speed="1"
+      />
     </div>
   </div>
-  {{preload}}
-  {{myHand}}
-  <div class="navigation__section home">
-    <div class="container-main home">
-      <div class="navigation__items">
-        <button
-          class="navigation__item"
-          v-for="track in tracks"
-          :key="track.id"
-          @click="getData(track)"
-        >
-          <b>{{ track.title }}</b>
-          <span>{{ track.text }}</span>
-          <lottie-animation 
-            v-if="track.id == 1"
-            :class="{ active: isActiveHand }"
-            class="animationHand"
-            ref="animhand"
-            :animationData="require(`@/assets/images/json/main_hand.json`)"
-            :loop="true"
-            :autoPlay="true"
-          />
-        </button>
-      </div>
-
-      <div class="navigation__text">
-        *Results may vary depending on your starting point, goals, and effort.
-      </div>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="container-main">
-      <div class="advantage" v-for="advantage in advantages" :key="advantage.title">
-        <img 
-        :src="advantage.img" 
-        :alt="advantage.title"
-        :style="{  width: advantage.width + 'px' }"
-        >
-        <div class="advantage__title">{{ advantage.title }}</div>
-        <div class="advantage__text">{{ advantage.text }}</div>
-        <p
-          class="advantage__email"
-          v-if="advantage.email"
-        >
-          {{ advantage.email }}
-        </p>
-      </div>
-
-      <div class="footer__info">
-        <span>
-          Appercut sp z o o <br>
-          Warsaw, Twarda 18, 00-105
-        </span>
-        <div class="footer__terms">
-          <a href="https://appercut.co/privacy-policy.html">Privacy Policy</a>
-          <div class="line">|</div>
-          <a href="https://appercut.co/terms.html">Terms & Conditions</a>
+  <transition name="translate" mode="out-in">
+    <div v-if="true" :class="this.$route.name">
+      <header-layout :fixed="true" :dark="false"/>
+      <div class="jumbotron home">
+        <div class="container-main">
+          <div class="jumbotron__title">
+            Stay hard & last long without pills
+          </div>
+          <div class="jumbotron__text">
+            Select a goal to get a step-by-step plan
+          </div>
+          <div class="str">
+            <lottie-animation 
+                ref="arrowmain"
+                class="animationArrow"
+                :class="{ active: isActiveHand }"
+                :animationData="require(`@/assets/images/json/main_arrow.json`)"
+                :loop="true"
+                :autoPlay="true"
+                :speed="1"
+              />
+          </div>
         </div>
       </div>
+      {{preload}}
+      {{myHand}}
+      <div class="navigation__section home">
+        <div class="container-main home">
+          <div class="navigation__items">
+            <button
+              class="navigation__item"
+              v-for="track in tracks"
+              :key="track.id"
+              @click="getData(track)"
+            >
+              <b>{{ track.title }}</b>
+              <span>{{ track.text }}</span>
+              <lottie-animation 
+                v-if="track.id == 1"
+                :class="{ active: isActiveHand }"
+                class="animationHand"
+                ref="animhand"
+                :animationData="require(`@/assets/images/json/main_hand.json`)"
+                :loop="true"
+                :autoPlay="true"
+              />
+            </button>
+          </div>
+
+          <div class="navigation__text">
+            *Results may vary depending on your starting point, goals, and effort.
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="container-main">
+          <div class="advantage" v-for="advantage in advantages" :key="advantage.title">
+            <img 
+            :src="advantage.img" 
+            :alt="advantage.title"
+            :style="{  width: advantage.width + 'px' }"
+            >
+            <div class="advantage__title">{{ advantage.title }}</div>
+            <div class="advantage__text">{{ advantage.text }}</div>
+            <p
+              class="advantage__email"
+              v-if="advantage.email"
+            >
+              {{ advantage.email }}
+            </p>
+          </div>
+
+          <div class="footer__info">
+            <span>
+              Appercut sp z o o <br>
+              Warsaw, Twarda 18, 00-105
+            </span>
+            <div class="footer__terms">
+              <a href="https://appercut.co/privacy-policy.html">Privacy Policy</a>
+              <div class="line">|</div>
+              <a href="https://appercut.co/terms.html">Terms & Conditions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{dataP1}}
+      {{dataP2}}
+      {{dataP3}}
     </div>
-  </div>
-  {{dataP1}}
-  {{dataP2}}
-  {{dataP3}}
+  </transition> 
 </template>
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
 import moment from 'moment';
 import HeaderLayout from '@/components/Header.vue';
-
 export default {
   components: {
     HeaderLayout,
@@ -502,4 +505,13 @@ body{
   height: auto;
   
 }
+.translate-enter-active,
+  .translate-leave-active {
+    transition: all .65s ease;
+  }
+  
+  .translate-enter-from,
+  .translate-leave-to {
+    opacity: 0;
+  }
 </style>

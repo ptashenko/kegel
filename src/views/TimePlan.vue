@@ -1,6 +1,6 @@
 <template lang="">
   <header-layout :fixed="true" :dark="true"/>
-
+  <Transition name="slider" mode="out-in" appear>
   <div class="dark-layout light">
     <div class="container-main is-page TimePlan">
       <div class="h2 text-center">
@@ -36,6 +36,7 @@
     />
     </div>
   </div>
+  </Transition>
 </template>
 <script>
 import { mapGetters} from 'vuex';
@@ -51,10 +52,10 @@ export default {
   },
   methods: {
     btnClick() {
-      this.$router.push({ path: '/TrustedSources'})
+      this.$router.push({ name: 'TrustedSources'})
     },
     btnBack() {
-      this.$router.push({ path: '/Good-hands'})
+      this.$router.push({ name: 'goodHands'})
     },
   },
   mixins: [nextContentUrl],

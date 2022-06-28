@@ -1,6 +1,6 @@
 <template lang="">
   <header-layout :fixed="true" :dark="true"/>
-
+  <Transition name="slider" mode="out-in" appear>
   <div class="dark-layout light">
     <div class="container-main is-page TimePlan">
       
@@ -10,28 +10,25 @@
 
 
       <div class="layout__buttons">
-          <img src="@/assets/images/content/icons.png">
+          <img src="@/assets/images/content/f4_img.png">
       </div>
-      
-
-    <footer-controls
-      :buttonBack="{
-        text: 'Back',
-        click: btnBack,
-        icon: 'prev',
-        theme: 'light'
-      }"
-      :buttonNext="{
-        icon: 'next',
-        text: 'Continue',
-        click: btnClick ,
-        theme: 'red'
-      }"
-    />
-
-
+      <footer-controls
+        :buttonBack="{
+          text: 'Back',
+          click: btnBack,
+          icon: 'prev',
+          theme: 'light'
+        }"
+        :buttonNext="{
+          icon: 'next',
+          text: 'Continue',
+          click: btnClick ,
+          theme: 'red'
+        }"
+      />
     </div>
   </div>
+  </Transition>
 </template>
 <script>
 import { mapGetters } from 'vuex';

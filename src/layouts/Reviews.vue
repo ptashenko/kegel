@@ -59,7 +59,7 @@
       </div>
 
       <div class="desc text-center">
-        *This diagram is a non personalized data based on scientific research
+        This diagram is non-personalized data based on scientific research
       </div>
 
       <div class="reviews">

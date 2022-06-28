@@ -84,7 +84,7 @@
                 <p class="block__data__item">{{moment().add(5,'month').format("MMM")}}</p>
               </div>
             </div>
-            <p class="p-14 opac_5 bottom_img">*This diagram is a non personalized data based on scientific research</p>
+            <p class="p-14 opac_5 bottom_img">This diagram is non-personalized data based on scientific research</p>
             <div class="h2 inside">
               Kegel Plan Benefits
             </div>
@@ -354,10 +354,10 @@
       Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to <span class="text-bold"> {{ purpose }} <span v-if="AddPurposeCom"><span class="width-400"> and </span>{{ addpurpose }}</span></span>.
     </p>
     <p class="opasity_75">
-      Reaching your goal is as easy as following the Kegel Plan we prepare for you.
+      Reaching your goal is as easy as following the Kegel Plan we prepared for you.
     </p>
     <p class="opasity_75">
-      The latest studies support Kegel exercises and consider them as the first-line approach to treat intimate health problems. It's easy, safe, and effective way to improve men's health, quality of life and maintain a perfect relationship with your partner.
+      The latest studies support Kegel exercises and consider them the first-line approach to treating intimate health problems. It's an easy, safe, and effective way to improve men's health, quality of life and maintain a perfect relationship with your partner.
     </p>
     <p class="opasity_75">
       Our users tell us they have experienced great improvements by following our Kegel Plan - so try it, and see the results for yourself!
@@ -378,7 +378,7 @@
     v-if="popupVisible3"
   > 
     <p class="opasity_75">
-      We ask for your payment information now so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.
+      We ask for your payment information now, so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.
     </p>
     <p class="opasity_75">
       If you cancel anytime before the end of the 7-day trial, you won't be charged.
@@ -675,7 +675,7 @@ export default {
     color: #E44240;
   }
 }
-.li{
+.li, .item-li{
   margin-top: 0px;
   line-height: 150%;
   .check{

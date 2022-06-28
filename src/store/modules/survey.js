@@ -137,7 +137,7 @@ const state = () => ({
         {
             id: 2,
             title: 'The quality of your erection depends on the Pelvic Floor (PF) muscle tone',
-            text: 'The PF muscles help to fill penis with blood and prevent its outflow, so you can get & maintain ',
+            text: 'The PF muscles help to fill the penis with blood and prevent its outflow, so you can get & maintain a ',
             textBold: 'hard erection',
             video: 'ED_s1.mp4',
             poster: 'ED_s1.png',
@@ -202,7 +202,7 @@ const state = () => ({
         {
             id: 61,
             title: 'The quality of your erection also depends on the Pelvic Floor (PF) muscle tone',
-            text: 'The PF muscles help to fill penis with blood and prevent its outflow, so you can get & maintain ',
+            text: 'The PF muscles help to fill the penis with blood and prevent its outflow, so you can get & maintain a ',
             textBold: ' strong erection',
             video: 'ED_s1.mp4',
             poster: 'ED_s1.png',
@@ -216,8 +216,8 @@ const state = () => ({
                 style: 'radio',
                 answerList: [
                     'All the time',
-                    'Most of the times',
-                    'Half the time',
+                    'Most of the time',
+                    'Half the time ',
                     'Rarely',
                     'I don\'t want to answer',
                 ],
@@ -254,7 +254,7 @@ const state = () => ({
                 style: 'radio',
                 answerList: [
                     'All the time',
-                    'Most of the times',
+                    'Most of the time',
                     'Half the time',
                     'Rarely',
                     'I don\'t want to answer',
@@ -359,7 +359,7 @@ const state = () => ({
             title: 'How much do erection problems affect the relationship with your partner?',
             answer: {
                 style: 'buttons',
-                textLeft: 'They doesn\'t affect',
+                textLeft: 'They don\'t affect',
                 textRight: 'They affect a lot',
                 answerList: [
                     '1',
@@ -372,7 +372,7 @@ const state = () => ({
         },
         {
             id: 18,
-            title: 'How much problems with erection affect your quality of life?',
+            title: 'How much do problems with erection affect your quality of life?',
             answer: {
                 style: 'buttons',
                 textLeft: 'They don\'t affect',
@@ -643,7 +643,7 @@ const state = () => ({
         },
         {
             id: 351,
-            title: 'How often does it happen that your sex lasts less than 2 minutes?',
+            title: 'How often does your sex lasts less than 2 minutes?',
             layoutName: 'Reviews',
             answer: {
                 style: 'radio',
@@ -688,7 +688,7 @@ const state = () => ({
         },
         {
             id: 38,
-            title: 'How long should ideal sex last in your opinion?',
+            title: 'How long should ideal sex last, in your opinion?',
             answer: {
                 style: 'radio',
                 answerList: [

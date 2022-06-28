@@ -174,9 +174,9 @@
 
       <vpopup
         class="analize"
-        textTitle="Do you want to enhance the orgasms?"
+        textTitle="Do you want to enhance your orgasms?"
         v-if="popupVisible"
-      > 
+      >   
         <btnComponent
           :class="{ active: isActiveYes }"
           @clickBtn="BtnActiveYes"
@@ -358,7 +358,7 @@ export default {
         } else{
           this.numreview = 0
         }
-      }, 4000);
+      }, 4500);
     }
   },
   mounted() {

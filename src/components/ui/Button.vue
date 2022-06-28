@@ -67,6 +67,9 @@ export default {
     &:hover {
       background-color: #E5E9F5;
     }
+    &:active{
+      background-color: #F1F3F9;
+    }
   }
 
   &.red {

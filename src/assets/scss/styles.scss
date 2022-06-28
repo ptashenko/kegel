@@ -310,3 +310,13 @@ header .container-main {
 .dark-layout.light .btn__prev {
     filter: invert(0);
 }
+
+.slider-enter-active,
+.slider-leave-active {
+    transition: all 0.65s ease;
+}
+
+.slider-enter-from,
+.slider-leave-to {
+    opacity: 0;
+}

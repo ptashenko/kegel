@@ -1,27 +1,30 @@
 <template>
-  <header-layout :fixed="true"/>
-  <Transition name="slider" mode="out-in" appear>
-  <div class="dark-layout light">
-    <div class="container-main is-page GoodHands">
-      <div class="h2">{{title}}</div>
-      <img class="map" src="@/assets/images/content/map.png" alt="map">
-      <p>More than <span> 1.575.179 </span> men got closer to their goal thanks to this Kegel Training Plan</p>
-    </div>
+<Transition name="slider" mode="out-in" appear>
+  <div>
+    <header-layout :fixed="true"/>
+    
+    <div class="dark-layout light">
+      <div class="container-main is-page GoodHands">
+        <div class="h2">{{title}}</div>
+        <img class="map" src="@/assets/images/content/map.png" alt="map">
+        <p>More than <span> 1.575.179 </span> men got closer to their goal thanks to this Kegel Training Plan</p>
+      </div>
 
-    <footer-controls
-      :buttonBack="{
-        text: 'Back',
-        click: btnBack,
-        icon: 'prev',
-        theme: 'light'
-      }"
-      :buttonNext="{
-        icon: 'next',
-        text: 'Continue',
-        click: btnClick ,
-        theme: 'red'
-      }"
-    />
+      <footer-controls
+        :buttonBack="{
+          text: 'Back',
+          click: btnBack,
+          icon: 'prev',
+          theme: 'light'
+        }"
+        :buttonNext="{
+          icon: 'next',
+          text: 'Continue',
+          click: btnClick ,
+          theme: 'red'
+        }"
+      />
+    </div>
   </div>
   </Transition>
 </template>
@@ -80,13 +83,5 @@ p {
     font-family: "SF Pro Text Semibold";
   }
 }
-.slider-enter-active,
-.slider-leave-active {
-  transition: all 0.65s ease;
-}
 
-.slider-enter-from,
-.slider-leave-to {
-  opacity: 0;
-}
 </style>

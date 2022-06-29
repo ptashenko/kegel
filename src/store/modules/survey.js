@@ -432,7 +432,7 @@ const state = () => ({
         },
         {
             id: 22,
-            title: 'How often your sex lasts less than 2 minutes?',
+            title: 'How often does your sex last less than 2 minutes?',
             layoutName: 'Reviews',
             answer: {
                 style: 'radio',
@@ -643,7 +643,7 @@ const state = () => ({
         },
         {
             id: 351,
-            title: 'How often does your sex lasts less than 2 minutes?',
+            title: 'How often does your sex last less than 2 minutes?',
             layoutName: 'Reviews',
             answer: {
                 style: 'radio',

@@ -1,6 +1,8 @@
 <template lang="">
+<Transition name="slider" mode="out-in" appear>
+<div>
   <header-layout :fixed="true" :dark="true"/>
-  <Transition name="slider" mode="out-in" appear>
+  
   <div class="dark-layout light">
     <div class="container-main is-page TimePlan">
       
@@ -28,8 +30,10 @@
       />
     </div>
   </div>
+  
+  </div> 
   </Transition>
-</template>
+  </template>
 <script>
 import { mapGetters } from 'vuex';
 import nextContentUrl from '@/mixins/contollers';

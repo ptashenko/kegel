@@ -447,7 +447,9 @@ export default {
   methods: {
     nextUrl(){
       VueScrollTo.scrollTo('.dark-layout');
-      this.$router.push('PlanFinal')
+      setTimeout(() =>{
+        this.$router.push('PlanFinal')
+      }, 600)
     },
     moment(){
       return moment();

@@ -19,7 +19,7 @@
       <div class="mw-450">
         <video-background 
           :src="require('@/assets/video/mini_vid.mp4')"
-          :poster="require(`@/assets/video/mini_vid.png`)"
+          :poster="require(`@/assets/video/zaglushki/mini_vid.png`)"
           class="video"
         >
         </video-background>

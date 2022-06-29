@@ -13,26 +13,30 @@ import { mapActions } from 'vuex';
 export default {
   data() {
     return {
-      translate: 'false'
-      // translate: 'translate'
+      translate: 'translate',
+      layotname: ['goodHands','TimePlan','TrustedSources']
     };
   },
   methods: {
     ...mapActions(['getContent', 'getTrack', 'getHistory', 'getSeparators']),
   },
   computed: {
-    
   },
   watch:{
-    // '$route' (to, from) {
-    //   const contact = to.path === '/survey' ? true : false
-    //   console.log(contact);
-    //   if (contact === true) {
-    //     this.translate = 'false'
-    //   } else {
-    //     this.translate = 'translate'
-    //   }
-    // }
+    '$route' (to, from) {
+      if(this.layotname.includes(to.name)){
+        console.log(to.name);
+        console.log('true');
+        this.translate = 'translate'
+      } else {
+        console.log(from.name);
+        this.translate = 'false'
+      }
+      // console.log(contact);
+      // console.log(to.path);
+      // console.log(from.path);
+      
+    }
   },
   mounted() {
     this.getContent();

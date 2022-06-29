@@ -67,9 +67,6 @@ export default {
     &:hover {
       background-color: #E5E9F5;
     }
-    &:active{
-      background-color: #F1F3F9;
-    }
   }
 
   &.red {
@@ -97,7 +94,6 @@ export default {
     &:hover {
       background-color: rgba(55, 55, 55, 1);
     }
-
     & > * {
       opacity: .75;
     }

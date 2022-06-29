@@ -53,19 +53,14 @@
           v-for="(step, index) in steps"
           :key="step.title"
         >
-          <Transition name="slider" mode="out-in" appear>
-            <div v-if="step.active" class="wail__block__img">
-
-
+            <div v-if="step.active" class="wail__block__img" :class="{active:step.active}">
               <div class="wait__image">
                 <img :src="image(index + 1)" alt="">
               </div>
-
               <div class="h2 text-center">
                 {{ step.title }}
               </div>
             </div>
-          </Transition>
         </template>
       
 
@@ -165,6 +160,8 @@ export default {
     margin: 15px auto;
     max-width: 400px;
     height: auto;
+    display: block;
+    position: relative;
     img {
       max-width: 400px;
       width: 100%;
@@ -257,19 +254,40 @@ export default {
 }
 .wail__block__img{
   width: 100%;
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: space-between;
 }
-.slider-enter-active,
-.slider-leave-active {
-  transition: all 1s ease;
+.wail__block__img.active{
+  animation: second 5s;
 }
-
-.slider-enter-from,
-.slider-leave-to {
-  opacity: 0;
+@keyframes second{
+  0% {
+    opacity: 0;
+  }
+  7%{
+    opacity: 1;
+  }
+  93%{
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
+@keyframes secondTwo{
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.dark-layout .steps__col img {
+    position: relative;
+    z-index: 1;
+    width: 10px;
+} 
 </style>

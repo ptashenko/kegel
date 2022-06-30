@@ -339,7 +339,7 @@ export default {
     max-height: 260px; 
     height: 100vh; 
     max-width: 100%;
-    border-radius: 14px;
+    // border-radius: 14px;
     @media (max-width:480px) {
       max-height: 210px;
     }

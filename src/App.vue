@@ -1,9 +1,9 @@
 <template>
   
   <div id="topApp" class="container">
-    <Transition :name="translate" mode="out-in" appear>
+    <!-- <Transition :name="translate" mode="out-in" appear> -->
       <router-view/>
-    </Transition>
+    <!-- </Transition> -->
   </div>
 </template>
 
@@ -13,8 +13,8 @@ import { mapActions } from 'vuex';
 export default {
   data() {
     return {
-      translate: 'translate',
-      layotname: ['goodHands','TimePlan','TrustedSources']
+      // translate: 'translate',
+      // layotname: ['goodHands','TimePlan','TrustedSources','wait' ]
     };
   },
   methods: {
@@ -23,20 +23,20 @@ export default {
   computed: {
   },
   watch:{
-    '$route' (to, from) {
-      if(this.layotname.includes(to.name)){
-        console.log(to.name);
-        console.log('true');
-        this.translate = 'translate'
-      } else {
-        console.log(from.name);
-        this.translate = 'false'
-      }
-      // console.log(contact);
-      // console.log(to.path);
-      // console.log(from.path);
+    // '$route' (to, from) {
+    //   if(this.layotname.includes(to.name)){
+    //     console.log(to.name);
+    //     console.log('true');
+    //     this.translate = 'translate'
+    //   } else {
+    //     console.log(from.name);
+    //     this.translate = 'false'
+    //   }
+    //   // console.log(contact);
+    //   // console.log(to.path);
+    //   // console.log(from.path);
       
-    }
+    // }
   },
   mounted() {
     this.getContent();

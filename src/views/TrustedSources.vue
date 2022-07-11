@@ -1,5 +1,5 @@
 <template lang="">
-<Transition name="slider" mode="out-in" appear>
+
 <div>
   <header-layout :fixed="true" :dark="true"/>
   
@@ -32,7 +32,7 @@
   </div>
   
   </div> 
-  </Transition>
+
   </template>
 <script>
 import { mapGetters } from 'vuex';

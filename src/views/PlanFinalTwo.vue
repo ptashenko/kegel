@@ -5,19 +5,28 @@
     <div class="container-main is-page Final">
       <div class="mw-520">
         <div 
-          v-if="active" 
+          v-if="active && open == 1" 
           class="h2 text-center"
           :class="{active: active}"
         >
           Add Groin Fitness 
           <p>to accelerate the result</p>
         </div>
+        <div 
+          v-else-if="open == 2"
+          class="show text-center"
+        >
+          Did you know?
+        </div>
         <div v-else class="h2 text-center">
           <span class="blue"> Final Offer:</span> get Groin Fitness at the best deal!
         </div>
       </div>
-      <div class="mw-450">
-        <video-background 
+      <div
+        v-if="open !== 2"
+        class="mw-450"
+      >
+        <video-background
           :src="require('@/assets/video/mini_vid.mp4')"
           :poster="require(`@/assets/video/zaglushki/mini_vid.png`)"
           class="video"
@@ -25,43 +34,82 @@
         </video-background>
       </div>
       <div class="mw-450 d-flex flex-column mb-32">
-        <div class="item-li d-flex align-items-center">
-          <img v-if="active" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-          <img v-else class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <div v-if="open !== 2" class="item-li d-flex align-items-center">
+          <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+          <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
           <p class="fs-16-14">
             Build groin muscles strength & flexibility
           </p>
         </div>
-        <div class="item-li d-flex align-items-center">
-          <img v-if="active" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-          <img v-else class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <div v-if="open !== 2" class="item-li d-flex align-items-center">
+          <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+          <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
           <p class="fs-16-14">
             Increase blood flow to intimate organs
           </p>
         </div>
-        <div class="item-li d-flex align-items-center">
-          <img v-if="active" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-          <img v-else class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <div v-if="open !== 2" class="item-li d-flex align-items-center">
+          <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+          <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
           <p class="fs-16-14">
             Every exercise has video & audio instructions from the coach
           </p>
         </div>
-        <img v-if="active" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="">
-        <img v-else class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="">
+        <img v-if="open == 1" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="">
+        <img v-if="open > 2" class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="">
       </div>
+      <div
+        v-if="open == 2"
+        class="popup_wraper"
+      >
+        <p>
+          <span class="text-semibold">Groin Fitness</span> improves blood flow to the groin, which has a big impact on sexual performance.
+        </p>
+        <p>
+          Bad blood flow to the groin area can put you at <span class="text-semibold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
+        </p>
+        <img src="@/assets/images/content/Final_modal.png" alt="">
+        <p class="opacity_05 text-center text-bottom-img">
+          *This diagram is a non-personalized illustration based on scientific research.
+        </p>
+        <div class="block_blue">
+          <div class="block_blue__content d-flex align-items-center">
+            <img src="@/assets/images/icons/icon_present.svg" alt="">
+            <p>We want you to be successful, so we're offering <span class="text-bold"> 25% off </span> the Groin Fitness just for you!</p>
+          </div>
+        </div>
+      </div>
+
+
+
       <button-field
+        v-if="open == 1"
         text='Add to my plan'
         theme="Back"
-        class="footer-controls__button "
-        :class="{ 'bg-blue': !active, 'red': active }"
+        class="footer-controls__button red"
         @click="nextUrl"
       />
-      
-      <div v-if="active"
+      <button-field
+        v-if="open == 3"
+        text='Add to my plan'
+        theme="Back"
+        class="footer-controls__button bg-blue"
+        @click="nextUrl"
+      />
+      <div v-if="active && open == 1"
         class="btn_popup"
         @click="showModal"
       >
       I don’t want to accelerate my results &gt;
+      </div>
+      <div v-else-if="open == 2" class="text-center">
+        <button 
+          class="v-popup__submit_btn active"
+          @click="closePopup"
+        >
+        Continue
+        <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" >
+        </button>
       </div>
       <div v-else
         class="btn_popup"
@@ -70,42 +118,12 @@
       I give up accelerated results forever &gt;
       </div>
     </div>
-    <div class="mw-520"> 
-      <div class="footer__text">
+    <div v-if="open !== 2" class="mw-520"> 
+      <div  class="footer__text">
         *Your account will be charged immediately for the add-on services or products selected. Add-on items do not come with a free trial. Sales tax included in order total.
       </div>
-    </div>  
-
-    
-  </div>
-    <vpopup
-    class="popup_wraper"
-    textTitle="Did you know?"
-    v-if="popupVisible"
-  > 
-    <p>
-      <span class="text-semibold">Groin Fitness</span> improves blood flow to the groin, which has a big impact on sexual performance.
-    </p>
-    <p>
-      Bad blood flow to the groin area can put you at <span class="text-semibold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
-    </p>
-    <img src="@/assets/images/content/Final_modal.png" alt="">
-    <p class="opacity_05 text-center text-bottom-img">
-      *This diagram is a non-personalized illustration based on scientific research.
-    </p>
-    <div class="block_blue d-flex align-items-center">
-      <img src="@/assets/images/icons/icon_present.svg" alt="">
-      <p>We want you to be successful, so we're offering <span class="text-bold"> 25% off </span> the Groin Fitness just for you!</p>
     </div>
-
-    <button 
-      class="v-popup__submit_btn red active"
-      @click="closePopup"
-    >
-    Continue
-    <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" >
-    </button>
-  </vpopup>
+  </div>
 </template>
 
 <script>
@@ -121,6 +139,7 @@ export default {
     return{
       VueScrollTo: require('vue-scrollto'),
       popupVisible: false,
+      open: 1,
       active: true,
     }
   },
@@ -155,19 +174,24 @@ export default {
       this.$router.push('CodeQR')
     },
     showModal(){
-      let body = document.querySelector('body')
-      body.classList.add('fixed');
-      this.popupVisible = true
+      VueScrollTo.scrollTo('#topPage');
+      this.open = 2
+
+      // let body = document.querySelector('#app')
+      // body.classList.add('fixed');
+      // this.popupVisible = true
     },
     closePopup(e){
-      let body = document.querySelector('body')
-      let x = e.target
-      if(x.classList.contains('active')){
-        VueScrollTo.scrollTo('#topPage');
-        this.popupVisible = false
-        body.classList.remove('fixed');
-        this.active = false
-      }
+      VueScrollTo.scrollTo('#topPage');
+      this.open = 3
+      // let body = document.querySelector('#app')
+      // let x = e.target
+      // if(x.classList.contains('active')){
+      //   VueScrollTo.scrollTo('#topPage');
+      //   this.popupVisible = false
+      //   body.classList.remove('fixed');
+      //   this.active = false
+      // }
     },
   },
   props: {
@@ -211,6 +235,17 @@ export default {
       }
     }
 
+  }
+  .show{
+    margin-bottom: 32px;
+    font-family: "SF-Pro-Display-Bold";
+    line-height: 135%;
+    font-size: 30px;
+    line-height: 135%;
+    @media (max-width:480px) {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
   }
   .blue{
     color: #5773D6;
@@ -363,7 +398,7 @@ export default {
     }
   }
 .v-popup__submit_btn, .v-popup__btn{
-  background-color: rgb(228, 66, 64);
+  background-color: #5773D6;
   border:none;
   border-radius: 9px;
   padding: 16px 37px;
@@ -372,6 +407,11 @@ export default {
   line-height: 135%;
   color: #ffffff;
   margin-top: 32px;
+  margin-bottom: 132px;
+  cursor: pointer;
+  @media (max-width: 480px){
+    margin-bottom: 40px;
+  }
 }
 @media (max-width: 480px){
   .container-main {
@@ -379,7 +419,7 @@ export default {
   }
 }
 .popup_wraper{
-  // max-width: 450px;
+  overflow-y: inherit!important;;
   h2{
     font-family: "SF-Pro-Display-Bold";
     font-size: 24px;
@@ -401,15 +441,26 @@ export default {
       .text-bold{
         font-family: "SF Pro Text Bold";
       }
+    @media (max-width:480px) {
+      font-size: 14px;
+    }  
   }
   img{
     width: 100%;
-    margin: 24px 0 16px;
+    max-width: 450px;
+    margin: 32px auto;
+    display: flex;
+    @media (max-width:480px) {
+      margin: 24px auto 16px;
+    }
   }
   .text-bottom-img{
     font-size: 14px;
     opacity: 0.5;
     font-family: "SF Pro Text Light";
+    margin: 0 auto 32px;
+    max-width: 450px;
+    text-align: center;
     @media (max-width:480px) {
       font-size: 12px;
     }
@@ -417,9 +468,14 @@ export default {
   .block_blue{
     padding: 16px 24px;
     background: #5773D6;
-    width: 100%;
-    margin:0 -21px ;
+    margin-left: -32px;
+    margin-right: -32px;
     color: #ffffff;
+
+    &__content{
+      max-width: 400px;
+      margin: 0 auto;
+    }
     img{
       max-width: 70px;
       margin: 0;

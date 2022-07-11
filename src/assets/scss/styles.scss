@@ -4,8 +4,9 @@ body {
     @media (max-width: 480px) {}
 }
 
-body.fixed {
+.fixed {
     overflow-y: hidden;
+    position: relative;
 }
 
 body .container {

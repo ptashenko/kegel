@@ -44,7 +44,7 @@ const state = () => ({
                 { id: 14 }, { id: 15 }, { id: 42 }, { id: 43 },
                 { id: 56 }, { id: 57 }, { id: 44 }, { id: 45 }, { id: 451 }, { id: 46 },
                 { id: 47, separation: true },
-                { id: 25 }, { id: 26 }, { id: 27 }, { id: 28 }, { id: 29 },
+                { id: 25 }, { id: 26 }, { id: 272 }, { id: 282 }, { id: 29 },
                 { id: 30 }, { id: 31 }, { id: 32 },
                 { id: 321 }, { id: 33 },
                 { id: 34, separation: true }
@@ -517,9 +517,29 @@ const state = () => ({
             },
         },
         {
+            id: 272,
+            title: 'Do you take any medications to increase stamina?',
+            answer: {
+                style: 'radio',
+                answerList: [
+                    'Yes, every time',
+                    'I take them sometimes',
+                    'No, I don\'t',
+                    'I don\'t want to answer',
+                ],
+            },
+        },
+        {
             id: 28,
             title: 'Kegel exercises are better than medications',
             thumbnail: 'ED_s6.png',
+            layoutName: 'standart',
+            buttonsText: ['Back', 'I got it'],
+        },
+        {
+            id: 282,
+            title: 'Kegel exercises are better than medications',
+            thumbnail: 'PE_s6.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
         },
@@ -1200,6 +1220,12 @@ const actions = {
         const content = getItem('content');
         console.log(content);
         commit('saveContent', content);
+        // if (content !== 'undefined') {
+        //     commit('saveContent', content);
+        // } else {
+        //     console.log('content = undefined');
+        // }
+
         console.log(Object.values(content).length);
         if (Object.values(content).length === 0) {
             console.log('survey');

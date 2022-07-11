@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="block-bottom text-center">
-        <p>Special link to your plan was also sent to your email: <span class="blue"> xxx@xx.xx </span></p>
+        <p>Special link to your plan was also sent to your email: <span class="blue"> {{email}} </span></p>
       </div>
     </div>
   </div>
@@ -58,7 +58,8 @@ export default {
   data(){
     return{
       popupVisible: false,
-      active: true
+      active: true,
+      email:this.$store.state.dataPurporse.emailUser
     }
   },
   computed: {
@@ -79,12 +80,12 @@ export default {
       return require(`@/assets/video/${path}`);
     },
     showModal(){
-      let body = document.querySelector('body')
+      let body = document.querySelector('#app')
       body.classList.add('fixed');
       this.popupVisible = true
     },
     closePopup(e){
-      let body = document.querySelector('body')
+      let body = document.querySelector('#app')
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible = false

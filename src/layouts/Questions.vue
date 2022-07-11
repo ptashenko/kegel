@@ -79,7 +79,7 @@
       :buttonNext="{
           text: 'Next',
           icon: 'next',
-          disabled: !selected,
+          disabled: selected,
           click: nextWait,
           theme: 'dark'
         }"
@@ -103,6 +103,7 @@ export default {
       num: 0,
       timePlay: 0,
       show:true,
+      selected:true,
       layotname: [2, 6, 61, 9, 333, 14, 20, 201, 24, 28, 32, 321, 322, 323, 35, 353, 352, 36, 39, 41, 47, 48, 50, 51, 57]
     }
   },
@@ -122,6 +123,24 @@ export default {
     
   },
   methods: {
+    selectedClass(){
+      let answers = document.querySelectorAll('.answer')
+      answers.forEach(function(item){
+        if(item.classList.contains('active')){
+           console.log('есть класс active ');
+        }else{
+           console.log('нет класса active ');
+        }
+      })
+
+      // if(answers.forEach(answer => answer.classList.contains('active'))){
+      //   console.log('есть класс active ');
+      // }else{
+      //   console.log('нет класса active ');
+      // }
+      // console.log(answers)
+      // console.log(answers.forEach(answer => answer.classList.contains('active')));
+    },
     backHome(){
       if(this.survey.id === 1){
         this.$router.push({
@@ -129,6 +148,8 @@ export default {
         });
       }
       else{
+        
+        this.selected = false
         this.show= false
         if(this.layotname.includes(this.myPrewContentId)){
           this.back()
@@ -137,6 +158,7 @@ export default {
           setTimeout(() => {
             this.show= true
             this.back()
+            this.selectedClass()
           }, 500);
         }
       }
@@ -148,6 +170,8 @@ export default {
         });
       }
       else{
+        // this.selectedClass()
+        this.selected = true
         if(this.layotname.includes(this.nextContentId)){
           this.next()
         }else{
@@ -155,6 +179,7 @@ export default {
           setTimeout(() => {
             this.show= true
             this.next()
+            this.selectedClass()
           }, 500);
         }
       }
@@ -172,6 +197,7 @@ export default {
       let str = [] 
       str = e.target.innerText
       str = str.split(',')[0]
+      this.selected = false
       if (e.target.classList.contains('sexual')){
         sessionStorage.setItem('resbtn', str);
       }

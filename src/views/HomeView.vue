@@ -207,21 +207,6 @@ export default {
         }
       }, 1000);
     },
-    // preload(){
-    //   console.log(this.$store.getters.LOADER);
-    //   if(this.$store.getters.LOADER == true){
-    //     let body = document.querySelector('body')
-    //     body.classList.add('fixed');
-    //     setTimeout(() => {
-    //       body.classList.remove('fixed');
-    //       this.loading = false
-    //       this.$store.commit('setLOADER', false);
-    //     }, 3500);
-    //   }else{
-    //     console.log(' Переход не с главной');
-    //   }
-        
-    // }
   },
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),
@@ -253,7 +238,7 @@ export default {
     this.clearHistory()
     this.bgBodyMain()
     document.onreadystatechange = () => { 
-      let body = document.querySelector('body')
+      let body = document.querySelector('#app')
       body.classList.add('fixed');
     if (document.readyState == "complete") { 
       body.classList.remove('fixed');

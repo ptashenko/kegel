@@ -210,12 +210,12 @@ export default {
       return Math.random() * (max - min) + min;
     },
     showModal(){
-      let body = document.querySelector('body')
+      let body = document.querySelector('#app')
       body.classList.add('fixed');
       this.popupVisible = true
     },
     closePopup(e){
-      let body = document.querySelector('body')
+      let body = document.querySelector('#app')
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible = false

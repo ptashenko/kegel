@@ -277,7 +277,7 @@ export default {
   },
   methods:{
     showModal(){
-      let body = document.querySelector('body')
+      let body = document.querySelector('#app')
       body.classList.add('fixed');
       this.popupVisible = true
       this.isActiveNo = this.isActiveYes = this.closeActive = false
@@ -286,7 +286,7 @@ export default {
     },
     closePopup(e){
       let x = e.target
-      let body = document.querySelector('body')
+      let body = document.querySelector('#app')
       if(x.classList.contains('active')){
         body.classList.remove('fixed');
         this.isActiveCheck_1 = true

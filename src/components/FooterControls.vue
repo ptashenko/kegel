@@ -8,7 +8,7 @@
         @click="buttonBack.click()"
         class="footer-controls__button"
       />
-    </div>
+    </div> 
     <div>
       <button-field
         :text="buttonNext.text"

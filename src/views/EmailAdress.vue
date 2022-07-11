@@ -78,6 +78,7 @@ export default {
     nextUrl(){
       if(this.closeActive){
         VueScrollTo.scrollTo('.dark-layout');
+        this.$store.commit('SET_EMAILUSER', this.upValue)
         this.$router.push('LandingView');
         return;
       }else{

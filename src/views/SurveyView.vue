@@ -48,6 +48,9 @@ export default {
     ...mapGetters(['content', 'track']),
     
   },
+  mounted() {
+  }
+
 };
 </script>
 

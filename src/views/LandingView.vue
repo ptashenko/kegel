@@ -455,23 +455,23 @@ export default {
       return moment();
     },
     showModal(){
-      let body = document.querySelector('#app')
+      let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
     },
     showModal2(){
-      let body = document.querySelector('#app')
+      let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible2 = true
       this.step_2 = true
     },
     showModal3(){
-      let body = document.querySelector('#app')
+      let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible3 = true
     },
     closePopup(e){
-      let body = document.querySelector('#app')
+      let body = document.querySelector('body')
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible = false
@@ -479,7 +479,7 @@ export default {
       }
     },
     closePopup2(e){
-      let body = document.querySelector('#app')
+      let body = document.querySelector('body')
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible2 = false
@@ -488,7 +488,7 @@ export default {
       VueScrollTo.scrollTo('#paypal');
     },
     closePopup3(e){
-      let body = document.querySelector('#app')
+      let body = document.querySelector('body')
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible3 = false

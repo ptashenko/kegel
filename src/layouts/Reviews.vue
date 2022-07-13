@@ -13,8 +13,8 @@
           <div class="purpose" >
             {{ track.purpose }} <span v-if="AddPurpose"><span class="width-400"> and</span> {{ track.addpurpose }}</span>
           </div>
-        <div  class="red by" v-if="content.id == 20 || content.id == 57 ">
-          <span>by &nbsp;</span> 
+        <div  class="red by" v-if="content.id == 20 || content.id == 57 || content.id == 201">
+          <span>by&nbsp;</span> 
           <div class="">
             <transition name="slide-fade">
               <span v-if="show" class="block__anim">{{dataPP1}}</span> 
@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="red by" v-else>
-          <span>by &nbsp;</span> 
+          <span>by&nbsp;</span> 
           <div class="">
             <transition name="slide-fade">
               <span v-if="show" class="block__anim">{{dataPP2}}</span> 

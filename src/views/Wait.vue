@@ -1,6 +1,6 @@
 <template>
   <header-layout :fixed="true"/>
-
+  {{backClick}}
   <div class="dark-layout light">
     <div class="container-main is-page wait">
       <!-- <steps/> -->
@@ -9,25 +9,21 @@
       <div class="steps">
         <div class="steps__col d-flex">
           <div class="d-flex align-items-center justify-content-center w-100">
-            <!-- <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker active" alt="check"> -->
             <img src="@/assets/images/icons/check_no_bg.svg" class="checker" alt="check">
           </div>
         </div>
         <div class="steps__col d-flex">
           <div class="d-flex align-items-center justify-content-center w-100">
-            <!-- <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker active" alt="check"> -->
             <img src="@/assets/images/icons/check_no_bg.svg" class="checker" alt="check">
           </div>
         </div>
         <div class="steps__col d-flex">
           <div class="d-flex align-items-center justify-content-center w-100">
-            <!-- <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker active" alt="check"> -->
             <img src="@/assets/images/icons/check_no_bg.svg" class="checker" alt="check">
           </div>
         </div>
         <div class="steps__col d-flex">
           <div class="d-flex align-items-center justify-content-center w-100">
-            <!-- <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker active" alt="check"> -->
             <img src="@/assets/images/icons/check_no_bg.svg" class="checker" alt="check">
           </div>
         </div>
@@ -82,12 +78,12 @@ export default {
       show:true,
       steps: [
         {
-          title: 'Kegel exercises are supported by the multinational studies',
-          active: true,
-        },
-        {
           title: 'Kegel exercises will help you to change your sex life',
           active: false,
+        },
+        {
+          title: 'Kegel exercises are supported by the multinational studies',
+          active: true,
         },
         {
           title: 'The best thing? It takes only 5 min a day to exercise',
@@ -121,6 +117,14 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/wait/${name}.png`);
     },
+    
+  },
+  computed: {
+    backClick(){
+      window.onbeforeunload = function(){
+        clearInterval(list);
+      }
+    }
   },
   mounted() {
     const list = setInterval(() => {
@@ -130,12 +134,17 @@ export default {
       if (this.steps[index + 1]) {
         this.steps[index + 1].active = true;
         this.show= true
+        console.log(index + 1);
       } else {
         this.$router.push({ name: 'goodHands' });
         clearInterval(list);
       }
     }, 5000);
   },
+  beforeDestroy(){
+    console.log('Удаляем setInterval');
+    clearInterval(list);
+  }
 };
 </script>
 

@@ -24,6 +24,12 @@
       </div>
 
       <div class="layout__thumbnail full" v-if="content.thumbnail">
+        <!-- <video-background 
+          :src="image(content.thumbnail)"
+          :poster="image(content.thumbnail)"
+          :alt="content.title"
+        >
+        </video-background> -->
         <img
           :src="image(content.thumbnail)"
           :alt="content.title"
@@ -95,15 +101,12 @@ export default {
   mixins: [nextContentUrl],
   methods: {
     image(path) {
-      // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/content/${path}`);
     },
     video(path) {
-      // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/video/${path}`);
     },
     buttonIcon(name) {
-      // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/icons/layout-buttons/${name}.svg`);
     },
     backURL(){
@@ -114,7 +117,8 @@ export default {
     },
   },
   computed:{
-    ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId'])
+    ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId']),
+    
   },
   mounted(){
     

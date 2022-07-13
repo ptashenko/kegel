@@ -177,14 +177,14 @@ export default {
       VueScrollTo.scrollTo('#topPage');
       this.open = 2
 
-      // let body = document.querySelector('#app')
+      // let body = document.querySelector('body')
       // body.classList.add('fixed');
       // this.popupVisible = true
     },
     closePopup(e){
       VueScrollTo.scrollTo('#topPage');
       this.open = 3
-      // let body = document.querySelector('#app')
+      // let body = document.querySelector('body')
       // let x = e.target
       // if(x.classList.contains('active')){
       //   VueScrollTo.scrollTo('#topPage');

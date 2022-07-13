@@ -152,9 +152,9 @@ export default {
         this.selected = false
         this.show= false
         if(this.layotname.includes(this.myPrewContentId)){
+          this.show= true 
           this.back()
         }else{
-          this.show= false
           setTimeout(() => {
             this.show= true
             this.back()

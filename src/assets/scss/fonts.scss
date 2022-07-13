@@ -1,5 +1,6 @@
 @font-face {
     font-family: "SF Pro Text Bold";
+    font-display: block;
     src: local("SF Pro Text Bold");
     src: url("~@/assets/fonts/SF Pro Text Bold.ttf") format("truetype");
     font-weight: 700;
@@ -7,6 +8,7 @@
 
 @font-face {
     font-family: "SF Pro Text Semibold";
+    font-display: block;
     src: local("SF Pro Text Semibold");
     src: url("~@/assets/fonts/SF Pro Text Semibold.ttf") format("truetype");
     font-weight: 600;
@@ -14,6 +16,7 @@
 
 @font-face {
     font-family: "SF Pro Text Medium";
+    font-display: block;
     src: local("SF Pro Text Medium");
     src: url("~@/assets/fonts/SF Pro Text Medium.ttf") format("truetype");
     font-weight: 500;
@@ -21,6 +24,7 @@
 
 @font-face {
     font-family: "SF Pro Text Regular";
+    font-display: block;
     src: local("SF Pro Text Regular");
     src: url("~@/assets/fonts/SF Pro Text Regular.ttf") format("truetype");
     font-weight: 400;
@@ -28,6 +32,7 @@
 
 @font-face {
     font-family: "SF Pro Text Light";
+    font-display: block;
     src: local("SF Pro Text Light");
     src: url("~@/assets/fonts/SF Pro Text Light.ttf") format("truetype");
     font-weight: 300;
@@ -35,6 +40,7 @@
 
 @font-face {
     font-family: "SF-Pro-Display-Bold";
+    font-display: block;
     src: local("SF-Pro-Display-Bold");
     src: url("~@/assets/fonts/SF-Pro-Display-Bold.otf") format("truetype");
     font-weight: 700;
@@ -42,6 +48,7 @@
 
 @font-face {
     font-family: "SF-Pro-Display-Semibold";
+    font-display: block;
     src: local("SF-Pro-Display-Semibold");
     src: url("~@/assets/fonts/SF-Pro-Display-Semibold.otf") format("truetype");
     font-weight: 600;
@@ -49,6 +56,7 @@
 
 @font-face {
     font-family: "SF-Pro-Display-Medium";
+    font-display: block;
     src: local("SF-Pro-Display-Medium");
     src: url("~@/assets/fonts/SF-Pro-Display-Medium.otf") format("truetype");
     font-weight: 500;

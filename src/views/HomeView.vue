@@ -90,9 +90,9 @@
               Warsaw, Twarda 18, 00-105
             </span>
             <div class="footer__terms">
-              <a href="https://appercut.co/privacy-policy.html">Privacy Policy</a>
+              <a href="https://appercut.co/privacy-policy.html" target="_blank">Privacy Policy</a>
               <div class="line">|</div>
-              <a href="https://appercut.co/terms.html">Terms & Conditions</a>
+              <a href="https://appercut.co/terms.html" target="_blank">Terms & Conditions</a>
             </div>
           </div>
         </div>
@@ -238,7 +238,7 @@ export default {
     this.clearHistory()
     this.bgBodyMain()
     document.onreadystatechange = () => { 
-      let body = document.querySelector('#app')
+      let body = document.querySelector('body')
       body.classList.add('fixed');
     if (document.readyState == "complete") { 
       body.classList.remove('fixed');

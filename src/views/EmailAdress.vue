@@ -20,7 +20,7 @@
                   id="email" 
                   class="email" 
                   type="email" 
-                  placeholder="Your email here"
+                  placeholder="Enter your email here "
                 >
                 <span class="lock">
                   <img src="@/assets/images/icons/lock.svg" alt="img">
@@ -43,8 +43,8 @@
                 By giving your email address you can also receive offers from Appercut Sp. z o.o. You can unsubscribe at any time.
               </p>
               <div class="footer__terms">
-                <a href="https://appercut.co/terms.html">Terms</a>
-                <a href="https://appercut.co/privacy-policy.html">Policy</a>
+                <a href="https://appercut.co/terms.html" target="_blank">Terms</a>
+                <a href="https://appercut.co/privacy-policy.html" target="_blank">Policy</a>
               </div>
             </div>
           </div>

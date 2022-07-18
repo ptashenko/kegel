@@ -66,12 +66,12 @@
 </template>
 
 <script>
-import Steps from '@/components/Steps.vue';
+// import Steps from '@/components/Steps.vue';
 
 export default {
   name: 'Wait-layout',
   components: {
-    Steps,
+    // Steps,
   },
   data() {
     return {

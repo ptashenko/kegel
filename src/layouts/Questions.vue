@@ -167,10 +167,6 @@ export default {
             this.show= true
             this.next()
           }, 500);
-          setTimeout(() => {
-            console.log(this.survey.answer.answerList)
-            console.log(this.answer);
-          }, 600);
         }
       }
     },

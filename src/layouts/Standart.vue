@@ -117,7 +117,8 @@ export default {
     },
   },
   computed:{
-    ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId']),
+    // ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId']),
+    ...mapGetters([ 'track', 'myPrewContentId','nextContentId']),
     
   },
   mounted(){

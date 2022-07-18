@@ -236,17 +236,31 @@
       </div>
       <div class="w-100 d-flex flex-column align-items-center justify-content-center">
         <div id="apple-pay-button-container">
-          <button 
-            class="aple_pay d-flex align-items-center justify-content-beetwen cursor"
-            @click="nextUrl"
+          <div
             v-if="apple_pay"
           >
-            Buy with&nbsp;
-            <img src="@/assets/images/icons/apple_pay_white.svg" alt="apple_pay">
-          </button>
-          <button v-else class="Pay_pay d-flex align-items-center justify-content-beetwen cursor">
-            <img src="@/assets/images/icons/PayPal_img_2.svg" alt="apple_pay">&nbsp;Buy Now
-          </button>
+            <button 
+              class="aple_pay d-flex align-items-center justify-content-beetwen cursor"
+              @click="nextUrl"
+            >
+              Buy with&nbsp;
+              <img src="@/assets/images/icons/apple_pay_white.svg" alt="apple_pay">
+            </button>
+            <button 
+              class="aple_pay error d-flex align-items-center justify-content-beetwen cursor"
+              @click="paymentError"
+            >
+              Error button
+            </button>
+          </div>
+          <div
+            v-else
+          >
+            <button class="Pay_pay d-flex align-items-center justify-content-beetwen cursor">
+              <img src="@/assets/images/icons/PayPal_img_2.svg" alt="apple_pay">&nbsp;Buy Now
+            </button>
+          </div>
+          
         </div>
       </div>
       <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
@@ -395,6 +409,20 @@
     Got it
     </button>
   </vpopup>
+  <vpopup
+    class="windowError"
+    v-if="windowError"
+  > 
+    <p class="opasity_75">
+      Your payment was declined. Please try again or use a different payment method.
+    </p>
+    <img 
+      class="error" 
+      src="@/assets/images/icons/btn_close_communicate.svg" 
+      alt="error"
+      @click="closeWindowError"
+    >
+  </vpopup>
 </div>
 
 </template>
@@ -432,9 +460,12 @@ export default {
       base: {},
       numreview: 3,
       track: 0,
+      windowError: false,
+      numTimeError:0,
+      polling: null,
       popupVisible: false,
-      popupVisible2:false,
-      popupVisible3:false,
+      popupVisible2: false,
+      popupVisible3: false,
       isActiveYes: false,
       isActiveNo: false,
       closeActive: false,
@@ -451,13 +482,32 @@ export default {
   },     
   methods: {
     nextUrl(){
-      VueScrollTo.scrollTo('.dark-layout');
       setTimeout(() =>{
         this.$router.push('PlanFinal')
-      }, 600)
+      }, 0)
     },
     moment(){
       return moment();
+    },
+    paymentError(){
+      console.log(this.numTimeError);
+      this.windowError = true
+      this.numTimeError = 0
+      this.polling = setInterval(() => {
+          if (this.numTimeError < 9) {
+            console.log(this.numTimeError);
+            this.numTimeError += 1;
+          } else {
+            console.log(this.numTimeError);
+            clearInterval(this.polling)
+            this.numTimeError = 0
+            this.windowError = false
+          }
+        }, 1000)
+    },
+    closeWindowError(e){
+      clearInterval(this.polling)
+      this.windowError = false
     },
     showModal(){
       let body = document.querySelector('body')
@@ -601,6 +651,9 @@ export default {
       }
       return console.log(this.track);  ; 
     },
+  },
+  beforeDestroy () {
+    clearInterval(this.polling)
   },
   mounted() {
     const numanim = setInterval(() => {
@@ -763,6 +816,18 @@ export default {
       border: 3px solid #C7C7C7;
     }
   }
+  .error{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E44240;
+    border: 3px solid #E44240;
+    &:focus{
+      background: #eb6967;
+      border: 3px solid #E44240;
+    }
+  }
   .Pay_pay{
     background: #FFBB1B;
     color: #2D2F2F;
@@ -903,7 +968,27 @@ hr{
     }
   }
 }
-
+.windowError{
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  position: fixed;
+  z-index: 9;
+  top: 32px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0);
+  .v-popup{
+    box-shadow:(6px 6px 13px rgba(0, 0, 0, 0.25));
+    background: #FFE4E4!important;
+    border: 2px solid #E44240;
+    border-radius: 9px;
+    .error{
+      margin-left: 16px;
+    }
+  }
+}
 .small::before{
   content: "";
   width: 1px;

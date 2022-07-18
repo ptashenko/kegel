@@ -169,12 +169,10 @@ export default {
     dataP3(){
       moment();
       let ppp = this.randomData
-      console.log(ppp);
       function days(numer, param, key){
         if(ppp < numer){
           let m3 = moment().add(3,'month').daysInMonth()
           let ost = m3 - (numer - ppp)
-          console.log(m3);
           let param = moment().add(3,'month').format("MMMM") + ' ' + ost ;
           sessionStorage.setItem(key, param);
         }else if(ppp == numer){
@@ -182,7 +180,6 @@ export default {
           let param = moment().add(3,'month').format("MMMM") + ' ' + m3 ;
           sessionStorage.setItem(key, param);
         }else{
-          console.log('другая функция');
           let ost = ppp - numer
           let param = moment().add(4,'month').format("MMMM") + ' ' + ost ;
           sessionStorage.setItem(key, param);

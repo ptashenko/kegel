@@ -14,12 +14,13 @@ export default {
                         params: { survey: this.nextContentId },
                     });
             } else {
-                window.scrollTo(0, 0),
-                    this.$router.push({
-                        name: 'wait',
-                    });
+                console.log('переход на страницу wait');
+                // window.scrollTo(0, 0),
+                //     this.$router.push({
+                //         name: 'wait',
+                //     });
+
             }
-            console.log(this.nextContentId);
         },
         cont() {
             const content = this.contentBy({
@@ -36,9 +37,6 @@ export default {
                     params: { survey: this.myPrewTwoContentId },
                 });
             } else {
-                console.log(' Поле layoutName нет ');
-                console.log(this.myPrewContentId);
-                console.log(this.cont().id);
                 if (this.cont().id > 1) {
                     this.$router.push({
                         name: 'survey',
@@ -64,19 +62,13 @@ export default {
             this.route();
         },
         loadPercent(newloadPercent, oldloadPercent) {
-            console.log(this.$store.state.survey.layotStep);
             if (newloadPercent < 31) {
-                console.log(newloadPercent);
                 this.$store.state.survey.layotStep = 1
-                console.log(this.$store.state.survey.layotStep);
             } else if (newloadPercent > 32 && newloadPercent < 64) {
-                console.log(newloadPercent);
                 this.$store.state.survey.layotStep = 2
             } else if (newloadPercent > 65 && newloadPercent < 99) {
-                console.log(newloadPercent);
                 this.$store.state.survey.layotStep = 3
             } else if (newloadPercent > 99) {
-                console.log(newloadPercent);
                 this.$store.state.survey.layotStep = 4
             }
         }

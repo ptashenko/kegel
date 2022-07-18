@@ -430,7 +430,7 @@ export default {
     }
   }
   p{
-    font-size: 16px;
+    font-size: 18px;
     line-height: 150%;
     font-family: "SF Pro Text Regular";
     opacity: 1;

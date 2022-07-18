@@ -168,9 +168,12 @@ export default {
     btnAddPurpose(){
       if(sessionStorage.getItem('resbtn') == 'Yes'){
         this.AddPurpose = true
+        if(this.jsLocal === 3 ){
+          this.AddPurpose = false
+        }
       }else{
         if(this.jsLocal === 3 ){
-          this.AddPurpose = true
+          this.AddPurpose = false
         }else{
           this.AddPurpose = false
         }

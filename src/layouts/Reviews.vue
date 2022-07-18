@@ -128,7 +128,7 @@ export default {
       if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes'){
         this.imageitem = require(`@/assets/images/json/ED.json`);
       }else if(this.track.id == 3){
-        this.AddPurpose = true
+        this.AddPurpose = false
       }
       return  console.log(this.imageitem);
     }
@@ -138,7 +138,6 @@ export default {
   },
   methods: {
     image(path) {
-      // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/json/${path}`);
     },
     moment(){
@@ -189,6 +188,9 @@ export default {
         clearInterval(numanim);
       }
     }, 500);
+  },
+  beforeDestroy(){
+    clearInterval(numanim);
   }
 };
 </script>

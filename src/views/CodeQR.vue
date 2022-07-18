@@ -42,7 +42,7 @@
   </div>
   <div class="footer">
       <div class="footer__text">
-        Any questions? Contact us at <span class="blue">support@kegel.men</span>
+        Any questions? Contact us at <span class="blue">contact@kegel.men</span>
       </div>
     </div>  
 </template>

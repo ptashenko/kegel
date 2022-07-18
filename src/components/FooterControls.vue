@@ -54,6 +54,13 @@ export default {
   position: relative;
   text-align: center;
   margin: 25px auto 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 30px;
+  max-width: 540px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
   @media (max-width:480px) {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
   }

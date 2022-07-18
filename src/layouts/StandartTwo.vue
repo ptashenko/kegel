@@ -160,6 +160,7 @@ export default {
       max-width: 520px;
       width: 100%;
     }
+    
   }
   &__button {
     font-weight: 500;
@@ -220,7 +221,22 @@ export default {
       max-width: 520px;
       width: 100%;
     }
- .bold-text{
+.bold-text{
     font-family: "SF Pro Text Semibold";
   }
+  .video {
+    max-height: 340px;
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 14px;
+    @media (max-width: 480px) {
+        max-height: 240px;
+    }
+    @media (max-width:440px) {
+        max-height: 220px;
+    }
+    @media (max-width:400px) {
+        max-height: 200px;
+    }
+}
 </style>

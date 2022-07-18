@@ -1,6 +1,6 @@
 <template>
-    <header-layout :fixed="true" :dark="true"/>
 
+    <header-layout :fixed="true" :dark="true"/>
     <div class="block__steps" :data-step="content.steps">
       <steps v-if="content.steps !== false" />
     </div>
@@ -68,6 +68,7 @@
           <div>{{survey.answer.textRight}}</div>
         </div>
       </div>
+       
     </transition>
     <footer-controls
       :buttonBack="{
@@ -84,7 +85,6 @@
           theme: 'dark'
         }"
     />
-    
 </template>
 
 <script>
@@ -104,8 +104,15 @@ export default {
       timePlay: 0,
       show:true,
       selected:true,
+      but:1,
       layotname: [2, 6, 61, 9, 333, 14, 20, 201, 24, 28, 32, 321, 322, 323, 35, 353, 352, 36, 39, 41, 47, 48, 50, 51, 57]
     }
+  },
+  props: {
+    survey: {
+      required: true,
+      type: [Object],
+    },
   },
   computed: {
     
@@ -115,7 +122,6 @@ export default {
     },
     ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId'])
   },
-  
   components: {
     QuestionRadio,
     Question,
@@ -123,24 +129,6 @@ export default {
     
   },
   methods: {
-    selectedClass(){
-      let answers = document.querySelectorAll('.answer')
-      answers.forEach(function(item){
-        if(item.classList.contains('active')){
-           console.log('есть класс active ');
-        }else{
-           console.log('нет класса active ');
-        }
-      })
-
-      // if(answers.forEach(answer => answer.classList.contains('active'))){
-      //   console.log('есть класс active ');
-      // }else{
-      //   console.log('нет класса active ');
-      // }
-      // console.log(answers)
-      // console.log(answers.forEach(answer => answer.classList.contains('active')));
-    },
     backHome(){
       if(this.survey.id === 1){
         this.$router.push({
@@ -158,7 +146,6 @@ export default {
           setTimeout(() => {
             this.show= true
             this.back()
-            this.selectedClass()
           }, 500);
         }
       }
@@ -170,19 +157,33 @@ export default {
         });
       }
       else{
-        // this.selectedClass()
         this.selected = true
         if(this.layotname.includes(this.nextContentId)){
           this.next()
         }else{
           this.show= false
           setTimeout(() => {
+            
             this.show= true
             this.next()
-            this.selectedClass()
           }, 500);
+          setTimeout(() => {
+            console.log(this.survey.answer.answerList)
+            console.log(this.answer);
+          }, 600);
         }
       }
+    },
+    classActive(){
+        let answeres = document.querySelectorAll('.answer')
+        answeres.forEach(function(item){
+          if(item.classList.contains('active')){
+            this.selected = true
+          }else{
+            console.log('нет класса active ')
+            this.selected = false
+          }
+      })
     },
     json(json) {
       return require(`@/assets/images/json/${json}`);
@@ -204,14 +205,7 @@ export default {
     },
   },
   mixins: [history, nextContentUrl],
-  props: {
-    survey: {
-      required: true,
-      type: [Object],
-    },
-  },
-  mounted() {
-  }
+  
 };
 </script>
 

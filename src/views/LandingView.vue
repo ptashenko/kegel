@@ -96,6 +96,10 @@
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
                 {{ addpurpose }}
               </li>
+              <li class="li" v-if="addItem">
+                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
+                Increase stamina
+              </li>
               <li class="li">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
                 Pill-free approach
@@ -441,7 +445,8 @@ export default {
       show: false,
       imageitem: require(`@/assets/images/json/Step_1_1.json`),
       imgProba: false,
-      AddPurposeCom: false
+      AddPurposeCom: false,
+      addItem: false
     };
   },     
   methods: {
@@ -586,8 +591,9 @@ export default {
       var obj = JSON.parse(json);
       this.track = obj.id
       if(this.track == 3){
+        this.addItem = true
         this.base =  this.$store.state.review.msgOkLand
-        this.AddPurposeCom = true
+        this.AddPurposeCom = false
       }else if(this.track == 2){
         this.base = this.$store.state.review.msgPeLand
       }else{
@@ -626,9 +632,11 @@ export default {
       }else{
         clearInterval(numanim);
       }
-
     }, 500);
   },
+  beforeDestroy(){
+      clearInterval(numanim);
+  }
 };
 </script>
 

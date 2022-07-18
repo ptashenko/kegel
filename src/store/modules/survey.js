@@ -1220,11 +1220,7 @@ const actions = {
         const content = getItem('content');
         console.log(content);
         commit('saveContent', content);
-        // if (content !== 'undefined') {
-        //     commit('saveContent', content);
-        // } else {
-        //     console.log('content = undefined');
-        // }
+
 
         console.log(Object.values(content).length);
         if (Object.values(content).length === 0) {

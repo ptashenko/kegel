@@ -24,15 +24,18 @@ export default {
   },
   mixins: [history, nextContentUrl],
   mounted() {
-    const $i = setInterval(() => {
+    const progress = setInterval(() => {
       if (this.percent < 100) {
         this.percent += 1;
       } else {
-        clearInterval($i);
+        clearInterval(progress);
         this.next();
       }
     }, 100);
   },
+  beforeDestroy(){
+    clearInterval(progress);
+  }
 };
 </script>
 

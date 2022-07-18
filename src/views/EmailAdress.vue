@@ -15,7 +15,17 @@
             <p class="email__content__text">to get your Kegel Training Plan & {{ purpose }}</p>
             
               <label for="email">
+                
                 <input 
+                  v-if="email"
+                  v-model="upValue"
+                  id="email" 
+                  class="email" 
+                  type="email" 
+                  :placeholder="email"
+                >
+                <input 
+                  v-else
                   v-model="upValue"
                   id="email" 
                   class="email" 
@@ -26,7 +36,15 @@
                   <img src="@/assets/images/icons/lock.svg" alt="img">
                 </span>
               </label>
+              <div
+                v-if="email"
+                class="v-popup__submit_btn active"
+                @click="nextUrlEmail"
+              >
+              See my plan
+              </div>
               <div 
+                v-else
                 class="v-popup__submit_btn"
                 :class="{active: closeActive}"
                 @click="nextUrl"
@@ -71,7 +89,8 @@ export default {
       email: null,
       isEmailTouched: false,
       upValue: '',
-      title:'Enter email adress'
+      title:'Enter email adress',
+      email:this.$store.state.dataPurporse.emailUser
     };
   },
   methods: {
@@ -84,6 +103,12 @@ export default {
       }else{
         console.log('Введите email');
       } 
+    },
+    nextUrlEmail(){
+      VueScrollTo.scrollTo('.dark-layout');
+      this.$store.commit('SET_EMAILUSER', this.upValue)
+      this.$router.push('LandingView');
+      return;
     },
   },
   watch:{

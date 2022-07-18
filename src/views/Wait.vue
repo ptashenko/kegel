@@ -79,11 +79,11 @@ export default {
       steps: [
         {
           title: 'Kegel exercises will help you to change your sex life',
-          active: false,
+          active: true,
         },
         {
           title: 'Kegel exercises are supported by the multinational studies',
-          active: true,
+          active: false,
         },
         {
           title: 'The best thing? It takes only 5 min a day to exercise',
@@ -129,7 +129,7 @@ export default {
   mounted() {
     const list = setInterval(() => {
       const index = this.steps.findIndex((step) => step.active === true);
-      // eslint-disable-next-line no-param-reassign,no-return-assign
+      // const index = 0;
       this.steps.forEach((step) => step.active = false);
       if (this.steps[index + 1]) {
         this.steps[index + 1].active = true;
@@ -142,7 +142,6 @@ export default {
     }, 5000);
   },
   beforeDestroy(){
-    console.log('Удаляем setInterval');
     clearInterval(list);
   }
 };

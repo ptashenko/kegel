@@ -68,7 +68,7 @@
         <p>
           Bad blood flow to the groin area can put you at <span class="text-semibold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
         </p>
-        <img src="@/assets/images/content/Final_modal.png" alt="">
+        <img class="content_img" src="@/assets/images/content/Final_modal.png" alt="">
         <p class="opacity_05 text-center text-bottom-img">
           *This diagram is a non-personalized illustration based on scientific research.
         </p>
@@ -81,21 +81,75 @@
       </div>
 
 
-
-      <button-field
-        v-if="open == 1"
-        text='Add to my plan'
-        theme="Back"
-        class="footer-controls__button red"
-        @click="nextUrl"
-      />
-      <button-field
+      <div v-if="open == 1">
+        <button-field
+          
+          text='Add to my plan'
+          theme="Back"
+          class="footer-controls__button red"
+          @click="nextUrl"
+        />
+        <button-field
+          text='Add to my plan'
+          theme="Back"
+          class="footer-controls__button red loader"
+          :class="{ hiden: isActive }"
+          @click="loadingBtn"
+        />
+        <div
+          class="footer-controls__button btnLoader loader"
+          :class="{ hiden: !isActive }"
+        >
+          <lottie-animation 
+            class="check"
+            ref="anim"
+            :animationData="require(`@/assets/images/json/loader_white.json`)"
+            :loop="mytrue"
+            :autoPlay="true"
+            :speed="1"
+            @loopComplete="loopComplete"
+            @complete="complete"
+            @enterFrame="enterFrame"
+            @segmentStart="segmentStart"
+            @stopped="stopped"
+          />
+        </div>
+      </div>
+      <div
         v-if="open == 3"
-        text='Add to my plan'
-        theme="Back"
-        class="footer-controls__button bg-blue"
-        @click="nextUrl"
-      />
+      >
+        <button-field
+          text='Add to my plan'
+          theme="Back"
+          class="footer-controls__button bg-blue"
+          @click="nextUrl"
+        />
+        <button-field
+          text='Add to my plan'
+          theme="Back"
+          class="footer-controls__button red loader bg-blue"
+          :class="{ hiden: isActive }"
+          @click="loadingBtn"
+        />
+        <div
+          class="footer-controls__button btnLoader loader bg-blue"
+          :class="{ hiden: !isActive }"
+        >
+          <lottie-animation 
+            class="check"
+            ref="anim"
+            :animationData="require(`@/assets/images/json/loader_white.json`)"
+            :loop="mytrue"
+            :autoPlay="true"
+            :speed="1"
+            @loopComplete="loopComplete"
+            @complete="complete"
+            @enterFrame="enterFrame"
+            @segmentStart="segmentStart"
+            @stopped="stopped"
+          />
+        </div>
+      </div>
       <div v-if="active && open == 1"
         class="btn_popup"
         @click="showModal"
@@ -124,6 +178,89 @@
       </div>
     </div>
   </div>
+  <vpopup
+    class="windowError"
+    v-if="windowError"
+  > 
+    <div>
+      <p class="opasity_75">
+        Your payment was declined.
+      </p>
+      <p 
+        class="opasity_75 blue"
+        @click="popupPay"
+      >
+        Tap here to select a different payment method.
+      </p>
+    </div>
+    <img 
+      class="error" 
+      src="@/assets/images/icons/btn_close_communicate.svg" 
+      alt="error"
+      @click="closeWindowError"
+    >
+  </vpopup>
+  <vpopup
+    v-if="popupWindowPay"
+    textTitle="Select Payment method"
+    class="popup_wraper"
+  >
+    <div 
+      class="closeBtn" 
+      @click="closePopupWindowPay"
+    >
+      <img src="@/assets/images/icons/btn_close_cwindow.svg" alt="apple_pay">
+    </div>
+    <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
+      <div class="d-flex flex-column align-items-center justify-content-center">
+        <div id="solid-payment-form-container">
+          <button class="pay cursor" v-if="apple_pay">
+            <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
+          </button>
+          <button class="pay cursor" v-else>
+            <img src="@/assets/images/icons/google_pay.svg" alt="apple_pay">
+          </button>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-beetwen">
+        <button class="pay small mr-2 cursor">
+          <img src="@/assets/images/icons/paypal.png" alt="apple_pay">
+        </button>
+        <button class="pay small ml-2 cursor">
+          <img src="@/assets/images/icons/card.png" alt="apple_pay">
+        </button>
+      </div>
+      <div class="w-100 d-flex flex-column align-items-center justify-content-center">
+        <div id="apple-pay-button-container">
+          <div
+            v-if="apple_pay"
+          >
+            <button 
+              class="aple_pay d-flex align-items-center justify-content-beetwen cursor"
+              @click="nextUrl"
+            >
+              Buy with&nbsp;
+              <img class="apple_pay" src="@/assets/images/icons/apple_pay_white.svg" alt="apple_pay">
+            </button>
+            <button 
+              class="aple_pay error d-flex align-items-center justify-content-beetwen cursor"
+              @click="closePopupWindowPayError"
+            >
+              Error button
+            </button>
+          </div>
+          <div
+            v-else
+          >
+            <button class="Pay_pay d-flex align-items-center justify-content-beetwen cursor">
+              <img src="@/assets/images/icons/PayPal_img_2.svg" alt="apple_pay">&nbsp;Buy Now
+            </button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </vpopup>
 </template>
 
 <script>
@@ -141,6 +278,12 @@ export default {
       popupVisible: false,
       open: 1,
       active: true,
+      isActive: false,
+      mytrue: true,
+      windowError: false,
+      numTimeError:0,
+      popupWindowPay: false,
+      apple_pay:true 
     }
   },
   computed: {
@@ -162,6 +305,54 @@ export default {
     ButtonField,
   },
   methods: {
+    popupPay(){
+      clearInterval(this.polling)
+      this.windowError = false
+      this.isActive = false
+      this.popupWindowPay = true
+    },
+    closePopupWindowPay(){
+      this.popupWindowPay = false
+    },
+    closePopupWindowPayError(){
+      this.popupWindowPay = false
+      this.loadingBtn()
+    },
+    paymentError(){
+      this.windowError = true
+      this.numTimeError = 0
+      this.polling = setInterval(() => {
+          if (this.numTimeError < 8) {
+            this.numTimeError += 1;
+          } else {
+            clearInterval(this.polling)
+            this.numTimeError = 0
+            this.windowError = false
+          }
+        }, 1000)
+    },
+    closeWindowError(e){
+      clearInterval(this.polling)
+      this.windowError = false
+      this.isActive = false
+    },
+    loadingBtn(){
+      this.isActive = true
+      this.numTimeError = 0
+      this.pollingTwo = setInterval(() => {
+          if (this.numTimeError < 1) {
+            console.log(this.numTimeError);
+            this.windowError = false
+            this.numTimeError += 1;
+          } else {
+            console.log(this.numTimeError);
+            clearInterval(this.pollingTwo)
+            this.numTimeError = 0
+            this.isActive = false
+            this.paymentError() 
+          }
+        }, 1000)
+    },
     video(path) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/video/${path}`);
@@ -199,6 +390,11 @@ export default {
       required: true,
       type: Object,
     },
+  },
+  beforeDestroy () {
+    clearInterval(this.polling)
+    clearInterval(this.pollingTwo)
+
   },
   mounted(){
   }
@@ -446,12 +642,12 @@ export default {
     }  
   }
   img{
-    width: 100%;
+    // width: 100%;
     max-width: 450px;
     margin: 32px auto;
     display: flex;
     @media (max-width:480px) {
-      margin: 24px auto 16px;
+      margin: 0px auto 0px;
     }
   }
   .text-bottom-img{
@@ -497,5 +693,184 @@ export default {
     max-width: 14px;
     margin: 0 0 0 12px;
   }
+}
+// Logic
+.popup_wraper{
+  // max-width: 450px;
+  h2{
+    font-family: "SF-Pro-Display-Bold";
+    font-size: 24px;
+    line-height: 135%;
+    margin: 16px auto 16px;
+    @media (max-width:480px) {
+      font-size: 20px;
+    }
+  }
+  p{
+    font-size: 16px;
+    line-height: 150%;
+    font-family: "SF Pro Text Regular";
+    opacity: 0.75;
+    margin-bottom: 16px;
+    .text-bold{
+      font-family: "SF Pro Text Semibold";
+    }
+  }
+}
+.btnLoader{
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+  justify-content: center;
+  background: #E44240;
+  border-radius: 9px;
+  margin: 16px auto 0;
+}
+.hiden{
+  display: none;
+}
+.check{
+  width: 25px;
+  height: 25px;
+  
+  @media (max-width:480px) {
+    width: 16px;
+    height: 16px;
+  }
+}
+.check svg{
+  color: #ffffff;
+  stroke: red;
+  fill: red;
+}
+.windowError{
+  .blue{
+    color:#5773D6;
+    margin-top: 4px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+.block-pay{
+  width: 350px;
+  
+  .d-flex{
+    width: 100%;
+    max-width: 310px;
+  }
+  .w-100{
+    width: 100%;
+    margin-top: 32px;
+  }
+  .flex-wrap{
+    flex-wrap: wrap;
+    width: 380px;
+    margin-top: 48px;
+    @media (max-width:480px) {
+      max-width: 270px;
+      justify-content: center;
+    }
+    p{
+      font-family: "SF Pro Text Regular";
+      font-size: 16px;
+      .bold{
+        font-family: "SF Pro Text Semibold";
+      }
+      @media (max-width:480px) {
+        font-size: 14px;
+        margin-top: 11px;
+      }
+    }
+  }
+  .star{
+    img{
+      max-width: 20px;
+      height: auto;
+    }
+    @media (max-width:480px) {
+      margin-right: 9px;
+    }
+  }
+  button.pay{
+    background: #F9F9F9;
+    border: 2px solid #F9F9F9;
+    border-radius: 9px;
+    margin-bottom:10px ;
+    max-width: 310px;
+    &:focus{
+      background: rgba(87, 115, 214, 0.1);
+      border: 2px solid #5773D6;
+    }
+  }
+  button.pay.small{
+    max-width: 150px;
+    img{
+      width: 100%;
+    }
+  }
+  .aple_pay{
+    background: #111113;
+    color: #FFFFFF;
+    border: 3px solid #111113;
+    border-radius: 100px;
+    margin-bottom:10px ;
+    width: 100%;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 15px 65px;
+    font-family: "SF Pro Text Semibold";
+    &:focus{
+      background: #1B1B1E;
+      border: 3px solid #C7C7C7;
+    }
+  }
+  .error{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E44240;
+    border: 3px solid #E44240;
+    &:focus{
+      background: #eb6967;
+      border: 3px solid #E44240;
+    }
+  }
+  .Pay_pay{
+    background: #FFBB1B;
+    color: #2D2F2F;
+    border: 3px solid #FFBB1B;
+    border-radius: 100px;
+    margin-bottom:10px ;
+    width: 100%;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 15px 55px;
+    font-family: "SF Pro Text Regular";
+    &:focus{
+      background: #FFBB1B;
+      border: 3px solid #F3F3F3;
+    }
+  }
+}
+.closeBtn{
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+  }
+@media (max-width: 480px){
+  .dark-layout.light .loader {
+    margin-top: 16px;
+  }
+  div.loader{
+    padding: 20.5px 0;
+  }
+}
+img.apple_pay{
+  max-width: 65px;
+}
+.content_img{
+  width: 100%;
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
 	<div class="countdown">
-	    <div class="time-unite created">
-	        <div class="time-unite-value">
-						<span v-if="minutes < 10 ">0{{ minutes }}</span> 
-						<span v-else>{{ minutes }}</span> 
-						<span>:</span> 
-						<span v-if="seconds < 10 ">0{{ seconds }}</span> 
-						<span v-else>{{ seconds }}</span> </div>
-	    </div>
+		<div class="time-unite created">
+			<div class="time-unite-value">
+				<span v-if="minutes < 10 ">0{{ minutes }}</span> 
+				<span v-else>{{ minutes }}</span> 
+				<span>:</span> 
+				<span v-if="seconds < 10 ">0{{ seconds }}</span> 
+				<span v-else>{{ seconds }}</span> </div>
+		</div>
 	</div>
 </template>
 
@@ -25,14 +25,13 @@
 		},
 		methods: {
 		  addOneSecondToActualTimeEverySecond () {
-		      var component = this
-		      component.actualTime = moment().format('X')
-		      setTimeout(function(){
-		          component.addOneSecondToActualTimeEverySecond()
-		      }, 1000);
+				var component = this
+				component.actualTime = moment().format('X')
+				setTimeout(function(){
+					component.addOneSecondToActualTimeEverySecond()
+				}, 1000);
 		  },
 		  getDiffInSeconds () {
-        
 		    return this.timer - this.actualTime
 		  },
 		  compute () {
@@ -46,9 +45,9 @@
 		  this.addOneSecondToActualTimeEverySecond()
 		},
 		watch: {
-		    actualTime (val,oldVal) {
-		        this.compute()
-		    }
+			actualTime (val,oldVal) {
+				this.compute()
+			}
 		}
 	}
 </script>

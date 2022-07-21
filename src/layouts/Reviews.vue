@@ -212,7 +212,7 @@ export default {
 }
 .reviews {
   padding-top: 50px;
-
+  padding-bottom: 50px;
   &__title {
     font-family: "SF-Pro-Display-Semibold";
     font-size: 18px;

@@ -173,7 +173,10 @@
     textTitle="Select Payment method"
     class="popup_wraper"
   >
-    <div class="closeBtn">
+    <div 
+      class="closeBtn" 
+      @click="closePopupWindowPay"
+    >
       <img src="@/assets/images/icons/btn_close_cwindow.svg" alt="apple_pay">
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
@@ -209,7 +212,7 @@
             </button>
             <button 
               class="aple_pay error d-flex align-items-center justify-content-beetwen cursor"
-              @click="popupPay"
+              @click="closePopupWindowPayError"
             >
               Error button
             </button>
@@ -311,6 +314,13 @@ export default {
       this.windowError = false
       this.isActive = false
       this.popupWindowPay = true
+    },
+    closePopupWindowPay(){
+      this.popupWindowPay = false
+    },
+    closePopupWindowPayError(){
+      this.popupWindowPay = false
+      this.loadingBtn()
     },
     paymentError(){
       this.windowError = true

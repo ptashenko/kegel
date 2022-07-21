@@ -5,6 +5,7 @@
   {{MyScrollModal}}
   {{btnAddPurpose}}
   {{imagechart}}
+  <!-- {{backUrlNot}} -->
   <div 
     class="fixed" 
     :class="{'active': blockFixed}"
@@ -578,6 +579,9 @@ export default {
 
   },
   computed: {
+    // backUrlNot(){
+    //   this.$router.push('PlanFinal')
+    // },
     jsLocal(){
       let json = localStorage.getItem('track');
       let obj = JSON.parse(json);

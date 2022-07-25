@@ -613,6 +613,9 @@ export default {
   background: #E44240;
   border-radius: 9px;
   margin: 16px auto 0;
+  @media (max-width: 480px) {
+    padding: 20.5px 0;
+  }
 }
 .hiden{
   display: none;

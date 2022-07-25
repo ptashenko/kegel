@@ -34,7 +34,7 @@ export default {
     loadPercent() {
       const index = ( this.track.layouts.findIndex((layout) => layout.id == this.content.id) ) ;
       let myStep = 0;
-
+      
       if(index <= this.layoutSeparations[1]){
         myStep = (((index / this.layoutSeparations[1]) * 100).toFixed(2))/3;
       }else if(index <= this.layoutSeparations[2] && index > this.layoutSeparations[1]){

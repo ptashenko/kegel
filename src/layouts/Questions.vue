@@ -151,6 +151,7 @@ export default {
       }
     },
     nextWait(){
+      console.log(this.survey.id);
       if(this.survey.id === 34){
         this.$router.push({
           name: 'wait',
@@ -163,7 +164,6 @@ export default {
         }else{
           this.show= false
           setTimeout(() => {
-            
             this.show= true
             this.next()
           }, 500);

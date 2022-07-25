@@ -15,10 +15,9 @@ export default {
                     });
             } else {
                 console.log('переход на страницу wait');
-                // window.scrollTo(0, 0),
-                //     this.$router.push({
-                //         name: 'wait',
-                //     });
+                // this.$router.push({
+                //     name: 'wait',
+                // });
 
             }
         },

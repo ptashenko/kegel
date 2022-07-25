@@ -173,7 +173,7 @@
 
 
       <vpopup
-        class="analize"
+        class="popup_wraper analize "
         textTitle="Do you want to enhance your orgasms?"
         v-if="popupVisible"
       >   
@@ -315,7 +315,7 @@ export default {
           this.isActiveCheck_1 = false
           clearInterval();
         }
-      }, 100);
+      },60);
     },
     loadTwo(){
       this.isActiveCheck_2 = true
@@ -326,7 +326,7 @@ export default {
           this.isActiveCheck_2 = false
           clearInterval();
         }
-      }, 100);
+      }, 60);
     },
     loadTree(){
       this.isActiveCheck_3 = true
@@ -337,7 +337,7 @@ export default {
           this.isActiveCheck_3 = false
           clearInterval();
         }
-      }, 100);
+      }, 60);
     },
     loadFoo(){
       this.isActiveCheck_4 = true
@@ -349,7 +349,7 @@ export default {
           this.$router.push({ name: 'EmailAdress'});
           clearInterval(refreshId);
         }
-      }, 100);
+      }, 60);
     },
     numReview(){
       setInterval(() => {
@@ -378,9 +378,8 @@ export default {
         this.$refs.animed.pause()
         this.showModal()
         clearInterval(as);
-        
       }
-    }, 100);
+    }, 60);
   },
   
 }

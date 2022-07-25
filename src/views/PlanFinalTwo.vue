@@ -365,7 +365,10 @@ export default {
       this.$router.push('CodeQR')
     },
     showModal(){
-      VueScrollTo.scrollTo('#topPage');
+      var element = document.getElementById("topPage");
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
+      // VueScrollTo.scrollTo('#topPage');
       this.open = 2
 
       // let body = document.querySelector('body')
@@ -373,7 +376,10 @@ export default {
       // this.popupVisible = true
     },
     closePopup(e){
-      VueScrollTo.scrollTo('#topPage');
+      var element = document.getElementById("topPage");
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
+      // VueScrollTo.scrollTo('#topPage');
       this.open = 3
       // let body = document.querySelector('body')
       // let x = e.target

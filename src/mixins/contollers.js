@@ -2,7 +2,15 @@ import { mapGetters, mapMutations, state } from 'vuex';
 
 export default {
     computed: {
-        ...mapGetters(['myPrewContentId', 'myPrewTwoContentId', 'nextContentId', 'layoutSeparationsIds', 'contentBy', 'content', 'track']),
+        ...mapGetters({
+            myPrewContentId: 'myPrewContentId',
+            myPrewTwoContentId: 'myPrewTwoContentId',
+            nextContentId: 'nextContentId',
+            layoutSeparationsIds: 'layoutSeparationsIds',
+            contentBy: 'contentBy',
+            contentItem: 'content',
+            track: 'track',
+        }),
     },
     methods: {
         ...mapMutations(['saveContent', 'setSeparator']),
@@ -22,12 +30,12 @@ export default {
             }
         },
         cont() {
-            const content = this.contentBy({
+            return this.contentBy({
                 field: 'id',
                 value: this.$route.params.survey,
             });
-            return content
         },
+ 
         back() {
             let infolayout = this.$store.state.survey.contents.find(x => x.id === this.myPrewContentId)
             if (infolayout.layoutName === "KegelReview" || infolayout.layoutName === "Processing") {
@@ -49,11 +57,10 @@ export default {
             }
         },
         route() {
-            const content = this.contentBy({
+            this.saveContent(this.contentBy({
                 field: 'id',
                 value: this.$route.params.survey,
-            });
-            this.saveContent(content);
+            }));
         },
     },
     watch: {
@@ -76,9 +83,9 @@ export default {
         this.route();
 
         this.track.layouts.forEach((layout) => {
-            if (layout.id === this.content.id) {
+            if (layout?.id === this.contentItem?.id) {
                 if (layout.separation !== undefined) {
-                    this.setSeparator(this.content.id);
+                    this.setSeparator(this.contentItem.id);
                 }
             }
         });

@@ -87,4 +87,14 @@ const router = createRouter({
     }
 });
 
+router.beforeEach((to, from, next) => {
+    // also need add info about succes payment 
+    if (from.name === 'PlanFinal' && to.name==='LandingView') { 
+        router.push({ name: 'PlanFinal' })
+        next()
+    } else {
+        next()
+    }
+  });
+
 export default router;

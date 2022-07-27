@@ -1,5 +1,7 @@
 const updateStorage = (tableName, data) => {
-  localStorage.setItem(tableName, JSON.stringify(data));
+  if (data) {
+    localStorage.setItem(tableName, JSON.stringify(data));
+  }
 };
 
 const addItem = (tableName, item) => {

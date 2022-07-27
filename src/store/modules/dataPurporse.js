@@ -6,18 +6,10 @@ export default {
         addpurpose: false
     },
     getters: {
-        DATAPP1: state => {
-            return state.dataPP1;
-        },
-        DATAPP2: state => {
-            return state.dataPP2;
-        },
-        EMAILUSER: state => {
-            return state.emailUser;
-        },
-        ADDPURPOSE: state => {
-            return state.addpurpose;
-        },
+        DATAPP1: (state) => state.dataPP1,
+        DATAPP2: (state) => state.dataPP2,
+        EMAILUSER: (state) => state.emailUser,
+        ADDPURPOSE: (state) => state.addpurpose,
     },
     mutations: {
         SET_DATAPP1: (state, payload) => {

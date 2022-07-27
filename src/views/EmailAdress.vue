@@ -17,20 +17,11 @@
               <label for="email">
                 
                 <input 
-                  v-if="email"
                   v-model="upValue"
                   id="email" 
                   class="email" 
                   type="email" 
-                  :placeholder="email"
-                >
-                <input 
-                  v-else
-                  v-model="upValue"
-                  id="email" 
-                  class="email" 
-                  type="email" 
-                  placeholder="Enter your email here "
+                  :placeholder="email || 'Enter your email here'"
                 >
                 <span class="lock">
                   <img src="@/assets/images/icons/lock.svg" alt="img">
@@ -45,8 +36,7 @@
               </div>
               <div 
                 v-else
-                class="v-popup__submit_btn"
-                :class="{active: closeActive}"
+                :class="['v-popup__submit_btn', {active: closeActive}]"
                 @click="nextUrl"
               >
               See my plan
@@ -79,31 +69,44 @@ import VueScrollTo from "vue-scrollto";
 
 export default {
   name: 'EmailAdress',
-  components: {
-  },
+
   data() {
     return {
-      VueScrollTo: require('vue-scrollto'),
       textpurpose:'',
       closeActive: false,
       email: null,
       isEmailTouched: false,
-      upValue: '',
-      title:'Enter email adress',
-      email:this.$store.state.dataPurporse.emailUser
+      upValue: this.EMAILUSER,
+      title: 'Enter email adress',
     };
   },
+ 
+  computed: {
+    ...mapGetters(['tracks', 'EMAILUSER']),
+    purpose(){
+      const json = localStorage.getItem('track');
+      const obj = JSON.parse(json);
+      this.textpurpose = obj.purpose
+      return this.textpurpose;
+    },
+  },
+
+  mounted() {
+    this.upValue = this.EMAILUSER
+  },
+
   methods: {
     nextUrl(){
-      if(this.closeActive){
+      if (this.closeActive) {
         VueScrollTo.scrollTo('.dark-layout');
         this.$store.commit('SET_EMAILUSER', this.upValue)
         this.$router.push('LandingView');
         return;
-      }else{
+      } else {
         console.log('Введите email');
       } 
     },
+  
     nextUrlEmail(){
       VueScrollTo.scrollTo('.dark-layout');
       this.$store.commit('SET_EMAILUSER', this.upValue)
@@ -111,27 +114,16 @@ export default {
       return;
     },
   },
-  watch:{
+
+  watch: {
     upValue(value) {
       const reg = /^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i
-      if(reg.test(value)){
+      if (reg.test(value)) {
         this.closeActive = true
-      }else{
+      } else {
         this.closeActive = false
       }
 		}
-  },
-  computed: {
-    ...mapGetters(['tracks']),
-    purpose(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
-      this.textpurpose = obj.purpose
-      return this.textpurpose;
-    },
-  },
-  mounted() {
-    
   },
 };
 </script>

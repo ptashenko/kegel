@@ -132,7 +132,6 @@ export default {
     },
     getNextButtonProps() {
       this.$nextTick()
-      console.log(this.selectedAnswer)
       return {
         text: 'Next',
         icon: 'next',
@@ -144,7 +143,6 @@ export default {
   },
 
   mounted() {
-    console.log('mount', this.selectedAnswer)
     this.classActive()
   },
 
@@ -170,7 +168,6 @@ export default {
     },
   
     nextWait(){
-      console.log(this.survey.id);
       if(this.survey.id === 34){
         this.$router.push({
           name: 'wait',

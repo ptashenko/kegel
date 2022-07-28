@@ -174,6 +174,7 @@ export default {
         });
       } else {
         this.selectedAnswer = true
+        this.classActive()
         if (this.layotname.includes(this.nextContentId)){
           this.next()
         } else {

@@ -283,19 +283,21 @@ export default {
       windowError: false,
       numTimeError:0,
       popupWindowPay: false,
-      apple_pay:true 
+      apple_pay:true ,
+      pollingTwo: null,
+      polling: null,
     }
   },
   computed: {
     ...mapGetters(['tracks', 'contentBy']),
     purpose(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
+      const json = localStorage.getItem('track');
+      const obj = JSON.parse(json);
       return obj.purpose;
     },
     addpurpose(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
+      const json = localStorage.getItem('track');
+      const obj = JSON.parse(json);
       return obj.addpurpose;
     },
   },
@@ -395,15 +397,14 @@ export default {
     content: {
       required: true,
       type: Object,
+      default: () => ({}),
     },
   },
-  beforeDestroy () {
+  beforeUnmount () {
     clearInterval(this.polling)
     clearInterval(this.pollingTwo)
 
   },
-  mounted(){
-  }
 };
 </script>
 

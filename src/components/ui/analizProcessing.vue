@@ -32,20 +32,27 @@ export default {
       default:0
     }
   },
+
   data() {
     return {
       percent: 0,
+      poolling: null,
     };
   },
+
   mounted() {
-    const as = setInterval(() => {
+    this.poolling = setInterval(() => {
       if (this.percent < 70) {
         this.percent += 1;
       } else {
-        clearInterval(as);
+        clearInterval(this.poolling);
       }
     }, 100);
   },
+
+  beforeUnmount() {
+    clearInterval(this.poolling);
+  }
 };
 </script>
 

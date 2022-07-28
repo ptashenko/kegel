@@ -478,7 +478,8 @@ export default {
       imageitem: require(`@/assets/images/json/Step_1_1.json`),
       imgProba: false,
       AddPurposeCom: false,
-      addItem: false
+      addItem: false,
+      numanim: null,
     };
   },     
   methods: {
@@ -656,11 +657,12 @@ export default {
       return console.log(this.track);  ; 
     },
   },
-  beforeDestroy () {
+  beforeUnmount () {
     clearInterval(this.polling)
+    clearInterval(this.numanim)
   },
   mounted() {
-    const numanim = setInterval(() => {
+    this.numanim = setInterval(() => {
       if (this.numanimate == 1) {
         this.dataPP3 = sessionStorage.getItem('data34')
         this.numanimate += 1
@@ -687,13 +689,10 @@ export default {
         this.numanimate += 1
         this.show = true;
       }else{
-        clearInterval(numanim);
+        clearInterval(this.numanim);
       }
     }, 500);
   },
-  beforeDestroy(){
-      clearInterval(numanim);
-  }
 };
 </script>
 

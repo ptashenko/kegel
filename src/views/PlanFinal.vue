@@ -258,7 +258,9 @@ export default {
       windowError: false,
       numTimeError:0,
       popupWindowPay: false,
-      apple_pay:true 
+      apple_pay: true,
+      pollingTwo: null,
+      polling: null,
     }
   },
   computed: {
@@ -396,9 +398,10 @@ export default {
     content: {
       required: true,
       type: Object,
+      default: () => ({}),
     },
   },
-  beforeDestroy () {
+  beforeUnmount () {
     clearInterval(this.polling)
     clearInterval(this.pollingTwo)
 

@@ -1,5 +1,5 @@
 <template>
-    <template v-if="content.answer">
+    <template v-if="content && content.answer">
         <div class="survey h-100">
           <div class="container-main is-page SurveyVuew">
             <questions
@@ -10,7 +10,7 @@
     </template>
     <template v-else>
         <component
-          :is="content.layoutName"
+          :is="content && content.layoutName"
           :content="content"
         />
     </template>

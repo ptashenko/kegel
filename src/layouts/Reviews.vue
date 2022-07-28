@@ -99,8 +99,22 @@ import Review from '@/components/Review.vue';
 
 export default {
   name: 'Kegel-review-layout',
+
+  components: {
+    Review,
+  },
+
   mixins: [nextContentUrl],
-  data(){
+
+  props: {
+    content: {
+      required: true,
+      type: Object,
+      default: () => ({}),
+    },
+  },
+
+  data() {
     return{
       base: {},
       numreview: 2,
@@ -109,89 +123,90 @@ export default {
       AddPurpose:false,
       imageitem: this.image(this.content.thumbnail),
       numanimate: 1,
-      show: false
+      show: false,
+      numanim: null,
     }
   },
+
   computed: {
     ...mapGetters(['tracks', 'contentBy']),
+  
     btnAddPurpose(){
-      if(sessionStorage.getItem('resbtn') == 'Yes'){
+      if (sessionStorage.getItem('resbtn') == 'Yes') {
         this.AddPurpose = true
-      }else{
+      } else {
         this.AddPurpose = false
       } 
     },
-    imagePE(){
-      let json = localStorage.getItem('track');
-      let obj = JSON.parse(json);
+
+    imagePE() {
+      const json = localStorage.getItem('track');
+      const obj = JSON.parse(json);
       this.track = obj.id
-      if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes'){
+      if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes') {
         this.imageitem = require(`@/assets/images/json/ED.json`);
-      }else if(this.track.id == 3){
-        this.AddPurpose = false
+      } else if (this.track.id == 3) {
+        this.AddPurpose = false 
       }
       return  console.log(this.imageitem);
     }
   },
-  components: {
-    Review,
-  },
-  methods: {
-    image(path) {
-      return require(`@/assets/images/json/${path}`);
-    },
-    moment(){
-      return moment();
-    },
-    getRandomArbitrary(min, max){
-      return Math.random() * (max - min) + min;
-    },
-  },
-  props: {
-    content: {
-      required: true,
-      type: Object,
-    },
-  },
+
+  
   mounted(){
-    const numanim = setInterval(() => {
+    this.numanim = setInterval(() => {
       if (this.numanimate == 1) {
         this.dataPP1 = sessionStorage.getItem('data14')
         this.dataPP2 = sessionStorage.getItem('data24')
         this.numanimate += 1
         this.show = true;
-      }else if(this.numanimate == 2){
+      } else if(this.numanimate == 2){
         this.numanimate += 1
         this.show = false;
         this.dataPP1 = sessionStorage.getItem('data13')
         this.dataPP2 = sessionStorage.getItem('data23')
-      }else if(this.numanimate == 3){
+      } else if(this.numanimate == 3){
         this.numanimate += 1
         this.show = true;
-      }else if(this.numanimate == 4){
+      } else if(this.numanimate == 4){
         this.numanimate += 1
         this.show = false;
         this.dataPP1 = sessionStorage.getItem('data12')
         this.dataPP2 = sessionStorage.getItem('data22')
-      }else if(this.numanimate == 5){
+      } else if(this.numanimate == 5){
         this.numanimate += 1
         this.show = true;
-      }else if(this.numanimate == 6){
+      } else if(this.numanimate == 6){
         this.numanimate += 1
         this.show = false;
         this.dataPP1 = sessionStorage.getItem('data1')
         this.dataPP2 = sessionStorage.getItem('data2')
-      }else if(this.numanimate == 7){
+      } else if(this.numanimate == 7){
         this.numanimate += 1
         this.show = true;
-      }else{
-        clearInterval(numanim);
+      } else {
+        clearInterval(this.numanim);
       }
     }, 500);
   },
-  beforeDestroy(){
-    clearInterval(numanim);
-  }
+
+  beforeUnmount() {
+    clearInterval(this.numanim);
+  },
+
+  methods: {
+    image(path) {
+      return require(`@/assets/images/json/${path}`);
+    },
+    
+    moment() {
+      return moment();
+    },
+    
+    getRandomArbitrary(min, max){
+      return Math.random() * (max - min) + min;
+    },
+  },
 };
 </script>
 

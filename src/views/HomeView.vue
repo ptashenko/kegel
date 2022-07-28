@@ -134,7 +134,8 @@ export default {
       ],
       numhand: 0,
       isActiveHand: false,
-      randomData: 0
+      randomData: 0,
+      animated: null,
     };
   },
   computed: {
@@ -194,16 +195,20 @@ export default {
     
     },
     myHand(){
-      const animated = setInterval(() => {
+      this.animated = setInterval(() => {
         if (this.numhand < 10) {
           
           this.numhand += 1;
         } else {
           this.isActiveHand = true
-          clearInterval(animated);
+          clearInterval(this.animated);
         }
       }, 1000);
     },
+  },
+
+   beforeUnmount() {
+    clearInterval(this.animated);
   },
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),

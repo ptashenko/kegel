@@ -76,6 +76,7 @@ export default {
   data() {
     return {
       show:true,
+      list: null,
       steps: [
         {
           title: 'Kegel exercises will help you to change your sex life',
@@ -122,12 +123,12 @@ export default {
   computed: {
     backClick(){
       window.onbeforeunload = function(){
-        clearInterval(list);
+        clearInterval(this.list);
       }
     }
   },
   mounted() {
-    const list = setInterval(() => {
+    this.list = setInterval(() => {
       const index = this.steps.findIndex((step) => step.active === true);
       // const index = 0;
       this.steps.forEach((step) => step.active = false);
@@ -137,12 +138,12 @@ export default {
         console.log(index + 1);
       } else {
         this.$router.push({ name: 'goodHands' });
-        clearInterval(list);
+        clearInterval(this.list);
       }
     }, 5000);
   },
-  beforeDestroy(){
-    clearInterval(list);
+  beforeUnmount() {
+    clearInterval(this.list);
   }
 };
 </script>

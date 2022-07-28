@@ -17,24 +17,30 @@ import nextContentUrl from '@/mixins/contollers';
 
 export default {
   name: 'Processing-item',
+
   data() {
     return {
       percent: 0,
+      progress: null,
     };
   },
+
   mixins: [history, nextContentUrl],
+
   mounted() {
-    const progress = setInterval(() => {
+    this.progress = setInterval(() => {
+      console.log(this.progress)
       if (this.percent < 100) {
         this.percent += 1;
       } else {
-        clearInterval(progress);
+        clearInterval(this.progress);
         this.next();
       }
     }, 100);
   },
-  beforeDestroy(){
-    clearInterval(progress);
+
+  beforeUnmount(){
+    clearInterval(this.progress);
   }
 };
 </script>

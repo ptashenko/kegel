@@ -209,11 +209,13 @@ import analizProcessing from '@/components/ui/analizProcessing.vue';
 
 export default {
   name: 'AnalizAnswer',
+
   components:{
     vpopup,
     btnComponent,
     analizProcessing
   },
+
   data(){
     return{
       title:'Analyzing the answers...',
@@ -234,60 +236,82 @@ export default {
       base: {},
       numreview: 0,
       track: 0,
-      mytrue: true
+      mytrue: true,
+      numrew: null,
+      as: null,
+      asedPooling: null,
+      loadTwoPooling: null,
+      loadTreePooling: null,
+      refreshId: null,
+      numReviewPooling: null,
     }
   },
-  watch:{
-    mytrue(){
-      console.log(this.mytrue);
-    },
-    percent(){
-      if(this.percent == 100){
-        this.loadTwo()
-      }
-    },
-    loadProsentTwo(){
-      if(this.loadProsentTwo == 100){
-        this.loadTree()
-      }
-    },
-    loadProsentTree(){
-      if(this.loadProsentTree == 100){
-        this.loadFoo()
-      }
-    },
-  },
+
   computed:{
     products(){
         return this.$store.state.review.msgPE
     },
+
     lengthReviews(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
+      const json = localStorage.getItem('track');
+      const obj = JSON.parse(json);
       this.track = obj.id
-      if(this.track == 3){
+      if (this.track == 3) {
         this.base =  this.$store.state.review.msgOK
-      }else if(this.track == 2){
+      } else if(this.track == 2) {
         this.base = this.$store.state.review.msgPE
-      }else{
+      } else {
         this.base = this.$store.state.review.msgED
       }
       return console.log(this.track); 
     }
   },
+  
+  mounted() {
+    this.numrew = setInterval(() => {
+      if (this.numreview < 2) {
+        this.numreview += 1;
+      } else {
+        clearInterval(this.numrew);
+      }
+    }, 4000);
+  
+    this.as = setInterval(() => {
+      if (this.percent < this.mystop) {
+        this.percent += 1;
+      } else {
+        this.isActiveCheck_1 = true
+        this.$refs.animed.pause()
+        this.showModal()
+        clearInterval(this.as);
+      }
+    }, 60);
+  },
+  
+  beforeUnmount(){
+    clearInterval(this.numrew);
+    clearInterval(this.as);
+    clearInterval(this.asedPooling);
+    clearInterval(this.loadTwoPooling);
+    clearInterval(this.loadTreePooling);
+    clearInterval(this.refreshId);
+    clearInterval(this.numReviewPooling);
+  },
+
   methods:{
     showModal(){
-      let body = document.querySelector('body')
+      const body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
       this.isActiveNo = this.isActiveYes = this.closeActive = false
       this.isLoad = false
       clearInterval(this.numrew);
     },
+  
     closePopup(e){
-      let x = e.target
-      let body = document.querySelector('body')
-      if(x.classList.contains('active')){
+      const x = e.target
+      const body = document.querySelector('body')
+      if(x.classList.contains('active')) {
         body.classList.remove('fixed');
         this.isActiveCheck_1 = true
         this.$refs.animed.play()
@@ -295,64 +319,70 @@ export default {
         this.isLoad = true
         this.mystop = 100
         this.ased()  
-        this.numrew 
         this.numReview()
       }
     },
+
     BtnActiveYes(){
       this.isActiveYes = this.closeActive = true 
       this.isActiveNo = false
     },
+
     BtnActiveNo(){
       this.isActiveYes = false
       this.isActiveNo = this.closeActive = true
     },
+
     ased(){
-      setInterval(() => {
+      this.asedPooling = setInterval(() => {
         if (this.percent < this.mystop) {
           this.percent += 1;
         } else {
           this.isActiveCheck_1 = false
-          clearInterval();
+          clearInterval(this.asedPooling);
         }
       },60);
     },
+
     loadTwo(){
       this.isActiveCheck_2 = true
-      setInterval(() => {
+      this.loadTwoPooling = setInterval(() => {
         if (this.loadProsentTwo < 100) {
           this.loadProsentTwo += 1;
         } else {
           this.isActiveCheck_2 = false
-          clearInterval();
+          clearInterval(this.loadTwoPooling);
         }
       }, 60);
     },
+
     loadTree(){
       this.isActiveCheck_3 = true
-      setInterval(() => {
+      this.loadTreePooling = setInterval(() => {
         if (this.loadProsentTree < 100) {
           this.loadProsentTree += 1;
         } else {
           this.isActiveCheck_3 = false
-          clearInterval();
+          clearInterval(this.loadTreePooling);
         }
       }, 60);
     },
+
     loadFoo(){
       this.isActiveCheck_4 = true
-      let refreshId = setInterval(() => {
+      this.refreshId = setInterval(() => {
         if (this.loadProsentFoo < 100) {
           this.loadProsentFoo += 1;
         } else {
           this.isActiveCheck_2 = false
           this.$router.push({ name: 'EmailAdress'});
-          clearInterval(refreshId);
+          clearInterval(this.refreshId);
         }
       }, 60);
     },
-    numReview(){
-      setInterval(() => {
+
+  numReview(){
+      this.numReviewPooling = setInterval(() => {
         if (this.numreview < (this.base.length - 1)) {
           this.numreview += 1;
         } else{
@@ -361,27 +391,30 @@ export default {
       }, 4500);
     }
   },
-  mounted() {
-    const numrew = setInterval(() => {
-      if (this.numreview < 2) {
-        this.numreview += 1;
-        
-      } else {
-        clearInterval(numrew);
+
+  watch: {
+    mytrue() {
+      console.log(this.mytrue);
+    },
+
+    percent() {
+      if (this.percent == 100){
+        this.loadTwo()
       }
-    }, 4000);
-    const as = setInterval(() => {
-      if (this.percent < this.mystop) {
-        this.percent += 1;
-      } else {
-        this.isActiveCheck_1 = true
-        this.$refs.animed.pause()
-        this.showModal()
-        clearInterval(as);
+    },
+
+    loadProsentTwo() {
+      if (this.loadProsentTwo == 100){
+        this.loadTree()
       }
-    }, 60);
+    },
+
+    loadProsentTree() {
+      if (this.loadProsentTree == 100){
+        this.loadFoo()
+      }
+    },
   },
-  
 }
 
 </script>

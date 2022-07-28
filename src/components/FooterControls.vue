@@ -32,16 +32,27 @@ export default {
     buttonBack: {
       type: Object,
       required: true,
+      default: () => ({})
     },
     buttonNext: {
       type: Object,
       required: true,
+      default: () => ({})
     },
     dark: {
       type: Boolean,
       default: false,
     },
   },
+
+  watch: {
+    buttonBack(val) {
+      return val;
+    },
+    buttonNext(val) {
+      return val
+    }
+  }
 };
 </script>
 

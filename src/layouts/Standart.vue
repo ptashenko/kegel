@@ -93,6 +93,7 @@ export default {
     content: {
       required: true,
       type: Object,
+      default: () => ({})
     },
   },
   components: {

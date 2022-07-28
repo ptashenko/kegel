@@ -1,9 +1,8 @@
 <template>
   <div class="answer__div">
     <button
-      class="answer"
+      :class="['answer', {'active': selected === answer}]"
       @click="saveHistory"
-      :class="{'active': selected === answer}"
     >
       {{ answer }}
     </button>
@@ -24,6 +23,7 @@ export default {
     answer: {
       required: true,
       type: String,
+      default: '',
     },
   },
   mixins: [history],

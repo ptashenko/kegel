@@ -87,4 +87,18 @@ const router = createRouter({
     }
 });
 
+router.beforeEach((to, from, next) => {
+    const isRedirectDisabled = (from.name === 'PlanFinal' && to.name==='LandingView')
+    || (from.name === 'CodeQR' && to.name==='PlanFinal')
+    || (from.name === 'CodeQR' && to.name==='PlanFinalTwo')
+    || (from.name === 'PlanFinalTwo' && to.name==='PlanFinal')
+    // also need add info about succes payment 
+    if (isRedirectDisabled) { 
+        router.push({ name: from.name })
+        next()
+    } else {
+        next()
+    }
+  });
+
 export default router;

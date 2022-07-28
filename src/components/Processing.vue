@@ -29,7 +29,6 @@ export default {
 
   mounted() {
     this.progress = setInterval(() => {
-      console.log(this.progress)
       if (this.percent < 100) {
         this.percent += 1;
       } else {

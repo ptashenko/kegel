@@ -57,14 +57,13 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import VueScrollTo from "vue-scrollto";
 
 export default {
@@ -96,10 +95,11 @@ export default {
   },
 
   methods: {
+    ...mapActions(['setEmail']),
     nextUrl(){
       if (this.closeActive) {
         VueScrollTo.scrollTo('.dark-layout');
-        this.$store.commit('SET_EMAILUSER', this.upValue)
+        this.setEmail(this.upValue)
         this.$router.push('LandingView');
         return;
       } else {
@@ -109,7 +109,7 @@ export default {
   
     nextUrlEmail(){
       VueScrollTo.scrollTo('.dark-layout');
-      this.$store.commit('SET_EMAILUSER', this.upValue)
+      this.setEmail(this.upValue)
       this.$router.push('LandingView');
       return;
     },

@@ -312,9 +312,13 @@ export default {
       this.windowError = false
       this.isActive = false
       this.popupWindowPay = true
+      let body = document.querySelector('body')
+      body.classList.add('fixed');
     },
     closePopupWindowPay(){
       this.popupWindowPay = false
+      let body = document.querySelector('body')
+      body.classList.remove('fixed');
     },
     closePopupWindowPayError(){
       this.popupWindowPay = false

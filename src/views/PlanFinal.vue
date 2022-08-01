@@ -316,12 +316,18 @@ export default {
       this.windowError = false
       this.isActive = false
       this.popupWindowPay = true
+      let body = document.querySelector('body')
+      body.classList.add('fixed');
     },
     closePopupWindowPay(){
       this.popupWindowPay = false
+      let body = document.querySelector('body')
+      body.classList.remove('fixed');
     },
     closePopupWindowPayError(){
       this.popupWindowPay = false
+      let body = document.querySelector('body')
+      body.classList.remove('fixed');
       this.loadingBtn()
     },
     paymentError(){
@@ -347,11 +353,9 @@ export default {
       this.numTimeError = 0
       this.pollingTwo = setInterval(() => {
           if (this.numTimeError < 1) {
-            console.log(this.numTimeError);
             this.windowError = false
             this.numTimeError += 1;
           } else {
-            console.log(this.numTimeError);
             clearInterval(this.pollingTwo)
             this.numTimeError = 0
             this.isActive = false

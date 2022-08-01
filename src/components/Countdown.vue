@@ -34,7 +34,15 @@
 				}, 1000);
 		  },
 			getDiffInSeconds () {
-		    return this.timer - this.actualTime
+				let tikTak = this.timer
+				let numTimer = localStorage.getItem('timer')
+				if(numTimer){
+					tikTak = numTimer
+				}else{
+					localStorage.setItem('timer', tikTak)
+				}
+				tikTak = tikTak - this.actualTime
+		    return tikTak
 		  },
 		  compute () {
 		    var duration = moment.duration(this.getDiffInSeconds(), "seconds")

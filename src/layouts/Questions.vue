@@ -174,7 +174,7 @@ export default {
         });
       } else {
         this.selectedAnswer = true
-        this.classActive()
+        // this.classActive()
         if (this.layotname.includes(this.nextContentId)){
           this.next()
         } else {
@@ -186,8 +186,9 @@ export default {
         }
       }
     },
-  
+    
     classActive(){
+      this.$nextTick()
         const answeres = document.querySelectorAll('.answer')
         const divsArr = Array.from(answeres);
         this.selectedAnswer = !divsArr.some((item) => item.classList.contains('active'))
@@ -214,7 +215,15 @@ export default {
         sessionStorage.setItem('resbtn', str);
       }
     },
-  },  
+  }, 
+  watch:{
+    $route (to, from){
+      this.$nextTick(() => {
+        this.classActive()
+        console.log(document.querySelectorAll('.answer'));
+      });
+    }
+  } 
 };
 </script>
 

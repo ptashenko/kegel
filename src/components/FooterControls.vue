@@ -44,7 +44,9 @@ export default {
       default: false,
     },
   },
-
+  computed:{
+    
+  },
   watch: {
     buttonBack(val) {
       return val;

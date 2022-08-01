@@ -15,19 +15,19 @@
           </div>
         <div  class="red by" v-if="content.id == 20 || content.id == 57 || content.id == 201">
           <span>by&nbsp;</span> 
-          <div class="">
+          <!-- <div class=""> -->
             <transition name="slide-fade">
               <span v-if="show" class="block__anim">{{dataPP1}}</span> 
             </transition> 
-          </div>
+          <!-- </div> -->
         </div>
         <div class="red by" v-else>
           <span>by&nbsp;</span> 
-          <div class="">
+          <!-- <div class=""> -->
             <transition name="slide-fade">
               <span v-if="show" class="block__anim">{{dataPP2}}</span> 
             </transition> 
-          </div>
+          <!-- </div> -->
         </div>
       </div>
 

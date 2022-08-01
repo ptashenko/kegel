@@ -127,7 +127,7 @@
         <button-field
           text='Add to my plan'
           theme="Back"
-          class="footer-controls__button red loader bg-blue"
+          class="footer-controls__button loader bg-blue"
           :class="{ hiden: isActive }"
           @click="loadingBtn"
         />
@@ -370,27 +370,13 @@ export default {
       var element = document.getElementById("topPage");
       var top = element.offsetTop;
       window.scrollTo(0, top);
-      // VueScrollTo.scrollTo('#topPage');
       this.open = 2
-
-      // let body = document.querySelector('body')
-      // body.classList.add('fixed');
-      // this.popupVisible = true
     },
-    closePopup(e){
+    closePopup(){
       var element = document.getElementById("topPage");
       var top = element.offsetTop;
       window.scrollTo(0, top);
-      // VueScrollTo.scrollTo('#topPage');
       this.open = 3
-      // let body = document.querySelector('body')
-      // let x = e.target
-      // if(x.classList.contains('active')){
-      //   VueScrollTo.scrollTo('#topPage');
-      //   this.popupVisible = false
-      //   body.classList.remove('fixed');
-      //   this.active = false
-      // }
     },
   },
   props: {
@@ -717,7 +703,7 @@ export default {
     font-size: 16px;
     line-height: 150%;
     font-family: "SF Pro Text Regular";
-    opacity: 0.75;
+    opacity: 1;
     margin-bottom: 16px;
     .text-bold{
       font-family: "SF Pro Text Semibold";

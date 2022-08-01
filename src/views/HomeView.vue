@@ -229,9 +229,10 @@ export default {
     },
     bgBodyMain(){
       let mediaQuery = window.matchMedia('(max-width: 480px)');
+      let body = document.querySelector('body')
+      body.classList.add('fixed');
       if (mediaQuery.matches) {
-          console.log(' Фон должен быть чорный для главной');
-          document.body.style.backgroundColor = '#ffffff';
+        body.style.backgroundColor = '#ffffff';
       }
     },
     

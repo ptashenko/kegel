@@ -53,11 +53,11 @@
               </div>
               <div class="by ">
                 <span class="m20">by &nbsp;</span>
-                <div class="">
+                <!-- <div class="blockAnimate"> -->
                   <transition name="slide-fade">
                     <span v-if="show" class="block__anim">{{dataPP3}}</span> 
                   </transition> 
-                </div>
+                <!-- </div> -->
               </div>
             </div>
 
@@ -370,7 +370,7 @@
   
                   
     <p class="opasity_75">
-      Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to <span class="text-bold"> {{ purpose }} <span v-if="AddPurposeCom"><span class="width-400"> and </span>{{ addpurpose }}</span></span>.
+      Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to <span class="text-bold"> {{ purpose }}<span v-if="AddPurposeCom"><span class="width-400"> and </span>{{ addpurpose }}</span></span>.
     </p>
     <p class="opasity_75">
       Reaching your goal is as easy as following the Kegel Plan we prepared for you.
@@ -534,6 +534,8 @@ export default {
         this.popupVisible = false
         body.classList.remove('fixed');
       }
+
+
     },
     closePopup2(e){
       let body = document.querySelector('body')
@@ -579,11 +581,7 @@ export default {
     },
 
   },
-  computed: {
-    // backUrlNot(){
-    //   this.$router.push('PlanFinal')
-    // },
-    jsLocal(){
+  computed: {cal(){
       let json = localStorage.getItem('track');
       let obj = JSON.parse(json);
       this.track = obj.id
@@ -1293,7 +1291,7 @@ ul{
     margin: 0 auto;
     position: relative;
     .m20{
-      margin-left: -20px;
+      // margin-left: -20px;
     }
   }
 }

@@ -61,7 +61,7 @@ export default {
   &__div {
     flex-grow: 1;
     width: 100%;
-    padding: 0 4px;
+    margin: 0 4px;
     max-width: 73px;
   }
 }

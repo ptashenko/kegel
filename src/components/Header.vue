@@ -40,8 +40,6 @@ export default {
           document.body.style.backgroundColor = '#111113';
         }
       }
-
-     
     }
   }
 };

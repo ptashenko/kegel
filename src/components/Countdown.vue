@@ -9,10 +9,12 @@
 				<span v-else>{{ seconds }}</span> </div>
 		</div>
 	</div>
+
 </template>
 
 <script>
-	import moment from 'moment'
+	import moment from 'moment';
+	import { mapGetters } from 'vuex';
 	export default {
     name: 'countdown',
 		data () {
@@ -31,7 +33,7 @@
 					component.addOneSecondToActualTimeEverySecond()
 				}, 1000);
 		  },
-		  getDiffInSeconds () {
+			getDiffInSeconds () {
 		    return this.timer - this.actualTime
 		  },
 		  compute () {
@@ -39,6 +41,9 @@
 		    this.minutes = duration.minutes() > 0 ? duration.minutes() : 0
 		    this.seconds = duration.seconds() > 0 ? duration.seconds() : 0
 		  }
+		},
+		computed:{
+			...mapGetters(['TIMERLAND']),
 		},
 		created () {
 		  this.compute()
@@ -48,6 +53,8 @@
 			actualTime (val,oldVal) {
 				this.compute()
 			}
-		}
+		},
+		mounted(){
+		},
 	}
 </script>

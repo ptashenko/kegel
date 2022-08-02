@@ -7,12 +7,12 @@
   {{imagechart}}
   <!-- {{backUrlNot}} -->
   <div 
-    class="fixed" 
+    class="fixedTime" 
     :class="{'active': blockFixed}"
   >
-    <div class="fixed__timer">
-      <p class="fixed__timer__text">7-day free trial offer expires in:</p>
-      <div class="fixed__timer__number"> 
+    <div class="fixedTime__timer">
+      <p class="fixedTime__timer__text">7-day free trial offer expires in:</p>
+      <div class="fixedTime__timer__number"> 
         <countdown />
       </div>
     </div>
@@ -1041,7 +1041,7 @@ hr{
   background-color: #111113;
 }
 // fixed timer
-.fixed{
+.fixedTime{
   max-width: 536px;
   opacity: 0;
   @media (max-width:600px) {
@@ -1068,7 +1068,7 @@ hr{
     }
   }
 }
-.fixed.active{
+.fixedTime.active{
   opacity: 1;
 }
 .footer-controls__button{
@@ -1424,7 +1424,7 @@ ul{
   max-width: 450px;
   margin: 0 auto;
 }
-.fixed__timer, .fixed__timer__text{
+.fixedTime__timer, .fixedTime__timer__text{
   font-family: "SF Pro Text Bold";
 }
 

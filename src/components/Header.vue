@@ -33,10 +33,8 @@ export default {
       let mediaQuery = window.matchMedia('(max-width: 480px)');
       if (mediaQuery.matches) {
          if(this.dark){
-          console.log(' Фон должен быть чорный ');
           document.body.style.backgroundColor = '#ffffff';
         }else {
-          console.log(' Фон должен быть белый ');
           document.body.style.backgroundColor = '#111113';
         }
       }

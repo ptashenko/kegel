@@ -244,7 +244,6 @@ export default {
   mounted() {
     this.clearHistory()
     this.bgBodyMain()
-    console.log(this.loading);
     document.onreadystatechange = () => { 
       let body = document.querySelector('body')
       body.classList.add('fixed');

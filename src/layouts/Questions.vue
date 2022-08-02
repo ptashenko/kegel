@@ -141,11 +141,6 @@ export default {
       }
     }
   },
-
-  mounted() {
-    this.classActive()
-  },
-
   methods: {
     backHome(){
       if (this.survey.id === 1) {
@@ -182,13 +177,16 @@ export default {
           setTimeout(() => {
             this.show= true
             this.next()
+            setTimeout(() => {
+              this.classActive()
+              console.log(document.querySelectorAll('.answer'));
+            },500)
           }, 500);
         }
       }
     },
     
     classActive(){
-      this.$nextTick()
         const answeres = document.querySelectorAll('.answer')
         const divsArr = Array.from(answeres);
         this.selectedAnswer = !divsArr.some((item) => item.classList.contains('active'))
@@ -217,13 +215,14 @@ export default {
     },
   }, 
   watch:{
-    $route (to, from){
-      this.$nextTick(() => {
-        this.classActive()
-        console.log(document.querySelectorAll('.answer'));
-      });
-    }
-  } 
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.classActive()
+      console.log(document.querySelectorAll('.answer'));
+    });
+  },
+ 
 };
 </script>
 

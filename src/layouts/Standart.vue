@@ -79,7 +79,7 @@
 <script>
 import Steps from '@/components/Steps.vue';
 import nextContentUrl from '@/mixins/contollers';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Standart-layout',
@@ -100,7 +100,11 @@ export default {
     Steps,
   },
   mixins: [nextContentUrl],
+  computed:{
+    ...mapGetters([ 'track', 'myPrewContentId','nextContentId']),
+  },
   methods: {
+    ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),
     image(path) {
       return require(`@/assets/images/content/${path}`);
     },
@@ -114,17 +118,13 @@ export default {
       this.back()
     },
     nextURL(){
+      console.log(this.content)
       this.next()
     },
   },
-  computed:{
-    // ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId']),
-    ...mapGetters([ 'track', 'myPrewContentId','nextContentId']),
+  
+  created () {
     
-  },
-  mounted(){
-    
-      
   }
 };
 </script>

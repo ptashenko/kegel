@@ -109,6 +109,7 @@ import { mapGetters, mapMutations } from 'vuex';
 import moment from 'moment';
 import HeaderLayout from '@/components/Header.vue';
 export default {
+  inject: ['mixpanel'],
   components: {
     HeaderLayout,
   },
@@ -220,6 +221,9 @@ export default {
         field: 'id',
         value: track.layouts[0].id,
       });
+      this.mixpanel.track('Quiz Answer', {
+        question: track.title
+      })
       this.saveContent(content);
       this.saveTrack(track);
       this.$router.push({
@@ -229,6 +233,7 @@ export default {
     },
     bgBodyMain(){
       let mediaQuery = window.matchMedia('(max-width: 480px)');
+      
       let body = document.querySelector('body')
       if(this.loading === false){
         body.classList.remove('fixed');
@@ -254,6 +259,11 @@ export default {
       }
     }
   },
+  created () {
+    this.mixpanel.track('Start Screen Shown')
+    this.mixpanel.track('Quize Started')
+    
+  }
 };
 </script>
 

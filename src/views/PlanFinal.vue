@@ -366,8 +366,12 @@ export default {
     nextUrl(){ 
       let mediaQuery = window.matchMedia('(max-width: 480px)');
       if (mediaQuery.matches) {
+        let body = document.querySelector('body')
+        body.classList.remove('fixed');
         this.$router.push('PlanFinalTwo')
       }else{
+        let body = document.querySelector('body')
+        body.classList.remove('fixed');
         this.$router.push('CodeQR')
       }
     },

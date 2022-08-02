@@ -370,6 +370,8 @@ export default {
       return require(`@/assets/video/${path}`);
     },
     nextUrl(){
+      let body = document.querySelector('body')
+      body.classList.remove('fixed');
       this.$router.push('CodeQR')
     },
     showModal(){

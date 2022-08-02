@@ -322,6 +322,8 @@ export default {
     },
     closePopupWindowPayError(){
       this.popupWindowPay = false
+      let body = document.querySelector('body')
+      body.classList.remove('fixed');
       this.loadingBtn()
     },
     paymentError(){

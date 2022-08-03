@@ -78,13 +78,13 @@
         class="footer-controls__button red"
         @click="nextUrl"
       />
-      <button-field
+      <!-- <button-field
         text='Skip trial and start plan'
         theme="Back"
         class="footer-controls__button red loader"
         :class="{ hiden: isActive }"
         @click="loadingBtn"
-      />
+      /> -->
       <div
       class="footer-controls__button btnLoader "
         :class="{ hiden: !isActive }"

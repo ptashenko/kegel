@@ -199,6 +199,7 @@
     class="footer-controls__button red"
     @click="showModal2()"
   />
+  <div class="h200" v-if="!step_2"></div>
   <div class="step_2" v-if="step_2">
     <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
       <div class="after"> 
@@ -222,17 +223,17 @@
           <button class="pay cursor active" v-if="apple_pay">
             <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
           </button>
-          <button class="pay cursor active" v-else>
-            <img src="@/assets/images/icons/google_pay.svg" alt="apple_pay">
+          <button class="pay cursor " v-else>
+            <img src="@/assets/images/icons/google_pay.svg" alt="google_pay">
           </button>
         </div>
       </div>
       <div class="d-flex align-items-center justify-content-beetwen">
-        <button class="pay small mr-2 cursor">
-          <img src="@/assets/images/icons/paypal.png" alt="apple_pay">
+        <button autofocus class="pay small mr-2 cursor">
+          <img src="@/assets/images/icons/paypal.png" alt="paypal">
         </button>
         <button class="pay small ml-2 cursor">
-          <img src="@/assets/images/icons/card.png" alt="apple_pay">
+          <img src="@/assets/images/icons/card.png" alt="card">
         </button>
       </div>
       <div class="w-100 d-flex flex-column align-items-center justify-content-center">
@@ -490,7 +491,7 @@ export default {
       addItem: false,
       numanim: null,
     };
-  },     
+  },   
   methods: {
     nextUrl(){
       this.mixpanel.track('Check-out Started', {
@@ -818,7 +819,7 @@ export default {
     margin-bottom:10px ;
     max-width: 300px;
     display: block;
-    &:focus, &:hover, .active{
+    &:focus, &:hover, &:active{
       background: rgba(87, 115, 214, 0.1);
       border: 2px solid #5773D6;
     }
@@ -1462,7 +1463,10 @@ ul{
 .fixedTime__timer, .fixedTime__timer__text{
   font-family: "SF Pro Text Bold";
 }
-
+.h200{
+  display: block;
+  height: 168px;
+}
 
 
 input, textarea{outline:none;}

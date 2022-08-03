@@ -26,23 +26,30 @@ export default {
   data(){
     return {
       num: true,
-      activeDisplay: this.$store.state.survey.layotStep
+      activeDisplay: this.$store.state.survey.layotStep,
+      myStep: 0
     }
   },
   computed: {
     ...mapGetters(['layoutSeparationsIds','layoutSeparations', 'content', 'separations', 'track']),
     loadPercent() {
       const index = ( this.track.layouts.findIndex((layout) => layout?.id == this.content?.id) ) ;
-      let myStep = 0;
-      
       if(index <= this.layoutSeparations[1]){
-        myStep = (((index / this.layoutSeparations[1]) * 100).toFixed(2))/3;
+        this.myStep = (((index / this.layoutSeparations[1]) * 100).toFixed(2))/3;
+        if(this.myStep > 31){
+          this.activeDisplay = 2
+        }else{
+          this.activeDisplay = 1
+        }
+        console.log(this.activeDisplay);
+        console.log(this.myStep)
       }else if(index <= this.layoutSeparations[2] && index > this.layoutSeparations[1]){
-        myStep = 33.33 + ((((index - this.layoutSeparations[1]) / (this.layoutSeparations[2] - this.layoutSeparations[1])) * 100).toFixed(2))/3;
+        this.activeDisplay = 2
+        this.myStep = 33.33 + ((((index - this.layoutSeparations[1]) / (this.layoutSeparations[2] - this.layoutSeparations[1])) * 100).toFixed(2))/3;
       }else{
-        myStep = 66.67 + ((((index - this.layoutSeparations[2]) / (this.layoutSeparations[3] - this.layoutSeparations[2])) * 100).toFixed(2))/3;
+        this.myStep = 66.67 + ((((index - this.layoutSeparations[2]) / (this.layoutSeparations[3] - this.layoutSeparations[2])) * 100).toFixed(2))/3;
       }
-      return myStep                       
+      return this.myStep                       
     },
   },
   watch:{

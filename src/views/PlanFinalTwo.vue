@@ -172,9 +172,14 @@
       I give up accelerated results forever &gt;
       </div>
     </div>
-    <div v-if="open !== 2" class="mw-520"> 
+    <div v-if="open == 1" class="mw-520"> 
       <div  class="footer__text">
-        *Your account will be charged immediately for the add-on services or products selected. Add-on items do not come with a free trial. Sales tax included in order total.
+        Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms.
+      </div>
+    </div>
+    <div v-else-if="open == 3" class="mw-520"> 
+      <div  class="footer__text">
+       Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms.
       </div>
     </div>
   </div>

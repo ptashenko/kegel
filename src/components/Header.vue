@@ -2,7 +2,7 @@
   <header :class="{'is-fixed': fixed}">
     <div class="container-main">
       <!-- <router-link :to="{name: 'home'}"> -->
-        <img src="@/assets/images/Logo_black.png" alt="logo" class="logo" v-if="dark">
+        <img src="@/assets/images/logo_black.png" alt="logo" class="logo" v-if="dark">
         <img src="@/assets/images/Logo_white.png" alt="logo" class="logo" v-else>
       <!-- </router-link> -->
     </div>
@@ -33,10 +33,8 @@ export default {
       let mediaQuery = window.matchMedia('(max-width: 480px)');
       if (mediaQuery.matches) {
          if(this.dark){
-          console.log(' Фон должен быть чорный ');
           document.body.style.backgroundColor = '#ffffff';
         }else {
-          console.log(' Фон должен быть белый ');
           document.body.style.backgroundColor = '#111113';
         }
       }

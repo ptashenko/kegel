@@ -230,7 +230,11 @@ export default {
     bgBodyMain(){
       let mediaQuery = window.matchMedia('(max-width: 480px)');
       let body = document.querySelector('body')
-      body.classList.add('fixed');
+      if(this.loading === false){
+        body.classList.remove('fixed');
+      }else{
+        body.classList.add('fixed');
+      }
       if (mediaQuery.matches) {
         body.style.backgroundColor = '#ffffff';
       }
@@ -243,14 +247,13 @@ export default {
     document.onreadystatechange = () => { 
       let body = document.querySelector('body')
       body.classList.add('fixed');
-    if (document.readyState == "complete") { 
-      body.classList.remove('fixed');
-      this.loading = false
-      this.$store.commit('setLOADER', false);
+      if (document.readyState == "complete") { 
+        body.classList.remove('fixed');
+        this.loading = false
+        this.$store.commit('setLOADER', false);
+      }
     }
-  }
   },
-
 };
 </script>
 

@@ -179,7 +179,6 @@ export default {
             this.next()
             setTimeout(() => {
               this.classActive()
-              console.log(document.querySelectorAll('.answer'));
             },500)
           }, 500);
         }
@@ -219,7 +218,6 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.classActive()
-      console.log(document.querySelectorAll('.answer'));
     });
   },
  

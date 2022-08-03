@@ -77,15 +77,15 @@
 <script>
 import Question from '@/components/questions/Question.vue';
 import QuestionRadio from '@/components/questions/QuestionButton.vue';
-import { mapGetters } from 'vuex';
+import {  mapGetters, mapMutations } from 'vuex';
 import Steps from '@/components/Steps.vue';
 import history from '@/mixins/history';
 import nextContentUrl from '@/mixins/contollers';
 
 
 export default {
+  inject: ['mixpanel'],
   name: 'Question-layout',
-  
   components: {
     QuestionRadio,
     Question,
@@ -114,8 +114,8 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId']),
-
+    ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId','history']),
+    
     rateTo() {
       const list = this.survey.answer.answerList;
       return `Rate from 1 to ${list[list.length - 1]}`;
@@ -142,6 +142,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['clearHistory', 'saveContent']),
     backHome(){
       if (this.survey.id === 1) {
         this.$router.push({
@@ -161,15 +162,19 @@ export default {
         }
       }
     },
-  
     nextWait(){
+
+
+      this.mixpanel.track('Quiz Answer', {
+        question: this.content.title,
+        answer: this.content.answer.answerList,
+      })
       if(this.survey.id === 34){
         this.$router.push({
           name: 'wait',
         });
       } else {
         this.selectedAnswer = true
-        // this.classActive()
         if (this.layotname.includes(this.nextContentId)){
           this.next()
         } else {

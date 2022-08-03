@@ -9,6 +9,7 @@ import router from './router';
 import store from './store';
 import LottieAnimation from "lottie-web-vue";
 import VueScrollTo from "vue-scrollto"
+import VueMixpanel from 'vue-mixpanel'
 import VideoBackground from 'vue-responsive-video-background-player'
 
 import '@/assets/scss/styles.scss';
@@ -29,5 +30,11 @@ createApp(App)
     .component('header-layout', Header)
     .component('footer-controls', FooterControls)
     .component('Steps-item', Steps)
+    .use(VueMixpanel, {
+        token: 'd8038d374838b13ef8ac565b08be6135',
+        config: {
+            debug: true
+        }
+    })
     .component('video-background', VideoBackground)
     .mount('#app');

@@ -11,12 +11,13 @@
 import { mapActions } from 'vuex';
 
 export default {
+  inject: ['mixpanel'],
   data() {
     return {
     };
   },
   methods: {
-    ...mapActions(['getContent', 'getTrack', 'getHistory', 'getSeparators']),
+    ...mapActions(['getContent', 'getTrack', 'getHistory', 'getSeparators', 'generatUUID']),
   },
   computed: {
   },
@@ -27,6 +28,9 @@ export default {
     this.getTrack();
     this.getHistory();
     this.getSeparators();
+    this.generatUUID();
+    this.mixpanel.identify(localStorage.getItem("web_user_uuid").replaceAll('\"',''));
+    this.mixpanel.people.set({ "Init": "-" });
   },
 };
 </script>

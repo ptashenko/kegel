@@ -118,7 +118,6 @@ export default {
       this.back()
     },
     nextURL(){
-      console.log(this.content)
       this.next()
     },
   },

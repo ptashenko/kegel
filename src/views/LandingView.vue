@@ -588,7 +588,7 @@ import VueScrollTo from "vue-scrollto";
 
 export default {
   name: 'LandingView', 
-
+  inject: ['mixpanel'],
   components: {
     ButtonField,
     vpopup,
@@ -901,6 +901,13 @@ export default {
         );
     },
     nextUrl() {
+      this.mixpanel.track('Check-out Started', {
+        type: "PayPal  CC  Mobile Pay",
+        method: "PayPal"
+      }),
+      this.mixpanel.track('Trial Started',{
+        amount: this.price
+      })
       setTimeout(() => {
         this.$router.push("PlanFinal");
       }, 0);
@@ -909,6 +916,9 @@ export default {
       return moment();
     },
     paymentError() {
+      this.mixpanel.track('Payment Error', {
+        stage: "Trial, Skip Trial, Skip Trial DownSale, Add Fitness, Add Fitness Downsale"
+      })
       console.log(this.numTimeError);
       this.windowError = true;
       this.numTimeError = 0;
@@ -929,6 +939,7 @@ export default {
       this.windowError = false;
     },
     showModal() {
+      this.mixpanel.track('Comfortable Amount Shown')
       let body = document.querySelector("body");
       body.classList.add("fixed");
       this.popupVisible = true;
@@ -944,22 +955,26 @@ export default {
       body.classList.add("fixed");
       this.popupVisible3 = true;
     },
-    closePopup(e) {
-      let body = document.querySelector("body");
-      let x = e.target;
-      if (x.classList.contains("active")) {
-        this.popupVisible = false;
-        body.classList.remove("fixed");
+    closePopup(e){
+      this.mixpanel.track('Comfortable Amount Complted', {
+        amount: this.price
+      })
+      let body = document.querySelector('body')
+      let x = e.target
+      if(x.classList.contains('active')){
+        this.popupVisible = false
+        body.classList.remove('fixed');
       }
 
 
     },
-    closePopup2(e) {
-      let body = document.querySelector("body");
-      let x = e.target;
-      if (x.classList.contains("active")) {
-        this.popupVisible2 = false;
-        body.classList.remove("fixed");
+    closePopup2(e){
+      this.mixpanel.track('Landing Page 2 Shown')
+      let body = document.querySelector('body')
+      let x = e.target
+      if(x.classList.contains('active')){
+        this.popupVisible2 = false
+        body.classList.remove('fixed');
       }
       VueScrollTo.scrollTo("#paypal");
       this.getPayPalIntent();
@@ -1120,6 +1135,9 @@ export default {
       }
     }, 500);
   },
+  created () {
+    this.mixpanel.track('Landing Page 1 Shown')
+  }
 };
 </script>
 
@@ -1379,6 +1397,13 @@ export default {
       background: rgba(87, 115, 214, 0.1);
       border: 2px solid #5773d6;
     }
+    img{
+      max-width: 100%;
+    }
+  }
+  button.pay.active{
+    background: rgba(87, 115, 214, 0.1);
+    border: 2px solid #5773D6;
   }
   button.pay.small {
     max-width: 150px;

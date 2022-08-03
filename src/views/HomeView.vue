@@ -262,7 +262,6 @@ export default {
   created () {
     this.mixpanel.track('Start Screen Shown')
     this.mixpanel.track('Quize Started')
-    
   }
 };
 </script>

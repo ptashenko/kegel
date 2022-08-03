@@ -240,6 +240,7 @@ import ButtonField from '@/components/ui/Button.vue';
 
 export default {
   name: 'PlanFinal',
+  inject: ['mixpanel'],
   data(){
     return{
       base: {},
@@ -423,8 +424,10 @@ export default {
       // safari
       window.pageYOffset = 0
     })
+  },
+  created () {
+    this.mixpanel.track('Trial Skip Offered')
   }
-
 };
 </script>
 

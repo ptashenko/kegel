@@ -142,7 +142,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['clearHistory', 'saveContent']),
+    ...mapMutations(['clearHistory', 'saveContent', 'setHistory', 'saveVariant']),
     backHome(){
       if (this.survey.id === 1) {
         this.$router.push({
@@ -163,11 +163,14 @@ export default {
       }
     },
     nextWait(){
-
+      const answeres = document.querySelectorAll('.answer'),
+            active = document.querySelector('.answer.active'),
+            index = Array.prototype.indexOf.call(answeres, active),
+            userAnswer = this.content.answer.answerList[index];
 
       this.mixpanel.track('Quiz Answer', {
         question: this.content.title,
-        answer: this.content.answer.answerList,
+        answer: userAnswer,
       })
       if(this.survey.id === 34){
         this.$router.push({

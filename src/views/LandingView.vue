@@ -219,10 +219,10 @@
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <div class="d-flex flex-column align-items-center justify-content-center">
         <div id="solid-payment-form-container">
-          <button class="pay cursor" v-if="apple_pay">
+          <button class="pay cursor active" v-if="apple_pay">
             <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
           </button>
-          <button class="pay cursor" v-else>
+          <button class="pay cursor active" v-else>
             <img src="@/assets/images/icons/google_pay.svg" alt="apple_pay">
           </button>
         </div>
@@ -241,7 +241,7 @@
             v-if="apple_pay"
           >
             <button 
-              class="aple_pay d-flex align-items-center justify-content-beetwen cursor"
+              class="aple_pay d-flex align-items-center justify-content-beetwen cursor "
               @click="nextUrl"
             >
               Buy with&nbsp;
@@ -257,8 +257,17 @@
           <div
             v-else
           >
-            <button class="Pay_pay d-flex align-items-center justify-content-beetwen cursor">
+            <button 
+              class="Pay_pay d-flex align-items-center justify-content-beetwen cursor"
+              @click="nextUrl"
+            >
               <img src="@/assets/images/icons/PayPal_img_2.svg" alt="apple_pay">&nbsp;Buy Now
+            </button>
+            <button 
+              class="aple_pay error d-flex align-items-center justify-content-beetwen cursor"
+              @click="paymentError"
+            >
+              Error button
             </button>
           </div>
           
@@ -439,7 +448,7 @@ import VueScrollTo from "vue-scrollto";
 
 export default {
   name: 'LandingView', 
-  
+  inject: ['mixpanel'],
   components: {
     ButtonField,
     vpopup,
@@ -484,6 +493,14 @@ export default {
   },     
   methods: {
     nextUrl(){
+      this.mixpanel.track('Check-out Started', {
+        type: "PayPal  CC  Mobile Pay",
+        method: "PayPal"
+      }),
+      this.mixpanel.track('Trial Started',{
+        amount: this.price
+      })
+      
       setTimeout(() =>{
         this.$router.push('PlanFinal')
       }, 0)
@@ -492,7 +509,9 @@ export default {
       return moment();
     },
     paymentError(){
-      console.log(this.numTimeError);
+      this.mixpanel.track('Payment Error', {
+        stage: "Trial, Skip Trial, Skip Trial DownSale, Add Fitness, Add Fitness Downsale"
+      })
       this.windowError = true
       this.numTimeError = 0
       this.polling = setInterval(() => {
@@ -512,6 +531,7 @@ export default {
       this.windowError = false
     },
     showModal(){
+      this.mixpanel.track('Comfortable Amount Shown')
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
@@ -528,6 +548,9 @@ export default {
       this.popupVisible3 = true
     },
     closePopup(e){
+      this.mixpanel.track('Comfortable Amount Complted', {
+        amount: this.price
+      })
       let body = document.querySelector('body')
       let x = e.target
       if(x.classList.contains('active')){
@@ -538,6 +561,7 @@ export default {
 
     },
     closePopup2(e){
+      this.mixpanel.track('Landing Page 2 Shown')
       let body = document.querySelector('body')
       let x = e.target
       if(x.classList.contains('active')){
@@ -691,6 +715,9 @@ export default {
       }
     }, 500);
   },
+  created () {
+    this.mixpanel.track('Landing Page 1 Shown')
+  }
 };
 </script>
 
@@ -789,11 +816,19 @@ export default {
     border: 2px solid #F9F9F9;
     border-radius: 9px;
     margin-bottom:10px ;
-    max-width: 310px;
-    &:focus{
+    max-width: 300px;
+    display: block;
+    &:focus, &:hover, .active{
       background: rgba(87, 115, 214, 0.1);
       border: 2px solid #5773D6;
     }
+    img{
+      max-width: 100%;
+    }
+  }
+  button.pay.active{
+    background: rgba(87, 115, 214, 0.1);
+    border: 2px solid #5773D6;
   }
   button.pay.small{
     max-width: 150px;

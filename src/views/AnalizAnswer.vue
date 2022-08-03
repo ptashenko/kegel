@@ -23,14 +23,10 @@
                 :class="{ active: isActiveCheck_1 }"
                 ref="animed"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
-                :loop="mytrue"
+                :loop="true"
                 :autoPlay="true"
                 :speed="1"
-                @loopComplete="loopComplete"
-                @complete="complete"
-                @enterFrame="enterFrame"
-                @segmentStart="segmentStart"
-                @stopped="stopped"
+
               />
             </div>
             <div class="number__procent">
@@ -54,16 +50,11 @@
               <lottie-animation 
                 class="check"
                 :class="{ active: isActiveCheck_2 }"
-                ref="anim"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
-                :loop="mytrue"
+                :loop="true"
                 :autoPlay="true"
                 :speed="1"
-                @loopComplete="loopComplete"
-                @complete="complete"
-                @enterFrame="enterFrame"
-                @segmentStart="segmentStart"
-                @stopped="stopped"
+
               />
             </div>
             <div  class="number__procent">
@@ -87,16 +78,11 @@
               <lottie-animation 
                 class="check"
                 :class="{ active: isActiveCheck_3 }"
-                ref="anim"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
-                :loop="mytrue"
+                :loop="true"
                 :autoPlay="true"
                 :speed="1"
-                @loopComplete="loopComplete"
-                @complete="complete"
-                @enterFrame="enterFrame"
-                @segmentStart="segmentStart"
-                @stopped="stopped"
+
               />
             </div>
             <div  class="number__procent">
@@ -120,16 +106,11 @@
               <lottie-animation 
                 class="check"
                 :class="{ active: isActiveCheck_4 }"
-                ref="anim"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
-                :loop="mytrue"
+                :loop="true"
                 :autoPlay="true"
                 :speed="1"
-                @loopComplete="loopComplete"
-                @complete="complete"
-                @enterFrame="enterFrame"
-                @segmentStart="segmentStart"
-                @stopped="stopped"
+     
               />
             </div>
             <div  class="number__procent">
@@ -174,7 +155,7 @@
 
       <vpopup
         class="popup_wraper analize "
-        textTitle="Do you want to enhance your orgasms?"
+        :textTitle = textTitle
         v-if="popupVisible"
       >   
         <btnComponent
@@ -208,8 +189,8 @@ import btnComponent from '@/components/questions/btnPopup.vue';
 import analizProcessing from '@/components/ui/analizProcessing.vue';
 
 export default {
+  inject: ['mixpanel'],
   name: 'AnalizAnswer',
-
   components:{
     vpopup,
     btnComponent,
@@ -219,6 +200,7 @@ export default {
   data(){
     return{
       title:'Analyzing the answers...',
+      textTitle:"Do you want to enhance your orgasms?",
       isActiveCheck_1: true,
       isActiveCheck_2: false,
       isActiveCheck_3: false,
@@ -244,6 +226,7 @@ export default {
       loadTreePooling: null,
       refreshId: null,
       numReviewPooling: null,
+      userAnswer:"", 
     }
   },
 
@@ -263,7 +246,7 @@ export default {
       } else {
         this.base = this.$store.state.review.msgED
       }
-      return console.log(this.track); 
+      return this.track
     }
   },
   
@@ -288,15 +271,7 @@ export default {
     }, 60);
   },
   
-  beforeUnmount(){
-    clearInterval(this.numrew);
-    clearInterval(this.as);
-    clearInterval(this.asedPooling);
-    clearInterval(this.loadTwoPooling);
-    clearInterval(this.loadTreePooling);
-    clearInterval(this.refreshId);
-    clearInterval(this.numReviewPooling);
-  },
+  
 
   methods:{
     showModal(){
@@ -320,15 +295,21 @@ export default {
         this.mystop = 100
         this.ased()  
         this.numReview()
+        this.mixpanel.track('Quiz Answer modal', {
+          question: this.textTitle,
+          answer: this.userAnswer,
+        })
       }
     },
 
     BtnActiveYes(){
+      this.userAnswer = "Yes, I do"
       this.isActiveYes = this.closeActive = true 
       this.isActiveNo = false
     },
 
     BtnActiveNo(){
+      this.userAnswer = "No, I don't"
       this.isActiveYes = false
       this.isActiveNo = this.closeActive = true
     },
@@ -391,11 +372,19 @@ export default {
       }, 4500);
     }
   },
-
+  beforeUnmount(){
+    clearInterval(this.numrew);
+    clearInterval(this.as);
+    clearInterval(this.asedPooling);
+    clearInterval(this.loadTwoPooling);
+    clearInterval(this.loadTreePooling);
+    clearInterval(this.refreshId);
+    clearInterval(this.numReviewPooling);
+  },
   watch: {
-    mytrue() {
-      console.log(this.mytrue);
-    },
+    // mytrue() {
+    //   console.log(this.mytrue);
+    // },
 
     percent() {
       if (this.percent == 100){

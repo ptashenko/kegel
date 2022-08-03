@@ -68,7 +68,7 @@ import VueScrollTo from "vue-scrollto";
 
 export default {
   name: 'EmailAdress',
-
+  inject: ['mixpanel'],
   data() {
     return {
       textpurpose:'',
@@ -97,6 +97,9 @@ export default {
   methods: {
     ...mapActions(['setEmail']),
     nextUrl(){
+      this.mixpanel.track('E-mail Screen Shown', {
+        Email: this.upValue
+      })
       if (this.closeActive) {
         VueScrollTo.scrollTo('.dark-layout');
         this.setEmail(this.upValue)
@@ -108,6 +111,9 @@ export default {
     },
   
     nextUrlEmail(){
+      this.mixpanel.track('E-mail Screen Shown', {
+        Email: this.upValue
+      })
       VueScrollTo.scrollTo('.dark-layout');
       this.setEmail(this.upValue)
       this.$router.push('LandingView');
@@ -125,6 +131,9 @@ export default {
       }
 		}
   },
+  created () {
+    this.mixpanel.track('E-mail Screen Shown')
+  }
 };
 </script>
 

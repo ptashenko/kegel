@@ -9,7 +9,6 @@
     },
     "dependencies": {
         "@aacassandra/vue3-progressbar": "^1.0.3",
-        "@chargebee/chargebee-js-vue-wrapper": "^0.3.0",
         "core-js": "^3.8.3",
         "lottie-web-vue": "^2.0.6",
         "mixpanel": "^0.16.0",

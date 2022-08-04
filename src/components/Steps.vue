@@ -34,6 +34,8 @@ export default {
     ...mapGetters(['layoutSeparationsIds','layoutSeparations', 'content', 'separations', 'track']),
     loadPercent() {
       const index = ( this.track.layouts.findIndex((layout) => layout?.id == this.content?.id) ) ;
+      console.log(this.activeDisplay);
+      console.log(this.myStep)
       if(index <= this.layoutSeparations[1]){
         this.myStep = (((index / this.layoutSeparations[1]) * 100).toFixed(2))/3;
         if(this.myStep > 31){
@@ -41,13 +43,20 @@ export default {
         }else{
           this.activeDisplay = 1
         }
-        console.log(this.activeDisplay);
-        console.log(this.myStep)
       }else if(index <= this.layoutSeparations[2] && index > this.layoutSeparations[1]){
-        this.activeDisplay = 2
         this.myStep = 33.33 + ((((index - this.layoutSeparations[1]) / (this.layoutSeparations[2] - this.layoutSeparations[1])) * 100).toFixed(2))/3;
+        if(this.myStep > 64){
+          this.activeDisplay = 3
+        }else{
+          this.activeDisplay = 2
+        }
       }else{
         this.myStep = 66.67 + ((((index - this.layoutSeparations[2]) / (this.layoutSeparations[3] - this.layoutSeparations[2])) * 100).toFixed(2))/3;
+        if(this.myStep > 101){
+          this.activeDisplay = 4
+        }else{
+          this.activeDisplay = 3
+        }
       }
       return this.myStep                       
     },

@@ -1709,9 +1709,6 @@ ul{
     width: 100%;
     margin: 0 auto;
     position: relative;
-    .m20{
-      // margin-left: -20px;
-    }
   }
 }
 .timer__text{

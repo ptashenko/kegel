@@ -56,6 +56,7 @@ import ButtonField from '@/components/ui/Button.vue';
 
 export default {
   name: 'CodeQR',
+  inject: ['mixpanel'],
   data(){
     return{
       popupVisible: false,
@@ -195,6 +196,8 @@ export default {
 
             this.url = result.clickURL;
             window.AF_SMART_SCRIPT.displayQrCode("qr");
+  created () {
+    this.mixpanel.track('Final Screen Shown')
   }
 };
 </script>

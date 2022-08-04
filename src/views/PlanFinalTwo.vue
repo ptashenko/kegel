@@ -266,7 +266,8 @@ import ButtonField from '@/components/ui/Button.vue';
 import VueScrollTo from "vue-scrollto";
 
 export default {
-  name: ' ',
+  name: 'PlanFinalTwo',
+  inject: ['mixpanel'],
   data(){
     return{
       VueScrollTo: require('vue-scrollto'),
@@ -368,11 +369,26 @@ export default {
       return require(`@/assets/video/${path}`);
     },
     nextUrl(){
+      this.mixpanel.track('Upsale Answered',{
+        Trial_Skipped: "No"
+      })
+      if(this.open == 1){
+        this.mixpanel.track('Upsale',{
+          price: "19.99"
+        })
+      }else if(this.open == 3){
+        this.mixpanel.track('Upsale',{
+          price: "9.99"
+        })
+      }
       let body = document.querySelector('body')
       body.classList.remove('fixed');
       this.$router.push('CodeQR')
     },
     showModal(){
+      this.mixpanel.track('Upsale Answered',{
+        Trial_Skipped: "Yes"
+      })
       var element = document.getElementById("topPage");
       var top = element.offsetTop;
       window.scrollTo(0, top);
@@ -380,6 +396,7 @@ export default {
       localStorage.setItem('addPlan', 2)
     },
     closePopup(){
+      this.mixpanel.track('Discunted Upsale Offered')
       var element = document.getElementById("topPage");
       var top = element.offsetTop;
       window.scrollTo(0, top);
@@ -410,6 +427,9 @@ export default {
   },
   mounted(){
     this.storeEdit()
+  },
+  created () {
+    this.mixpanel.track('Upsale Offered')
   }
 };
 </script>

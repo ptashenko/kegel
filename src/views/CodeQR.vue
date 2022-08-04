@@ -196,6 +196,7 @@ export default {
 
             this.url = result.clickURL;
             window.AF_SMART_SCRIPT.displayQrCode("qr");
+  },
   created () {
     this.mixpanel.track('Final Screen Shown')
   }

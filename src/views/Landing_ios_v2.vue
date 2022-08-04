@@ -113,7 +113,7 @@
   </div>
   <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
     <div>
-      12 weeks plan
+      Subscription
     </div>
     <div class="after d-flex flex-column align-items-end">
       <div class="d-flex"><span class="opasity">$6.6 </span><span class="bold">&nbsp; $4.2*</span></div>

@@ -96,11 +96,6 @@
           :loop="mytrue"
           :autoPlay="true"
           :speed="1"
-          @loopComplete="loopComplete"
-          @complete="complete"
-          @enterFrame="enterFrame"
-          @segmentStart="segmentStart"
-          @stopped="stopped"
         />
       </div>
 
@@ -182,7 +177,7 @@
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <div class="d-flex flex-column align-items-center justify-content-center">
         <div id="solid-payment-form-container">
-          <button class="pay cursor" v-if="apple_pay">
+          <button class="pay cursor active" v-if="apple_pay">
             <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
           </button>
           <button class="pay cursor" v-else>
@@ -303,8 +298,9 @@ export default {
       }else if(this.track.id == 3){
         this.AddPurpose = true
       }
-      return  console.log(this.imageitem);
-    }
+      return  this.imageitem
+    },
+    
   },
   components: {
     Review,
@@ -387,6 +383,7 @@ export default {
       return Math.random() * (max - min) + min;
     },
     showModal(){
+      localStorage.setItem('sale 20%', true)
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
@@ -402,6 +399,13 @@ export default {
         this.btnModal = false
       }
     },
+    checkingDiscount(){
+      if(localStorage.getItem('sale 20%')){
+        this.addToDo = true
+        this.addToDo = 44
+        this.btnModal = false
+      }
+    }
   },
   props: {
     content: {
@@ -413,7 +417,6 @@ export default {
   beforeUnmount () {
     clearInterval(this.polling)
     clearInterval(this.pollingTwo)
-
   },
   mounted(){
     this.$nextTick(function (){
@@ -423,7 +426,8 @@ export default {
       document.documentElement.scrollTop = 0
       // safari
       window.pageYOffset = 0
-    })
+    }),
+    this.checkingDiscount()
   },
   created () {
     this.mixpanel.track('Trial Skip Offered')
@@ -706,6 +710,10 @@ export default {
       background: rgba(87, 115, 214, 0.1);
       border: 2px solid #5773D6;
     }
+  }
+  button.pay.active {
+    background: rgba(87, 115, 214, 0.1);
+    border: 2px solid #5773D6;
   }
   button.pay.small{
     max-width: 150px;

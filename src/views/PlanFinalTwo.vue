@@ -107,11 +107,6 @@
             :loop="mytrue"
             :autoPlay="true"
             :speed="1"
-            @loopComplete="loopComplete"
-            @complete="complete"
-            @enterFrame="enterFrame"
-            @segmentStart="segmentStart"
-            @stopped="stopped"
           />
         </div>
       </div>
@@ -142,11 +137,6 @@
             :loop="mytrue"
             :autoPlay="true"
             :speed="1"
-            @loopComplete="loopComplete"
-            @complete="complete"
-            @enterFrame="enterFrame"
-            @segmentStart="segmentStart"
-            @stopped="stopped"
           />
         </div>
       </div>
@@ -308,7 +298,7 @@ export default {
   },
   components: {
     Review,
-    vpopup,
+    vpopup, 
     ButtonField,
   },
   methods: {
@@ -384,13 +374,24 @@ export default {
       var top = element.offsetTop;
       window.scrollTo(0, top);
       this.open = 2
+      localStorage.setItem('addPlan', 2)
     },
     closePopup(){
       var element = document.getElementById("topPage");
       var top = element.offsetTop;
       window.scrollTo(0, top);
       this.open = 3
+      localStorage.setItem('addPlan', 3)
     },
+    storeEdit(){
+      if(localStorage.getItem('addPlan') == 2){
+        this.open = 2
+      }else if(localStorage.getItem('addPlan') == 3){
+        this.open = 3
+      }else{
+        this.open = 1
+      }
+    }
   },
   props: {
     content: {
@@ -404,6 +405,9 @@ export default {
     clearInterval(this.pollingTwo)
 
   },
+  mounted(){
+    this.storeEdit()
+  }
 };
 </script>
 

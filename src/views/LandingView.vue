@@ -376,9 +376,7 @@
   class="popup_wraper trial"
     textTitle="Trial commitment"
     v-if="popupVisible2"
-  > 
-  
-                  
+  >            
     <p class="opasity_75">
       Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to <span class="text-bold"> {{ purpose }}<span v-if="AddPurposeCom"><span class="width-400"> and </span>{{ addpurpose }}</span></span>.
     </p>
@@ -533,11 +531,13 @@ export default {
     },
     showModal(){
       this.mixpanel.track('Comfortable Amount Shown')
+      localStorage.setItem('Comfortable amount Pop-up', 'true')
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
     },
     showModal2(){
+      localStorage.setItem('Button step_2', 'true')
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible2 = true
@@ -628,6 +628,7 @@ export default {
       document.addEventListener('scroll', (e) => {
         let x = window.scrollY
         if(x>310){
+          
           this.blockFixed = true
         }else{
           this.blockFixed = false
@@ -639,8 +640,16 @@ export default {
         document.addEventListener('scroll', (e) => {
         let x = window.scrollY
         if(x>400){
-          this.ggg = 1
+          if(localStorage.getItem('Comfortable amount Pop-up')){
+            this.ggg = 0
+          }else{
+            this.ggg = 1
+          }
+        }
+        if(localStorage.getItem('Button step_2')){
+          this.step_2 = true
         }else{
+          this.step_2 = false
         }
       })
     },
@@ -827,7 +836,7 @@ export default {
       max-width: 100%;
     }
   }
-  button.pay.active{
+  button.pay.active {
     background: rgba(87, 115, 214, 0.1);
     border: 2px solid #5773D6;
   }

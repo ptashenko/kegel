@@ -257,6 +257,7 @@ export default {
       apple_pay: true,
       pollingTwo: null,
       polling: null,
+      priceTotal:""
     }
   },
   computed: {
@@ -322,6 +323,9 @@ export default {
       body.classList.remove('fixed');
     },
     closePopupWindowPayError(){
+      this.mixpanel.track('Trial Skip Downsale Answered',{
+        Trial_Skipped: "No"
+      })
       this.popupWindowPay = false
       let body = document.querySelector('body')
       body.classList.remove('fixed');
@@ -361,6 +365,12 @@ export default {
         }, 1000)
     },
     nextUrl(){ 
+      this.mixpanel.track('Trial Skip Answered',{
+        Trial_Skipped: "No"
+      })
+      this.mixpanel.track('Subscription Started',{
+        price: this.pricenew
+      })
       let mediaQuery = window.matchMedia('(max-width: 480px)');
       if (mediaQuery.matches) {
         let body = document.querySelector('body')
@@ -383,12 +393,16 @@ export default {
       return Math.random() * (max - min) + min;
     },
     showModal(){
+          
       localStorage.setItem('sale 20%', true)
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
     },
     closePopup(e){
+      this.mixpanel.track('Trial Skip Downsale') 
+      
+      
       let body = document.querySelector('body')
       let x = e.target
       if(x.classList.contains('active')){

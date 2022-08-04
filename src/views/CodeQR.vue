@@ -55,6 +55,7 @@ import ButtonField from '@/components/ui/Button.vue';
 
 export default {
   name: 'CodeQR',
+  inject: ['mixpanel'],
   data(){
     return{
       popupVisible: false,
@@ -100,7 +101,8 @@ export default {
       type: Object,
     },
   },
-  mounted(){
+  created () {
+    this.mixpanel.track('Final Screen Shown')
   }
 };
 </script>

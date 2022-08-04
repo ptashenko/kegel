@@ -71,7 +71,7 @@ export default {
         },
 
         generatUUID() {
-            const UUID = uuid.v4();
+            const UUID = uuid.v4().replaceAll('\"', '');
             addItem('web_user_uuid', UUID);
         }
     },

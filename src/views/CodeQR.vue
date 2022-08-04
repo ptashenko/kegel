@@ -23,6 +23,7 @@
           text='Download now'
           theme="Back"
           class="footer-controls__button "
+          @click="downloadButton"
           :class="{ 'bg-blue': !active, 'red': active }"
         />
         <div class="text-center">
@@ -31,8 +32,8 @@
           </div>
           <p class="title_code">Scan the QR code below</p>
         </div>
-        <div class="layout__thumbnail">
-          <img src="@/assets/images/content/qr_code_img.svg" alt="qr code img">
+        <div class="layout__thumbnail" id="qr">
+          <!-- <img src="@/assets/images/content/qr_code_img.svg" alt="qr code img"> -->
         </div>
       </div>
       <div class="block-bottom text-center">
@@ -59,7 +60,8 @@ export default {
     return{
       popupVisible: false,
       active: true,
-      email:this.$store.state.dataPurporse.emailUser
+      email:this.$store.state.dataPurporse.emailUser,
+      url: ""
     }
   },
   computed: {
@@ -71,6 +73,22 @@ export default {
     ButtonField,
   },
   methods: {
+    downloadButton() {
+      var input = document.createElement('input');
+      input.setAttribute('value', this.url);
+      input.value = this.url;        
+      document.body.appendChild(input);
+      try {
+          input.select();    
+          input.click();     
+          input.focus();
+          document.execCommand('copy');
+      } catch (err) {
+          console.log('Oops, unable to copy');
+      }
+      document.body.removeChild(input); 
+      window.location.href = this.url
+    },
     video(path) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/video/${path}`);
@@ -101,6 +119,82 @@ export default {
     },
   },
   mounted(){
+      var oneLinkURL = "https://drkegel.onelink.me/qIUy/";
+            var mediaSource = {
+                keys: ["pid"],
+                defaultValue: "WebQuiz"
+            };
+            var campaign = {
+                keys: ["campaign_name"]
+            };
+            var campaign_id = {
+                paramKey: "af_c_id",
+                keys: ["af_c_id"]
+            };
+            var adset = {
+                keys: ["adset_name"]
+            };
+            var adset_id = {
+                paramKey: "af_adset_id",
+                keys: ["af_adset_id"]
+            };
+            var ad = {
+                keys: ["ad_name"]
+            };
+            var ad_id = {
+                paramKey: "af_ad_id",
+                keys: ["af_ad_id"]
+            };
+            var site_id = {
+                paramKey: "af_siteid",
+                keys: ["af_siteid"]
+            };
+            var url = {
+                paramKey: "af_url",
+                keys: ["url"]
+            };
+            var sub1 = {
+                paramKey: "af_sub1",
+                keys: ["fbp"],
+                defaultValue: ""
+            };
+            var sub2 = {
+                paramKey: "af_sub2",
+                keys: ["fbc"],
+                defaultValue: ""
+            };
+            var sub3 = {
+                keys: ["url"],
+                defaultValue: navigator.userAgent
+            };
+            var sub5 = {
+                keys: ["url"],
+                defaultValue: localStorage.getItem("web_user_uuid").replaceAll('\"','')
+            };
+
+            var result = window.AF_SMART_SCRIPT.generateOneLinkURL({
+                oneLinkURL,
+                afParameters: {
+                    mediaSource: mediaSource,
+                    campaign: campaign,
+                    adSet: adset,
+                    ad: ad,
+                    afSub1: sub1,
+                    afSub2: sub2,
+                    afSub3: sub3,
+                    afSub5: sub5,
+                    afCustom: [
+                        campaign_id,
+                        adset_id,
+                        ad_id,
+                        site_id,
+                        url
+                    ]
+                }
+            })
+
+            this.url = result.clickURL;
+            window.AF_SMART_SCRIPT.displayQrCode("qr");
   }
 };
 </script>

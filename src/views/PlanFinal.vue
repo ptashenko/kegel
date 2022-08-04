@@ -76,15 +76,16 @@
         text='Skip trial and start plan'
         theme="Back"
         class="footer-controls__button red"
-        @click="nextUrl"
+        :class="{ submit: loading }"
+        @click="changePlanRequest"
       />
-      <button-field
+      <!-- <button-field
         text='Skip trial and start plan'
         theme="Back"
         class="footer-controls__button red loader"
         :class="{ hiden: isActive }"
         @click="loadingBtn"
-      />
+      /> -->
       <div
       class="footer-controls__button btnLoader "
         :class="{ hiden: !isActive }"
@@ -96,6 +97,11 @@
           :loop="mytrue"
           :autoPlay="true"
           :speed="1"
+          @loopComplete="loopComplete"
+          @complete="complete"
+          @enterFrame="enterFrame"
+          @segmentStart="segmentStart"
+          @stopped="stopped"
         />
       </div>
 
@@ -177,7 +183,7 @@
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <div class="d-flex flex-column align-items-center justify-content-center">
         <div id="solid-payment-form-container">
-          <button class="pay cursor active" v-if="apple_pay">
+          <button class="pay cursor" v-if="apple_pay">
             <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
           </button>
           <button class="pay cursor" v-else>
@@ -238,7 +244,9 @@ export default {
   inject: ['mixpanel'],
   data(){
     return{
+      item: "kegel_3-USD-Every-3-months",
       base: {},
+      loading: false,
       numreview: 2,
       dataPP1: sessionStorage.getItem('data1'),
       dataPP2: sessionStorage.getItem('data2'),
@@ -295,12 +303,11 @@ export default {
     imagePE(){
       if(this.jsLocal == 2 && sessionStorage.getItem('resbtn') == 'Yes'){
         this.imageitem = require(`@/assets/images/json/ED.json`);
-      }else if(this.track.id == 3){
+      }else if(this.jsLocal == 3){
         this.AddPurpose = true
       }
-      return  this.imageitem
-    },
-    
+      return  console.log(this.imageitem);
+    }
   },
   components: {
     Review,
@@ -328,6 +335,9 @@ export default {
       this.loadingBtn()
     },
     paymentError(){
+      this.mixpanel.track('Payment Error', {
+        stage: this.pricenew == 60 ? "Skip Trial" : "Skip Trial DownSale"
+      })
       this.windowError = true
       this.numTimeError = 0
       this.polling = setInterval(() => {
@@ -359,6 +369,27 @@ export default {
             this.paymentError() 
           }
         }, 1000)
+    },
+    changePlanRequest(){
+      this.loading = true;
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer test",
+        },
+        body: JSON.stringify({
+          web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
+          item: this.item,
+        }),
+      };
+      fetch(
+        "https://int2.kegel.men/api/web-payment/change-subscription/",
+        requestOptions
+      ).then((response) => {
+        this.loading = false;
+        this.nextUrl();
+      });
     },
     nextUrl(){ 
       let mediaQuery = window.matchMedia('(max-width: 480px)');
@@ -396,6 +427,7 @@ export default {
         body.classList.remove('fixed');
         this.addToDo = true
         this.pricenew = 44
+        this.item = "kegel_4-USD-Every-3-months"
         this.btnModal = false
       }
     },
@@ -541,6 +573,14 @@ export default {
     max-width: 310px;
     margin: 16px auto 0;
   }
+  .footer-controls__button.submit {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ic3ZnLWxvYWRlciIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTUiIGhlaWdodD0iNTUiIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQwIDcyQzIyLjQgNzIgOCA1Ny42IDggNDBTMjIuNCA4IDQwIDhzMzIgMTQuNCAzMiAzMmMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTJjMC0xNS40LTEyLjYtMjgtMjgtMjhTMTIgMjQuNiAxMiA0MHMxMi42IDI4IDI4IDI4YzEuMSAwIDIgLjkgMiAycy0uOSAyLTIgMnoiPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgNDAgNDAiIHRvPSIzNjAgNDAgNDAiIGR1cj0iMC42cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  color: transparent !important;
+  transition-duration: 0s;
+}
   .btn_popup{
     position: relative;
     text-align: center;

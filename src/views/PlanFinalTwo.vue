@@ -322,6 +322,9 @@ export default {
       this.loadingBtn()
     },
     paymentError(){
+      this.mixpanel.track('Payment Error', {
+        stage: open == 1 ? "Add Fitness" : "Add Fitness Downsale"
+      })
       this.windowError = true
       this.numTimeError = 0
       this.polling = setInterval(() => {

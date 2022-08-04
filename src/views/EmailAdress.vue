@@ -97,27 +97,22 @@ export default {
   methods: {
     ...mapActions(['setEmail']),
     nextUrl(){
-      this.mixpanel.track('E-mail Screen Shown', {
-        Email: this.upValue
-      })
       if (this.closeActive) {
         VueScrollTo.scrollTo('.dark-layout');
         this.setEmail(this.upValue)
         this.$router.push('LandingView');
-        return;
+        this.mixpanel.track('E-mail Screen Completed', {
+          email: this.upValue
+        })
       } else {
-        console.log('Введите email');
       } 
     },
   
     nextUrlEmail(){
-      this.mixpanel.track('E-mail Screen Shown', {
-        Email: this.upValue
-      })
-      VueScrollTo.scrollTo('.dark-layout');
+      VueScrollTo.scrollTo('.dark-layout')
       this.setEmail(this.upValue)
-      this.$router.push('LandingView');
-      return;
+      this.$router.push('LandingView')
+      
     },
   },
 

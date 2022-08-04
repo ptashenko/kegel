@@ -295,7 +295,7 @@ export default {
         this.mystop = 100
         this.ased()  
         this.numReview()
-        this.mixpanel.track('Quiz Answer modal', {
+        this.mixpanel.track('Quiz Answer', {
           question: this.textTitle,
           answer: this.userAnswer,
         })
@@ -382,10 +382,6 @@ export default {
     clearInterval(this.numReviewPooling);
   },
   watch: {
-    // mytrue() {
-    //   console.log(this.mytrue);
-    // },
-
     percent() {
       if (this.percent == 100){
         this.loadTwo()

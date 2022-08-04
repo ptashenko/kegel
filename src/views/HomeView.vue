@@ -221,9 +221,7 @@ export default {
         field: 'id',
         value: track.layouts[0].id,
       });
-      this.mixpanel.track('Quiz Answer', {
-        question: track.title
-      })
+      this.mixpanel.track('Quize Started')
       this.saveContent(content);
       this.saveTrack(track);
       this.$router.push({
@@ -261,7 +259,6 @@ export default {
   },
   created () {
     this.mixpanel.track('Start Screen Shown')
-    this.mixpanel.track('Quize Started')
   }
 };
 </script>

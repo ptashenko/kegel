@@ -549,9 +549,11 @@ export default {
       this.popupVisible3 = true
     },
     closePopup(e){
-      this.mixpanel.track('Comfortable Amount Complted', {
-        amount: this.price
-      })
+      if(this.closeActive){
+        this.mixpanel.track('Comfortable Amount Complted', {
+          amount: this.price
+        })
+      }
       let body = document.querySelector('body')
       let x = e.target
       if(x.classList.contains('active')){

@@ -497,7 +497,7 @@ export default {
       isActiveNo: false,
       closeActive: false,
       scrollPosition: 0,
-      price: 1,
+      price: localStorage.getItem('price'),
       oldprice: 19.88,
       numanimate: 1,
       show: false,
@@ -789,7 +789,7 @@ export default {
       this.price = 1;
       this.item = "kegel_1-USD-Every-3-months"
       this.oldprice = 19.88;
-      sessionStorage.setItem("price", 1);
+      localStorage.setItem("price", 1);
     },
     BtnActiveNo() {
       this.isActiveYes = false;
@@ -797,7 +797,7 @@ export default {
       this.price = 9.73;
       this.item = "kegel_2-USD-Every-3-months"
       this.oldprice = 19.88;
-      sessionStorage.setItem("price", 9.73);
+      localStorage.setItem("price", 9.73);
     },
     showReview() {
       this.numreview = this.numreview + 2;

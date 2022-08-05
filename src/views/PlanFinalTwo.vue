@@ -324,7 +324,7 @@ export default {
     },
     paymentError(){
       this.mixpanel.track('Payment Error', {
-        stage: open == 1 ? "Add Fitness" : "Add Fitness Downsale"
+        stage: this.open == 1 ? "Add Fitness" : "Add Fitness Downsale"
       })
       this.windowError = true
       this.numTimeError = 0

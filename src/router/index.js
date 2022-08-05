@@ -16,7 +16,7 @@ import CodeQR from '@/views/CodeQR.vue';
 const routes = [{
         path: '/',
         name: 'home',
-        component: Plan,
+        component: HomeView,
     },
     {
         path: '/survey/:survey',

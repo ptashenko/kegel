@@ -104,6 +104,7 @@ export default {
         this.mixpanel.track('E-mail Screen Completed', {
           email: this.upValue
         })
+        this.mixpanel.people.set({ "$email": this.upValue });
       } else {
       } 
     },

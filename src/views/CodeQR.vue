@@ -1,6 +1,6 @@
 <template>
   <header-layout :fixed="true"/>
-
+  
   <div class="dark-layout light">
     <div class="container-main is-page Final">
       <div class="mw-520">
@@ -112,6 +112,7 @@ export default {
         this.active = false
       }
     },
+    
   },
   props: {
     content: {
@@ -120,6 +121,7 @@ export default {
     },
   },
   mounted(){
+    
       var oneLinkURL = "https://drkegel.onelink.me/qIUy/";
             var mediaSource = {
                 keys: ["pid"],
@@ -196,6 +198,7 @@ export default {
 
             this.url = result.clickURL;
             window.AF_SMART_SCRIPT.displayQrCode("qr");
+
   },
   created () {
     this.mixpanel.track('Final Screen Shown')
@@ -384,5 +387,11 @@ export default {
   .container-main {
     padding-bottom: 0px; 
   }
+}
+#qr canvas{
+  position: relative;
+  z-index: 0;
+  width: 100%!important;
+  height: 100%!important;
 }
 </style>

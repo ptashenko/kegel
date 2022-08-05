@@ -85,7 +85,7 @@
               </div>
             </div>
             <p class="p-14 opac_5 bottom_img">This diagram is non-personalized data based on scientific research</p>
-            <div class="h2 inside">
+            <div id="Benefits" class="h2 inside" >
               Kegel Plan Benefits
             </div>
             <ul>
@@ -403,7 +403,7 @@ export default {
 },
   data() {
     return {
-
+      item: localStorage.getItem('LandingItem'),
       VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
       apple_pay: true, 
@@ -427,7 +427,7 @@ export default {
       isActiveNo: false,
       closeActive: false,
       scrollPosition: 0,
-      price: 1,
+      price: localStorage.getItem('price'),
       oldprice: 19.88,
       numanimate: 1,
       show: false,
@@ -475,13 +475,12 @@ export default {
     },
     showModal() {
       this.mixpanel.track('Comfortable Amount Shown')
-      localStorage.setItem('Comfortable amount Pop-up', 'true')
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
     },
     showModal2() {
-      localStorage.setItem('Button step_2', 'true')
+      
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible2 = true
@@ -493,6 +492,7 @@ export default {
       this.popupVisible3 = true
     },
     closePopup(e){
+      localStorage.setItem('Comfortable amount Pop-up', 'true')
       if(this.closeActive){
         this.mixpanel.track('Comfortable Amount Complted', {
           amount: this.price
@@ -504,10 +504,11 @@ export default {
         this.popupVisible = false
         body.classList.remove('fixed');
       }
-
+      VueScrollTo.scrollTo('#Benefits');
 
     },
     closePopup2(e){
+      localStorage.setItem('Button step_2', 'true')
       this.mixpanel.track('Landing Page 2 Shown')
       let body = document.querySelector('body')
       let x = e.target
@@ -525,6 +526,7 @@ export default {
         this.popupVisible3 = false
         body.classList.remove('fixed');
       }
+      VueScrollTo.scrollTo('#paypal');
     },
     BtnActiveYes() {
       this.isActiveYes = this.closeActive = true;
@@ -532,7 +534,8 @@ export default {
       this.price = 1;
       this.item = "kegel_1-USD-Every-3-months"
       this.oldprice = 19.88;
-      sessionStorage.setItem("price", 1);
+      localStorage.setItem("price", 1);
+      localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
     },
     BtnActiveNo() {
       this.isActiveYes = false;
@@ -540,7 +543,8 @@ export default {
       this.price = 9.73;
       this.item = "kegel_2-USD-Every-3-months"
       this.oldprice = 19.88;
-      sessionStorage.setItem("price", 9.73);
+      localStorage.setItem("price", 9.73);
+      localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
     },
     showReview() {
       this.numreview = this.numreview + 2;

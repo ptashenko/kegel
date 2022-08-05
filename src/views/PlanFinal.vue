@@ -33,7 +33,7 @@
           *According to studies, it takes 12 weeks of Kegel exercises to achieve improvements. Kegel Plan users who have strong commitment are 4 times more likely to finish 12 weeks of Kegel exercises, than users who choose trial
         </div>
       </div>
-      <div class="price">
+      <div id="price" class="price">
         <div class="price__text">
           Price breakdown
         </div>
@@ -193,6 +193,7 @@ import Review from '@/components/Review.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import ButtonField from '@/components/ui/Button.vue';
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
+import VueScrollTo from "vue-scrollto";
 
 export default {
   name: 'PlanFinal',
@@ -201,15 +202,16 @@ export default {
     return{
       item: "kegel_3-USD-Every-3-months",
       base: {},
+      VueScrollTo: require('vue-scrollto'),
       loading: false,
       numreview: 2,
       dataPP1: sessionStorage.getItem('data1'),
       dataPP2: sessionStorage.getItem('data2'),
       popupVisible: false,
       addToDo: false,
-      price: sessionStorage.getItem('price'),
+      price: localStorage.getItem('price'),
       pricenew: 60, 
-      trial: 20 - sessionStorage.getItem('price'),
+      trial: 20 - localStorage.getItem('price'),
       btnModal: true,
       AddPurpose:true,
       isActive: false,
@@ -378,14 +380,14 @@ export default {
     },
     showModal(){
           
-      localStorage.setItem('sale 20%', true)
+      
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
     },
     closePopup(e){
       this.mixpanel.track('Trial Skip Downsale') 
-      
+      localStorage.setItem('sale 20%', true)
       
       let body = document.querySelector('body')
       let x = e.target
@@ -397,6 +399,7 @@ export default {
         this.item = "kegel_4-USD-Every-3-months"
         this.btnModal = false
       }
+      VueScrollTo.scrollTo('#price');
     },
     checkingDiscount(){
       if(localStorage.getItem('sale 20%')){

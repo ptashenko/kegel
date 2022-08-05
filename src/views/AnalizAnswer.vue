@@ -246,7 +246,7 @@ export default {
       } else {
         this.base = this.$store.state.review.msgED
       }
-      return this.track
+      return console.log(this.track);  
     }
   },
   

@@ -35,7 +35,7 @@ export default {
                 value: this.$route.params.survey,
             });
         },
- 
+
         back() {
             let infolayout = this.$store.state.survey.contents.find(x => x.id === this.myPrewContentId)
             if (infolayout.layoutName === "KegelReview" || infolayout.layoutName === "Processing") {

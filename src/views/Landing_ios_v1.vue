@@ -1,10 +1,6 @@
 <template>
 <div class="landing">
   <header-layout :fixed="true"/>
-  {{MyScrollFixed}}
-  {{MyScrollModal}}
-  {{btnAddPurpose}}
-  {{imagechart}}
   
   
   <div class="dark-layout light" id="topPage">
@@ -124,16 +120,16 @@
     <div style="padding:10px">
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <div class="d-flex flex-column align-items-center justify-content-center">
-        <!-- <div id="solid-payment-form-container">
+      <!-- <div class="d-flex flex-column align-items-center justify-content-center">
+        <div id="solid-payment-form-container">
           <button class="pay cursor active" v-if="apple_pay">
             <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
           </button>
           <button class="pay cursor " v-else>
             <img src="@/assets/images/icons/google_pay.svg" alt="google_pay">
           </button>
-        </div> -->
-      </div>
+        </div>
+      </div> -->
       <div class="d-flex align-items-center justify-content-beetwen">
         <button class="pay small mr-2 cursor" :class="{ active: paymentMethodType == 2}" @click="payPalSelect">
           <img src="@/assets/images/icons/paypal.png" alt="apple_pay" />
@@ -260,6 +256,7 @@
       @click="closeWindowError"
     >
   </vpopup>
+  {{dataP3}}
 </div>
 <!-- При выборе оплаты класс active задать одной из button line 223,232, 235 -->
 </template>
@@ -293,18 +290,11 @@ export default {
       token: "",
       error: "",
       loading: false,
-      firstName: "",
       paymentMethodType: 1, //1- card, 2 - paypal
-
       VueScrollTo: require('vue-scrollto'),
-      blockFixed: false,
       apple_pay: true, 
-      dataPP2:'September 25',
       ggg:0,
-      textBtn:'Start my plan',
       email: null,
-      isEmailTouched: false,
-      upValue: '',
       step_2: false,
       base: {},
       numreview: 3,
@@ -315,19 +305,13 @@ export default {
       popupVisible: false,
       popupVisible2: false,
       popupVisible3: false,
-      isActiveYes: false,
-      isActiveNo: false,
       closeActive: false,
-      scrollPosition: 0,
       price: 1,
-      oldprice: 19.88,
       numanimate: 1,
       show: false,
       imageitem: require(`@/assets/images/json/Step_1_1.json`),
-      imgProba: false,
-      AddPurposeCom: false,
-      addItem: false,
       numanim: null,
+      randomData: 0,
     };
   },   
   methods: {
@@ -523,7 +507,8 @@ export default {
         amount: this.price
       })
       setTimeout(() => {
-        this.$router.push("PlanFinal");
+        sessionStorage.setItem('ios_v1', true);
+        this.$router.push("PlanFinalTwo");
       }, 0);
     },
     moment() {
@@ -583,8 +568,6 @@ export default {
         this.popupVisible = false
         body.classList.remove('fixed');
       }
-
-
     },
     closePopup2(e){
       this.mixpanel.track('Landing Page 2 Shown')
@@ -605,25 +588,38 @@ export default {
         body.classList.remove('fixed');
       }
     },
-    BtnActiveYes() {
-      this.isActiveYes = this.closeActive = true;
-      this.isActiveNo = false;
-      this.price = 1;
-      this.item = "kegel_1-USD-Every-3-months"
-      this.oldprice = 19.88;
-      sessionStorage.setItem("price", 1);
-    },
-    BtnActiveNo() {
-      this.isActiveYes = false;
-      this.isActiveNo = this.closeActive = true;
-      this.price = 9.73;
-      this.item = "kegel_2-USD-Every-3-months"
-      this.oldprice = 19.88;
-      sessionStorage.setItem("price", 9.73);
-    },
     showReview() {
       this.numreview = this.numreview + 2;
-      console.log(this.base.length);
+    },
+  },
+  computed:{
+    dataP3(){
+      this.randomData = (Math.floor(Math.random( ) * (22 - 16 + 1)) + 16);
+      moment();
+      let ppp = this.randomData
+      function days(numer, param, key){
+        if(ppp < numer){
+          let m3 = moment().add(3,'month').daysInMonth()
+          let ost = m3 - (numer - ppp)
+          let param = moment().add(3,'month').format("MMMM") + ' ' + ost ;
+          sessionStorage.setItem(key, param);
+        }else if(ppp == numer){
+          let m3 = moment().add(3,'month').daysInMonth()
+          let param = moment().add(3,'month').format("MMMM") + ' ' + m3 ;
+          sessionStorage.setItem(key, param);
+        }else{
+          let ost = ppp - numer
+          let param = moment().add(4,'month').format("MMMM") + ' ' + ost ;
+          sessionStorage.setItem(key, param);
+        }
+        
+        return param
+      }
+      days(28, 'dataPP3_day', 'data3')
+      days(24, 'dataPP32_day', 'data32')
+      days(20, 'dataPP33_day', 'data33')
+      days(16, 'dataPP34_day', 'data34')
+    
     },
   },
   watch:{
@@ -633,89 +629,6 @@ export default {
       }
     },
 
-  },
-  computed: {cal(){
-      let json = localStorage.getItem('track');
-      let obj = JSON.parse(json);
-      this.track = obj.id
-      return this.track
-    },
-    imagechart(){
-      if(this.jsLocal == 2){
-        if(sessionStorage.getItem('resbtn') == 'Yes'){
-          this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
-        }else{
-          this.imageitem = require(`@/assets/images/json/Step_1_2.json`);
-          this.imgProba = true
-        }
-      }else{
-        this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
-      }
-    },
-    MyScrollFixed(){
-      document.addEventListener('scroll', (e) => {
-        let x = window.scrollY
-        if(x>310){
-          
-          this.blockFixed = true
-        }else{
-          this.blockFixed = false
-        }
-      });
-      
-    },
-    MyScrollModal(){
-        document.addEventListener('scroll', (e) => {
-        let x = window.scrollY
-        if(x>400){
-          if(localStorage.getItem('Comfortable amount Pop-up')){
-            this.ggg = 0
-          }else{
-            this.ggg = 1
-          }
-        }
-        if(localStorage.getItem('Button step_2')){
-          this.step_2 = true
-        }else{
-          this.step_2 = false
-        }
-      })
-    },
-    ...mapGetters(['tracks']),
-    purpose(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
-      return obj.purpose;
-    },
-    addpurpose(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
-      console.log(obj.addpurpose);
-      return obj.addpurpose;
-      
-    },
-    btnAddPurpose(){
-      if(sessionStorage.getItem('resbtn') == 'Yes'){
-        this.AddPurposeCom = true
-      }else{
-        this.AddPurposeCom = false
-      } 
-    },
-    lengthReviews(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
-      this.track = obj.id
-      if(this.track == 3){
-        this.addItem = true
-        this.base =  this.$store.state.review.msgOkLand
-        this.AddPurposeCom = false
-      }else if(this.track == 2){
-        this.base = this.$store.state.review.msgPeLand
-      }else{
-        this.base = this.$store.state.review.msgEdLand
-      }
-      return console.log(this.track);  ; 
-    },
   },
   beforeUnmount () {
     clearInterval(this.polling)
@@ -1487,6 +1400,7 @@ ul{
 }
 .dark-layout{
   padding: 84px 32px 0px;
+  min-height: 100%;
   .p-14{
     font-size: 16px;
     text-align: center;
@@ -1650,6 +1564,9 @@ ul{
 .text-purpose{
   font-size: 18px;
   line-height: 150%;
+  max-width: 350px;
+  text-align: center;
+  margin: 0 auto;
   @media (max-width:480px) {
     font-size: 16px;
   }

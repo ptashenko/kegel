@@ -145,7 +145,8 @@ router.beforeEach((to, from, next) => {
     const isRedirectDisabled = (from.name === 'PlanFinal' && to.name === 'LandingView') ||
         (from.name === 'CodeQR' && to.name === 'PlanFinal') ||
         (from.name === 'CodeQR' && to.name === 'PlanFinalTwo') ||
-        (from.name === 'PlanFinalTwo' && to.name === 'PlanFinal')
+        (from.name === 'PlanFinalTwo' && to.name === 'PlanFinal') ||
+        (from.name === 'PlanFinalTwo' && to.name === 'Landing_ios_v1')
         // also need add info about succes payment 
     if (isRedirectDisabled) {
         router.push({ name: from.name })

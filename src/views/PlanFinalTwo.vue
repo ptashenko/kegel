@@ -55,8 +55,14 @@
             Every exercise has video & audio instructions from the coach
           </p>
         </div>
-        <img v-if="open == 1" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="">
-        <img v-if="open > 2" class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="">
+        <div v-if="!ios_v1">
+          <img v-if="open == 1" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="diskont_red">
+          <img v-if="open > 2" class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="diskont_blue">
+        </div>
+        <div v-else>
+          <img v-if="open == 1" class="diskont" src="@/assets/images/icons/discont_red_ios.png" alt="discont_red_ios">
+          <img v-if="open > 2" class="diskont" src="@/assets/images/icons/discont_blue_ios.png" alt="discont_blue_ios">
+        </div>
       </div>
       <div
         v-if="open == 2"
@@ -162,14 +168,28 @@
       I give up accelerated results forever &gt;
       </div>
     </div>
-    <div v-if="open == 1" class="mw-520"> 
-      <div  class="footer__text">
-        Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms.
+    <div v-if="!ios_v1">
+      <div v-if="open == 1" class="mw-520"> 
+        <div  class="footer__text">
+        Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms.
+        </div>
+      </div>
+      <div v-else-if="open == 3" class="mw-520"> 
+        <div  class="footer__text">
+        Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms.
+        </div>
       </div>
     </div>
-    <div v-else-if="open == 3" class="mw-520"> 
-      <div  class="footer__text">
-       Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms.
+    <div v-else>
+      <div v-if="open == 1" class="mw-520"> 
+        <div  class="footer__text">
+        Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms. 
+        </div>
+      </div>
+      <div v-else-if="open == 3" class="mw-520"> 
+        <div  class="footer__text">
+        Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms.
+        </div>
       </div>
     </div>
   </div>
@@ -282,6 +302,7 @@ export default {
       apple_pay:true ,
       pollingTwo: null,
       polling: null,
+      ios_v1:  sessionStorage.getItem('ios_v1')
     }
   },
   computed: {
@@ -892,6 +913,9 @@ export default {
     top: 8px;
     cursor: pointer;
   }
+.dark-layout.light .loader {
+  margin-top: 16px;
+}
 @media (max-width: 480px){
   .dark-layout.light .loader {
     margin-top: 16px;

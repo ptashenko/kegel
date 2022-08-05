@@ -181,53 +181,7 @@
       <img src="@/assets/images/icons/btn_close_cwindow.svg" alt="apple_pay">
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <div class="d-flex flex-column align-items-center justify-content-center">
-        <div id="solid-payment-form-container">
-          <button class="pay cursor" v-if="apple_pay">
-            <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
-          </button>
-          <button class="pay cursor" v-else>
-            <img src="@/assets/images/icons/google_pay.svg" alt="apple_pay">
-          </button>
-        </div>
-      </div>
-      <div class="d-flex align-items-center justify-content-beetwen">
-        <button class="pay small mr-2 cursor">
-          <img src="@/assets/images/icons/paypal.png" alt="apple_pay">
-        </button>
-        <button class="pay small ml-2 cursor">
-          <img src="@/assets/images/icons/card.png" alt="apple_pay">
-        </button>
-      </div>
-      <div class="w-100 d-flex flex-column align-items-center justify-content-center">
-        <div id="apple-pay-button-container">
-          <div
-            v-if="apple_pay"
-          >
-            <button 
-              class="aple_pay d-flex align-items-center justify-content-beetwen cursor"
-              @click="nextUrl"
-            >
-              Buy with&nbsp;
-              <img src="@/assets/images/icons/apple_pay_white.svg" alt="apple_pay">
-            </button>
-            <button 
-              class="aple_pay error d-flex align-items-center justify-content-beetwen cursor"
-              @click="closePopupWindowPayError"
-            >
-              Error button
-            </button>
-          </div>
-          <div
-            v-else
-          >
-            <button class="Pay_pay d-flex align-items-center justify-content-beetwen cursor">
-              <img src="@/assets/images/icons/PayPal_img_2.svg" alt="apple_pay">&nbsp;Buy Now
-            </button>
-          </div>
-          
-        </div>
-      </div>
+      <PaymentFormCompanent @error="paymentError" @success="nextUrl" :item="this.item"/>
     </div>
   </vpopup>
 </template>
@@ -238,6 +192,7 @@ import { mapGetters } from 'vuex';
 import Review from '@/components/Review.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import ButtonField from '@/components/ui/Button.vue';
+import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 
 export default {
   name: 'PlanFinal',
@@ -314,7 +269,8 @@ export default {
     Review,
     vpopup,
     ButtonField,
-  },
+    PaymentFormCompanent
+},
   methods: {
     popupPay(){
       clearInterval(this.polling)
@@ -330,9 +286,9 @@ export default {
       body.classList.remove('fixed');
     },
     closePopupWindowPayError(){
-      this.mixpanel.track('Trial Skip Downsale Answered',{
-        Trial_Skipped: "No"
-      })
+      // this.mixpanel.track('Trial Skip Downsale Answered',{
+      //   Trial_Skipped: "No"
+      // })
       this.popupWindowPay = false
       let body = document.querySelector('body')
       body.classList.remove('fixed');
@@ -396,11 +352,8 @@ export default {
       });
     },
     nextUrl(){ 
-      this.mixpanel.track('Trial Skip Answered',{
+      this.mixpanel.track( this.pricenew == 60 ? 'Trial Skip Answered' : 'Trial Skip Downsale Answered',{
         Trial_Skipped: "No"
-      })
-      this.mixpanel.track('Subscription Started',{
-        price: this.pricenew
       })
       let mediaQuery = window.matchMedia('(max-width: 480px)');
       if (mediaQuery.matches) {

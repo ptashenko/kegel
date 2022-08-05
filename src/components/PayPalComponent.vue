@@ -4,6 +4,7 @@
 
 <script>
 export default {
+    inject: ['mixpanel'],
     methods: {
         processPayPal(token) {
         const requestOptions = {
@@ -51,6 +52,12 @@ export default {
                   },
                   payment: function () {
                     return data.link.split("=")[1]; // The payment ID from earlier
+                  },
+                  onClick: function (data, action) {
+                    console.log("Check-out Started PayPal");
+                    this.mixpanel.track('Check-out Started', {
+                        type: "PayPal"
+                    })
                   },
                   onAuthorize: function (data, actions) {
                     // Handler if customer DOES authorize payment (this is where you get the payment_id & payer_id you need to pass to Chec)

@@ -266,10 +266,10 @@ export default {
     }
     .layout__thumbnail{
       display: block;
-      max-width: 310px;
+      // max-width: 310px;
       margin: 0 auto 32px;
       @media (max-width:480px) {
-        max-width: 210px;
+        // max-width: 210px;
         margin: 0 auto 0px;
       }
       img{

@@ -24,6 +24,11 @@ export default {
             .then((data) => {
             nextUrl();
             });
+        },
+        onClickPayPal() {
+            this.mixpanel.track('Check-out Started', {
+                type: "PayPal"
+            })
         }
     },
   mounted () {
@@ -53,16 +58,13 @@ export default {
                   payment: function () {
                     return data.link.split("=")[1]; // The payment ID from earlier
                   },
-                  onClick: function (data, action) {
-                    console.log("Check-out Started PayPal");
-                    this.mixpanel.track('Check-out Started', {
-                        type: "PayPal"
-                    })
+                  onClick: () => {
+                    this.onClickPayPal();
                   },
                   onAuthorize: function (data, actions) {
                     // Handler if customer DOES authorize payment (this is where you get the payment_id & payer_id you need to pass to Chec)
                     console.log(data);
-                    processPayPal(data.id);
+                    this.processPayPal(data.id);
                   },
                   onCancel: function (data, actions) {
                     this.paymentError();

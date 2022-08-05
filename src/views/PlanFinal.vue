@@ -113,7 +113,7 @@
       </div>
       <div v-else
         class="btn_popup"
-        @click="nextUrl"
+        @click="withoutSkipTrial"
       >
       Continue with trial &gt;
       </div>
@@ -350,13 +350,27 @@ export default {
         requestOptions
       ).then((response) => {
         this.loading = false;
-        this.nextUrl();
+        this.payingSuccess();
       });
     },
-    nextUrl(){ 
+    payingSuccess(){
+       this.nextUrl()
+      this.mixpanel.track( this.pricenew == 60 ? 'Trial Skip Answered' : 'Trial Skip Downsale Answered',{
+        Trial_Skipped: "Yes"
+      })
+      this.mixpanel.track('Subscription Started',{
+        price: this.pricenew,
+        type: this.pricenew == 60 ? 'regular' : 'discounted'
+      })
+
+    },
+    withoutSkipTrial(){
       this.mixpanel.track( this.pricenew == 60 ? 'Trial Skip Answered' : 'Trial Skip Downsale Answered',{
         Trial_Skipped: "No"
       })
+       this.nextUrl()
+    },
+    nextUrl(){ 
       let mediaQuery = window.matchMedia('(max-width: 480px)');
       if (mediaQuery.matches) {
         let body = document.querySelector('body')
@@ -378,15 +392,16 @@ export default {
     getRandomArbitrary(min, max){
       return Math.random() * (max - min) + min;
     },
-    showModal(){
-          
-      
+    showModal(){  
+      this.mixpanel.track( this.pricenew == 60 ? 'Trial Skip Answered' : 'Trial Skip Downsale Answered',{
+        Trial_Skipped: "No"
+      })
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
     },
     closePopup(e){
-      this.mixpanel.track('Trial Skip Downsale') 
+      this.mixpanel.track('Trial Skip Downsale Offered') 
       localStorage.setItem('sale 20%', true)
       
       let body = document.querySelector('body')

@@ -176,7 +176,6 @@ export default {
           console.log(currentState);
           if (!currentState.empty && !mixpanelSended) {
             mixpanelSended = true;
-            console.log("Check-out Started CC");
             this.mixpanel.track("Check-out Started", {
               type: "CC",
             });

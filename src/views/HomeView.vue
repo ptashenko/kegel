@@ -90,9 +90,9 @@
               Warsaw, Twarda 18, 00-105
             </span>
             <div class="footer__terms">
-              <a href="https://appercut.co/privacy-policy.html" target="_blank">Privacy Policy</a>
+              <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>
               <div class="line">|</div>
-              <a href="https://appercut.co/terms.html" target="_blank">Terms & Conditions</a>
+              <a href="/terms.html" target="_blank">Terms & Conditions</a>
             </div>
           </div>
         </div>

@@ -93,7 +93,7 @@
           text='Add to my plan'
           theme="Back"
           class="footer-controls__button red"
-          @click="nextUrl"
+          @click="payingSuccess"
         />
         <!-- <button-field
           text='Add to my plan'
@@ -123,15 +123,15 @@
           text='Add to my plan'
           theme="Back"
           class="footer-controls__button bg-blue"
-          @click="nextUrl"
+          @click="payingSuccess"
         />
-        <button-field
+        <!-- <button-field
           text='Add to my plan'
           theme="Back"
           class="footer-controls__button loader bg-blue"
           :class="{ hiden: isActive }"
           @click="loadingBtn"
-        />
+        /> -->
         <div
           class="footer-controls__button btnLoader loader bg-blue"
           :class="{ hiden: !isActive }"
@@ -163,7 +163,7 @@
       </div>
       <div v-else
         class="btn_popup"
-        @click="nextUrl"
+        @click="withoutUpsaleDiscounted"
       >
       I give up accelerated results forever &gt;
       </div>
@@ -171,24 +171,24 @@
     <div v-if="!ios_v1">
       <div v-if="open == 1" class="mw-520"> 
         <div  class="footer__text">
-        Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms.
+        Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
         </div>
       </div>
       <div v-else-if="open == 3" class="mw-520"> 
         <div  class="footer__text">
-        Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms.
+        Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
         </div>
       </div>
     </div>
     <div v-else>
       <div v-if="open == 1" class="mw-520"> 
         <div  class="footer__text">
-        Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms. 
+        Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use. 
         </div>
       </div>
       <div v-else-if="open == 3" class="mw-520"> 
         <div  class="footer__text">
-        Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Subscription Terms.
+        Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
         </div>
       </div>
     </div>
@@ -227,7 +227,7 @@
       <img src="@/assets/images/icons/btn_close_cwindow.svg" alt="apple_pay">
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <PaymentFormCompanent @error="paymentError" @success="nextUrl" :item="this.item"/>
+      <PaymentFormCompanent @error="paymentError" @success="payingSuccess" :item="this.item"/>
     </div>
   </vpopup>
 </template>
@@ -346,26 +346,42 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/video/${path}`);
     },
-    nextUrl(){
-      this.mixpanel.track('Upsale Answered',{
-        Trial_Skipped: "No"
-      })
+    payingSuccess() {
+      this.nextUrl()
+
       if(this.open == 1){
+        this.mixpanel.track('Upsale Answered',{
+          Upsale: "Yes"
+        })
         this.mixpanel.track('Upsale',{
-          price: "19.99"
+          price: "19.99",
+          type: "regular"
         })
       }else if(this.open == 3){
+        this.mixpanel.track('Discounted Upsale Answered',{
+          Upsale: "Yes"
+        })
         this.mixpanel.track('Upsale',{
-          price: "9.99"
+          price: "9.99",
+          type: "discounted"
         })
       }
+    },
+    withoutUpsaleDiscounted(){
+      this.mixpanel.track('Discounted Upsale Answered',{
+        Upsale: "No"
+      })
+      this.nextUrl();
+    },
+    nextUrl(){
+
       let body = document.querySelector('body')
       body.classList.remove('fixed');
       this.$router.push('CodeQR')
     },
     showModal(){
       this.mixpanel.track('Upsale Answered',{
-        Trial_Skipped: "Yes"
+        Upsale: "No"
       })
       var element = document.getElementById("topPage");
       var top = element.offsetTop;

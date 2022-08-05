@@ -1219,9 +1219,9 @@ const actions = {
     getContent({ commit }) {
         const content = getItem('content');
         commit('saveContent', content);
-        if (Object.values(content).length === 0) {
-            router.push({ name: 'home' });
-        }
+        // if (Object.values(content).length === 0) {
+        //     router.push({ name: 'home' });
+        // }
     },
     getHistory({ commit }) {
         const history = getItem('history');

@@ -50,7 +50,6 @@ export default {
                         params: { survey: this.myPrewContentId },
                     });
                 } else {
-                    console.log('controller');
                     this.$router.push({ name: 'home' })
                 }
 

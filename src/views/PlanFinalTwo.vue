@@ -718,13 +718,17 @@ export default {
   .block_blue{
     padding: 16px 24px;
     background: #5773D6;
-    margin-left: -32px;
-    margin-right: -32px;
     color: #ffffff;
-
+    @media (max-width:480px){
+      margin-left: -32px;
+      margin-right: -32px;
+    }
     &__content{
-      max-width: 400px;
+      max-width: 450px;
       margin: 0 auto;
+      @media (max-width:480px){
+        max-width: 400px;
+      }
     }
     img{
       max-width: 70px;
@@ -749,8 +753,8 @@ export default {
   }
 }
 // Logic
-.popup_wraper{
-  // max-width: 450px;
+#app .popup_wraper{
+  height: 100%;
   h2{
     font-family: "SF-Pro-Display-Bold";
     font-size: 24px;

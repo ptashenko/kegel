@@ -282,19 +282,24 @@ export default {
 },
   methods: {
     popupPay(){
+      let body = document.querySelector('body')
+      sessionStorage.setItem('scrollto', body.scrollHeight)
       clearInterval(this.polling)
       this.windowError = false
       this.isActive = false
       this.popupWindowPay = true
-      let body = document.querySelector('body')
       body.classList.add('fixed');
     },
     closePopupWindowPay(){
+      const height = sessionStorage.getItem('scrollto')
+      setTimeout(function(){ window.scrollTo( 0, height ) })
       this.popupWindowPay = false
       let body = document.querySelector('body')
       body.classList.remove('fixed');
     },
     closePopupWindowPayError(){
+      const height = sessionStorage.getItem('scrollto')
+      setTimeout(function(){ window.scrollTo( 0, height ) })
       this.popupWindowPay = false
       let body = document.querySelector('body')
       body.classList.remove('fixed');

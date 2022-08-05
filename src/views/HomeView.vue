@@ -245,7 +245,7 @@ export default {
     
   },
   mounted() {
-    this.clearHistory()
+    // this.clearHistory()
     this.bgBodyMain()
     document.onreadystatechange = () => { 
       let body = document.querySelector('body')

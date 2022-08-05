@@ -275,11 +275,12 @@ export default {
 },
   methods: {
     popupPay(){
+      let body = document.querySelector('body')
+      sessionStorage.setItem('scrollto', body.scrollHeight)
       clearInterval(this.polling)
       this.windowError = false
       this.isActive = false
       this.popupWindowPay = true
-      let body = document.querySelector('body')
       body.classList.add('fixed');
     },
     closePopupWindowPay(){
@@ -288,6 +289,8 @@ export default {
       body.classList.remove('fixed');
     },
     closePopupWindowPayError(){
+      const height = sessionStorage.getItem('scrollto')
+      setTimeout(function(){ window.scrollTo( 0, height ) })
       // this.mixpanel.track('Trial Skip Downsale Answered',{
       //   Trial_Skipped: "No"
       // })
@@ -397,10 +400,13 @@ export default {
         Trial_Skipped: "No"
       })
       let body = document.querySelector('body')
+      sessionStorage.setItem('scrollto', body.scrollHeight)
       body.classList.add('fixed');
       this.popupVisible = true
     },
     closePopup(e){
+      const height = sessionStorage.getItem('scrollto')
+      setTimeout(function(){ window.scrollTo( 0, height ) })
       this.mixpanel.track('Trial Skip Downsale Offered') 
       localStorage.setItem('sale 20%', true)
       
@@ -414,7 +420,6 @@ export default {
         this.item = "kegel_4-USD-Every-3-months"
         this.btnModal = false
       }
-      VueScrollTo.scrollTo('#price');
     },
     checkingDiscount(){
       if(localStorage.getItem('sale 20%')){

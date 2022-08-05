@@ -21,12 +21,12 @@ export default {
   },
   created () {
     // Считываем информацию о статусе в sessionStorage при загрузке страницы
-    if (sessionStorage.getItem("store") ) {
-        this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem("store"))))
+    if (localStorage.getItem("store") ) {
+        this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(localStorage.getItem("store"))))
     } 
     // Сохраняем информацию в vuex в sessionStorage при обновлении страницы
     window.addEventListener("beforeunload",()=>{
-        sessionStorage.setItem("store",JSON.stringify(this.$store.state))
+        localStorage.setItem("store",JSON.stringify(this.$store.state))
     })
   },
   watch:{

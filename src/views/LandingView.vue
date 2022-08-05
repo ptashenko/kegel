@@ -730,24 +730,30 @@ export default {
       this.windowError = false;
     },
     showModal() {
+      sessionStorage.setItem('scrollto', window.pageYOffset)
+      console.log(window.pageYOffset);
       this.mixpanel.track('Comfortable Amount Shown')
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible = true
     },
     showModal2() {
-      
+      sessionStorage.setItem('scrollto', window.pageYOffset)
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible2 = true
       this.step_2 = true
     },
     showModal3() {
+      sessionStorage.setItem('scrollto', window.pageYOffset)
       let body = document.querySelector('body')
       body.classList.add('fixed');
       this.popupVisible3 = true
     },
     closePopup(e){
+      const height = sessionStorage.getItem('scrollto')
+      setTimeout(function(){ window.scrollTo( 0, height ) })
+      console.log(window.pageYOffset);
       localStorage.setItem('Comfortable amount Pop-up', 'true')
       if(this.closeActive){
         this.mixpanel.track('Comfortable Amount Complted', {
@@ -760,7 +766,7 @@ export default {
         this.popupVisible = false
         body.classList.remove('fixed');
       }
-      VueScrollTo.scrollTo('#Benefits');
+      // VueScrollTo.scrollTo('#Benefits');
 
     },
     closePopup2(e){
@@ -772,17 +778,21 @@ export default {
         this.popupVisible2 = false
         body.classList.remove('fixed');
       }
-      VueScrollTo.scrollTo('#paypal');
+      const height = sessionStorage.getItem('scrollto')
+      setTimeout(function(){ window.scrollTo( 0, height ) })
+      // VueScrollTo.scrollTo('#paypal');
      // this.getPayPalIntent();
     },
     closePopup3(e) {
+      const height = sessionStorage.getItem('scrollto')
+      setTimeout(function(){ window.scrollTo( 0, height ) })
       let body = document.querySelector('body')
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible3 = false
         body.classList.remove('fixed');
       }
-      VueScrollTo.scrollTo('#paypal');
+      // VueScrollTo.scrollTo('#paypal');
     },
     BtnActiveYes() {
       this.isActiveYes = this.closeActive = true;

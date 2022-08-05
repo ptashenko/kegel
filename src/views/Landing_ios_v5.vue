@@ -1,55 +1,19 @@
 <template>
 <div class="landing">
   <header-layout :fixed="true"/>
-  {{MyScrollFixed}}
-  {{MyScrollModal}}
-  {{btnAddPurpose}}
-  {{imagechart}}
-  <!-- {{backUrlNot}} -->
-  <div 
-    class="fixedTime" 
-    :class="{'active': blockFixed}"
-  >
-    <div class="fixedTime__timer">
-      <p class="fixedTime__timer__text">7-day free trial offer expires in:</p>
-      <div class="fixedTime__timer__number"> 
-        <countdown />
-      </div>
-    </div>
-  </div>
-  
   <div class="dark-layout light" id="topPage">
     <div class="container-main is-page land">
       <div class="landing__content">
         <div class="d-flex align-items-center justify-content-center flex-column">
           <div class="d-flex flex-column block__timer" >
             <div class="h2">
-              Your Kegel Plan to {{ purpose }} is ready!
-            </div>
-            <p class="p-14">The personal trial is <span class="text-bold">reserved for 15 minutes:</span></p>
-            <div class="layout__buttons">
-              <div id="blockScroll" class="layout__button"  @click="onScroll">
-                <div class="layout__button-icon">
-                  <img src="@/assets/images/icons/icon_timer.svg" alt="icon">
-                </div>
-                <div>
-                  <p class="d-flex timer__text">
-                    Time left:	&nbsp;  <countdown />
-                  </p>
-                  <p class="timer__start">Scroll down to start!</p>
-                </div>
-              </div>
+              Your Kegel Plan is waiting for you!
             </div>
             <div id="trigger1" class="date">
               <div class="text-purpose">
                 <span class="">
-                Based on your personal goals you can 
+                You can <span class="text-bold">Strengthen erection</span> and <span class="text-bold">Increase sexual stamina</span>
                 </span>
-                <br>
-                <span class="text-bold">
-                  {{ purpose }}
-                </span>
-                <span v-if="AddPurposeCom"><span class="width-400"> and</span> <span class="text-bold">{{ addpurpose }}</span></span>
               </div>
               <div class="by ">
                 <span class="m20">by &nbsp;</span>
@@ -69,11 +33,6 @@
                 :loop="false"
                 :autoPlay="true"
                 :speed="1"
-                @loopComplete="loopComplete"
-                @complete="complete"
-                @enterFrame="enterFrame"
-                @segmentStart="segmentStart"
-                @stopped="stopped"
               />
               <div class="block__data">
                 <p class="block__data__item">{{moment().add(0,'month').format("MMM")}}</p>
@@ -91,19 +50,7 @@
             <ul>
               <li class="li">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                <p>Reach your goal and <b class="text-bold"> {{ purpose }} </b></p>
-              </li>
-              <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                {{ addpurpose }}
-              </li>
-              <li class="li" v-if="addItem">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                Increase stamina
-              </li>
-              <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                Pill-free approach
+                <p>Pill-free approach</p>
               </li>
               <li class="li">
                 <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
@@ -130,16 +77,28 @@
   </div>
   <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
     <div>
-      7-day trial*
+      14-day trial*
     </div>
     <div>
-      <span class="opac_5 line">${{oldprice}}</span>
-      <span class="text-bold">${{price}}</span>
+      <span class="text-bold">FREE</span>
     </div>
   </div>
   <hr>
   <div class="mw-450 trial_description opac_5">
-    <i>*You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
+    <i>*You'll have 14 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
+  </div>
+  <div class="price">
+    <div class="price__text">
+      PLAN UPGRADE
+    </div>
+  </div>
+  <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
+    <div>
+      Groin Fitness
+    </div>
+    <div>
+      <span class="text-bold">FREE</span>
+    </div>
   </div>
   <div class="price">
     <div class="price__text">
@@ -148,59 +107,18 @@
   </div>
   <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
     <div>
-      12 weeks plan
+      Subscription
     </div>
     <div class="after d-flex flex-column align-items-end">
-      <span class="bold">$79.2*</span>
-      <span class="small">(just $6.60/week)</span>
+      <div class="d-flex"><span class="opasity">$6.6 </span><span class="bold">&nbsp; $5.97*</span></div>
+      <span class="small">(price per 3 month)</span>
     </div>
   </div>
   <hr>
   <div class="mw-450 trial_description opac_5">
-    <i>*Billed on {{moment().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
+    <i>*Billed on {{moment().add(14,'days').format("MMMM DD")}} unless cancelled beforehand</i>
   </div>
-  <div class="d-flex flex-column  mw-450">
-    <div class="reviews__title">Customer reviews</div>
-    {{lengthReviews}}
-    <div v-for="(item, key) in base" :key="key" >
-      <div class="review light" :class="{'active': key < this.numreview }">
-        <div class="review__top">
-          <div>
-            <div class="review__title">{{ item.title }}</div>
-            <div class="review__rating">
-              <div v-for="i in item.rating" :key="i">
-                <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
-              </div>
-              <div v-for="i in Number(5 - item.rating)" :key="i">
-                <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
-              </div>
-            </div>
-          </div>
-
-          <div class="review__name">
-            {{ item.name }}
-          </div>
-        </div>
-
-        <div class="review__text">
-          {{ item.text }}
-        </div>
-      </div>
-      
-    </div>
-    <button  class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
-    <div id="paypal"></div>
-  </div>
-
-  <button-field
-    v-if="!step_2"
-    text='Start my plan'
-    theme="Back"
-    class="footer-controls__button red"
-    @click="showModal2()"
-  />
-  <div class="h200" v-if="!step_2"></div>
-  <div class="step_2" v-if="step_2">
+  <div id="paypal" class="step_2">
     <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
       <div class="after"> 
         <span class="bold">Payment method</span>
@@ -210,12 +128,7 @@
       </div>
     </div>
     <hr>
-    <div class="mw-450 d-flex mb-32">
-      <p class="fs-16-14">
-        <i>
-          You will only be charged ${{price}} for your 7-day trial.
-        </i>
-      </p>
+    <div style="padding:10px">
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <div class="d-flex flex-column align-items-center justify-content-center">
@@ -291,22 +204,12 @@
         <div class="d-flex align-items-center">
           <img src="@/assets/images/icons/out48.svg" alt="out">
         </div>
-        <p> <span class="bold">28k</span> 5-star ratings</p>
+        <p> <span class="bold">36k</span> 5-star ratings</p>
       </div>
     </div>
-    <div class="mw-450 d-flex flex-column mb-32">
-      <div class="item-li d-flex align-items-center">
-        <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
-        <p class="fs-16-14">
-          7-day trial for ${{price}}
-        </p>
-      </div>
-      <div class="item-li d-flex align-items-center">
-        <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
-        <p class="fs-16-14">
-          You will get an email confirmation every time your subscription renews
-        </p>
-      </div>
+    <div class="block__text mw-450" style="margin-top:48px">
+      <p class="title">Email confirmation</p>
+      <p class="fs-16-14">You will get an email confirmation every time your subscription renews.</p>
     </div>
     <div class="block__text mw-450">
       <p class="title">Your information is safe</p>
@@ -327,94 +230,20 @@
     </div>
     <div class="mw-450 d-flex flex-column mb-32">
       <p class="text-description">
-        <span class="bold">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
-      </p>
+        <span class="bold">Your 14-day trial will last until {{moment().add(14,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="bold">{{moment().add(14,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 14-day trial and charge the membership fee (currently US$5.97 ) on a 3-Month basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
+      </p> 
     </div>
   </div>
-  <vpopup
-  class="popup_wraper"
-    textTitle=""
-    v-if="popupVisible"
-  > 
-    <p class="opasity_75">
-      In view of the pandemic and global health crisis, we are offering the option to try out Kegel Plan for as little as $1 for a 7-day trial*.
-    </p>
-    <p class="bold opasity_75       ">
-      Money shouldn't stand in the way of a perfect intimate health and well-being goals. So choose an amount that you think is reasonable to try us out.
-    </p>
-    <p class="opasity_75">
-      It costs up $9.73 to cover our expenses for the trial, but please choose an amount you're comfortable with.
-    </p>
-    <p class="bold desktop-center">
-      Choose comfortable amount:
-    </p>
-    <div class="block-btn d-flex align-items-start justify-content-beetwen vw-450">
-      <button
-      class="v-popup__btn"
-      :class="{ active: isActiveYes }"
-      @click="BtnActiveYes"
-    >
-    $1
-    </button>
-    <div class="d-flex flex-column align-items-end">
-      <button
-        class="v-popup__btn"
-        :class="{ active: isActiveNo }"
-        @click="BtnActiveNo"
-      >
-      $9.73
-      </button>
-      <p class="small">Most popular choice*</p>
-    </div>
-    
-    </div>
-    
-    <button 
-      class="v-popup__submit_btn"
-      :class="{active: closeActive}"
-      @click="closePopup"
-    >
-    See my plan
-    </button>
-    <p class="text__bottom_btn">*7-day trial</p>
-  </vpopup>
-  <vpopup
-  class="popup_wraper trial"
-    textTitle="Trial commitment"
-    v-if="popupVisible2"
-  >            
-    <p class="opasity_75">
-      Dedicate at least 5 minutes a day to Kegel Plan and follow the step-by-step instructions to <span class="text-bold"> {{ purpose }}<span v-if="AddPurposeCom"><span class="width-400"> and </span>{{ addpurpose }}</span></span>.
-    </p>
-    <p class="opasity_75">
-      Reaching your goal is as easy as following the Kegel Plan we prepared for you.
-    </p>
-    <p class="opasity_75">
-      The latest studies support Kegel exercises and consider them the first-line approach to treating intimate health problems. It's an easy, safe, and effective way to improve men's health, quality of life and maintain a perfect relationship with your partner.
-    </p>
-    <p class="opasity_75">
-      Our users tell us they have experienced great improvements by following our Kegel Plan - so try it, and see the results for yourself!
-    </p>
-    
-    <button 
-      class="v-popup__submit_btn min180 active"
-      :class="{active: closeActive}"
-      @click="closePopup2"
-      v-scroll-to="'#paypal'"
-    >
-    I'm in
-    </button>
-  </vpopup>
   <vpopup
   class="popup_wraper"
     textTitle="Why now?"
     v-if="popupVisible3"
   > 
     <p class="opasity_75">
-      We ask for your payment information now, so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.
+      We ask for your payment information now, so you can enjoy Kegel Plan uninterrupted after your 14-day trial ends.
     </p>
     <p class="opasity_75">
-      If you cancel anytime before the end of the 7-day trial, you won't be charged.
+      If you cancel anytime before the end of the 14-day trial, you won't be charged.
     </p>
     <button 
       class="v-popup__submit_btn min180 active"
@@ -438,6 +267,7 @@
       @click="closeWindowError"
     >
   </vpopup>
+  {{dataP3}}
 </div>
 <!-- При выборе оплаты класс active задать одной из button line 223,232, 235 -->
 </template>
@@ -453,7 +283,7 @@ import PayPalComponent from "../components/PayPalComponent.vue";
 
 
 export default {
-  name: 'LandingView', 
+  name: 'Landing_ios_v5', 
   inject: ['mixpanel'],
   components: {
     ButtonField,
@@ -471,18 +301,11 @@ export default {
       token: "",
       error: "",
       loading: false,
-      firstName: "",
       paymentMethodType: 1, //1- card, 2 - paypal
-
       VueScrollTo: require('vue-scrollto'),
-      blockFixed: false,
       apple_pay: true, 
-      dataPP2:'September 25',
       ggg:0,
-      textBtn:'Start my plan',
       email: null,
-      isEmailTouched: false,
-      upValue: '',
       step_2: false,
       base: {},
       numreview: 3,
@@ -493,19 +316,13 @@ export default {
       popupVisible: false,
       popupVisible2: false,
       popupVisible3: false,
-      isActiveYes: false,
-      isActiveNo: false,
       closeActive: false,
-      scrollPosition: 0,
       price: 1,
-      oldprice: 19.88,
       numanimate: 1,
       show: false,
       imageitem: require(`@/assets/images/json/Step_1_1.json`),
-      imgProba: false,
-      AddPurposeCom: false,
-      addItem: false,
       numanim: null,
+      randomData: 0,
     };
   },   
   methods: {
@@ -629,7 +446,7 @@ export default {
                   //paymentIntent contains authorized payment intent
                 })
                 .catch((error) => {
-                   this.paymentError();
+                  this.paymentError();
                   // handle error
                 });
             })
@@ -701,7 +518,7 @@ export default {
         amount: this.price
       })
       setTimeout(() => {
-        this.$router.push("PlanFinal");
+        this.$router.push("CodeQR");
       }, 0);
     },
     moment() {
@@ -761,8 +578,6 @@ export default {
         this.popupVisible = false
         body.classList.remove('fixed');
       }
-
-
     },
     closePopup2(e){
       this.mixpanel.track('Landing Page 2 Shown')
@@ -783,25 +598,38 @@ export default {
         body.classList.remove('fixed');
       }
     },
-    BtnActiveYes() {
-      this.isActiveYes = this.closeActive = true;
-      this.isActiveNo = false;
-      this.price = 1;
-      this.item = "kegel_1-USD-Every-3-months"
-      this.oldprice = 19.88;
-      sessionStorage.setItem("price", 1);
-    },
-    BtnActiveNo() {
-      this.isActiveYes = false;
-      this.isActiveNo = this.closeActive = true;
-      this.price = 9.73;
-      this.item = "kegel_2-USD-Every-3-months"
-      this.oldprice = 19.88;
-      sessionStorage.setItem("price", 9.73);
-    },
     showReview() {
       this.numreview = this.numreview + 2;
-      console.log(this.base.length);
+    },
+  },
+  computed:{
+    dataP3(){
+      this.randomData = (Math.floor(Math.random( ) * (22 - 16 + 1)) + 16);
+      moment();
+      let ppp = this.randomData
+      function days(numer, param, key){
+        if(ppp < numer){
+          let m3 = moment().add(3,'month').daysInMonth()
+          let ost = m3 - (numer - ppp)
+          let param = moment().add(3,'month').format("MMMM") + ' ' + ost ;
+          sessionStorage.setItem(key, param);
+        }else if(ppp == numer){
+          let m3 = moment().add(3,'month').daysInMonth()
+          let param = moment().add(3,'month').format("MMMM") + ' ' + m3 ;
+          sessionStorage.setItem(key, param);
+        }else{
+          let ost = ppp - numer
+          let param = moment().add(4,'month').format("MMMM") + ' ' + ost ;
+          sessionStorage.setItem(key, param);
+        }
+        
+        return param
+      }
+      days(28, 'dataPP3_day', 'data3')
+      days(24, 'dataPP32_day', 'data32')
+      days(20, 'dataPP33_day', 'data33')
+      days(16, 'dataPP34_day', 'data34')
+    
     },
   },
   watch:{
@@ -811,89 +639,6 @@ export default {
       }
     },
 
-  },
-  computed: {cal(){
-      let json = localStorage.getItem('track');
-      let obj = JSON.parse(json);
-      this.track = obj.id
-      return this.track
-    },
-    imagechart(){
-      if(this.jsLocal == 2){
-        if(sessionStorage.getItem('resbtn') == 'Yes'){
-          this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
-        }else{
-          this.imageitem = require(`@/assets/images/json/Step_1_2.json`);
-          this.imgProba = true
-        }
-      }else{
-        this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
-      }
-    },
-    MyScrollFixed(){
-      document.addEventListener('scroll', (e) => {
-        let x = window.scrollY
-        if(x>310){
-          
-          this.blockFixed = true
-        }else{
-          this.blockFixed = false
-        }
-      });
-      
-    },
-    MyScrollModal(){
-        document.addEventListener('scroll', (e) => {
-        let x = window.scrollY
-        if(x>400){
-          if(localStorage.getItem('Comfortable amount Pop-up')){
-            this.ggg = 0
-          }else{
-            this.ggg = 1
-          }
-        }
-        if(localStorage.getItem('Button step_2')){
-          this.step_2 = true
-        }else{
-          this.step_2 = false
-        }
-      })
-    },
-    ...mapGetters(['tracks']),
-    purpose(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
-      return obj.purpose;
-    },
-    addpurpose(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
-      console.log(obj.addpurpose);
-      return obj.addpurpose;
-      
-    },
-    btnAddPurpose(){
-      if(sessionStorage.getItem('resbtn') == 'Yes'){
-        this.AddPurposeCom = true
-      }else{
-        this.AddPurposeCom = false
-      } 
-    },
-    lengthReviews(){
-      var json = localStorage.getItem('track');
-      var obj = JSON.parse(json);
-      this.track = obj.id
-      if(this.track == 3){
-        this.addItem = true
-        this.base =  this.$store.state.review.msgOkLand
-        this.AddPurposeCom = false
-      }else if(this.track == 2){
-        this.base = this.$store.state.review.msgPeLand
-      }else{
-        this.base = this.$store.state.review.msgEdLand
-      }
-      return console.log(this.track);  ; 
-    },
   },
   beforeUnmount () {
     clearInterval(this.polling)
@@ -1300,7 +1045,7 @@ export default {
 }
 .container-main{
   @media (max-width:480px) {
-    padding-bottom: 50px;
+    padding-bottom: 48px;
   }
 }
 .answer{
@@ -1319,10 +1064,10 @@ hr{
   }
 }
 .payment{
-  margin: 84px auto 16px;
-  @media (max-width:480px) {
-    margin: 64px auto 16px;
-  }
+  // margin: 84px auto 16px;
+  // @media (max-width:480px) {
+  //   margin: 64px auto 16px;
+  // }
   p{
     font-size: 16px;
     margin-bottom: 16px;
@@ -1343,7 +1088,7 @@ hr{
   h2{
     margin: 0 0 16px;
     font-family: "SF-Pro-Display-Bold";
-    font-size:24px;
+    font-size:32px;
   }
   p{
     font-size: 16px;
@@ -1598,7 +1343,7 @@ hr{
   margin-right: 4px;
 }
 .trial_description{
-  padding: 16px 32px 25px;
+  padding: 16px 32px 48px;
   margin: 0 auto;
   line-height: 150%;
   @media (max-width:480px) {
@@ -1652,10 +1397,10 @@ ul{
   margin: 0px auto 8px;
   font-size: 30px;
   line-height: 135%;
-  margin: 0px auto 24px;
+  margin: 0px auto 16px;
   font-family: "SF-Pro-Display-Bold";
   @media (max-width:480px) {
-    font-size: 24px;
+    font-size: 32px;
   }
 }
 .h2.inside {
@@ -1665,6 +1410,7 @@ ul{
 }
 .dark-layout{
   padding: 84px 32px 0px;
+  min-height: 100%;
   .p-14{
     font-size: 16px;
     text-align: center;
@@ -1828,6 +1574,9 @@ ul{
 .text-purpose{
   font-size: 18px;
   line-height: 150%;
+  max-width: 350px;
+    text-align: center;
+    margin: 0 auto;
   @media (max-width:480px) {
     font-size: 16px;
   }
@@ -1856,6 +1605,9 @@ textarea {resize:none;}
 textarea {resize:vertical;}
 textarea {resize:horizontal;}
 
-
+.opasity{
+  opacity: 0.5;
+  text-decoration: line-through;
+}
 
 </style>

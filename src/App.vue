@@ -21,7 +21,6 @@ export default {
   },
   created () {
     if (navigator.userAgentData.platform.includes('iOS')) {
-      console.log('safari');
       // Считываем информацию о статусе в localStorage при загрузке страницы
       if (sessionStorage.getItem("store") ) {
           this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem("store"))))
@@ -31,7 +30,6 @@ export default {
           sessionStorage.setItem("store",JSON.stringify(this.$store.state))
       })
     }else{
-      console.log('Другой браузер');
       // Считываем информацию о статусе в localStorage при загрузке страницы
       if (localStorage.getItem("store") ) {
           this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(localStorage.getItem("store"))))

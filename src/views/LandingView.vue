@@ -217,7 +217,7 @@
         </i>
       </p>
     </div>
-    <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
+    <div class="mw-310 block-pay d-flex flex-column align-items-center justify-content-center">
       <div class="d-flex flex-column align-items-center justify-content-center">
         <!-- <div id="solid-payment-form-container">
           <button class="pay cursor active" v-if="apple_pay">
@@ -282,16 +282,16 @@
       ></div>
       <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
         <div class="d-flex align-items-center star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
+          <img src="@/assets/images/star1.png" alt="star">
+          <img src="@/assets/images/star1.png" alt="star">
+          <img src="@/assets/images/star1.png" alt="star">
+          <img src="@/assets/images/star1.png" alt="star">
+          <img src="@/assets/images/star2.png" alt="star">
         </div>
         <div class="d-flex align-items-center">
           <img src="@/assets/images/icons/out48.svg" alt="out">
         </div>
-        <p> <span class="bold">28k</span> 5-star ratings</p>
+        <p> <span class="bold">36k</span> 5-star ratings</p>
       </div>
     </div>
     <div class="mw-450 d-flex flex-column mb-32">
@@ -1220,13 +1220,13 @@ export default {
     img{
       max-width: 100%;
     }
-  }
+  } 
   button.pay.active {
     background: rgba(87, 115, 214, 0.1);
     border: 2px solid #5773D6;
   }
   button.pay.small{
-    max-width: 150px;
+    max-width: 153px;
     img{
       width: 100%;
     }
@@ -1289,6 +1289,10 @@ export default {
 }
 .mw-300{
   max-width: 300px;
+  margin: 0px auto;
+}
+.mw-310{
+  max-width: 310px;
   margin: 0px auto;
 }
 .mb-32{

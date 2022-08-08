@@ -539,7 +539,7 @@ const state = () => ({
         {
             id: 282,
             title: 'Kegel exercises are better than medications',
-            thumbnail: 'PE_s6.png',
+            thumbnail: 'ED_s6.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
         },

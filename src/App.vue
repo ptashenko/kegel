@@ -20,14 +20,27 @@ export default {
     ...mapActions(['getContent', 'getTrack', 'getHistory', 'getSeparators', 'generatUUID']),
   },
   created () {
-    // Считываем информацию о статусе в localStorage при загрузке страницы
-    if (localStorage.getItem("store") ) {
-        this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(localStorage.getItem("store"))))
-    } 
-    // Сохраняем информацию в vuex в localStorage при обновлении страницы
-    window.addEventListener("beforeunload",()=>{
-        localStorage.setItem("store",JSON.stringify(this.$store.state))
-    })
+    if (navigator.userAgentData.platform.includes('iOS')) {
+      console.log('safari');
+      // Считываем информацию о статусе в localStorage при загрузке страницы
+      if (sessionStorage.getItem("store") ) {
+          this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(sessionStorage.getItem("store"))))
+      } 
+      // Сохраняем информацию в vuex в localStorage при обновлении страницы
+      window.addEventListener("beforeunload",()=>{
+          sessionStorage.setItem("store",JSON.stringify(this.$store.state))
+      })
+    }else{
+      console.log('Другой браузер');
+      // Считываем информацию о статусе в localStorage при загрузке страницы
+      if (localStorage.getItem("store") ) {
+          this.$store.replaceState(Object.assign({}, this.$store.state,JSON.parse(localStorage.getItem("store"))))
+      } 
+      // Сохраняем информацию в vuex в localStorage при обновлении страницы
+      window.addEventListener("beforeunload",()=>{
+          localStorage.setItem("store",JSON.stringify(this.$store.state))
+      })
+    }
   },
   watch:{
   },

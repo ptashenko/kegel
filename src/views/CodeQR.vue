@@ -388,10 +388,5 @@ export default {
     padding-bottom: 0px; 
   }
 }
-#qr canvas{
-  position: relative;
-  z-index: 0;
-  width: 100%!important;
-  height: 100%!important;
-}
+
 </style>

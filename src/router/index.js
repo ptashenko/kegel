@@ -21,6 +21,7 @@ import Landing_android_v4 from '@/views/Landing_android_v4.vue';
 import PlanFinal from '@/views/PlanFinal.vue';
 import PlanFinalTwo from '@/views/PlanFinalTwo.vue';
 import CodeQR from '@/views/CodeQR.vue';
+import FeedBack from '@/views/FeedBack.vue';
 
 const routes = [{
         path: '/',
@@ -126,6 +127,11 @@ const routes = [{
         path: '/CodeQR',
         name: 'CodeQR',
         component: CodeQR,
+    },
+    {
+        path: '/FeedBack',
+        name: 'FeedBack',
+        component: FeedBack,
     },
     {
         path: '/:pathMatch(.*)',

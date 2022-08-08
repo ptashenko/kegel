@@ -188,8 +188,8 @@
       </div>
       
     </div>
-    <button  class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
     <div id="paypal"></div>
+    <button  class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
   </div>
 
   <button-field

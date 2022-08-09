@@ -93,6 +93,7 @@ export default {
     }
   }
 .windowError{
+  pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: top;
@@ -104,6 +105,7 @@ export default {
   bottom: 0;
   background-color: rgba(255, 255, 255, 0);
   .v-popup{
+    pointer-events: auto;
     box-shadow:(6px 6px 13px rgba(0, 0, 0, 0.25));
     max-width: 418px;
     font-family: "SF Pro Text Medium";

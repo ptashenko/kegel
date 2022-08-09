@@ -35,6 +35,7 @@
     v-if="paymentMethodType == 1"
     @error="error"
     @success="success"
+    @clickButton="clickButton"
     :item="this.item"
   />
   <div
@@ -55,7 +56,7 @@ export default {
     CardCompanent,
   },
   inject: ["mixpanel"],
-  emits: ["error", "success"],
+  emits: ["error", "success", "clickButton"],
   props: ["item"],
   data() {
     return {
@@ -69,6 +70,9 @@ export default {
     },
     success() {
         this.$emit("success");
+    },
+    clickButton() {
+        this.$emit("clickButton");
     },
     applePaySelect() {
       if (this.paymentMethodType != 3) {
@@ -142,6 +146,7 @@ export default {
 
 .block-pay{
   width: 310px;
+  
   .w-100{
     width: 100%;
     margin-top: 48px;

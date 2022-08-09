@@ -33,7 +33,7 @@
 <script>
 export default {
   inject: ["mixpanel"],
-  emits: ["error", "success"],
+  emits: ["error", "success", "clickButton"],
   props: ['item'],
   data() {
     return {
@@ -47,6 +47,7 @@ export default {
   },
   methods: {
     authorize() {
+      this.$emit("clickButton");
       this.loading = true;
       const requestOptions = {
         method: "POST",

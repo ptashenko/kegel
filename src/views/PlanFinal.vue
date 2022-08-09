@@ -79,13 +79,13 @@
         :class="{ submit: loading }"
         @click="changePlanRequest"
       />
-      <!-- <button-field
+      <button-field
         text='Skip trial and start plan'
         theme="Back"
         class="footer-controls__button red loader"
         :class="{ hiden: isActive }"
         @click="loadingBtn"
-      /> -->
+      />
       <div
       class="footer-controls__button btnLoader "
         :class="{ hiden: !isActive }"
@@ -181,7 +181,7 @@
       <img src="@/assets/images/icons/btn_close_cwindow.svg" alt="apple_pay">
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <PaymentFormCompanent @error="paymentError" @success="nextUrl" :item="this.item"/>
+      <PaymentFormCompanent @error="paymentError" @success="nextUrl" @click="closeWindowError" :item="this.item"/>
     </div>
   </vpopup>
 </template>
@@ -683,6 +683,7 @@ export default {
   fill: red;
 }
 .windowError{
+  z-index: 999;
   .blue{
     color:#5773D6;
     margin-top: 4px;
@@ -691,8 +692,6 @@ export default {
   }
 }
 .block-pay{
-  width: 350px;
-  
   .d-flex{
     width: 100%;
     max-width: 310px;

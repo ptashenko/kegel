@@ -95,13 +95,13 @@
           class="footer-controls__button red"
           @click="payingSuccess"
         />
-        <!-- <button-field
+        <button-field
           text='Add to my plan'
           theme="Back"
           class="footer-controls__button red loader"
           :class="{ hiden: isActive }"
           @click="loadingBtn"
-        /> -->
+        />
         <div
           class="footer-controls__button btnLoader loader"
           :class="{ hiden: !isActive }"
@@ -227,7 +227,7 @@
       <img src="@/assets/images/icons/btn_close_cwindow.svg" alt="apple_pay">
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <PaymentFormCompanent @error="paymentError" @success="payingSuccess" :item="this.item"/>
+      <PaymentFormCompanent @error="paymentError" @success="payingSuccess" @click="closeWindowError" :item="this.item"/>
     </div>
   </vpopup>
 </template>
@@ -598,6 +598,7 @@ export default {
     margin: 0 auto;
     display: block;
   }
+
   .video{
     max-height: 260px; 
     height: 100vh; 
@@ -780,6 +781,7 @@ export default {
   fill: red;
 }
 .windowError{
+  z-index: 999;
   .blue{
     color:#5773D6;
     margin-top: 4px;
@@ -787,9 +789,7 @@ export default {
     cursor: pointer;
   }
 }
-.block-pay{
-  width: 350px;
-  
+.block-pay{  
   .d-flex{
     width: 100%;
     max-width: 310px;

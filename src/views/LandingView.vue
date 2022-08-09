@@ -218,7 +218,7 @@
       </p>
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <PaymentFormCompanent @error="paymentError" @success="nextUrl" :item="this.item"/>
+      <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item"/>
       <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
         <div class="d-flex align-items-center star">
           <img src="@/assets/images/star.png" alt="star">

@@ -1,37 +1,42 @@
 <template>
-  <div id="paypal-button"></div>
+  <div id="paypal-button" ref="paypalButton"></div>
 </template>
 
 <script>
 export default {
-    inject: ['mixpanel'],
-    methods: {
-        processPayPal(token) {
-        const requestOptions = {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer test",
-            },
-            body: JSON.stringify({
-            web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
-            token_id: token,
-            item: this.item,
-            }),
-        };
-        fetch("https://int2.kegel.men/api/web-payment/accept/pay-pal-payment", requestOptions)
-            .then((response) => response.json())
-            .then((data) => {
-            nextUrl();
-            });
+  inject: ["mixpanel"],
+  methods: {
+    processPayPal(token) {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer test",
         },
-        onClickPayPal() {
-            this.mixpanel.track('Check-out Started', {
-                type: "PayPal"
-            })
-        }
+        body: JSON.stringify({
+          web_user_uuid: localStorage
+            .getItem("web_user_uuid")
+            .replaceAll('"', ""),
+          token_id: token,
+          item: this.item,
+        }),
+      };
+      fetch(
+        "https://int2.kegel.men/api/web-payment/accept/pay-pal-payment",
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          nextUrl();
+        });
     },
-  mounted () {
+    onClickPayPal() {
+      this.mixpanel.track("Check-out Started", {
+        type: "PayPal",
+      });
+    },
+  },
+  mounted() {
     {
       var intent = null;
       const requestOptions = {
@@ -47,33 +52,38 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
-              window.paypal.Button.render(
-                {
-                  env: "sandbox", // Or 'sandbox',
-                  commit: true, // Show a 'Pay Now' button
-                  style: {
-                    tagline: false,
-                    height: 45,
-                  },
-                  payment: function () {
-                    return data.link.split("=")[1]; // The payment ID from earlier
-                  },
-                  onClick: () => {
-                    this.onClickPayPal();
-                  },
-                  onAuthorize: function (data, actions) {
-                    // Handler if customer DOES authorize payment (this is where you get the payment_id & payer_id you need to pass to Chec)
-                    console.log(data);
-                    this.processPayPal(data.id);
-                  },
-                  onCancel: function (data, actions) {
-                    this.paymentError();
-                  },
+          if (this.$refs.paypalButton.childElementCount == 0) {
+            window.paypal.Button.render(
+              {
+                env: "sandbox", // Or 'sandbox',
+                commit: true, // Show a 'Pay Now' button
+                locale: "en_US",
+                style: {
+                  size: "medium",
+                  shape: "pill",
+                  label: "buynow",
+                  branding: true,
+                  tagline: "false",
                 },
-                "#paypal-button"
-              )
+                payment: function () {
+                  return data.link.split("=")[1]; // The payment ID from earlier
+                },
+                onClick: () => {
+                  this.onClickPayPal();
+                },
+                onAuthorize: function (data, actions) {
+                  // Handler if customer DOES authorize payment (this is where you get the payment_id & payer_id you need to pass to Chec)
+                  console.log(data);
+                  this.processPayPal(data.id);
+                },
+                onCancel: function (data, actions) {
+                  this.paymentError();
+                },
+              },
+              "#paypal-button"
+            );
           }
-        );
+        });
 
       //     window.Chargebee.getInstance().load("paypal").then((paypalHandler) => {
 
@@ -92,6 +102,6 @@ export default {
       // });
     }
     // container IS finished rendering to the DOM
-  }
-}
+  },
+};
 </script>

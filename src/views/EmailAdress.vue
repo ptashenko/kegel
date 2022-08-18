@@ -51,8 +51,8 @@
                 By giving your email address you can also receive offers from Appercut Sp. z o.o. You can unsubscribe at any time.
               </p>
               <div class="footer__terms">
-                <a href="https://appercut.co/terms.html" target="_blank">Terms</a>
-                <a href="https://appercut.co/privacy-policy.html" target="_blank">Policy</a>
+                <a href="/terms.html" target="_blank">Terms</a>
+                <a href="/privacy-policy.html" target="_blank">Policy</a>
               </div>
             </div>
           </div>

@@ -1,13 +1,18 @@
 <template>
-  <div class="d-flex flex-column align-items-center justify-content-center">
-    <!-- <div id="solid-payment-form-container">
-          <button class="pay cursor active" v-if="apple_pay">
-            <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
-          </button>
-          <button class="pay cursor " v-else>
-            <img src="@/assets/images/icons/google_pay.svg" alt="google_pay">
-          </button>
-        </div> -->
+  <div
+    class="d-flex flex-column align-items-center justify-content-center"
+    id="paymentForm"
+  >
+    <div id="solid-payment-form-container">
+      <button
+        class="pay cursor"
+        v-if="apple_pay"
+        :class="{ active: paymentMethodType == 3 }"
+        @click="applePaySelect"
+      >
+        <img src="@/assets/images/icons/apple_pay.png" alt="apple_pay" />
+      </button>
+    </div>
   </div>
   <div class="d-flex align-items-center justify-content-beetwen">
     <button
@@ -27,8 +32,12 @@
   </div>
   <PayPalComponent
     class="d-flex align-items-center justify-content-beetwen"
-    style="position: sticky"
+    style="position: sticky; padding-top: 18px"
     v-if="paymentMethodType == 2"
+    @error="error"
+    @success="success"
+    @clickButton="clickButton"
+    :item="this.item"
   />
   <CardCompanent
     class="w-100 flex-column align-items-center justify-content-center"
@@ -37,11 +46,12 @@
     @success="success"
     @clickButton="clickButton"
     :item="this.item"
+    :auth_price="this.auth_price"
   />
   <div
     id="apple-pay-button"
     class="d-flex align-items-center justify-content-beetwen"
-    style="width: 100%; display: inline"
+    style="width: 100%; display: inline; padding-top: 16px"
     v-if="paymentMethodType == 3"
   ></div>
 </template>
@@ -57,22 +67,28 @@ export default {
   },
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ["item"],
+  props: ["item", "auth_price"],
   data() {
     return {
       item: "kegel_1-USD-Every-3-months",
+      auth_price: 100,
       paymentMethodType: 1, //1- card, 2 - paypal
+      blockSelect: false,
+      apple_pay: false,
     };
   },
   methods: {
-    error() {
-        this.$emit("error");
+    error(message) {
+      this.blockSelect = false;
+      this.$emit("error", message);
     },
     success() {
-        this.$emit("success");
+      this.blockSelect = false;
+      this.$emit("success");
     },
     clickButton() {
-        this.$emit("clickButton");
+      this.blockSelect = true;
+      this.$emit("clickButton");
     },
     applePaySelect() {
       if (this.paymentMethodType != 3) {
@@ -81,13 +97,13 @@ export default {
       }
     },
     payPalSelect() {
-      if (this.paymentMethodType != 2) {
+      if (this.paymentMethodType != 2 && !this.blockSelect) {
         this.paymentMethodType = 2;
-       // this.getPayPalIntent();
+        // this.getPayPalIntent();
       }
     },
     cardSelect() {
-      if (this.paymentMethodType != 1) {
+      if (this.paymentMethodType != 1 && !this.blockSelect) {
         this.paymentMethodType = 1;
       }
     },
@@ -101,7 +117,7 @@ export default {
         },
         body: JSON.stringify({
           currency_code: "USD",
-          amount: 100,
+          amount: 1,
           payment_method_type: "apple_pay",
         }),
       };
@@ -122,11 +138,32 @@ export default {
                   return applePayHandler.handlePayment();
                 })
                 .then((paymentIntent) => {
-                  this.nextUrl();
-                  //paymentIntent contains authorized payment intent
+                  console.log(paymentIntent);
+                  const requestOptions = {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: "Bearer test",
+                    },
+                    body: JSON.stringify({
+                      web_user_uuid: localStorage
+                        .getItem("web_user_uuid")
+                        .replaceAll('"', ""),
+                      intent_id: paymentIntent.id,
+                      item: this.item,
+                    }),
+                  };
+                  fetch(
+                    "https://int2.kegel.men/api/web-payment/accept/card-payment/",
+                    requestOptions
+                  ).then((response) => {
+                    this.loading = false;
+                    this.success();
+                    //this.nextUrl();
+                  });
                 })
                 .catch((error) => {
-                   this.paymentError();
+                  this.error();
                   // handle error
                 });
             })
@@ -135,121 +172,123 @@ export default {
   },
   mounted() {
     this.payPalSelect();
+    if (window.ApplePaySession) {
+      this.apple_pay = ApplePaySession.canMakePayments();
+    }
   },
 };
 </script>
 <style lang="scss" scoped>
-
-.cursor{
+.cursor {
   cursor: pointer;
 }
 
-.block-pay{
+.block-pay {
   width: 310px;
-  
-  .w-100{
+
+  .w-100 {
     width: 100%;
     margin-top: 48px;
   }
-  .flex-wrap{
+  .flex-wrap {
     flex-wrap: wrap;
     width: 380px;
     margin-top: 48px;
-    @media (max-width:480px) {
+    @media (max-width: 480px) {
       max-width: 270px;
       justify-content: center;
     }
-    p{
+    p {
       font-family: "SF Pro Text Regular";
       font-size: 16px;
-      .bold{
+      .bold {
         font-family: "SF Pro Text Semibold";
       }
-      @media (max-width:480px) {
+      @media (max-width: 480px) {
         font-size: 14px;
         margin-top: 11px;
       }
     }
   }
-  button.pay{
-    background: #F9F9F9;
-    border: 2px solid #F9F9F9;
+  button.pay {
+    background: #f9f9f9;
+    border: 2px solid #f9f9f9;
     border-radius: 9px;
-    margin-bottom:10px ;
+    margin-bottom: 10px;
     max-width: 300px;
     display: block;
-    &:focus, &:hover, &:active{
-      background: rgba(87, 115, 214, 0.1);
-      border: 2px solid #5773D6;
-    }
-    img{
+    // &:focus, &:hover, &:active{
+    //   background: rgba(87, 115, 214, 0.1);
+    //   border: 2px solid #5773D6;
+    // }
+    img {
       max-width: 100%;
     }
   }
   button.pay.active {
     background: rgba(87, 115, 214, 0.1);
-    border: 2px solid #5773D6;
+    border: 2px solid #5773d6;
   }
-  button.pay.small{
+  button.pay.small {
     max-width: 150px;
     height: 49px;
-    img{
+    img {
       width: 100%;
     }
   }
-  .aple_pay{
+  .aple_pay {
     background: #111113;
-    color: #FFFFFF;
+    color: #ffffff;
     border: 3px solid #111113;
     border-radius: 100px;
-    margin-bottom:10px ;
+    margin-bottom: 10px;
     width: 100%;
     font-size: 20px;
     line-height: 24px;
     padding: 15px 65px;
     font-family: "SF Pro Text Semibold";
-    &:focus{
-      background: #1B1B1E;
-      border: 3px solid #C7C7C7;
+    &:focus {
+      background: #1b1b1e;
+      border: 3px solid #c7c7c7;
     }
   }
-  .error{
+  .error {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #E44240;
-    border: 3px solid #E44240;
-    &:focus{
+    background: #e44240;
+    border: 3px solid #e44240;
+    &:focus {
       background: #eb6967;
-      border: 3px solid #E44240;
+      border: 3px solid #e44240;
     }
   }
-  .Pay_pay{
-    background: #FFBB1B;
-    color: #2D2F2F;
-    border: 3px solid #FFBB1B;
+  .Pay_pay {
+    background: #ffbb1b;
+    color: #2d2f2f;
+    border: 3px solid #ffbb1b;
     border-radius: 100px;
-    margin-bottom:10px ;
+    margin-bottom: 10px;
     width: 100%;
     font-size: 20px;
     line-height: 24px;
     padding: 15px 55px;
     font-family: "SF Pro Text Regular";
-    &:focus{
-      background: #FFBB1B;
-      border: 3px solid #F3F3F3;
+    &:focus {
+      background: #ffbb1b;
+      border: 3px solid #f3f3f3;
     }
   }
 }
-.ml-2{
+.ml-2 {
   margin-left: 2px;
 }
-.mr-2{
+.mr-2 {
   margin-right: 2px;
 }
 
-.small::before{
+.small::before {
   content: "";
   width: 1px;
   height: 14px;
@@ -260,13 +299,24 @@ export default {
   left: 50%;
 }
 
-input, textarea{outline:none;}
-input:active, textarea:active{outline:none;}
-:focus {outline:none;}
-textarea {resize:none;}
-textarea {resize:vertical;}
-textarea {resize:horizontal;}
-
-
-
+input,
+textarea {
+  outline: none;
+}
+input:active,
+textarea:active {
+  outline: none;
+}
+:focus {
+  outline: none;
+}
+textarea {
+  resize: none;
+}
+textarea {
+  resize: vertical;
+}
+textarea {
+  resize: horizontal;
+}
 </style>

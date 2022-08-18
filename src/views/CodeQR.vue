@@ -122,7 +122,7 @@ export default {
   },
   mounted(){
     
-      var oneLinkURL = "https://drkegel.onelink.me/qIUy/";
+      var oneLinkURL = "https://kegel.onelink.me/b5X4/";
             var mediaSource = {
                 keys: ["pid"],
                 defaultValue: "WebQuiz"
@@ -166,10 +166,6 @@ export default {
                 keys: ["fbc"],
                 defaultValue: ""
             };
-            var sub3 = {
-                keys: ["url"],
-                defaultValue: navigator.userAgent
-            };
             var sub5 = {
                 keys: ["url"],
                 defaultValue: localStorage.getItem("web_user_uuid").replaceAll('\"','')
@@ -184,7 +180,6 @@ export default {
                     ad: ad,
                     afSub1: sub1,
                     afSub2: sub2,
-                    afSub3: sub3,
                     afSub5: sub5,
                     afCustom: [
                         campaign_id,
@@ -198,7 +193,17 @@ export default {
 
             this.url = result.clickURL;
             window.AF_SMART_SCRIPT.displayQrCode("qr");
-
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '218402323038428');
+            fbq('init', '450334773666656');
+            fbq('track', 'Purchase');
   },
   created () {
     this.mixpanel.track('Final Screen Shown')
@@ -388,10 +393,5 @@ export default {
     padding-bottom: 0px; 
   }
 }
-#qr canvas{
-  position: relative;
-  z-index: 0;
-  width: 100%!important;
-  height: 100%!important;
-}
+
 </style>

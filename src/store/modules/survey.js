@@ -65,7 +65,7 @@ const state = () => ({
                 { id: 14 }, { id: 15 }, { id: 52 },
                 { id: 53 }, { id: 201 },
                 { id: 54 }, { id: 26 }, { id: 55 },
-                { id: 28, separation: true },
+                { id: 283, separation: true },
                 { id: 29 }, { id: 30 }, { id: 31 },
                 { id: 32 }, { id: 323 }, { id: 33 },
                 { id: 34, separation: true }
@@ -544,6 +544,13 @@ const state = () => ({
             buttonsText: ['Back', 'I got it'],
         },
         {
+            id: 283,
+            title: 'Kegel exercises are better than medications',
+            thumbnail: 'OK_s6.png',
+            layoutName: 'standart',
+            buttonsText: ['Back', 'I got it'],
+        },
+        {
             id: 29,
             title: 'How often do you drink alcohol?',
             answer: {
@@ -682,9 +689,9 @@ const state = () => ({
             video: 's2.mp4',
             poster: 'ED_s2.png',
             layoutName: 'standart',
-            aftertext: 'When the PF muscles are weak the ejaculation reflex can get triggered too quickly. This can lead to unwanted ejaculation',
+            aftertext: '',
             textbold: '',
-            text: '',
+            text: 'When the PF muscles are weak the ejaculation reflex can get triggered too quickly. This can lead to unwanted ejaculation',
         },
         {
             id: 36,
@@ -1026,10 +1033,14 @@ const mutations = {
         state.activeVariant = variant;
     },
     setHistory(state, props) {
+        console.log("SetHistory");
         const {
             anchor,
             selected,
         } = props;
+        if (anchor == null) {
+            state.history = props;
+        }
         state.history[anchor] = selected;
         addItem('history', state.history);
     },
@@ -1038,6 +1049,7 @@ const mutations = {
         addItem('separations', state.separations);
     },
     clearHistory(state) {
+        console.log("ClearHistory");
         state.history = {};
         addItem('history', {});
         state.track = {};
@@ -1224,6 +1236,7 @@ const actions = {
         // }
     },
     getHistory({ commit }) {
+        console.log("GetHistory");
         const history = getItem('history');
         commit('setHistory', history);
     },

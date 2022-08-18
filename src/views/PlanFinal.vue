@@ -79,13 +79,13 @@
         :class="{ submit: loading }"
         @click="changePlanRequest"
       />
-      <button-field
+      <!-- <button-field
         text='Skip trial and start plan'
         theme="Back"
         class="footer-controls__button red loader"
         :class="{ hiden: isActive }"
         @click="loadingBtn"
-      />
+      /> -->
       <div
       class="footer-controls__button btnLoader "
         :class="{ hiden: !isActive }"
@@ -261,9 +261,10 @@ export default {
     imagePE(){
       if(this.jsLocal == 2 && sessionStorage.getItem('resbtn') == 'Yes'){
         this.imageitem = require(`@/assets/images/json/ED.json`);
-      }else if(this.jsLocal == 3){
-        this.AddPurpose = true
       }
+      // else if(this.jsLocal == 3){
+      //   this.AddPurpose = false
+      // }
       return  console.log(this.imageitem);
     }
   },
@@ -374,8 +375,9 @@ export default {
        this.nextUrl()
     },
     nextUrl(){ 
-      let mediaQuery = window.matchMedia('(max-width: 480px)');
-      if (mediaQuery.matches) {
+      let isiPhone = window.navigator.platform == "iPhone"
+      // let mediaQuery = window.matchMedia('(max-width: 480px)');
+      if (isiPhone) {
         let body = document.querySelector('body')
         body.classList.remove('fixed');
         this.$router.push('PlanFinalTwo')

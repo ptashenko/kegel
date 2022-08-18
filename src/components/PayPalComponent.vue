@@ -5,6 +5,8 @@
 <script>
 export default {
   inject: ["mixpanel"],
+  emits: ["error", "success", "clickButton"],
+  props: ["item"],
   methods: {
     processPayPal(token) {
       const requestOptions = {
@@ -25,12 +27,12 @@ export default {
         "https://int2.kegel.men/api/web-payment/accept/pay-pal-payment",
         requestOptions
       )
-        .then((response) => response.json())
-        .then((data) => {
-          nextUrl();
+        .then((response) => {
+          this.$emit("success");
         });
     },
     onClickPayPal() {
+      this.$emit("clickButton");
       this.mixpanel.track("Check-out Started", {
         type: "PayPal",
       });
@@ -55,7 +57,7 @@ export default {
           if (this.$refs.paypalButton.childElementCount == 0) {
             window.paypal.Button.render(
               {
-                env: "sandbox", // Or 'sandbox',
+                env: "production", // Or 'sandbox',
                 commit: true, // Show a 'Pay Now' button
                 locale: "en_US",
                 style: {
@@ -64,6 +66,7 @@ export default {
                   label: "buynow",
                   branding: true,
                   tagline: "false",
+                  height: 55
                 },
                 payment: function () {
                   return data.link.split("=")[1]; // The payment ID from earlier
@@ -71,13 +74,16 @@ export default {
                 onClick: () => {
                   this.onClickPayPal();
                 },
-                onAuthorize: function (data, actions) {
+                onAuthorize: (data, actions) => {
                   // Handler if customer DOES authorize payment (this is where you get the payment_id & payer_id you need to pass to Chec)
                   console.log(data);
-                  this.processPayPal(data.id);
+                  this.processPayPal(data.billingToken);
                 },
-                onCancel: function (data, actions) {
-                  this.paymentError();
+                onCancel: (data, actions) => {
+                 this.$emit("error", data);
+                },
+                onError: (data, actions) => {
+                 this.$emit("error", data);
                 },
               },
               "#paypal-button"
@@ -105,3 +111,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.zoid-outlet{
+    max-width: 300px;
+    }
+</style>

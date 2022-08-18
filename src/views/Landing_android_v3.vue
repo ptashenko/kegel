@@ -97,7 +97,7 @@
       Subscription
     </div>
     <div class="after d-flex flex-column align-items-end">
-      <div class="d-flex"><span class="opasity">$6.6 </span><span class="bold">&nbsp; $3.3*</span></div>
+      <div class="d-flex"><span class="opac_5 line">$6.6 </span><span class="bold">&nbsp; $3.3*</span></div>
       <span class="small">(price per week)</span>
     </div>
   </div>
@@ -118,68 +118,7 @@
     <div style="padding:10px">
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <div class="d-flex flex-column align-items-center justify-content-center">
-        <!-- <div id="solid-payment-form-container">
-          <button class="pay cursor active" v-if="apple_pay">
-            <img src="@/assets/images/icons/apple_pay.svg" alt="apple_pay">
-          </button>
-          <button class="pay cursor " v-else>
-            <img src="@/assets/images/icons/google_pay.svg" alt="google_pay">
-          </button>
-        </div> -->
-      </div>
-      <div class="d-flex align-items-center justify-content-beetwen">
-        <button class="pay small mr-2 cursor" :class="{ active: paymentMethodType == 2}" @click="payPalSelect">
-          <img src="@/assets/images/icons/paypal.png" alt="apple_pay" />
-        </button>
-        <button class="pay small ml-2 cursor" :class="{ active: paymentMethodType == 1}" @click="cardSelect">
-          <img src="@/assets/images/icons/card.png" alt="apple_pay" />
-        </button>
-      </div>
-      <PayPalComponent
-        class="d-flex align-items-center justify-content-beetwen"
-        style="position: sticky"
-        v-if="paymentMethodType == 2"
-      />
-      <div
-        class="w-100 flex-column align-items-center justify-content-center"
-        id="card-pay-container"
-        v-if="paymentMethodType == 1"
-      >
-        <!-- Render card components in fields-mode -->
-        <!-- Pass styles, classes, locale, placeholder, fonts as props -->
-        <div class="ex1-contain">
-          <div class="ex1-fieldset">
-            <div class="ex1-field">
-              <input class="ex1-input" type="text" placeholder="Name on Card" />
-              <!-- <label class="ex1-label">Name on Card</label
-              > -->
-              <i class="ex1-bar"></i>
-            </div>
-            <div class="ex1-field">
-              <div class="ex1-input" id="card-combined"></div>
-              <label class="ex1-label"></label><i class="ex1-bar"></i>
-            </div>
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          :class="{ submit: loading }"
-          class="card-pay-button"
-          @click="authorize"
-        >
-          Suscribe
-        </button>
-        <div class="error" role="alert" v-if="error">{{ error }}</div>
-        <div class="token" v-if="token">{{ token }}</div>
-      </div>
-      <div
-        id="apple-pay-button"
-        class="d-flex align-items-center justify-content-beetwen"
-        style=" width: 100%;display: inline;"
-        v-if="paymentMethodType == 3"
-      ></div>
+      <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item" id="paymentForm"/>
       <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
         <div class="d-flex align-items-center star">
           <img src="@/assets/images/star.png" alt="star">
@@ -266,8 +205,7 @@ import vpopup from '@/components/modal/v-popup.vue';
 import btnComponent from '@/components/questions/btnPopup.vue';
 import countdown from '@/components/Countdown.vue';
 import VueScrollTo from "vue-scrollto";
-import PayPalComponent from "../components/PayPalComponent.vue";
-
+import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 
 export default {
   name: 'Landing_android_v3', 
@@ -277,22 +215,20 @@ export default {
     vpopup,
     btnComponent,
     countdown,
-    PayPalComponent
+    PaymentFormCompanent
 },
   data() {
     return {
-      //start card
-      item: "kegel_1-USD-Every-3-months",
-      cardComponent: null,
-      payPalIntent: "",
-      token: "",
-      error: "",
-      loading: false,
-      paymentMethodType: 1, //1- card, 2 - paypal
+      item: "kegel_7-USD-Weekly",
       VueScrollTo: require('vue-scrollto'),
+      blockFixed: false,
       apple_pay: true, 
+      dataPP2:'September 25',
       ggg:0,
+      textBtn:'Start my plan',
       email: null,
+      isEmailTouched: false,
+      upValue: '',
       step_2: false,
       base: {},
       numreview: 3,
@@ -303,206 +239,26 @@ export default {
       popupVisible: false,
       popupVisible2: false,
       popupVisible3: false,
+      isActiveYes: false,
+      isActiveNo: false,
       closeActive: false,
-      price: 1,
+      scrollPosition: 0,
+      price: localStorage.getItem('price'),
+      oldprice: 19.88,
       numanimate: 1,
       show: false,
       imageitem: require(`@/assets/images/json/Step_1_1.json`),
+      imgProba: false,
+      AddPurposeCom: false,
+      addItem: false,
       numanim: null,
-      randomData: 0,
     };
   },   
   methods: {
-    cardFromInit() {
-      var options = {
-        fonts: ["https://fonts.googleapis.com/css?family=Roboto:300,500,600"],
-
-        // add classes for different states
-        classes: {
-          focus: "focus",
-          invalid: "invalid",
-          empty: "empty",
-          complete: "complete",
-        },
-
-        // add placeholders
-        placeholder: {
-          number: "4111 1111 1111 1111",
-        },
-
-        // Set locale
-        locale: "en",
-
-        style: {
-          // Styles for default state
-          base: {
-            color: "#333",
-
-            ":focus": {
-              // color: '#424770',
-            },
-
-            "::placeholder": {
-              color: "#abacbe",
-            },
-
-            ":focus::placeholder": {
-              // color: '#7b808c',
-            },
-          },
-
-          // Styles for invalid state
-          invalid: {
-            color: "#E94745",
-
-            ":focus": {
-              color: "#e44d5f",
-            },
-            "::placeholder": {
-              color: "#FFCCA5",
-            },
-          },
-        },
-      };
-      window.Chargebee.getInstance()
-        .load("components")
-        .then(() => {
-          // Create card
-          this.cardComponent = window.Chargebee.getInstance()
-            .createComponent("card", options)
-            .at("#card-combined");
-          // Create card fields
-          // this.cardComponent.createField("number").at("#card-number");
-          // this.cardComponent.createField("expiry").at("#card-expiry");
-          // this.cardComponent.createField("cvv").at("#card-cvc");
-
-          // Mount card component
-          this.cardComponent.mount();
-        });
-    },
-    applePaySelect() {
-      if (this.paymentMethodType != 3) {
-        this.paymentMethodType = 3;
-        this.getApplePayIntent();
-      }
-    },
-    payPalSelect() {
-      if (this.paymentMethodType != 2) {
-        this.paymentMethodType = 2;
-       // this.getPayPalIntent();
-      }
-    },
-    cardSelect() {
-      if (this.paymentMethodType != 1) {
-        this.paymentMethodType = 1;
-        this.cardFromInit();
-      }
-    },
-    getApplePayIntent() {
-      var intent = null;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer test",
-        },
-        body: JSON.stringify({
-          currency_code: "USD",
-          amount: 100,
-          payment_method_type: "apple_pay",
-        }),
-      };
-      fetch(
-        "https://int2.kegel.men/api/web-payment/init/card-payment/",
-        requestOptions
-      )
-        .then((response) => response.json())
-        .then((data) =>
-          window.Chargebee.getInstance()
-            .load("apple-pay")
-            .then((applePayHandler) => {
-              applePayHandler.setPaymentIntent(data.payment_intent);
-              return applePayHandler
-                .mountPaymentButton("#apple-pay-button")
-                .then(() => {
-                  // once button mounted
-                  return applePayHandler.handlePayment();
-                })
-                .then((paymentIntent) => {
-                  this.nextUrl();
-                  //paymentIntent contains authorized payment intent
-                })
-                .catch((error) => {
-                  this.paymentError();
-                  // handle error
-                });
-            })
-        );
-    },
-    authorize() {
-      this.loading = true;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer test",
-        },
-        body: JSON.stringify({
-          currency_code: "USD",
-          amount: 100,
-          payment_method_type: "card",
-        }),
-      };
-      fetch(
-        "https://int2.kegel.men/api/web-payment/init/card-payment/",
-        requestOptions
-      )
-        .then((response) => response.json())
-        .then((data) =>
-          this.cardComponent
-            .authorizeWith3ds(data.payment_intent, {}, {})
-            .then((paymentIntent) => {
-              
-              // this.token = paymentIntent;
-              // this.error = "";
-              console.log(paymentIntent);
-              const requestOptions = {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer test",
-                },
-                body: JSON.stringify({
-                  web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
-                  intent_id: paymentIntent.id,
-                  item: this.item,
-                }),
-              };
-              fetch(
-                "https://int2.kegel.men/api/web-payment/accept/card-payment/",
-                requestOptions
-              ).then((response) => {
-                this.loading = false;
-                this.nextUrl();
-              });
-              // Send ajax call to create a subscription or to create a card payment source using the paymentIntent ID
-            })
-            .catch((error) => {
-              this.loading = false;
-              this.error = error;
-              this.token = "";
-              console.log(error);
-              this.paymentError();
-            })
-        );
-    },
     nextUrl() {
-      this.mixpanel.track('Check-out Started', {
-        type: "PayPal  CC  Mobile Pay",
-        method: "PayPal"
-      }),
-      this.mixpanel.track('Trial Started',{
-        amount: this.price
+      this.mixpanel.track('[Web Mail] Trial Started',{
+        amount: this.price,
+        number: this.$route.query.nr
       })
       setTimeout(() => {
         this.$router.push("CodeQR");
@@ -512,8 +268,9 @@ export default {
       return moment();
     },
     paymentError() {
-      this.mixpanel.track('Payment Error', {
-        stage: "Trial"
+      this.mixpanel.track('[Web Mail] Payment Error', {
+        stage: "Trial",
+        number: this.$route.query.nr
       })
       console.log(this.numTimeError);
       this.windowError = true;
@@ -535,65 +292,223 @@ export default {
       this.windowError = false;
     },
     showModal() {
+      sessionStorage.setItem('scrollto', window.pageYOffset)
+      console.log(window.pageYOffset);
       this.mixpanel.track('Comfortable Amount Shown')
-      localStorage.setItem('Comfortable amount Pop-up', 'true')
       let body = document.querySelector('body')
-      body.classList.add('fixed');
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       this.popupVisible = true
+      body.classList.add('fixed');
     },
     showModal2() {
-      localStorage.setItem('Button step_2', 'true')
+      sessionStorage.setItem('scrollto', window.pageYOffset)
       let body = document.querySelector('body')
-      body.classList.add('fixed');
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       this.popupVisible2 = true
       this.step_2 = true
+      body.classList.add('fixed');
     },
     showModal3() {
+      sessionStorage.setItem('scrollto', window.pageYOffset)
       let body = document.querySelector('body')
-      body.classList.add('fixed');
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       this.popupVisible3 = true
+      body.classList.add('fixed');
     },
     closePopup(e){
+      const height = sessionStorage.getItem('scrollto')
+      setTimeout(function(){ window.scrollTo( 0, height ) })
+      console.log(window.pageYOffset);
+      localStorage.setItem('Comfortable amount Pop-up', 'true')
       if(this.closeActive){
         this.mixpanel.track('Comfortable Amount Complted', {
           amount: this.price
         })
       }
       let body = document.querySelector('body')
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible = false
         body.classList.remove('fixed');
       }
+      // VueScrollTo.scrollTo('#Benefits');
+
     },
     closePopup2(e){
+      localStorage.setItem('Button step_2', 'true')
       this.mixpanel.track('Landing Page 2 Shown')
       let body = document.querySelector('body')
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible2 = false
         body.classList.remove('fixed');
       }
-      VueScrollTo.scrollTo('#paypal');
+      
+      window.scrollTo({
+        top: document.getElementById('paypal').offsetTop,
+        left: 0,
+        behavior: "smooth",
+      });
+
+      //  VueScrollTo.scrollTo('#paymentForm');
      // this.getPayPalIntent();
     },
+    async scrollToForm() {
+      
+    },
     closePopup3(e) {
+      const height = sessionStorage.getItem('scrollto')
+      setTimeout(function(){ window.scrollTo( 0, height ) })
       let body = document.querySelector('body')
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible3 = false
         body.classList.remove('fixed');
       }
+      // VueScrollTo.scrollTo('#paypal');
+    },
+    BtnActiveYes() {
+      this.isActiveYes = this.closeActive = true;
+      this.isActiveNo = false;
+      this.price = 1;
+      this.item = "kegel_1-USD-Every-3-months"
+      this.oldprice = 19.88;
+      localStorage.setItem("price", 1);
+      localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
+    },
+    BtnActiveNo() {
+      this.isActiveYes = false;
+      this.isActiveNo = this.closeActive = true;
+      this.price = 9.73;
+      this.item = "kegel_2-USD-Every-3-months"
+      this.oldprice = 19.88;
+      localStorage.setItem("price", 9.73);
+      localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
     },
     showReview() {
       this.numreview = this.numreview + 2;
+      console.log(this.base.length);
     },
   },
-  computed:{
-    dataP3(){
-      this.randomData = (Math.floor(Math.random( ) * (22 - 16 + 1)) + 16);
-      moment();
-      let ppp = this.randomData
+  watch:{
+    ggg(){
+      if(this.ggg == 1){
+        this.showModal("this.popupVisible" , false)
+      }
+    },
+
+  },
+  computed: {cal(){
+      let json = localStorage.getItem('track');
+      let obj = JSON.parse(json);
+      this.track = obj.id
+      return this.track
+    },
+    imagechart(){
+      if(this.jsLocal == 2){
+        if(sessionStorage.getItem('resbtn') == 'Yes'){
+          this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
+        }else{
+          this.imageitem = require(`@/assets/images/json/Step_1_2.json`);
+          this.imgProba = true
+        }
+      }else{
+        this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
+      }
+    },
+    MyScrollFixed(){
+      document.addEventListener('scroll', (e) => {
+        let x = window.scrollY
+        if(x>310){
+          
+          this.blockFixed = true
+        }else{
+          this.blockFixed = false
+        }
+      });
+      
+    },
+    MyScrollModal(){
+        document.addEventListener('scroll', (e) => {
+        let x = window.scrollY
+        if(x>400){
+          if(localStorage.getItem('Comfortable amount Pop-up')){
+            this.ggg = 0
+          }else{
+            this.ggg = 1
+          }
+        }
+        if(localStorage.getItem('Button step_2')){
+          this.step_2 = true
+        }else{
+          this.step_2 = false
+        }
+      })
+    },
+    ...mapGetters(['tracks']),
+    purpose(){
+      var json = localStorage.getItem('track');
+      var obj = JSON.parse(json);
+      return obj.purpose;
+    },
+    addpurpose(){
+      var json = localStorage.getItem('track');
+      var obj = JSON.parse(json);
+      console.log(obj.addpurpose);
+      return obj.addpurpose;
+      
+    },
+    btnAddPurpose(){
+      if(sessionStorage.getItem('resbtn') == 'Yes'){
+        this.AddPurposeCom = true
+      }else{
+        this.AddPurposeCom = false
+      } 
+    },
+    lengthReviews(){
+      var json = localStorage.getItem('track');
+      var obj = JSON.parse(json);
+      this.track = obj.id
+      if(this.track == 3){
+        this.addItem = true
+        this.base =  this.$store.state.review.msgOkLand
+        this.AddPurposeCom = false
+      }else if(this.track == 2){
+        this.base = this.$store.state.review.msgPeLand
+      }else{
+        this.base = this.$store.state.review.msgEdLand
+      }
+      return console.log(this.track);  ; 
+    },
+  },
+  beforeUnmount () {
+    clearInterval(this.polling)
+    clearInterval(this.numanim)
+  },
+  mounted() {
+          moment();
+      let ppp = (Math.floor(Math.random( ) * (22 - 16 + 1)) + 16);
       function days(numer, param, key){
         if(ppp < numer){
           let m3 = moment().add(3,'month').daysInMonth()
@@ -616,27 +531,7 @@ export default {
       days(24, 'dataPP32_day', 'data32')
       days(20, 'dataPP33_day', 'data33')
       days(16, 'dataPP34_day', 'data34')
-    
-    },
-  },
-  watch:{
-    ggg(){
-      if(this.ggg == 1){
-        this.showModal("this.popupVisible" , false)
-      }
-    },
-
-  },
-  beforeUnmount () {
-    clearInterval(this.polling)
-    clearInterval(this.numanim)
-  },
-  mounted() {
-    window.Chargebee.init({
-      site: "appercut-test",
-      publishableKey: "test_7FOVxVHry4i95p9iFcivpmIr8zdZMKDA",
-    });
-    this.payPalSelect();
+    // this.payPalSelect();
     this.apple_pay = true;
         // if (window.ApplePaySession) {
     //     var merchantIdentifier = 'merchant.appercut.stripe';
@@ -677,161 +572,14 @@ export default {
     }, 500);
   },
   created () {
-    this.mixpanel.track('Landing Page 1 Shown')
+    this.mixpanel.track('[Web Mail] LP Shown', {
+      number: this.$route.query.nr
+    })
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.ex1.container {
-  margin: auto;
-  padding: 100px 0;
-  min-height: 100vh;
-}
-.ex1-wrap {
-  max-width: 400px;
-  margin: auto;
-  border-radius: 8px;
-  background: #fff;
-  padding: 32px;
-}
-.ex1-field {
-  position: relative;
-  margin-bottom: 18px;
-}
-.ex1-fields {
-  display: flex;
-  margin-left: -16px;
-}
-.ex1-fields .ex1-field {
-  flex: 1;
-  margin-left: 16px;
-}
-.ex1-label {
-  font-size: 12px;
-  font-weight: 500;
-  color: #7b808c;
-  position: absolute;
-  top: 0.25rem;
-  pointer-events: none;
-  padding-left: 0.125rem;
-  z-index: 1;
-  font-weight: normal;
-  -webkit-transition: all 0.28s ease;
-  transition: all 0.28s ease;
-}
-.ex1-input {
-  width: 100%;
-  display: block;
-  background: transparent;
-  border-radius: 0;
-  border: none;
-  padding: 4px 2px;
-  border-width: 0;
-  border-color: transparent;
-  color: #333;
-  font-size: 16px;
-  font-family: inherit;
-  font-weight: 500;
-  transition: 0.2s;
-  cursor: text;
-  /* font-weight: inherit; */
-  -webkit-transition: all 0.28s ease;
-  transition: all 0.28s ease;
-  box-shadow: none;
-}
-// .ex1-input::placeholder {
-//   color: transparent;
-// }
-.ex1-input:focus::placeholder {
-  color: #7b808c;
-}
-// .ex1-input:focus ~ .ex1-label,
-// .ex1-input.focus ~ .ex1-label,
-// .ex1-input.val ~ .ex1-label,
-// .ex1-input.complete ~ .ex1-label,
-// .ex1-input.invalid ~ .ex1-label {
-//   font-size: 0.8rem;
-//   color: #7b808c;
-//   top: -1rem;
-//   left: 0;
-// }
-.ex1-bar {
-  position: relative;
-  border-bottom: 0.0625rem solid #999;
-  display: block;
-}
-.ex1-bar::before {
-  content: "";
-  height: 0.125rem;
-  width: 0;
-  left: 50%;
-  bottom: -0.0625rem;
-  position: absolute;
-  background: #337ab7;
-  -webkit-transition: left 0.28s ease, width 0.28s ease;
-  transition: left 0.28s ease, width 0.28s ease;
-  z-index: 2;
-}
-.ex1-input:focus ~ .ex1-bar::before,
-.ex1-input.focus ~ .ex1-bar::before {
-  width: 100%;
-  left: 0;
-}
-.ex1-button {
-  background: #0950cc;
-  background: #0c0ebd;
-  color: #fff;
-  font-size: 16px;
-  font-family: inherit;
-  border: none;
-  border-radius: 4px;
-  padding: 12px 20px;
-  display: block;
-  width: 100%;
-  letter-spacing: 0.5px;
-  transition: 0.2s;
-  cursor: pointer;
-}
-.ex1-button:hover,
-.ex1-button:focus {
-  background: #0641a7;
-  background: #0a0b9a;
-}
-.ex1-button.submit {
-  background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ic3ZnLWxvYWRlciIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTUiIGhlaWdodD0iNTUiIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQwIDcyQzIyLjQgNzIgOCA1Ny42IDggNDBTMjIuNCA4IDQwIDhzMzIgMTQuNCAzMiAzMmMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTJjMC0xNS40LTEyLjYtMjgtMjgtMjhTMTIgMjQuNiAxMiA0MHMxMi42IDI4IDI4IDI4YzEuMSAwIDIgLjkgMiAycy0uOSAyLTIgMnoiPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgNDAgNDAiIHRvPSIzNjAgNDAgNDAiIGR1cj0iMC42cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+);
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: 20px;
-  color: transparent !important;
-  transition-duration: 0s;
-}
-.card-pay-button {
-  color: #ffffff;
-  border-radius: 100px;
-  margin-bottom: 10px;
-  margin-top: 34px;
-  width: 100%;
-  font-size: 20px;
-  line-height: 24px;
-  padding: 15px 65px;
-  font-family: "SF Pro Text Semibold";
-  background: #e44240;
-  border: 3px solid #e44240;
-  &:focus {
-    background: #eb6967;
-    border: 3px solid #e44240;
-  }
-}
-
-.card-pay-button.submit {
-  background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ic3ZnLWxvYWRlciIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTUiIGhlaWdodD0iNTUiIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQwIDcyQzIyLjQgNzIgOCA1Ny42IDggNDBTMjIuNCA4IDQwIDhzMzIgMTQuNCAzMiAzMmMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTJjMC0xNS40LTEyLjYtMjgtMjgtMjhTMTIgMjQuNiAxMiA0MHMxMi42IDI4IDI4IDI4YzEuMSAwIDIgLjkgMiAycy0uOSAyLTIgMnoiPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgNDAgNDAiIHRvPSIzNjAgNDAgNDAiIGR1cj0iMC42cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+);
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: 20px;
-  color: transparent !important;
-  transition-duration: 0s;
-}
 
 .token {
   color: #555;
@@ -893,7 +641,7 @@ export default {
 }
 
 .block-pay{
-  width: 310px;
+  width: 350px;
   .w-100{
     width: 100%;
     margin-top: 48px;
@@ -941,13 +689,13 @@ export default {
     img{
       max-width: 100%;
     }
-  }
+  } 
   button.pay.active {
     background: rgba(87, 115, 214, 0.1);
     border: 2px solid #5773D6;
   }
   button.pay.small{
-    max-width: 150px;
+    max-width: 153px;
     img{
       width: 100%;
     }
@@ -1012,6 +760,10 @@ export default {
   max-width: 300px;
   margin: 0px auto;
 }
+.mw-310{
+  max-width: 310px;
+  margin: 0px auto;
+}
 .mb-32{
   margin-bottom: 48px;
   @media (max-width:480px) {
@@ -1032,7 +784,7 @@ export default {
 }
 .container-main{
   @media (max-width:480px) {
-    padding-bottom: 48px;
+    padding-bottom: 50px;
   }
 }
 .answer{
@@ -1051,10 +803,10 @@ hr{
   }
 }
 .payment{
-  // margin: 84px auto 16px;
-  // @media (max-width:480px) {
-  //   margin: 64px auto 16px;
-  // }
+  margin: 84px auto 16px;
+  @media (max-width:480px) {
+    margin: 64px auto 16px;
+  }
   p{
     font-size: 16px;
     margin-bottom: 16px;
@@ -1075,7 +827,7 @@ hr{
   h2{
     margin: 0 0 16px;
     font-family: "SF-Pro-Display-Bold";
-    font-size:32px;
+    font-size:24px;
   }
   p{
     font-size: 16px;
@@ -1330,7 +1082,7 @@ hr{
   margin-right: 4px;
 }
 .trial_description{
-  padding: 16px 32px 48px;
+  padding: 16px 32px 25px;
   margin: 0 auto;
   line-height: 150%;
   @media (max-width:480px) {
@@ -1384,10 +1136,10 @@ ul{
   margin: 0px auto 8px;
   font-size: 30px;
   line-height: 135%;
-  margin: 0px auto 16px;
+  margin: 0px auto 24px;
   font-family: "SF-Pro-Display-Bold";
   @media (max-width:480px) {
-    font-size: 32px;
+    font-size: 24px;
   }
 }
 .h2.inside {
@@ -1397,7 +1149,6 @@ ul{
 }
 .dark-layout{
   padding: 84px 32px 0px;
-  min-height: 100%;
   .p-14{
     font-size: 16px;
     text-align: center;
@@ -1561,9 +1312,6 @@ ul{
 .text-purpose{
   font-size: 18px;
   line-height: 150%;
-  max-width: 350px;
-    text-align: center;
-    margin: 0 auto;
   @media (max-width:480px) {
     font-size: 16px;
   }
@@ -1592,9 +1340,6 @@ textarea {resize:none;}
 textarea {resize:vertical;}
 textarea {resize:horizontal;}
 
-.opasity{
-  opacity: 0.5;
-  text-decoration: line-through;
-}
+
 
 </style>

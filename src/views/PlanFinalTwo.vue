@@ -2,7 +2,7 @@
   <header-layout :fixed="true"/>
 
   <div class="dark-layout light" id="topPage">
-    <div class="container-main is-page Final">
+    <div class="container-main is-page Final" style="padding-bottom:70px;">
       <div class="mw-520">
         <div 
           v-if="active && open == 1" 
@@ -93,15 +93,15 @@
           text='Add to my plan'
           theme="Back"
           class="footer-controls__button red"
-          @click="payingSuccess"
+          @click="addonRequest"
         />
-        <button-field
+        <!-- <button-field
           text='Add to my plan'
           theme="Back"
           class="footer-controls__button red loader"
           :class="{ hiden: isActive }"
           @click="loadingBtn"
-        />
+        /> -->
         <div
           class="footer-controls__button btnLoader loader"
           :class="{ hiden: !isActive }"
@@ -123,6 +123,7 @@
           text='Add to my plan'
           theme="Back"
           class="footer-controls__button bg-blue"
+          :class="{ submit: loading }"
           @click="payingSuccess"
         />
         <!-- <button-field
@@ -171,7 +172,7 @@
     <div v-if="!ios_v1">
       <div v-if="open == 1" class="mw-520"> 
         <div  class="footer__text">
-        Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+        Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
         </div>
       </div>
       <div v-else-if="open == 3" class="mw-520"> 
@@ -245,13 +246,14 @@ export default {
   inject: ['mixpanel'],
   data(){
     return{
-      item: "kegel_3-USD-Every-3-months",
+      item: "Fitness_1-USD-Every-3-months",
       VueScrollTo: require('vue-scrollto'),
       popupVisible: false,
       open: 1,
       active: true,
       isActive: false,
       mytrue: true,
+      loading: false,
       windowError: false,
       numTimeError:0,
       popupWindowPay: false,
@@ -281,6 +283,32 @@ export default {
     PaymentFormCompanent
 },
   methods: {
+    addonRequest(){
+      this.loading = true;
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer test",
+        },
+        body: JSON.stringify({
+          web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
+          item: this.item,
+        }),
+      };
+      fetch(
+        "https://int2.kegel.men/api/web-payment/addons/",
+        requestOptions
+      ).then((response) => {
+        if (response.status == 200) {
+          this.loading = false;
+          this.payingSuccess();
+        } else {
+          this.loading = false;
+          this.paymentError()
+        }
+      });
+    },
     popupPay(){
       let body = document.querySelector('body')
       sessionStorage.setItem('scrollto', body.scrollHeight)
@@ -426,6 +454,25 @@ export default {
   },
   mounted(){
     this.storeEdit()
+    if (!this.ios_v1) {
+      if (open == 1) {
+        //19.99
+        this.item = "Fitness_1-USD-Every-3-months"
+      }
+      if (open == 3) {
+        //9.99
+        this.item = "Fitness_4-USD-Every-3-months"
+      }
+    } else {
+      if (open == 1) {
+        //1.74
+        this.item = "Fitness_2-USD-Weekly"
+      }
+      if (open == 3) {
+        //0.99
+        this.item = "Fitness_3-USD-Weekly"
+      }
+    }
   },
   created () {
     this.mixpanel.track('Upsale Offered')

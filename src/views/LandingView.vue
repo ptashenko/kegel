@@ -11,7 +11,7 @@
     :class="{'active': blockFixed}"
   >
     <div class="fixedTime__timer">
-      <p class="fixedTime__timer__text">7-day free trial offer expires in:</p>
+      <p class="fixedTime__timer__text">7-day trial offer expires in:</p>
       <div class="fixedTime__timer__number"> 
         <countdown />
       </div>
@@ -188,6 +188,7 @@
       </div>
       
     </div>
+    
     <button  class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
     <div id="paypal"></div>
   </div>
@@ -218,19 +219,19 @@
       </p>
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item"/>
+      <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item" :auth_price="this.price" id="paymentForm"/>
       <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
         <div class="d-flex align-items-center star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
+          <img src="@/assets/images/star1.png" alt="star">
+          <img src="@/assets/images/star1.png" alt="star">
+          <img src="@/assets/images/star1.png" alt="star">
+          <img src="@/assets/images/star1.png" alt="star">
+          <img src="@/assets/images/star2.png" alt="star">
         </div>
         <div class="d-flex align-items-center">
           <img src="@/assets/images/icons/out48.svg" alt="out">
         </div>
-        <p> <span class="bold">28k</span> 5-star ratings</p>
+        <p> <span class="bold">36k</span> 5-star ratings</p>
       </div>
     </div>
     <div class="mw-450 d-flex flex-column mb-32">
@@ -478,21 +479,33 @@ export default {
       console.log(window.pageYOffset);
       this.mixpanel.track('Comfortable Amount Shown')
       let body = document.querySelector('body')
-      body.classList.add('fixed');
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       this.popupVisible = true
+      body.classList.add('fixed');
     },
     showModal2() {
       sessionStorage.setItem('scrollto', window.pageYOffset)
       let body = document.querySelector('body')
-      body.classList.add('fixed');
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       this.popupVisible2 = true
       this.step_2 = true
+      body.classList.add('fixed');
     },
     showModal3() {
       sessionStorage.setItem('scrollto', window.pageYOffset)
       let body = document.querySelector('body')
-      body.classList.add('fixed');
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       this.popupVisible3 = true
+      body.classList.add('fixed');
     },
     closePopup(e){
       const height = sessionStorage.getItem('scrollto')
@@ -505,6 +518,10 @@ export default {
         })
       }
       let body = document.querySelector('body')
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible = false
@@ -517,20 +534,36 @@ export default {
       localStorage.setItem('Button step_2', 'true')
       this.mixpanel.track('Landing Page 2 Shown')
       let body = document.querySelector('body')
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible2 = false
         body.classList.remove('fixed');
       }
-      const height = sessionStorage.getItem('scrollto')
-      setTimeout(function(){ window.scrollTo( 0, height ) })
-      // VueScrollTo.scrollTo('#paypal');
+      
+      window.scrollTo({
+        top: document.getElementById('paypal').offsetTop,
+        left: 0,
+        behavior: "smooth",
+      });
+
+      //  VueScrollTo.scrollTo('#paymentForm');
      // this.getPayPalIntent();
+    },
+    async scrollToForm() {
+      
     },
     closePopup3(e) {
       const height = sessionStorage.getItem('scrollto')
       setTimeout(function(){ window.scrollTo( 0, height ) })
       let body = document.querySelector('body')
+      if  (window.navigator.platform == "iPhone") {
+        body = document.querySelector('.landing')
+        console.log("iphone")
+      }
       let x = e.target
       if(x.classList.contains('active')){
         this.popupVisible3 = false
@@ -765,7 +798,7 @@ export default {
 }
 
 .block-pay{
-  width: 310px;
+  width: 350px;
   .w-100{
     width: 100%;
     margin-top: 48px;
@@ -813,13 +846,13 @@ export default {
     img{
       max-width: 100%;
     }
-  }
+  } 
   button.pay.active {
     background: rgba(87, 115, 214, 0.1);
     border: 2px solid #5773D6;
   }
   button.pay.small{
-    max-width: 150px;
+    max-width: 153px;
     img{
       width: 100%;
     }
@@ -882,6 +915,10 @@ export default {
 }
 .mw-300{
   max-width: 300px;
+  margin: 0px auto;
+}
+.mw-310{
+  max-width: 310px;
   margin: 0px auto;
 }
 .mb-32{

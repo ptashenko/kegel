@@ -65,14 +65,19 @@ export default {
             const params = {
                 web_user_uuid: UUID,
                 email: UserEmail,
+                platform: window.navigator.platform == "iPhone" ? "ios" : "android",
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
             }
             const url = 'https://int2.kegel.men/api/web-payment/init-user/';
             postData(url, params)
         },
 
         generatUUID() {
-            const UUID = uuid.v4().replaceAll('\"', '');
-            addItem('web_user_uuid', UUID);
+            const UUID = getItem('web_user_uuid')
+            if (!UUID.length) {
+                const UUID = uuid.v4().replaceAll('\"', '');
+                addItem('web_user_uuid', UUID);
+            }
         }
     },
 }

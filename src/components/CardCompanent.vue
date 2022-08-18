@@ -5,14 +5,23 @@
     <div class="ex1-contain">
       <div class="ex1-fieldset">
         <div class="ex1-field">
-          <input class="ex1-input" type="text" placeholder="Name on Card" />
+          <input
+            class="ex1-input"
+            type="text"
+            v-model="name"
+            placeholder="Name on Card"
+            minlength="2"
+            required
+            pattern="[A-Za-z ]{2,}"
+            @click="diselect"
+          />
           <!-- <label class="ex1-label">Name on Card</label
             > -->
-          <i class="ex1-bar"></i>
+          <i class="ex1-bar" id="nameBar"></i>
         </div>
         <div class="ex1-field">
           <div class="ex1-input" id="card-combined"></div>
-          <label class="ex1-label"></label><i class="ex1-bar"></i>
+          <label class="ex1-label"></label><i class="ex1-bar" id="cardBar"></i>
         </div>
       </div>
     </div>
@@ -23,10 +32,10 @@
       class="card-pay-button"
       @click="authorize"
     >
-      Subscribe
+      Get my plan
     </button>
-    <div class="error" role="alert" v-if="error">{{ error }}</div>
-    <div class="token" v-if="token">{{ token }}</div>
+    <!-- <div class="error" role="alert" v-if="error">{{ error }}</div> -->
+    <!-- <div class="token" v-if="token">{{ token }}</div> -->
   </div>
 </template>
 
@@ -34,11 +43,12 @@
 export default {
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ['item'],
+  props: ["item", "auth_price"],
   data() {
     return {
       loading: false,
       cardComponent: null,
+      cardComplete: false,
       payPalIntent: "",
       token: "",
       error: "",
@@ -46,72 +56,89 @@ export default {
     };
   },
   methods: {
+    diselect() {
+      document.getElementById("nameBar").classList.remove("invalid-bar");
+    },
     authorize() {
-      this.$emit("clickButton");
-      this.loading = true;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer test",
-        },
-        body: JSON.stringify({
-          currency_code: "USD",
-          amount: 100,
-          payment_method_type: "card",
-        }),
-      };
-      fetch(
-        "https://int2.kegel.men/api/web-payment/init/card-payment/",
-        requestOptions
-      )
-        .then((response) => response.json())
-        .then((data) =>
-          this.cardComponent
-            .authorizeWith3ds(data.payment_intent, {}, {})
-            .then((paymentIntent) => {
-              // this.token = paymentIntent;
-              // this.error = "";
-              console.log(paymentIntent);
-              const requestOptions = {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: "Bearer test",
-                },
-                body: JSON.stringify({
-                  web_user_uuid: localStorage
-                    .getItem("web_user_uuid")
-                    .replaceAll('"', ""),
-                  intent_id: paymentIntent.id,
-                  item: this.item,
-                }),
-              };
-              fetch(
-                "https://int2.kegel.men/api/web-payment/accept/card-payment/",
-                requestOptions
-              ).then((response) => {
+      if (!this.cardComplete) {
+        document.getElementById("cardBar").classList.add("invalid-bar");
+      } else {
+        document.getElementById("cardBar").classList.remove("invalid-bar");
+      }
+
+      if (document.getElementsByClassName("ex1-input")[0].checkValidity() && this.cardComplete) {
+        document.getElementById("nameBar").classList.remove("invalid-bar");
+
+        this.$emit("clickButton");
+        this.loading = true;
+        const requestOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer test",
+          },
+          body: JSON.stringify({
+            currency_code: "USD",
+            amount: 100,
+            payment_method_type: "card",
+          }),
+        };
+        fetch(
+          "https://int2.kegel.men/api/web-payment/init/card-payment/",
+          requestOptions
+        )
+          .then((response) => response.json())
+          .then((data) =>
+            this.cardComponent
+              .authorizeWith3ds(data.payment_intent, {}, {})
+              .then((paymentIntent) => {
+                // this.token = paymentIntent;
+                // this.error = "";
+                console.log(paymentIntent);
+                const requestOptions = {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer test",
+                  },
+                  body: JSON.stringify({
+                    web_user_uuid: localStorage
+                      .getItem("web_user_uuid")
+                      .replaceAll('"', ""),
+                    intent_id: paymentIntent.id,
+                    item: this.item,
+                  }),
+                };
+                fetch(
+                  "https://int2.kegel.men/api/web-payment/accept/card-payment/",
+                  requestOptions
+                ).then((response) => {
+                  this.loading = false;
+                  this.$emit("success");
+                  //this.nextUrl();
+                });
+                // Send ajax call to create a subscription or to create a card payment source using the paymentIntent ID
+              })
+              .catch((error) => {
                 this.loading = false;
-                this.$emit("success");
-                //this.nextUrl();
-              });
-              // Send ajax call to create a subscription or to create a card payment source using the paymentIntent ID
-            })
-            .catch((error) => {
-              this.loading = false;
-              this.error = error;
-              this.token = "";
-              console.log(error);
-              this.$emit("error");
-              //this.paymentError();
-            })
-        );
+                this.error = error;
+                this.token = "";
+                console.log(error);
+                this.$emit("error", error);
+                //this.paymentError();
+              })
+          );
+      } else {
+        if (!document.getElementsByClassName("ex1-input")[0].checkValidity()) {
+          document.getElementById("nameBar").classList.add("invalid-bar");
+        }
+      }
     },
   },
   mounted() {
     window.Chargebee.init({
-      site: "appercut-test",
-      publishableKey: "test_7FOVxVHry4i95p9iFcivpmIr8zdZMKDA",
+      site: "appercut",
+      publishableKey: "live_H5n9AkhJPqxJcus1SjSCzY4581sNVtH8w",
     });
     console.log("Init Card");
     var options = {
@@ -175,6 +202,8 @@ export default {
         var mixpanelSended = false;
         this.cardComponent.on("change", (currentState) => {
           console.log(currentState);
+          this.cardComplete = currentState.complete
+          document.getElementById("cardBar").classList.remove("invalid-bar");
           if (!currentState.empty && !mixpanelSended) {
             mixpanelSended = true;
             this.mixpanel.track("Check-out Started", {
@@ -256,17 +285,22 @@ export default {
 // .ex1-input.focus ~ .ex1-label,
 // .ex1-input.val ~ .ex1-label,
 // .ex1-input.complete ~ .ex1-label,
-// .ex1-input.invalid ~ .ex1-label {
-//   font-size: 0.8rem;
-//   color: #7b808c;
-//   top: -1rem;
-//   left: 0;
-// }
+.ex1-input:invalid {
+  font-size: 0.8rem;
+  color: #e94745;
+  top: -1rem;
+  left: 0;
+}
 .ex1-bar {
   position: relative;
   border-bottom: 0.0625rem solid #999;
   display: block;
 }
+
+.invalid-bar {
+    border-bottom: 0.1125rem solid #e94745;
+  }
+
 .ex1-bar::before {
   content: "";
   height: 0.125rem;

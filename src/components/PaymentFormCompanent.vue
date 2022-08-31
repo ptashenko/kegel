@@ -41,7 +41,16 @@
   />
   <CardCompanent
     class="w-100 flex-column align-items-center justify-content-center"
-    v-if="paymentMethodType == 1"
+    v-if="paymentMethodType == 1 && ver == 1"
+    @error="error"
+    @success="success"
+    @clickButton="clickButton"
+    :item="this.item"
+    :auth_price="this.auth_price"
+  />
+    <CardCompanentZip
+    class="w-100 flex-column align-items-center justify-content-center"
+    v-if="paymentMethodType == 1 && ver == 2"
     @error="error"
     @success="success"
     @clickButton="clickButton"
@@ -59,11 +68,13 @@
 <script>
 import PayPalComponent from "../components/PayPalComponent.vue";
 import CardCompanent from "@/components/CardCompanent.vue";
+import CardCompanentZip from "./CardCompanentZip.vue";
 
 export default {
   components: {
     PayPalComponent,
     CardCompanent,
+    CardCompanentZip
   },
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
@@ -75,6 +86,7 @@ export default {
       paymentMethodType: 1, //1- card, 2 - paypal
       blockSelect: false,
       apple_pay: false,
+      ver: Array.isArray(localStorage.getItem('ver')) ? 1 : localStorage.getItem('ver')
     };
   },
   methods: {

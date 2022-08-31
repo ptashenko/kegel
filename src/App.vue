@@ -73,6 +73,10 @@ export default {
     if (b_click_id != null) {
       addItem("b_click_id", b_click_id);
     }
+    const version = urlParams.get("ver");
+    if (version != null) {
+      addItem("ver", parseInt(version));
+    }
     this.mixpanel.identify(
       localStorage.getItem("web_user_uuid").replaceAll('"', "")
     );

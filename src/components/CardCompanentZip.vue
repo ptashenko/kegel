@@ -24,6 +24,17 @@
           <div class="ex1-input" id="card-combined"></div>
           <label class="ex1-label"></label><i class="ex1-bar" id="cardBar"></i>
         </div>
+          <input
+            class="ex1-input"
+            type="text"
+            id="zipInput"
+            v-model="zip"
+            placeholder="Postal/ZIP Code"
+            minlength="2"
+            required
+            @click="diselectZIP"
+          />
+          <i class="ex1-bar" id="zipBar"></i>
       </div>
     </div>
 
@@ -60,6 +71,9 @@ export default {
     diselectName() {
       document.getElementById("nameBar").classList.remove("invalid-bar");
     },
+    diselectZIP() {
+      document.getElementById("zipBar").classList.remove("invalid-bar");
+    },
     authorize() {
       if (!this.cardComplete) {
         document.getElementById("cardBar").classList.add("invalid-bar");
@@ -67,8 +81,9 @@ export default {
         document.getElementById("cardBar").classList.remove("invalid-bar");
       }
 
-      if (document.getElementsByClassName("ex1-input")[0].checkValidity() && this.cardComplete) {
+      if (document.getElementsByClassName("ex1-input")[0].checkValidity() && document.getElementsByClassName("ex1-input")[2].checkValidity() && this.cardComplete) {
         document.getElementById("nameBar").classList.remove("invalid-bar");
+        document.getElementById("zipBar").classList.remove("invalid-bar");
 
         this.$emit("clickButton");
         this.loading = true;
@@ -109,6 +124,7 @@ export default {
                     intent_id: paymentIntent.id,
                     item: this.item,
                     name: document.getElementById("nameInput").value,
+                    zip:  document.getElementById("zipInput").value
                   }),
                 };
                 fetch(
@@ -133,6 +149,9 @@ export default {
       } else {
         if (!document.getElementsByClassName("ex1-input")[0].checkValidity()) {
           document.getElementById("nameBar").classList.add("invalid-bar");
+        }
+         if (!document.getElementsByClassName("ex1-input")[2].checkValidity()) {
+          document.getElementById("zipBar").classList.add("invalid-bar");
         }
       }
     },

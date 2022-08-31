@@ -24,6 +24,7 @@
           <div class="ex1-input" id="card-combined"></div>
           <label class="ex1-label"></label><i class="ex1-bar" id="cardBar"></i>
         </div>
+        <div class="ex1-field" style="width:35%;">
           <input
             class="ex1-input"
             type="text"
@@ -35,6 +36,7 @@
             @click="diselectZIP"
           />
           <i class="ex1-bar" id="zipBar"></i>
+        </div>
       </div>
     </div>
 

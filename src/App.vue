@@ -76,6 +76,10 @@ export default {
     const version = urlParams.get("ver");
     if (version != null) {
       addItem("ver", parseInt(version));
+      mixpanel.people.set({"Version": version})
+    } else {
+      addItem("ver", 1);
+      mixpanel.people.set({"Version": 1})
     }
     this.mixpanel.identify(
       localStorage.getItem("web_user_uuid").replaceAll('"', "")

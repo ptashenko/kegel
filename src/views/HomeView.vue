@@ -127,7 +127,7 @@ export default {
         {
           title: 'Need support?',
           text: 'Contact Customer Service if you have any questions. We\'ll be sure to help you.',
-          email: 'support@kegel.men',
+          email: 'contact@kegel.men',
           logo: 'subtract',
           img: require(`../assets/images/Subtract.png`),
           width: 48
@@ -221,7 +221,10 @@ export default {
         field: 'id',
         value: track.layouts[0].id,
       });
-      this.mixpanel.track('Quize Started')
+      gtag('event', 'conversion', {'send_to': 'AW-407765903/WY4yCKfLjdgDEI-HuMIB'});
+      this.mixpanel.track('Quize Started', {
+        "flow": track.id
+      })
       this.saveContent(content);
       this.saveTrack(track);
       this.$router.push({
@@ -258,6 +261,17 @@ export default {
     }
   },
   created () {
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '218402323038428');
+    fbq('init', '450334773666656');
+    fbq('track', 'PageView');
     this.mixpanel.track('Start Screen Shown')
   }
 };

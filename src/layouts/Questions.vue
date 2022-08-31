@@ -172,6 +172,9 @@ export default {
         question: this.content.title,
         answer: userAnswer,
       })
+      if(this.survey.id === 3){
+        this.mixpanel.people.set({"Age Group": userAnswer})
+      }
       if(this.survey.id === 34){
         this.$router.push({
           name: 'wait',

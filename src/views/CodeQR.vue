@@ -75,6 +75,7 @@ export default {
   },
   methods: {
     downloadButton() {
+      this.mixpanel.track('Download Button Click')
       var input = document.createElement('input');
       input.setAttribute('value', this.url);
       input.value = this.url;        
@@ -203,7 +204,13 @@ export default {
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '218402323038428');
             fbq('init', '450334773666656');
-            fbq('track', 'Purchase');
+            fbq('track', 'Purchase', {value: localStorage.getItem('price'), currency: "USD"});
+            gtag('event', 'conversion', {
+              'send_to': 'AW-407765903/i-0JCPCIvdcDEI-HuMIB',
+              'value': localStorage.getItem('price'),
+              'currency': 'USD',
+              'transaction_id': ''
+            });
   },
   created () {
     this.mixpanel.track('Final Screen Shown')

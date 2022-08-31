@@ -107,6 +107,7 @@ export default {
                       .replaceAll('"', ""),
                     intent_id: paymentIntent.id,
                     item: this.item,
+                    first_name: document.getElementById("nameBar").value
                   }),
                 };
                 fetch(

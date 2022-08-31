@@ -70,7 +70,7 @@ export default {
   props: ["item", "auth_price"],
   data() {
     return {
-      item: "kegel_1-USD-Every-3-months",
+      // item: "kegel_1-USD-Every-3-months",
       auth_price: 100,
       paymentMethodType: 1, //1- card, 2 - paypal
       blockSelect: false,
@@ -117,7 +117,7 @@ export default {
         },
         body: JSON.stringify({
           currency_code: "USD",
-          amount: 1,
+          amount: 100,
           payment_method_type: "apple_pay",
         }),
       };

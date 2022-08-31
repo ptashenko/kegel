@@ -300,7 +300,8 @@ export default {
         "https://int2.kegel.men/api/web-payment/addons/",
         requestOptions
       ).then((response) => {
-        if (response.status == 200) {
+        console.log(response)
+        if (response.status == 204) {
           this.loading = false;
           this.payingSuccess();
         } else {

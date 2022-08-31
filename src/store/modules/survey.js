@@ -1,5 +1,8 @@
 import { addItem, getItem } from '@/common/localStorage';
+// import { abtest } from 'vue-a2b'
 import router from '@/router';
+
+// abtest('experiment_1', { Baseline: 50, VariationA: 50 })
 
 const state = () => ({
     history: {},
@@ -10,7 +13,7 @@ const state = () => ({
     loader: true,
     tracks: [{
             id: 1,
-            title: 'Treat ED',
+            title: 'Treat ED',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
             purpose: 'Strengthen erection',
             addpurpose: 'Increase sexual stamina',
             text: 'Get & stay hard easier',
@@ -31,7 +34,7 @@ const state = () => ({
         },
         {
             id: 2,
-            title: 'Treat PE',
+            title: 'Treat PE', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
             purpose: 'Increase sexual stamina',
             addpurpose: 'Strengthen erection',
             text: 'Last up to 7x longer',
@@ -52,10 +55,10 @@ const state = () => ({
         },
         {
             id: 3,
-            title: 'I’m ok',
+            title: 'I’m ok',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
             purpose: 'Improve sexual performance',
             addpurpose: 'Strengthen erection',
-            text: 'I just want to maximize my intimate wellness',
+            text: 'I just want to maximize my intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
             layouts: [
                 { id: 1, separation: true },
                 { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },

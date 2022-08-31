@@ -355,6 +355,7 @@ export default {
       ).then((response) => {
         this.loading = false;
         this.payingSuccess();
+        localStorage.setItem("price", this.pricenew);
       });
     },
     payingSuccess(){

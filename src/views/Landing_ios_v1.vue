@@ -147,7 +147,7 @@
     </div>
     <div class="block__text mw-450">
       <p class="title">Need help?</p>
-      <p class="fs-16-14">Contact us here: <span class="red">support@kegel.men</span></p>
+      <p class="fs-16-14">Contact us here: <span class="red">contact@kegel.men</span></p>
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <button class="btn_bottom" v-scroll-to="'#paypal'">
@@ -388,24 +388,6 @@ export default {
         body.classList.remove('fixed');
       }
       // VueScrollTo.scrollTo('#paypal');
-    },
-    BtnActiveYes() {
-      this.isActiveYes = this.closeActive = true;
-      this.isActiveNo = false;
-      this.price = 1;
-      this.item = "kegel_1-USD-Every-3-months"
-      this.oldprice = 19.88;
-      localStorage.setItem("price", 1);
-      localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
-    },
-    BtnActiveNo() {
-      this.isActiveYes = false;
-      this.isActiveNo = this.closeActive = true;
-      this.price = 9.73;
-      this.item = "kegel_2-USD-Every-3-months"
-      this.oldprice = 19.88;
-      localStorage.setItem("price", 9.73);
-      localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
     },
     showReview() {
       this.numreview = this.numreview + 2;

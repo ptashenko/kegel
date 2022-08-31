@@ -66,6 +66,11 @@ export default {
                 web_user_uuid: UUID,
                 email: UserEmail,
                 platform: window.navigator.platform == "iPhone" ? "ios" : "android",
+                ga_gclid: Array.isArray(getItem('ga_gclid')) ? "" : getItem('ga_gclid'),
+                ga_gbraid: Array.isArray(getItem('ga_gbraid')) ? "" : getItem('ga_gbraid'),
+                ga_wbraid: Array.isArray(getItem('ga_wbraid')) ? "" : getItem('ga_wbraid'),
+                ga_user_id: Array.isArray(getItem('ga_user_id')) ? "" : getItem('ga_user_id'),
+                click_id: Array.isArray(getItem('b_click_id')) ? "" : getItem('b_click_id'),
                 timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
             }
             const url = 'https://int2.kegel.men/api/web-payment/init-user/';

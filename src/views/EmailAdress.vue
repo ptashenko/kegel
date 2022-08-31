@@ -104,6 +104,7 @@ export default {
         this.mixpanel.track('E-mail Screen Completed', {
           email: this.upValue
         })
+        gtag('event', 'conversion', {'send_to': 'AW-407765903/QV5XCL7WjdgDEI-HuMIB'});
         this.mixpanel.people.set({ "$email": this.upValue });
       } else {
       } 

@@ -232,7 +232,7 @@ export default {
 },
   data() {
     return {
-      item: "kegel_8-USD-Weekly",
+      item: "kegel_8-USD-Every-3-months",
       VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
       apple_pay: true, 

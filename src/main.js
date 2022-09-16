@@ -16,6 +16,7 @@ import { BrowserTracing } from "@sentry/tracing";
 // import VueAB from 'vue-a2b';
 import '@/assets/scss/styles.scss';
 import '@/assets/scss/fonts.scss';
+import vueCountryRegionSelect from 'vue3-country-region-select'
 
 
 export {}
@@ -39,6 +40,7 @@ createApp(App)
     .use(VueScrollTo)
     .use(store)
     .use(router)
+    .use(vueCountryRegionSelect)
     .component('header-layout', Header)
     .component('footer-controls', FooterControls)
     .component('Steps-item', Steps)

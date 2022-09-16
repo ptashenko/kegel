@@ -8,6 +8,7 @@ import TrustedSources from '@/views/TrustedSources.vue';
 import AnalizAnswer from '@/views/AnalizAnswer.vue';
 import GoodHands from '@/views/GoodHands.vue';
 import EmailAdress from '@/views/EmailAdress.vue';
+import AddressPage from '@/views/AddressPage.vue';
 import LandingView from '@/views/LandingView.vue';
 import Landing_ios_v1 from '@/views/Landing_ios_v1.vue';
 import Landing_ios_v2 from '@/views/Landing_ios_v2.vue';
@@ -67,6 +68,11 @@ const routes = [{
         path: '/LandingView',
         name: 'LandingView',
         component: LandingView,
+    },
+    {
+        path: '/AddressPage',
+        name: 'AddressPage',
+        component: AddressPage,
     },
     {
         path: '/Landing_ios_v1',

@@ -70,6 +70,8 @@ export default {
                 ga_gbraid: Array.isArray(getItem('ga_gbraid')) ? "" : getItem('ga_gbraid'),
                 ga_wbraid: Array.isArray(getItem('ga_wbraid')) ? "" : getItem('ga_wbraid'),
                 ga_user_id: Array.isArray(getItem('ga_user_id')) ? "" : getItem('ga_user_id'),
+                fbp: Array.isArray(getItem('fbp')) ? "" : getItem('fbp'),
+                fbc: Array.isArray(getItem('fbc')) ? "" : getItem('fbc'),
                 click_id: Array.isArray(getItem('b_click_id')) ? "" : getItem('b_click_id'),
                 timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
             }

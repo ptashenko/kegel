@@ -41,7 +41,7 @@
   />
   <CardCompanent
     class="w-100 flex-column align-items-center justify-content-center"
-    v-if="paymentMethodType == 1 && ver == 1"
+    v-if="paymentMethodType == 1 && (ver == 1 || ver == 3)"
     @error="error"
     @success="success"
     @clickButton="clickButton"
@@ -86,7 +86,7 @@ export default {
       paymentMethodType: 1, //1- card, 2 - paypal
       blockSelect: false,
       apple_pay: false,
-      ver: Array.isArray(localStorage.getItem('ver')) ? 1 : localStorage.getItem('ver')
+      ver: localStorage.getItem('ver') == null ? 1 : localStorage.getItem('ver')
     };
   },
   methods: {

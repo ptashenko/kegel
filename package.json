@@ -20,12 +20,14 @@
         "svg4everybody": "^2.1.9",
         "v-scroll-lock": "^1.3.1",
         "vue": "^3.2.13",
+        "vue-country-region-select": "^2.0.16",
         "vue-mixpanel": "^2.0.0",
         "vue-moment": "^4.1.0",
         "vue-responsive-video-background-player": "^2.2.1",
         "vue-router": "^4.0.3",
         "vue-scrollto": "^2.20.0",
         "vue-uuid": "^3.0.0",
+        "vue3-country-region-select": "^1.0.0",
         "vuex": "^4.0.0"
     },
     "devDependencies": {

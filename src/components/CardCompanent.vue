@@ -54,6 +54,7 @@ export default {
       token: "",
       error: "",
       firstName: "",
+      ver: Array.isArray(localStorage.getItem('ver')) ? 1 : localStorage.getItem('ver')
     };
   },
   methods: {
@@ -96,29 +97,41 @@ export default {
                 // this.token = paymentIntent;
                 // this.error = "";
                 console.log(paymentIntent);
-                const requestOptions = {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer test",
-                  },
-                  body: JSON.stringify({
-                    web_user_uuid: localStorage
-                      .getItem("web_user_uuid")
-                      .replaceAll('"', ""),
-                    intent_id: paymentIntent.id,
-                    item: this.item,
-                    name: document.getElementById("nameInput").value,
-                  }),
-                };
-                fetch(
-                  "https://int2.kegel.men/api/web-payment/accept/card-payment/",
-                  requestOptions
-                ).then((response) => {
-                  this.loading = false;
-                  this.$emit("success");
-                  //this.nextUrl();
-                });
+
+                if(this.ver == 3) {
+                  this.$router.push({
+                    name: "AddressPage", 
+                    params: {
+                      paymentIntentId: paymentIntent.id,
+                      name: document.getElementById("nameInput").value,
+                      item: this.item
+                    }
+                  });
+                } else {
+                  const requestOptions = {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: "Bearer test",
+                    },
+                    body: JSON.stringify({
+                      web_user_uuid: localStorage
+                        .getItem("web_user_uuid")
+                        .replaceAll('"', ""),
+                      intent_id: paymentIntent.id,
+                      item: this.item,
+                      name: document.getElementById("nameInput").value,
+                    }),
+                  };
+                  fetch(
+                    "https://int2.kegel.men/api/web-payment/accept/card-payment/",
+                    requestOptions
+                  ).then((response) => {
+                    this.loading = false;
+                    this.$emit("success");
+                    //this.nextUrl();
+                  });
+                }
                 // Send ajax call to create a subscription or to create a card payment source using the paymentIntent ID
               })
               .catch((error) => {
@@ -300,8 +313,8 @@ export default {
 }
 
 .invalid-bar {
-    border-bottom: 0.1125rem solid #e94745;
-  }
+  border-bottom: 0.1125rem solid #e94745;
+}
 
 .ex1-bar::before {
   content: "";

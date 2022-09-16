@@ -108,6 +108,8 @@
 import { mapGetters, mapMutations } from 'vuex';
 import moment from 'moment';
 import HeaderLayout from '@/components/Header.vue';
+import { addItem } from "../common/localStorage";
+
 export default {
   inject: ['mixpanel'],
   components: {
@@ -257,6 +259,15 @@ export default {
         body.classList.remove('fixed');
         this.loading = false
         this.$store.commit('setLOADER', false);
+        let fbp = /_fbp=(fb\.1\.\d+\.\d+)/.exec(window.document.cookie);
+        console.log(fbp[1])
+        if (fbp && fbp[1]) {
+          addItem("fbp", fbp[1]);
+        }
+        let fbc = /_fbc=(fb\.1\.\w+\.\w+)/.exec(window.document.cookie);
+        if (fbc && fbc[1]) {
+          addItem("fbc", fbc[1]);
+        }
       }
     }
   },
@@ -269,7 +280,6 @@ export default {
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '218402323038428');
     fbq('init', '450334773666656');
     fbq('track', 'PageView');
     this.mixpanel.track('Start Screen Shown')

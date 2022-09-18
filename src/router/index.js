@@ -8,8 +8,10 @@ import TrustedSources from '@/views/TrustedSources.vue';
 import AnalizAnswer from '@/views/AnalizAnswer.vue';
 import GoodHands from '@/views/GoodHands.vue';
 import EmailAdress from '@/views/EmailAdress.vue';
+import EmailAdressV2 from '@/views/EmailAdressV2.vue';
 import AddressPage from '@/views/AddressPage.vue';
 import LandingView from '@/views/LandingView.vue';
+import LandingViewV2 from '@/views/LandingViewV2.vue';
 import Landing_ios_v1 from '@/views/Landing_ios_v1.vue';
 import Landing_ios_v2 from '@/views/Landing_ios_v2.vue';
 import Landing_ios_v3 from '@/views/Landing_ios_v3.vue';
@@ -23,6 +25,7 @@ import PlanFinal from '@/views/PlanFinal.vue';
 import PlanFinalTwo from '@/views/PlanFinalTwo.vue';
 import CodeQR from '@/views/CodeQR.vue';
 import FeedBack from '@/views/FeedBack.vue';
+import Preland from '@/views/PreLand.vue';
 
 const routes = [{
         path: '/',
@@ -140,6 +143,21 @@ const routes = [{
         component: FeedBack,
     },
     {
+        path: '/fpl_1',
+        name: 'pre-land',
+        component: Preland,
+    },
+    {
+        path: '/fpl_land',
+        name: 'land',
+        component: LandingViewV2
+    },
+    {
+        path: '/fpl_email',
+        name: 'pre-email',
+        component: EmailAdressV2,
+    },
+    {
         path: '/:pathMatch(.*)',
         component: notFound,
     },
@@ -154,12 +172,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    const isRedirectDisabled = (from.name === 'PlanFinal' && to.name === 'LandingView') ||
+    const isRedirectDisabled =
+        (from.name === 'pre-email' && to.name === 'land') ||
+        (from.name === 'PlanFinal' && to.name === 'pre-email') ||
+        (from.name === 'PlanFinal' && to.name === 'LandingView') ||
         (from.name === 'CodeQR' && to.name === 'PlanFinal') ||
         (from.name === 'CodeQR' && to.name === 'PlanFinalTwo') ||
         (from.name === 'PlanFinalTwo' && to.name === 'PlanFinal') ||
         (from.name === 'PlanFinalTwo' && to.name === 'Landing_ios_v1')
-        // also need add info about succes payment 
+        // also need add info about succes payment
     if (isRedirectDisabled) {
         router.push({ name: from.name })
         next()

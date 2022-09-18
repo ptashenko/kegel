@@ -100,7 +100,7 @@ export default {
 
                 if(this.ver == 3) {
                   this.$router.push({
-                    name: "AddressPage", 
+                    name: "AddressPage",
                     params: {
                       paymentIntentId: paymentIntent.id,
                       name: document.getElementById("nameInput").value,

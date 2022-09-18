@@ -3,6 +3,7 @@
     class="d-flex flex-column align-items-center justify-content-center"
     id="paymentForm"
   >
+    <span class="payment-info mb-32">You will only be charged $1 for your 7-day trial.</span>
     <div id="solid-payment-form-container">
       <button
         class="pay cursor"
@@ -85,7 +86,7 @@ export default {
       auth_price: 100,
       paymentMethodType: 1, //1- card, 2 - paypal
       blockSelect: false,
-      apple_pay: false,
+      apple_pay: true,
       ver: localStorage.getItem('ver') == null ? 1 : localStorage.getItem('ver')
     };
   },
@@ -191,6 +192,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.mb-32 {
+  margin-bottom: 32px;
+}
+.payment-info {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #111113;
+  opacity: 0.75;
+}
 .cursor {
   cursor: pointer;
 }

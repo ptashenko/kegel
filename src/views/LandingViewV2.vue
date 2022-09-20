@@ -20,7 +20,7 @@
           <div class="d-flex align-items-center justify-content-center flex-column">
             <div class="d-flex flex-column block__timer" >
               <div class="h2">
-                Your Kegel Plan is waiting for you!
+                The Dr. Kegel plan to enhance performance is waiting for you!
               </div>
               <p class="p-14">The personal trial is <span class="text-bold">reserved for 15 minutes:</span></p>
               <div class="layout__buttons">
@@ -39,7 +39,7 @@
               <div id="trigger1" class="date">
                 <div class="text-purpose">
                 <span class="">
-                You can <span class="text-bold">Strengthen erection</span> and <span class="text-bold">Increase sexual stamina</span>
+                This plan can help you increase stamina & improve potency
                 </span>
                 </div>
                 <div class="by ">
@@ -144,7 +144,7 @@
 
     <div class="guarantee">
       <div class="guarantee-wrapper">
-        <h3 class="guarantee-title">30-Day Money-Back Guarantee</h3>
+        <h3 class="guarantee-title">30-Day Money-Back Guarantee Without Questions</h3>
         <p class="guarantee-description">We believe that our plan may work for you, and you’ll get visible results in a few weeks! We are even ready to turn your money back if you don’t see visible results and can demonstrate that you followed our plan. Find more about applicable limitations in our Terms & Conditions.</p>
         <img src="@/assets/images/guarantee_icon.svg" class="guarantee-icon" alt="">
       </div>

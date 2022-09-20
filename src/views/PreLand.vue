@@ -4,9 +4,9 @@
       <h1 class="main-pre-header-title mb-1">
         Learn how to <span class="red-text">improve stamina & potency</span> without pills
       </h1>
-      <p class="main-pre-text mb-2">This proven method is highly effective, safe & takes just <span class="bold-text">5 minutes a day</span></p>
+      <p class="main-pre-text mb-2">This proven method is highly effective, safe & takes just <span class="text-bold">5 minutes a day</span></p>
       <div class="main-pre-img mb-3">
-        <img src="@/assets/img/pre/1.png" alt="" class="main-pre-img-block mb-1">
+        <video src="@/assets/img/pre/1.mp4" alt="" class="main-pre-img-block mb-1" autoplay type="video/mp4" loop></video>
         <p class="main-pre-img-info text-center">“The secret is in this muscle”</p>
       </div>
       <p class="main-pre-text mb-2">Many men believe that to last longer and have strong potency you need to work out, eat healthy food, stress less & sleep well.</p>
@@ -14,17 +14,17 @@
       <h3 class="main-pre-title mb-2">Male performance relies on the muscles at the base of Peni... private parts. They're called PF muscles</h3>
       <p class="main-pre-text red-text text-center mb-2">Strong PF muscles = strong potency</p>
       <div class="main-pre-img mb-2">
-        <img src="@/assets/img/pre/2.png" alt="" class="main-pre-img-block">
+        <video src="@/assets/img/pre/2.mp4" alt="" class="main-pre-img-block" autoplay type="video/mp4" loop></video>
       </div>
       <p class="main-pre-text mb-2">The PF muscles assist arteries & penile structure to pump & trap blood in male organs. This is what allows you to get & stay up.</p>
       <p class="main-pre-text red-text text-center mb-2">Strong PF muscles = more stamina</p>
       <div class="main-pre-img mb-2">
-        <img src="@/assets/img/pre/3.png" alt="" class="main-pre-img-block">
+        <video src="@/assets/img/pre/3.mp4" alt="" class="main-pre-img-block" autoplay type="video/mp4" loop></video>
       </div>
       <p class="main-pre-text mb-3">Contracting PF muscles sends a stop signal to the nervous system. This suppresses the expulsion reflex & delays the release.</p>
       <h3 class="main-pre-title mb-2">You can do these 2 simple steps to see how your PF muscles work</h3>
       <div class="main-pre-img mb-2">
-        <img src="@/assets/img/pre/4.png" alt="" class="main-pre-img-block">
+        <video src="@/assets/img/pre/4.mp4" alt="" class="main-pre-img-block" autoplay type="video/mp4" loop></video>
       </div>
       <div class="main-pre-list mb-2">
         <div class="main-pre-list_item mb-2">
@@ -36,16 +36,16 @@
           <span class="main-pre-text main-pre-list_text">Try to stop the flow midstream for 3 seconds</span>
         </div>
       </div>
-      <p class="main-pre-text mb-2">
+      <p class="main-pre-text mb-2" style="opacity: 0.75">
         <i>You should feel tension of the muscles at the base of your genitals & perineum area</i>
       </p>
-      <p class="main-pre-text mb-3">The muscles you just felt & used are <span class="bold-text">Pelvic Floor muscles!</span></p>
+      <p class="main-pre-text mb-3">The muscles you just felt & used are <span class="text-bold">Pelvic Floor muscles!</span></p>
       <h3 class="main-pre-title mb-2">Without training, PF muscles weaken & lose tone. This can lead to performance problems</h3>
       <div class="main-pre-img mb-2">
         <img src="@/assets/img/pre/5.png" alt="" class="main-pre-img-block">
       </div>
       <p class="main-pre-text mb-3">
-        <span class="bold-text">Almost 50% of men</span> struggle with weak potency (ED) and "quick finishes" (PE) during their lifetime. And even if everything is fine right now, the risk of having those increases with age. This also happens due to neglecting PF muscles.
+        Almost<span class="text-bold"> 50% of men</span> struggle with weak potency (ED) and "quick finishes" (PE) during their lifetime. And even if everything is fine right now, the risk of having those increases with age. This also happens due to neglecting PF muscles.
       </p>
       <h3 class="main-pre-title mb-2">Scientists discovered the way to strengthen PF muscles & improve performance. It's Kegel exercises</h3>
       <p class="main-pre-text mb-2">Just as you can build up biceps with workouts, it's proven that you can strengthen PF muscles with Kegel exercises.</p>
@@ -87,25 +87,25 @@
           <span class="main-pre-text main-pre-list_text"><span class="text-bold">Kegel exercises are safe.</span> As for the pills, they can cause serious side-effects</span>
         </div>
       </div>
-      <p class="main-pre-text mb-3"><i>After proving such efficacy, scientists concluded that Kegel exercises should be considered as the first-line approach to improve performance</i></p>
+      <p class="main-pre-text mb-3" style="opacity: 0.75"><i>After proving such efficacy, scientists concluded that Kegel exercises should be considered as the first-line approach to improve performance</i></p>
       <h3 class="main-pre-title mb-2">The easiest way to start doing Kegel exercises is to follow the Dr. Kegel plan</h3>
       <p class="main-pre-text mb-2">The problem with Kegel exercises is that for most guys, it’s hard to train pelvic floor muscles on their own.</p>
       <p class="main-pre-text mb-2">That's why Dr. Kegel created a special plan to help train PF muscles correctly & achieve results effectively.</p>
       <div class="main-pre-list mb-4">
         <div class="main-pre-list_item mb-2">
           <div class="main-pre-list_counter">1</div>
-          <span class="main-pre-text main-pre-list_text">Workouts take no more than 5 minutes a day. It is perfect even for the busiest men</span>
+          <span class="main-pre-text main-pre-list_text">Workouts take no more than <span class="text-bold">5 minutes a day.</span> It is perfect even for the busiest men</span>
         </div>
         <div class="main-pre-list_item mb-2">
           <div class="main-pre-list_counter">2</div>
-          <span class="main-pre-text main-pre-list_text">You can exercise in any place & situation: lying on the couch, sitting at work, or standing in the bus. No one will notice that you’re exercising</span>
+          <span class="main-pre-text main-pre-list_text">You can <span class="text-bold">exercise in any place & situation</span>: lying on the couch, sitting at work, or standing in the bus. No one will notice that you’re exercising</span>
         </div>
         <div class="main-pre-list_item">
           <div class="main-pre-list_counter">3</div>
-          <span class="main-pre-text main-pre-list_text">You can see noticeable results in just a few weeks</span>
+          <span class="main-pre-text main-pre-list_text">You can see noticeable <span class="text-bold">results in just a few weeks</span></span>
         </div>
       </div>
-      <router-link class="link" to="/fpl_land">Tap here to check out the Dr. Kegel plan to last longer & improve potency</router-link>
+      <router-link class="link text-bold" to="/fpl_land">Tap here to check out the Dr. Kegel plan to last longer & improve potency</router-link>
     </div>
     <div class="main-pre-footer">
       <div class="main-pre-footer_info mb-2">
@@ -161,8 +161,9 @@ p, h1, h3 {
   .red-text {
     color: #E44240;
   }
-  .bold-text {
+  .text-bold {
     font-weight: 600;
+    font-family: "SF Pro Text Bold" !important;
   }
   .main-pre-wrapper {
     padding: 32px 32px 0 32px;
@@ -173,6 +174,7 @@ p, h1, h3 {
       font-size: 30px;
       line-height: 135%;
       text-align: center;
+      font-family: "SF-Pro-Display-Bold";
     }
     .main-pre-text {
       font-style: normal;

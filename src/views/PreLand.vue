@@ -4,7 +4,7 @@
       <h1 class="main-pre-header-title mb-1">
         Learn how to <span class="red-text">improve stamina & potency</span> without pills
       </h1>
-      <p class="main-pre-text mb-2">This proven method is highly effective, safe & takes just <span class="text-bold">5 minutes a day</span></p>
+      <p class="main-pre-text text-center mb-2">This proven method is highly effective, safe & takes just <span class="text-bold">5 minutes a day</span></p>
       <div class="main-pre-img mb-3">
         <video src="@/assets/img/pre/1.mp4" alt="" class="main-pre-img-block mb-1" autoplay type="video/mp4" loop></video>
         <p class="main-pre-img-info text-center">“The secret is in this muscle”</p>

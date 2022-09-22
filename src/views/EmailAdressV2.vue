@@ -32,14 +32,14 @@
                 class="v-popup__submit_btn active"
                 @click="nextUrlEmail"
               >
-              See my plan
+              Get my plan
               </div>
               <div
                 v-else
                 :class="['v-popup__submit_btn', {active: closeActive}]"
-                @click="nextUrl"
+                @click="nextUrlEmail"
               >
-              See my plan
+              Get my plan
               </div>
 
             <p class="email__content__text__small">
@@ -67,7 +67,7 @@ import { mapActions, mapGetters } from 'vuex';
 import VueScrollTo from "vue-scrollto";
 
 export default {
-  name: 'EmailAdress',
+  name: 'EmailAdress2',
   inject: ['mixpanel'],
   data() {
     return {
@@ -96,10 +96,68 @@ export default {
 
   methods: {
     ...mapActions(['setEmail']),
+    sendPayPalRequest(token) {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer test",
+        },
+        body: JSON.stringify({
+          web_user_uuid: localStorage
+            .getItem("web_user_uuid")
+            .replaceAll('"', ""),
+          token_id: token,
+          item: this.item,
+        }),
+      };
+      fetch(
+        "https://int2.kegel.men/api/web-payment/accept/pay-pal-payment",
+        requestOptions
+      )
+        .then((response) => {
+          this.$emit("success");
+        });
+    },
+    sendCardRequest() {
+      this.loading = true;
+      const requestOptions = {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: "Bearer test",
+                    },
+                    body: JSON.stringify({
+                      web_user_uuid: localStorage
+                        .getItem("web_user_uuid")
+                        .replaceAll('"', ""),
+                      intent_id: this.$route.params.paymentIntentId,
+                      item: this.$route.params.item,
+                      name: this.$route.params.name,
+                      address1: this.address1,
+                      address2: this.address2,
+                      city: this.city,
+                      state: this.region,
+                      country: this.country,
+                      zip: this.$route.params.zip
+                    }),
+                  };
+                  fetch(
+                    "https://int2.kegel.men/api/web-payment/accept/card-payment/",
+                    requestOptions
+                  ).then((response) => {
+                    if (response.status == 204 || response.status == 200) {
+                    this.loading = false;
+                    this.$router.push('PlanFinal')
+                    } else {
+                      //this.$router.push('LandingViewV2')
+                    }
+                    //this.nextUrl();
+                  });
+    },
     nextUrl(){
       if (this.closeActive) {
         VueScrollTo.scrollTo('.dark-layout');
-        this.setEmail(this.upValue)
         this.$router.push('PlanFinal');
         this.mixpanel.track('E-mail Screen Completed', {
           email: this.upValue
@@ -111,9 +169,16 @@ export default {
     },
 
     nextUrlEmail(){
-      VueScrollTo.scrollTo('.dark-layout')
+      // VueScrollTo.scrollTo('.dark-layout')
       this.setEmail(this.upValue)
-      this.$router.push('PlanFinal')
+      setTimeout(() => {
+        if (this.$route.params.flow == "CC") {
+          this.sendCardRequest()
+        } else {
+          this.sendPayPalRequest(this.$route.params.token)
+        }
+      }, 1);
+      
 
     },
   },
@@ -199,17 +264,15 @@ input[type="email"]{font-size:1em;}
     }
   }
   .v-popup__submit_btn{
-      background-color: #CACACA;
-      border:none;
-      border-radius: 9px;
-      padding: 16px 16px;
-      font-family: "SF Pro Text Medium";
-      font-size: 18px;
-      line-height: 135%;
-      color: #ffffff;
-      margin: 0 auto;
-      width: 165px;
-      text-align: center;
+    background-color: #CACACA;
+    border:none;
+    border-radius: 100px;
+    padding: 16px 37px;
+    font-family: "SF Pro Text Medium";
+    font-size: 18px;
+    line-height: 135%;
+    color: #ffffff;
+    text-align: center;
   }
   .v-popup__submit_btn.active{
     background-color: #E44240;

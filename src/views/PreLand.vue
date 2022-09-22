@@ -6,25 +6,25 @@
       </h1>
       <p class="main-pre-text text-center mb-2">This proven method is highly effective, safe & takes just <span class="text-bold">5 minutes a day</span></p>
       <div class="main-pre-img mb-3">
-        <video src="@/assets/img/pre/1.mp4" alt="" class="main-pre-img-block mb-1" autoplay type="video/mp4" loop></video>
+        <video src="@/assets/img/pre/1.mp4" alt="" class="main-pre-img-block mb-1" autoplay playsinline muted type="video/mp4" loop></video>
         <p class="main-pre-img-info text-center">“The secret is in this muscle”</p>
       </div>
       <p class="main-pre-text mb-2">Many men believe that to last longer and have strong potency you need to work out, eat healthy food, stress less & sleep well.</p>
       <p class="main-pre-text mb-3">These are great things, but the majority of men doesn't know one simple fact, which outweighs all activities above.</p>
       <h3 class="main-pre-title mb-2">Male performance relies on the muscles at the base of Peni... private parts. They're called PF muscles</h3>
-      <p class="main-pre-text red-text text-center mb-2">Strong PF muscles = strong potency</p>
+      <p class="main-pre-text red-text text-center semibold mb-2">Strong PF muscles = strong potency</p>
       <div class="main-pre-img mb-2">
-        <video src="@/assets/img/pre/2.mp4" alt="" class="main-pre-img-block" autoplay type="video/mp4" loop></video>
+        <video src="@/assets/img/pre/2.mp4" alt="" class="main-pre-img-block" autoplay playsinline muted type="video/mp4" loop></video>
       </div>
       <p class="main-pre-text mb-2">The PF muscles assist arteries & penile structure to pump & trap blood in male organs. This is what allows you to get & stay up.</p>
-      <p class="main-pre-text red-text text-center mb-2">Strong PF muscles = more stamina</p>
+      <p class="main-pre-text red-text text-center semibold mb-2">Strong PF muscles = more stamina</p>
       <div class="main-pre-img mb-2">
-        <video src="@/assets/img/pre/3.mp4" alt="" class="main-pre-img-block" autoplay type="video/mp4" loop></video>
+        <video src="@/assets/img/pre/3.mp4" alt="" class="main-pre-img-block" autoplay playsinline muted type="video/mp4" loop></video>
       </div>
       <p class="main-pre-text mb-3">Contracting PF muscles sends a stop signal to the nervous system. This suppresses the expulsion reflex & delays the release.</p>
       <h3 class="main-pre-title mb-2">You can do these 2 simple steps to see how your PF muscles work</h3>
       <div class="main-pre-img mb-2">
-        <video src="@/assets/img/pre/4.mp4" alt="" class="main-pre-img-block" autoplay type="video/mp4" loop></video>
+        <video src="@/assets/img/pre/4.mp4" alt="" class="main-pre-img-block" autoplay playsinline muted type="video/mp4" loop></video>
       </div>
       <div class="main-pre-list mb-2">
         <div class="main-pre-list_item mb-2">
@@ -53,12 +53,12 @@
       <div class="main-pre-img mb-2">
         <img src="@/assets/img/pre/6.png" alt="" class="main-pre-img-block">
       </div>
-      <ul>
+      <ul style="padding-left: 25px">
         <li class="mb-2">
-          <span class="main-pre-text main-pre-list_text"><span class="text-bold">82.5% of men</span> increased their stamina up to 7 times</span>
+          <span class="main-pre-text main-pre-list"><span class="text-bold">82.5% of men</span> increased their stamina up to 7 times</span>
         </li>
         <li>
-          <span class="main-pre-text main-pre-list_text"><span class="text-bold">75.5% of men</span> significantly improved their potency or even kicked ED</span>
+          <span class="main-pre-text main-pre-list"><span class="text-bold">75.5% of men</span> significantly improved their potency or even kicked ED</span>
         </li>
       </ul>
 <!--      <div class="main-pre-list mb-2">-->
@@ -118,11 +118,31 @@
       </div>
     </div>
   </div>
+  {{bgBody}}
 </template>
 
 <script>
+import { addItem } from "@/common/localStorage";
+
 export default {
-  name: "PreLand"
+  name: "PreLand",
+  inject: ['mixpanel'],
+  mounted() {
+    addItem("ver", 4);
+    this.mixpanel.track('Prelanding Shown',{
+        version: 1,
+      })
+      addItem("price", 1);
+      addItem("LandingItem", "kegel_1-USD-Every-3-months");
+  },
+  computed:{
+    bgBody(){
+      let mediaQuery = window.matchMedia('(max-width: 480px)');
+      if (mediaQuery.matches) {
+          document.body.style.backgroundColor = '#fff';
+      }
+    }
+  }
 }
 </script>
 
@@ -161,6 +181,9 @@ p, h1, h3 {
   .red-text {
     color: #E44240;
   }
+  .semibold {
+    font-family: "SF Pro Text Semibold" !important;
+  }
   .text-bold {
     font-weight: 600;
     font-family: "SF Pro Text Bold" !important;
@@ -174,7 +197,7 @@ p, h1, h3 {
       font-size: 30px;
       line-height: 135%;
       text-align: center;
-      font-family: "SF-Pro-Display-Bold";
+      font-family: "SF-Pro-Display-Heavy";
     }
     .main-pre-text {
       font-style: normal;
@@ -183,7 +206,7 @@ p, h1, h3 {
       line-height: 150%;
     }
     .main-pre-title {
-      font-family: "SF Pro Text Bold";
+      font-family: "SF-Pro-Display-Bold";
       font-style: normal;
       font-weight: 600;
       font-size: 20px;
@@ -213,7 +236,7 @@ p, h1, h3 {
       }
       &_counter {
         width: 24px;
-        height: 24px;
+        height: 23px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -221,23 +244,25 @@ p, h1, h3 {
         margin-right: 16px;
         background: #FA2724;
         border-radius: 50%;
-        font-size: 10px;
+        font-size: 14px;
+        font-family: "SF Pro Text Semibold";
       }
       &_text {
         display: block;
-        width: calc(100% - 24px - 16px);
+        width: calc(100% - 25px);
       }
     }
     .link {
       display: block;
       font-style: normal;
       font-weight: 600;
-      font-size: 25px;
+      font-size: 26px;
       line-height: 135%;
       text-align: center;
       text-decoration-line: underline;
       color: #E44240;
       margin-bottom: 64px;
+      font-family: "SF-Pro-Display-Bold" !important;
     }
   }
   .main-pre-footer {

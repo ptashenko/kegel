@@ -19,7 +19,7 @@
         <div class="landing__content">
           <div class="d-flex align-items-center justify-content-center flex-column">
             <div class="d-flex flex-column block__timer" >
-              <div class="h2">
+              <div class="h2 main-title">
                 The Dr. Kegel plan to enhance performance is waiting for you!
               </div>
               <p class="p-14">The personal trial is <span class="text-bold">reserved for 15 minutes:</span></p>
@@ -115,7 +115,7 @@
         7-day trial*
       </div>
       <div>
-        <div class="d-flex"><span class="opac_5 line">$19.88 </span><span class="bold">&nbsp; $1</span></div>
+        <div class="d-flex"><span class="opac_5 line">$19.88 </span><span class="semibold">&nbsp; $1</span></div>
       </div>
     </div>
     <hr>
@@ -129,7 +129,7 @@
     </div>
     <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
       <div>
-        Subscription
+        12 weeks plan
       </div>
       <div class="after d-flex flex-column align-items-end">
         <div class="d-flex"><span class="bold">&nbsp; $79.2*</span></div>
@@ -196,7 +196,7 @@
       <hr>
       <div style="padding:10px">
       </div>
-      <div class="mw-350 block-pay d-flex flex-column align-items-center justify-content-center">
+      <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
         <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item" id="paymentForm"/>
         <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
           <div class="d-flex align-items-center star">
@@ -238,7 +238,7 @@
       </div>
       <div class="block__text mw-450">
         <p class="title">Need help?</p>
-        <p class="fs-16-14">Contact us here: <a href="mailto:support@kegel.men"><span class="red">support@kegel.men</span></a></p>
+        <p class="fs-16-14">Contact us here: <span class="red">support@kegel.men</span></p>
       </div>
       <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
         <button class="btn_bottom" v-scroll-to="'#paypal'">
@@ -310,6 +310,7 @@ import btnComponent from '@/components/questions/btnPopup.vue';
 import countdown from '@/components/Countdown.vue';
 import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
+import { addItem } from "@/common/localStorage";
 
 export default {
   name: 'LandingViewV2',
@@ -323,7 +324,7 @@ export default {
   },
   data() {
     return {
-      item: "kegel_7-USD-Weekly",
+      item: "kegel_1-USD-Every-3-months",
       VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
       apple_pay: true,
@@ -364,11 +365,12 @@ export default {
         amount: this.price,
         number: this.$route.query.nr
       })
-      setTimeout(() => {
-        this.$router.push("fpl_email");
-      }, 0);
+      // setTimeout(() => {
+      //   this.$router.push("fpl_email");
+      // }, 0);
     },
     moment() {
+      addItem("ver", 4);
       return moment();
     },
     paymentError() {
@@ -658,14 +660,21 @@ export default {
     }, 500);
   },
   created () {
-    this.mixpanel.track('[Web Mail] LP Shown', {
-      number: this.$route.query.nr
+    this.mixpanel.track('Landing Page Shown', {
+      version: "prlp_v1"
     })
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.semibold {
+    font-family: "SF Pro Text Semibold"
+ } 
+.main-title {
+  font-family: "SF-Pro-Display-Heavy" !important;
+  font-size: 28px;
+}
 
 .mb-16 {
   margin-bottom: 16px;
@@ -710,7 +719,7 @@ export default {
     align-items: center;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 150%;
     text-align: center;
     color: #FFFFFF;
@@ -1152,7 +1161,8 @@ hr{
   font-family: "SF-Pro-Display-Semibold";
   font-size: 18px;
   line-height: 150%;
-  margin-bottom: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   text-align: center;
   @media (max-width:480px) {
     font-size: 16px;

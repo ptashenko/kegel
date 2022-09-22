@@ -7,6 +7,11 @@ export default {
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
   props: ["item"],
+  data() {
+    return {
+      ver: Array.isArray(localStorage.getItem('ver')) ? 1 : localStorage.getItem('ver')
+    };
+  },
   methods: {
     processPayPal(token) {
       const requestOptions = {
@@ -77,7 +82,17 @@ export default {
                 onAuthorize: (data, actions) => {
                   // Handler if customer DOES authorize payment (this is where you get the payment_id & payer_id you need to pass to Chec)
                   console.log(data);
-                  this.processPayPal(data.billingToken);
+                  if(this.ver == 4) {
+                    this.$router.push({
+                      name: "EmailAdress2",
+                      params: {
+                        token: data.billingToken,
+                        flow: "PayPal"
+                      }
+                    });
+                  } else {
+                    this.processPayPal(data.billingToken);
+                  }
                 },
                 onCancel: (data, actions) => {
                  this.$emit("error", data);

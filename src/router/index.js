@@ -12,6 +12,7 @@ import EmailAdressV2 from '@/views/EmailAdressV2.vue';
 import AddressPage from '@/views/AddressPage.vue';
 import LandingView from '@/views/LandingView.vue';
 import LandingViewV2 from '@/views/LandingViewV2.vue';
+import LandingViewV3 from '@/views/LandingViewV3.vue';
 import Landing_ios_v1 from '@/views/Landing_ios_v1.vue';
 import Landing_ios_v2 from '@/views/Landing_ios_v2.vue';
 import Landing_ios_v3 from '@/views/Landing_ios_v3.vue';
@@ -26,6 +27,7 @@ import PlanFinalTwo from '@/views/PlanFinalTwo.vue';
 import CodeQR from '@/views/CodeQR.vue';
 import FeedBack from '@/views/FeedBack.vue';
 import Preland from '@/views/PreLand.vue';
+import PreLandv2 from "@/views/PreLandv2";
 
 const routes = [{
         path: '/',
@@ -156,6 +158,16 @@ const routes = [{
         path: '/fpl_email',
         name: 'pre-email',
         component: EmailAdressV2,
+    },
+    {
+        path: '/fpl_2',
+        name: 'pre-land-2',
+        component: PreLandv2,
+    },
+    {
+        path: '/fpl2_land',
+        name: 'fpl2-land',
+        component: LandingViewV3,
     },
     {
         path: '/:pathMatch(.*)',

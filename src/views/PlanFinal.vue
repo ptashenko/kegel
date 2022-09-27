@@ -229,14 +229,26 @@ export default {
     ...mapGetters(['tracks', 'contentBy']),
     purpose(){
       var json = localStorage.getItem('track');
+      var ver = localStorage.getItem('ver');
       var obj = JSON.parse(json);
       console.log(obj.purpose);
-      return obj.purpose;
+      if (ver == 4) {
+        this.AddPurpose = true
+        return "increase stamina"
+
+      } else {
+        return obj.addpurpose;
+      }
     },
     addpurpose(){
       var json = localStorage.getItem('track');
+      var ver = localStorage.getItem('ver');
       var obj = JSON.parse(json);
-      return obj.addpurpose;
+      if (ver == 4) {
+        return "improve potency"
+      } else {
+        return obj.addpurpose;
+      }
     },
     jsLocal(){
       let json = localStorage.getItem('track');

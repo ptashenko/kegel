@@ -151,12 +151,12 @@ const routes = [{
     },
     {
         path: '/fpl_land',
-        name: 'land',
+        name: 'LandingViewV2',
         component: LandingViewV2
     },
     {
         path: '/fpl_email',
-        name: 'pre-email',
+        name: 'EmailAdress2',
         component: EmailAdressV2,
     },
     {
@@ -185,8 +185,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const isRedirectDisabled =
-        (from.name === 'pre-email' && to.name === 'land') ||
-        (from.name === 'PlanFinal' && to.name === 'pre-email') ||
+        (from.name === 'pre-email' && to.name === 'LandingViewV2') ||
+        (from.name === 'PlanFinal' && to.name === 'EmailAdress2') ||
         (from.name === 'PlanFinal' && to.name === 'LandingView') ||
         (from.name === 'CodeQR' && to.name === 'PlanFinal') ||
         (from.name === 'CodeQR' && to.name === 'PlanFinalTwo') ||

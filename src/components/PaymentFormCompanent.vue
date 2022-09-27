@@ -51,7 +51,7 @@
   />
     <CardCompanentZip
     class="w-100 flex-column align-items-center justify-content-center"
-    v-if="paymentMethodType == 1 && ver == 2"
+    v-if="paymentMethodType == 1 && (ver == 2 || ver == 4)" 
     @error="error"
     @success="success"
     @clickButton="clickButton"
@@ -86,7 +86,7 @@ export default {
       auth_price: 100,
       paymentMethodType: 1, //1- card, 2 - paypal
       blockSelect: false,
-      apple_pay: true,
+      apple_pay: false,
       ver: localStorage.getItem('ver') == null ? 1 : localStorage.getItem('ver')
     };
   },

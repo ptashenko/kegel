@@ -30,13 +30,14 @@
               <div
                 v-if="email"
                 class="v-popup__submit_btn active"
+                :class="{ submit: loading }"
                 @click="nextUrlEmail"
               >
               Get my plan
               </div>
               <div
                 v-else
-                :class="['v-popup__submit_btn', {active: closeActive}]"
+                :class="['v-popup__submit_btn', {active: closeActive}, {submit: loading}]"
                 @click="nextUrlEmail"
               >
               Get my plan
@@ -76,6 +77,7 @@ export default {
       email: null,
       isEmailTouched: false,
       upValue: this.EMAILUSER,
+      loading: false,
       title: 'Enter email adress',
     };
   },
@@ -97,6 +99,7 @@ export default {
   methods: {
     ...mapActions(['setEmail']),
     sendPayPalRequest(token) {
+      this.loading = true;
       const requestOptions = {
         method: "POST",
         headers: {
@@ -108,7 +111,7 @@ export default {
             .getItem("web_user_uuid")
             .replaceAll('"', ""),
           token_id: token,
-          item: this.item,
+          item: this.$route.params.item,
         }),
       };
       fetch(
@@ -116,7 +119,12 @@ export default {
         requestOptions
       )
         .then((response) => {
-          this.$emit("success");
+          this.loading = false;
+          if (response.status == 204 || response.status == 200) {
+            this.$router.push('PlanFinal')
+          } else {
+            //this.$router.push('LandingViewV2')
+          }
         });
     },
     sendCardRequest() {
@@ -146,8 +154,8 @@ export default {
                     "https://int2.kegel.men/api/web-payment/accept/card-payment/",
                     requestOptions
                   ).then((response) => {
-                    if (response.status == 204 || response.status == 200) {
                     this.loading = false;
+                    if (response.status == 204 || response.status == 200) {
                     this.$router.push('PlanFinal')
                     } else {
                       //this.$router.push('LandingViewV2')
@@ -170,14 +178,21 @@ export default {
 
     nextUrlEmail(){
       // VueScrollTo.scrollTo('.dark-layout')
-      this.setEmail(this.upValue)
-      setTimeout(() => {
-        if (this.$route.params.flow == "CC") {
-          this.sendCardRequest()
-        } else {
-          this.sendPayPalRequest(this.$route.params.token)
-        }
-      }, 1);
+      if (this.closeActive) {
+        this.setEmail(this.upValue)
+        this.mixpanel.track('E-mail Screen Completed', {
+          email: this.upValue
+        })
+        gtag('event', 'conversion', {'send_to': 'AW-407765903/QV5XCL7WjdgDEI-HuMIB'});
+        this.mixpanel.people.set({ "$email": this.upValue });
+        setTimeout(() => {
+          if (this.$route.params.flow == "CC") {
+            this.sendCardRequest()
+          } else {
+            this.sendPayPalRequest(this.$route.params.token)
+          }
+        }, 2);
+    }
       
 
     },
@@ -340,4 +355,13 @@ input:active, textarea:active {outline:none;}
 textarea {resize:none;}
 textarea {resize:vertical;}
 textarea {resize:horizontal;}
+
+.v-popup__submit_btn.submit {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ic3ZnLWxvYWRlciIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTUiIGhlaWdodD0iNTUiIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQwIDcyQzIyLjQgNzIgOCA1Ny42IDggNDBTMjIuNCA4IDQwIDhzMzIgMTQuNCAzMiAzMmMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTJjMC0xNS40LTEyLjYtMjgtMjgtMjhTMTIgMjQuNiAxMiA0MHMxMi42IDI4IDI4IDI4YzEuMSAwIDIgLjkgMiAycy0uOSAyLTIgMnoiPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgNDAgNDAiIHRvPSIzNjAgNDAgNDAiIGR1cj0iMC42cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  color: transparent !important;
+  transition-duration: 0s;
+}
 </style>

@@ -4,20 +4,29 @@
       <h1 class="main-pre-header-title mb-1">
         Learn how to <span class="red-text">improve stamina & potency</span> without pills
       </h1>
-      <p class="main-pre-text text-center mb-2">This proven method is highly effective, safe & takes just <span class="text-bold">5 minutes a day</span></p>
+      <div class="head-block">
+        <img class="icon-new" src="@/assets/images/icons/icon_new.svg"> 
+        <span class="date-text">Published on {{todayDate}}</span>
+        <div class="share-like-block">
+          <img class="like" @click="like" :src="like_image"> 
+          <span class="like-count">2,3K</span>
+          <img class="share" src="@/assets/images/icons/share.png" @click="shareViaWebShare">
+        </div>
+      </div>
+      <p class="main-pre-text mb-2">This proven method is highly effective, safe & takes <span class="text-bold red-text">just 5 minutes a day.</span></p>
       <div class="main-pre-img mb-3">
         <video src="@/assets/img/pre/1.mp4" alt="" class="main-pre-img-block mb-1" autoplay playsinline muted type="video/mp4" loop></video>
         <p class="main-pre-img-info text-center">“The secret is in this muscle”</p>
       </div>
       <p class="main-pre-text mb-2">Many men believe that to last longer and have strong potency you need to work out, eat healthy food, stress less & sleep well.</p>
       <p class="main-pre-text mb-3">These are great things, but the majority of men doesn't know one simple fact, which outweighs all activities above.</p>
-      <h3 class="main-pre-title mb-2">Male performance relies on the muscles at the base of Peni... private parts. They're called PF muscles</h3>
-      <p class="main-pre-text red-text text-center semibold mb-2">Strong PF muscles = strong potency</p>
+      <h3 class="main-pre-title mb-2">Male performance relies on the Pelvic Floor (PF) Muscles</h3>
+      <p class="main-pre-text red-text text-center text-bold mb-2">Strong PF muscles <span class="text-bold black-text">=</span> strong potency</p>
       <div class="main-pre-img mb-2">
         <video src="@/assets/img/pre/2.mp4" alt="" class="main-pre-img-block" autoplay playsinline muted type="video/mp4" loop></video>
       </div>
       <p class="main-pre-text mb-2">The PF muscles assist arteries & penile structure to pump & trap blood in male organs. This is what allows you to get & stay up.</p>
-      <p class="main-pre-text red-text text-center semibold mb-2">Strong PF muscles = more stamina</p>
+      <p class="main-pre-text red-text text-center text-bold mb-2">Strong PF muscles <span class="text-bold black-text">=</span> more stamina</p>
       <div class="main-pre-img mb-2">
         <video src="@/assets/img/pre/3.mp4" alt="" class="main-pre-img-block" autoplay playsinline muted type="video/mp4" loop></video>
       </div>
@@ -47,9 +56,9 @@
       <p class="main-pre-text mb-3">
         Almost<span class="text-bold"> 50% of men</span> struggle with weak potency (ED) and "quick finishes" (PE) during their lifetime. And even if everything is fine right now, the risk of having those increases with age. This also happens due to neglecting PF muscles.
       </p>
-      <h3 class="main-pre-title mb-2">Scientists discovered the way to strengthen PF muscles & improve performance. It's Kegel exercises</h3>
+      <h3 class="main-pre-title mb-2">You can strengthen PF muscles & enhance performance with Kegel exercises</h3>
       <p class="main-pre-text mb-2">Just as you can build up biceps with workouts, it's proven that you can strengthen PF muscles with Kegel exercises.</p>
-      <p class="main-pre-text mb-3">Leading universities conducted studies in which men did Kegel exercises for several weeks. The results were astonishing.</p>
+      <p class="main-pre-text mb-3">Leading universities conducted studies in which men did Kegel exercises for several weeks. Here are the results:</p>
       <div class="main-pre-img mb-2">
         <img src="@/assets/img/pre/6.png" alt="" class="main-pre-img-block">
       </div>
@@ -93,15 +102,15 @@
       <p class="main-pre-text mb-2">That's why Dr. Kegel created a special plan to help train PF muscles correctly & achieve results effectively.</p>
       <div class="main-pre-list mb-4">
         <div class="main-pre-list_item mb-2">
-          <div class="main-pre-list_counter">1</div>
+          <img class="check" src="@/assets/images/icons/check_red.svg" alt="check">
           <span class="main-pre-text main-pre-list_text">Workouts take no more than <span class="text-bold">5 minutes a day.</span> It is perfect even for the busiest men</span>
         </div>
         <div class="main-pre-list_item mb-2">
-          <div class="main-pre-list_counter">2</div>
+          <img class="check" src="@/assets/images/icons/check_red.svg" alt="check">
           <span class="main-pre-text main-pre-list_text">You can <span class="text-bold">exercise in any place & situation</span>: lying on the couch, sitting at work, or standing in the bus. No one will notice that you’re exercising</span>
         </div>
         <div class="main-pre-list_item">
-          <div class="main-pre-list_counter">3</div>
+          <img class="check" src="@/assets/images/icons/check_red.svg" alt="check">
           <span class="main-pre-text main-pre-list_text">You can see noticeable <span class="text-bold">results in just a few weeks</span></span>
         </div>
       </div>
@@ -123,14 +132,40 @@
 
 <script>
 import { addItem } from "@/common/localStorage";
+import moment from 'moment';
 
 export default {
   name: "PreLand",
   inject: ['mixpanel'],
+  data() {
+    return {
+      like_image: require('@/assets/images/icons/like.png'),
+      liked: false,
+      todayDate: ""
+    }
+  },
+  methods:{
+    like() {
+      if (!this.liked) {
+        this.like_image = require('@/assets/images/icons/like_red.png')
+        this.liked = true
+      } else {
+        this.like_image = require('@/assets/images/icons/like.png')
+        this.liked = false
+      }
+    },
+    shareViaWebShare() {
+      navigator.share({
+        url: 'https://quiz.kegel.men/fpl_1'
+      })
+    }
+  },
   mounted() {
+   
+    this.todayDate = moment().format('MMM. DD');
     addItem("ver", 4);
     this.mixpanel.track('Prelanding Shown',{
-        version: 1,
+        version: 2,
       })
       addItem("price", 1);
       addItem("LandingItem", "kegel_1-USD-Every-3-months");
@@ -154,6 +189,56 @@ p, h1, h3 {
 * {
   box-sizing: border-box;
 }
+.head-block {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  .icon-new {
+    height: 18px;
+    width: 40px;
+  }
+  .date-text {
+    font-family: 'SF Pro Text Light';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 150%;
+    opacity: 0.5;
+    vertical-align: top;
+    padding-left: 8px;
+  }
+  .share-like-block {
+    float: right;
+    .like-count {
+      vertical-align: top;
+      padding-left: 8px;
+      font-family: 'SF Pro Text Regular';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 150%;
+    }
+    .like {
+      width: 18px;
+      height: 16px;
+    }
+    .share {
+      margin-left: 16px;
+      height: 17px;
+      width: 16px;
+    }
+  }
+}
+
+.check{
+  margin-right: 18px;
+  width: 24px;
+}
+.check svg{
+  color: #ffffff;
+  stroke: red;
+  fill: red;
+}
+
 .main-pre-land {
   box-sizing: border-box;
   width: 100%;
@@ -181,6 +266,9 @@ p, h1, h3 {
   .red-text {
     color: #E44240;
   }
+  .black-text {
+    color: #111113;
+  }
   .semibold {
     font-family: "SF Pro Text Semibold" !important;
   }
@@ -194,9 +282,8 @@ p, h1, h3 {
     .main-pre-header-title {
       font-style: normal;
       font-weight: 800;
-      font-size: 30px;
+      font-size: 38px;
       line-height: 135%;
-      text-align: center;
       font-family: "SF-Pro-Display-Heavy";
     }
     .main-pre-text {
@@ -209,7 +296,7 @@ p, h1, h3 {
       font-family: "SF-Pro-Display-Bold";
       font-style: normal;
       font-weight: 600;
-      font-size: 20px;
+      font-size: 26px;
       line-height: 135%;
     }
     .main-pre-img {

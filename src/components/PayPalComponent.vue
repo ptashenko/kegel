@@ -87,7 +87,8 @@ export default {
                       name: "EmailAdress2",
                       params: {
                         token: data.billingToken,
-                        flow: "PayPal"
+                        flow: "PayPal",
+                        item: this.item
                       }
                     });
                   } else {

@@ -151,7 +151,7 @@ export default {
                   return applePayHandler.handlePayment();
                 })
                 .then((paymentIntent) => {
-                  console.log(paymentIntent);
+                  console.log(paymentIntent.paymentIntent);
                   const requestOptions = {
                     method: "POST",
                     headers: {
@@ -162,8 +162,9 @@ export default {
                       web_user_uuid: localStorage
                         .getItem("web_user_uuid")
                         .replaceAll('"', ""),
-                      intent_id: paymentIntent.id,
+                      intent_id: paymentIntent.paymentIntent.id,
                       item: this.item,
+                      apple_pay: true
                     }),
                   };
                   fetch(

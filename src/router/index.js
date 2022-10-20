@@ -166,7 +166,7 @@ const routes = [{
     },
     {
         path: '/fpl2_land',
-        name: 'fpl2-land',
+        name: 'LandingViewV3',
         component: LandingViewV3,
     },
     {

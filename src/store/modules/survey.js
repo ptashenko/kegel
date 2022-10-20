@@ -13,10 +13,10 @@ const state = () => ({
     loader: true,
     tracks: [{
             id: 1,
-            title: 'Treat ED',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
+            title: 'Get & stay hard easier',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
             purpose: 'Strengthen erection',
             addpurpose: 'Increase sexual stamina',
-            text: 'Get & stay hard easier',
+            text: '',
             layouts: [
                 { id: 1, separation: true },
                 { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 },
@@ -34,10 +34,10 @@ const state = () => ({
         },
         {
             id: 2,
-            title: 'Treat PE', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
+            title: 'Last up to 7x longer', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
             purpose: 'Increase sexual stamina',
             addpurpose: 'Strengthen erection',
-            text: 'Last up to 7x longer',
+            text: '',
             layouts: [
                 { id: 1, separation: true },
                 { id: 35 }, { id: 3 }, { id: 21 }, { id: 351 },
@@ -55,10 +55,10 @@ const state = () => ({
         },
         {
             id: 3,
-            title: 'I’m ok',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
+            title: 'I just want to maximize my intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
             purpose: 'Improve sexual performance',
             addpurpose: 'Strengthen erection',
-            text: 'I just want to maximize my intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
+            text: '',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
             layouts: [
                 { id: 1, separation: true },
                 { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },

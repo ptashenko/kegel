@@ -10,7 +10,7 @@
       </div>
       <div class="info-block_content">
         <img v-if="!isVideo" :src="content" class="info-block_image" alt="">
-        <video v-else preload :id="'video'+ id" :ref="`video${id}`" :src="content" ref="video" autoplay loop class="info-block_image" ></video>
+        <video v-else preload :id="'video'+ id" :ref="`video${id}`" :src="content" ref="video" autoplay playsinline muted loop class="info-block_image" ></video>
       </div>
       <div class="info-block_items">
         <div class="info-block_item" v-for="(item, id) in items" :key="id">
@@ -92,7 +92,6 @@ export default {
        display: block;
        margin-right: 19px;
        width: 20px;
-       height: 20px;
      }
      &-text {
        font-weight: 400;

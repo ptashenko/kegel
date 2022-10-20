@@ -42,17 +42,15 @@
               <div id="trigger1" class="date">
                 <div class="text-purpose">
                 <span class="">
-                This plan can help you increase stamina & improve potency
+                  Here's how effective this plan is
                 </span>
                 </div>
-                <div class="by ">
+                <!-- <div class="by ">
                   <span class="m20">by &nbsp;</span>
-                  <!-- <div class="blockAnimate"> -->
                   <transition name="slide-fade">
                     <span v-if="show" class="block__anim">{{dataPP3}}</span>
                   </transition>
-                  <!-- </div> -->
-                </div>
+                </div> -->
               </div>
 
               <div class=" layout__thumbnail">
@@ -64,17 +62,18 @@
                     :autoPlay="true"
                     :speed="1"
                 />
-                <div class="block__data">
+                <img src="@/assets/images/landing_3.png" style="padding-top: 24px;"/>
+                <!-- <div class="block__data">
                   <p class="block__data__item">{{moment().add(0,'month').format("MMM")}}</p>
                   <p class="block__data__item">{{moment().add(1,'month').format("MMM")}}</p>
                   <p class="block__data__item">{{moment().add(2,'month').format("MMM")}}</p>
                   <p class="block__data__item">{{moment().add(3,'month').format("MMM")}}</p>
                   <p class="block__data__item">{{moment().add(4,'month').format("MMM")}}</p>
                   <p class="block__data__item">{{moment().add(5,'month').format("MMM")}}</p>
-                </div>
-              </div>
-              <p class="p-14 opac_5 bottom_img" style="margin-bottom: 0">*This diagram is a non personalized data based on scientific research</p>
-              <div class="base-border"></div>
+                </div>-->
+              </div> 
+              <!-- <p class="p-14 opac_5 bottom_img" style="margin-bottom: 0">*This diagram is a non personalized data based on scientific research</p> -->
+              <div class="base-border" style="margin-top: 0px;"></div>
               <p class="text-center claim_plan">Claim your Plan & get:</p>
               <!-- ТУТ должен быть блок с картинкой или видео -->
               <InfoBlock
@@ -83,40 +82,40 @@
                   :content="require('@/assets/img/land_v3/1.mp4')"
                   :id="1"
                   :description="'The core program to strengthen PF muscles & enhance performance.'"
-                  :items="constants.training"
+                  :items="this.constants.training"
                   :is-video="true"
               />
               <div class="base-border"></div>
               <InfoBlock
-                  v-if="device.ios"
+                  v-if="this.device.ios"
                   :id="2"
                   :title="'Progress Tracker'"
                   :arrow-color="'red'"
                   :content="require('@/assets/img/land_v3/2.mp4')"
                   :description="'Monitor how workouts strengthen PF muscles.'"
-                  :items="constants.tracker"
+                  :items="this.constants.tracker"
                   :is-video="true"
               />
               <div class="base-border" v-if="device.ios"></div>
               <InfoBlock
-                v-if="device.ios"
+                v-if="this.device.ios"
                 :title="'Daily Challenges'"
                 :arrow-color="'red'"
                 :content="require('@/assets/img/land_v3/3.png')"
                 :description="'Build healthy habits for Mental, Physical & Social wellbeing.'"
-                :items="constants.challenges"
+                :items="this.constants.challenges"
                 :is-video="false"
               />
-              <div class="challenges-after_wrapper" v-if="device.ios">
+              <div class="challenges-after_wrapper" v-if="this.device.ios">
                 <img src="@/assets/img/land_v3/4.png" class="challenges-after_img" alt="">
               </div>
-              <div class="base-border" v-if="device.ios"></div>
+              <div class="base-border" v-if="this.device.ios"></div>
               <InfoBlock
                   :title="'Insights Library'"
                   :arrow-color="'red'"
                   :content="require('@/assets/img/land_v3/5.png')"
                   :description="'Summary of scientific facts on the hottest topics.'"
-                  :items="constants.library"
+                  :items="this.constants.library"
                   :is-video="false"
               />
 
@@ -124,7 +123,7 @@
                 <div class="reviews__title" style="font-size: 20px">See how this Plan changes Men's Lives</div>
                 {{lengthReviews}}
                 <div v-for="(item, key) in $store.state.review.fpl_land" :key="key" >
-                  <div class="review light" :class="{'active': key < this.numreview }">
+                  <div class="review light" :class="{'active': key < numreview }">
                     <div class="review__top">
                       <div>
                         <div class="review__title">{{ item.title }}</div>
@@ -165,7 +164,7 @@
                       </div>
                       <div class="small_info-block_content-item">
                         <img src="@/assets/img/land_v3/7.svg" class="small_info-block_content-item_img" alt="">
-                        <h4>150++</h4>
+                        <h4>150+</h4>
                         <p>Studies analysis</p>
                       </div>
                     </div>
@@ -186,12 +185,12 @@
                       <div class="small_info-block_content-item">
                         <img src="@/assets/img/land_v3/9.svg" class="small_info-block_content-item_img" alt="">
                         <p>Stamina</p>
-                        <span>up to 7x <img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
+                        <span style="padding-left:16px">up to 7x<img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
                       </div>
                       <div class="small_info-block_content-item">
                         <img src="@/assets/img/land_v3/10.svg" class="small_info-block_content-item_img" alt="">
                         <p>Potency</p>
-                        <span>up to 2x <img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
+                        <span style="padding-left:16px">up to 2x<img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
                       </div>
                     </div>
                     <div class="small_info-block_content-info">
@@ -230,7 +229,7 @@
         7-day trial*
       </div>
       <div>
-        <div class="d-flex"><span class="opac_5 line">$19.88 </span><span class="bold">&nbsp; $1</span></div>
+        <div class="d-flex"><span class="opac_5 line">$19.88</span><span class="semibold"> $1</span></div>
       </div>
     </div>
     <hr>
@@ -244,7 +243,7 @@
     </div>
     <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
       <div>
-        Subscription
+        12 weeks plan
       </div>
       <div class="after d-flex flex-column align-items-end">
         <div class="d-flex"><span class="bold">&nbsp; $79.2*</span></div>
@@ -270,9 +269,9 @@
       <hr>
       <div style="padding:10px">
       </div>
-      <div class="mw-350 block-pay d-flex flex-column align-items-center justify-content-center">
+      <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
         <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item" id="paymentForm"/>
-        <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
+        <!-- <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
           <div class="d-flex align-items-center star">
             <img src="@/assets/images/star.png" alt="star">
             <img src="@/assets/images/star.png" alt="star">
@@ -284,7 +283,7 @@
             <img src="@/assets/images/icons/out48.svg" alt="out">
           </div>
           <p> <span class="bold">36k</span> 5-star ratings</p>
-        </div>
+        </div> -->
       </div>
 
       <div class="safe-checkout">
@@ -323,7 +322,7 @@
         </button>
       </div>
 
-      <FaqBlock :items="constants.faq"/>
+      <FaqBlock :items="this.constants.faq"/>
 
       <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
         <button class="btn_bottom" v-scroll-to="'#paypal'">
@@ -387,19 +386,21 @@
   <!-- При выборе оплаты класс active задать одной из button line 223,232, 235 -->
 </template>
 
-<script setup>
-import { useDevice } from  "next-vue-device-detector"
+<!-- <script setup>
+import { useDevice } from  "next-vue-device-detector";
 import landingV3 from "@/constants/landingV3";
 
 const device = useDevice()
 
 const constants = landingV3
 
-</script>
+</script> -->
 
 
 <script>
 import { mapGetters } from 'vuex';
+import { useDevice } from  "next-vue-device-detector";
+import landingV3 from "@/constants/landingV3";
 import moment from 'moment';
 import FaqBlock from "@/components/common/FaqBlock";
 import InfoBlock from "@/components/common/InfoBlock";
@@ -411,7 +412,7 @@ import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 
 export default {
-  name: 'LandingViewV2',
+  name: 'LandingViewV3',
   inject: ['mixpanel'],
   components: {
     ButtonField,
@@ -424,7 +425,9 @@ export default {
   },
   data() {
     return {
-      item: "kegel_7-USD-Weekly",
+      device: useDevice(),
+      constants: landingV3,
+      item: "kegel_1-USD-Every-3-months",
       VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
       apple_pay: true,
@@ -452,7 +455,7 @@ export default {
       oldprice: 19.88,
       numanimate: 1,
       show: false,
-      imageitem: require(`@/assets/images/json/Step_1_1.json`),
+      imageitem: require(`@/assets/images/json/new_graph.json`),
       imgProba: false,
       AddPurposeCom: false,
       addItem: false,
@@ -759,14 +762,35 @@ export default {
     }, 500);
   },
   created () {
-    this.mixpanel.track('[Web Mail] LP Shown', {
-      number: this.$route.query.nr
+    addItem("price", 1);
+    addItem("LandingItem", "kegel_1-USD-Every-3-months");
+    addItem("ver", 4);
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '450334773666656');
+    fbq('track', 'ContentView');
+    this.mixpanel.track('Landing Page Shown', {
+      version: "lp_v2"
     })
+  },
+  setup() {
+    addItem("price", 1);
+    addItem("LandingItem", "kegel_1-USD-Every-3-months");
+    addItem("ver", 4);
   }
 };
 </script>
 
 <style lang="scss" scoped>
+  .semibold {
+    font-family: "SF Pro Text Semibold"
+ } 
 .trusted-sources {
   margin-top: 35px;
   &_title {
@@ -797,7 +821,7 @@ export default {
     margin-top: 32px;
   }
   &_content {
-    padding: 16px 16px 0 16px;
+    padding: 16px 0px 0 0px;
     &-info {
       margin-top: 45px;
       &-block {
@@ -865,8 +889,6 @@ export default {
 }
 .challenges-after_wrapper {
   margin-top: 24px;
-  padding-left: 32px;
-  padding-right: 32px;
 }
 .challenges-after_img {
   width: 100%;
@@ -883,7 +905,7 @@ export default {
   margin-bottom: 32px;
 }
 .claim_plan {
-  font-family: "SF Pro Text Regular";
+  font-family: "SF Pro Text Medium";
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
@@ -1042,6 +1064,7 @@ export default {
 }
 .btn_bottom{
   background: #E44240;
+  font-family: "SF Pro Text Semibold";
   color:#FFFFFF;
   border-radius: 9px;
   border:none;
@@ -1241,7 +1264,7 @@ hr{
 .payment{
   margin: 84px auto 16px;
   @media (max-width:480px) {
-    margin: 64px auto 16px;
+    margin: 32px auto 16px;
   }
   p{
     font-size: 16px;
@@ -1262,8 +1285,8 @@ hr{
 .popup_wraper{
   h2{
     margin: 0 0 16px;
-    font-family: "SF-Pro-Display-Bold";
-    font-size:24px;
+    font-family: "SF-Pro-Display-Heavy";
+    font-size:28px;
   }
   p{
     font-size: 16px;
@@ -1571,16 +1594,16 @@ ul{
 
 .h2 {
   margin: 0px auto 8px;
-  font-size: 30px;
+  font-size: 28px;
   line-height: 135%;
   margin: 0px auto 24px;
-  font-family: "SF-Pro-Display-Bold";
+  font-family: "SF-Pro-Display-Heavy";
   @media (max-width:480px) {
-    font-size: 24px;
+    font-size: 28px;
   }
 }
 .h2.inside {
-  font-family: "SF-Pro-Display-Bold";
+  font-family: "SF-Pro-Display-Heavy";
   font-size: 20px;
   margin-top: 16px;
 }
@@ -1747,11 +1770,9 @@ ul{
   }
 }
 .text-purpose{
-  font-size: 18px;
+  font-size: 20px;
   line-height: 150%;
-  @media (max-width:480px) {
-    font-size: 16px;
-  }
+  font-family: "SF-Pro-Display-Bold";
 }
 .text-bold{
   font-family: "SF Pro Text Semibold";

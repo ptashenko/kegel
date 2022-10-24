@@ -3,6 +3,7 @@
     class="d-flex flex-column align-items-center justify-content-center"
     id="paymentForm"
   >
+    <span class="payment-info mb-32">You will only be charged $1 for your 7-day trial.</span>
     <div id="solid-payment-form-container">
       <button
         class="pay cursor"
@@ -50,7 +51,7 @@
   />
     <CardCompanentZip
     class="w-100 flex-column align-items-center justify-content-center"
-    v-if="paymentMethodType == 1 && ver == 2"
+    v-if="paymentMethodType == 1 && (ver == 2 || ver == 4)" 
     @error="error"
     @success="success"
     @clickButton="clickButton"
@@ -150,7 +151,7 @@ export default {
                   return applePayHandler.handlePayment();
                 })
                 .then((paymentIntent) => {
-                  console.log(paymentIntent);
+                  console.log(paymentIntent.paymentIntent);
                   const requestOptions = {
                     method: "POST",
                     headers: {
@@ -161,8 +162,9 @@ export default {
                       web_user_uuid: localStorage
                         .getItem("web_user_uuid")
                         .replaceAll('"', ""),
-                      intent_id: paymentIntent.id,
+                      intent_id: paymentIntent.paymentIntent.id,
                       item: this.item,
+                      apple_pay: true
                     }),
                   };
                   fetch(
@@ -191,6 +193,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.mb-32 {
+  margin-bottom: 32px;
+}
+.payment-info {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: #111113;
+  opacity: 0.75;
+}
 .cursor {
   cursor: pointer;
 }

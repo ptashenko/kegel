@@ -16,6 +16,7 @@
         "lottie-web-vue": "^2.0.6",
         "mixpanel": "^0.16.0",
         "moment": "^2.29.3",
+        "next-vue-device-detector": "^0.0.1",
         "smartlook-client": "^7.0.1",
         "svg4everybody": "^2.1.9",
         "v-scroll-lock": "^1.3.1",

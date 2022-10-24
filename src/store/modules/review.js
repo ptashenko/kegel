@@ -203,10 +203,39 @@ export default {
                 name: 'Amteleronnnnn',
                 rating: 5,
             },
-
-
-
         ],
+        fpl_land: [
+            {
+                title: 'Super',
+                text: 'I’ve only started recently but the results are incredible! I can tell that my stamina and performance improved a lot',
+                name: 'TopicSilly',
+                rating: 5,
+            },
+            {
+                title: 'Kegel really works',
+                text: 'I’ve had some erection problems before. But after a while with kegel training, it has become much harder! It’s amazing',
+                name: 'Will123Darth368',
+                rating: 5,
+            },
+            {
+                title: 'Works perfectly',
+                text: 'I decided to give it a try and the results are incredible! You should definitely try Kegel exercises.',
+                name: 'Hamilton_KingLw33es',
+                rating: 5,
+            },
+            {
+                title: 'Great training',
+                text: 'Kegel Training has changed my sex life. Now I have absolute control and I decide when I want to finish. This training really worth it',
+                name: 'Armando A.',
+                rating: 5,
+            },
+            {
+                title: 'Amazing results',
+                text: 'It’s been only a couple of weeks with Kegel exercises but I can already see a huge difference in my sex life. I’m happy with my results!',
+                name: 'JackSUN.X0X367',
+                rating: 5,
+            }
+        ]
     },
     getters: {
         get_msg(state) {

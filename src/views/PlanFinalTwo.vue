@@ -124,7 +124,7 @@
           theme="Back"
           class="footer-controls__button bg-blue"
           :class="{ submit: loading }"
-          @click="payingSuccess"
+          @click="addonRequest"
         />
         <!-- <button-field
           text='Add to my plan'

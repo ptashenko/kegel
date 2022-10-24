@@ -18,6 +18,8 @@ import '@/assets/scss/styles.scss';
 import '@/assets/scss/fonts.scss';
 import vueCountryRegionSelect from 'vue3-country-region-select'
 
+import { createDeviceDetector } from "next-vue-device-detector";
+const device = createDeviceDetector()
 
 export {}
 router.afterEach((to, from, next) => {
@@ -33,6 +35,7 @@ createApp(App)
     ],
     tracesSampleRate: 1.0,
   })
+    .use(device)
     .use(svg4everybody)
     .use(moment)
     // .use(VueAB)

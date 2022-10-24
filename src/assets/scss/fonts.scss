@@ -47,6 +47,14 @@
 }
 
 @font-face {
+    font-family: "SF-Pro-Display-Heavy";
+    font-display: block;
+    src: local("SF-Pro-Display-Heavy");
+    src: url("~@/assets/fonts/SF-Pro-Display-Heavy.woff2") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
     font-family: "SF-Pro-Display-Semibold";
     font-display: block;
     src: local("SF-Pro-Display-Semibold");

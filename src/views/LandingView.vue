@@ -252,8 +252,8 @@
       <div class="guarantee-wrapper">
         <h3 class="guarantee-title">30-Day Money-Back Guarantee Without Questions</h3>
         <p class="guarantee-description">We believe that our plan may work for you, and you’ll get visible results in a few weeks! And we are so confident that
-        we are even ready to return your money without any questions. All you have to do is send an email to contact@kegel.men
-        within 30 days and ask for a refund. But we are sure that the plan will show its effectiveness and there will be no need
+        we are even ready to <span class="guarantee-description-bold">return your money without any questions</span>. All you have to do is send an email to contact@kegel.men
+        <span class="guarantee-description-bold">within 30 days and ask for a refund</span>. But we are sure that the plan will show its effectiveness and there will be no need
         for a refund. Find more about the refund process in our <a href='/refund-policy.html' target="_blank">refund policy</a>.</p>
         <img src="@/assets/images/guarantee_icon.svg" class="guarantee-icon" alt="">
       </div>
@@ -832,6 +832,9 @@ export default {
     font-weight: 400;
     font-size: 14px;
     line-height: 150%;
+    &-bold {
+      font-weight: 700;
+    }
   }
 
   &-wrapper {

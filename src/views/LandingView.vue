@@ -248,6 +248,16 @@
         </p>
       </div>
     </div>
+    <div class="guarantee">
+      <div class="guarantee-wrapper">
+        <h3 class="guarantee-title">30-Day Money-Back Guarantee Without Questions</h3>
+        <p class="guarantee-description">We believe that our plan may work for you, and you’ll get visible results in a few weeks! And we are so confident that
+        we are even ready to <span class="guarantee-description-bold">return your money without any questions</span>. All you have to do is send an email to contact@kegel.men
+        <span class="guarantee-description-bold">within 30 days and ask for a refund</span>. But we are sure that the plan will show its effectiveness and there will be no need
+        for a refund. Find more about the refund process in our <a href='/refund-policy.html' target="_blank">refund policy</a>.</p>
+        <img src="@/assets/images/guarantee_icon.svg" class="guarantee-icon" alt="">
+      </div>
+    </div>
     <div class="block__text mw-450">
       <p class="title">Your information is safe</p>
       <p class="fs-16-14">We will not sell or rent your personal contact information for any marketing purposes.</p>
@@ -269,6 +279,25 @@
       <p class="text-description">
         <span class="bold">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
       </p>
+    </div>
+    <div class="main-pre-footer">
+      <div class="main-pre-footer_info">
+        Disclaimer: Each individual’s results may vary from person to person based on health condition, body type, starting
+        point, his or her unique background, dedication, desire, motivation, actions, and numerous other factorsю. This service
+        offers health and fitness information and is designed for educational and entertainment purposes only. You should not
+        rely on this information as a substitute for, nor does it replace, professional medical advice, diagnosis, or treatment.
+        It is intended to be provided for informational, educational, and self-empowerment purposes only. If you have any
+        concerns or questions about your health, you should always consult with a physician or other health-care professional.
+      </div>
+      <div class="main-pre-footer_info mb-2">
+        <p class="mb-1">Appercut sp z o o</p>
+        <p>Warsaw, Twarda 18, 00-105</p>
+      </div>
+      <div class="main-pre-footer_links">
+        <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>
+        <a href="/terms.html" target="_blank">Terms & Conditions</a>
+        <a href="/refund-policy.html" target="_blank">Refund Policy</a>
+      </div>
     </div>
   </div>
   <vpopup
@@ -745,7 +774,82 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main-pre-footer {
+  padding: 32px 32px 48px 32px;
+  background: #111113;
 
+  &_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #FFFFFF;
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+
+  &_links {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    a {
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.2;
+      text-align: center;
+      text-decoration-line: underline;
+      color: #FFFFFF;
+      opacity: 0.75;
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+.guarantee {
+  padding: 32px;
+  color: #111113;
+  margin-bottom: 32px;
+
+  &-title {
+    font-family: "SF Pro Text Bold";
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 135%;
+    text-align: center;
+  }
+
+  &-description {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    &-bold {
+      font-weight: 700;
+    }
+  }
+
+  &-wrapper {
+    padding: 32px;
+    border: 2px solid #5773D6;
+    border-radius: 9px;
+    position: relative;
+  }
+
+  &-icon {
+    position: absolute;
+    right: 24px;
+    bottom: -61px;
+  }
+}
 .token {
   color: #555;
   padding: 10px;
@@ -942,7 +1046,7 @@ export default {
   }
 }
 .landing{
-  padding-bottom: 32px;
+  padding-bottom: 0px;
 }
 .block__timer .p-14{
   margin-bottom: 16px;
@@ -1504,7 +1608,4 @@ input:active, textarea:active{outline:none;}
 textarea {resize:none;}
 textarea {resize:vertical;}
 textarea {resize:horizontal;}
-
-
-
 </style>

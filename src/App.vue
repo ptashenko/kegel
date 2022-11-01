@@ -58,6 +58,7 @@ export default {
   },
   watch: {},
   mounted() {
+    console.log(this.$router)
     this.getContent();
     this.getTrack();
     this.getHistory();

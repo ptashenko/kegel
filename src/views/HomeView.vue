@@ -48,7 +48,7 @@
               @click="getData(track)"
             >
               <b>{{ track.title }}</b>
-              <span>{{ track.text }}</span>
+              <span></span>
               <lottie-animation 
                 v-if="track.id == 1"
                 :class="{ active: isActiveHand }"

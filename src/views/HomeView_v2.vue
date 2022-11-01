@@ -15,7 +15,7 @@
   <transition name="translate" mode="out-in">
     <div v-if="true" :class="this.$route.name">
       <header-layout :fixed="true" :dark="false"/>
-      <div class="jumbotron home">
+      <div class="jumbotron home v2">
         <div class="container-main">
           <div class="jumbotron__title">
             Boost male performance without pills
@@ -47,7 +47,7 @@
               :key="track.id"
               @click="getData(track)"
             >
-              <b>{{ track.title }}</b>
+              <b>{{ track.titleShortQuiz }}</b>
               <span>{{ track.text }}</span>
               <lottie-animation 
                 v-if="track.id == 1"

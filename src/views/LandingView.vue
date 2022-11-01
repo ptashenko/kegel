@@ -393,6 +393,7 @@ import btnComponent from '@/components/questions/btnPopup.vue';
 import countdown from '@/components/Countdown.vue';
 import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
+import { getItem } from '@/common/localStorage';
 
 
 export default {
@@ -408,10 +409,10 @@ export default {
   data() {
     return {
       item: localStorage.getItem('LandingItem'),
+      version: getItem('ver'),
       VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
       apple_pay: true, 
-      version: Number(localStorage.getItem('ver')),
       dataPP2:'September 25',
       ggg:0,
       textBtn:'Start my plan',

@@ -4,6 +4,8 @@ import router from '@/router';
 
 // abtest('experiment_1', { Baseline: 50, VariationA: 50 })
 
+const version = Number(localStorage.getItem('ver'));
+
 const state = () => ({
     history: {},
     track: {},
@@ -13,65 +15,65 @@ const state = () => ({
     loader: true,
     tracks: [{
             id: 1,
-            title: 'Get & stay hard easier',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
+            title: version === 4 ? 'Improve potency' :'Get & stay hard easier',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
             purpose: 'Strengthen erection',
             addpurpose: 'Increase sexual stamina',
-            text: '',
+            text: version === 4 ? 'Get & stay hard easier' : '',
             layouts: [
                 { id: 1, separation: true },
                 { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 },
-                { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10 },
+                { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10, longQuiz: true },
                 { id: 11 }, { id: 12 },
                 { id: 333, separation: true },
-                { id: 14 }, { id: 15 }, { id: 16 }, { id: 17 },
-                { id: 18 }, { id: 20 }, { id: 21 }, { id: 22 },
+                { id: 14, longQuiz: true }, { id: 15, longQuiz: true }, { id: 16, longQuiz: true }, { id: 17, longQuiz: true },
+                { id: 18 }, { id: 20 }, { id: 21 }, { id: 22, longQuiz: true },
                 { id: 23 },
-                { id: 24, separation: true }, { id: 25 }, { id: 26 }, { id: 27 },
-                { id: 28 }, { id: 29 }, { id: 30 }, { id: 31 },
-                { id: 32 }, { id: 322 }, { id: 33 },
-                { id: 34, separation: true }
+                { id: 24, separation: true }, { id: 25, longQuiz: true }, { id: 26 }, { id: 27 },
+                { id: 28 }, { id: 29, longQuiz: true }, { id: 30, longQuiz: true }, { id: 31, longQuiz: true },
+                { id: 32 }, { id: 322 }, { id: 33, longQuiz: true },
+                { id: 34, longQuiz: true, separation: true }
             ],
         },
         {
             id: 2,
-            title: 'Last up to 7x longer', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
+            title: version === 4 ? 'Increase endurance' : 'Last up to 7x longer', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
             purpose: 'Increase sexual stamina',
             addpurpose: 'Strengthen erection',
-            text: '',
+            text: version === 4 ? 'Last up to 7x longer' : '',
             layouts: [
                 { id: 1, separation: true },
                 { id: 35 }, { id: 3 }, { id: 21 }, { id: 351 },
                 { id: 352 }, { id: 37 }, { id: 38 }, { id: 39 },
                 { id: 40 }, { id: 401 },
                 { id: 41, separation: true },
-                { id: 14 }, { id: 15 }, { id: 42 }, { id: 43 },
-                { id: 56 }, { id: 57 }, { id: 44 }, { id: 45 }, { id: 451 }, { id: 46 },
+                { id: 14, longQuiz: true }, { id: 15, longQuiz: true }, { id: 42, longQuiz: true }, { id: 43, longQuiz: true },
+                { id: 56, longQuiz: true }, { id: 57 }, { id: 44 }, { id: 45, longQuiz: true }, { id: 451, longQuiz: true }, { id: 46 },
                 { id: 47, separation: true },
-                { id: 25 }, { id: 26 }, { id: 272 }, { id: 282 }, { id: 29 },
-                { id: 30 }, { id: 31 }, { id: 32 },
-                { id: 321 }, { id: 33 },
-                { id: 34, separation: true }
+                { id: 25, longQuiz: true }, { id: 26 }, { id: 272 }, { id: 282 }, { id: 29, longQuiz: true },
+                { id: 30, longQuiz: true }, { id: 31, longQuiz: true }, { id: 32 },
+                { id: 321 }, { id: 33, longQuiz: true },
+                { id: 34, separation: true, longQuiz: true }
             ],
         },
         {
             id: 3,
-            title: 'I just want to maximize my intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
+            title: version === 4 ? 'Maximize intimate wellness' : 'I just want to maximize my intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
             purpose: 'Improve sexual performance',
             addpurpose: 'Strengthen erection',
-            text: '',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
+            text: version === 4 ? 'I want to improve both of the above' : '',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
             layouts: [
                 { id: 1, separation: true },
                 { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },
-                { id: 50 }, { id: 21 }, { id: 22 }, { id: 51 },
-                { id: 44 }, { id: 450 }, { id: 453 },
+                { id: 50 }, { id: 21 }, { id: 22, longQuiz: true }, { id: 51 },
+                { id: 44 }, { id: 450, longQuiz: true }, { id: 453, longQuiz: true },
                 { id: 333, separation: true },
-                { id: 14 }, { id: 15 }, { id: 52 },
-                { id: 53 }, { id: 201 },
-                { id: 54 }, { id: 26 }, { id: 55 },
+                { id: 14, longQuiz: true }, { id: 15, longQuiz: true }, { id: 52 },
+                { id: 53, longQuiz: true }, { id: 201 },
+                { id: 54, longQuiz: true }, { id: 26 }, { id: 55 },
                 { id: 283, separation: true },
-                { id: 29 }, { id: 30 }, { id: 31 },
-                { id: 32 }, { id: 323 }, { id: 33 },
-                { id: 34, separation: true }
+                { id: 29, longQuiz: true }, { id: 30, longQuiz: true }, { id: 31, longQuiz: true },
+                { id: 32 }, { id: 323 }, { id: 33, longQuiz: true },
+                { id: 34, separation: true, longQuiz: true }
             ],
         },
     ],
@@ -314,6 +316,23 @@ const state = () => ({
                 style: 'buttons',
                 textLeft: 'Not satisfied',
                 textRight: 'Very satisfied',
+                answerList: [
+                    '1',
+                    '2',
+                    '3',
+                    '4',
+                    '5',
+                ],
+            },
+        },
+        {
+            id: 99,
+            title: 'How much do problems with stamina affect your quality of life?',
+            layoutName: 'Questions',
+            answer: {
+                style: 'buttons',
+                textLeft: 'They don\'t affect',
+                textRight: 'They affect a lot',
                 answerList: [
                     '1',
                     '2',
@@ -1119,17 +1138,19 @@ const getters = {
             track,
             content,
             contents,
+            ver,
         } = state;
         let index = null;
-        track.layouts.forEach((layout) => {
+        const shortQuizLayouts = track.layouts.filter(item => !item.longQuiz);
+        shortQuizLayouts.forEach((layout) => {
             if (layout.id === content.id) {
-                index = track.layouts.indexOf(layout);
+                index = shortQuizLayouts.indexOf(layout);
             }
         });
         const myPrewContentId = contents.find((content) => {
             let result = null;
-            if (track.layouts[index - 1]) {
-                if (track.layouts[index - 1].id === content.id) {
+            if (shortQuizLayouts[index - 1]) {
+                if (shortQuizLayouts[index - 1].id === content.id) {
                     result = content;
                 }
             }
@@ -1142,18 +1163,22 @@ const getters = {
             track,
             content,
             contents,
+            ver,
         } = state;
         let index = null;
-        track.layouts.forEach((layout) => {
+        const version = Number(localStorage.getItem('ver'));
+        const shortQuizLayouts = version === 4 ? track.layouts.filter(item => !item.longQuiz) : track.layouts;
+        version === 4 && track.id === 2 && shortQuizLayouts.splice(12, 0, { id: 99 });
+
+        shortQuizLayouts.forEach((layout) => {
             if (layout.id === content.id) {
-                index = track.layouts.indexOf(layout);
+                index = shortQuizLayouts.indexOf(layout);
             }
         });
         const nextContent = contents.find((content) => {
             let result = null;
-
-            if (track.layouts[index + 1]) {
-                if (track.layouts[index + 1].id === content.id) {
+            if (shortQuizLayouts[index+1]) {
+                if (shortQuizLayouts[index+1].id === content.id) {
                     result = content;
                 }
             }

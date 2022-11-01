@@ -22,10 +22,10 @@ export default {
                         params: { survey: this.nextContentId },
                     });
             } else {
-                console.log('переход на страницу wait');
-                // this.$router.push({
-                //     name: 'wait',
-                // });
+                // console.log('переход на страницу wait');
+                this.$router.push({
+                    name: 'wait',
+                });
 
             }
         },

@@ -137,7 +137,8 @@ export default {
         icon: 'next',
         disabled: this.selectedAnswer,
         click: this.nextWait,
-        theme: 'dark'
+        theme: 'dark',
+        short: this.content.short
       }
     }
   },
@@ -166,34 +167,33 @@ export default {
       const answeres = document.querySelectorAll('.answer'),
             active = document.querySelector('.answer.active'),
             index = Array.prototype.indexOf.call(answeres, active),
-            userAnswer = this.content.answer.answerList[index];
-
+        userAnswer = this.content.answer.answerList[index];
       this.mixpanel.track('Quiz Answer', {
         question: this.content.title,
         answer: userAnswer,
       })
-      if(this.survey.id === 3){
-        this.mixpanel.people.set({"Age Group": userAnswer})
-      }
-      if(this.survey.id === 34){
-        this.$router.push({
-          name: 'wait',
-        });
-      } else {
-        this.selectedAnswer = true
-        if (this.layotname.includes(this.nextContentId)){
-          this.next()
-        } else {
-          this.show= false
-          setTimeout(() => {
-            this.show= true
-            this.next()
-            setTimeout(() => {
-              this.classActive()
-            },500)
-          }, 500);
+        if (this.survey.id === 3) {
+          this.mixpanel.people.set({ "Age Group": userAnswer })
         }
-      }
+        if (this.survey.id === 34) {
+          this.$router.push({
+            name: 'wait',
+          });
+        } else {
+          this.selectedAnswer = true
+          if (this.layotname.includes(this.nextContentId)) {
+            this.next()
+          } else {
+            this.show = false
+            setTimeout(() => {
+              this.show = true
+              this.next()
+              setTimeout(() => {
+                this.classActive()
+              }, 500)
+            }, 500);
+          }
+        }
     },
     
     classActive(){

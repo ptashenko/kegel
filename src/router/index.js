@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import notFound from '@/views/NotFound.vue';
 import HomeView from '@/views/HomeView.vue';
+import HomeView_v2 from '@/views/HomeView_v2.vue';
 import SurveyView from '@/views/SurveyView.vue';
 import Wait from '@/views/Wait.vue';
 import TimePlan from '@/views/TimePlan.vue';
@@ -29,10 +30,12 @@ import FeedBack from '@/views/FeedBack.vue';
 import Preland from '@/views/PreLand.vue';
 import PreLandv2 from "@/views/PreLandv2";
 
+const version = Number(localStorage.getItem('ver'));
+
 const routes = [{
         path: '/',
         name: 'home',
-        component: HomeView,
+        component: version === 4 ? HomeView_v2 : HomeView,
     },
     {
         path: '/survey/:survey',

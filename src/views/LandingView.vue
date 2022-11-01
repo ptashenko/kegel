@@ -202,52 +202,55 @@
   />
   <div class="h200" v-if="!step_2"></div>
   <div class="step_2" v-if="step_2">
-    <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
-      <div class="after"> 
-        <span class="bold">Payment method</span>
-      </div>
-      <div class="d-flex flex-column align-items-end">
-        <span class="cursor opacity-75" @click="showModal3">Why now?</span>
-      </div>
-    </div>
-    <hr>
-    <div class="mw-450 d-flex mb-32">
-      <p class="fs-16-14">
-        <i>
-          You will only be charged ${{price}} for your 7-day trial.
-        </i>
-      </p>
-    </div>
-    <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item" :auth_price="this.price" id="paymentForm"/>
-      <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
-        <div class="d-flex align-items-center star">
-          <img src="@/assets/images/star1.png" alt="star">
-          <img src="@/assets/images/star1.png" alt="star">
-          <img src="@/assets/images/star1.png" alt="star">
-          <img src="@/assets/images/star1.png" alt="star">
-          <img src="@/assets/images/star2.png" alt="star">
-        </div>
-        <div class="d-flex align-items-center">
-          <img src="@/assets/images/icons/out48.svg" alt="out">
-        </div>
-        <p> <span class="bold">36k</span> 5-star ratings</p>
-      </div>
-    </div>
-    <div class="mw-450 d-flex flex-column mb-32">
-      <div class="item-li d-flex align-items-center">
-        <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
-        <p class="fs-16-14">
-          7-day trial for ${{price}}
-        </p>
-      </div>
-      <div class="item-li d-flex align-items-center">
-        <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
-        <p class="fs-16-14">
-          You will get an email confirmation every time your subscription renews
-        </p>
-      </div>
-    </div>
+    <template v-if="version !== 4">
+          <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
+            <div class="after">
+              <span class="bold">Payment method</span>
+            </div>
+            <div class="d-flex flex-column align-items-end">
+              <span class="cursor opacity-75" @click="showModal3">Why now?</span>
+            </div>
+          </div>
+          <hr>
+          <div class="mw-450 d-flex mb-32">
+            <p class="fs-16-14">
+              <i>
+                You will only be charged ${{price}} for your 7-day trial.
+              </i>
+            </p>
+          </div>
+          <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
+            <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item"
+              :auth_price="this.price" id="paymentForm" />
+            <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
+              <div class="d-flex align-items-center star">
+                <img src="@/assets/images/star1.png" alt="star">
+                <img src="@/assets/images/star1.png" alt="star">
+                <img src="@/assets/images/star1.png" alt="star">
+                <img src="@/assets/images/star1.png" alt="star">
+                <img src="@/assets/images/star2.png" alt="star">
+              </div>
+              <div class="d-flex align-items-center">
+                <img src="@/assets/images/icons/out48.svg" alt="out">
+              </div>
+              <p> <span class="bold">36k</span> 5-star ratings</p>
+            </div>
+          </div>
+          <div class="mw-450 d-flex flex-column mb-32">
+            <div class="item-li d-flex align-items-center">
+              <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
+              <p class="fs-16-14">
+                7-day trial for ${{price}}
+              </p>
+            </div>
+            <div class="item-li d-flex align-items-center">
+              <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
+              <p class="fs-16-14">
+                You will get an email confirmation every time your subscription renews
+              </p>
+            </div>
+          </div>
+    </template>
     <div class="block__text mw-450">
       <p class="title">Your information is safe</p>
       <p class="fs-16-14">We will not sell or rent your personal contact information for any marketing purposes.</p>
@@ -408,6 +411,7 @@ export default {
       VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
       apple_pay: true, 
+      version: Number(localStorage.getItem('ver')),
       dataPP2:'September 25',
       ggg:0,
       textBtn:'Start my plan',

@@ -77,6 +77,8 @@ export default {
       isEmailTouched: false,
       upValue: this.EMAILUSER,
       title: 'Enter email adress',
+      version: localStorage.getItem('ver'),
+      landingView: localStorage.getItem('ver') == 5 ? 'LandingViewV5' : 'LandingView'
     };
   },
  
@@ -96,11 +98,11 @@ export default {
 
   methods: {
     ...mapActions(['setEmail']),
-    nextUrl(){
+    nextUrl() {
       if (this.closeActive) {
         VueScrollTo.scrollTo('.dark-layout');
         this.setEmail(this.upValue)
-        this.$router.push('LandingView');
+        this.$router.push(this.landingView);
         this.mixpanel.track('E-mail Screen Completed', {
           email: this.upValue
         })
@@ -113,7 +115,7 @@ export default {
     nextUrlEmail(){
       VueScrollTo.scrollTo('.dark-layout')
       this.setEmail(this.upValue)
-      this.$router.push('LandingView')
+      this.$router.push(this.landingView)
       
     },
   },
@@ -130,6 +132,8 @@ export default {
   },
   created () {
     this.mixpanel.track('E-mail Screen Shown')
+  },
+  mounted() {
   }
 };
 </script>

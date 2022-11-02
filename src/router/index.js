@@ -13,6 +13,7 @@ import AddressPage from '@/views/AddressPage.vue';
 import LandingView from '@/views/LandingView.vue';
 import LandingViewV2 from '@/views/LandingViewV2.vue';
 import LandingViewV3 from '@/views/LandingViewV3.vue';
+import LandingViewV5 from '@/views/LandingViewV5.vue';
 import Landing_ios_v1 from '@/views/Landing_ios_v1.vue';
 import Landing_ios_v2 from '@/views/Landing_ios_v2.vue';
 import Landing_ios_v3 from '@/views/Landing_ios_v3.vue';
@@ -73,6 +74,11 @@ const routes = [{
         path: '/LandingView',
         name: 'LandingView',
         component: LandingView,
+    },
+    {
+        path: '/LandingViewV5',
+        name: 'LandingViewV5',
+        component: LandingViewV5,
     },
     {
         path: '/AddressPage',

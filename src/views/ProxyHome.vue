@@ -1,6 +1,6 @@
 <template>
-  <HomeView v-if="version === 1" />
   <HomeView_v2 v-if="version === 4" />
+  <HomeView v-else />
 </template>
 
 <script>

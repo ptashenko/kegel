@@ -20,7 +20,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="claim">
+            <div class="claim" v-if="device.ios">
                 <div class="claim__title">
                     <img class="claim__title-icon" src="@/assets/images/icons/icon_check-red-bg.svg" />
                     <h3 class="claim__title-text">Progress Tracker</h3>
@@ -37,7 +37,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="claim">
+            <div class="claim" v-if="device.ios">
                 <div class="claim__title">
                     <img class="claim__title-icon" src="@/assets/images/icons/icon_check-red-bg.svg" />
                     <h3 class="claim__title-text">Daily Challenges</h3>
@@ -78,7 +78,7 @@
 
 <script>
 export default {
-
+    props: ['device'],
 }
 </script>
 

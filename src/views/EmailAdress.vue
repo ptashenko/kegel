@@ -78,7 +78,6 @@ export default {
       upValue: this.EMAILUSER,
       title: 'Enter email adress',
       version: localStorage.getItem('ver'),
-      landingView: localStorage.getItem('ver') == 5 ? 'LandingViewV5' : 'LandingView'
     };
   },
  
@@ -90,6 +89,16 @@ export default {
       this.textpurpose = obj.purpose
       return this.textpurpose;
     },
+    ladningView() {
+      switch (Number(this.version)) {
+        case 5:
+          return 'LandingViewV5'
+        case 6:
+          return 'LandingViewV4'
+        default:
+          return 'LandingView'
+      }
+    }
   },
 
   mounted() {
@@ -102,7 +111,7 @@ export default {
       if (this.closeActive) {
         VueScrollTo.scrollTo('.dark-layout');
         this.setEmail(this.upValue)
-        this.$router.push(this.landingView);
+        this.$router.push(this.ladningView);
         this.mixpanel.track('E-mail Screen Completed', {
           email: this.upValue
         })
@@ -115,7 +124,7 @@ export default {
     nextUrlEmail(){
       VueScrollTo.scrollTo('.dark-layout')
       this.setEmail(this.upValue)
-      this.$router.push(this.landingView)
+      this.$router.push(this.ladningView)
       
     },
   },
@@ -134,6 +143,7 @@ export default {
     this.mixpanel.track('E-mail Screen Shown')
   },
   mounted() {
+    console.log(this.ladningView)
   }
 };
 </script>

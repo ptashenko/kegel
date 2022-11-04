@@ -21,6 +21,8 @@ import HeaderLayout from '@/components/Header.vue';
 import KegelReview from '@/layouts/KegelReview.vue';
 import Processing from '@/layouts/Processing.vue';
 import Reviews from '@/layouts/Reviews.vue';
+import ReviewsV4 from '@/layouts/ReviewsV4.vue';
+import WeMatch from '@/layouts/WeMatch.vue';
 import Standart from '@/layouts/Standart.vue';
 import StandartTwo from '@/layouts/StandartTwo.vue';
 import Questions from '@/layouts/Questions.vue';
@@ -42,7 +44,9 @@ export default {
     Questions,
     AfterMap,
     Steps,
-    Transition
+    Transition,
+    WeMatch,
+    ReviewsV4
   },
   computed: {
     ...mapGetters(['content', 'track']),

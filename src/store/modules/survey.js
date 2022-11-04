@@ -9,6 +9,7 @@ const state = () => ({
     track: {},
     content: {},
     separations: [],
+    version: localStorage.getItem('ver'),
     layotStep: 1,
     loader: true,
     tracks: [{
@@ -21,16 +22,16 @@ const state = () => ({
             layouts: [
                 { id: 1, separation: true },
                 { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 },
-                { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10, longQuiz: true },
+                { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10, ver4: true },
                 { id: 11 }, { id: 12 },
                 { id: 333, separation: true },
-                { id: 14, longQuiz: true }, { id: 15, longQuiz: true }, { id: 16, longQuiz: true }, { id: 17, longQuiz: true },
-                { id: 18 }, { id: 20 }, { id: 21 }, { id: 22, longQuiz: true },
+                { id: 14, ver4: true }, { id: 15, ver4: true }, { id: 16, ver4: true }, { id: 17, ver4: true },
+                { id: 18 }, { id: 20, ver6: true }, { id: 21 }, { id: 22, ver4: true },
                 { id: 23 },
-                { id: 24, separation: true }, { id: 25, longQuiz: true }, { id: 26 }, { id: 27 },
-                { id: 28 }, { id: 29, longQuiz: true }, { id: 30, longQuiz: true }, { id: 31, longQuiz: true },
-                { id: 32 }, { id: 322 }, { id: 33, longQuiz: true },
-                { id: 34, longQuiz: true, separation: true }
+                { id: 24, separation: true }, { id: 25, ver4: true }, { id: 26 }, { id: 27 },
+                { id: 28 }, { id: 29, ver4: true }, { id: 30, ver4: true }, { id: 31, ver4: true },
+                { id: 32 }, { id: 322, ver6: true }, { id: 33, ver4: true },
+                { id: 34, ver4: true, separation: true }
             ],
         },
         {
@@ -46,13 +47,13 @@ const state = () => ({
                 { id: 352 }, { id: 37 }, { id: 38 }, { id: 39 },
                 { id: 40 }, { id: 401 },
                 { id: 41, separation: true },
-                { id: 14, longQuiz: true }, { id: 15, longQuiz: true }, { id: 42, longQuiz: true }, { id: 43, longQuiz: true },
-                { id: 56, longQuiz: true }, { id: 57 }, { id: 44 }, { id: 45, longQuiz: true }, { id: 451, longQuiz: true }, { id: 46 },
+                { id: 14, ver4: true }, { id: 15, ver4: true }, { id: 42, ver4: true }, { id: 43, ver4: true },
+                { id: 56, ver4: true }, { id: 57, ver6: true }, { id: 44 }, { id: 45, ver4: true }, { id: 451, ver4: true }, { id: 46 },
                 { id: 47, separation: true },
-                { id: 25, longQuiz: true }, { id: 26 }, { id: 272 }, { id: 282 }, { id: 29, longQuiz: true },
-                { id: 30, longQuiz: true }, { id: 31, longQuiz: true }, { id: 32 },
-                { id: 321 }, { id: 33, longQuiz: true },
-                { id: 34, separation: true, longQuiz: true }
+                { id: 25, ver4: true }, { id: 26 }, { id: 272 }, { id: 282 }, { id: 29, ver4: true },
+                { id: 30, ver4: true }, { id: 31, ver4: true }, { id: 32 },
+                { id: 321, ver6: true }, { id: 33, ver4: true },
+                { id: 34, separation: true, ver4: true }
             ],
         },
         {
@@ -65,16 +66,16 @@ const state = () => ({
             layouts: [
                 { id: 1, separation: true },
                 { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },
-                { id: 50 }, { id: 21 }, { id: 22, longQuiz: true }, { id: 51 },
-                { id: 44 }, { id: 450, longQuiz: true }, { id: 453, longQuiz: true },
+                { id: 50 }, { id: 21 }, { id: 22, ver4: true }, { id: 51 },
+                { id: 44 }, { id: 450, ver4: true }, { id: 453, ver4: true },
                 { id: 333, separation: true },
-                { id: 14, longQuiz: true }, { id: 15, longQuiz: true }, { id: 52 },
-                { id: 53, longQuiz: true }, { id: 201 },
-                { id: 54, longQuiz: true }, { id: 26 }, { id: 55 },
+                { id: 14, ver4: true }, { id: 15, ver4: true }, { id: 52 },
+                { id: 53, ver4: true }, { id: 201, ver6: true },
+                { id: 54, ver4: true }, { id: 26 }, { id: 55 },
                 { id: 283, separation: true },
-                { id: 29, longQuiz: true }, { id: 30, longQuiz: true }, { id: 31, longQuiz: true },
-                { id: 32 }, { id: 323 }, { id: 33, longQuiz: true },
-                { id: 34, separation: true, longQuiz: true }
+                { id: 29, ver4: true }, { id: 30, ver4: true }, { id: 31, ver4: true },
+                { id: 32 }, { id: 323, ver6: true }, { id: 33, ver4: true },
+                { id: 34, separation: true, ver4: true }
             ],
         },
     ],
@@ -430,6 +431,13 @@ const state = () => ({
             ref: "EDcan",
             thumbnail: 'ED.json',
             reviews: [1, 2, 3, 4, 5, 6],
+        },
+        {
+            id: 200,
+            title: 'Congrats, we\'re a match!',
+            layoutName: 'WeMatch',
+            image: 'img_match.png',
+            text: 'We\'re analyzing your answers and it appears that you\'re exactly the kind of person this Kegel Plan was made for.\nNow, let\'s dive deeper into your lifestyle to know you better.'
         },
         {
             id: 201,
@@ -1045,6 +1053,13 @@ const state = () => ({
             thumbnail: 'PE.json',
             reviews: [4, 5, 6, 1, 2, 3],
         },
+        {
+            id: 601,
+            title: 'You\'re almost there!',
+            layoutName: 'ReviewsV4',
+            image: 'img_almost.png',
+            reviews: [1, 2, 3, 4, 5, 6],
+        },
     ],
 });
 
@@ -1142,16 +1157,24 @@ const getters = {
             ver,
         } = state;
         let index = null;
-        const shortQuizLayouts = track.layouts.filter(item => !item.longQuiz);
-        shortQuizLayouts.forEach((layout) => {
+        let currentQuiz = null;
+        const version = Number(localStorage.getItem('ver'));
+        if (version === 4) {
+            currentQuiz = track.layouts.filter(item => !item.ver4)
+        } else if (version === 6) {
+            currentQuiz = track.layouts.filter(item => !item.ver6);
+        } else {
+            currentQuiz = track.layouts;
+        }
+        currentQuiz.forEach((layout) => {
             if (layout.id === content.id) {
-                index = shortQuizLayouts.indexOf(layout);
+                index = currentQuiz.indexOf(layout);
             }
         });
         const myPrewContentId = contents.find((content) => {
             let result = null;
-            if (shortQuizLayouts[index - 1]) {
-                if (shortQuizLayouts[index - 1].id === content.id) {
+            if (currentQuiz[index - 1]) {
+                if (currentQuiz[index - 1].id === content.id) {
                     result = content;
                 }
             }
@@ -1168,18 +1191,39 @@ const getters = {
         } = state;
         let index = null;
         const version = Number(localStorage.getItem('ver'));
-        const shortQuizLayouts = version === 4 ? track.layouts.filter(item => !item.longQuiz) : track.layouts;
-        version === 4 && track.id === 2 && shortQuizLayouts.splice(12, 0, { id: 99 });
+        let currentQuiz = null;
 
-        shortQuizLayouts.forEach((layout) => {
+        if (version === 4) {
+            currentQuiz = track.layouts.filter(item => !item.ver4)
+            track.id === 2 && currentQuiz.splice(12, 0, { id: 99 });
+        } else if (version === 6) {
+            currentQuiz = track.layouts.filter(item => !item.ver6);
+            switch (track.id) {
+                case 1:
+                    currentQuiz.splice(18, 0, { id: 200 });
+                    currentQuiz.splice(31, 0, { id: 601 });
+                    break;
+                case 2:
+                    currentQuiz.splice(17, 0, { id: 200 });
+                    currentQuiz.splice(31, 0, { id: 601 });
+                    break;
+                case 3:
+                    currentQuiz.splice(17, 0, { id: 200 });
+                    currentQuiz.splice(26, 0, { id: 601 });
+            }
+        } else {
+            currentQuiz = track.layouts;
+        }
+
+        currentQuiz.forEach((layout) => {
             if (layout.id === content.id) {
-                index = shortQuizLayouts.indexOf(layout);
+                index = currentQuiz.indexOf(layout);
             }
         });
         const nextContent = contents.find((content) => {
             let result = null;
-            if (shortQuizLayouts[index+1]) {
-                if (shortQuizLayouts[index+1].id === content.id) {
+            if (currentQuiz[index+1]) {
+                if (currentQuiz[index+1].id === content.id) {
                     result = content;
                 }
             }

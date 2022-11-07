@@ -520,7 +520,7 @@ const state = () => ({
         },
         {
             id: 26,
-            title: 'How would you rate your libido now?',
+            title: 'How would you rate your libido?',
             answer: {
                 style: 'buttons',
                 textLeft: 'Low',

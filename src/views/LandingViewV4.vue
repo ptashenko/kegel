@@ -41,7 +41,7 @@
               </div>
             </div>
             <div id="trigger1" class="date">
-              <h3 style="margin: 0">Start your transformation & enjoy the result!</h3>
+              <h3>Start your transformation & enjoy the result!</h3>
             </div>
 
             <div class=" layout__thumbnail">
@@ -165,9 +165,10 @@
     class="footer-controls__button red"
     @click="showModal2()"
   />
-  <div class="h200" v-if="!step_2"></div>
-  <div class="step_2" v-if="step_2">
+  <div class="h200" v-if="!step_2">
     <div id="paypal"></div>
+  </div>
+  <div class="step_2" v-if="step_2">
     <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
       <div class="after">
         <span class="bold">Payment method</span>
@@ -254,7 +255,7 @@
     <div class="main-pre-footer">
       <div class="main-pre-footer_info">
         Disclaimer: Each individual’s results may vary from person to person based on health condition, body type, starting
-        point, his or her unique background, dedication, desire, motivation, actions, and numerous other factorsю. This service
+        point, his or her unique background, dedication, desire, motivation, actions, and numerous other factors. This service
         offers health and fitness information and is designed for educational and entertainment purposes only. You should not
         rely on this information as a substitute for, nor does it replace, professional medical advice, diagnosis, or treatment.
         It is intended to be provided for informational, educational, and self-empowerment purposes only. If you have any
@@ -1627,6 +1628,20 @@ ul{
 .date{
   text-align: center;
   margin-bottom: 0px;
+
+  & h3 {
+    margin: 0;
+    font-family: 'SF-Pro-Display-Bold';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 150%;
+      text-align: center;
+      color: #111113;
+      @media (min-width: 800px) {
+        font-size: 26px;
+      }
+  }
   .by{
     font-family: "SF Pro Text Bold";
     color: #E44240;

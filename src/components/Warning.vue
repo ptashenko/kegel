@@ -1,7 +1,7 @@
 <template>
     <div class="warning">
         <img src="../assets/images/icons/icon_attention.svg" class="warning__icon" alt="">
-        <p class="warning__text">Most users see their <b>first improvements just after 1 month</b></p>
+        <p class="warning__text">Most users see their <span>first improvements just after 1 month</span></p>
     </div>
 </template>
 
@@ -29,8 +29,11 @@ export default {
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
-        line-height: 150%;
+        line-height: 1.5;
         color: #111113;
+        & span {
+            font-family: 'SF Pro Text Bold';
+        }
     }
 }
 </style>

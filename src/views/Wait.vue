@@ -226,7 +226,7 @@ export default {
 
     .steps {
       &__col {
-        background-color: #111113;
+        background-color: #111113 !important;
       }
     }
 

@@ -308,7 +308,13 @@ const state = () => ({
             thumbnail: 'ED_s4.json',
             layoutName: 'KegelReview',
             reviews: [8],
-            proc: 'Connecting to the database'
+            proc: 'Connecting to the database',
+            buttons: [{
+                id: 1,
+                logo: 'logo_source_3',
+                title: 'British Journal of General Practice',
+                text: 'Source:',
+            }, ],
         },
         {
             id: 14,
@@ -798,6 +804,12 @@ const state = () => ({
             thumbnail: 'ED_s4.json',
             layoutName: 'KegelReview',
             reviews: [7],
+            buttons: [{
+                id: 1,
+                logo: 'logo_source_4',
+                title: 'Therapeutic Advances in Urology',
+                text: 'Source:',
+            }, ],
         },
         {
             id: 42,

@@ -197,6 +197,7 @@ export default {
   margin-bottom: 32px;
 }
 .payment-info {
+  margin-top: 16px;
   font-style: italic;
   font-weight: 400;
   font-size: 14px;

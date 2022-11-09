@@ -51,12 +51,11 @@
                 </span>
                 <span v-if="AddPurposeCom"><span class="width-400"> and</span> <span class="text-bold">{{ addpurpose }}</span></span>
               </div>
-              <div class="by ">
-                <span class="m20">by &nbsp;</span>
+              <div class="by " style="min-height: 30px">
                 <!-- <div class="blockAnimate"> -->
                   <transition name="slide-fade">
-                    <span v-if="show" class="block__anim">{{dataPP3}}</span> 
-                  </transition> 
+                    <span v-if="show" class="block__anim">by {{dataPP3}}</span>
+                  </transition>
                 <!-- </div> -->
               </div>
             </div>
@@ -84,7 +83,7 @@
                 <p class="block__data__item">{{moment().add(5,'month').format("MMM")}}</p>
               </div>
             </div>
-            <p class="p-14 opac_5 bottom_img">This diagram is non-personalized data based on scientific research</p>
+            <p class="p-14 opac_5 bottom_img">{{graphText}}</p>
             <div id="Benefits" class="h2 inside" >
               Kegel Plan Benefits
             </div>
@@ -237,19 +236,20 @@
             </div>
           </div>
           <div class="mw-450 d-flex flex-column mb-32">
-            <div class="item-li d-flex align-items-center">
+            <div class="item-li benefits d-flex align-items-center">
               <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
               <p class="fs-16-14">
                 7-day trial for ${{price}}
               </p>
             </div>
-            <div class="item-li d-flex align-items-center">
+            <div class="item-li benefits d-flex align-items-center">
               <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
               <p class="fs-16-14">
                 You will get an email confirmation every time your subscription renews
               </p>
             </div>
           </div>
+          <Guarantee />
     </template>
     <div class="block__text mw-450">
       <p class="title">Your information is safe</p>
@@ -273,54 +273,63 @@
         <span class="bold">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
       </p>
     </div>
+    <div class="main-pre-footer">
+      <div class="main-pre-footer_info">
+        Disclaimer: Each individual’s results may vary from person to person based on health condition, body type, starting
+        point, his or her unique background, dedication, desire, motivation, actions, and numerous other factors. This
+        service
+        offers health and fitness information and is designed for educational and entertainment purposes only. You should
+        not
+        rely on this information as a substitute for, nor does it replace, professional medical advice, diagnosis, or
+        treatment.
+        It is intended to be provided for informational, educational, and self-empowerment purposes only. If you have any
+        concerns or questions about your health, you should always consult with a physician or other health-care
+        professional.
+      </div>
+      <div class="main-pre-footer_info mb-2">
+        <p class="mb-1">Appercut sp z o o</p>
+        <p>Warsaw, Twarda 18, 00-105</p>
+      </div>
+      <div class="main-pre-footer_links">
+        <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>
+        <a href="/terms.html" target="_blank">Terms & Conditions</a>
+        <a href="/refund.html" target="_blank">Refund Policy</a>
+      </div>
+    </div>
   </div>
-  <vpopup
-  class="popup_wraper"
-    textTitle=""
-    v-if="popupVisible"
-  > 
-    <p class="opasity_75">
-      In view of the pandemic and global health crisis, we are offering the option to try out Kegel Plan for as little as $1 for a 7-day trial*.
-    </p>
-    <p class="bold opasity_75       ">
-      Money shouldn't stand in the way of a perfect intimate health and well-being goals. So choose an amount that you think is reasonable to try us out.
-    </p>
-    <p class="opasity_75">
-      It costs up $9.73 to cover our expenses for the trial, but please choose an amount you're comfortable with.
-    </p>
-    <p class="bold desktop-center">
-      Choose comfortable amount:
-    </p>
-    <div class="block-btn d-flex align-items-start justify-content-beetwen vw-450">
-      <button
-      class="v-popup__btn"
-      :class="{ active: isActiveYes }"
-      @click="BtnActiveYes"
-    >
-    $1
-    </button>
-    <div class="d-flex flex-column align-items-end">
-      <button
-        class="v-popup__btn"
-        :class="{ active: isActiveNo }"
-        @click="BtnActiveNo"
-      >
-      $9.73
-      </button>
-      <p class="small">Most popular choice*</p>
-    </div>
-    
-    </div>
-    
-    <button 
-      class="v-popup__submit_btn"
-      :class="{active: closeActive}"
-      @click="closePopup"
-    >
-    See my plan
-    </button>
-    <p class="text__bottom_btn">*7-day trial</p>
-  </vpopup>
+      <vpopup v-if="popupVisible" class="popup_wraper" textTitle="">
+        <p class="opasity_75">
+          In view of the pandemic and global health crisis, we are offering the option to try out Kegel Plan for as little as
+          $1 for a 7-day trial*.
+        </p>
+        <p class="bold opasity_75       ">
+          Money shouldn't stand in the way of a perfect intimate health and well-being goals. So choose an amount that you
+          think is reasonable to try us out.
+        </p>
+        <p class="opasity_75">
+          It costs up $9.73 to cover our expenses for the trial, but please choose an amount you're comfortable with.
+        </p>
+        <p class="bold desktop-center">
+          Choose comfortable amount:
+        </p>
+        <div class="block-btn d-flex align-items-start justify-content-beetwen vw-450">
+          <button class="v-popup__btn" :class="{ active: isActiveYes }" @click="BtnActiveYes">
+            $1
+          </button>
+          <div class="d-flex flex-column align-items-end">
+            <button class="v-popup__btn" :class="{ active: isActiveNo }" @click="BtnActiveNo">
+              $9.73
+            </button>
+            <p class="small">Most popular choice*</p>
+          </div>
+      
+        </div>
+      
+        <button class="v-popup__submit_btn" :class="{active: closeActive}" @click="closePopup">
+          See my plan
+        </button>
+        <p class="text__bottom_btn">*7-day trial</p>
+      </vpopup>
   <vpopup
   class="popup_wraper trial"
     textTitle="Trial commitment"
@@ -391,6 +400,7 @@ import ButtonField from '@/components/ui/Button.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import btnComponent from '@/components/questions/btnPopup.vue';
 import countdown from '@/components/Countdown.vue';
+import Guarantee from '@/components/Guarantee.vue';
 import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 import { getItem } from '@/common/localStorage';
@@ -404,7 +414,8 @@ export default {
     vpopup,
     btnComponent,
     countdown,
-    PaymentFormCompanent
+    PaymentFormCompanent,
+    Guarantee
 },
   data() {
     return {
@@ -481,36 +492,20 @@ export default {
     },
     showModal() {
       sessionStorage.setItem('scrollto', window.pageYOffset)
-      console.log(window.pageYOffset);
       this.mixpanel.track('Comfortable Amount Shown')
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
       this.popupVisible = true
-      body.classList.add('fixed');
+      window.document.body.style.overflow = 'hidden';
     },
     showModal2() {
-      sessionStorage.setItem('scrollto', window.pageYOffset)
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
+      sessionStorage.setItem('scrollto', window.pageYOffset);
       this.popupVisible2 = true
       this.step_2 = true
-      body.classList.add('fixed');
+      window.document.body.style.overflow = 'hidden';
     },
     showModal3() {
-      sessionStorage.setItem('scrollto', window.pageYOffset)
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      this.popupVisible3 = true
-      body.classList.add('fixed');
+      sessionStorage.setItem('scrollto', window.pageYOffset);
+      this.popupVisible3 = true;
+      window.document.body.style.overflow = 'hidden';
     },
     closePopup(e){
       const height = sessionStorage.getItem('scrollto')
@@ -522,32 +517,16 @@ export default {
           amount: this.price
         })
       }
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      let x = e.target
-      if(x.classList.contains('active')){
-        this.popupVisible = false
-        body.classList.remove('fixed');
-      }
+      this.popupVisible = false;
+      window.document.body.style.overflow = 'unset';
       // VueScrollTo.scrollTo('#Benefits');
 
     },
     closePopup2(e){
       localStorage.setItem('Button step_2', 'true')
       this.mixpanel.track('Landing Page 2 Shown')
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      let x = e.target
-      if(x.classList.contains('active')){
-        this.popupVisible2 = false
-        body.classList.remove('fixed');
-      }
+      this.popupVisible2 = false;
+      window.document.body.style.overflow = 'unset';
       
       window.scrollTo({
         top: document.getElementById('paypal').offsetTop,
@@ -558,22 +537,11 @@ export default {
       //  VueScrollTo.scrollTo('#paymentForm');
      // this.getPayPalIntent();
     },
-    async scrollToForm() {
-      
-    },
     closePopup3(e) {
       const height = sessionStorage.getItem('scrollto')
       setTimeout(function(){ window.scrollTo( 0, height ) })
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      let x = e.target
-      if(x.classList.contains('active')){
-        this.popupVisible3 = false
-        body.classList.remove('fixed');
-      }
+      this.popupVisible3 = false
+      window.document.body.style.overflow = 'unset';
       // VueScrollTo.scrollTo('#paypal');
     },
     BtnActiveYes() {
@@ -612,6 +580,16 @@ export default {
       let obj = JSON.parse(json);
       this.track = obj.id
       return this.track
+  },
+    graphText() {
+      switch (this.version) {
+        case 1:
+          return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
+        case 5:
+          return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
+        default:
+          return 'This diagram is non-personalized data based on scientific research'
+      }
     },
     imagechart(){
       if(this.jsLocal == 2){
@@ -750,7 +728,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .token {
   color: #555;
   padding: 10px;
@@ -807,6 +784,11 @@ export default {
     margin-right: 15px;
     width: 16px;
     height: 16px;
+  }
+}
+.benefits {
+  &:not(:last-child) {
+    margin-bottom: 15px;
   }
 }
 
@@ -1509,7 +1491,4 @@ input:active, textarea:active{outline:none;}
 textarea {resize:none;}
 textarea {resize:vertical;}
 textarea {resize:horizontal;}
-
-
-
 </style>

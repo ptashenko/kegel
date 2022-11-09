@@ -10,7 +10,7 @@
 
 
       <div class="layout__buttons">
-          <img src="@/assets/img/land_v6/img_match.png">
+          <img class="layout__image" src="@/assets/img/land_v6/img_match.png">
           <p class="text">
             We're analyzing your answers and it appears that you're <span>exactly</span> the kind of person this <span>Kegel Plan</span> was made for.
           </p>
@@ -87,10 +87,12 @@ export default {
     font-size: 16px;
     line-height: 150%;
     color: #111113;
-    margin: 10px 0;
     text-align: left;
     & span {
       font-family: 'SF Pro Text Semibold';
+    }
+    &:not(:last-child) {
+      margin-bottom: 10px;
     }
 }
 .h2 {
@@ -113,10 +115,13 @@ export default {
   &__buttons{
     text-align: center;
     max-width: 400px;
-    margin: 17px auto;
+    margin: 0 auto;
     img{
       width: 100%;
     }
+  }
+  &__image {
+    margin: 32px 0;
   }
   &__title {
     font-weight: 600;

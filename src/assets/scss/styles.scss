@@ -278,15 +278,16 @@ header .container-main {
         max-width: 170px;
         margin: 0 auto;
         position: relative;
+        justify-content: center;
         // padding-left: 50px;
-        .block__anim {
-            margin-left: 30px;
-        }
+        // .block__anim {
+        //     margin-left: 30px;
+        // }
     }
 }
 
 .block__anim {
-    position: absolute;
+    position: relative;
     transform: translate(0);
 }
 

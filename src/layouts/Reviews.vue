@@ -13,19 +13,17 @@
           <div class="purpose">
             {{ track.purpose }} <span v-if="AddPurpose"><span class="width-400"> and</span> {{ track.addpurpose }}</span>
           </div>
-        <div  class="red by" v-if="content.id == 20 || content.id == 57 || content.id == 201">
-          <span>by&nbsp;</span> 
+        <div  class="red by" style="min-height: 30px" v-if="content.id == 20 || content.id == 57 || content.id == 201">
           <!-- <div class=""> -->
             <transition name="slide-fade">
-              <span v-if="show" class="block__anim">{{dataPP1}}</span> 
+              <span v-if="show">by {{dataPP1}}</span> 
             </transition> 
           <!-- </div> -->
         </div>
-        <div class="red by" v-else>
-          <span>by&nbsp;</span> 
+        <div class="red by" style="min-height: 30px" v-else>
           <!-- <div class=""> -->
             <transition name="slide-fade">
-              <span v-if="show" class="block__anim">{{dataPP2}}</span> 
+              <span v-if="show" class="block__anim">by {{dataPP2}}</span> 
             </transition> 
           <!-- </div> -->
         </div>
@@ -59,7 +57,7 @@
       </div>
 
       <div class="desc text-center">
-        This diagram is non-personalized data based on scientific research
+        {{ graphText }}
       </div>
 
       <div class="reviews">
@@ -125,6 +123,7 @@ export default {
       numanimate: 1,
       show: false,
       numanim: null,
+      version: Number(localStorage.getItem('ver')),
     }
   },
 
@@ -138,7 +137,16 @@ export default {
         this.AddPurpose = false
       } 
     },
-
+    graphText() {
+      switch (this.version) {
+        case 1:
+          return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
+        case 5:
+          return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
+        default: 
+          return 'This diagram is non-personalized data based on scientific research'
+      }
+    },
     imagePE() {
       const json = localStorage.getItem('track');
       const obj = JSON.parse(json);

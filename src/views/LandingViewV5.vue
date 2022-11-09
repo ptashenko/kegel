@@ -52,11 +52,10 @@
                 </span>
                 <span v-if="AddPurposeCom"><span class="width-400"> and</span> <span class="text-bold">{{ addpurpose }}</span></span>
               </div>
-              <div class="by ">
-                <span class="m20">by &nbsp;</span>
+              <div class="by " style="min-height: 30px;">
                 <!-- <div class="blockAnimate"> -->
                   <transition name="slide-fade">
-                    <span v-if="show" class="block__anim">{{dataPP3}}</span> 
+                    <span v-if="show" class="block__anim">by {{dataPP3}}</span> 
                   </transition> 
                 <!-- </div> -->
               </div>
@@ -85,7 +84,8 @@
                 <p class="block__data__item">{{moment().add(5,'month').format("MMM")}}</p>
               </div>
             </div>
-            <p class="p-14 opac_5 bottom_img">This diagram is non-personalized data based on scientific research</p>
+            <p class="p-14 opac_5 bottom_img">This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to
+            person.</p>
             <div id="Benefits" class="h2 inside" >
               Kegel Plan Benefits
             </div>
@@ -118,7 +118,12 @@
             <h3 class="subtitle">Claim your Plan & get:</h3>
             <ClaimPlanList :device="device" />
             <h2 class="effective_title">Here's how effective this plan is</h2>
-            <lottie-animation class="animation" :animationData="require(`@/assets/images/json/new_graph.json`)" />
+            <lottie-animation class="animationGraph" 
+              :animationData="require(`@/assets/images/json/new_graph.json`)"
+              ref="graph"
+                :speed="1"
+                :autoPlay="false"
+              />
             <Warning />
           </div>
         </div>
@@ -266,13 +271,6 @@
       </div>
     </div>
     <hr>
-    <div class="mw-450 d-flex mb-32">
-      <p class="fs-16-14">
-        <i>
-          You will only be charged ${{price}} for your 7-day trial.
-        </i>
-      </p>
-    </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item"
         :auth_price="this.price" id="paymentForm" />
@@ -284,30 +282,20 @@
         </div>
       </div>
     <div class="mw-450 d-flex flex-column mb-32">
-      <div class="item-li d-flex align-items-center">
+      <div class="item-li benefits d-flex align-items-center">
         <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
         <p class="fs-16-14">
           7-day trial for ${{price}}
         </p>
       </div>
-      <div class="item-li d-flex align-items-center">
+      <div class="item-li benefits d-flex align-items-center">
         <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
         <p class="fs-16-14">
           You will get an email confirmation every time your subscription renews
         </p>
       </div>
     </div>
-    <div class="guarantee">
-      <div class="guarantee-wrapper">
-        <h3 class="guarantee-title">30-Day Money-Back Guarantee Without Questions</h3>
-        <p class="guarantee-description">We believe that our plan may work for you, and you’ll get visible results in a few weeks!
-        And we are so confident that we are even ready to <b>return your money without any questions</b>.
-        All you have to do is send an email to contact@kegel.men <b>within 30 days and ask for a refund</b>.
-        But we are sure that the plan will show its effectiveness and there will be no need for a refund. Find more about the
-        refund process in our <a href="./refund.html" target="_blank">refund policy</a>.</p>
-        <img src="@/assets/images/guarantee_icon.svg" class="guarantee-icon" alt="">
-      </div>
-    </div>
+    <Guarantee />
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <button class="btn_bottom" v-scroll-to="'#paypal'">
         Get my plan
@@ -319,30 +307,12 @@
         Get my plan
       </button>
     </div>
-    <div class="mw-450 d-flex flex-column mb-32">
+    <div class="mxw-450 pdlr-32 d-flex flex-column mb-64">
       <p class="text-description">
         <span><span class="bold">Your 7-day trial will last until {{ moment().add(7,'days').format('MMMM Do YYYY, h:mm a') }}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page</span>
       </p>
     </div>
-    <div class="main-pre-footer">
-      <div class="main-pre-footer_info">
-        Disclaimer: Each individual’s results may vary from person to person based on health condition, body type, starting
-        point, his or her unique background, dedication, desire, motivation, actions, and numerous other factorsю. This service
-        offers health and fitness information and is designed for educational and entertainment purposes only. You should not
-        rely on this information as a substitute for, nor does it replace, professional medical advice, diagnosis, or treatment.
-        It is intended to be provided for informational, educational, and self-empowerment purposes only. If you have any
-        concerns or questions about your health, you should always consult with a physician or other health-care professional.
-      </div>
-      <div class="main-pre-footer_info mb-2">
-        <p class="mb-1">Appercut sp z o o</p>
-        <p>Warsaw, Twarda 18, 00-105</p>
-      </div>
-      <div class="main-pre-footer_links">
-        <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>
-        <a href="/terms.html" target="_blank">Terms & Conditions</a>
-        <a href="/refund.html" target="_blank">Refund Policy</a>
-      </div>
-    </div>
+    <Footer />
   </div>
   <vpopup
   class="popup_wraper"
@@ -455,13 +425,16 @@
 <!-- При выборе оплаты класс active задать одной из button line 223,232, 235 -->
 </template>
 <script>
+import { throttle } from 'throttle-debounce';
 import { mapGetters } from 'vuex';
 import { useDevice } from "next-vue-device-detector";
 import moment from 'moment';
 import ButtonField from '@/components/ui/Button.vue';
 import FaqBlockVue from '@/components/common/FaqBlock.vue';
 import RatingStars from '@/components/RatingStars.vue';
+import Guarantee from '@/components/Guarantee.vue';
 import Warning from '@/components/Warning.vue';
+import Footer from '@/components/Footer.vue';
 import ClaimPlanList from '@/components/ClaimPlanList.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import btnComponent from '@/components/questions/btnPopup.vue';
@@ -484,7 +457,9 @@ export default {
     RatingStars,
     ClaimPlanList,
     Warning,
-    FaqBlockVue
+    FaqBlockVue,
+    Guarantee,
+    Footer
 },
   data() {
     return {
@@ -563,74 +538,42 @@ export default {
     },
     showModal() {
       sessionStorage.setItem('scrollto', window.pageYOffset)
-      console.log(window.pageYOffset);
       this.mixpanel.track('Comfortable Amount Shown')
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
       this.popupVisible = true
-      body.classList.add('fixed');
+      window.document.body.style.overflow = 'hidden';
     },
     showModal2() {
-      sessionStorage.setItem('scrollto', window.pageYOffset)
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
+      sessionStorage.setItem('scrollto', window.pageYOffset);
       this.popupVisible2 = true
       this.step_2 = true
-      body.classList.add('fixed');
+      window.document.body.style.overflow = 'hidden';
     },
     showModal3() {
-      sessionStorage.setItem('scrollto', window.pageYOffset)
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      this.popupVisible3 = true
-      body.classList.add('fixed');
+      sessionStorage.setItem('scrollto', window.pageYOffset);
+      this.popupVisible3 = true;
+      window.document.body.style.overflow = 'hidden';
     },
-    closePopup(e){
+    closePopup(e) {
       const height = sessionStorage.getItem('scrollto')
-      setTimeout(function(){ window.scrollTo( 0, height ) })
+      setTimeout(function () { window.scrollTo(0, height) })
       console.log(window.pageYOffset);
       localStorage.setItem('Comfortable amount Pop-up', 'true')
-      if(this.closeActive){
+      if (this.closeActive) {
         this.mixpanel.track('Comfortable Amount Complted', {
           amount: this.price
         })
       }
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      let x = e.target
-      if(x.classList.contains('active')){
-        this.popupVisible = false
-        body.classList.remove('fixed');
-      }
+      this.popupVisible = false;
+      window.document.body.style.overflow = 'unset';
       // VueScrollTo.scrollTo('#Benefits');
 
     },
-    closePopup2(e){
+    closePopup2(e) {
       localStorage.setItem('Button step_2', 'true')
       this.mixpanel.track('Landing Page 2 Shown')
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      let x = e.target
-      if(x.classList.contains('active')){
-        this.popupVisible2 = false
-        body.classList.remove('fixed');
-      }
-      console.log(document.getElementById('paypal'))
+      this.popupVisible2 = false;
+      window.document.body.style.overflow = 'unset';
+
       window.scrollTo({
         top: document.getElementById('paypal').offsetTop,
         left: 0,
@@ -638,24 +581,13 @@ export default {
       });
 
       //  VueScrollTo.scrollTo('#paymentForm');
-     // this.getPayPalIntent();
-    },
-    async scrollToForm() {
-      
+      // this.getPayPalIntent();
     },
     closePopup3(e) {
       const height = sessionStorage.getItem('scrollto')
-      setTimeout(function(){ window.scrollTo( 0, height ) })
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      let x = e.target
-      if(x.classList.contains('active')){
-        this.popupVisible3 = false
-        body.classList.remove('fixed');
-      }
+      setTimeout(function () { window.scrollTo(0, height) })
+      this.popupVisible3 = false
+      window.document.body.style.overflow = 'unset';
       // VueScrollTo.scrollTo('#paypal');
     },
     BtnActiveYes() {
@@ -720,21 +652,27 @@ export default {
       
     },
     MyScrollModal(){
-        document.addEventListener('scroll', (e) => {
-        let x = window.scrollY
-        if(x>400){
-          if(localStorage.getItem('Comfortable amount Pop-up')){
+      document.addEventListener('scroll', throttle(500, (e) => {
+        let x = window.scrollY;
+        const graphScreen = document.querySelector('.animationGraph');
+        graphScreen.getBoundingClientRect().bottom - 800 <= 0 && this.$refs.graph.play();
+        console.log(graphScreen.getBoundingClientRect().bottom - 800)
+        // console.log('cursor', x);
+
+        
+        if (x > 400) {
+          if (localStorage.getItem('Comfortable amount Pop-up')) {
             this.ggg = 0
-          }else{
+          } else {
             this.ggg = 1
           }
         }
-        if(localStorage.getItem('Button step_2')){
+        if (localStorage.getItem('Button step_2')) {
           this.step_2 = true
-        }else{
+        } else {
           this.step_2 = false
         }
-      })
+      }))
     },
     ...mapGetters(['tracks']),
     purpose(){
@@ -817,80 +755,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main-pre-footer {
-  padding: 32px 32px 48px 32px;
-  background: #111113;
-
-  &_info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 150%;
-    text-align: center;
-    color: #FFFFFF;
-    opacity: 0.5;
-    margin-bottom: 16px;
-  }
-
-  &_links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  
-
-    a {
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 18px;
-      text-align: center;
-      text-decoration-line: underline;
-      color: #FFFFFF;
-      opacity: 0.75;
-      &:not(:last-child) {
-        margin-bottom: 15px;
-      }
-    }
-  }
-}
-.guarantee {
-  padding: 0 32px 32px 32px;
-  color: #111113;
-  margin-bottom: 32px;
-
-  &-title {
-    font-family: "SF Pro Text Bold";
-    margin-top: 0;
-    margin-bottom: 16px;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 135%;
-    text-align: center;
-  }
-
-  &-description {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 150%;
-  }
-
-  &-wrapper {
-    padding: 32px;
-    border: 2px solid #5773D6;
-    border-radius: 9px;
-    position: relative;
-  }
-
-  &-icon {
-    position: absolute;
-    right: 24px;
-    bottom: -61px;
-  }
-}
 .safe-checkout {
   padding-left: 32px;
   padding-right: 32px;
@@ -929,6 +793,7 @@ export default {
 }
 .small_info-block {
   padding: 0 32px 50px;
+  margin-top: 32px;
 
   &_title {
     font-weight: 600;
@@ -937,8 +802,8 @@ export default {
     text-align: center;
     color: #111113;
     font-family: "SF-Pro-Display-Bold";
-    margin-bottom: 32px;
-    margin-top: 32px;
+    margin: 0 0 32px;
+
   }
 
   &_content {
@@ -1020,17 +885,17 @@ export default {
   }
 }
 .trusted-sources {
-  margin-top: 35px;
+  margin-top: 30px;
   padding: 0 32px;
 
   &_title {
     font-weight: 600;
     font-size: 20px;
-    line-height: 135%;
+    line-height: 1.35;
     text-align: center;
     color: #111113;
     font-family: "SF-Pro-Display-Bold";
-    margin-bottom: 16px;
+    margin: 0 0 16px;
   }
 
   img {
@@ -1051,7 +916,17 @@ export default {
   }
   &__item {
     h3 {
-      margin: 10px 0;
+      font-family: 'SF-Pro-Display-Bold';
+      margin: 10px 0 4px;
+    }
+    p {
+      font-family: 'SF Pro Text Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: center;
+        color: #111113;
     }
   }
 }
@@ -1092,15 +967,13 @@ export default {
   cursor: pointer;
 }
 .text-description{
-  font-size: 14px;
-  line-height: 150%;
+  font-family: "SF Pro Text Regular";
+  font-size: 12px;
+  line-height: 1.5;
   opacity: 0.5; 
   text-align: center;
   .bold{
-    font-family: "SF Pro Text Semibold";
-  }
-  @media (max-width:480px) {
-    font-size: 12px;
+    font-family: "SF Pro Text Bold";
   }
 }
 .btn_bottom{
@@ -1137,6 +1010,12 @@ export default {
     margin-right: 15px;
     width: 16px;
     height: 16px;
+  }
+}
+
+.benefits {
+  &:not(:last-child) {
+    margin-bottom: 15px;
   }
 }
 
@@ -1256,6 +1135,14 @@ export default {
   margin: 16px auto;
   padding: 0 32px;
 }
+
+.mxw-450 {
+  max-width: 450px;
+}
+
+.pdlr-32 {
+  padding: 0 32px;
+}
 .comments {
   margin: 0 auto;
   padding-bottom: 30px;
@@ -1267,6 +1154,9 @@ export default {
 .mw-310{
   max-width: 310px;
   margin: 0px auto;
+}
+.mb-64{
+  margin-bottom: 64px;
 }
 .mb-32{
   margin-bottom: 48px;
@@ -1485,14 +1375,14 @@ hr{
 }
 // reviews
 .reviews__title {
-    font-family: "SF-Pro-Display-Semibold";
-    font-size: 18px;
-    line-height: 150%;
-    margin-bottom: 25px;
-    text-align: center;
-    @media (max-width:480px) {
-      font-size: 16px;
-    }
+  font-family: "SF-Pro-Display-Bold";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 135%;
+  text-align: center;
+  color: #111113;
+  margin-bottom: 16px;
   }
 
 .review {
@@ -1699,6 +1589,7 @@ ul{
     width: 100%;
     margin: 0 auto;
     position: relative;
+    justify-content: center;
   }
 }
 .timer__text{

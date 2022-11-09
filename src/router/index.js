@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import notFound from '@/views/NotFound.vue';
-import ProxyHome from '@/views/ProxyHome.vue';
+import HomeView_v2 from '@/views/HomeView_v2.vue';
 import SurveyView from '@/views/SurveyView.vue';
 import Wait from '@/views/Wait.vue';
 import TimePlan from '@/views/TimePlan.vue';
@@ -34,7 +34,7 @@ import PreLandv2 from "@/views/PreLandv2";
 const routes = [{
         path: '/',
         name: 'home',
-    component: ProxyHome,
+    component: HomeView_v2,
     },
     {
         path: '/survey/:survey',

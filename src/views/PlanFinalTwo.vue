@@ -75,7 +75,7 @@
           Bad blood flow to the groin area can put you at <span class="text-semibold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
         </p>
         <img class="content_img" src="@/assets/images/content/Final_modal.png" alt="">
-        <p class="opacity_05 text-center text-bottom-img">
+        <p class="diagram-description">
           *This diagram is a non-personalized illustration based on scientific research.
         </p>
         <div class="block_blue">
@@ -520,7 +520,7 @@ export default {
     line-height: 135%;
     @media (max-width:480px) {
       font-size: 24px;
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
   }
   .blue{
@@ -548,7 +548,7 @@ export default {
     max-width: 450px;
     margin: 47px auto 48px;
     @media (max-width:480px) {
-      margin: 32px auto 32px;
+      margin: 12px auto 12px;
     }
     .layout__thumbnail{
       display: block;
@@ -662,6 +662,17 @@ export default {
       max-height: 180px;
     }
   }
+  .diagram-description {
+  font-family: 'SF Pro Text Regular';
+  font-style: normal;
+  font-weight: 300 !important;
+  font-size: 12px !important;
+  line-height: 150% !important;
+  text-align: center;
+  color: #111113 !important;
+  opacity: 0.5 !important;
+  margin: 16px auto 32px !important;
+}
 }
 .footer__text{
     font-family: "SF Pro Text Light";

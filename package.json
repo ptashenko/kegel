@@ -19,6 +19,7 @@
         "next-vue-device-detector": "^0.0.1",
         "smartlook-client": "^7.0.1",
         "svg4everybody": "^2.1.9",
+        "throttle-debounce": "^5.0.0",
         "v-scroll-lock": "^1.3.1",
         "vue": "^3.2.13",
         "vue-country-region-select": "^2.0.16",

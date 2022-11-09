@@ -142,9 +142,6 @@ export default {
   created () {
     this.mixpanel.track('E-mail Screen Shown')
   },
-  mounted() {
-    console.log(this.ladningView)
-  }
 };
 </script>
 

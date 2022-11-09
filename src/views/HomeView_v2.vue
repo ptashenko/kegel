@@ -349,6 +349,8 @@ body{
     background-color: transparent;
     position: relative;
     top: 120px;
+    padding-left: 32px;
+    padding-right: 32px;
 
     @media (max-width: 480px) {
       top: 230px;

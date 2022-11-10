@@ -14,27 +14,24 @@
   </div>
   <transition name="translate" mode="out-in">
     <div v-if="true" :class="this.$route.name">
-      <header-layout :fixed="true" :dark="false"/>
-      <div class="jumbotron home v2">
-        <div class="container-main">
-          <div class="jumbotron__title">
-            Boost male performance without pills
+      <div class="background">
+          <div class="wrapper">
+            <header-layout :fixed="true" :dark="false" />
+            <div class="jumbotron home v2">
+              <div class="container-main">
+                <div class="jumbotron__title">
+                  Boost male performance without pills
+                </div>
+                <div class="jumbotron__text">
+                  Select a goal & take a short quiz to get your step-by-step plan
+                </div>
+                <div class="str">
+                  <lottie-animation ref="arrowmain" class="animationArrow" :class="{ active: isActiveHand }"
+                    :animationData="require(`@/assets/images/json/main_arrow.json`)" :loop="true" :autoPlay="true" :speed="1" />
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="jumbotron__text">
-            Select a goal & take a short quiz to get your step-by-step plan
-          </div>
-          <div class="str">
-            <lottie-animation 
-                ref="arrowmain"
-                class="animationArrow"
-                :class="{ active: isActiveHand }"
-                :animationData="require(`@/assets/images/json/main_arrow.json`)"
-                :loop="true"
-                :autoPlay="true"
-                :speed="1"
-              />
-          </div>
-        </div>
       </div>
       <!-- {{preload}} -->
       {{myHand}}
@@ -47,8 +44,8 @@
               :key="track.id"
               @click="getData(track)"
             >
-              <b>{{ track.titleShortQuiz }}</b>
-              <span>{{ track.text }}</span>
+              <span class="navigation__item--title">{{ track.titleShortQuiz }}</span>
+              <span class="navigation__item--text">{{ track.text }}</span>
               <lottie-animation 
                 v-if="track.id == 1"
                 :class="{ active: isActiveHand }"
@@ -98,8 +95,8 @@
             </span>
             <div class="footer__terms">
               <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>
-              <div class="line">|</div>
               <a href="/terms.html" target="_blank">Terms & Conditions</a>
+              <a href="/refund.html" target="_blank">Refund Policy</a>
             </div>
           </div>
         </div>
@@ -295,6 +292,19 @@ export default {
 </script>
 
 <style lang="scss">
+.wrapper {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.background {
+    background: transparent url('@/assets/images/header.png') no-repeat bottom center/cover;
+    @media (min-width: 600px) {
+      background: transparent url('@/assets/images/header-desktop.jpg') no-repeat bottom center/cover;
+    }
+}
+
 .animationHand{
   display: none;
   position: absolute!important;
@@ -319,7 +329,6 @@ body{
   margin: 0;
 }
 .jumbotron {
-  background: transparent url('@/assets/images/header.png') no-repeat bottom center/cover;
   height: 500px;
   max-width: 1200px;
   margin: 0 auto;
@@ -337,6 +346,12 @@ body{
     line-height: 38.19px;
     text-align: center;
     text-shadow: 0 0 17px #FFFFFF;
+    @media (min-width: 600px) {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 48px;
+    }
   }
 
   &__img {
@@ -364,6 +379,13 @@ body{
     line-height: 150%;
     margin: 15px 0;
     opacity: 76%;
+    @media (min-width: 600px) {
+        font-style: normal;
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 1.5;
+          text-align: center;
+      }
   }
 }
 
@@ -397,6 +419,10 @@ body{
     line-height: 1.2;
     cursor: pointer;
     transition: .4s;
+
+    @media (min-width: 600px) {
+        max-width: 520px
+      }
 
     &:hover {
       &:after {
@@ -432,12 +458,27 @@ body{
       background: #111113;
       border-radius: 9px;
     }
-
-    span {
+    &--title {
+      font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 26px;
+        text-align: center;
+      
+        /* FFFFFF */
+      
+        color: #FFFFFF;
+    }
+    &--text {
       font-family: "SF Pro Text Medium";
       font-size: 14px;
       margin-top: 4px;
       font-weight: 500;
+      @media (min-width: 600px) {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+      }
     }
 
     &:not(:last-child) {
@@ -458,6 +499,9 @@ body{
     @media (max-width:480px) {
       font-size: 12px;
     }
+    @media (min-width: 600px) {
+      max-width: 520px
+    }
   }
 }
 
@@ -465,13 +509,19 @@ body{
   padding: 51px 0px 50px;
   background: rgba(196, 196, 196, 0.2);
   .container-main{
-    padding-bottom: 32px;
+    padding: 0 0 32px;
     max-width: 350px;
     margin: 0 auto;
+    @media (min-width: 600px) {
+        padding: 0 40px 32px;
+        max-width: 600px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
   }
 
   &__info {
-    margin-top: 65px;
+    margin-top: 32px;
     opacity: 0.5;
     text-align: center;
   }
@@ -479,29 +529,63 @@ body{
   &__terms {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     margin-top: 15px;
+
+    @media (min-width: 600px) {
+      flex-direction: row;
+    }
 
     a {
       text-decoration: underline;
       color: #111113;
-    }
-    .line{
-      margin: 0 16px;
+      @media (min-width: 600px) {
+        display: flex;
+        position: relative;
+        &:not(:last-child) {
+          &::after {
+              content: '|';
+              position: absolute;
+              top: 0;
+              right: -16px;
+              pointer-events: none;
+            }
+        }
+      }
+      &:not(:last-child) {
+        margin-bottom: 13px;
+        @media (min-width: 600px) {
+            margin-bottom: 0;
+            margin-right: 32px;
+          }
+      }
     }
   }
     &__text {
       font-family: "SF Pro Text Regular";
+      margin-top: 64px;
       font-size: 14px;
       font-weight: 500;
       opacity: .65;
       line-height: 1.5;
       padding: 0 5px;
       text-align: center;
+      @media (min-width: 600px) {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 150%;
+        padding: 0;
+      }
     }
 }
 
 .advantage {
   text-align: center;
+  margin: 0 auto;
+  @media (min-width: 600px) {
+    max-width: 373px;
+  }
 
   &__title {
     font-family: "SF-Pro-Display-Bold";
@@ -509,6 +593,12 @@ body{
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
+    @media (min-width: 600px) {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 29px;
+    }
   }
 
   &__text {
@@ -518,6 +608,11 @@ body{
     opacity: .65;
     line-height: 21px;
     padding: 0px 32px;
+    @media (min-width: 600px) {
+        font-size: 18px;
+        line-height: 150%;
+        padding: 0;
+    }
   }
 
   &__email {
@@ -529,6 +624,9 @@ body{
 
   &:not(:last-child) {
     margin-bottom: 64px;
+    @media (min-width: 600px) {
+      margin-bottom: 15px;
+    }
   }
 }
 .preloader{
@@ -536,7 +634,6 @@ body{
   position: fixed;
   height: 100%;
   width: 100%;
-  max-width: 600px;
   background: #fff;
   overflow-y: hidden;
 }

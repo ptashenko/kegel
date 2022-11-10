@@ -142,8 +142,6 @@ p {
 }
 
 #app {
-    max-width: 600px;
-    margin: 0 auto;
 }
 
 .container {
@@ -151,7 +149,7 @@ p {
 }
 
 .container-main {
-    padding-bottom: 50px;
+    padding-bottom: 35px;
     @media (max-width: 480px) {
         padding-bottom: 150px;
     }

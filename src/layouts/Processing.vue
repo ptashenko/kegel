@@ -65,4 +65,8 @@ export default {
     width: 100%;
   }
 }
+
+.Processing__layouts {
+  padding: 0;
+}
 </style>

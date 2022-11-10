@@ -233,6 +233,10 @@ export default {
     font-size: 16px;
   }
 }
+
+.Reviews {
+  padding: 0;
+}
 .reviews {
   padding-top: 50px;
   padding-bottom: 50px;
@@ -269,6 +273,9 @@ export default {
   opacity: .5;
   margin: 25px auto 0;
   max-width: 400px;
+    @media (min-width: 600px) {
+        max-width: 100%;
+      }
 }
 
 .layout__thumbnail {
@@ -277,6 +284,9 @@ export default {
     width: 100%;
     max-width: 450px;
     margin: 0 auto;
+      @media (min-width: 600px) {
+          max-width: 520px;
+        }
   }
 }
 .text-center{
@@ -288,5 +298,10 @@ export default {
   font-family: "SF-Pro-Display-Bold";
   line-height:32.4px;
   font-size: 24px;
+    @media (min-width: 600px) {
+        font-weight: 600;
+          font-size: 30px;
+          line-height: 135%;
+      }
 }
 </style>

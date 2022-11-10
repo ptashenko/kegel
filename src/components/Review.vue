@@ -66,6 +66,9 @@ export default {
   margin: 0 auto;
   max-width: 370px;
   background-color: #F9F9F9;
+  @media (min-width: 600px) {
+    max-width: 520px;
+  }
   @media (max-width: 480px) {
     border-radius: 9px;
   }

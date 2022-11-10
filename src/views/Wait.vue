@@ -167,12 +167,12 @@ export default {
   &__image {
     text-align: center;
     margin: 15px auto;
-    max-width: 400px;
+    max-width: 373px;
     height: auto;
     display: block;
     position: relative;
     img {
-      max-width: 400px;
+      max-width: 100%;
       width: 100%;
     }
   }

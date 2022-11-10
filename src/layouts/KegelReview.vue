@@ -94,6 +94,9 @@ export default {
   display: block;
   max-width: 400px;
   width: 100%;
+  @media (min-width: 600px) {
+    max-width: 520px;
+  }
   svg {
     max-width: 400px;
     width: 100%;
@@ -122,6 +125,9 @@ export default {
       width: 100%;
       max-width: 450px;
       height: auto;
+      @media (min-width: 600px) {
+        max-width: 520px;
+      }
     }
   }
 
@@ -189,5 +195,9 @@ export default {
 
   }
 
+}
+
+.KegalReview {
+  padding: 0;
 }
 </style>

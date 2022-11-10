@@ -55,7 +55,7 @@ header {
     margin: 0 auto;
     left: 0;
     right: 0;
-    padding: 24px 32px;
+    padding: 24px 0;
   }
 
   .container-main {

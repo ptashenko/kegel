@@ -2,7 +2,7 @@
   <header-layout :fixed="true" :dark="false"/>
   
   <div class="dark-layout">
-    <div class="container-main is-page standart">
+    
       <steps
         :light="false"
         v-if="content.id > 3 && content.id !== 35 && content.id !== 353 && content.id !== 61"
@@ -72,7 +72,6 @@
         theme: 'red'
       }"
       />
-    </div>
   </div>
 </template>
 
@@ -158,6 +157,9 @@ export default {
       width: 100%;
       max-width: 450px;
       height: auto;
+        @media (min-width: 600px) {
+            max-width: 520px;
+          }
     }
   }
   &__thumbnail{
@@ -245,5 +247,4 @@ export default {
         max-height: 200px;
     }
 }
-
 </style>

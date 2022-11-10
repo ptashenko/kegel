@@ -268,9 +268,15 @@ export default {
     margin: 0px auto 32px;
     text-align: center;
     max-width: 450px;
+    @media (min-width: 600px) {
+      max-width: 100%;
+    }
     img {
       max-width: 100%;
       height: auto;
+          @media (min-width: 600px) {
+              max-width: 520px;
+            }
     }
   }
 

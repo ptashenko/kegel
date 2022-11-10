@@ -9,10 +9,11 @@
         </div>
     </template>
     <template v-else>
-        <component
-          :is="content && content.layoutName"
-          :content="content"
-        />
+      <div :class="[content.id === 20 || content.id === 200 || content.id === 601 || content.id === 322  ? 'light-layout' : 'dark']">
+        <div class="container-main is-page standart">
+          <component :is="content && content.layoutName" :content="content" />
+        </div>
+      </div>
     </template>
 </template>
 
@@ -59,10 +60,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.dark {
+  background: #111113;
+  min-height: 100%;
+}
 .survey {
   background-color: white;
   padding: 0 32px;
   height: 100vh;
 }
-
 </style>

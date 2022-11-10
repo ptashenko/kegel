@@ -1,7 +1,12 @@
 body {
     font-family: "SF Pro Text Regular";
     background: #E5E5E5;
+    height: 100%;
     @media (max-width: 480px) {}
+}
+
+html {
+    background: #fff;
 }
 
 .fixed {
@@ -44,6 +49,10 @@ p {
 
 .video-wrapper{
     border-radius: 25px;
+}
+
+.light-layout {
+    background-color: #FFFFFF !important;
 }
 
 .dark-layout.light {
@@ -99,8 +108,11 @@ p {
 
 .dark-layout {
     background-color: #111113;
-    padding: 100px 32px 0px;
+    padding: 100px 0 0px;
     // min-height: calc(100vh - 100px);
+    @media (min-width: 600px) {
+        padding: 100px 0px 0px;
+    }
     .steps {
         background-color: #2C2C2E;
     }
@@ -142,16 +154,28 @@ p {
 }
 
 #app {
+    height: 100%;
 }
 
 .container {
     position: relative;
+    height: 100%;
 }
 
+
+
 .container-main {
-    padding-bottom: 35px;
+    position: relative;
+    max-width: 600px;
+    // padding-bottom: 35px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0 32px;
     @media (max-width: 480px) {
         padding-bottom: 150px;
+    }
+    @media (min-width: 600px) {
+        padding: 0 40px;
     }
 }
 
@@ -180,7 +204,7 @@ header .container-main {
     margin: 0 12%;
     &__item {
         margin: 12px 0 0;
-        font-size: 17px;
+        font-size: 18px;
         color: #111113;
         @media (max-width: 480px) {
             margin: 9px 0 0;

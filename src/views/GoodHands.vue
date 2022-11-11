@@ -60,11 +60,17 @@ export default {
   @media (max-width: 480px) {
     font-size: 20px;
   }
+  @media (min-width: 600px) {
+    font-size: 30px;
+  }
 }
 .map{
   width: 100%;
   max-width: 450px;
   margin: 32px auto;
+  @media (min-width: 600px) {
+    max-width: 100%;
+  }
 }
 .container-main {
   text-align: center;
@@ -79,9 +85,11 @@ p {
   
   font-size: 16px;
   line-height: 150%;
+  @media (min-width: 600px) {
+      font-size: 18px;
+    }
   span{
     font-family: "SF Pro Text Semibold";
   }
 }
-
 </style>

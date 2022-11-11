@@ -69,6 +69,9 @@ export default {
     font-family: "SF-Pro-Display-Bold";
     font-size: 24px;
     text-align: center;
+  @media (min-width: 600px) {
+      font-size: 30px;
+    }
   @media (max-width:480px) {
     font-size: 20px;
   }
@@ -82,6 +85,9 @@ export default {
       max-width: 72px;
       height: auto;
       margin: 48px 0 14px;
+      @media (min-width: 600px) {
+          margin-top: 32px;
+        }
     };
     h3{
       margin: 0;
@@ -89,6 +95,9 @@ export default {
       font-size: 32px;
       @media (max-width:480px) {
         font-size: 26px;
+      }
+      @media (min-width: 600px) {
+        margin-bottom: 5px;
       }
     };
     p{
@@ -100,5 +109,4 @@ export default {
       }
     }
   }
-  
 </style>

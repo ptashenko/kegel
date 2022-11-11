@@ -171,6 +171,9 @@ export default {
     height: auto;
     display: block;
     position: relative;
+    @media (min-width: 600px) {
+      margin: 32px auto;
+    }
     img {
       max-width: 100%;
       width: 100%;
@@ -186,6 +189,10 @@ export default {
       margin: 0 auto;
       font-size: 24px;
       font-family: "SF-Pro-Display-Bold";
+      @media (min-width: 600px) {
+        max-width: 100%;
+        font-size: 30px;
+      }
       @media (max-width: 480px) {
         font-size: 20px;
       }
@@ -268,6 +275,9 @@ export default {
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
+  @media (min-width: 600px) {
+      padding-bottom: 50px;
+  }
 }
 .wail__block__img.active{
   animation: second 5s;
@@ -298,5 +308,5 @@ export default {
     position: relative;
     z-index: 1;
     width: 10px;
-} 
+}
 </style>

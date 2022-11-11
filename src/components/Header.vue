@@ -1,6 +1,6 @@
 <template>
   <header :class="{'is-fixed': fixed}">
-    <div class="container-main">
+    <div class="container-header">
       <!-- <router-link :to="{name: 'home'}"> -->
         <img src="@/assets/images/logo_black.png" alt="logo" class="logo" v-if="dark">
         <img src="@/assets/images/Logo_white.png" alt="logo" class="logo" v-else>
@@ -49,16 +49,19 @@ header {
   padding-bottom: 25px;
 
   &.is-fixed {
-    position: absolute;
+    position: relative;
     top: 0;
     max-width: 100%;
     margin: 0 auto;
     left: 0;
     right: 0;
     padding: 24px 0;
+    @media (min-width: 600px) {
+      padding: 32px 0;
+    }
   }
 
-  .container-main {
+  .container-header {
     background-color: transparent;
     .logo{
       width: 150px;

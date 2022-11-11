@@ -162,7 +162,13 @@ p {
     height: 100%;
 }
 
-
+.container-header {
+    position: relative;
+    max-width: 600px;
+    // padding-bottom: 35px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
 
 .container-main {
     position: relative;
@@ -186,12 +192,12 @@ p {
     }
 }
 
-header .container-main {
-    padding-bottom: 50px;
-    @media (max-width: 480px) {
-        padding-bottom: 0px;
-    }
-}
+// header .container-main {
+//     padding-bottom: 50px;
+//     @media (max-width: 480px) {
+//         padding-bottom: 0px;
+//     }
+// }
 
 .dark-layout .btn__prev {
     filter: invert(1);

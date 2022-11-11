@@ -83,6 +83,9 @@ export default {
   @media (max-width:480px) {
     font-size: 20px;
   }
+  @media (min-width: 600px) {
+    font-size: 30px;
+  }
 }
 .d-flex{
   display: flex;
@@ -175,5 +178,5 @@ export default {
       line-height: 24px;
     }
   }
-} 
+}
 </style>

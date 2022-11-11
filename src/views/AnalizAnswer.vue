@@ -446,6 +446,10 @@ export default {
   @media (max-width:480px) {
     font-size: 20px;
   }
+  @media (min-width: 600px) {
+    font-size: 30px;
+    margin-bottom: 64px;
+  }
 }
 
 .v-popup__submit_btn{
@@ -534,6 +538,9 @@ export default {
   margin: 64px auto 0;
   max-width: 370px;
   background-color: #F1F1F1;
+  @media (min-width: 600px) {
+      max-width: 100%;
+    }
   
   &:not(.light) {
     background-color: #1D1D1F;
@@ -605,5 +612,4 @@ export default {
   max-width: 14px;;
   height: auto;
 }
-
 </style>

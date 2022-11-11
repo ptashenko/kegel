@@ -108,11 +108,7 @@ p {
 
 .dark-layout {
     background-color: #111113;
-    padding: 100px 0 0px;
     // min-height: calc(100vh - 100px);
-    @media (min-width: 600px) {
-        padding: 100px 0px 0px;
-    }
     .steps {
         background-color: #2C2C2E;
     }

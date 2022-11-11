@@ -62,7 +62,9 @@ export default {
     margin: 0 -30px;
   }
   img {
-    width: 100%;
+    display: block;
+    max-width: 520px;
+    margin: 0 auto;
   }
 }
 

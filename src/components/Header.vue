@@ -51,7 +51,7 @@ header {
   &.is-fixed {
     position: relative;
     top: 0;
-    max-width: 100%;
+    max-width: 600px;
     margin: 0 auto;
     left: 0;
     right: 0;

@@ -1,7 +1,7 @@
 <template>
     <header-layout :fixed="true" :dark="true"/>
-    <div class="block__steps" :data-step="content.steps">
-      <steps v-if="content.steps !== false" />
+    <div class="block__steps" v-if="content.steps !== false" :data-step="content.steps">
+      <steps />
     </div>
     <transition name="slide" mode="out-in">
       <div
@@ -236,10 +236,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.block__steps{
-  position: relative;
-    padding-top: 100px;
-}
 .questions {
   &__rate {
     opacity: 0.75;

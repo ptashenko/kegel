@@ -166,6 +166,8 @@ export default {
 
   &__body {
       margin-top: 24px;
+      max-width: 375px;
+      margin: 0 auto;
   }
   &__dataInfo {
     font-family: 'SF Pro Text Regular';
@@ -280,6 +282,7 @@ export default {
         width: 375px;
         position: relative;
         font-size: 1em;
+        box-sizing: border-box;
       
         @media (max-width: 480px) {
           width: 275px;

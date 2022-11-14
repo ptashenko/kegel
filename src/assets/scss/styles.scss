@@ -257,6 +257,10 @@ p {
     justify-content: space-between;
 }
 
+.justify-content-around {
+    justify-content: space-around;
+}
+
 .w-100 {
     width: 100%;
 }
@@ -276,16 +280,22 @@ p {
     height: 100vh;
 }
 
+.red-shadow {
+    box-shadow: 0px 15px 37px rgba(228, 66, 64, 0.64);
+}
+
 .btn__show__more {
     border: none;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     font-family: "SF Pro Text Bold";
     color: #5773D6;
     background: none;
-    margin-top: 40px;
     cursor: pointer;
     width: 100%;
+    @media (min-width: 600px) {
+        font-size: 18px;
+    }
 }
 
 .date {
@@ -307,6 +317,9 @@ p {
         // .block__anim {
         //     margin-left: 30px;
         // }
+        @media (min-width: 600px) {
+            max-width: 190px;
+        }
     }
 }
 

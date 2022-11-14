@@ -122,84 +122,80 @@
       </div>
     </div>
   </div>
-  <div class="price">
-    <div class="price__text">
-      PRICE TODAY
-    </div>
-  </div>
-  <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-    <div>
-      7-day trial*
-    </div>
-    <div>
-      <span class="opac_5 line">${{oldprice}}</span>
-      <span class="text-bold">${{price}}</span>
-    </div>
-  </div>
-  <hr>
-  <div class="mw-450 trial_description opac_5">
-    <i>*You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
-  </div>
-  <div class="price">
-    <div class="price__text">
-      PRICE AFTER TRIAL
-    </div>
-  </div>
-  <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-    <div>
-      12 weeks plan
-    </div>
-    <div class="after d-flex flex-column align-items-end">
-      <span class="bold">$79.2*</span>
-      <span class="small">(just $6.60/week)</span>
-    </div>
-  </div>
-  <hr>
-  <div class="mw-450 trial_description opac_5">
-    <i>*Billed on {{moment().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
-  </div>
-  <div class="d-flex flex-column  mw-450">
-    <div class="reviews__title">Customer reviews</div>
-    {{lengthReviews}}
-    <div v-for="(item, key) in base" :key="key" >
-      <div class="review light" :class="{'active': key < this.numreview }">
-        <div class="review__top">
-          <div>
-            <div class="review__title">{{ item.title }}</div>
-            <div class="review__rating">
-              <div v-for="i in item.rating" :key="i">
-                <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
-              </div>
-              <div v-for="i in Number(5 - item.rating)" :key="i">
-                <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
-              </div>
-            </div>
-          </div>
-
-          <div class="review__name">
-            {{ item.name }}
-          </div>
-        </div>
-
-        <div class="review__text">
-          {{ item.text }}
+  <div :class="{ price__wrapper: true, 'price-padding': !step_2 }">
+      <div class="price">
+        <div class="price__text">
+          PRICE TODAY
         </div>
       </div>
+      <div class="price__today d-flex mw-520 align-items-center justify-content-beetwen">
+        <div>
+          7-day trial*
+        </div>
+        <div>
+          <span class="opac_5 line">${{oldprice}}</span>
+          <span class="text-bold">${{price}}</span>
+        </div>
+      </div>
+      <hr>
+      <div class="mw-450 trial_description opac_5">
+        <i>*You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
+      </div>
+      <div class="price">
+        <div class="price__text">
+          PRICE AFTER TRIAL
+        </div>
+      </div>
+      <div class="price__today d-flex mw-520 align-items-center justify-content-beetwen">
+        <div>
+          12 weeks plan
+        </div>
+        <div class="after d-flex flex-column align-items-end">
+          <span class="bold">$79.2*</span>
+          <span class="small">(just $6.60/week)</span>
+        </div>
+      </div>
+      <hr>
+      <div class="mw-450 trial_description opac_5">
+        <i>*Billed on {{moment().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
+      </div>
+      <div class="d-flex flex-column mt-64 mw-450">
+        <div class="reviews__title">Customer reviews</div>
+        {{lengthReviews}}
+        <div class="review__body" v-for="(item, key) in base" :key="key">
+          <div class="review light" :class="{'active': key < this.numreview }">
+            <div class="review__top">
+              <div>
+                <div class="review__title">{{ item.title }}</div>
+                <div class="review__rating">
+                  <div v-for="i in item.rating" :key="i">
+                    <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                  </div>
+                  <div v-for="i in Number(5 - item.rating)" :key="i">
+                    <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                  </div>
+                </div>
+              </div>
       
-    </div>
-    
-    <button  class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
-    <div id="paypal"></div>
+              <div class="review__name">
+                {{ item.name }}
+              </div>
+            </div>
+      
+            <div class="review__text">
+              {{ item.text }}
+            </div>
+          </div>
+      
+        </div>
+      
+        <button class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
+        <div id="paypal"></div>
+      </div>
+      
+      <button-field v-if="!step_2" text='Start my plan' theme="Back" class="footer-controls__button red-shadow red"
+        @click="showModal2()" />
   </div>
-
-  <button-field
-    v-if="!step_2"
-    text='Start my plan'
-    theme="Back"
-    class="footer-controls__button red"
-    @click="showModal2()"
-  />
-  <div class="h200" v-if="!step_2"></div>
   <div class="step_2" v-if="step_2">
     <template v-if="version !== 4">
           <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
@@ -211,17 +207,10 @@
             </div>
           </div>
           <hr>
-          <div class="mw-450 d-flex mb-32">
-            <p class="fs-16-14">
-              <i>
-                You will only be charged ${{price}} for your 7-day trial.
-              </i>
-            </p>
-          </div>
-          <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
+          <div class="block-pay d-flex flex-column align-items-center justify-content-center">
             <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item"
               :auth_price="this.price" id="paymentForm" />
-            <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
+            <div class="d-flex align-items-center justify-content-around flex-wrap">
               <div class="d-flex align-items-center star">
                 <img src="@/assets/images/star1.png" alt="star">
                 <img src="@/assets/images/star1.png" alt="star">
@@ -784,6 +773,11 @@ export default {
     margin-right: 15px;
     width: 16px;
     height: 16px;
+    @media (min-width: 600px) {
+      width: 24px;
+      height: 24px;
+      margin-right: 20px;
+    }
   }
 }
 .benefits {
@@ -793,14 +787,18 @@ export default {
 }
 
 .block-pay{
-  width: 350px;
+  width: 100%;
+  margin-bottom: 32px;
+  @media(min-width: 600px) {
+    margin-bottom: 48px;
+  }
   .w-100{
     width: 100%;
     margin-top: 48px;
   }
   .flex-wrap{
     flex-wrap: wrap;
-    width: 380px;
+    width: 450px;
     margin-top: 48px;
     @media (max-width:480px) {
       max-width: 270px;
@@ -809,6 +807,9 @@ export default {
     p{
       font-family: "SF Pro Text Regular";
       font-size: 16px;
+      @media (min-width: 600px) {
+        font-size: 18px;
+      }
       .bold{
         font-family: "SF Pro Text Semibold";
       }
@@ -903,8 +904,8 @@ export default {
 .mr-2{
   margin-right: 2px;
 }
-.mw-450{
-  max-width: 450px;
+.mw-520{
+  max-width: 520px;
   margin: 16px auto;
   padding: 0 32px;
 }
@@ -947,7 +948,7 @@ hr{
   background: #F1F3F9;
   border: none;
   height: 1px;
-  max-width: 450px;
+  max-width: 520px;
   margin: 0 auto;
   padding: 0;
   @media (max-width:480px) {
@@ -955,7 +956,7 @@ hr{
   }
 }
 .payment{
-  margin: 84px auto 16px;
+  margin: 71px auto 16px;
   @media (max-width:480px) {
     margin: 64px auto 16px;
   }
@@ -966,12 +967,18 @@ hr{
   }
   .bold{
     font-family: "SF-Pro-Display-Semibold";
+    @media (min-width: 600px) {
+        font-size: 18px;
+      }
   }
   .opacity-75{
     opacity: 0.75;
     font-family: "SF-Pro-Display-Medium";
     @media (max-width:480px) {
       font-size: 14px;
+    }
+    @media (min-width: 600px) {
+      font-size: 18px;
     }
   }
 }
@@ -1130,33 +1137,50 @@ hr{
   max-width: 310px;
   margin: 48px auto 0;
   z-index: 0;
+  @media (min-width: 600px) {
+    margin: 57px auto 0;
+  }
 }
 // reviews
 .reviews__title {
     font-family: "SF-Pro-Display-Semibold";
     font-size: 18px;
     line-height: 150%;
-    margin-bottom: 25px;
+    margin-bottom: 16px;
     text-align: center;
     @media (max-width:480px) {
       font-size: 16px;
+    }
+    @media (min-width: 600px) {
+      font-size: 24px;
     }
   }
 
 .review {
   padding: 15px;
   border-radius: 10px;
-  margin: 8px auto 0;
+  margin: 0 auto;
   max-width: 370px;
   background-color: #F1F1F1;
   display: none;
   transition: .3s;
+  box-sizing: border-box;
   &:not(.light) {
     background-color: #1D1D1F;
   }
 
   &:not(:last-child) {
     margin-bottom: 15px;
+  }
+
+  @media (min-width: 600px) {
+    max-width: 520px;
+  }
+
+  &__body {
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
   }
 
   &__top {
@@ -1234,7 +1258,7 @@ hr{
   margin-right: 4px;
 }
 .trial_description{
-  padding: 16px 32px 25px;
+  padding: 16px 32px;
   margin: 0 auto;
   line-height: 150%;
   @media (max-width:480px) {
@@ -1247,6 +1271,9 @@ hr{
   @media (max-width:480px) {
     padding: 16px 32px;
   }
+  @media (min-width: 600px) {
+    padding: 24px 38px;
+  }
   &__text{
     font-family: "SF-Pro-Display-Semibold";
     font-size: 16px;
@@ -1254,12 +1281,22 @@ hr{
     @media (max-width:480px) {
       font-size: 14px;
     }
+    @media (min-width: 600px) {
+      font-size: 18px;
+    }
+  }
+  &__wrapper {
+    max-width: 600px;
+    margin: 0 auto;
   }
 }
 ul{
   max-width: 310px;
   margin: 0 auto;
   padding: 0;
+  @media (min-width: 600px) {
+      max-width: 375px;
+    }
   li.li {
     list-style-type: none;
     display: flex;
@@ -1268,6 +1305,9 @@ ul{
     font-size: 16px;
     margin-bottom: 16px;
     line-height: 150%;
+    @media (min-width: 600px) {
+      font-size: 18px;
+    }
     span{
       width: 16px;
       height: auto;
@@ -1286,23 +1326,29 @@ ul{
 
 .h2 {
   margin: 0px auto 8px;
-  font-size: 30px;
+  font-size: 36px;
   line-height: 135%;
   margin: 0px auto 24px;
   font-family: "SF-Pro-Display-Bold";
   @media (max-width:480px) {
     font-size: 24px;
   }
+  @media (min-width: 600px) {
+    margin: 0px auto 52px;
+  }
 }
 .h2.inside {
   font-family: "SF-Pro-Display-Bold";
   font-size: 20px;
   margin-top: 16px;
+  @media (min-width: 600px) {
+    font-size: 24px;
+  }  
 }
 .dark-layout{
-  padding: 84px 32px 0px;
+  padding: 16px 0px;
   .p-14{
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
     line-height: 150%;
     @media (max-width:480px) {
@@ -1320,6 +1366,9 @@ ul{
   @media (max-width:480px) {
     font-size: 14px;
   }
+  @media (min-width: 600px) {
+    font-size: 18px;
+  }
   .after{
     .bold{
       font-family: "SF Pro Text Semibold";
@@ -1328,6 +1377,9 @@ ul{
       font-size: 14px;
       @media (max-width:480px) {
         font-size: 11px;
+      }
+      @media (min-width: 600px) {
+        font-size: 16px;
       }
     }
   }
@@ -1345,6 +1397,9 @@ ul{
     width: 100%;
     margin: 0 auto;
     position: relative;
+    @media (min-width: 600px) {
+        font-size: 24px;
+      }
   }
 }
 .timer__text{
@@ -1384,9 +1439,9 @@ ul{
   }
   &__button{
     border-radius: 17px;
-    padding: 17px 24px;
+    padding: 17px 0;
     background: #111113;
-    max-width: 270px;
+    max-width: 375px;
     margin: 0 auto;
   }
   &__title {
@@ -1406,7 +1461,9 @@ ul{
     margin: 32px auto;
     text-align: center;
     width: 100%;
-    max-width: 450px;
+    @media (min-width: 600px) {
+        max-width: 520px;
+      }
     img {
       width: 100%;
       height: auto;
@@ -1433,6 +1490,10 @@ ul{
       border-radius: 50%;
       background: rgba(#FFFFFF, .07);
       margin-right: 24px;
+      margin-left: 24px;
+      @media (min-width: 600px) {
+        margin-left: 53px;
+      }
     }
 
     p {
@@ -1467,6 +1528,9 @@ ul{
   @media (max-width:480px) {
     font-size: 16px;
   }
+  @media (min-width: 600px) {
+    font-size: 20px;
+  }
 }
 .text-bold{
   font-family: "SF Pro Text Semibold";
@@ -1475,6 +1539,9 @@ ul{
   font-size: 14px!important;
   max-width: 450px;
   margin: 0 auto;
+  @media (min-width: 600px) {
+    max-width: 520px;
+  }
 }
 .fixedTime__timer, .fixedTime__timer__text{
   font-family: "SF Pro Text Bold";
@@ -1484,6 +1551,30 @@ ul{
   height: 168px;
 }
 
+.mt-64 {
+  margin-top: 64px;
+}
+
+.price-padding {
+  padding-bottom: 170px;
+  @media (min-width: 600px) {
+    padding-bottom: 160px;
+  }
+}
+
+.step_2 {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 32px;
+    box-sizing: border-box;
+    @media (min-width: 600px) {
+      padding: 0 40px;
+    }
+}
+
+.price-trial {
+  margin: 16px auto;
+}
 
 input, textarea{outline:none;}
 input:active, textarea:active{outline:none;}

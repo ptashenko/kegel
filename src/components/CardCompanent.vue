@@ -30,7 +30,7 @@
     <button
       type="submit"
       :class="{ submit: loading }"
-      class="card-pay-button"
+      class="card-pay-button red-shadow"
       @click="authorize"
     >
       Get my plan
@@ -289,6 +289,9 @@ export default {
   -webkit-transition: all 0.28s ease;
   transition: all 0.28s ease;
   box-shadow: none;
+  @media (min-width: 600px) {
+    font-size: 18px;
+  }
 }
 // .ex1-input::placeholder {
 //   color: transparent;
@@ -305,6 +308,9 @@ export default {
   color: #e94745;
   top: -1rem;
   left: 0;
+  @media (min-width: 600px) {
+      font-size: 18px;
+    }
 }
 .ex1-bar {
   position: relative;
@@ -362,10 +368,10 @@ export default {
   transition-duration: 0s;
 }
 .card-pay-button {
+  display: block;
   color: #ffffff;
   border-radius: 100px;
-  margin-bottom: 10px;
-  margin-top: 34px;
+  margin: 34px auto 10px;
   width: 100%;
   font-size: 20px;
   line-height: 24px;
@@ -373,6 +379,7 @@ export default {
   font-family: "SF Pro Text Semibold";
   background: #e44240;
   border: 3px solid #e44240;
+  max-width: 375px;
   &:focus {
     background: #eb6967;
     border: 3px solid #e44240;

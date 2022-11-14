@@ -1,6 +1,6 @@
 <template>
   <div
-    class="d-flex flex-column align-items-center justify-content-center"
+    class="d-flex w100 flex-column align-items-center justify-content-center"
     id="paymentForm"
   >
     <span class="payment-info mb-32">You will only be charged $1 for your 7-day trial.</span>
@@ -15,7 +15,7 @@
       </button>
     </div>
   </div>
-  <div class="d-flex align-items-center justify-content-beetwen">
+  <div class="d-flex w100 align-items-center justify-content-beetwen">
     <button
       class="pay small mr-2 cursor"
       :class="{ active: paymentMethodType == 2 }"
@@ -193,6 +193,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.w100 {
+  width: 100%;
+}
 .mb-32 {
   margin-bottom: 32px;
 }
@@ -204,6 +207,9 @@ export default {
   line-height: 150%;
   color: #111113;
   opacity: 0.75;
+  @media (min-width: 600px) {
+    width: 100%;
+  }
 }
 .cursor {
   cursor: pointer;
@@ -260,6 +266,16 @@ export default {
     height: 49px;
     img {
       width: 100%;
+      @media (min-width: 600px) {
+          width: 153px;
+        }
+    }
+    @media (min-width: 600px) {
+      max-width: 255px;
+      width: 255px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   .aple_pay {

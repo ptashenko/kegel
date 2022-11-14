@@ -69,4 +69,8 @@ export default {
   padding: 0 32px;
   height: 100vh;
 }
+
+.SurveyVuew {
+  height: 100%;
+}
 </style>

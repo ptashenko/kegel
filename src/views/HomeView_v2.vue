@@ -15,7 +15,6 @@
   <transition name="translate" mode="out-in">
     <div v-if="true" :class="this.$route.name">
       <div class="background">
-          <div class="wrapper">
             <header-layout :fixed="true" :dark="false" />
             <div class="jumbotron home v2">
               <div class="container-main">
@@ -31,7 +30,6 @@
                 </div>
               </div>
             </div>
-          </div>
       </div>
       <!-- {{preload}} -->
       {{myHand}}
@@ -342,7 +340,7 @@ body{
   &__title {
     font-family: "SF-Pro-Display-Bold";
     font-weight: 700;
-    font-size: 32px;
+    font-size: 27px;
     line-height: 38.19px;
     text-align: center;
     text-shadow: 0 0 17px #FFFFFF;
@@ -363,12 +361,14 @@ body{
   .container-main {
     background-color: transparent;
     position: relative;
-    top: 120px;
-    padding-left: 32px;
-    padding-right: 32px;
+    top: 85px;
+    padding: 0 32px;
 
     @media (max-width: 480px) {
-      top: 230px;
+      top: 75px;
+    }
+    @media (min-width: 600px) {
+      padding: 0 40px;
     }
   }
 
@@ -395,6 +395,9 @@ body{
     padding-top: 15px;
     padding: 65px 32px 32px;
     background-color: #FFFFFF;
+    @media (min-width: 600px) {
+      padding: 65px 32px 64px;
+    }
   }
 
   &__item {
@@ -509,7 +512,6 @@ body{
   padding: 51px 0px 50px;
   background: rgba(196, 196, 196, 0.2);
   .container-main{
-    padding: 0 0 32px;
     max-width: 350px;
     margin: 0 auto;
     @media (min-width: 600px) {

@@ -6,6 +6,7 @@
     <transition name="slide" mode="out-in">
       <div
       v-if="show"
+      class="questions__wrapper"
       >
         <div class="questions__title">
           {{ survey.title }}
@@ -237,6 +238,11 @@ export default {
 
 <style lang="scss" scoped>
 .questions {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
   &__rate {
     opacity: 0.75;
     text-align: center;
@@ -264,6 +270,7 @@ export default {
     margin: 0px auto 32px;
     text-align: center;
     max-width: 450px;
+    width: 100%;
     @media (min-width: 600px) {
       max-width: 100%;
     }

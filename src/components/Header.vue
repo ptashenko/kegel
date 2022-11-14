@@ -1,5 +1,5 @@
 <template>
-  <header :class="{'is-fixed': fixed}">
+  <header :class="{ 'is-fixed': fixed, }">
     <div class="container-header">
       <!-- <router-link :to="{name: 'home'}"> -->
         <img src="@/assets/images/logo_black.png" alt="logo" class="logo" v-if="dark">
@@ -38,7 +38,7 @@ export default {
           document.body.style.backgroundColor = '#111113';
         }
       }
-    }
+    },
   }
 };
 </script>
@@ -51,13 +51,14 @@ header {
   &.is-fixed {
     position: relative;
     top: 0;
-    max-width: 600px;
+    max-width: 311px;
     margin: 0 auto;
     left: 0;
     right: 0;
     padding: 24px 0;
     @media (min-width: 600px) {
       padding: 32px 0;
+      max-width: 520px;
     }
   }
 
@@ -70,5 +71,12 @@ header {
       }
     }
   }
+}
+
+.dark-background {
+  background: #111113;
+}
+.light-background {
+  background: #fff;
 }
 </style>

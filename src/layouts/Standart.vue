@@ -1,8 +1,6 @@
 <template>
-  <header-layout :fixed="true" :dark="false"/>
-  
   <div class="dark-layout">
-    
+      <header-layout :fixed="true" :dark="false" />
       <steps
         :light="false"
         v-if="content.id > 3 && content.id !== 35 && content.id !== 353 && content.id !== 61"

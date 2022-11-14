@@ -22,9 +22,11 @@ export default {
 
 <style lang="scss">
 .guarantee {
-    padding: 0 32px 32px 32px;
     color: #111113;
-    margin-bottom: 32px;
+    margin-bottom: 115px;
+    @media (min-width: 600px) {
+        margin-bottom: 100px;
+        }
 
     &-title {
         font-family: "SF Pro Text Bold";
@@ -34,7 +36,11 @@ export default {
         font-size: 20px;
         line-height: 1.35;
         text-align: center;
+            @media (min-width: 600px) {
+                    font-size: 24px;
+                }
     }
+
 
     &-description {
         font-family: "SF Pro Text Regular";
@@ -46,6 +52,9 @@ export default {
         }
         a {
             color: #5773D6;
+        }
+        @media (min-width: 600px) {
+            font-size: 18px;
         }
     }
 

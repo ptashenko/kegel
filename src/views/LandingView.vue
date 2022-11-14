@@ -1,6 +1,5 @@
 <template>
 <div class="landing">
-  <header-layout :fixed="true"/>
   {{MyScrollFixed}}
   {{MyScrollModal}}
   {{btnAddPurpose}}
@@ -20,6 +19,7 @@
   
   <div class="dark-layout light" id="topPage">
     <div class="container-main is-page land">
+        <header-layout :fixed="true" />
       <div class="landing__content">
         <div class="d-flex align-items-center justify-content-center flex-column">
           <div class="d-flex flex-column block__timer" >
@@ -253,7 +253,7 @@
       <p class="fs-16-14">Contact us here: <span class="red">contact@kegel.men</span></p>
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <button class="btn_bottom" v-scroll-to="'#paypal'">
+      <button class="btn_bottom red-shadow" v-scroll-to="'#paypal'">
         Get my plan
       </button>
     </div>
@@ -262,30 +262,8 @@
         <span class="bold">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
       </p>
     </div>
-    <div class="main-pre-footer">
-      <div class="main-pre-footer_info">
-        Disclaimer: Each individual’s results may vary from person to person based on health condition, body type, starting
-        point, his or her unique background, dedication, desire, motivation, actions, and numerous other factors. This
-        service
-        offers health and fitness information and is designed for educational and entertainment purposes only. You should
-        not
-        rely on this information as a substitute for, nor does it replace, professional medical advice, diagnosis, or
-        treatment.
-        It is intended to be provided for informational, educational, and self-empowerment purposes only. If you have any
-        concerns or questions about your health, you should always consult with a physician or other health-care
-        professional.
-      </div>
-      <div class="main-pre-footer_info mb-2">
-        <p class="mb-1">Appercut sp z o o</p>
-        <p>Warsaw, Twarda 18, 00-105</p>
-      </div>
-      <div class="main-pre-footer_links">
-        <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>
-        <a href="/terms.html" target="_blank">Terms & Conditions</a>
-        <a href="/refund.html" target="_blank">Refund Policy</a>
-      </div>
-    </div>
   </div>
+  <Footer />
       <vpopup v-if="popupVisible" class="popup_wraper" textTitle="">
         <p class="opasity_75">
           In view of the pandemic and global health crisis, we are offering the option to try out Kegel Plan for as little as
@@ -390,6 +368,7 @@ import vpopup from '@/components/modal/v-popup.vue';
 import btnComponent from '@/components/questions/btnPopup.vue';
 import countdown from '@/components/Countdown.vue';
 import Guarantee from '@/components/Guarantee.vue';
+import Footer from '@/components/Footer.vue';
 import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 import { getItem } from '@/common/localStorage';
@@ -404,7 +383,8 @@ export default {
     btnComponent,
     countdown,
     PaymentFormCompanent,
-    Guarantee
+    Guarantee,
+    Footer
 },
   data() {
     return {
@@ -754,10 +734,18 @@ export default {
   &:focus{
     background: #F5423F;
   }
+  @media (min-width: 600px) {
+      font-size: 20px;
+  }
 }
 .block__text{
   margin-bottom: 24px;
   line-height: 150%;
+  @media (min-width: 600px) {
+    & p {
+      font-size: 18px;
+    }
+  }
   .title{
     font-family: "SF-Pro-Display-Semibold";
     margin-bottom: 12px;
@@ -918,19 +906,16 @@ export default {
   margin: 0px auto;
 }
 .mb-32{
-  margin-bottom: 48px;
-  @media (max-width:480px) {
-    margin-bottom: 32px;
-  }
+  margin-bottom: 32px;
 }
 .fs-16-14{
   font-size: 16px;
   @media (max-width:480px) {
     font-size: 14px;
   }
-}
-.landing{
-  padding-bottom: 32px;
+  @media (min-width: 600px) {
+    font-size: 18px;
+  }
 }
 .block__timer .p-14{
   margin-bottom: 16px;

@@ -4,11 +4,11 @@
     id="paymentForm"
   >
     <span class="payment-info mb-32">You will only be charged $1 for your 7-day trial.</span>
-    <div id="solid-payment-form-container">
+    <div id="solid-payment-form-container" class="w100">
       <button
         class="pay cursor"
-        v-if="apple_pay"
         :class="{ active: paymentMethodType == 3 }"
+        v-if="apple_pay"
         @click="applePaySelect"
       >
         <img src="@/assets/images/icons/apple_pay.png" alt="apple_pay" />
@@ -247,13 +247,14 @@ export default {
     border: 2px solid #f9f9f9;
     border-radius: 9px;
     margin-bottom: 10px;
-    max-width: 300px;
+    width: 100%;
     display: block;
     // &:focus, &:hover, &:active{
     //   background: rgba(87, 115, 214, 0.1);
     //   border: 2px solid #5773D6;
     // }
     img {
+      max-height: 49px;
       max-width: 100%;
     }
   }

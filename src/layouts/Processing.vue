@@ -63,8 +63,11 @@ export default {
   }
   img {
     display: block;
-    max-width: 520px;
+    max-width: 311px;
     margin: 0 auto;
+    @media (min-width: 600px) {
+      max-width: 520px;
+    }
   }
 }
 

@@ -159,7 +159,7 @@
       <div class="mw-450 trial_description opac_5">
         <i>*Billed on {{moment().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
       </div>
-      <div class="d-flex flex-column mt-64 mw-450">
+      <div class="d-flex container-main flex-column mt-64 mw-450">
         <div class="reviews__title">Customer reviews</div>
         {{lengthReviews}}
         <div class="review__body" v-for="(item, key) in base" :key="key">
@@ -919,11 +919,6 @@ export default {
 }
 .block__timer .p-14{
   margin-bottom: 16px;
-}
-.container-main{
-  @media (max-width:480px) {
-    padding-bottom: 50px;
-  }
 }
 .answer{
   width: 45%;

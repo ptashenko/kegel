@@ -24,7 +24,7 @@
           theme="Back"
           class="footer-controls__button "
           @click="downloadButton"
-          :class="{ 'bg-blue': !active, 'red': active }"
+          :class="{ 'bg-blue': !active, 'red': active, 'red-shadow': active }"
         />
         <div class="text-center">
           <div class="text-line">
@@ -220,18 +220,22 @@ export default {
 
 <style lang="scss" scoped>
 .Final{
+  max-width: 311px;
+  @media (min-width: 600px) {
+    max-width: 600px;
+  }
   .h2 {
     margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
-    font-size: 30px;
+    font-size: 36px;
     line-height: 135%;
     @media (max-width:480px) {
       font-size: 24px;
     }
     p{
       font-family: "SF Pro Text Semibold";
-      font-size: 18px;
+      font-size: 20px;
       line-height: 150%;
       margin-top: 24px;
       @media (max-width:480px) {
@@ -247,7 +251,7 @@ export default {
     background: #F1F3F9;
     border-radius: 9px;
     .text{
-      font-size: 16px;
+      font-size: 18px;
       line-height: 150%;
       margin-top: 16px;
       .text-bold{
@@ -275,7 +279,7 @@ export default {
   }
   .mw-450{
     max-width: 450px;
-    margin: 32px auto 32px;
+    margin: 32px auto 48px;
     @media (max-width:480px) {
       margin: 32px auto 32px;
     }
@@ -341,10 +345,9 @@ export default {
     font-family: "SF Pro Text Semibold";
     font-size: 18px;
     line-height: 150%;
-    margin-bottom: 14px;
+    margin-bottom: 64px;
     @media (max-width:480px) {
       font-size: 16px;
-      margin-bottom: 64px;
     }
   }
   .mw-520{
@@ -379,7 +382,10 @@ export default {
   &__text{
     color: #ffffff;
     text-align: center;
-    padding: 48px;
+    padding: 24px 48px;
+    @media (min-width: 600px) {
+      padding: 32px 48px;
+    }
   }
 }
 

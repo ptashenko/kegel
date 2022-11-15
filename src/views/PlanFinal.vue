@@ -136,8 +136,9 @@
     
   </div>
     <vpopup
-    class="popup_wraper"
+    class="popup_wraper sure"
     textTitle="Are you sure?"
+    style="{width: 452px;}"
     v-if="popupVisible"
   > 
     <p>
@@ -675,6 +676,18 @@ export default {
     }
     .text-bold{
       font-family: "SF Pro Text Semibold";
+    }
+  }
+}
+
+.sure {
+  .v-popup {
+    &__content p {
+      font-size: 14px;
+
+      @media (min-width: 600px) {
+        font-size: 18px;
+      }
     }
   }
 }

@@ -36,7 +36,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .popup_wraper{
+.popup_wraper{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,17 +52,18 @@ export default {
     position: fixed;
     z-index: 9999999;
     width: 100%;
-    max-width: 400px;
+    max-width: 585px;
     padding: 32px 24px 24px;
     background: #ffffff;
     margin: 0 auto;
     border-radius: 9px;
     overflow-y: auto;
-    max-height: 80vh;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
     @media (max-width:480px) {
-      max-width: 300px;
+      max-width: 310px;
     }
     &__content, &__footer{
       display: flex;
@@ -107,7 +108,7 @@ export default {
   .v-popup{
     pointer-events: auto;
     box-shadow:(6px 6px 13px rgba(0, 0, 0, 0.25));
-    max-width: 418px;
+    max-width: 452px;
     font-family: "SF Pro Text Medium";
     font-size: 18px;
     line-height: 150%;
@@ -129,6 +130,15 @@ export default {
       
     }
     
+  }
+}
+
+.sure {
+  .v-popup {
+    max-width: 311px;
+    @media (min-width: 600px) {
+      max-width: 452px;
+    }
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="dark-layout">
+  <div :class="{ 'dark-layout': true, minHeight: content.id === 50}">
       <header-layout :fixed="true" :dark="false" />
       <steps
         :light="false"
@@ -58,17 +58,17 @@
       <footer-controls
         :dark="true"
         :buttonBack="{
-        text: content.buttonsText ? content.buttonsText[0] : 'Back',
-        icon: 'prev',
-        click: backURL,
-        theme: 'grey'
-      }"
+          text: content.buttonsText ? content.buttonsText[0] : 'Back',
+          icon: 'prev',
+          click: backURL,
+          theme: 'grey'
+        }"
         :buttonNext="{
-        icon: 'next',
-        text: content.buttonsText ? content.buttonsText[1] : 'I got it',
-        click: nextURL,
-        theme: 'red'
-      }"
+          icon: 'next',
+          text: content.buttonsText ? content.buttonsText[1] : 'I got it',
+          click: nextURL,
+          theme: 'red'
+        }"
       />
   </div>
 </template>
@@ -126,6 +126,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.minHeight {
+  min-height: 700px;
+  @media (min-width: 600px) {
+    min-height: 800px;
+  }
+}
 .h2 {
   text-align: center;
   color: #FFFFFF;

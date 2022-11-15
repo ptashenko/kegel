@@ -2,7 +2,7 @@
   <header-layout :fixed="true"/>
 
   <div class="dark-layout light" id="topPage">
-    <div class="container-main is-page Final" style="padding-bottom:70px;">
+    <div class="container-main is-page Final">
       <div class="mw-520">
         <div 
           v-if="active && open == 1" 
@@ -24,12 +24,13 @@
       </div>
       <div
         v-if="open !== 2"
-        class="mw-450"
+        class="mw-520"
       >
         <video-background
           :src="require('@/assets/video/mini_vid.mp4')"
           :poster="require(`@/assets/video/zaglushki/mini_vid.png`)"
           class="video"
+          objectFit="fill"
         >
         </video-background>
       </div>
@@ -92,7 +93,7 @@
           
           text='Add to my plan'
           theme="Back"
-          class="footer-controls__button red"
+          class="footer-controls__button red red-shadow"
           @click="addonRequest"
         />
         <!-- <button-field
@@ -122,7 +123,7 @@
         <button-field
           text='Add to my plan'
           theme="Back"
-          class="footer-controls__button bg-blue"
+          class="footer-controls__button bg-blue blue-shadow"
           :class="{ submit: loading }"
           @click="addonRequest"
         />
@@ -155,7 +156,7 @@
       </div>
       <div v-else-if="open == 2" class="text-center">
         <button 
-          class="v-popup__submit_btn active"
+          class="v-popup__submit_btn active blue-shadow"
           @click="closePopup"
         >
         Continue
@@ -168,30 +169,38 @@
       >
       I give up accelerated results forever &gt;
       </div>
-    </div>
-    <div v-if="!ios_v1">
-      <div v-if="open == 1" class="mw-520"> 
-        <div  class="footer__text">
-        Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+      <template v-if="!ios_v1">
+        <div v-if="open == 1" class="mw-520">
+          <div class="android-footer__text">
+            Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are
+            3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
+            If you are unsure how to cancel, visit our Terms of Use.
+          </div>
         </div>
-      </div>
-      <div v-else-if="open == 3" class="mw-520"> 
-        <div  class="footer__text">
-        Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+        <div v-else-if="open == 3" class="mw-520">
+          <div class="android-footer__text">
+            Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are
+            3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
+            If you are unsure how to cancel, visit our Terms of Use.
+          </div>
         </div>
-      </div>
-    </div>
-    <div v-else>
-      <div v-if="open == 1" class="mw-520"> 
-        <div  class="footer__text">
-        Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use. 
+      </template>
+      <template v-else>
+        <div v-if="open == 1" class="mw-520">
+          <div class="ios-footer__text">
+            Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are
+            1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
+            If you are unsure how to cancel, visit our Terms of Use.
+          </div>
         </div>
-      </div>
-      <div v-else-if="open == 3" class="mw-520"> 
-        <div  class="footer__text">
-        Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+        <div v-else-if="open == 3" class="mw-520">
+          <div class="ios-footer__text">
+            Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are
+            1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
+            If you are unsure how to cancel, visit our Terms of Use.
+          </div>
         </div>
-      </div>
+      </template>
     </div>
   </div>
   <vpopup
@@ -483,11 +492,16 @@ export default {
 
 <style lang="scss" scoped>
 .Final{
+  padding-bottom: 100px;
+  max-width: 311px;
+  @media (min-width: 600px) {
+    max-width: 600px;
+  }
   .h2 {
     margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
-    font-size: 32px;
+    font-size: 36px;
     line-height: 135%;
     @media (max-width:480px) {
       font-size: 24px;
@@ -513,7 +527,6 @@ export default {
 
   }
   .show{
-    margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
     font-size: 30px;
@@ -546,9 +559,9 @@ export default {
   }
   .mw-450{
     max-width: 450px;
-    margin: 47px auto 48px;
+    margin: 32px auto;
     @media (max-width:480px) {
-      margin: 12px auto 12px;
+      margin: 12px auto;
     }
     .layout__thumbnail{
       display: block;
@@ -636,8 +649,11 @@ export default {
     font-size: 16px;
     line-height: 150%;
     opacity: 0.5;  
-    margin: 16px auto 48px;  
+    margin: 32px auto;  
     cursor: pointer;
+    @media (min-width: 600px) {
+      margin: 32px auto 48px;
+    }
     
   }
   
@@ -648,7 +664,6 @@ export default {
   }
 
   .video{
-    max-height: 260px; 
     height: 100vh; 
     max-width: 100%;
     // border-radius: 14px;
@@ -672,15 +687,17 @@ export default {
   color: #111113 !important;
   opacity: 0.5 !important;
   margin: 16px auto 32px !important;
+  @media (min-width: 600px) {
+    font-size: 14px !important;
+  }
 }
 }
-.footer__text{
+.android-footer__text, .ios-footer__text {
     font-family: "SF Pro Text Light";
     font-size: 14px;
     line-height: 150%;
     opacity: 0.5;
     text-align: center;
-    padding-bottom: 48px;
     @media (max-width:480px) {
       font-size: 12px;
     }
@@ -695,7 +712,6 @@ export default {
   line-height: 135%;
   color: #ffffff;
   margin-top: 32px;
-  margin-bottom: 132px;
   cursor: pointer;
   @media (max-width: 480px){
     margin-bottom: 40px;
@@ -703,76 +719,104 @@ export default {
 }
 @media (max-width: 480px){
   .container-main {
-    padding-bottom: 0px; 
+    padding-bottom: 50px; 
   }
 }
-.popup_wraper{
-  overflow-y: inherit!important;;
-  h2{
+
+// Logic
+#app .popup_wraper{
+  height: 100%;
+}
+
+.popup_wraper {
+  overflow-y: inherit !important;
+  ;
+
+  h2 {
     font-family: "SF-Pro-Display-Bold";
     font-size: 24px;
     line-height: 135%;
     margin: 16px auto 16px;
+
     @media (max-width:480px) {
       font-size: 20px;
     }
   }
-  p{
+
+  p {
     font-size: 18px;
     line-height: 150%;
     font-family: "SF Pro Text Regular";
     opacity: 1;
     margin-bottom: 16px;
-    .text-semibold{
-        font-family: "SF Pro Text Semibold";
-      }
-      .text-bold{
-        font-family: "SF Pro Text Bold";
-      }
+
+    .text-semibold {
+      font-family: "SF Pro Text Semibold";
+    }
+
+    .text-bold {
+      font-family: "SF Pro Text Bold";
+    }
+
     @media (max-width:480px) {
       font-size: 14px;
-    }  
+    }
   }
-  img{
+
+  img {
     // width: 100%;
     max-width: 450px;
     margin: 32px auto;
     display: flex;
+
     @media (max-width:480px) {
       margin: 0px auto 0px;
     }
   }
-  .text-bottom-img{
+
+  .text-bottom-img {
     font-size: 14px;
     opacity: 0.5;
     font-family: "SF Pro Text Light";
     margin: 0 auto 32px;
     max-width: 450px;
     text-align: center;
+
     @media (max-width:480px) {
       font-size: 12px;
     }
   }
-  .block_blue{
+
+  .block_blue {
     padding: 16px 24px;
     background: #5773D6;
     color: #ffffff;
-    @media (max-width:480px){
+
+    @media (max-width:480px) {
       margin-left: -32px;
       margin-right: -32px;
     }
-    &__content{
+
+    &__content {
       max-width: 450px;
       margin: 0 auto;
-      @media (max-width:480px){
+
+      @media (max-width:480px) {
         max-width: 400px;
       }
     }
-    img{
+
+    @media (min-width: 600px) {
+      border: 2px solid #5773D6;
+      border-radius: 9px;
+    }
+
+    img {
       max-width: 70px;
       margin: 0;
     }
-    p{
+
+    p {
       margin: 0;
       margin-left: 16px;
       font-size: 16px;
@@ -782,35 +826,14 @@ export default {
       }
     }
   }
-  .v-popup__submit_btn{
+
+  .v-popup__submit_btn {
     background: #5773D6;
   }
-  .btn__next{
+
+  .btn__next {
     max-width: 14px;
     margin: 0 0 0 12px;
-  }
-}
-// Logic
-#app .popup_wraper{
-  height: 100%;
-  h2{
-    font-family: "SF-Pro-Display-Bold";
-    font-size: 24px;
-    line-height: 135%;
-    margin: 16px auto 16px;
-    @media (max-width:480px) {
-      font-size: 20px;
-    }
-  }
-  p{
-    font-size: 16px;
-    line-height: 150%;
-    font-family: "SF Pro Text Regular";
-    opacity: 1;
-    margin-bottom: 16px;
-    .text-bold{
-      font-family: "SF Pro Text Semibold";
-    }
   }
 }
 .btnLoader{

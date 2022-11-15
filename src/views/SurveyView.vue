@@ -9,7 +9,7 @@
         </div>
     </template>
     <template v-else>
-      <div :class="[content.id === 20 || content.id === 200 || content.id === 601 || content.id === 322  ? 'light-layout' : 'dark']">
+      <div :class="[lightTheme ? 'light-layout' : 'dark']">
         <div class="container-main is-page standart">
           <component :is="content && content.layoutName" :content="content" />
         </div>
@@ -51,6 +51,9 @@ export default {
   },
   computed: {
     ...mapGetters(['content', 'track']),
+    lightTheme() {
+      return this.content.id === 20 || this.content.id === 200 || this.content.id === 601 || this.content.id === 322 || this.content.id === 57 || this.content.id === 321 || this.content.id === 201 || this.content.id === 323
+    }
     
   },
   mounted() {

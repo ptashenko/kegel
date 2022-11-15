@@ -62,7 +62,8 @@
           </div>
 
           <div class="navigation__text">
-            *Results may vary depending on your starting point, goals, and effort.
+            Each individual’s results may vary from person to person based on health condition, body type, starting point, his or
+            her unique background, dedication, desire, motivation, actions, and numerous other factors
           </div>
         </div>
       </div>
@@ -83,18 +84,7 @@
               {{ advantage.email }}
             </p>
           </div>
-
-          <div class="footer__info">
-            <span>
-              Appercut sp z o o <br>
-              Warsaw, Twarda 18, 00-105
-            </span>
-            <div class="footer__terms">
-              <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>
-              <div class="line">|</div>
-              <a href="/terms.html" target="_blank">Terms & Conditions</a>
-            </div>
-          </div>
+          <HomeViewFooter />
         </div>
       </div>
       {{dataP1}}
@@ -109,12 +99,14 @@ import { mapGetters, mapMutations } from 'vuex';
 import moment from 'moment';
 import HeaderLayout from '@/components/Header.vue';
 import { addItem } from "../common/localStorage";
+import HomeViewFooter from '@/components/HomeViewFooter.vue';
 
 export default {
   inject: ['mixpanel'],
   components: {
     HeaderLayout,
-  },
+    HomeViewFooter
+},
   data() {
     return {
       loading: this.$store.getters.LOADER,
@@ -459,26 +451,6 @@ body{
     padding-bottom: 32px;
     max-width: 350px;
     margin: 0 auto;
-  }
-
-  &__info {
-    margin-top: 65px;
-    opacity: 0.5;
-    text-align: center;
-  }
-
-  &__terms {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-
-    a {
-      text-decoration: underline;
-      color: #111113;
-    }
-    .line{
-      margin: 0 16px;
-    }
   }
 }
 

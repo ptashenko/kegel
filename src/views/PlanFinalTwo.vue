@@ -495,7 +495,7 @@ export default {
   padding-bottom: 100px;
   max-width: 311px;
   @media (min-width: 600px) {
-    max-width: 600px;
+    max-width: 520px;
   }
   .h2 {
     margin-bottom: 32px;
@@ -765,7 +765,6 @@ export default {
 
   img {
     // width: 100%;
-    max-width: 450px;
     margin: 32px auto;
     display: flex;
 

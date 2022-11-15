@@ -52,7 +52,7 @@ export default {
     position: fixed;
     z-index: 9999999;
     width: 100%;
-    max-width: 585px;
+    max-width: 452px;
     padding: 32px 24px 24px;
     background: #ffffff;
     margin: 0 auto;

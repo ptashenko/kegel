@@ -127,95 +127,94 @@
             <Warning />
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-        <div class="d-flex flex-column comments">
-          <div class="reviews__title">See how this Plan changes Men's Lives</div>
-          <div v-for="(item, key) in base" :key="key">
-            <div class="review light" :class="{'active': key < this.numreview }">
-              <div class="review__top">
-                <div>
-                  <div class="review__title">{{ item.title }}</div>
-                  <div class="review__rating">
-                    <div v-for="i in item.rating" :key="i">
-                      <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                <div class="d-flex flex-column comments">
+                  <div class="reviews__title">See how this Plan changes Men's Lives</div>
+                  <div v-for="(item, key) in base" :key="key">
+                    <div class="review light" :class="{'active': key < this.numreview }">
+                      <div class="review__top">
+                        <div>
+                          <div class="review__title">{{ item.title }}</div>
+                          <div class="review__rating">
+                            <div v-for="i in item.rating" :key="i">
+                              <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                            </div>
+                            <div v-for="i in Number(5 - item.rating)" :key="i">
+                              <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="review__name">
+                          {{ item.name }}
+                        </div>
+                      </div>
+                
+                      <div class="review__text">
+                        {{ item.text }}
+                      </div>
                     </div>
-                    <div v-for="i in Number(5 - item.rating)" :key="i">
-                      <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                
+                  </div>
+                
+                  <button class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
+                </div>
+                <div class="creating">
+                  <div class="text-center creating__title">
+                    This is how much it took to create the Dr. Kegel Plan
+                  </div>
+                  <div class="d-flex creating__body">
+                    <div class="w-50 text-center creating__item">
+                      <img src="@/assets/images/icons/icon_research.svg" class="creating__image" alt="">
+                      <h3>700+</h3>
+                      <p>Hours research</p>
+                    </div>
+                    <div class="w-50 text-center creating__item">
+                      <img src="@/assets/images/icons/icon_studies.svg" class="creating__image" alt="">
+                      <h3>150+</h3>
+                      <p>Studies analysis</p>
                     </div>
                   </div>
                 </div>
-        
-                <div class="review__name">
-                  {{ item.name }}
+                <div class="trusted-sources">
+                  <h4 class="trusted-sources_title">These are some of the trusted sources that have been used</h4>
+                  <img src="@/assets/img/land_v3/8.png" alt="">
                 </div>
-              </div>
-        
-              <div class="review__text">
-                {{ item.text }}
-              </div>
-            </div>
-        
-          </div>
-        
-          <button class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
-        </div>
-        <div class="container-main is-page creating">
-          <div class="text-center creating__title">
-            This is how much it took to create the Dr. Kegel Plan
-          </div>
-          <div class="d-flex creating__body">
-            <div class="w-50 text-center creating__item">
-              <img src="@/assets/images/icons/icon_research.svg" class="creating__image" alt="">
-              <h3>700+</h3>
-              <p>Hours research</p>
-            </div>
-            <div class="w-50 text-center creating__item">
-              <img src="@/assets/images/icons/icon_studies.svg" class="creating__image" alt="">
-              <h3>150+</h3>
-              <p>Studies analysis</p>
-            </div>
-          </div>
-        </div>
-        <div class="trusted-sources">
-          <h4 class="trusted-sources_title">These are some of the trusted sources that have been used</h4>
-          <img src="@/assets/img/land_v3/8.png" alt="">
-        </div>
-        <div class="small_info-block">
-          <div class="small_info-block_wrapper">
-            <h4 class="small_info-block_title">Let's summarize what following the Dr. Kegel plan can get you</h4>
-            <div class="small_info-block_content">
-              <div class="small_info-block_content-block">
-                <div class="small_info-block_content-item">
-                  <img src="@/assets/img/land_v3/9.svg" class="small_info-block_content-item_img" alt="">
-                  <p>Stamina</p>
-                  <span style="padding-left:16px">up to 7x<img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
+                <div class="small_info-block">
+                  <div class="small_info-block_wrapper">
+                    <h4 class="small_info-block_title">Let's summarize what following the Dr. Kegel plan can get you</h4>
+                    <div class="small_info-block_content">
+                      <div class="small_info-block_content-block">
+                        <div class="small_info-block_content-item">
+                          <img src="@/assets/img/land_v3/9.svg" class="small_info-block_content-item_img" alt="">
+                          <p>Stamina</p>
+                          <span style="padding-left:16px">up to 7x<img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
+                        </div>
+                        <div class="small_info-block_content-item">
+                          <img src="@/assets/img/land_v3/10.svg" class="small_info-block_content-item_img" alt="">
+                          <p>Potency</p>
+                          <span style="padding-left:16px">up to 2x<img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
+                        </div>
+                      </div>
+                      <div class="small_info-block_content-info">
+                        <div class="small_info-block_content-info-block">
+                          <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
+                          <span>Quality of life</span>
+                        </div>
+                        <div class="small_info-block_content-info-block">
+                          <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
+                          <span>Confidence</span>
+                        </div>
+                        <div class="small_info-block_content-info-block">
+                          <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
+                          <span>More happiness for you and your partner</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="small_info-block_content-item">
-                  <img src="@/assets/img/land_v3/10.svg" class="small_info-block_content-item_img" alt="">
-                  <p>Potency</p>
-                  <span style="padding-left:16px">up to 2x<img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
                 </div>
-              </div>
-              <div class="small_info-block_content-info">
-                <div class="small_info-block_content-info-block">
-                  <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
-                  <span>Quality of life</span>
-                </div>
-                <div class="small_info-block_content-info-block">
-                  <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
-                  <span>Confidence</span>
-                </div>
-                <div class="small_info-block_content-info-block">
-                  <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
-                  <span>More happiness for you and your partner</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
+  </div>
         <div class="price__wrapper">
         <div class="price">
           <div class="price__text">
@@ -295,17 +294,17 @@
     </div>
     <Guarantee />
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <button class="btn_bottom" v-scroll-to="'#paypal'">
+      <button class="btn_bottom red-shadow" v-scroll-to="'#paypal'">
         Get my plan
       </button>
     </div>
     <FaqBlockVue :items="constants.faq" />
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <button class="btn_bottom" v-scroll-to="'#paypal'">
+      <button class="btn_bottom red-shadow" v-scroll-to="'#paypal'">
         Get my plan
       </button>
     </div>
-    <div class="mxw-450 d-flex flex-column mb-64">
+    <div class="mxw-520 d-flex flex-column mb-64">
       <p class="text-description">
         <span><span class="bold">Your 7-day trial will last until {{ moment().add(7,'days').format('MMMM Do YYYY, h:mm a') }}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page</span>
       </p>
@@ -905,7 +904,9 @@ export default {
   }
 }
 .creating {
-  padding: 0 32px;
+  max-width: 520px;
+  margin: 0 auto;
+
   &__title {
     font-family: 'SF-Pro-Display-Bold';
       font-style: normal;

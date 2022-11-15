@@ -71,6 +71,6 @@ export default {
 }
 
 .SurveyVuew {
-  height: 100%;
+
 }
 </style>

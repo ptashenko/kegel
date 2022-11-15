@@ -79,24 +79,7 @@
               {{ advantage.email }}
             </p>
           </div>
-
-          <p class="footer__text">This service offers health and fitness information and is designed for educational and entertainment purposes only. You
-          should not rely on this information as a substitute for, nor does it replace, professional medical advice, diagnosis, or
-          treatment. It is intended to be provided for informational, educational, and self-empowerment purposes only. If you have
-          any concerns or questions about your health, you should always consult with a physician or other health-care
-          professional.</p>
-
-          <div class="footer__info">
-            <span>
-              Appercut sp z o o <br>
-              Warsaw, Twarda 18, 00-105
-            </span>
-            <div class="footer__terms">
-              <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>
-              <a href="/terms.html" target="_blank">Terms & Conditions</a>
-              <a href="/refund.html" target="_blank">Refund Policy</a>
-            </div>
-          </div>
+          <FooterHomeView />
         </div>
       </div>
       {{dataP1}}
@@ -110,12 +93,14 @@
 import { mapGetters, mapMutations } from 'vuex';
 import moment from 'moment';
 import HeaderLayout from '@/components/Header.vue';
+import FooterHomeView from '@/components/FooterHomeView.vue';
 import { addItem } from "../common/localStorage";
 
 export default {
   inject: ['mixpanel'],
   components: {
     HeaderLayout,
+    FooterHomeView
   },
   data() {
     return {
@@ -464,13 +449,13 @@ body{
     &--title {
       font-style: normal;
         font-weight: 700;
-        font-size: 22px;
-        line-height: 26px;
+        font-size: 16px;
+        line-height: 1.62;
         text-align: center;
-      
-        /* FFFFFF */
-      
         color: #FFFFFF;
+        @media (min-width: 600px) {
+          font-size: 22px;
+        }
     }
     &--text {
       font-family: "SF Pro Text Medium";
@@ -509,10 +494,13 @@ body{
 }
 
 .footer {
-  padding: 51px 0px 50px;
+  padding: 48px 0px 50px;
   background: rgba(196, 196, 196, 0.2);
+  @media (min-width: 600px) {
+    padding: 51px 0px 50px;
+  }
   .container-main{
-    max-width: 350px;
+    max-width: 311px;
     margin: 0 auto;
     @media (min-width: 600px) {
         padding: 0 40px 32px;
@@ -521,70 +509,18 @@ body{
         box-sizing: border-box;
     }
   }
-
-  &__info {
-    margin-top: 32px;
-    opacity: 0.5;
-    text-align: center;
-  }
-
-  &__terms {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 15px;
-
-    @media (min-width: 600px) {
-      flex-direction: row;
-    }
-
-    a {
-      text-decoration: underline;
-      color: #111113;
-      @media (min-width: 600px) {
-        display: flex;
-        position: relative;
-        &:not(:last-child) {
-          &::after {
-              content: '|';
-              position: absolute;
-              top: 0;
-              right: -16px;
-              pointer-events: none;
-            }
-        }
-      }
-      &:not(:last-child) {
-        margin-bottom: 13px;
-        @media (min-width: 600px) {
-            margin-bottom: 0;
-            margin-right: 32px;
-          }
-      }
-    }
-  }
-    &__text {
-      font-family: "SF Pro Text Regular";
-      margin-top: 64px;
-      font-size: 14px;
-      font-weight: 500;
-      opacity: .65;
-      line-height: 1.5;
-      padding: 0 5px;
-      text-align: center;
-      @media (min-width: 600px) {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 150%;
-        padding: 0;
-      }
-    }
 }
 
 .advantage {
   text-align: center;
   margin: 0 auto;
+
+  &:not(:last-child) {
+    margin-bottom: 48px;
+      @media (min-width: 600px) {
+          margin-bottom: 15px;
+        }
+  }
   @media (min-width: 600px) {
     max-width: 373px;
   }
@@ -608,11 +544,9 @@ body{
     font-size: 14px;
     font-weight: 400;
     opacity: .65;
-    line-height: 21px;
-    padding: 0px 32px;
+    line-height: 1.5;
     @media (min-width: 600px) {
         font-size: 18px;
-        line-height: 150%;
         padding: 0;
     }
   }
@@ -622,10 +556,14 @@ body{
     display: block;
     color: #E44240;
     text-decoration: none;
+    font-size: 14px;
+        @media (min-width: 600px) {
+            font-size: 18px;
+          }
   }
 
   &:not(:last-child) {
-    margin-bottom: 64px;
+    margin-bottom: 48px;
     @media (min-width: 600px) {
       margin-bottom: 15px;
     }

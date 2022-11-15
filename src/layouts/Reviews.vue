@@ -236,6 +236,9 @@ export default {
 
 .Reviews {
   padding: 0;
+  @media (min-width: 600px) {
+    padding-bottom: 50px;
+  }
 }
 .reviews {
   padding-top: 50px;

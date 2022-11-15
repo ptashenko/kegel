@@ -241,7 +241,6 @@ export default {
   &__wrapper {
     display: flex;
     flex-direction: column;
-    height: 100%;
   }
   &__rate {
     opacity: 0.75;
@@ -286,6 +285,7 @@ export default {
   &__lvl {
     display: flex;
     max-width: 390px;
+    width: 100%;
     margin: 0 auto;
     margin-top: 16px;
     justify-content: space-between;

@@ -24,8 +24,8 @@
           </p>
         </div>                    
       </div>
-      <div class="mw-450"> 
-        <div class=" layout__thumbnail">
+      <div class="mw-520"> 
+        <div class="layout__thumbnail">
           <img src="@/assets/images/content/Step_2_img.png" :alt="Step_2_img">
         </div>
 
@@ -75,7 +75,7 @@
       <button-field
         text='Skip trial and start plan'
         theme="Back"
-        class="footer-controls__button red"
+        class="footer-controls__button red red-shadow"
         :class="{ submit: loading }"
         @click="changePlanRequest"
       />
@@ -117,15 +117,21 @@
       >
       Continue with trial &gt;
       </div>
-    </div>
-    <div class="mw-520">
-      <div class="footer__text" v-if="!addToDo">
-        When you click "Skip Trial and Start Plan", your original trial payment will be charged $60. Your payment method will then be automatically charged $60 every 3 months (your "subscription period") until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of a subscription period, you will not receive a partial refund.
+      <div class="final-footer">
+        <div class="final-footer__text" v-if="!addToDo">
+          When you click "Skip Trial and Start Plan", your original trial payment will be charged $60. Your payment method
+          will then be automatically charged $60 every 3 months (your "subscription period") until you cancel. You can cancel
+          anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the
+          end of a subscription period, you will not receive a partial refund.
+        </div>
+        <div class="final-footer__text" v-else>
+          When you click "Skip Trial and Start Plan", your original trial payment will be charged $44. Your payment method
+          will then be automatically charged $44 every 3 months (your "subscription period") until you cancel. You can cancel
+          anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the
+          end of a subscription period, you will not receive a partial refund.
+        </div>
       </div>
-      <div class="footer__text" v-else>
-        When you click "Skip Trial and Start Plan", your original trial payment will be charged $44. Your payment method will then be automatically charged $44 every 3 months (your "subscription period") until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of a subscription period, you will not receive a partial refund.
-      </div>
-    </div>  
+    </div> 
 
     
   </div>
@@ -498,43 +504,52 @@ export default {
       }
     }
   }
+
+.layout__thumbnail {
+  display: block;
+  max-width: 520px;
+  margin: 0 auto 32px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.desc {
+  font-family: "SF Pro Text Light";
+  font-size: 14px;
+  line-height: 150%;
+  opacity: 0.5;
+  text-align: center;
+  margin-bottom: 48px;
+
+  @media (max-width:480px) {
+    font-size: 12px;
+  }
+}
   .mw-450{
     max-width: 450px;
     margin: 0 auto;
-    .layout__thumbnail{
-      display: block;
-      max-width: 450px;
-      margin: 0 auto 32px;
-      img{
-        width: 100%;
-      }
-    }
-    .desc{
-      font-family: "SF Pro Text Light";
-      font-size: 14px;
-      line-height: 150%;
-      opacity: 0.5;
-      text-align: center;
-      margin-bottom: 48px;
-      @media (max-width:480px) {
-        font-size: 12px;
-      }
-    }
   }
   .price{
     background: #F1F3F9;
-    padding: 16px 74px;
-    margin: 0 -32px;
+    padding: 24px 38px;
     @media (max-width:480px) {
       padding: 16px 32px;
+    }
+    @media (min-width: 600px) {
+      font-size: 18px;
     }
     &__text{
       font-family: "SF-Pro-Display-Semibold";
       font-size: 16px;
       line-height: 150%;
+      @media (min-width: 600px) {
+        font-size: 18px;
+      }
     }
     &__today{
-      font-size: 16px;
+      font-size: 18px;
       margin-top: 16px ;
       @media (max-width:480px) {
         font-size: 14px;
@@ -568,6 +583,9 @@ export default {
     max-width: 310px;
     margin: 48px auto 0;
     z-index: 0;
+    @media (min-width: 600px) {
+      max-width: 375px;
+    }
   }
   .footer-controls__button.loader{
     max-width: 310px;
@@ -619,17 +637,6 @@ export default {
   50%{box-shadow:0px 0px 0px 4px #5773d681;}
   100%{box-shadow:0px 0px 0px 0px #5773d681;}
 }
-.footer__text{
-    font-family: "SF Pro Text Light";
-    font-size: 14px;
-    line-height: 150%;
-    opacity: 0.5;
-    text-align: center;
-    padding-bottom: 48px;
-    @media (max-width:480px) {
-      font-size: 12px;
-    }
-  }
 .v-popup__submit_btn, .v-popup__btn{
   background-color: rgb(228, 66, 64);
   border:none;
@@ -663,6 +670,9 @@ export default {
     font-family: "SF Pro Text Regular";
     opacity: 0.75;
     margin-bottom: 16px;
+    @media (min-width: 600px) {
+      font-size: 18px;
+    }
     .text-bold{
       font-family: "SF Pro Text Semibold";
     }
@@ -808,6 +818,26 @@ export default {
       background: #FFBB1B;
       border: 3px solid #F3F3F3;
     }
+  }
+}
+.final-footer {
+  &__text {
+      font-family: "SF Pro Text Light";
+      font-size: 14px;
+      line-height: 150%;
+      opacity: 0.5;
+      text-align: center;
+      padding-bottom: 48px;
+    
+      @media (max-width:480px) {
+        font-size: 12px;
+      }
+  }
+}
+
+.Final {
+  @media (max-width: 599px) {
+    padding: 0 32px;
   }
 }
 .closeBtn{

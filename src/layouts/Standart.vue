@@ -210,7 +210,7 @@ export default {
     font-family: "SF Pro Text Regular";
     font-weight: 400;
     font-size: 18px;
-    margin-top: 32px;
+    margin-top: 25px;
     line-height: 150%;
     text-align: center;
     color: #FFFFFF;

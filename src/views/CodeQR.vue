@@ -40,12 +40,13 @@
         <p>Special link to your plan was also sent to your email: <span class="blue"> {{email}} </span></p>
       </div>
     </div>
-  </div>
-  <div class="footer">
-      <div class="footer__text">
-        Any questions? Contact us at <span class="blue">contact@kegel.men</span>
+      <div class="qr-footer">
+        <div class="qr-footer__text">
+          Any questions? Contact us at <span class="blue">contact@kegel.men</span>
+        </div>
       </div>
-    </div>  
+  </div>
+
 </template>
 
 <script>
@@ -363,11 +364,11 @@ export default {
   .bg-blue{
     background: #5773D6;
   }
-.footer{
+.qr-footer{
   background: #111113;
   width: 100%;
   display: block;
-  max-width: 600px;
+  width: 100%;
   font-family: "SF Pro Text Regular";
   font-size: 18px;
   line-height: 142.34%;
@@ -375,7 +376,7 @@ export default {
   @media (max-width:480px) {
     font-size: 16px;
   }
-  .footer__text{
+  &__text{
     color: #ffffff;
     text-align: center;
     padding: 48px;

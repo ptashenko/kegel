@@ -263,7 +263,7 @@
       </p>
     </div>
   </div>
-  <Footer />
+  <Footer v-if="step_2" />
       <vpopup v-if="popupVisible" class="popup_wraper" textTitle="">
         <p class="opasity_75">
           In view of the pandemic and global health crisis, we are offering the option to try out Kegel Plan for as little as
@@ -974,7 +974,7 @@ hr{
     font-size:24px;
   }
   p{
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 16px;
     line-height: 150%;
     @media (max-width:480px) {
@@ -999,6 +999,9 @@ hr{
     margin-top: 18px;
     margin-bottom: 0;
     opacity: 0.75;
+    @media (min-width: 600px) {
+        font-size: 16px;
+      }
   }
   .text__bottom_btn{
     font-size: 12px;
@@ -1006,6 +1009,9 @@ hr{
     margin-top: 8px;
     text-align: center;
     margin-bottom: 0;
+      @media (min-width: 600px) {
+          font-size: 16px;
+        }
   }
   .desktop-center{
     text-align: center;
@@ -1013,6 +1019,9 @@ hr{
     @media (max-width:480px) {
       text-align: left;
       width: 100%;
+    }
+    @media (min-width: 600px) {
+      margin: 16px 0;
     }
   }
 }

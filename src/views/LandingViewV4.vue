@@ -1,6 +1,5 @@
 <template>
 <div class="landing">
-  <header-layout :fixed="true"/>
   {{MyScrollFixed}}
   {{MyScrollModal}}
   {{btnAddPurpose}}
@@ -20,6 +19,7 @@
   
   <div class="dark-layout light" id="topPage">
     <div class="container-main is-page land">
+        <header-layout :fixed="true" />
       <div class="landing__content">
         <div class="d-flex align-items-center justify-content-center flex-column">
           <div class="d-flex flex-column block__timer" >
@@ -121,55 +121,52 @@
     
       <button class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
     </div>
-      <div class="price">
-        <div class="price__text">
-          PRICE TODAY
-        </div>
-      </div>
-      <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-        <div>
-          7-day trial*
-        </div>
-        <div>
-          <span class="opac_5 line">${{oldprice}}</span>
-          <span class="text-bold">${{price}}</span>
-        </div>
-      </div>
-      <hr>
-      <div class="mw-450 trial_description opac_5">
-        <i>*You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
-      </div>
-      <div class="price">
-        <div class="price__text">
-          PRICE AFTER TRIAL
-        </div>
-      </div>
-      <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-        <div>
-          12 weeks plan
-        </div>
-        <div class="after d-flex flex-column align-items-end">
-          <span class="bold">$79.2*</span>
-          <span class="small">(just $6.60/week)</span>
-        </div>
-      </div>
-      <hr>
-      <div class="mw-450 trial_description opac_5">
-        <i>*Billed on {{moment().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
-      </div>
-
-  <button-field
-    v-if="!step_2"
-    text='Start my plan'
-    theme="Back"
-    class="footer-controls__button red"
-    @click="showModal2()"
-  />
-  <div class="h200" v-if="!step_2">
-    <div id="paypal"></div>
-  </div>
+    <div class="price__wrapper">
+            <div class="price">
+              <div class="price__text">
+                PRICE TODAY
+              </div>
+            </div>
+            <div class="price__today d-flex mw-520 align-items-center justify-content-beetwen">
+              <div>
+                7-day trial*
+              </div>
+              <div>
+                <span class="opac_5 line">${{oldprice}}</span>
+                <span class="text-bold">${{price}}</span>
+              </div>
+            </div>
+            <hr>
+            <div class="trial_description opac_5">
+              <i>*You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
+            </div>
+            <div class="price">
+              <div class="price__text">
+                PRICE AFTER TRIAL
+              </div>
+            </div>
+            <div class="price__today d-flex mw-520 align-items-center justify-content-beetwen">
+              <div>
+                12 weeks plan
+              </div>
+              <div class="after d-flex flex-column align-items-end">
+                <span class="bold">$79.2*</span>
+                <span class="small">(just $6.60/week)</span>
+              </div>
+            </div>
+            <hr>
+            <div class="trial_description opac_5">
+              <i>*Billed on {{moment().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
+            </div>
+            
+            <button-field v-if="!step_2" text='Start my plan' theme="Back" class="footer-controls__button red"
+              @click="showModal2()" />
+            <div class="h200" v-if="!step_2">
+              <div id="paypal"></div>
+            </div>
+    </div>
   <div class="step_2" v-if="step_2">
-    <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
+    <div class="payment d-flex align-items-center justify-content-beetwen">
       <div class="after">
         <span class="bold">Payment method</span>
       </div>
@@ -178,7 +175,7 @@
       </div>
     </div>
     <hr>
-    <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
+    <div class="block-pay d-flex flex-column align-items-center justify-content-center">
       <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item"
         :auth_price="this.price" id="paymentForm" />
     </div>
@@ -188,7 +185,7 @@
           <img src="@/assets/img/land_v3/11.png" alt="">
         </div>
       </div>
-    <div class="mw-450 d-flex flex-column mb-32">
+    <div class="d-flex flex-column mb-32">
       <div class="item-li benefits d-flex align-items-center">
         <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
         <p class="fs-16-14">
@@ -204,35 +201,35 @@
     </div>
     <Guarantee />
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <button class="btn_bottom" v-scroll-to="'#paypal'">
+      <button class="btn_bottom red-shadow" v-scroll-to="'#paypal'">
         Get my plan
       </button>
     </div>
     <FaqBlockVue :items="constants.faq" />
-    <div class="block__text mw-450">
+    <div class="block__text">
       <p class="title">Your information is safe</p>
       <p class="fs-16-14">We will not sell or rent your personal contact information for any marketing purposes.</p>
     </div>
-    <div class="block__text mw-450">
+    <div class="block__text">
       <p class="title">Secure checkout</p>
       <p class="fs-16-14">All information is encrypted and transmitted using Secure Sockets Layer protocol.</p>
     </div>
-    <div class="block__text mw-450">
+    <div class="block__text">
       <p class="title">Need help?</p>
       <p class="fs-16-14">Contact us here: <span class="red">contact@kegel.men</span></p>
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <button class="btn_bottom" v-scroll-to="'#paypal'">
+      <button class="btn_bottom red-shadow" v-scroll-to="'#paypal'">
         Get my plan
       </button>
     </div>
-    <div class="mw-450 d-flex flex-column mb-32">
+    <div class="d-flex flex-column mb-32">
       <p class="text-description">
         <span><span class="bold">Your 7-day trial will last until {{ moment().add(7,'days').format('MMMM Do YYYY, h:mm a') }}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page</span>
       </p>
     </div>
-    <Footer />
   </div>
+      <Footer />
   <vpopup
   class="popup_wraper"
     textTitle=""
@@ -731,44 +728,7 @@ export default {
     }
   }
 }
-.guarantee {
-  padding: 0 32px 32px 32px;
-  color: #111113;
-  margin-bottom: 32px;
-
-  &-title {
-    font-family: "SF Pro Text Bold";
-    margin-top: 0;
-    margin-bottom: 16px;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 135%;
-    text-align: center;
-  }
-
-  &-description {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 150%;
-  }
-
-  &-wrapper {
-    padding: 32px;
-    border: 2px solid #5773D6;
-    border-radius: 9px;
-    position: relative;
-  }
-
-  &-icon {
-    position: absolute;
-    right: 24px;
-    bottom: -61px;
-  }
-}
 .safe-checkout {
-  padding-left: 32px;
-  padding-right: 32px;
   margin-top: 45px;
   margin-bottom: 32px;
 
@@ -1018,7 +978,6 @@ export default {
 }
 
 .block-pay{
-  width: 350px;
   .w-100{
     width: 100%;
     margin-top: 48px;
@@ -1133,9 +1092,18 @@ export default {
   margin: 16px auto;
   padding: 0 32px;
 }
+.mw-520{
+  max-width: 520px;
+  margin: 16px auto;
+  padding: 0 32px;
+}
 .comments {
+  max-width: 520px;
   margin: 0 auto;
   padding-bottom: 30px;
+  @media (min-width: 600px) {
+    margin-top: 64px;
+  }
 }
 .mw-300{
   max-width: 300px;
@@ -1152,7 +1120,7 @@ export default {
   }
 }
 .fs-16-14{
-  font-size: 16px;
+  font-size: 18px;
   @media (max-width:480px) {
     font-size: 14px;
   }
@@ -1162,6 +1130,10 @@ export default {
 }
 .block__timer {
   width: 100%;
+  @media (min-width: 600px) {
+      padding: 0 40px;
+      box-sizing: border-box;
+  }
   & .h2 {
     margin-bottom: 32px;
   }
@@ -1187,10 +1159,11 @@ hr{
   }
 }
 .payment{
-  margin: 84px auto 16px;
-  @media (max-width:480px) {
-    margin: 64px auto 16px;
-  }
+  margin: 71px auto 16px;
+  
+    @media (max-width:480px) {
+      margin: 64px auto 16px;
+    }
   p{
     font-size: 16px;
     margin-bottom: 16px;
@@ -1198,8 +1171,12 @@ hr{
   }
   .bold{
     font-family: "SF-Pro-Display-Semibold";
+    @media (min-width: 600px) {
+        font-size: 18px;
+      }
   }
   .opacity-75{
+    font-size: 18px;
     opacity: 0.75;
     font-family: "SF-Pro-Display-Medium";
     @media (max-width:480px) {
@@ -1366,7 +1343,7 @@ hr{
 // reviews
 .reviews__title {
     font-family: "SF-Pro-Display-Semibold";
-    font-size: 18px;
+    font-size: 24px;
     line-height: 150%;
     margin-bottom: 25px;
     text-align: center;
@@ -1379,7 +1356,6 @@ hr{
   padding: 15px;
   border-radius: 10px;
   margin: 8px auto 0;
-  max-width: 370px;
   background-color: #F1F1F1;
   display: none;
   transition: .3s;
@@ -1466,7 +1442,7 @@ hr{
   margin-right: 4px;
 }
 .trial_description{
-  padding: 16px 32px 25px;
+  padding: 16px 32px;
   margin: 0 auto;
   line-height: 150%;
   @media (max-width:480px) {
@@ -1476,12 +1452,21 @@ hr{
 .price{
   background: #F1F3F9;
   padding: 16px 74px;
-  @media (max-width:480px) {
-    padding: 16px 32px;
+  
+    @media (max-width:480px) {
+      padding: 16px 32px;
+    }
+  
+    @media (min-width: 600px) {
+      padding: 24px 38px;
+    }
+  &__wrapper {
+      max-width: 600px;
+      margin: 0 auto;
   }
   &__text{
     font-family: "SF-Pro-Display-Semibold";
-    font-size: 16px;
+    font-size: 18px;
     line-height: 150%;
     @media (max-width:480px) {
       font-size: 14px;
@@ -1490,8 +1475,12 @@ hr{
 }
 ul{
   max-width: 310px;
-  margin: 0 auto;
-  padding: 0;
+    margin: 0 auto;
+    padding: 0;
+  
+    @media (min-width: 600px) {
+      max-width: 375px;
+    }
   li.li {
     list-style-type: none;
     display: flex;
@@ -1499,6 +1488,9 @@ ul{
     font-family: "SF Pro Text Regular";
     font-size: 16px;
     line-height: 150%;
+    @media (min-width: 600px) {
+        font-size: 18px;
+      }
     &:not(:last-child) {
       margin-bottom: 16px;
     }
@@ -1519,7 +1511,7 @@ ul{
 }
 
 .h2 {
-  font-size: 30px;
+  font-size: 36px;
   line-height: 135%;
   margin: 0px auto;
   font-family: "SF-Pro-Display-Bold";
@@ -1531,12 +1523,14 @@ ul{
   font-family: "SF-Pro-Display-Bold";
   font-size: 20px;
   margin-top: 16px;
-  margin-bottom: 25px;
+
+  @media (min-width: 600px) {
+    font-size: 24px;
+  }
 }
 .dark-layout{
-  padding: 84px 32px 0px;
   .p-14{
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
     line-height: 150%;
     @media (max-width:480px) {
@@ -1550,7 +1544,7 @@ ul{
 
 }
 .price__today{
-  font-size: 16px;
+  font-size: 18px;
   @media (max-width:480px) {
     font-size: 14px;
   }
@@ -1598,7 +1592,10 @@ ul{
 .timer__text{
   font-size: 16px;
   line-height: 150%;
-  font-family: "SF Pro Text Bold"; 
+  font-family: "SF Pro Text Bold";
+  @media (min-width: 600px) {
+    font-size: 18px;
+  }
 }
 .layout__button .timer__start{
   font-size: 14px;
@@ -1630,13 +1627,13 @@ ul{
       }
     }
   }
-  &__button{
-    border-radius: 17px;
-    padding: 17px 24px;
-    background: #111113;
-    max-width: 270px;
-    margin: 0 auto;
-  }
+    &__button {
+      border-radius: 17px;
+      padding: 17px 0;
+      background: #111113;
+      max-width: 375px;
+      margin: 0 auto;
+    }
   &__title {
     font-weight: 600;
     font-size: 24px;
@@ -1654,7 +1651,7 @@ ul{
     margin: 15px auto 0;
     text-align: center;
     width: 100%;
-    max-width: 450px;
+    max-width: 520px;
     img {
       width: 100%;
       height: auto;
@@ -1681,6 +1678,10 @@ ul{
       border-radius: 50%;
       background: rgba(#FFFFFF, .07);
       margin-right: 24px;
+      margin-left: 24px;
+      @media (min-width: 600px) {
+          margin-left: 53px;
+        }
     }
 
     p {
@@ -1708,7 +1709,17 @@ ul{
       line-height: 24px;
     }
   }
-} 
+}
+.step_2 {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+
+  @media (min-width: 600px) {
+    padding: 0 40px;
+  }
+}
 .text-purpose{
   font-size: 18px;
   line-height: 150%;

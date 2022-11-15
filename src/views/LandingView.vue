@@ -909,12 +909,9 @@ export default {
   margin-bottom: 32px;
 }
 .fs-16-14{
-  font-size: 16px;
+  font-size: 18px;
   @media (max-width:480px) {
     font-size: 14px;
-  }
-  @media (min-width: 600px) {
-    font-size: 18px;
   }
 }
 .block__timer .p-14{
@@ -952,13 +949,11 @@ hr{
       }
   }
   .opacity-75{
+    font-size: 18px;
     opacity: 0.75;
     font-family: "SF-Pro-Display-Medium";
     @media (max-width:480px) {
       font-size: 14px;
-    }
-    @media (min-width: 600px) {
-      font-size: 18px;
     }
   }
 }
@@ -1256,22 +1251,16 @@ hr{
 }
 .price{
   background: #F1F3F9;
-  padding: 16px 74px;
+  padding: 24px 38px;
   @media (max-width:480px) {
     padding: 16px 32px;
   }
-  @media (min-width: 600px) {
-    padding: 24px 38px;
-  }
   &__text{
     font-family: "SF-Pro-Display-Semibold";
-    font-size: 16px;
+    font-size: 18px;
     line-height: 150%;
     @media (max-width:480px) {
       font-size: 14px;
-    }
-    @media (min-width: 600px) {
-      font-size: 18px;
     }
   }
   &__wrapper {
@@ -1335,7 +1324,6 @@ ul{
   }  
 }
 .dark-layout{
-  padding: 16px 0px;
   .p-14{
     font-size: 18px;
     text-align: center;
@@ -1351,24 +1339,18 @@ ul{
 
 }
 .price__today{
-  font-size: 16px;
+  font-size: 18px;
   @media (max-width:480px) {
     font-size: 14px;
-  }
-  @media (min-width: 600px) {
-    font-size: 18px;
   }
   .after{
     .bold{
       font-family: "SF Pro Text Semibold";
     }
     .small{
-      font-size: 14px;
+      font-size: 16px;
       @media (max-width:480px) {
         font-size: 11px;
-      }
-      @media (min-width: 600px) {
-        font-size: 16px;
       }
     }
   }

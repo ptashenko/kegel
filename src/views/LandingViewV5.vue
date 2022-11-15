@@ -1,6 +1,5 @@
 <template>
 <div class="landing">
-  <header-layout :fixed="true"/>
   {{MyScrollFixed}}
   {{MyScrollModal}}
   {{btnAddPurpose}}
@@ -20,6 +19,7 @@
   
   <div class="dark-layout light" id="topPage">
     <div class="container-main is-page land">
+      <header-layout :fixed="true" />
       <div class="landing__content">
         <div class="d-flex align-items-center justify-content-center flex-column">
           <div class="d-flex flex-column block__timer" >
@@ -130,139 +130,137 @@
       </div>
     </div>
   </div>
-    <div class="d-flex flex-column  mw-450 comments">
-      <div class="reviews__title">See how this Plan changes Men's Lives</div>
-      <div v-for="(item, key) in base" :key="key">
-        <div class="review light" :class="{'active': key < this.numreview }">
-          <div class="review__top">
-            <div>
-              <div class="review__title">{{ item.title }}</div>
-              <div class="review__rating">
-                <div v-for="i in item.rating" :key="i">
-                  <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+
+        <div class="d-flex flex-column comments">
+          <div class="reviews__title">See how this Plan changes Men's Lives</div>
+          <div v-for="(item, key) in base" :key="key">
+            <div class="review light" :class="{'active': key < this.numreview }">
+              <div class="review__top">
+                <div>
+                  <div class="review__title">{{ item.title }}</div>
+                  <div class="review__rating">
+                    <div v-for="i in item.rating" :key="i">
+                      <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                    </div>
+                    <div v-for="i in Number(5 - item.rating)" :key="i">
+                      <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                    </div>
+                  </div>
                 </div>
-                <div v-for="i in Number(5 - item.rating)" :key="i">
-                  <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+        
+                <div class="review__name">
+                  {{ item.name }}
+                </div>
+              </div>
+        
+              <div class="review__text">
+                {{ item.text }}
+              </div>
+            </div>
+        
+          </div>
+        
+          <button class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
+        </div>
+        <div class="container-main is-page creating">
+          <div class="text-center creating__title">
+            This is how much it took to create the Dr. Kegel Plan
+          </div>
+          <div class="d-flex creating__body">
+            <div class="w-50 text-center creating__item">
+              <img src="@/assets/images/icons/icon_research.svg" class="creating__image" alt="">
+              <h3>700+</h3>
+              <p>Hours research</p>
+            </div>
+            <div class="w-50 text-center creating__item">
+              <img src="@/assets/images/icons/icon_studies.svg" class="creating__image" alt="">
+              <h3>150+</h3>
+              <p>Studies analysis</p>
+            </div>
+          </div>
+        </div>
+        <div class="trusted-sources">
+          <h4 class="trusted-sources_title">These are some of the trusted sources that have been used</h4>
+          <img src="@/assets/img/land_v3/8.png" alt="">
+        </div>
+        <div class="small_info-block">
+          <div class="small_info-block_wrapper">
+            <h4 class="small_info-block_title">Let's summarize what following the Dr. Kegel plan can get you</h4>
+            <div class="small_info-block_content">
+              <div class="small_info-block_content-block">
+                <div class="small_info-block_content-item">
+                  <img src="@/assets/img/land_v3/9.svg" class="small_info-block_content-item_img" alt="">
+                  <p>Stamina</p>
+                  <span style="padding-left:16px">up to 7x<img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
+                </div>
+                <div class="small_info-block_content-item">
+                  <img src="@/assets/img/land_v3/10.svg" class="small_info-block_content-item_img" alt="">
+                  <p>Potency</p>
+                  <span style="padding-left:16px">up to 2x<img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
+                </div>
+              </div>
+              <div class="small_info-block_content-info">
+                <div class="small_info-block_content-info-block">
+                  <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
+                  <span>Quality of life</span>
+                </div>
+                <div class="small_info-block_content-info-block">
+                  <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
+                  <span>Confidence</span>
+                </div>
+                <div class="small_info-block_content-info-block">
+                  <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
+                  <span>More happiness for you and your partner</span>
                 </div>
               </div>
             </div>
-    
-            <div class="review__name">
-              {{ item.name }}
-            </div>
-          </div>
-    
-          <div class="review__text">
-            {{ item.text }}
           </div>
         </div>
-    
-      </div>
-    
-      <button class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
-    </div>
-    <div class="container-main is-page creating">
-      <div class="text-center creating__title">
-        This is how much it took to create the Dr. Kegel Plan
-      </div>
-      <div class="d-flex creating__body">
-        <div class="w-50 text-center creating__item">
-          <img src="@/assets/images/icons/icon_research.svg" class="creating__image" alt="">
-          <h3>700+</h3>
-          <p>Hours research</p>
-        </div>
-        <div class="w-50 text-center creating__item">
-          <img src="@/assets/images/icons/icon_studies.svg" class="creating__image" alt="">
-          <h3>150+</h3>
-          <p>Studies analysis</p>
-        </div>
-      </div>
-    </div>
-    <div class="trusted-sources">
-      <h4 class="trusted-sources_title">These are some of the trusted sources that have been used</h4>
-      <img src="@/assets/img/land_v3/8.png" alt="">
-    </div>
-  <div class="small_info-block">
-    <div class="small_info-block_wrapper">
-      <h4 class="small_info-block_title">Let's summarize what following the Dr. Kegel plan can get you</h4>
-      <div class="small_info-block_content">
-        <div class="small_info-block_content-block">
-          <div class="small_info-block_content-item">
-            <img src="@/assets/img/land_v3/9.svg" class="small_info-block_content-item_img" alt="">
-            <p>Stamina</p>
-            <span style="padding-left:16px">up to 7x<img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
-          </div>
-          <div class="small_info-block_content-item">
-            <img src="@/assets/img/land_v3/10.svg" class="small_info-block_content-item_img" alt="">
-            <p>Potency</p>
-            <span style="padding-left:16px">up to 2x<img src="@/assets/img/land_v3/up_arrow.svg" alt=""></span>
+        <div class="price__wrapper">
+        <div class="price">
+          <div class="price__text">
+            PRICE TODAY
           </div>
         </div>
-        <div class="small_info-block_content-info">
-          <div class="small_info-block_content-info-block">
-            <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
-            <span>Quality of life</span>
+        <div class="price__today d-flex mw-520 align-items-center justify-content-beetwen">
+          <div>
+            7-day trial*
           </div>
-          <div class="small_info-block_content-info-block">
-            <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
-            <span>Confidence</span>
-          </div>
-          <div class="small_info-block_content-info-block">
-            <img src="@/assets/img/land_v3/up_arrow.svg" alt="">
-            <span>More happiness for you and your partner</span>
+          <div>
+            <span class="opac_5 line">${{oldprice}}</span>
+            <span class="text-bold">${{price}}</span>
           </div>
         </div>
-      </div>
-    </div>
+        <hr>
+        <div class="mw-450 trial_description opac_5">
+          <i>*You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
+        </div>
+        <div class="price">
+          <div class="price__text">
+            PRICE AFTER TRIAL
+          </div>
+        </div>
+        <div class="price__today d-flex mw-520 align-items-center justify-content-beetwen">
+          <div>
+            12 weeks plan
+          </div>
+          <div class="after d-flex flex-column align-items-end">
+            <span class="bold">$79.2*</span>
+            <span class="small">(just $6.60/week)</span>
+          </div>
+        </div>
+        <hr>
+        <div class="mw-450 trial_description opac_5">
+          <i>*Billed on {{moment().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
+        </div>
+        
+        <button-field v-if="!step_2" text='Start my plan' theme="Back" class="footer-controls__button red"
+          @click="showModal2()" />
   </div>
-  <div class="price">
-    <div class="price__text">
-      PRICE TODAY
-    </div>
-  </div>
-  <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-    <div>
-      7-day trial*
-    </div>
-    <div>
-      <span class="opac_5 line">${{oldprice}}</span>
-      <span class="text-bold">${{price}}</span>
-    </div>
-  </div>
-  <hr>
-  <div class="mw-450 trial_description opac_5">
-    <i>*You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
-  </div>
-  <div class="price">
-    <div class="price__text">
-      PRICE AFTER TRIAL
-    </div>
-  </div>
-  <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-    <div>
-      12 weeks plan
-    </div>
-    <div class="after d-flex flex-column align-items-end">
-      <span class="bold">$79.2*</span>
-      <span class="small">(just $6.60/week)</span>
-    </div>
-  </div>
-  <hr>
-  <div class="mw-450 trial_description opac_5">
-    <i>*Billed on {{moment().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
-  </div>
-
-  <button-field
-    v-if="!step_2"
-    text='Start my plan'
-    theme="Back"
-    class="footer-controls__button red"
-    @click="showModal2()"
-  />
   <div class="h200" v-if="!step_2"></div>
   <div class="step_2" v-if="step_2">
     <div id="paypal"></div>
-    <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
+    <div class="payment d-flex align-items-center justify-content-beetwen">
       <div class="after">
         <span class="bold">Payment method</span>
       </div>
@@ -271,7 +269,7 @@
       </div>
     </div>
     <hr>
-    <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
+    <div class="block-pay d-flex flex-column align-items-center justify-content-center">
       <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item"
         :auth_price="this.price" id="paymentForm" />
     </div>
@@ -307,13 +305,13 @@
         Get my plan
       </button>
     </div>
-    <div class="mxw-450 pdlr-32 d-flex flex-column mb-64">
+    <div class="mxw-450 d-flex flex-column mb-64">
       <p class="text-description">
         <span><span class="bold">Your 7-day trial will last until {{ moment().add(7,'days').format('MMMM Do YYYY, h:mm a') }}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page</span>
       </p>
     </div>
-    <Footer />
   </div>
+      <Footer />
   <vpopup
   class="popup_wraper"
     textTitle=""
@@ -756,8 +754,6 @@ export default {
 
 <style lang="scss" scoped>
 .safe-checkout {
-  padding-left: 32px;
-  padding-right: 32px;
   margin-top: 45px;
   margin-bottom: 32px;
 
@@ -792,8 +788,9 @@ export default {
   }
 }
 .small_info-block {
-  padding: 0 32px 50px;
-  margin-top: 32px;
+  padding: 0 0 50px;
+  max-width: 520px;
+  margin: 32px auto 0;
 
   &_title {
     font-weight: 600;
@@ -803,7 +800,9 @@ export default {
     color: #111113;
     font-family: "SF-Pro-Display-Bold";
     margin: 0 0 32px;
-
+      @media (min-width: 600px) {
+          font-size: 24px;
+        }
   }
 
   &_content {
@@ -885,8 +884,8 @@ export default {
   }
 }
 .trusted-sources {
-  margin-top: 30px;
-  padding: 0 32px;
+  max-width: 520px;
+  margin: 30px auto 0;
 
   &_title {
     font-weight: 600;
@@ -896,6 +895,9 @@ export default {
     color: #111113;
     font-family: "SF-Pro-Display-Bold";
     margin: 0 0 16px;
+    @media (min-width: 600px) {
+        font-size: 24px;
+      }
   }
 
   img {
@@ -913,6 +915,9 @@ export default {
       text-align: center;
       color: #111113;
       margin-bottom: 40px;
+      @media (min-width: 600px) {
+        font-size: 24px;
+      }
   }
   &__item {
     h3 {
@@ -939,8 +944,16 @@ export default {
     text-align: center;
     color: #111113;
     margin: 30px 0 25px;
+    @media (min-width: 600px) {
+        font-size: 24px;
+      }
 }
 .benefitsPlan__list {
+    max-width: 310px;
+      margin: 0 auto;
+      @media (min-width: 600px) {
+        max-width: 375px;
+      }
   border-bottom: 1px solid rgba(17, 17, 19, 0.05);
   padding-bottom: 30px;
 }
@@ -955,6 +968,9 @@ export default {
     color: #111113;
     width: fit-content;
     margin: 30px auto 0;
+    @media (min-width: 600px) {
+      font-size: 18px;
+    }
 }
 .token {
   color: #555;
@@ -1020,7 +1036,6 @@ export default {
 }
 
 .block-pay{
-  width: 350px;
   .w-100{
     width: 100%;
     margin-top: 48px;
@@ -1130,8 +1145,9 @@ export default {
 .mr-2{
   margin-right: 2px;
 }
-.mw-450{
-  max-width: 450px;
+
+.mw-520{
+  max-width: 520px;
   margin: 16px auto;
   padding: 0 32px;
 }
@@ -1144,8 +1160,8 @@ export default {
   padding: 0 32px;
 }
 .comments {
-  margin: 0 auto;
-  padding-bottom: 30px;
+  max-width: 520px;
+  margin: 30px auto;
 }
 .mw-300{
   max-width: 300px;
@@ -1173,8 +1189,12 @@ export default {
 .block__timer .p-14{
   margin-bottom: 16px;
 }
+
 .block__timer {
-  width: 100%;
+  @media (min-width: 600px) {
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
 }
 .container-main{
   @media (max-width:480px) {
@@ -1197,7 +1217,7 @@ hr{
   }
 }
 .payment{
-  margin: 84px auto 16px;
+  margin: 32px auto 16px;
   @media (max-width:480px) {
     margin: 64px auto 16px;
   }
@@ -1208,8 +1228,12 @@ hr{
   }
   .bold{
     font-family: "SF-Pro-Display-Semibold";
+      @media (min-width: 600px) {
+          font-size: 18px;
+        }
   }
   .opacity-75{
+    font-size: 18px;
     opacity: 0.75;
     font-family: "SF-Pro-Display-Medium";
     @media (max-width:480px) {
@@ -1383,6 +1407,9 @@ hr{
   text-align: center;
   color: #111113;
   margin-bottom: 16px;
+  @media (min-width: 600px) {
+    font-size: 24px;
+  }
   }
 
 .review {
@@ -1393,12 +1420,17 @@ hr{
   background-color: #F1F1F1;
   display: none;
   transition: .3s;
+  box-sizing: border-box;
   &:not(.light) {
     background-color: #1D1D1F;
   }
 
   &:not(:last-child) {
     margin-bottom: 15px;
+  }
+
+  @media (min-width: 600px) {
+    max-width: 520px;
   }
 
   &__top {
@@ -1485,17 +1517,22 @@ hr{
 }
 .price{
   background: #F1F3F9;
-  padding: 16px 74px;
-  @media (max-width:480px) {
-    padding: 16px 32px;
-  }
+  padding: 24px 38px;
+  
+    @media (max-width:480px) {
+      padding: 16px 32px;
+    }
   &__text{
     font-family: "SF-Pro-Display-Semibold";
-    font-size: 16px;
+    font-size: 18px;
     line-height: 150%;
     @media (max-width:480px) {
       font-size: 14px;
     }
+  }
+  &__wrapper {
+    max-width: 600px;
+    margin: 30px auto 0;
   }
 }
 ul{
@@ -1511,6 +1548,9 @@ ul{
     line-height: 150%;
     &:not(:last-child) {
       margin-bottom: 16px;
+    }
+    @media (min-width: 600px) {
+      font-size: 18px;
     }
     span{
       width: 16px;
@@ -1529,7 +1569,7 @@ ul{
 }
 
 .h2 {
-  font-size: 30px;
+  font-size: 36px;
   line-height: 135%;
   margin: 0px auto;
   font-family: "SF-Pro-Display-Bold";
@@ -1542,9 +1582,11 @@ ul{
   font-size: 20px;
   margin-top: 16px;
   margin-bottom: 25px;
+  @media (min-width: 600px) {
+      font-size: 24px;
+    }
 }
 .dark-layout{
-  padding: 84px 32px 0px;
   .p-14{
     font-size: 16px;
     text-align: center;
@@ -1560,7 +1602,7 @@ ul{
 
 }
 .price__today{
-  font-size: 16px;
+  font-size: 18px;
   @media (max-width:480px) {
     font-size: 14px;
   }
@@ -1569,7 +1611,7 @@ ul{
       font-family: "SF Pro Text Semibold";
     }
     .small{
-      font-size: 14px;
+      font-size: 16px;
       @media (max-width:480px) {
         font-size: 11px;
       }
@@ -1590,6 +1632,17 @@ ul{
     margin: 0 auto;
     position: relative;
     justify-content: center;
+  }
+}
+
+.step_2 {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+
+  @media (min-width: 600px) {
+    padding: 0 40px;
   }
 }
 .timer__text{
@@ -1627,13 +1680,13 @@ ul{
       }
     }
   }
-  &__button{
-    border-radius: 17px;
-    padding: 17px 24px;
-    background: #111113;
-    max-width: 270px;
-    margin: 0 auto;
-  }
+    &__button {
+      border-radius: 17px;
+      padding: 17px 0;
+      background: #111113;
+      max-width: 375px;
+      margin: 0 auto;
+    }
   &__title {
     font-weight: 600;
     font-size: 24px;
@@ -1651,7 +1704,9 @@ ul{
     margin: 32px auto;
     text-align: center;
     width: 100%;
-    max-width: 450px;
+    @media (min-width: 600px) {
+        max-width: 520px;
+      }
     img {
       width: 100%;
       height: auto;
@@ -1678,6 +1733,10 @@ ul{
       border-radius: 50%;
       background: rgba(#FFFFFF, .07);
       margin-right: 24px;
+      margin-left: 24px;
+        @media (min-width: 600px) {
+          margin-left: 53px;
+        }
     }
 
     p {

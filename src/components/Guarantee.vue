@@ -25,7 +25,7 @@ export default {
     color: #111113;
     margin-bottom: 115px;
     @media (min-width: 600px) {
-        margin-bottom: 100px;
+        margin-bottom: 60px;
         }
 
     &-title {

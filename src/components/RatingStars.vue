@@ -37,6 +37,9 @@ export default {
         &--bold {
             font-family: 'SF Pro Text Bold';
         }
+        @media (min-width: 600px) {
+            font-size: 18px;
+        }
     }
     &__rate {
         display: flex;

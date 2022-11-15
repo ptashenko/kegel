@@ -107,6 +107,9 @@ export default {
             font-size: 20px;
             line-height: 135%;
             color: #111113;
+            @media (min-width: 600px) {
+                    font-size: 24px;
+                }
         }
     }
 

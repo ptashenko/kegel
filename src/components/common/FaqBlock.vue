@@ -52,10 +52,6 @@ export default {
 <style scoped lang="scss">
 
 .faq {
-  &-wrapper {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
 
   &-title {
     font-weight: 600;

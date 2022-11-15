@@ -2,7 +2,7 @@
   <header-layout :fixed="true"/>
 
   <div class="dark-layout light">
-    <div class="container-main is-page">
+    <div class="container-main is-page AdressPage">
       <div class="block__steps" :data-step=true>
       <img src="@/assets/images/icons/img_progressbar_final.svg" style="height: 18px; width: 100%;"/>
       </div>
@@ -79,7 +79,7 @@
               </label>
 
               <div
-                class="v-popup__submit_btn active"
+                class="v-popup__submit_btn active red-shadow"
                 :class="{ submit: loading }"
                 @click="confirm"
               >
@@ -223,7 +223,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 select {
   /* Reset Select */
   appearance: none;
@@ -277,6 +276,10 @@ input[type="email"]{font-size:1em;}
   margin: 24px auto 8px;
   line-height: 135%;
   font-size: 24px;
+  @media (min-width: 600px) {
+    font-size: 36px;
+    margin: 24px auto 16px;
+  }
 }
 .form {
   margin-top: 32px;
@@ -296,7 +299,7 @@ input[type="email"]{font-size:1em;}
   }
   &__text{
     font-family: "SF Pro Text Regular";
-    font-size: 18px;
+    font-size: 20px;
     line-height: 135%;  
     color: #111113;
     opacity: 0.75;
@@ -351,9 +354,13 @@ input[type="email"]{font-size:1em;}
       font-size: 18px;
       line-height: 135%;
       color: #ffffff;
-      // margin: 0 auto;
+      margin: 32px auto 0;
       // width: 165px;
       text-align: center;
+      max-width: 311px;
+      @media (min-width: 600px) {
+        margin: 48px auto 0;
+      }
   }
   .v-popup__submit_btn.active{
     background-color: #E44240;
@@ -411,6 +418,13 @@ input[type="email"]{font-size:1em;}
       opacity: 0.5;
       margin: 0 15px;
     }
+  }
+}
+
+.AdressPage {
+  padding-bottom: 50px;
+  @media (min-width: 600px) {
+    padding: 0 114px 50px;
   }
 }
 

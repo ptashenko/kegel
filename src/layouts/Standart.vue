@@ -7,9 +7,9 @@
       />
 
       <div class="h2 layout__title">
-        <span v-if="content.title !== false">{{ content.title }}</span>
-        <span class="red" v-if="content.afterTilteRed !== false">{{ content.afterTilteRed }}</span>
-        <span v-if="content.afterTilteText !== false">{{ content.afterTilteText }}</span>
+        <span v-if="content.title">{{ content.title }}</span>
+        <span class="red" v-if="content.afterTilteRed">{{ content.afterTilteRed }}</span>
+        <span v-if="content.afterTilteText">{{ content.afterTilteText }}</span>
       </div>
       
       <div class="questions__thumbnail" v-if="content.video">
@@ -80,12 +80,6 @@ import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Standart-layout',
-  data(){
-    return{
-      yourMethod: true,
-      timePlay: 0,
-    }
-  },
   props: {
     content: {
       required: true,
@@ -118,10 +112,6 @@ export default {
       this.next()
     },
   },
-  
-  created () {
-    
-  }
 };
 </script>
 

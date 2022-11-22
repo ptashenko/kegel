@@ -3,12 +3,12 @@
 
   <div class="dark-layout">
     <div class="block__steps" :data-step="content.steps">
-      <steps v-if="content.steps !== false" />
+      <steps v-if="content.steps" />
     </div>
 
     <div class="container-main is-page KegalReview">
       <div class="h2 text-center">
-        <span class="red" v-if="content.tilteRed !== false">{{content.tilteRed}}</span>
+        <span class="red" v-if="content.tilteRed">{{content.tilteRed}}</span>
         <span v-else></span>
         {{ content.title }}
         
@@ -33,7 +33,7 @@
       <div class="layout__buttons" v-if="content.buttons">
         <div class="layout__button" v-for="button in content.buttons" :key="button.id">
           <div class="layout__button-icon" v-if="button.logo">
-            <img :src="`${buttonIcon(button.logo)}`" :alt="button.title">
+            <img :src="`${buttonIcon(button.logo)}`" :alt="button.title" />
           </div>
           <div>
             <span>{{ button.text }}</span>

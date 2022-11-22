@@ -1,12 +1,10 @@
 <template>
     <template v-if="content && content.answer">
-        <div class="survey h-100">
           <div class="container-main is-page SurveyVuew">
             <questions
               :survey="content"
             />
           </div>
-        </div>
     </template>
     <template v-else>
       <div :class="[lightTheme ? 'light-layout' : 'dark']">

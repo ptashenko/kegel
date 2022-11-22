@@ -1,5 +1,4 @@
 <template>
-
   <div class="preloader" v-if="loading">
     <div class="block-loader">
       <lottie-animation 
@@ -350,9 +349,6 @@ body{
 
     @media (max-width: 480px) {
       top: 75px;
-    }
-    @media (min-width: 600px) {
-      padding: 0 40px;
     }
   }
 

@@ -1,7 +1,4 @@
 <template>
-  <header-layout :fixed="true" :dark="false"/>
-
-  <div class="dark-layout">
     <div class="container-main is-page Processing__layouts">
       <processing>
         Processing...
@@ -12,7 +9,6 @@
         <img src="@/assets/images/content/s7.png" alt="">
       </div>
     </div>
-  </div>
 </template>
 
 <script>

@@ -150,6 +150,7 @@ const state = () => ({
             poster: 'ED_s1.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 3,
@@ -205,6 +206,7 @@ const state = () => ({
             poster: 'ED_s2.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 61,
@@ -215,6 +217,7 @@ const state = () => ({
             poster: 'ED_s1.png',
             layoutName: 'StandartTwo',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 7,
@@ -253,6 +256,7 @@ const state = () => ({
                 title: 'The Nuffield Somerset Hospital',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 10,
@@ -315,6 +319,7 @@ const state = () => ({
                 title: 'British Journal of General Practice',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 14,
@@ -443,7 +448,7 @@ const state = () => ({
             title: 'Congrats, we\'re a match!',
             layoutName: 'WeMatch',
             image: 'img_match.png',
-            text: 'We\'re analyzing your answers and it appears that you\'re exactly the kind of person this Kegel Plan was made for.\nNow, let\'s dive deeper into your lifestyle to know you better.'
+            text: 'We\'re analyzing your answers and it appears that you\'re exactly the kind of person this Kegel Plan was made for.\nNow, let\'s dive deeper into your lifestyle to know you better.',
         },
         {
             id: 201,
@@ -507,6 +512,7 @@ const state = () => ({
                 title: 'the Sapienza University',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 25,
@@ -572,6 +578,7 @@ const state = () => ({
             thumbnail: 'ED_s6.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 282,
@@ -579,6 +586,7 @@ const state = () => ({
             thumbnail: 'PE_s6.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 283,
@@ -586,6 +594,7 @@ const state = () => ({
             thumbnail: 'OK_s6.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 29,
@@ -632,6 +641,7 @@ const state = () => ({
         {
             id: 32,
             layoutName: 'Processing',
+            dark: true,
         },
         {
             id: 321,
@@ -693,6 +703,7 @@ const state = () => ({
             aftertext: 'Thanks to the strong PF muscles you can ',
             textbold: ' delay ejaculation ',
             text: ' for as long as you want',
+            dark: true,
         },
         {
             id: 353,
@@ -704,6 +715,7 @@ const state = () => ({
             textbold: ' delay ejaculation ',
             text: ' for as long as you want',
             buttonsText: ['Back', 'Continue'],
+            dark: true,
         },
         {
             id: 351,
@@ -729,6 +741,7 @@ const state = () => ({
             aftertext: '',
             textbold: '',
             text: 'When the PF muscles are weak the ejaculation reflex can get triggered too quickly. This can lead to unwanted ejaculation',
+            dark: true,
         },
         {
             id: 36,
@@ -776,6 +789,7 @@ const state = () => ({
                 title: 'the Sapienza University',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 40,
@@ -810,6 +824,7 @@ const state = () => ({
                 title: 'Therapeutic Advances in Urology',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 42,
@@ -940,6 +955,7 @@ const state = () => ({
                 title: 'The Nuffield Somerset Hospital',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 48,
@@ -982,6 +998,7 @@ const state = () => ({
                     text: 'Source:',
                 },
             ],
+            dark: true,
         },
         {
             id: 51,
@@ -995,6 +1012,7 @@ const state = () => ({
                 title: 'the Sapienza University',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 52,

@@ -1,7 +1,6 @@
 <template>
 <Transition name="slider" mode="out-in" appear>
   <div>
-    <header-layout :fixed="true"/>
     
     <div class="dark-layout light">
       <div class="container-main is-page GoodHands">

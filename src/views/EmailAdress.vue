@@ -1,7 +1,6 @@
 <template>
         <div class="emailPage__wrapper">
           <div class="emailPage__content">
-              <header-layout :fixed="true" />
               <div class="emailPage__body">
                 <img src="@/assets/images/icons/email_img.svg" alt="email">
                 <div class="emailPage__title">
@@ -27,15 +26,15 @@
                 </p>
               </div>
           </div>
-                  <div class="block-fixed">
-                    <p class="emailPage__dataInfo">
-                      By giving your email address you can also receive offers from Appercut Sp. z o.o. You can unsubscribe at any time.
-                    </p>
-                    <div class="emailPage__terms">
-                      <a href="/terms.html" target="_blank">Terms</a>
-                      <a href="/privacy-policy.html" target="_blank">Policy</a>
-                    </div>
-                  </div>
+            <div class="block-fixed">
+              <p class="emailPage__dataInfo">
+                By giving your email address you can also receive offers from Appercut Sp. z o.o. You can unsubscribe at any time.
+              </p>
+              <div class="emailPage__terms">
+                <a href="/terms.html" target="_blank">Terms</a>
+                <a href="/privacy-policy.html" target="_blank">Policy</a>
+              </div>
+            </div>
       </div>
 </template>
 
@@ -128,10 +127,9 @@ export default {
   &__wrapper {
     max-width: 600px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 40px 190px;
     box-sizing: border-box;
     height: 100%;
-    padding-bottom: 85px;
     display: flex;
     flex-direction: column;
   }

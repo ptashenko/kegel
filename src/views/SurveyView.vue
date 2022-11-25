@@ -1,22 +1,11 @@
 <template>
-    <template v-if="content && content.answer">
-          <div class="container-main is-page SurveyVuew">
-            <questions
-              :survey="content"
-            />
-          </div>
-    </template>
-    <template v-else>
-      <div :class="[lightTheme ? 'light-layout' : 'dark']">
-        <div class="container-main is-page standart">
-          <component :is="content && content.layoutName" :content="content" />
-        </div>
-      </div>
-    </template>
+    <div :class="{content: true, 'dark-layout': content.dark, minHeight: content.id === 50}" >
+        <questions v-if="content && content.answer" :survey="content" />
+        <component v-else :is="content && content.layoutName" :content="content" />
+    </div>
 </template>
 
 <script>
-import HeaderLayout from '@/components/Header.vue';
 import KegelReview from '@/layouts/KegelReview.vue';
 import Processing from '@/layouts/Processing.vue';
 import Reviews from '@/layouts/Reviews.vue';
@@ -34,7 +23,6 @@ import { Transition} from 'vue'
 export default {
   mixins: [nextContentUrl],
   components: {
-    HeaderLayout,
     KegelReview,
     Processing,
     Reviews,
@@ -49,18 +37,22 @@ export default {
   },
   computed: {
     ...mapGetters(['content', 'track']),
-    lightTheme() {
-      return this.content.id === 20 || this.content.id === 200 || this.content.id === 601 || this.content.id === 322 || this.content.id === 57 || this.content.id === 321 || this.content.id === 201 || this.content.id === 323
-    }
-    
-  },
-  mounted() {
-    console.log(this.content)
   },
 };
 </script>
 
 <style lang="scss" scoped>
+
+.content {
+  max-width: 600px;
+  padding: 0 32px;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  @media (min-width: 600px) {
+    padding: 0 40px;
+  }
+}
 .dark {
   background: #111113;
   min-height: 100%;
@@ -71,6 +63,11 @@ export default {
   height: 100vh;
 }
 
-.SurveyVuew {
+.minHeight {
+  min-height: 700px;
+  @media (min-width: 600px) {
+    min-height: 800px;
+  }
 }
+
 </style>

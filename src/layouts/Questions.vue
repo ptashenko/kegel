@@ -1,5 +1,4 @@
 <template>
-    <header-layout :fixed="true" :dark="true"/>
     <div class="block__steps" v-if="content.steps !== false" :data-step="content.steps">
       <steps />
     </div>

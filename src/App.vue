@@ -1,17 +1,17 @@
 <template>
+  <div id="app" :class="[dark ? 'dark-theme' : 'light-theme']">
+    <header-layout :isDark="dark" />
     <router-view />
+  </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import smartlookClient from "smartlook-client";
 import { addItem } from "./common/localStorage";
 
 export default {
   inject: ["mixpanel"],
-  data() {
-    return {};
-  },
   methods: {
     ...mapActions([
       "getContent",
@@ -20,6 +20,14 @@ export default {
       "getSeparators",
       "generatUUID",
     ]),
+  },
+  computed: {
+    ...mapGetters(['content']),
+    dark() {
+      if(this.content) {
+       return this.content?.dark ? true : false
+      }
+    }
   },
   created() {
     if (window.navigator.platform == "iPhone") {
@@ -128,6 +136,14 @@ export default {
 .translate-enter-from,
 .translate-leave-to {
   opacity: 0;
+}
+
+.dark-theme {
+  background-color: #111113;
+}
+
+.light-theme {
+  background-color: #fff;
 }
 </style>
  

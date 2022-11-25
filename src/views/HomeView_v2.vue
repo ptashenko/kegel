@@ -13,53 +13,50 @@
   </div>
   <transition name="translate" mode="out-in">
     <div v-if="true" :class="this.$route.name">
-      <div class="background">
-            <header-layout :fixed="true" :dark="false" />
-            <div class="jumbotron home v2">
-              <div class="container-main">
-                <div class="jumbotron__title">
-                  Boost male performance without pills
-                </div>
-                <div class="jumbotron__text">
-                  Select a goal & take a short quiz to get your step-by-step plan
-                </div>
-                <div class="str">
-                  <lottie-animation ref="arrowmain" class="animationArrow" :class="{ active: isActiveHand }"
-                    :animationData="require(`@/assets/images/json/main_arrow.json`)" :loop="true" :autoPlay="true" :speed="1" />
-                </div>
-              </div>
+      <div class="main">
+        <header-layout :fixed="true" :dark="false" />
+          <img v-if="!device.mobile" src="@/assets/images/header-desktop.jpg" class="bg-image" />
+          <img v-else src="@/assets/images/header.png" class="bg-image" />
+          <div class="body">
+            <div class="body__title">
+              Boost male performance without pills
             </div>
-      </div>
-      <!-- {{preload}} -->
-      {{myHand}}
-      <div class="navigation__section home">
-        <div class="container-main home">
-          <div class="navigation__items">
-            <button
-              class="navigation__item"
-              v-for="track in tracks"
-              :key="track.id"
-              @click="getData(track)"
-            >
-              <span class="navigation__item--title">{{ track.titleShortQuiz }}</span>
-              <span class="navigation__item--text">{{ track.text }}</span>
-              <lottie-animation 
-                v-if="track.id == 1"
-                :class="{ active: isActiveHand }"
-                class="animationHand"
-                ref="animhand"
-                :animationData="require(`@/assets/images/json/main_hand.json`)"
-                :loop="true"
-                :autoPlay="true"
-              />
-            </button>
-          </div>
+            <div class="body__text">
+              Select a goal & take a short quiz to get your step-by-step plan
+            </div>
+            <div class="str">
+              <lottie-animation ref="arrowmain" class="animationArrow" :class="{ active: isActiveHand }"
+                :animationData="require(`@/assets/images/json/main_arrow.json`)" :loop="true" :autoPlay="true" :speed="1" />
+            </div>
+          <!-- {{preload}} -->
+          {{myHand}}
+          <div class="navigation">
 
-          <div class="navigation__text">
-            Each individual’s results may vary from person to person based on health condition, body type, starting point, his or
-            her unique background, dedication, desire, motivation, actions, and numerous other factors
+                <button
+                  class="navigation__item"
+                  v-for="track in tracks"
+                  :key="track.id"
+                  @click="getData(track)"
+                >
+                  <span class="navigation__item--title">{{ track.titleShortQuiz }}</span>
+                  <span class="navigation__item--text">{{ track.text }}</span>
+                  <lottie-animation 
+                    v-if="track.id == 1"
+                    :class="{ active: isActiveHand }"
+                    class="animationHand"
+                    ref="animhand"
+                    :animationData="require(`@/assets/images/json/main_hand.json`)"
+                    :loop="true"
+                    :autoPlay="true"
+                  />
+                </button>
+
+              <div class="navigation__text">
+                Each individual’s results may vary from person to person based on health condition, body type, starting point, his or
+                her unique background, dedication, desire, motivation, actions, and numerous other factors
+              </div>
           </div>
-        </div>
+          </div>
       </div>
       <div class="footer">
         <div class="container-main">
@@ -94,6 +91,7 @@ import moment from 'moment';
 import HeaderLayout from '@/components/Header.vue';
 import FooterHomeView from '@/components/FooterHomeView.vue';
 import { addItem } from "../common/localStorage";
+import { useDevice } from 'next-vue-device-detector';
 
 export default {
   inject: ['mixpanel'],
@@ -104,6 +102,7 @@ export default {
   data() {
     return {
       loading: this.$store.getters.LOADER,
+      device: useDevice(),
       advantages: [
         {
           title: 'Dr. Kegel: For Men’s Health',
@@ -273,18 +272,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.wrapper {
-  position: relative;
-  max-width: 600px;
-  margin: 0 auto;
-}
+<style lang="scss" scoped>
 
-.background {
-    background: transparent url('@/assets/images/header.png') no-repeat bottom center/cover;
-    @media (min-width: 600px) {
-      background: transparent url('@/assets/images/header-desktop.jpg') no-repeat bottom center/cover;
-    }
+.bg-image {
+  display: inline-block;
+  width: 100%;
 }
 
 .animationHand{
@@ -307,21 +299,25 @@ export default {
   text-align: center;
   margin: 0 auto;
 }
-body{
-  margin: 0;
-}
-.jumbotron {
-  height: 500px;
-  max-width: 1200px;
-  margin: 0 auto;
-  flex-grow: 1;
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  text-align: center;
-  padding-bottom: 20px;
 
-  &__title {
+.main {
+  margin-bottom: -5vw;
+}
+
+.body {
+  position: relative;
+  max-width: 311px;
+  top: -16vw;
+  margin: 0 auto;
+    @media (min-width: 600px) {
+      top: -8vw;
+      padding: 0 40px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    &__title {
     font-family: "SF-Pro-Display-Bold";
     font-weight: 700;
     font-size: 27px;
@@ -342,105 +338,57 @@ body{
     margin: 15px 0;
   }
 
-  .container-main {
-    background-color: transparent;
-    position: relative;
-    top: 85px;
-
-    @media (max-width: 480px) {
-      top: 75px;
-    }
-  }
 
   &__text {
     color: #111113;
     font-family: "SF-Pro-Display-Semibold";
+    font-style: normal;
     font-size: 18px;
-    line-height: 150%;
+    line-height: 1.5;
+    text-align: center;
+
     margin: 15px 0;
+
     opacity: 76%;
     @media (min-width: 600px) {
-        font-style: normal;
-          font-weight: 600;
-          font-size: 24px;
-          line-height: 1.5;
-          text-align: center;
+        font-weight: 600;
+        font-size: 24px;
       }
   }
+
 }
 
+
 .navigation {
-  &__section {
-    padding-bottom: 30px;
-    padding-top: 15px;
-    padding: 65px 32px 32px;
-    background-color: #FFFFFF;
-    @media (min-width: 600px) {
-      padding: 65px 32px 64px;
-    }
-  }
 
   &__item {
+    position: relative;
+
+    width: 100%;
+    padding: 14px 20px;
+
     font-family: "SF Pro Text Bold";
+    line-height: 1.2;
+    font-size: 16px;
     color: white;
-    border-radius: 9px;
-    text-align: center;
-    text-decoration: none;
+    font-weight: 700;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 14px 20px;
-    font-weight: bold;
-    font-weight: 700;
-    position: relative;
-    font-size: 16px;
+
+    border-radius: 9px;
     border: none;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    line-height: 1.2;
+    background: #111113;
+
     cursor: pointer;
     transition: .4s;
 
-    @media (min-width: 600px) {
-        max-width: 520px
-      }
-
     &:hover {
-      &:after {
-        background-color: #1B1B1E;
-      }
+      background-color: #1B1B1E;
     }
 
-    & > * {
-      position: relative;
-      z-index: 2;
-    }
-
-    &:before {
-      content: '';
-      transition: .2s;
-      background: linear-gradient(rgb(255, 255, 255), #111113);
-      position: absolute;
-      left: -2px;
-      top: -2px;
-      bottom: -2px;
-      right: -2px;
-      border-radius: 9px;
-    }
-
-    &:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      top: 0;
-      transition: .2s;
-      background: #111113;
-      border-radius: 9px;
-    }
     &--title {
       font-style: normal;
         font-weight: 700;
@@ -457,10 +405,9 @@ body{
       font-size: 14px;
       margin-top: 4px;
       font-weight: 500;
+      line-height: 1.16;
       @media (min-width: 600px) {
-        font-weight: 500;
         font-size: 18px;
-        line-height: 21px;
       }
     }
 
@@ -474,16 +421,12 @@ body{
     color: #111113;
     opacity: .5;
     text-align: center;
-    max-width: 400px;
     margin: 0 auto;
     margin-top: 32px;
     line-height: 1.5;
     font-size: 14px;
     @media (max-width:480px) {
       font-size: 12px;
-    }
-    @media (min-width: 600px) {
-      max-width: 520px
     }
   }
 }

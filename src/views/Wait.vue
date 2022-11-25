@@ -1,5 +1,4 @@
 <template>
-  <header-layout :fixed="true"/>
   {{backClick}}
   <div class="dark-layout light">
     <div class="container-main is-page wait">

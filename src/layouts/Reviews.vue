@@ -1,9 +1,7 @@
 <template>
-  <header-layout :fixed="true"/>
   {{dataP1}}
   {{btnAddPurpose}}
   {{imagePE}}
-  <div class="dark-layout light">
     <div class="container-main is-page Reviews">
       <div class="h2 text-center">
         {{ content.title }}
@@ -86,7 +84,6 @@
         theme: 'red'
       }"
     />
-  </div>
 </template>
 
 <script>

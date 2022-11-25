@@ -1,7 +1,4 @@
 <template>
-  <header-layout :fixed="true" :dark="false"/>
-
-  <div class="dark-layout">
     <div class="block__steps" :data-step="content.steps">
       <steps v-if="content.steps" />
     </div>
@@ -42,7 +39,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

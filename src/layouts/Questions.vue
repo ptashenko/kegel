@@ -3,63 +3,28 @@
       <steps />
     </div>
     <transition name="slide" mode="out-in">
-      <div
-      v-if="show"
-      class="questions__wrapper"
-      >
+      <div v-if="show" class="questions__wrapper">
         <div class="questions__title">
           {{ survey.title }}
         </div>
+
         <div class="questions__thumbnail" v-if="survey.video">
-          <video-background 
-            :src="video(content.video)"
-            :poster="video(content.poster)"
-            class="video"
-          >
-          </video-background>
+          <video-background :src="video(content.video)" :poster="video(content.poster)" class="video"></video-background>
         </div>
-        <div>
-        </div> 
+
         <div class="questions__thumbnail" v-if="survey.thumbnail">
-          <img
-            :src="image(survey.thumbnail)"
-            :alt="survey.title"
-            width="400"
-            height="200"
-          >
+          <img :src="image(survey.thumbnail)" :alt="survey.title" width="400" height="200" />
         </div>
+
         <div class="questions__thumbnail" v-if="survey.json">
-          <lottie-animation 
-              class="animation" 
-              ref="survey.ref"
-              :animationData="json(survey.json)"
-              :loop="false"
-              :autoPlay="true"
-              :speed="1"
-              @loopComplete="loopComplete"
-              @complete="complete"
-              @enterFrame="enterFrame"
-              @segmentStart="segmentStart"
-              @stopped="stopped"
-            />
+          <lottie-animation class="animation" ref="survey.ref" :animationData="json(survey.json)" :loop="false" :autoPlay="true" :speed="1" @loopComplete="loopComplete" @complete="complete" @enterFrame="enterFrame" @segmentStart="segmentStart" @stopped="stopped" />
         </div>
 
         <div v-if="survey.answer.style === 'buttons'" class="questions__rate">
           {{ rateTo }}
         </div>
-        <div
-          class="answer__list"
-          :class="survey.answer.style === 'buttons' ? 'answer__list--flex' : ''"
-        >
-          <component
-            :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'"
-            v-for="answer in survey.answer.answerList"
-            :class="survey.answer.answerClass"
-            @click="myAvesomeClickFunction"
-            :key="answer.id"
-            :answer="answer"
-          />
-        
+        <div :class="[survey.answer.style === 'buttons' ? 'answer__list--flex' : '', {'answer__list': true}]">
+          <component :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'" v-for="answer in survey.answer.answerList" :class="survey.answer.answerClass" @click="myAvesomeClickFunction" :key="answer.id" :answer="answer" />
         </div>
         <div v-if="survey.answer.style === 'buttons'" class="questions__lvl">
           <div>{{survey.answer.textLeft}}</div>
@@ -104,11 +69,8 @@ export default {
 
   data() {
     return {
-      num: 0,
-      timePlay: 0,
       show: true,
       selectedAnswer: true,
-      but:1,
       layotname: [2, 6, 61, 9, 333, 14, 20, 201, 24, 28, 32, 321, 322, 323, 35, 353, 352, 36, 39, 41, 47, 48, 50, 51, 57]
     }
   },
@@ -296,11 +258,11 @@ export default {
     }
   }
 }
-.video{
-      max-width: 520px;
-      width: 100%;
-      margin: 0 auto;
-    }
+.video {
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+}
 .answer {
   &__list {
     &--flex {

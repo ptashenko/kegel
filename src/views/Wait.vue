@@ -41,9 +41,7 @@
             :autoPlay="true"
           />
         </div>
-        
-      
-        <div></div>
+
         <template
           v-for="(step, index) in steps"
           :key="step.title"
@@ -57,10 +55,11 @@
               </div>
             </div>
         </template>
-      
 
       </div>
+
     </div>
+    
   </div>
 </template>
 

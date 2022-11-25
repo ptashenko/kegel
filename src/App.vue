@@ -26,6 +26,8 @@ export default {
     dark() {
       if(this.content) {
        return this.content?.dark ? true : false
+      } else {
+        return false;
       }
     }
   },
@@ -64,7 +66,6 @@ export default {
   },
   watch: {},
   mounted() {
-    console.log(this.$router)
     this.getContent();
     this.getTrack();
     this.getHistory();

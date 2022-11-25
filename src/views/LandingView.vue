@@ -19,7 +19,6 @@
   
   <div class="dark-layout light" id="topPage">
     <div class="container-main is-page land">
-        <header-layout :fixed="true" />
       <div class="landing__content">
         <div class="d-flex align-items-center justify-content-center flex-column">
           <div class="d-flex flex-column block__timer" >

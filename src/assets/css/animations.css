@@ -1,0 +1,14 @@
+@keyframes second{
+    0% {
+      opacity: 0;
+    }
+    7%{
+      opacity: 1;
+    }
+    93%{
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

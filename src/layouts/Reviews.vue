@@ -5,7 +5,7 @@
   <h2 class="page-title">{{ content.title }}</h2>
 
   <div class="goalDate">
-    <h3 class="goalDate__purpose" v-if="AddPurpose">{{ track.purpose }} <span class="goalDate__purpose--regular"> and</span> {{ track.addpurpose }}</h3>
+    <h3 class="goalDate__purpose" v-if="AddPurpose" v-html="addPurposeText"></h3>
     <h3 class="goalDate__purpose" v-else>{{ track.purpose }}</h3>
     <div class="goalDate__redDate">
       <transition name="slide-fade">
@@ -15,13 +15,32 @@
   </div>
 
   <div class="graphic">
-    <lottie-animation class="animation" ref="content.ref" :animationData="imageitem" :loop="false" :autoPlay="true" :speed="1" @loopComplete="loopComplete" @complete="complete" @enterFrame="enterFrame" @segmentStart="segmentStart" @stopped="stopped" />
+    <lottie-animation 
+      class="animation" 
+      ref="content.ref" 
+      :animationData="imageitem" 
+      :loop="false" 
+      :autoPlay="true" 
+      :speed="1" 
+      @loopComplete="loopComplete" 
+      @complete="complete" 
+      @enterFrame="enterFrame" 
+      @segmentStart="segmentStart" 
+      @stopped="stopped" 
+      />
     <div>
       <div class="graphic__date">
-        <p class="graphic__month" v-for="(_, idx) of new Array(6)" :key="idx">{{setDate(idx)}}</p>
+        <p 
+          class="graphic__month" 
+          v-for="(_, idx) of new Array(6)" 
+          :key="idx">
+          {{setDate(idx)}}
+        </p>
       </div>
     </div>
-  <p class="graphic__description">{{ graphText }}</p>
+    <p class="graphic__description">
+      {{ graphText }}
+    </p>
   </div>
 
   <div class="reviews">
@@ -112,6 +131,9 @@ export default {
         default: 
           return 'This diagram is non-personalized data based on scientific research'
       }
+    },
+    addPurposeText() {
+      return `${this.track.purpose} <span class="goalDate__purpose--regular"> and</span> ${this.track.addpurpose}`
     },
     imagePE() {
       const json = localStorage.getItem('track');
@@ -222,13 +244,6 @@ export default {
   &__purpose {
     font-family: "SF Pro Text Semibold";
     font-size: 18px;
-    &--regular {
-      font-family: 'SF Pro Text Regular';
-      font-weight: 400;
-        @media (max-width:480px) {
-          font-size: 16px;
-        }
-    }
     @media (max-width:480px) {
       font-size: 16px;
     }
@@ -255,6 +270,14 @@ export default {
     }
   }
 }
+
+::v-deep .goalDate__purpose--regular {
+      font-family: 'SF Pro Text Regular';
+      font-weight: 400;
+        @media (max-width:480px) {
+          font-size: 16px;
+        }
+    }
 
 .graphic {
   text-align: center;

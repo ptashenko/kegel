@@ -5,8 +5,6 @@
         {{title}}
       </div>
       
-      
-
       <div class="loading as"
         @click="openPopup"
       >

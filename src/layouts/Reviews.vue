@@ -267,6 +267,7 @@ export default {
 
     @media (min-width: 600px) {
         max-width: 190px;
+        min-height: 36px;
     }
   }
 }

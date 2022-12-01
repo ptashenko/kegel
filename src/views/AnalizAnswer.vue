@@ -1,6 +1,5 @@
 <template lang="">
-  <div class="dark-layout light">
-    <div class="container-main is-page TimePlan">
+    <div class="container-main">
       <div class="h2 text-center">
         {{title}}
       </div>
@@ -143,8 +142,6 @@
         <div class="review__text">
           {{ reviewItem.text }}
         </div>
-      </div>
-
       </div>
       
 

@@ -46,7 +46,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(17, 17, 19, 0.75);
+    background-color: rgba(17, 17, 19, 0.35);
   }
   .v-popup{
     position: fixed;

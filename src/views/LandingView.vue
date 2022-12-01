@@ -5,159 +5,143 @@
   {{btnAddPurpose}}
   {{imagechart}}
   <!-- {{backUrlNot}} -->
-  <div 
-    class="fixedTime" 
-    :class="{'active': blockFixed}"
-  >
-    <div class="fixedTime__timer">
-      <p class="fixedTime__timer__text">7-day trial offer expires in:</p>
-      <div class="fixedTime__timer__number"> 
-        <countdown />
-      </div>
-    </div>
+  <div class="fixedTime" :class="{'active': blockFixed}">
+    <p class="fixedTime__timer__text">7-day trial offer expires in:</p>
+    <countdown />
   </div>
   
-  <div class="dark-layout light" id="topPage">
-    <div class="container-main is-page land">
-      <div class="landing__content">
-        <div class="d-flex align-items-center justify-content-center flex-column">
-          <div class="d-flex flex-column block__timer" >
-            <div class="h2">
-              Your Kegel Plan to {{ purpose }} is ready!
-            </div>
-            <p class="p-14">The personal trial is <span class="text-bold">reserved for 15 minutes:</span></p>
-            <div class="layout__buttons">
-              <div id="blockScroll" class="layout__button"  @click="onScroll">
-                <div class="layout__button-icon">
-                  <img src="@/assets/images/icons/icon_timer.svg" alt="icon">
-                </div>
-                <div>
-                  <p class="d-flex timer__text">
-                    Time left:	&nbsp;  <countdown />
-                  </p>
-                  <p class="timer__start">Scroll down to start!</p>
-                </div>
-              </div>
-            </div>
-            <div id="trigger1" class="date">
-              <div class="text-purpose">
-                <span class="">
-                Based on your personal goals you can 
-                </span>
-                <br>
-                <span class="text-bold">
-                  {{ purpose }}
-                </span>
-                <span v-if="AddPurposeCom"><span class="width-400"> and</span> <span class="text-bold">{{ addpurpose }}</span></span>
-              </div>
-              <div class="by " style="min-height: 30px">
-                <!-- <div class="blockAnimate"> -->
-                  <transition name="slide-fade">
-                    <span v-if="show" class="block__anim">by {{dataPP3}}</span>
-                  </transition>
-                <!-- </div> -->
-              </div>
-            </div>
-
-            <div class=" layout__thumbnail">
-              <lottie-animation 
-                class="animation" 
-                ref="content.ref"
-                :animationData="imageitem"
-                :loop="false"
-                :autoPlay="true"
-                :speed="1"
-                @loopComplete="loopComplete"
-                @complete="complete"
-                @enterFrame="enterFrame"
-                @segmentStart="segmentStart"
-                @stopped="stopped"
-              />
-              <div class="block__data">
-                <p class="block__data__item">{{moment().add(0,'month').format("MMM")}}</p>
-                <p class="block__data__item">{{moment().add(1,'month').format("MMM")}}</p>
-                <p class="block__data__item">{{moment().add(2,'month').format("MMM")}}</p>
-                <p class="block__data__item">{{moment().add(3,'month').format("MMM")}}</p>
-                <p class="block__data__item">{{moment().add(4,'month').format("MMM")}}</p>
-                <p class="block__data__item">{{moment().add(5,'month').format("MMM")}}</p>
-              </div>
-            </div>
-            <p class="p-14 opac_5 bottom_img">{{graphText}}</p>
-            <div id="Benefits" class="h2 inside" >
-              Kegel Plan Benefits
-            </div>
-            <ul>
-              <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                <p>Reach your goal and <b class="text-bold"> {{ purpose }} </b></p>
-              </li>
-              <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                {{ addpurpose }}
-              </li>
-              <li class="li" v-if="addItem">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                Increase stamina
-              </li>
-              <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                Pill-free approach
-              </li>
-              <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                Long-lasting improvement
-              </li>
-              <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                Takes <span class="text-bold">&nbsp;5 min a day</span>
-              </li>
-              <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
-                More happiness for you and for your partner
-              </li>
-            </ul>
-          </div>
-        </div>
+  <div id="topPage" class="content container-main">
+    <h2 class="content__title">
+      Your Kegel Plan to {{ purpose }} is ready!
+    </h2>
+    <p class="content__subtitle">The personal trial is <span class="content__subtitle--bold">reserved for 15 minutes:</span></p>
+    <div id="blockScroll" class="content__timer" @click="onScroll">
+      <img class="content__timer--icon" src="@/assets/images/icons/icon_timer.svg" alt="icon">
+      <div>
+        <p class="d-flex content__timer--text">
+          Time left:	&nbsp;  <countdown />
+        </p>
+        <p class="content__timer--start">Scroll down to start!</p>
       </div>
     </div>
-  </div>
-  <div :class="{ price__wrapper: true, 'price-padding': !step_2 }">
-      <div class="price">
-        <div class="price__text">
-          PRICE TODAY
-        </div>
+    <div id="trigger1" class="content__date">
+      <div class="content__purpose">
+        <span>
+        Based on your personal goals you can 
+        </span>
+        <br>
+        <span v-if="AddPurposeCom" class="content__purpose--bold">
+          {{ purpose }}
+          <span class="content__purpose--regular"> and </span>
+          <span>{{ addpurpose }}</span>
+        </span>
+        <span v-if="!AddPurposeCom">
+          <span class="content__purpose--bold">
+          {{ purpose }}
+          </span>
+        </span>
       </div>
-      <div class="price__today d-flex mw-520 align-items-center justify-content-beetwen">
-        <div>
+      <div class="content__purpose--red">
+          <transition name="slide-fade">
+            <span v-if="show" class="block__anim">by {{dataPP3}}</span>
+          </transition>
+      </div>
+    </div>
+
+    <div class="graphic">
+      <lottie-animation 
+        class="animation" 
+        ref="content.ref"
+        :animationData="imageitem"
+        :loop="false"
+        :autoPlay="true"
+        :speed="1"
+        @loopComplete="loopComplete"
+        @complete="complete"
+        @enterFrame="enterFrame"
+        @segmentStart="segmentStart"
+        @stopped="stopped"
+      />
+      <div class="graphic__date">
+        <p class="graphic__month"
+          v-for="(_, idx) of new Array(6)" 
+          :key="idx">
+          {{setDate(idx)}}
+        </p>
+      </div>
+    </div>
+    <p class="graphic__description">
+      {{graphText}}
+    </p>
+    <div id="Benefits" class="benefits" >
+      <h2 class="benefits__title">Kegel Plan Benefits</h2>
+      <ul class="benefits__list">
+      <li class="benefits__item">
+        <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+        <p>Reach your goal and <b> {{ purpose }} </b></p>
+      </li>
+      <li class="benefits__item">
+        <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+        {{ addpurpose }}
+      </li>
+      <li class="benefits__item" v-if="addItem">
+        <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+        Increase stamina
+      </li>
+      <li class="benefits__item">
+        <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+        Pill-free approach
+      </li>
+      <li class="benefits__item">
+        <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+        Long-lasting improvement
+      </li>
+      <li class="benefits__item">
+        <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+        Takes <span class="text-bold">&nbsp;5 min a day</span>
+      </li>
+      <li class="benefits__item">
+        <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+        More happiness for you and for your partner
+      </li>
+    </ul>
+    </div>
+  </div>
+
+  <div :class="{ price: true, 'price-padding': !step_2 }">
+      <h2 class="price__title">
+          PRICE TODAY
+      </h2>
+      <div class="price__list">
+        <p>
           7-day trial*
-        </div>
-        <div>
-          <span class="opac_5 line">${{oldprice}}</span>
-          <span class="text-bold">${{price}}</span>
-        </div>
+        </p>
+        <p>
+          <span class="price__list--line">${{oldprice}}</span>
+          <span class="price__list--bold">${{price}}</span>
+        </p>
       </div>
       <hr>
-      <div class="mw-450 trial_description opac_5">
+      <div class="price__description">
         <i>*You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
       </div>
-      <div class="price">
-        <div class="price__text">
+      <h2 class="price__title">
           PRICE AFTER TRIAL
-        </div>
-      </div>
-      <div class="price__today d-flex mw-520 align-items-center justify-content-beetwen">
-        <div>
+      </h2>
+      <div class="price__list">
+        <p>
           12 weeks plan
-        </div>
-        <div class="after d-flex flex-column align-items-end">
-          <span class="bold">$79.2*</span>
-          <span class="small">(just $6.60/week)</span>
-        </div>
+        </p>
+        <p class="price__after">
+          <span class="price__list--bold">$79.2*</span>
+          <span class="price__list--small">(just $6.60/week)</span>
+        </p>
       </div>
       <hr>
-      <div class="mw-450 trial_description opac_5">
-        <i>*Billed on {{moment().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
+      <div class="price__description">
+        <i>*Billed on {{dayjs().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
       </div>
+      <!-- HERE -->
       <div class="d-flex container-main flex-column mt-64 mw-450">
         <div class="reviews__title">Customer reviews</div>
         {{lengthReviews}}
@@ -371,6 +355,7 @@ import Footer from '@/components/Footer.vue';
 import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 import { getItem } from '@/common/localStorage';
+import dayjs from 'dayjs';
 
 
 export default {
@@ -424,6 +409,9 @@ export default {
     };
   },   
   methods: {
+    setDate(index) {
+      return dayjs().add(index,'month').format("MMM")
+    },
     nextUrl() {
       this.mixpanel.track('Trial Started',{
         amount: this.price
@@ -696,6 +684,120 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.landing {
+  .content {
+    display: flex;
+    flex-direction: column;
+    &__title {
+      margin: 0px auto 8px;
+      font-size: 36px;
+      line-height: 135%;
+      margin: 0px auto 24px;
+      text-align: center;
+      font-family: "SF-Pro-Display-Bold";
+      @media (max-width:480px) {
+        font-size: 24px;
+      }
+    }
+    &__subtitle {
+      font-size: 18px;
+      text-align: center;
+      line-height: 150%;
+      margin-bottom: 16px;
+      @media (max-width:480px) {
+        font-size: 14px;
+      }
+      &--bold {
+        font-family: "SF Pro Text Semibold";
+      }
+    }
+    &__timer {
+      margin-bottom: 32px;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      display: flex;
+      align-items: center;
+      border-radius: 17px;
+      padding: 17px 0;
+      background: #111113;
+      width: 100%;
+      max-width: 373px;
+      margin: 0 auto 32px;
+      color: #fff;
+
+      &--icon {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(#FFFFFF, .07);
+        margin-right: 24px;
+        margin-left: 24px;
+        @media (min-width: 600px) {
+          margin-left: 65px;
+        }
+      }
+
+      &--text {
+        font-family: "SF Pro Text Bold";
+        font-size: 16px;
+        line-height: 150%;
+        opacity: 1;
+        margin: 0;
+        color:#FFFFFF;
+      }
+
+      &--start {
+        font-size: 14px;
+        line-height: 150%;
+        opacity: 0.75;
+      }
+    }
+    &__date {
+      text-align: center;
+      margin-bottom: 0px;
+    }
+    &__purpose {
+      font-size: 18px;
+      line-height: 150%;
+      @media (max-width:480px) {
+        font-size: 16px;
+      }
+      @media (min-width: 600px) {
+        font-size: 20px;
+      }
+      &--bold {
+        font-family: "SF Pro Text Semibold";
+      }
+      &--regular {
+        font-family: "SF Pro Text Regular";
+      }
+      &--red {
+        font-family: "SF Pro Text Bold";
+        color: #E44240;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 150%;
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        justify-content: center;
+        min-height: 30px;
+
+        @media (min-width: 600px) {
+            font-size: 24px;
+            min-height: 36px;
+          }
+      }
+    }
+  }
+}
+
+
 .token {
   color: #555;
   padding: 10px;
@@ -756,22 +858,12 @@ export default {
 .li, .item-li{
   margin-top: 0px;
   line-height: 150%;
-  .check{
-    margin-right: 15px;
-    width: 16px;
-    height: 16px;
-    @media (min-width: 600px) {
-      width: 24px;
-      height: 24px;
-      margin-right: 20px;
-    }
-  }
 }
-.benefits {
-  &:not(:last-child) {
-    margin-bottom: 15px;
-  }
-}
+// .benefits {
+//   &:not(:last-child) {
+//     margin-bottom: 15px;
+//   }
+// }
 
 .block-pay{
   width: 100%;
@@ -912,9 +1004,6 @@ export default {
   @media (max-width:480px) {
     font-size: 14px;
   }
-}
-.block__timer .p-14{
-  margin-bottom: 16px;
 }
 .answer{
   width: 45%;
@@ -1089,28 +1178,23 @@ hr{
 .fixedTime{
   max-width: 536px;
   opacity: 0;
+  position: fixed;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  padding: 16px 32px;
+  background: #111113;
+  z-index: 2;
+  color: #FFFFFF;
+  top:0; left:0; right:0;
   @media (max-width:600px) {
+    padding: 16px 0px;
     max-width: 600px;
   }
-  &__timer{
-    position: fixed;
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    max-width: inherit;
-    text-align: center;
-    padding: 16px 32px;
-    background: #111113;
-    z-index: 2;
-    color: #FFFFFF;
-    top:0; left:0; right:0;
-    @media (max-width:600px) {
-      padding: 16px 0px;
-    }
-    p{
-      padding: 0;
-      margin: 0;
-    }
+  p{
+    padding: 0;
+    margin: 0;
   }
 }
 .fixedTime.active{
@@ -1249,22 +1333,61 @@ hr{
   }
 }
 .price{
-  background: #F1F3F9;
-  padding: 24px 38px;
-  @media (max-width:480px) {
-    padding: 16px 32px;
-  }
-  &__text{
+  max-width: 600px;
+  margin: 0 auto;
+  &__title {
+    background: #F1F3F9;
+    padding: 24px 38px;
     font-family: "SF-Pro-Display-Semibold";
     font-size: 18px;
     line-height: 150%;
     @media (max-width:480px) {
+      padding: 16px 32px;
       font-size: 14px;
+
     }
   }
-  &__wrapper {
-    max-width: 600px;
+  &__list {
+    font-size: 18px;
+    max-width: 520px;
+    margin: 16px auto;
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width:480px) {
+      font-size: 14px;
+    }
+    &--line {
+      text-decoration: line-through;
+      margin-right: 4px;
+      opacity: 0.5;
+    }
+    &--bold {
+      font-family: "SF Pro Text Semibold";
+    }
+    &--small {
+      font-size: 16px;
+      @media (max-width:480px) {
+        font-size: 11px;
+      }
+    }
+  }
+  &__after {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    align-items: end;
+  }
+
+  &__description {
+    padding: 16px 32px;
     margin: 0 auto;
+    line-height: 150%;
+    opacity: 0.5;
+    @media (max-width:480px) {
+      font-size: 14px;
+    }
   }
 }
 ul{
@@ -1301,36 +1424,7 @@ ul{
   }
 }
 
-.h2 {
-  margin: 0px auto 8px;
-  font-size: 36px;
-  line-height: 135%;
-  margin: 0px auto 24px;
-  font-family: "SF-Pro-Display-Bold";
-  @media (max-width:480px) {
-    font-size: 24px;
-  }
-  @media (min-width: 600px) {
-    margin: 0px auto 52px;
-  }
-}
-.h2.inside {
-  font-family: "SF-Pro-Display-Bold";
-  font-size: 20px;
-  margin-top: 16px;
-  @media (min-width: 600px) {
-    font-size: 24px;
-  }  
-}
 .dark-layout{
-  .p-14{
-    font-size: 18px;
-    text-align: center;
-    line-height: 150%;
-    @media (max-width:480px) {
-      font-size: 14px;
-    }
-  }
   .opac_5{
     opacity: 0.5;
     font-family: "SF Pro Text Light";
@@ -1338,55 +1432,20 @@ ul{
 
 }
 .price__today{
-  font-size: 18px;
-  @media (max-width:480px) {
-    font-size: 14px;
-  }
+
   .after{
     .bold{
       font-family: "SF Pro Text Semibold";
     }
     .small{
-      font-size: 16px;
-      @media (max-width:480px) {
-        font-size: 11px;
-      }
+
     }
   }
 }
-.date{
-  text-align: center;
-  margin-bottom: 0px;
-  .by{
-    font-family: "SF Pro Text Bold";
-    color: #E44240;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 150%;
-    display: flex;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-    @media (min-width: 600px) {
-        font-size: 24px;
-      }
-  }
-}
-.timer__text{
-  font-size: 16px;
-  line-height: 150%;
-  font-family: "SF Pro Text Bold"; 
-}
-.layout__button .timer__start{
-  font-size: 14px;
-  line-height: 150%;
-  opacity: 0.75;
-  
-}
+
 .layout {
   &__buttons{
-    margin-bottom: 32px;
-    position: relative;
+
     .bg-fixed-top{
       position: fixed;
       width: 100%;
@@ -1407,13 +1466,6 @@ ul{
       }
     }
   }
-  &__button{
-    border-radius: 17px;
-    padding: 17px 0;
-    background: #111113;
-    max-width: 375px;
-    margin: 0 auto;
-  }
   &__title {
     font-weight: 600;
     font-size: 24px;
@@ -1426,82 +1478,98 @@ ul{
       font-size: 20px;
     }
   }
+}
 
-  &__thumbnail {
-    margin: 32px auto;
-    text-align: center;
-    width: 100%;
-    @media (min-width: 600px) {
-        max-width: 520px;
-      }
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-
-  &__button {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    display: flex;
-    align-items: center;
-
-    &:not(:last-child) {
-      margin-bottom: 20px;
-    }
-
-    &-icon {
-      width: 52px;
-      height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(#FFFFFF, .07);
-      margin-right: 24px;
-      margin-left: 24px;
-      @media (min-width: 600px) {
-        margin-left: 53px;
-      }
-    }
-
-    p {
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 150%;
-      opacity: 1;
-      padding: 0;
-      margin: 0;
-      color:#FFFFFF;
-    }
-  }
-
-  &__bottom-text {
-    font-family: "SF Pro Text Regular";
-    font-weight: 400;
-    font-size: 18px;
-    margin-top: 32px;
-    line-height: 150%;
-    text-align: center;
-    color: #111113;
-
-    @media (max-width: 480px) {
-      font-size: 16px;
-      line-height: 24px;
-    }
-  }
-} 
-.text-purpose{
-  font-size: 18px;
-  line-height: 150%;
-  @media (max-width:480px) {
-    font-size: 16px;
-  }
+.graphic {
+  margin: 32px auto;
+  text-align: center;
+  width: 100%;
   @media (min-width: 600px) {
-    font-size: 20px;
+      max-width: 520px;
+    }
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  &__date {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 12%;
+  }
+
+  &__month {
+    margin: 12px 0 0;
+    font-size: 18px;
+    color: #111113;
+    @media (max-width: 480px) {
+        margin: 9px 0 0;
+        font-size: 12px;
+    }
+  }
+
+  &__description {
+    font-size: 14px!important;
+    max-width: 450px;
+    margin: 0 auto;
+    opacity: 0.5;
+    text-align: center;
+    @media (min-width: 600px) {
+      max-width: 520px;
+    }
   }
 }
+
+.benefits {
+  &__title {
+    font-family: "SF-Pro-Display-Bold";
+    font-size: 20px;
+    margin: 32px auto;
+    text-align: center;
+    @media (min-width: 600px) {
+      font-size: 24px;
+      margin: 32px auto 52px;
+    }  
+  }
+  &__list {
+    max-width: 310px;
+    margin: 0 auto 48px;
+    padding: 0;
+    @media (min-width: 600px) {
+        max-width: 375px;
+      }
+  }
+  &__item {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    font-family: "SF Pro Text Regular";
+    font-size: 16px;
+    margin-bottom: 16px;
+    line-height: 150%;
+    @media (min-width: 600px) {
+      font-size: 18px;
+    }
+    img{
+      margin-right: 20px;
+      width: 16px;
+      height: 16px;
+      display: block;
+      @media (min-width: 600px) {
+        width: 24px;
+        height: 24px;
+      }
+    }
+    span.text-bold{
+      font-family: "SF Pro Text Semibold";
+      display: block;
+      width: 100%;
+      margin-right: 0;
+      height: 150%
+    }
+  }
+}
+
 .text-bold{
   font-family: "SF Pro Text Semibold";
 }
@@ -1513,7 +1581,7 @@ ul{
     max-width: 520px;
   }
 }
-.fixedTime__timer, .fixedTime__timer__text{
+.fixedTime__timer {
   font-family: "SF Pro Text Bold";
 }
 .h200{

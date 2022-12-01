@@ -141,38 +141,30 @@
       <div class="price__description">
         <i>*Billed on {{dayjs().add(7,'days').format("MMMM DD")}} unless cancelled beforehand</i>
       </div>
-      <!-- HERE -->
-      <div class="d-flex container-main flex-column mt-64 mw-450">
+      <div class="reviews container-main">
         <div class="reviews__title">Customer reviews</div>
         {{lengthReviews}}
-        <div class="review__body" v-for="(item, key) in base" :key="key">
-          <div class="review light" :class="{'active': key < this.numreview }">
-            <div class="review__top">
+        <div class="reviews__item light" v-for="(item, key) in base" :key="key" :class="{'active': key < this.numreview }">
+            <div class="reviews__top">
               <div>
-                <div class="review__title">{{ item.title }}</div>
-                <div class="review__rating">
-                  <div v-for="i in item.rating" :key="i">
-                    <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
-                  </div>
-                  <div v-for="i in Number(5 - item.rating)" :key="i">
-                    <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
-                  </div>
+                <div class="reviews__topic">{{ item.title }}</div>
+                <div class="reviews__rating">
+                    <img v-for="i in item.rating" :key="i" src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
                 </div>
               </div>
       
-              <div class="review__name">
+              <p class="reviews__name">
                 {{ item.name }}
-              </div>
+              </p>
             </div>
       
-            <div class="review__text">
+            <p class="reviews__text">
               {{ item.text }}
-            </div>
-          </div>
+            </p>
       
         </div>
       
-        <button class="btn__show__more" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
+        <button class="reviews__showMore" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
         <div id="paypal"></div>
       </div>
       
@@ -181,13 +173,9 @@
   </div>
   <div class="step_2" v-if="step_2">
     <template v-if="version !== 4">
-          <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
-            <div class="after">
-              <span class="bold">Payment method</span>
-            </div>
-            <div class="d-flex flex-column align-items-end">
-              <span class="cursor opacity-75" @click="showModal3">Why now?</span>
-            </div>
+          <div class="payment">
+              <p class="payment__method">Payment method</p>
+              <button class="payment__button" @click="showModal3">Why now?</button>
           </div>
           <hr>
           <div class="block-pay d-flex flex-column align-items-center justify-content-center">
@@ -208,13 +196,13 @@
             </div>
           </div>
           <div class="mw-450 d-flex flex-column mb-32">
-            <div class="item-li benefits d-flex align-items-center">
+            <div class="item-li benefit d-flex align-items-center">
               <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
               <p class="fs-16-14">
                 7-day trial for ${{price}}
               </p>
             </div>
-            <div class="item-li benefits d-flex align-items-center">
+            <div class="item-li benefit d-flex align-items-center">
               <img class="check" src="@/assets/images/icons/check_blue.svg" alt="check">
               <p class="fs-16-14">
                 You will get an email confirmation every time your subscription renews
@@ -242,7 +230,7 @@
     </div>
     <div class="mw-450 d-flex flex-column mb-32">
       <p class="text-description">
-        <span class="bold">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
+        <span class="bold">Your 7-day trial will last until {{dayjs().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="bold">{{dayjs().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$79.2) on a quarterly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
       </p>
     </div>
   </div>
@@ -345,7 +333,6 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import moment from 'moment';
 import ButtonField from '@/components/ui/Button.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import btnComponent from '@/components/questions/btnPopup.vue';
@@ -795,19 +782,141 @@ export default {
       }
     }
   }
+  .reviews {
+    display: flex;
+    flex-direction: column;
+    margin-top: 64px;
+    &__title {
+      font-family: "SF-Pro-Display-Semibold";
+      font-size: 18px;
+      line-height: 150%;
+      margin-bottom: 16px;
+      text-align: center;
+      @media (max-width:480px) {
+        font-size: 16px;
+      }
+      @media (min-width: 600px) {
+        font-size: 24px;
+      }
+    }
+    &__item {
+      padding: 15px;
+      border-radius: 10px;
+      margin: 0 auto;
+      max-width: 370px;
+      width: 100%;
+      background-color: #F1F1F1;
+      display: none;
+      transition: .3s;
+      box-sizing: border-box;
+      &:not(.light) {
+        background-color: #1D1D1F;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      @media (min-width: 600px) {
+        max-width: 520px;
+      }
+      &.active {
+        display: block;
+      }
+    }
+    &__topic {
+      font-size: 18px;
+      line-height: 150%;
+      font-family: "SF Pro Text Bold";
+      @media (max-width: 480px) {
+        font-size: 14px;
+      }
+    }
+
+    &__rating {
+      display: flex;
+      margin-top: 5px;
+      & img {
+          width: 14px;
+          height: 14px;
+        }
+    }
+
+    &__name {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 150%;
+      opacity: .5;
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+      }
+    }
+
+    &__text {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+      }
+    }
+
+    &__showMore {
+      border: none;
+      text-align: center;
+      font-size: 14px;
+      font-family: "SF Pro Text Bold";
+      color: #5773D6;
+      background: none;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+      @media (min-width: 600px) {
+          font-size: 18px;
+      }
+    }
+
+    &__top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+  }
 }
 
+.payment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 71px auto 16px;
+  @media (max-width:480px) {
+    margin: 64px auto 16px;
+  }
 
-.token {
-  color: #555;
-  padding: 10px;
-  text-align: center;
-  font-weight: 500;
+  &__method {
+    margin: 0;
+    font-family: "SF-Pro-Display-Semibold";
+    @media (min-width: 600px) {
+        font-size: 18px;
+      }
+  }
+
+  &__button {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    opacity: 0.75;
+    font-family: "SF-Pro-Display-Medium";
+    cursor: pointer;
+
+    @media (max-width:480px) {
+      font-size: 14px;
+    }
+  }
 }
 
-.cursor{
-  cursor: pointer;
-}
 .text-description{
   font-size: 14px;
   line-height: 150%;
@@ -855,15 +964,15 @@ export default {
     color: #E44240;
   }
 }
-.li, .item-li{
+
+.benefit {
   margin-top: 0px;
   line-height: 150%;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
 }
-// .benefits {
-//   &:not(:last-child) {
-//     margin-bottom: 15px;
-//   }
-// }
 
 .block-pay{
   width: 100%;
@@ -977,25 +1086,12 @@ export default {
     }
   }
 }
-.ml-2{
-  margin-left: 2px;
-}
-.mr-2{
-  margin-right: 2px;
-}
-.mw-520{
-  max-width: 520px;
-  margin: 16px auto;
-  padding: 0 32px;
-}
+
 .mw-300{
   max-width: 300px;
   margin: 0px auto;
 }
-.mw-310{
-  max-width: 310px;
-  margin: 0px auto;
-}
+
 .mb-32{
   margin-bottom: 32px;
 }
@@ -1004,9 +1100,6 @@ export default {
   @media (max-width:480px) {
     font-size: 14px;
   }
-}
-.answer{
-  width: 45%;
 }
 hr{
   color: #F1F3F9;
@@ -1020,31 +1113,7 @@ hr{
     max-width: 320px;
   }
 }
-.payment{
-  margin: 71px auto 16px;
-  @media (max-width:480px) {
-    margin: 64px auto 16px;
-  }
-  p{
-    font-size: 16px;
-    margin-bottom: 16px;
-    line-height: 150%;
-  }
-  .bold{
-    font-family: "SF-Pro-Display-Semibold";
-    @media (min-width: 600px) {
-        font-size: 18px;
-      }
-  }
-  .opacity-75{
-    font-size: 18px;
-    opacity: 0.75;
-    font-family: "SF-Pro-Display-Medium";
-    @media (max-width:480px) {
-      font-size: 14px;
-    }
-  }
-}
+
 .popup_wraper{
   h2{
     margin: 0 0 16px;
@@ -1209,129 +1278,13 @@ hr{
   }
 }
 // reviews
-.reviews__title {
-    font-family: "SF-Pro-Display-Semibold";
-    font-size: 18px;
-    line-height: 150%;
-    margin-bottom: 16px;
-    text-align: center;
-    @media (max-width:480px) {
-      font-size: 16px;
-    }
-    @media (min-width: 600px) {
-      font-size: 24px;
-    }
-  }
 
-.review {
-  padding: 15px;
-  border-radius: 10px;
-  margin: 0 auto;
-  max-width: 370px;
-  background-color: #F1F1F1;
-  display: none;
-  transition: .3s;
-  box-sizing: border-box;
-  &:not(.light) {
-    background-color: #1D1D1F;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 15px;
-  }
-
-  @media (min-width: 600px) {
-    max-width: 520px;
-  }
-
-  &__body {
-    &:not(:last-child) {
-      margin-bottom: 8px;
-    }
-  }
-
-  &__top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
-
-  &__title {
-    font-size: 18px;
-    line-height: 150%;
-    font-family: "SF Pro Text Bold";
-    @media (max-width: 480px) {
-      font-size: 14px;
-    }
-  }
-
-  &__text {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-
-    @media (max-width: 480px) {
-      font-size: 12px;
-    }
-  }
-
-  &__name {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 150%;
-    opacity: .5;
-
-    @media (max-width: 480px) {
-      font-size: 12px;
-    }
-  }
-
-  &__rating {
-    display: flex;
-    margin-top: 5px;
-
-    div {
-      width: 14px;
-      height: 14px;
-
-      @media (max-width: 480px) {
-        width: 14px;
-        height: 14px;
-
-        svg {
-          width: 14px;
-          height: 14px;
-        }
-      }
-    }
-  }
-}
 
 .star-yellow {
   max-width: 14px;;
   height: auto;
 }
-.review.active{
-  display: block;
-}
-// 
 
-
-.opac_5{
-  opacity: 0.5;
-}
-.line{
-  text-decoration: line-through;
-  margin-right: 4px;
-}
-.trial_description{
-  padding: 16px 32px;
-  margin: 0 auto;
-  line-height: 150%;
-  @media (max-width:480px) {
-    font-size: 14px;
-  }
-}
 .price{
   max-width: 600px;
   margin: 0 auto;
@@ -1387,95 +1340,6 @@ hr{
     opacity: 0.5;
     @media (max-width:480px) {
       font-size: 14px;
-    }
-  }
-}
-ul{
-  max-width: 310px;
-  margin: 0 auto;
-  padding: 0;
-  @media (min-width: 600px) {
-      max-width: 375px;
-    }
-  li.li {
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    font-family: "SF Pro Text Regular";
-    font-size: 16px;
-    margin-bottom: 16px;
-    line-height: 150%;
-    @media (min-width: 600px) {
-      font-size: 18px;
-    }
-    span{
-      width: 16px;
-      height: auto;
-      display: flex;
-      margin-right: 23px;
-    }
-    span.text-bold{
-      font-family: "SF Pro Text Semibold";
-      display: block;
-      width: 100%;
-      margin-right: 0;
-      height: 150%
-    }
-  }
-}
-
-.dark-layout{
-  .opac_5{
-    opacity: 0.5;
-    font-family: "SF Pro Text Light";
-  }
-
-}
-.price__today{
-
-  .after{
-    .bold{
-      font-family: "SF Pro Text Semibold";
-    }
-    .small{
-
-    }
-  }
-}
-
-.layout {
-  &__buttons{
-
-    .bg-fixed-top{
-      position: fixed;
-      width: 100%;
-      max-width: 500px;
-      height: 50px;
-      background: linear-gradient(to top, #ffffff00, #ffffff);
-    }
-    .bg-fixed-top::after{
-      content:"";
-      position: fixed;
-      width: 100%;
-      max-width: 500px;
-      height: 50px;
-      background: linear-gradient(to top, #ffffff, #ffffff00);
-      top: 435px;
-      @media (max-width: 528px) {
-        top: 460px;
-      }
-    }
-  }
-  &__title {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 135%;
-    text-align: center;
-    margin-bottom: 32px;
-    color: #111113;
-
-    @media (max-width: 480px) {
-      font-size: 20px;
     }
   }
 }
@@ -1608,6 +1472,13 @@ ul{
     @media (min-width: 600px) {
       padding: 0 40px;
     }
+}
+
+.check {
+  display: block;
+  margin-right: 20px;
+  width: 14px;
+  height: 14px;
 }
 
 .price-trial {

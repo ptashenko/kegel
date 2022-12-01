@@ -420,8 +420,8 @@ export default {
         this.$router.push("PlanFinal");
       }, 0);
     },
-    moment() {
-      return moment();
+    dayjs() {
+      return dayjs();
     },
     paymentError() {
       this.mixpanel.track('Payment Error', {

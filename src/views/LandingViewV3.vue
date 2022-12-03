@@ -13,7 +13,6 @@
       </div>
     </div>
 
-    <header-layout :fixed="true"/>
     <div class="dark-layout light" id="topPage">
       <div class="container-main is-page land">
         <div class="landing__content">

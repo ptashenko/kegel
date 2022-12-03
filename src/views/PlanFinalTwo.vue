@@ -1,207 +1,203 @@
 <template>
-  <header-layout :fixed="true"/>
-
-  <div class="dark-layout light" id="topPage">
-    <div class="container-main is-page Final">
-      <div class="mw-520">
-        <div 
-          v-if="active && open == 1" 
-          class="h2 text-center"
-          :class="{active: active}"
-        >
-          Add Groin Fitness 
-          <p>to accelerate the result</p>
-        </div>
-        <div 
-          v-else-if="open == 2"
-          class="show text-center"
-        >
-          Did you know?
-        </div>
-        <div v-else class="h2 text-center">
-          <span class="blue"> Final Offer:</span> get Groin Fitness at the best deal!
-        </div>
-      </div>
-      <div
-        v-if="open !== 2"
-        class="mw-520"
+  <div id="topPage" class="container-main final">
+    <div class="mw-520">
+      <div 
+        v-if="active && open == 1" 
+        class="final__title"
+        :class="{active: active}"
       >
-        <video-background
-          :src="require('@/assets/video/mini_vid.mp4')"
-          :poster="require(`@/assets/video/zaglushki/mini_vid.png`)"
-          class="video"
-          objectFit="fill"
-        >
-        </video-background>
+        Add Groin Fitness 
+        <p class="final__title--regular">to accelerate the result</p>
       </div>
-      <div class="mw-450 d-flex flex-column mb-32">
-        <div v-if="open !== 2" class="item-li d-flex align-items-center">
-          <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-          <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
-          <p class="fs-16-14">
-            Build groin muscles strength & flexibility
-          </p>
-        </div>
-        <div v-if="open !== 2" class="item-li d-flex align-items-center">
-          <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-          <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
-          <p class="fs-16-14">
-            Increase blood flow to intimate organs
-          </p>
-        </div>
-        <div v-if="open !== 2" class="item-li d-flex align-items-center">
-          <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-          <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
-          <p class="fs-16-14">
-            Every exercise has video & audio instructions from the coach
-          </p>
-        </div>
-        <div v-if="!ios_v1">
-          <img v-if="open == 1" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="diskont_red">
-          <img v-if="open > 2" class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="diskont_blue">
-        </div>
-        <div v-else>
-          <img v-if="open == 1" class="diskont" src="@/assets/images/icons/discont_red_ios.png" alt="discont_red_ios">
-          <img v-if="open > 2" class="diskont" src="@/assets/images/icons/discont_blue_ios.png" alt="discont_blue_ios">
-        </div>
-      </div>
-      <div
-        v-if="open == 2"
-        class="popup_wraper"
+      <h2 
+        v-else-if="open == 2"
+        class="final__secondTitle"
       >
-        <p>
-          <span class="text-semibold">Groin Fitness</span> improves blood flow to the groin, which has a big impact on sexual performance.
-        </p>
-        <p>
-          Bad blood flow to the groin area can put you at <span class="text-semibold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
-        </p>
-        <img class="content_img" src="@/assets/images/content/Final_modal.png" alt="">
-        <p class="diagram-description">
-          *This diagram is a non-personalized illustration based on scientific research.
-        </p>
-        <div class="block_blue">
-          <div class="block_blue__content d-flex align-items-center">
-            <img src="@/assets/images/icons/icon_present.svg" alt="">
-            <p>We want you to be successful, so we're offering <span class="text-bold"> 25% off </span> the Groin Fitness just for you!</p>
-          </div>
-        </div>
-      </div>
-
-
-      <div v-if="open == 1">
-        <button-field
-          
-          text='Add to my plan'
-          theme="Back"
-          class="footer-controls__button red red-shadow"
-          @click="addonRequest"
-        />
-        <!-- <button-field
-          text='Add to my plan'
-          theme="Back"
-          class="footer-controls__button red loader"
-          :class="{ hiden: isActive }"
-          @click="loadingBtn"
-        /> -->
-        <div
-          class="footer-controls__button btnLoader loader"
-          :class="{ hiden: !isActive }"
-        >
-          <lottie-animation 
-            class="check"
-            ref="anim"
-            :animationData="require(`@/assets/images/json/loader_white.json`)"
-            :loop="mytrue"
-            :autoPlay="true"
-            :speed="1"
-          />
-        </div>
-      </div>
-      <div
-        v-if="open == 3"
-      >
-        <button-field
-          text='Add to my plan'
-          theme="Back"
-          class="footer-controls__button bg-blue blue-shadow"
-          :class="{ submit: loading }"
-          @click="addonRequest"
-        />
-        <!-- <button-field
-          text='Add to my plan'
-          theme="Back"
-          class="footer-controls__button loader bg-blue"
-          :class="{ hiden: isActive }"
-          @click="loadingBtn"
-        /> -->
-        <div
-          class="footer-controls__button btnLoader loader bg-blue"
-          :class="{ hiden: !isActive }"
-        >
-          <lottie-animation 
-            class="check"
-            ref="anim"
-            :animationData="require(`@/assets/images/json/loader_white.json`)"
-            :loop="mytrue"
-            :autoPlay="true"
-            :speed="1"
-          />
-        </div>
-      </div>
-      <div v-if="active && open == 1"
-        class="btn_popup"
-        @click="showModal"
-      >
-      I don’t want to accelerate my results &gt;
-      </div>
-      <div v-else-if="open == 2" class="text-center">
-        <button 
-          class="v-popup__submit_btn active blue-shadow"
-          @click="closePopup"
-        >
-        Continue
-        <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" >
-        </button>
-      </div>
-      <div v-else
-        class="btn_popup"
-        @click="withoutUpsaleDiscounted"
-      >
-      I give up accelerated results forever &gt;
-      </div>
-      <template v-if="!ios_v1">
-        <div v-if="open == 1" class="mw-520">
-          <div class="android-footer__text">
-            Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are
-            3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
-            If you are unsure how to cancel, visit our Terms of Use.
-          </div>
-        </div>
-        <div v-else-if="open == 3" class="mw-520">
-          <div class="android-footer__text">
-            Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are
-            3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
-            If you are unsure how to cancel, visit our Terms of Use.
-          </div>
-        </div>
-      </template>
-      <template v-else>
-        <div v-if="open == 1" class="mw-520">
-          <div class="ios-footer__text">
-            Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are
-            1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
-            If you are unsure how to cancel, visit our Terms of Use.
-          </div>
-        </div>
-        <div v-else-if="open == 3" class="mw-520">
-          <div class="ios-footer__text">
-            Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are
-            1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
-            If you are unsure how to cancel, visit our Terms of Use.
-          </div>
-        </div>
-      </template>
+        Did you know?
+      </h2>
+      <h2 v-else class="final__title">
+        <span class="final__title--blue"> Final Offer:</span> get Groin Fitness at the best deal!
+      </h2>
     </div>
+    <div
+      v-if="open !== 2"
+      class="mw-520"
+    >
+      <video-background
+        :src="require('@/assets/video/mini_vid.mp4')"
+        :poster="require(`@/assets/video/zaglushki/mini_vid.png`)"
+        class="video"
+        objectFit="fill"
+      >
+      </video-background>
+    </div>
+    <div class="mw-450 d-flex flex-column mb-32">
+      <div v-if="open !== 2" class="item-li d-flex align-items-center">
+        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <p class="fs-16-14">
+          Build groin muscles strength & flexibility
+        </p>
+      </div>
+      <div v-if="open !== 2" class="item-li d-flex align-items-center">
+        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <p class="fs-16-14">
+          Increase blood flow to intimate organs
+        </p>
+      </div>
+      <div v-if="open !== 2" class="item-li d-flex align-items-center">
+        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <p class="fs-16-14">
+          Every exercise has video & audio instructions from the coach
+        </p>
+      </div>
+      <div v-if="!ios_v1">
+        <img v-if="open == 1" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="diskont_red">
+        <img v-if="open > 2" class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="diskont_blue">
+      </div>
+      <div v-else>
+        <img v-if="open == 1" class="diskont" src="@/assets/images/icons/discont_red_ios.png" alt="discont_red_ios">
+        <img v-if="open > 2" class="diskont" src="@/assets/images/icons/discont_blue_ios.png" alt="discont_blue_ios">
+      </div>
+    </div>
+    <div
+      v-if="open == 2"
+      class="popup_wraper"
+    >
+      <p>
+        <span class="text-semibold">Groin Fitness</span> improves blood flow to the groin, which has a big impact on sexual performance.
+      </p>
+      <p>
+        Bad blood flow to the groin area can put you at <span class="text-semibold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
+      </p>
+      <img class="content_img" src="@/assets/images/content/Final_modal.png" alt="">
+      <p class="diagram-description">
+        *This diagram is a non-personalized illustration based on scientific research.
+      </p>
+      <div class="block_blue">
+        <div class="block_blue__content d-flex align-items-center">
+          <img src="@/assets/images/icons/icon_present.svg" alt="">
+          <p>We want you to be successful, so we're offering <span class="text-bold"> 25% off </span> the Groin Fitness just for you!</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div v-if="open == 1">
+      <button-field
+        
+        text='Add to my plan'
+        theme="Back"
+        class="footer-controls__button red red-shadow"
+        @click="addonRequest"
+      />
+      <!-- <button-field
+        text='Add to my plan'
+        theme="Back"
+        class="footer-controls__button red loader"
+        :class="{ hiden: isActive }"
+        @click="loadingBtn"
+      /> -->
+      <div
+        class="footer-controls__button btnLoader loader"
+        :class="{ hiden: !isActive }"
+      >
+        <lottie-animation 
+          class="check"
+          ref="anim"
+          :animationData="require(`@/assets/images/json/loader_white.json`)"
+          :loop="mytrue"
+          :autoPlay="true"
+          :speed="1"
+        />
+      </div>
+    </div>
+    <div
+      v-if="open == 3"
+    >
+      <button-field
+        text='Add to my plan'
+        theme="Back"
+        class="footer-controls__button bg-blue blue-shadow"
+        :class="{ submit: loading }"
+        @click="addonRequest"
+      />
+      <!-- <button-field
+        text='Add to my plan'
+        theme="Back"
+        class="footer-controls__button loader bg-blue"
+        :class="{ hiden: isActive }"
+        @click="loadingBtn"
+      /> -->
+      <div
+        class="footer-controls__button btnLoader loader bg-blue"
+        :class="{ hiden: !isActive }"
+      >
+        <lottie-animation 
+          class="check"
+          ref="anim"
+          :animationData="require(`@/assets/images/json/loader_white.json`)"
+          :loop="mytrue"
+          :autoPlay="true"
+          :speed="1"
+        />
+      </div>
+    </div>
+    <div v-if="active && open == 1"
+      class="btn_popup"
+      @click="showModal"
+    >
+    I don’t want to accelerate my results &gt;
+    </div>
+    <div v-else-if="open == 2" class="text-center">
+      <button 
+        class="v-popup__submit_btn active blue-shadow"
+        @click="closePopup"
+      >
+      Continue
+      <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" >
+      </button>
+    </div>
+    <div v-else
+      class="btn_popup"
+      @click="withoutUpsaleDiscounted"
+    >
+    I give up accelerated results forever &gt;
+    </div>
+    <template v-if="!ios_v1">
+      <div v-if="open == 1" class="mw-520">
+        <div class="android-footer__text">
+          Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are
+          3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
+          If you are unsure how to cancel, visit our Terms of Use.
+        </div>
+      </div>
+      <div v-else-if="open == 3" class="mw-520">
+        <div class="android-footer__text">
+          Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are
+          3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
+          If you are unsure how to cancel, visit our Terms of Use.
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <div v-if="open == 1" class="mw-520">
+        <div class="ios-footer__text">
+          Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are
+          1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
+          If you are unsure how to cancel, visit our Terms of Use.
+        </div>
+      </div>
+      <div v-else-if="open == 3" class="mw-520">
+        <div class="ios-footer__text">
+          Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are
+          1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
+          If you are unsure how to cancel, visit our Terms of Use.
+        </div>
+      </div>
+    </template>
   </div>
   <vpopup
     class="windowError"
@@ -491,23 +487,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Final{
+.final{
+  margin: 0 auto;
+  display: block;
   padding-bottom: 100px;
   max-width: 311px;
   @media (min-width: 600px) {
     max-width: 520px;
   }
-  .h2 {
+  &__title {
+    margin-top: 0;
     margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
     font-size: 36px;
     line-height: 135%;
+    text-align: center;
+    &--regular {
+      font-family: "SF-Pro-Display-Medium";
+      font-size: 24px;
+      @media (max-width:480px) {
+      font-size: 20px;
+    }
+    }
+    &--blue {
+      color: #5773D6;
+    }
     @media (max-width:480px) {
       font-size: 24px;
     }
   }
-  .h2.active {
+
+  &__secondTitle {
+    margin-bottom: 32px;
+    font-family: "SF-Pro-Display-Bold";
+    margin-top: 0;
+    line-height: 135%;
+    font-size: 30px;
+    line-height: 135%;
+    @media (max-width:480px) {
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__title.active {
     margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
@@ -525,16 +549,6 @@ export default {
       }
     }
 
-  }
-  .show{
-    font-family: "SF-Pro-Display-Bold";
-    line-height: 135%;
-    font-size: 30px;
-    line-height: 135%;
-    @media (max-width:480px) {
-      font-size: 24px;
-      margin-bottom: 0;
-    }
   }
   .blue{
     color: #5773D6;
@@ -655,12 +669,6 @@ export default {
       margin: 32px auto 48px;
     }
     
-  }
-  
-  .mw-520{
-    max-width: 520px;
-    margin: 0 auto;
-    display: block;
   }
 
   .video{

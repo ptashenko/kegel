@@ -12,3 +12,9 @@
       opacity: 0;
     }
   }
+
+@keyframes blick {
+  0% {box-shadow:0px 0px 0px 0px #5773d681;}
+  50%{box-shadow:0px 0px 0px 4px #5773d681;}
+  100%{box-shadow:0px 0px 0px 0px #5773d681;}
+}

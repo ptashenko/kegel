@@ -95,20 +95,20 @@ export default {
       localStorage.getItem("web_user_uuid").replaceAll('"', "")
     );
     this.mixpanel.people.set({ Init: "-" });
-    // this.mixpanel.people.set({ Experiment_1: this.$abtest("experiment_1") });
-    // smartlookClient.init("c5049693293bbcff326bf80ebda873782ca318d7");
-    // smartlookClient.identify(
-    //   localStorage.getItem("web_user_uuid").replaceAll('"', "")
-    // );
-    // smartlookClient.record({
-    //   forms: true,
-    //   numbers: true,
-    //   emails: false,
-    //   ips: true,
-    // });
-    // smartlookClient.getData(() => {
-    //   this.mixpanel.people.set({ Smartlook: smartlookClient.playUrl });
-    // });
+    this.mixpanel.people.set({ Experiment_1: this.$abtest("experiment_1") });
+    smartlookClient.init("c5049693293bbcff326bf80ebda873782ca318d7");
+    smartlookClient.identify(
+      localStorage.getItem("web_user_uuid").replaceAll('"', "")
+    );
+    smartlookClient.record({
+      forms: true,
+      numbers: true,
+      emails: false,
+      ips: true,
+    });
+    smartlookClient.getData(() => {
+      this.mixpanel.people.set({ Smartlook: smartlookClient.playUrl });
+    });
     gtag("get", "G-7MV4FLS470", "client_id", (clientID) => {
       addItem("ga_user_id", clientID);
     });

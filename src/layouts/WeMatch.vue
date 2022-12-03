@@ -1,8 +1,6 @@
 <template lang="">
 
 <div>
-  <header-layout :fixed="true" :dark="true"/>
-  
   <div class="dark-layout light">
     <div class="container-main is-page TimePlan">
       

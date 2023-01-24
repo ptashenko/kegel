@@ -1,0 +1,1433 @@
+<template>
+  <div class="landing">
+    {{MyScrollFixed}}
+    {{MyScrollModal}}
+    {{btnAddPurpose}}
+    {{imagechart}}
+    <!-- {{backUrlNot}} -->
+    <div class="fixedTime" :class="{'active': blockFixed}">
+      <p class="fixedTime__timer__text">7-day trial offer expires in:</p>
+      <countdown />
+    </div>
+    
+    <div id="topPage" class="content container-main">
+      <h2 class="content__title">
+        Your Kegel Plan to {{ purpose }} is ready!
+      </h2>
+      <p class="content__subtitle">The personal trial is <span class="content__subtitle--bold">reserved for 15 minutes:</span></p>
+      <div id="blockScroll" class="content__timer" @click="onScroll">
+        <img class="content__timer--icon" src="@/assets/images/icons/icon_timer.svg" alt="icon">
+        <div>
+          <p class="d-flex content__timer--text">
+            Time left:	&nbsp;  <countdown />
+          </p>
+          <p class="content__timer--start">Scroll down to start!</p>
+        </div>
+      </div>
+      <div id="trigger1" class="content__date">
+        <div class="content__purpose">
+          <span>
+          Based on your personal goals you can 
+          </span>
+          <br>
+          <span v-if="AddPurposeCom" class="content__purpose--bold">
+            {{ purpose }}
+            <span class="content__purpose--regular"> and </span>
+            <span>{{ addpurpose }}</span>
+          </span>
+          <span v-if="!AddPurposeCom">
+            <span class="content__purpose--bold">
+            {{ purpose }}
+            </span>
+          </span>
+        </div>
+        <div class="content__purpose--red">
+            <transition name="slide-fade">
+              <span v-if="show" class="block__anim">by {{dataPP3}}</span>
+            </transition>
+        </div>
+      </div>
+  
+      <div class="graphic">
+        <lottie-animation 
+          class="animation" 
+          ref="content.ref"
+          :animationData="imageitem"
+          :loop="false"
+          :autoPlay="true"
+          :speed="1"
+          @loopComplete="loopComplete"
+          @complete="complete"
+          @enterFrame="enterFrame"
+          @segmentStart="segmentStart"
+          @stopped="stopped"
+        />
+        <div class="graphic__date">
+          <p class="graphic__month"
+            v-for="(_, idx) of new Array(6)" 
+            :key="idx">
+            {{setDate(idx)}}
+          </p>
+        </div>
+      </div>
+      <p class="graphic__description">
+        {{graphText}}
+      </p>
+      <div id="Benefits" class="benefits" >
+        <h2 class="benefits__title">Kegel Plan Benefits</h2>
+        <ul class="benefits__list">
+          <li class="benefits__item">
+            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            <p>Reach your goal and <b> {{ purpose }} </b></p>
+          </li>
+          <li class="benefits__item">
+            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            {{ addpurpose }}
+          </li>
+          <li class="benefits__item" v-if="addItem">
+            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            Increase stamina
+          </li>
+          <li class="benefits__item">
+            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            Pill-free approach
+          </li>
+          <li class="benefits__item">
+            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            Long-lasting improvement
+          </li>
+          <li class="benefits__item">
+            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            Takes <span class="text-bold">&nbsp;5 min a day</span>
+          </li>
+          <li class="benefits__item">
+            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            More happiness for you and for your partner
+          </li>
+        </ul>
+        <RatingStars
+          :stars="5"
+          amount="42k"
+          downloads="2M+"
+        />
+      </div>
+    </div>
+  
+    <div class="price">
+        <div class="reviews container-main">
+          <div class="reviews__title">Customer reviews</div>
+          {{lengthReviews}}
+          <div class="reviews__item light" v-for="(item, key) in base" :key="key" :class="{'active': key < this.numreview }">
+              <div class="reviews__top">
+                <div>
+                  <div class="reviews__topic">{{ item.title }}</div>
+                  <div class="reviews__rating">
+                      <img v-for="i in item.rating" :key="i" src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                  </div>
+                </div>
+        
+                <p class="reviews__name">
+                  {{ item.name }}
+                </p>
+              </div>
+        
+              <p class="reviews__text">
+                {{ item.text }}
+              </p>
+        
+          </div>
+        
+          <button class="reviews__showMore" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
+        </div>
+    </div>
+
+    <div class="payment-block">
+      <h2 class="payment-block__title">
+        Get Your Kegel Plan to {{ purpose }}
+      </h2>
+      <div class="payment-block__list">
+        <div class="payment-block__item">
+          <input class="payment-block__input" id="week" type="radio" name="subscribe" value="week" />
+          <label class="payment-block__label" for="week">1-WEEK PLAN</label>
+          <div class="payment-block__right">
+            <p class="payment-block__oldPrice">1.50 USD</p>
+            <p class="payment-block__newPrice">0.99 USD</p>
+            <p class="payment-block__text">per day</p>
+          </div>
+        </div>
+        <div class="payment-block__item">
+          <input class="payment-block__input" id="oneMonth" type="radio" name="subscribe" value="oneMonth" />
+          <label class="payment-block__label" for="oneMonth">1-MONTH PLAN</label>
+          <div class="payment-block__right">
+            <p class="payment-block__oldPrice">1.00 USD</p>
+            <p class="payment-block__newPrice">0.49 USD</p>
+            <p class="payment-block__text">per day</p>
+          </div>
+        </div>
+        <div class="payment-block__item">
+          <input class="payment-block__input" id="threeMonth" type="radio" name="subscribe" value="threeMonth" />
+          <label class="payment-block__label" for="threeMonth">3-MONTH PLAN</label>
+          <div class="payment-block__right">
+            <p class="payment-block__oldPrice">0.59 USD</p>
+            <p class="payment-block__newPrice">0.29 USD</p>
+            <p class="payment-block__text">per day</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn_bottom red-shadow" v-scroll-to="'#paypal'">
+        Get my plan
+      </button>
+    </div>
+
+    <Footer />
+    <vpopup
+    class="popup_wraper"
+      textTitle="Why now?"
+      v-if="popupVisible3"
+    > 
+      <p class="opasity_75">
+        We ask for your payment information now, so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.
+      </p>
+      <p class="opasity_75">
+        If you cancel anytime before the end of the 7-day trial, you won't be charged.
+      </p>
+      <button 
+        class="v-popup__submit_btn min180 active"
+        :class="{active: closeActive}"
+        @click="closePopup3"
+      >
+      Got it
+      </button>
+    </vpopup>
+    <vpopup
+      class="windowError"
+      v-if="windowError"
+    > 
+      <p class="opasity_75">
+        Your payment was declined. Please try again or use a different payment method.
+      </p>
+      <img 
+        class="error" 
+        src="@/assets/images/icons/btn_close_communicate.svg" 
+        alt="error"
+        @click="closeWindowError"
+      >
+    </vpopup>
+  </div>
+  <!-- При выборе оплаты класс active задать одной из button line 223,232, 235 -->
+  </template>
+  <script>
+  import { mapGetters } from 'vuex';
+  import ButtonField from '@/components/ui/Button.vue';
+  import vpopup from '@/components/modal/v-popup.vue';
+  import btnComponent from '@/components/questions/btnPopup.vue';
+  import countdown from '@/components/Countdown.vue';
+  import Guarantee from '@/components/Guarantee.vue';
+  import Footer from '@/components/Footer.vue';
+  import RatingStars from '@/components/RatingStars.vue';
+  import VueScrollTo from "vue-scrollto";
+  import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
+  import { getItem } from '@/common/localStorage';
+  import dayjs from 'dayjs';
+  
+  
+  export default {
+    name: 'LandingView', 
+    inject: ['mixpanel'],
+    components: {
+      ButtonField,
+      vpopup,
+      btnComponent,
+      countdown,
+      PaymentFormCompanent,
+      Guarantee,
+      Footer,
+      RatingStars
+  },
+    data() {
+      return {
+        item: localStorage.getItem('LandingItem'),
+        version: getItem('ver'),
+        VueScrollTo: require('vue-scrollto'),
+        blockFixed: false,
+        apple_pay: true, 
+        dataPP2:'September 25',
+        ggg:0,
+        textBtn:'Start my plan',
+        email: null,
+        isEmailTouched: false,
+        upValue: '',
+        step_2: false,
+        base: {},
+        numreview: 3,
+        track: 0,
+        windowError: false,
+        numTimeError:0,
+        polling: null,
+        popupVisible: false,
+        popupVisible2: false,
+        popupVisible3: false,
+        isActiveYes: false,
+        isActiveNo: false,
+        closeActive: false,
+        scrollPosition: 0,
+        price: localStorage.getItem('price'),
+        oldprice: 19.88,
+        numanimate: 1,
+        show: false,
+        imageitem: require(`@/assets/images/json/Step_1_1.json`),
+        imgProba: false,
+        AddPurposeCom: false,
+        addItem: false,
+        numanim: null,
+      };
+    },   
+    methods: {
+      setDate(index) {
+        return dayjs().add(index,'month').format("MMM")
+      },
+      nextUrl() {
+        this.mixpanel.track('Trial Started',{
+          amount: this.price
+        })
+        setTimeout(() => {
+          this.$router.push("PlanFinal");
+        }, 0);
+      },
+      dayjs() {
+        return dayjs();
+      },
+      paymentError() {
+        this.mixpanel.track('Payment Error', {
+          stage: "Trial"
+        })
+        console.log(this.numTimeError);
+        this.windowError = true;
+        this.numTimeError = 0;
+        this.polling = setInterval(() => {
+          if (this.numTimeError < 9) {
+            console.log(this.numTimeError);
+            this.numTimeError += 1;
+          } else {
+            console.log(this.numTimeError);
+            clearInterval(this.polling);
+            this.numTimeError = 0;
+            this.windowError = false;
+          }
+        }, 1000);
+      },
+      closeWindowError(e) {
+        clearInterval(this.polling);
+        this.windowError = false;
+      },
+      showModal() {
+        sessionStorage.setItem('scrollto', window.pageYOffset)
+        this.mixpanel.track('Comfortable Amount Shown')
+        this.popupVisible = true
+        window.document.body.style.overflow = 'hidden';
+      },
+      showModal2() {
+        sessionStorage.setItem('scrollto', window.pageYOffset);
+        this.popupVisible2 = true
+        this.step_2 = true
+        window.document.body.style.overflow = 'hidden';
+      },
+      showModal3() {
+        sessionStorage.setItem('scrollto', window.pageYOffset);
+        this.popupVisible3 = true;
+        window.document.body.style.overflow = 'hidden';
+      },
+      closePopup(e){
+        const height = sessionStorage.getItem('scrollto')
+        setTimeout(function(){ window.scrollTo( 0, height ) })
+        console.log(window.pageYOffset);
+        localStorage.setItem('Comfortable amount Pop-up', 'true')
+        if(this.closeActive){
+          this.mixpanel.track('Comfortable Amount Complted', {
+            amount: this.price
+          })
+        }
+        this.popupVisible = false;
+        window.document.body.style.overflow = 'unset';
+        // VueScrollTo.scrollTo('#Benefits');
+  
+      },
+      closePopup2(e){
+        localStorage.setItem('Button step_2', 'true')
+        this.mixpanel.track('Landing Page 2 Shown')
+        this.popupVisible2 = false;
+        window.document.body.style.overflow = 'unset';
+        
+        window.scrollTo({
+          top: document.getElementById('paypal').offsetTop,
+          left: 0,
+          behavior: "smooth",
+        });
+  
+        //  VueScrollTo.scrollTo('#paymentForm');
+       // this.getPayPalIntent();
+      },
+      closePopup3(e) {
+        const height = sessionStorage.getItem('scrollto')
+        setTimeout(function(){ window.scrollTo( 0, height ) })
+        this.popupVisible3 = false
+        window.document.body.style.overflow = 'unset';
+        // VueScrollTo.scrollTo('#paypal');
+      },
+      BtnActiveYes() {
+        this.isActiveYes = this.closeActive = true;
+        this.isActiveNo = false;
+        this.price = 1;
+        this.item = "kegel_1-USD-Every-3-months"
+        this.oldprice = 19.88;
+        localStorage.setItem("price", 1);
+        localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
+      },
+      BtnActiveNo() {
+        this.isActiveYes = false;
+        this.isActiveNo = this.closeActive = true;
+        this.price = 9.73;
+        this.item = "kegel_2-USD-Every-3-months"
+        this.oldprice = 19.88;
+        localStorage.setItem("price", 9.73);
+        localStorage.setItem("LandingItem", "kegel_2-USD-Every-3-months");
+      },
+      showReview() {
+        this.numreview = this.numreview + 2;
+        console.log(this.base.length);
+      },
+    },
+    watch:{
+      ggg(){
+        if(this.ggg == 1){
+          this.showModal("this.popupVisible" , false)
+        }
+      },
+  
+    },
+    computed: {cal(){
+        let json = localStorage.getItem('track');
+        let obj = JSON.parse(json);
+        this.track = obj.id
+        return this.track
+    },
+      graphText() {
+        switch (this.version) {
+          case 1:
+            return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
+          case 5:
+            return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
+          default:
+            return 'This diagram is non-personalized data based on scientific research'
+        }
+      },
+      imagechart(){
+        if(this.jsLocal == 2){
+          if(sessionStorage.getItem('resbtn') == 'Yes'){
+            this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
+          }else{
+            this.imageitem = require(`@/assets/images/json/Step_1_2.json`);
+            this.imgProba = true
+          }
+        }else{
+          this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
+        }
+      },
+      MyScrollFixed(){
+        document.addEventListener('scroll', (e) => {
+          let x = window.scrollY
+          if(x>310){
+            
+            this.blockFixed = true
+          }else{
+            this.blockFixed = false
+          }
+        });
+        
+      },
+      MyScrollModal(){
+          document.addEventListener('scroll', (e) => {
+          let x = window.scrollY
+          if(x>400){
+            if(localStorage.getItem('Comfortable amount Pop-up')){
+              this.ggg = 0
+            }else{
+              this.ggg = 1
+            }
+          }
+          if(localStorage.getItem('Button step_2')){
+            this.step_2 = true
+          }else{
+            this.step_2 = false
+          }
+        })
+      },
+      ...mapGetters(['tracks']),
+      purpose(){
+        var json = localStorage.getItem('track');
+        var obj = JSON.parse(json);
+        return obj.purpose;
+      },
+      addpurpose(){
+        var json = localStorage.getItem('track');
+        var obj = JSON.parse(json);
+        console.log(obj.addpurpose);
+        return obj.addpurpose;
+        
+      },
+      btnAddPurpose(){
+        if(sessionStorage.getItem('resbtn') == 'Yes'){
+          this.AddPurposeCom = true
+        }else{
+          this.AddPurposeCom = false
+        } 
+      },
+      lengthReviews(){
+        var json = localStorage.getItem('track');
+        var obj = JSON.parse(json);
+        this.track = obj.id
+        if(this.track == 3){
+          this.addItem = true
+          this.base =  this.$store.state.review.msgOkLand
+          this.AddPurposeCom = false
+        }else if(this.track == 2){
+          this.base = this.$store.state.review.msgPeLand
+        }else{
+          this.base = this.$store.state.review.msgEdLand
+        }
+        return console.log(this.track);  ; 
+      },
+    },
+    beforeUnmount () {
+      clearInterval(this.polling)
+      clearInterval(this.numanim)
+    },
+    mounted() {
+      // if (this.$abtest('experiment_1') == 'VariationA') {
+      //   localStorage.setItem('Comfortable amount Pop-up', 'true')
+      //   this.price = 1;
+      //   this.item = "kegel_1-USD-Every-3-months"
+      //   this.oldprice = 19.88;
+      //   localStorage.setItem("price", 1);
+      //   localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
+      // }
+      // this.payPalSelect();
+      this.apple_pay = true;
+          // if (window.ApplePaySession) {
+      //     var merchantIdentifier = 'merchant.appercut.stripe';
+      //     var promise = ApplePaySession.canMakePaymentsWithActiveCard(merchantIdentifier);
+      //     promise.then(function (canMakePayments) {
+      //       this.apple_pay = canMakePayments;
+      //     });
+      // }
+      this.numanim = setInterval(() => {
+        if (this.numanimate == 1) {
+          this.dataPP3 = sessionStorage.getItem('data34')
+          this.numanimate += 1
+          this.show = true;
+        }else if(this.numanimate == 2){
+          this.numanimate += 1
+          this.show = false;
+          this.dataPP3 = sessionStorage.getItem('data33')
+        }else if(this.numanimate == 3){
+          this.numanimate += 1
+          this.show = true;
+        }else if(this.numanimate == 4){
+          this.numanimate += 1
+          this.show = false;
+          this.dataPP3 = sessionStorage.getItem('data32')
+        }else if(this.numanimate == 5){
+          this.numanimate += 1
+          this.show = true;
+        }else if(this.numanimate == 6){
+          this.numanimate += 1
+          this.show = false;
+          this.dataPP3 = sessionStorage.getItem('data3')
+        }else if(this.numanimate == 7){
+          this.numanimate += 1
+          this.show = true;
+        }else{
+          clearInterval(this.numanim);
+        }
+      }, 500);
+    },
+    created () {
+      this.mixpanel.track('Landing Page 1 Shown')
+    }
+  };
+  </script>
+  
+  <style lang="scss" scoped>
+
+.payment-block {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #111113;
+
+  &__title {
+    color: #fff;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid #000;
+    border-radius: 9px;
+    background: #ffffff0e;
+    color: #fff;
+
+    width: 85%;
+    max-width: 311px;
+    
+    padding: 8px 8px 8px 16px;
+    margin: 0 auto;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__label {
+    font-family: "SF-Pro-Display-Bold";
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  &__right {
+
+  }
+}
+
+  .landing {
+    .content {
+      display: flex;
+      flex-direction: column;
+      &__title {
+        margin: 0px auto 8px;
+        font-size: 36px;
+        line-height: 135%;
+        margin: 0px auto 24px;
+        text-align: center;
+        font-family: "SF-Pro-Display-Bold";
+        @media (max-width:480px) {
+          font-size: 24px;
+        }
+      }
+      &__subtitle {
+        font-size: 18px;
+        text-align: center;
+        line-height: 150%;
+        margin-bottom: 16px;
+        @media (max-width:480px) {
+          font-size: 14px;
+        }
+        &--bold {
+          font-family: "SF Pro Text Semibold";
+        }
+      }
+      &__timer {
+        margin-bottom: 32px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        display: flex;
+        align-items: center;
+        border-radius: 17px;
+        padding: 17px 0;
+        background: #111113;
+        width: 100%;
+        max-width: 373px;
+        margin: 0 auto 32px;
+        color: #fff;
+  
+        &--icon {
+          width: 52px;
+          height: 52px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: rgba(#FFFFFF, .07);
+          margin-right: 24px;
+          margin-left: 24px;
+          @media (min-width: 600px) {
+            margin-left: 65px;
+          }
+        }
+  
+        &--text {
+          font-family: "SF Pro Text Bold";
+          font-size: 16px;
+          line-height: 150%;
+          opacity: 1;
+          margin: 0;
+          color:#FFFFFF;
+        }
+  
+        &--start {
+          font-size: 14px;
+          line-height: 150%;
+          opacity: 0.75;
+        }
+      }
+      &__date {
+        text-align: center;
+        margin-bottom: 0px;
+      }
+      &__purpose {
+        font-size: 18px;
+        line-height: 150%;
+        @media (max-width:480px) {
+          font-size: 16px;
+        }
+        @media (min-width: 600px) {
+          font-size: 20px;
+        }
+        &--bold {
+          font-family: "SF Pro Text Semibold";
+        }
+        &--regular {
+          font-family: "SF Pro Text Regular";
+        }
+        &--red {
+          font-family: "SF Pro Text Bold";
+          color: #E44240;
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 150%;
+          display: flex;
+          width: 100%;
+          margin: 0 auto;
+          position: relative;
+          justify-content: center;
+          min-height: 30px;
+  
+          @media (min-width: 600px) {
+              font-size: 24px;
+              min-height: 36px;
+            }
+        }
+      }
+    }
+    .reviews {
+      display: flex;
+      flex-direction: column;
+      margin: 16px auto 40px;
+      &__title {
+        font-family: "SF-Pro-Display-Semibold";
+        font-size: 18px;
+        line-height: 150%;
+        margin-bottom: 16px;
+        text-align: center;
+        @media (max-width:480px) {
+          font-size: 16px;
+        }
+        @media (min-width: 600px) {
+          font-size: 24px;
+        }
+      }
+      &__item {
+        padding: 15px;
+        border-radius: 10px;
+        margin: 0 auto;
+        max-width: 370px;
+        width: 100%;
+        background-color: #F1F1F1;
+        display: none;
+        transition: .3s;
+        box-sizing: border-box;
+        &:not(.light) {
+          background-color: #1D1D1F;
+        }
+  
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
+  
+        @media (min-width: 600px) {
+          max-width: 520px;
+        }
+        &.active {
+          display: block;
+        }
+      }
+      &__topic {
+        font-size: 18px;
+        line-height: 150%;
+        font-family: "SF Pro Text Bold";
+        @media (max-width: 480px) {
+          font-size: 14px;
+        }
+      }
+  
+      &__rating {
+        display: flex;
+        margin-top: 5px;
+        & img {
+            width: 14px;
+            height: 14px;
+          }
+      }
+  
+      &__name {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 150%;
+        opacity: .5;
+  
+        @media (max-width: 480px) {
+          font-size: 12px;
+        }
+      }
+  
+      &__text {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+  
+        @media (max-width: 480px) {
+          font-size: 12px;
+        }
+      }
+  
+      &__showMore {
+        border: none;
+        text-align: center;
+        font-size: 14px;
+        font-family: "SF Pro Text Bold";
+        color: #5773D6;
+        background: none;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 8px;
+        @media (min-width: 600px) {
+            font-size: 18px;
+        }
+      }
+  
+      &__top {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+    }
+  }
+  
+  .payment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 71px auto 16px;
+    @media (max-width:480px) {
+      margin: 64px auto 16px;
+    }
+  
+    &__method {
+      margin: 0;
+      font-family: "SF-Pro-Display-Semibold";
+      @media (min-width: 600px) {
+          font-size: 18px;
+        }
+    }
+  
+    &__button {
+      border: none;
+      background: transparent;
+      font-size: 18px;
+      opacity: 0.75;
+      font-family: "SF-Pro-Display-Medium";
+      cursor: pointer;
+  
+      @media (max-width:480px) {
+        font-size: 14px;
+      }
+    }
+  }
+  
+  .text-description{
+    font-size: 14px;
+    line-height: 150%;
+    opacity: 0.5; 
+    text-align: center;
+    .bold{
+      font-family: "SF Pro Text Semibold";
+    }
+    @media (max-width:480px) {
+      font-size: 12px;
+    }
+  }
+  .btn_bottom{
+    background: #E44240;
+    color:#FFFFFF;
+    border-radius: 9px;
+    border:none;
+    margin-bottom:10px ;
+    width: 310px;
+    font-size: 18px;
+    line-height: 21px;
+    padding: 16px 0;
+    margin: 48px 0;
+    cursor: pointer;
+    &:focus{
+      background: #F5423F;
+    }
+    @media (min-width: 600px) {
+        font-size: 20px;
+    }
+  }
+  .block__text{
+    margin-bottom: 24px;
+    line-height: 150%;
+    @media (min-width: 600px) {
+      & p {
+        font-size: 18px;
+      }
+    }
+    .title{
+      font-family: "SF-Pro-Display-Semibold";
+      margin-bottom: 12px;
+    }
+    a{
+      color: #E44240;
+    }
+  }
+  
+  .benefit {
+    margin-top: 0px;
+    line-height: 150%;
+  
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+  
+  .block-pay{
+    width: 100%;
+    margin-bottom: 32px;
+    @media(min-width: 600px) {
+      margin-bottom: 48px;
+    }
+    .w-100{
+      width: 100%;
+      margin-top: 48px;
+    }
+    .flex-wrap{
+      flex-wrap: wrap;
+      width: 450px;
+      margin-top: 48px;
+      @media (max-width:480px) {
+        max-width: 270px;
+        justify-content: center;
+      }
+      p{
+        font-family: "SF Pro Text Regular";
+        font-size: 16px;
+        @media (min-width: 600px) {
+          font-size: 18px;
+        }
+        .bold{
+          font-family: "SF Pro Text Semibold";
+        }
+        @media (max-width:480px) {
+          font-size: 14px;
+          margin-top: 11px;
+        }
+      }
+    }
+    .star{
+      img{
+        max-width: 20px;
+        height: auto;
+      }
+      @media (max-width:480px) {
+        margin-right: 9px;
+      }
+    }
+    button.pay{
+      background: #F9F9F9;
+      border: 2px solid #F9F9F9;
+      border-radius: 9px;
+      margin-bottom:10px ;
+      max-width: 300px;
+      display: block;
+      &:focus, &:hover, &:active{
+        background: rgba(87, 115, 214, 0.1);
+        border: 2px solid #5773D6;
+      }
+      img{
+        max-width: 100%;
+      }
+    } 
+    button.pay.active {
+      background: rgba(87, 115, 214, 0.1);
+      border: 2px solid #5773D6;
+    }
+    button.pay.small{
+      max-width: 153px;
+      img{
+        width: 100%;
+      }
+    }
+    .aple_pay{
+      background: #111113;
+      color: #FFFFFF;
+      border: 3px solid #111113;
+      border-radius: 100px;
+      margin-bottom:10px ;
+      width: 100%;
+      font-size: 20px;
+      line-height: 24px;
+      padding: 15px 65px;
+      font-family: "SF Pro Text Semibold";
+      &:focus{
+        background: #1B1B1E;
+        border: 3px solid #C7C7C7;
+      }
+    }
+    .error{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #E44240;
+      border: 3px solid #E44240;
+      &:focus{
+        background: #eb6967;
+        border: 3px solid #E44240;
+      }
+    }
+    .Pay_pay{
+      background: #FFBB1B;
+      color: #2D2F2F;
+      border: 3px solid #FFBB1B;
+      border-radius: 100px;
+      margin-bottom:10px ;
+      width: 100%;
+      font-size: 20px;
+      line-height: 24px;
+      padding: 15px 55px;
+      font-family: "SF Pro Text Regular";
+      &:focus{
+        background: #FFBB1B;
+        border: 3px solid #F3F3F3;
+      }
+    }
+  }
+  
+  .mw-300{
+    max-width: 300px;
+    margin: 0px auto;
+  }
+  
+  .mb-32{
+    margin-bottom: 32px;
+  }
+  .fs-16-14{
+    font-size: 18px;
+    @media (max-width:480px) {
+      font-size: 14px;
+    }
+  }
+  hr{
+    color: #F1F3F9;
+    background: #F1F3F9;
+    border: none;
+    height: 1px;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0;
+    @media (max-width:480px) {
+      max-width: 320px;
+    }
+  }
+  
+  .popup_wraper{
+    h2{
+      margin: 0 0 16px;
+      font-family: "SF-Pro-Display-Bold";
+      font-size:24px;
+    }
+    p{
+      font-size: 18px;
+      margin-bottom: 16px;
+      line-height: 150%;
+      @media (max-width:480px) {
+        font-size: 14px;
+      }
+    }
+    p.opasity_75{
+      opacity: 0.75;
+    }
+    p.bold{
+      font-family: "SF Pro Text Semibold";
+    }
+    span.width-400{
+      font-family: "SF Pro Text Regular";
+    }
+    p.small{
+      position: relative;
+      text-align: center;
+      width: 125px;
+      font-size: 10px;
+      line-height: 135%;
+      margin-top: 18px;
+      margin-bottom: 0;
+      opacity: 0.75;
+      @media (min-width: 600px) {
+          font-size: 16px;
+        }
+    }
+    .text__bottom_btn{
+      font-size: 12px;
+      line-height: 135%;
+      margin-top: 8px;
+      text-align: center;
+      margin-bottom: 0;
+        @media (min-width: 600px) {
+            font-size: 16px;
+          }
+    }
+    .desktop-center{
+      text-align: center;
+      margin: 8px 0 12px;
+      @media (max-width:480px) {
+        text-align: left;
+        width: 100%;
+      }
+      @media (min-width: 600px) {
+        margin: 16px 0;
+      }
+    }
+  }
+  .windowError{
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    position: fixed;
+    z-index: 9;
+    top: 32px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0);
+    .v-popup{
+      box-shadow:(6px 6px 13px rgba(0, 0, 0, 0.25));
+      background: #FFE4E4!important;
+      border: 2px solid #E44240;
+      border-radius: 9px;
+      .error{
+        margin-left: 16px;
+      }
+    }
+  }
+  .small::before{
+    content: "";
+    width: 1px;
+    height: 14px;
+    position: absolute;
+    display: block;
+    background: #11111350;
+    top: -15px;
+    left: 50%;
+  }
+  .v-popup{
+    max-width: 260px;
+    top: 20px;
+  }
+  .block-btn{
+      width: 100%;
+      max-width: 270px;
+    }
+  .v-popup__submit_btn, .v-popup__btn{
+    background-color: #CACACA;
+    border:none;
+    border-radius: 9px;
+    padding: 16px 37px;
+    font-family: "SF Pro Text Medium";
+    font-size: 18px;
+    line-height: 135%;
+    color: #ffffff;
+    margin-top: 32px;
+  }
+  .v-popup__submit_btn.min180{
+    min-width: 180px;
+  }
+  .v-popup__submit_btn.active{
+    background: #E44240;
+  }
+  .v-popup__btn{
+    margin-top: 0px;
+    color: #111113;
+    background: #F1F3F9;
+    width: 125px;
+    padding: 20px 35px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .v-popup__btn.active{
+    color: #FFFFFF;
+    background-color: #111113;
+  }
+  // fixed timer
+  .fixedTime{
+    max-width: 536px;
+    opacity: 0;
+    position: fixed;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    padding: 16px 32px;
+    background: #111113;
+    z-index: 2;
+    color: #FFFFFF;
+    top:0; left:0; right:0;
+    @media (max-width:600px) {
+      padding: 16px 0px;
+      max-width: 600px;
+    }
+    p{
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .fixedTime.active{
+    opacity: 1;
+  }
+  .footer-controls__button{
+    max-width: 310px;
+    margin: 48px auto 0;
+    z-index: 0;
+    @media (min-width: 600px) {
+      margin: 57px auto 0;
+    }
+  }
+  // reviews
+  
+  
+  .star-yellow {
+    max-width: 14px;;
+    height: auto;
+  }
+  
+  .price{
+    max-width: 600px;
+    margin: 0 auto;
+    &__title {
+      background: #F1F3F9;
+      padding: 24px 38px;
+      font-family: "SF-Pro-Display-Semibold";
+      font-size: 18px;
+      line-height: 150%;
+      @media (max-width:480px) {
+        padding: 16px 32px;
+        font-size: 14px;
+  
+      }
+    }
+    &__list {
+      font-size: 18px;
+      max-width: 520px;
+      margin: 16px auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media (max-width:480px) {
+        font-size: 14px;
+      }
+      &--line {
+        text-decoration: line-through;
+        margin-right: 4px;
+        opacity: 0.5;
+      }
+      &--bold {
+        font-family: "SF Pro Text Semibold";
+      }
+      &--small {
+        font-size: 16px;
+        @media (max-width:480px) {
+          font-size: 11px;
+        }
+      }
+    }
+    &__after {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      align-items: end;
+    }
+  
+    &__description {
+      padding: 16px 32px;
+      margin: 0 auto;
+      line-height: 150%;
+      opacity: 0.5;
+      @media (max-width:480px) {
+        font-size: 14px;
+      }
+    }
+  }
+  
+  .graphic {
+    margin: 32px auto;
+    text-align: center;
+    width: 100%;
+    @media (min-width: 600px) {
+        max-width: 520px;
+      }
+    img {
+      width: 100%;
+      height: auto;
+    }
+  
+    &__date {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 12%;
+    }
+  
+    &__month {
+      margin: 12px 0 0;
+      font-size: 18px;
+      color: #111113;
+      @media (max-width: 480px) {
+          margin: 9px 0 0;
+          font-size: 12px;
+      }
+    }
+  
+    &__description {
+      font-size: 14px!important;
+      max-width: 450px;
+      margin: 0 auto;
+      opacity: 0.5;
+      text-align: center;
+      @media (min-width: 600px) {
+        max-width: 520px;
+      }
+    }
+  }
+  
+  .benefits {
+    &__title {
+      font-family: "SF-Pro-Display-Bold";
+      font-size: 20px;
+      margin: 32px auto;
+      text-align: center;
+      @media (min-width: 600px) {
+        font-size: 24px;
+        margin: 32px auto 52px;
+      }  
+    }
+    &__list {
+      max-width: 310px;
+      margin: 0 auto 48px;
+      padding: 0;
+      @media (min-width: 600px) {
+          max-width: 375px;
+        }
+    }
+    &__item {
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+      font-family: "SF Pro Text Regular";
+      font-size: 16px;
+      margin-bottom: 16px;
+      line-height: 150%;
+      @media (min-width: 600px) {
+        font-size: 18px;
+      }
+      img{
+        margin-right: 20px;
+        width: 16px;
+        height: 16px;
+        display: block;
+        @media (min-width: 600px) {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      span.text-bold{
+        font-family: "SF Pro Text Semibold";
+        display: block;
+        width: 100%;
+        margin-right: 0;
+        height: 150%
+      }
+    }
+  }
+  
+  .text-bold{
+    font-family: "SF Pro Text Semibold";
+  }
+  .bottom_img{
+    font-size: 14px!important;
+    max-width: 450px;
+    margin: 0 auto;
+    @media (min-width: 600px) {
+      max-width: 520px;
+    }
+  }
+  .fixedTime__timer {
+    font-family: "SF Pro Text Bold";
+  }
+  .h200{
+    display: block;
+    height: 168px;
+  }
+  
+  .mt-64 {
+    margin-top: 64px;
+  }
+  
+  .price-padding {
+    padding-bottom: 170px;
+    @media (min-width: 600px) {
+      padding-bottom: 160px;
+    }
+  }
+  
+  .step_2 {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 32px;
+      box-sizing: border-box;
+      @media (min-width: 600px) {
+        padding: 0 40px;
+      }
+  }
+  
+  .check {
+    display: block;
+    margin-right: 20px;
+    width: 14px;
+    height: 14px;
+  }
+  
+  .price-trial {
+    margin: 16px auto;
+  }
+  
+  input, textarea{outline:none;}
+  input:active, textarea:active{outline:none;}
+  :focus {outline:none;}
+  textarea {resize:none;}
+  textarea {resize:vertical;}
+  textarea {resize:horizontal;}
+  </style>
+  

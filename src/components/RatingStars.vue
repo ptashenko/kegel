@@ -1,15 +1,11 @@
 <template>
     <div class="rating">
         <p class="rating__text">
-            <span class="rating__text--bold">36k</span> 5-star ratings <span style="margin: 0 5px;">|</span> <span class="rating__text--bold">1.6M+</span> downloads
+            <span class="rating__text--bold">{{ amount }}</span> 5-star ratings <span style="margin: 0 5px;">|</span> <span class="rating__text--bold">{{downloads}}</span> downloads
         </p>
         <div class="rating__rate">
             <div class="rating__stars">
-                <img class="rating__star" src="@/assets/images/star1.png" alt="star">
-                <img class="rating__star" src="@/assets/images/star1.png" alt="star">
-                <img class="rating__star" src="@/assets/images/star1.png" alt="star">
-                <img class="rating__star" src="@/assets/images/star1.png" alt="star">
-                <img class="rating__star" src="@/assets/images/star2.png" alt="star">
+                <img v-for="(_, idx) of stars" :key="idx" class="rating__star" src="@/assets/images/star1.png" :alt="idx + 'star'">
             </div>
             <div class="rating__out">
                 <img src="@/assets/images/icons/out48-black.svg" alt="out">
@@ -20,7 +16,23 @@
 
 <script>
 export default {
-
+    props: {
+        stars: {
+            type: Number,
+            isRequired: true,
+            default: 5
+        },
+        amount: {
+            type: String,
+            isRequired: true,
+            default: '36k'
+        },
+        downloads: {
+            type: Number,
+            isRequired: true,
+            default: '1.6M+'
+        }
+    }
 }
 </script>
 

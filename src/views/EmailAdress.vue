@@ -66,14 +66,15 @@ export default {
       return this.textpurpose;
     },
     ladningView() {
-      switch (Number(this.version)) {
-        case 5:
-          return 'LandingViewV5'
-        case 6:
-          return 'LandingViewV4'
-        default:
-          return 'LandingView'
-      }
+      return 'LandingViewVP5'
+      // switch (Number(this.version)) {
+      //   case 5:
+      //     return 'LandingViewV5'
+      //   case 6:
+      //     return 'LandingViewV4'
+      //   default:
+      //     return 'LandingView'
+      // }
     },
   },
 

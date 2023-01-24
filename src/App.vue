@@ -95,7 +95,7 @@ export default {
       localStorage.getItem("web_user_uuid").replaceAll('"', "")
     );
     this.mixpanel.people.set({ Init: "-" });
-    this.mixpanel.people.set({ Experiment_1: this.$abtest("experiment_1") });
+    // this.mixpanel.people.set({ Experiment_1: this.$abtest("experiment_1") });
     smartlookClient.init("c5049693293bbcff326bf80ebda873782ca318d7");
     smartlookClient.identify(
       localStorage.getItem("web_user_uuid").replaceAll('"', "")

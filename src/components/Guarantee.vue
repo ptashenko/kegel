@@ -1,6 +1,6 @@
 <template>
-    <div class="guarantee">
-        <div class="guarantee-wrapper">
+    <div class="guarantee" :style="{background: bg}">
+        <div class="guarantee-wrapper" :style="{borderColor, color: textColor}">
             <h3 class="guarantee-title">30-Day Money-Back Guarantee Without Questions</h3>
             <p class="guarantee-description">We believe that our plan may work for you, and you’ll get visible results in a
                 few weeks!
@@ -8,15 +8,40 @@
                 All you have to do is send an email to contact@kegel.men <span>within 30 days and ask for a refund</span>.
                 But we are sure that the plan will show its effectiveness and there will be no need for a refund. Find more
                 about the
-                refund process in our <a href="./refund.html" target="_blank">refund policy</a>.</p>
-            <img src="@/assets/images/guarantee_icon.svg" class="guarantee-icon" alt="">
+                refund process in our <a href="./refund.html" target="_blank" :style="{color: borderColor}">refund policy</a>.</p>
+            <img :src="currentIcon[icon]" class="guarantee-icon" alt="">
         </div>
     </div>
 </template>
 
 <script>
-export default {
+import blue from '@/assets/images/guarantee_icon.svg'
+import red from '@/assets/images/guarantee_icon-red.svg'
 
+export default {
+    props: {
+        bg: {
+            type: String,
+            default: 'transparent'
+        },
+        borderColor: {
+            type: String,
+            default: '#5773D6'
+        },
+        icon: {
+            type: String,
+            default: 'blue'
+        },
+        textColor: {
+            type: String,
+            default: '#000'
+        }
+    },
+    computed: {
+        currentIcon() {
+            return {blue, red}
+        }
+    }
 }
 </script>
 

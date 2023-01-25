@@ -6,15 +6,19 @@
     {{imagechart}}
     <!-- {{backUrlNot}} -->
     <div class="fixedTime" :class="{'active': blockFixed}">
-      <p class="fixedTime__timer__text">7-day trial offer expires in:</p>
-      <countdown />
+      <p class="fixedTime__timer__text">
+        <span class="fixedTime__timer__text--red">
+          {{ discount }}% discount
+        </span> expires in:
+        <countdown style="display: inline;" />
+      </p>
     </div>
     
     <div id="topPage" class="content container-main">
       <h2 class="content__title">
         Your Kegel Plan to {{ purpose }} is ready!
       </h2>
-      <p class="content__subtitle">The personal trial is <span class="content__subtitle--bold">reserved for 15 minutes:</span></p>
+      <p class="content__subtitle"><span class="content__subtitle--red">{{discount}}% discount</span> reserved for 15 minutes:</p>
       <div id="blockScroll" class="content__timer" @click="onScroll">
         <img class="content__timer--icon" src="@/assets/images/icons/icon_timer.svg" alt="icon">
         <div>
@@ -146,31 +150,91 @@
         Get Your Kegel Plan to {{ purpose }}
       </h2>
       <div class="payment-block__list">
-        <div class="payment-block__item" :class="{'checkedValue': pickedTarif === tarif.name}" v-for="(tarif, idx) of tarifs" :key="idx">
-          <label class="payment-block__label">
+        <label class="payment-block__item" :class="{'checkedValue': pickedTarif.name === tarif.name, 'popular': idx === 1, 'popularChecked': pickedTarif.name === tarif.name && idx === 1}" v-for="(tarif, idx) of tarifs" :key="idx">
+          <div class="payment-block__label">
             <input 
               class="payment-block__input"
               type="radio" 
               name="subscribe" 
-              :value="tarif.name"
+              :value="tarif"
               v-model="pickedTarif"
             />
-            <span class="label" :class="{'checkedValue': pickedTarif === tarif.name}">
+            <span class="label" :class="{'checkedValue': pickedTarif.name === tarif.name}">
               {{tarif.name}}
             </span>
-          </label>
-          <div class="payment-block__right" :class="{'checkedValue': pickedTarif === tarif.name}">
-            <p class="payment-block__oldPrice" :class="{'checkedValue': pickedTarif === tarif.name}"> {{tarif.discount.toFixed(2)}} USD</p>
-            <p class="payment-block__newPrice" :class="{'checkedValue': pickedTarif === tarif.name}">{{ tarif.cost.toFixed(2) }} USD</p>
-            <p class="payment-block__text" :class="{'checkedValue': pickedTarif === tarif.name}">{{ tarif.text }}</p>
           </div>
-        </div>
+          <div class="payment-block__right" :class="{'checkedValue': pickedTarif.name === tarif.name}">
+            <p class="payment-block__oldPrice" :class="{'checkedValue': pickedTarif.name === tarif.name}"> {{tarif.fullprice }}</p>
+            <p class="payment-block__newPrice" :class="{'checkedValue': pickedTarif.name === tarif.name}">{{ tarif.cost }}</p>
+            <p class="payment-block__text" :class="{'checkedValue': pickedTarif.name === tarif.name}">{{ tarif.text }}</p>
+          </div>
+        </label>
       </div>
-      <button class="btn_bottom red-shadow" v-scroll-to="'#paypal'">
+      <button class="payment-block__button red-shadow">
         Get my plan
       </button>
-    </div>
+      <p class="payment-block__description">
+        We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of {{ pickedTarif.fullprice || '__' }} at the end of the chosen subscription period. Your payment method will be automatically charged every {{ normalizedSubscriptionDate }} until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
+      </p>
 
+      <Guarantee
+        borderColor="#E44240"
+        textColor="#fff"
+        icon="red"
+      />
+    </div>
+    <div style="padding: 48px 32px;">
+      <FaqBlock :items="faqQuestions.faq" />
+      <div class="info-block">
+        <div class="info-block__item">
+          <div class="info-block__top">
+            <img src="../assets/img/icons/icon_notification.svg" class="info-block__icon" />
+            <h3 class="info-block__title">
+              Get notifications
+            </h3>
+          </div>
+          <p class="info-block__text">
+            You will get an email confirmation every time your subscription renews
+          </p>
+        </div>
+        <div class="info-block__item">
+          <div class="info-block__top">
+            <img src="../assets/img/icons/icon_safe.svg" class="info-block__icon" />
+            <h3 class="info-block__title">
+              Your information is safe
+            </h3>
+          </div>
+          <p class="info-block__text">
+            We will not sell or rent your personal contact information for any marketing purposes.
+          </p>
+        </div>
+        <div class="info-block__item">
+          <div class="info-block__top">
+            <img src="../assets/img/icons/icon_secure.svg" class="info-block__icon" />
+            <h3 class="info-block__title">
+              Secure checkout
+            </h3>
+          </div>
+          <p class="info-block__text">
+            All information is encrypted and transmitted using Secure Sockets Layer protocol.
+          </p>
+        </div>
+        <div class="info-block__item">
+          <div class="info-block__top">
+            <img src="../assets/img/icons/icon_help.svg" class="info-block__icon" />
+            <h3 class="info-block__title">
+              Need help?
+            </h3>
+          </div>
+          <p class="info-block__text">
+            Contact us here: <a href="mailto:contact@kegel.men" class="info-block__link">contact@kegel.men</a>
+          </p>
+        </div>
+        <button class="info-block__button red-shadow">
+          Get my plan
+        </button>
+      </div>
+    </div>
     <Footer />
     <vpopup
     class="popup_wraper"
@@ -213,8 +277,10 @@
   import ButtonField from '@/components/ui/Button.vue';
   import vpopup from '@/components/modal/v-popup.vue';
   import btnComponent from '@/components/questions/btnPopup.vue';
+  import faqQuestions from "@/constants/landingV3";
   import countdown from '@/components/Countdown.vue';
   import Guarantee from '@/components/Guarantee.vue';
+  import FaqBlock from '@/components/common/FaqBlock.vue';
   import Footer from '@/components/Footer.vue';
   import RatingStars from '@/components/RatingStars.vue';
   import VueScrollTo from "vue-scrollto";
@@ -233,33 +299,36 @@
       countdown,
       PaymentFormCompanent,
       Guarantee,
+      FaqBlock,
       Footer,
       RatingStars
   },
     data() {
       return {
         item: localStorage.getItem('LandingItem'),
+        discount: 51,
         tarifs: [
           {
             name: '1-WEEK PLAN',
-            discount: 1.50,
-            cost: 0.99,
+            fullprice: '1.50 USD',
+            cost: '0.99 USD',
             text: 'per day'
           },
           {
             name: '1-MONTH PLAN',
-            discount: 1.00,
-            cost: 0.49,
+            fullprice: '1.00 USD',
+            cost: '0.49 USD',
             text: 'per day'
           },
           {
             name: '3-MONTH PLAN',
-            discount: 0.59,
-            cost: 0.29,
+            fullprice: '0.59 USD',
+            cost: '0.29 USD',
             text: 'per day'
           }
         ],
         pickedTarif: '',
+        faqQuestions,
         version: getItem('ver'),
         VueScrollTo: require('vue-scrollto'),
         blockFixed: false,
@@ -421,12 +490,20 @@
       },
   
     },
-    computed: {cal(){
+    computed: {
+      cal(){
         let json = localStorage.getItem('track');
         let obj = JSON.parse(json);
         this.track = obj.id
         return this.track
-    },
+      },
+      normalizedSubscriptionDate() {
+        if (this.pickedTarif) {
+          return this.pickedTarif.name.replace('-', ' ').replace('PLAN', '').toLowerCase()
+        } else {
+          return '__'
+        }
+      },
       graphText() {
         switch (this.version) {
           case 1:
@@ -575,13 +652,86 @@
   
   <style lang="scss" scoped>
 
+  .info-block {
+    margin-top: 48px;
+
+    &__item {
+      &:not(:last-child) {
+        margin-bottom: 24px;
+      }
+    }
+
+    &__top {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    &__text {
+      font-family: "SF Pro Text Regular";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 150%;
+      color: #111113;
+
+    }
+
+    &__title {
+      margin: 0;
+      font-family: "SF-Pro-Display-Bold";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 135%;
+      color: #111113;
+    }
+
+    &__icon {
+      margin-right: 8px;
+    }
+
+    &__link {
+      color: #E44240;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    &__button {
+    background: #E44240;
+    border-radius: 9px;
+    font-family: "SF Pro Text Regular";
+    padding: 20px 0;
+    width: 100%;
+    margin: 32px auto 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.16;
+    text-align: center;
+    color: #FFFFFF;
+    border: none;
+    display: block;
+  }
+  }
+
 .payment-block {
+  padding: 32px;
   max-width: 520px;
   margin: 0 auto;
   background: #111113;
 
   &__title {
     color: #fff;
+    margin: 0px auto 8px;
+    font-size: 36px;
+    line-height: 135%;
+    margin: 0px auto 24px;
+    text-align: center;
+    font-family: "SF-Pro-Display-Bold";
+    @media (max-width:480px) {
+      font-size: 25px;
+    }
   }
 
   &__list {
@@ -621,8 +771,7 @@
     background: #ffffff0e;
     color: #fff;
 
-    width: 85%;
-    max-width: 311px;
+    width: 100%;
     
     padding: 8px 8px 8px 16px;
     margin: 0 auto;
@@ -748,6 +897,36 @@
     }
   }
 
+  &__button {
+    background: #E44240;
+    border-radius: 100px;
+    font-family: "SF Pro Text Regular";
+    padding: 20px 0;
+    width: 100%;
+    margin: 32px auto 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.16;
+    text-align: center;
+    color: #FFFFFF;
+    border: none;
+    display: block;
+  }
+
+  &__description {
+    margin-top: 32px;
+    font-family: "SF Pro Text Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #FFFFFF;
+    opacity: 0.5;
+    margin-bottom: 48px;
+  }
+
 }
 
   .landing {
@@ -764,6 +943,7 @@
         @media (max-width:480px) {
           font-size: 24px;
         }
+
       }
       &__subtitle {
         font-size: 18px;
@@ -775,6 +955,10 @@
         }
         &--bold {
           font-family: "SF Pro Text Semibold";
+        }
+        &--red {
+          font-weight: 600;
+          color: #E44240;
         }
       }
       &__timer {
@@ -1343,6 +1527,12 @@
     p{
       padding: 0;
       margin: 0;
+    }
+
+    &__timer__text--red {
+      display: block;
+      color: #E44240;
+      font-weight: 600;
     }
   }
   .fixedTime.active{

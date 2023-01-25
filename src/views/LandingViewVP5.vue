@@ -146,31 +146,23 @@
         Get Your Kegel Plan to {{ purpose }}
       </h2>
       <div class="payment-block__list">
-        <div class="payment-block__item">
-          <input class="payment-block__input" id="week" type="radio" name="subscribe" value="week" />
-          <label class="payment-block__label" for="week">1-WEEK PLAN</label>
-          <div class="payment-block__right">
-            <p class="payment-block__oldPrice">1.50 USD</p>
-            <p class="payment-block__newPrice">0.99 USD</p>
-            <p class="payment-block__text">per day</p>
-          </div>
-        </div>
-        <div class="payment-block__item">
-          <input class="payment-block__input" id="oneMonth" type="radio" name="subscribe" value="oneMonth" />
-          <label class="payment-block__label" for="oneMonth">1-MONTH PLAN</label>
-          <div class="payment-block__right">
-            <p class="payment-block__oldPrice">1.00 USD</p>
-            <p class="payment-block__newPrice">0.49 USD</p>
-            <p class="payment-block__text">per day</p>
-          </div>
-        </div>
-        <div class="payment-block__item">
-          <input class="payment-block__input" id="threeMonth" type="radio" name="subscribe" value="threeMonth" />
-          <label class="payment-block__label" for="threeMonth">3-MONTH PLAN</label>
-          <div class="payment-block__right">
-            <p class="payment-block__oldPrice">0.59 USD</p>
-            <p class="payment-block__newPrice">0.29 USD</p>
-            <p class="payment-block__text">per day</p>
+        <div class="payment-block__item" :class="{'checkedValue': pickedTarif === tarif.name}" v-for="(tarif, idx) of tarifs" :key="idx">
+          <label class="payment-block__label">
+            <input 
+              class="payment-block__input"
+              type="radio" 
+              name="subscribe" 
+              :value="tarif.name"
+              v-model="pickedTarif"
+            />
+            <span class="label" :class="{'checkedValue': pickedTarif === tarif.name}">
+              {{tarif.name}}
+            </span>
+          </label>
+          <div class="payment-block__right" :class="{'checkedValue': pickedTarif === tarif.name}">
+            <p class="payment-block__oldPrice" :class="{'checkedValue': pickedTarif === tarif.name}"> {{tarif.discount.toFixed(2)}} USD</p>
+            <p class="payment-block__newPrice" :class="{'checkedValue': pickedTarif === tarif.name}">{{ tarif.cost.toFixed(2) }} USD</p>
+            <p class="payment-block__text" :class="{'checkedValue': pickedTarif === tarif.name}">{{ tarif.text }}</p>
           </div>
         </div>
       </div>
@@ -247,6 +239,27 @@
     data() {
       return {
         item: localStorage.getItem('LandingItem'),
+        tarifs: [
+          {
+            name: '1-WEEK PLAN',
+            discount: 1.50,
+            cost: 0.99,
+            text: 'per day'
+          },
+          {
+            name: '1-MONTH PLAN',
+            discount: 1.00,
+            cost: 0.49,
+            text: 'per day'
+          },
+          {
+            name: '3-MONTH PLAN',
+            discount: 0.59,
+            cost: 0.29,
+            text: 'per day'
+          }
+        ],
+        pickedTarif: '',
         version: getItem('ver'),
         VueScrollTo: require('vue-scrollto'),
         blockFixed: false,
@@ -285,6 +298,9 @@
     methods: {
       setDate(index) {
         return dayjs().add(index,'month').format("MMM")
+      },
+      chan(data) {
+        console.log(data)
       },
       nextUrl() {
         this.mixpanel.track('Trial Started',{
@@ -573,6 +589,28 @@
     flex-direction: column;
   }
 
+  .payment-block__item.checkedValue {
+    border: 1px solid #E44240;
+    transition: 0.5s ease all;
+    .label.checkedValue {
+      color: #fff;
+    }
+
+    & .payment-block__right.checkedValue {
+      background: #E44240;
+      transition: 0.5s ease all;
+    }
+    & .payment-block__oldPrice.checkedValue {
+      color: #000;
+    }
+    & .payment-block__newPrice.checkedValue {
+      color: #fff;
+    }
+    & .payment-block__text.checkedValue {
+      color: #fff;
+    }
+  }
+
   &__item {
     display: flex;
     align-items: center;
@@ -589,6 +627,7 @@
     padding: 8px 8px 8px 16px;
     margin: 0 auto;
 
+    position: relative;
     box-sizing: border-box;
 
     cursor: pointer;
@@ -596,17 +635,119 @@
     &:not(:last-child) {
       margin-bottom: 16px;
     }
+
+    &.popular::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      font-size: 12px;
+      top: -10px;
+      left: 20px;
+      width: fit-content;
+      background: #29292A;
+      border-radius: 50px;
+      padding: 3px 10px;
+    }
+    &.popularChecked::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      font-size: 12px;
+      top: -10px;
+      left: 20px;
+      width: fit-content;
+      background: #E44240;
+      color: #fff;
+      border-radius: 50px;
+      padding: 3px 10px;
+    }
   }
 
   &__label {
     font-family: "SF-Pro-Display-Bold";
+    font-style: normal;
+    font-weight: 600;
     font-size: 16px;
-    line-height: 1.35;
+    line-height: 135%;
+    color: #ffffff80;
+    display: block;
+    cursor: pointer;
   }
 
   &__right {
-
+    padding: 5px 13px 5px 25px;
+    background: #ffffff0d;
+    border-radius: 5px;
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
   }
+
+  &__oldPrice {
+    font-family: "SF Pro Text Regular";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.17;
+    text-align: center;
+    text-decoration-line: line-through;
+    color: #ffffff40;
+    mix-blend-mode: normal;
+  }
+
+  &__newPrice {
+    font-family: "SF Pro Text Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 0.88;
+    text-align: center;
+    color: #e4424080;
+    mix-blend-mode: normal;
+    margin: 5px 0;
+  }
+
+  &__text {
+    font-family: "SF Pro Text Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 0.88;
+    text-align: center;
+    color: #ffffff80;
+    mix-blend-mode: normal;
+  }
+
+  &__input {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+
+    & + span {
+      display: flex;
+      align-items: center;
+    }
+
+    & + span::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #ffffff26;
+      margin-right: 0.75em;
+      transition: 0.5s ease all;
+      box-sizing: border-box;
+    }
+
+    &:checked + span::before {
+      background: url('../assets/img/icons/icon_active.png');
+      background-size: cover;
+      border: none;
+    }
+  }
+
 }
 
   .landing {

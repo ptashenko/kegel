@@ -63,7 +63,7 @@ export default {
     flex-direction: column;
     box-sizing: border-box;
     @media (max-width:480px) {
-      max-width: 310px;
+      max-width: 320px;
     }
     &__content, &__footer{
       display: flex;

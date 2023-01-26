@@ -143,9 +143,9 @@
         
           <button class="reviews__showMore" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
         </div>
+    <div style="position: absolute; top: 100%; width: 100%; height: 70px" id="selectPlan"></div>
     </div>
-
-    <div class="payment-block">
+    <div  class="payment-block">
       <h2 class="payment-block__title">
         Get Your Kegel Plan to {{ purpose }}
       </h2>
@@ -183,7 +183,7 @@
         icon="red"
       />
     </div>
-    <div style="padding: 48px 32px;">
+    <div class="questions">
       <FaqBlock :items="faqQuestions.faq" />
       <div class="info-block">
         <div class="info-block__item">
@@ -230,9 +230,9 @@
             Contact us here: <a href="mailto:contact@kegel.men" class="info-block__link">contact@kegel.men</a>
           </p>
         </div>
-        <button class="info-block__button red-shadow">
+        <a href="#selectPlan" class="info-block__button red-shadow">
           Get my plan
-        </button>
+        </a>
       </div>
     </div>
     <Footer />
@@ -250,7 +250,6 @@
       <button 
         class="v-popup__submit_btn min180 active"
         :class="{active: closeActive}"
-        @click="closePopup3"
       >
       Got it
       </button>
@@ -269,6 +268,10 @@
         @click="closeWindowError"
       >
     </vpopup>
+    <vpopup textTitle="Select Payment method" class="payment-popup">
+      <PaymentFormCompanentModal @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item"
+        :auth_price="this.price" id="paymentForm" />
+    </vpopup>
   </div>
   <!-- При выборе оплаты класс active задать одной из button line 223,232, 235 -->
   </template>
@@ -283,8 +286,7 @@
   import FaqBlock from '@/components/common/FaqBlock.vue';
   import Footer from '@/components/Footer.vue';
   import RatingStars from '@/components/RatingStars.vue';
-  import VueScrollTo from "vue-scrollto";
-  import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
+  import PaymentFormCompanentModal from '@/components/PaymentFormCompanentModal.vue';
   import { getItem } from '@/common/localStorage';
   import dayjs from 'dayjs';
   
@@ -297,7 +299,7 @@
       vpopup,
       btnComponent,
       countdown,
-      PaymentFormCompanent,
+      PaymentFormCompanentModal,
       Guarantee,
       FaqBlock,
       Footer,
@@ -330,38 +332,25 @@
         pickedTarif: '',
         faqQuestions,
         version: getItem('ver'),
-        VueScrollTo: require('vue-scrollto'),
         blockFixed: false,
-        apple_pay: true, 
         dataPP2:'September 25',
-        ggg:0,
-        textBtn:'Start my plan',
-        email: null,
-        isEmailTouched: false,
-        upValue: '',
-        step_2: false,
         base: {},
         numreview: 3,
         track: 0,
         windowError: false,
         numTimeError:0,
         polling: null,
-        popupVisible: false,
-        popupVisible2: false,
-        popupVisible3: false,
         isActiveYes: false,
         isActiveNo: false,
         closeActive: false,
-        scrollPosition: 0,
         price: localStorage.getItem('price'),
-        oldprice: 19.88,
         numanimate: 1,
         show: false,
         imageitem: require(`@/assets/images/json/Step_1_1.json`),
-        imgProba: false,
         AddPurposeCom: false,
         addItem: false,
         numanim: null,
+        popupVisible3: false,
       };
     },   
     methods: {
@@ -405,66 +394,11 @@
         clearInterval(this.polling);
         this.windowError = false;
       },
-      showModal() {
-        sessionStorage.setItem('scrollto', window.pageYOffset)
-        this.mixpanel.track('Comfortable Amount Shown')
-        this.popupVisible = true
-        window.document.body.style.overflow = 'hidden';
-      },
-      showModal2() {
-        sessionStorage.setItem('scrollto', window.pageYOffset);
-        this.popupVisible2 = true
-        this.step_2 = true
-        window.document.body.style.overflow = 'hidden';
-      },
-      showModal3() {
-        sessionStorage.setItem('scrollto', window.pageYOffset);
-        this.popupVisible3 = true;
-        window.document.body.style.overflow = 'hidden';
-      },
-      closePopup(e){
-        const height = sessionStorage.getItem('scrollto')
-        setTimeout(function(){ window.scrollTo( 0, height ) })
-        console.log(window.pageYOffset);
-        localStorage.setItem('Comfortable amount Pop-up', 'true')
-        if(this.closeActive){
-          this.mixpanel.track('Comfortable Amount Complted', {
-            amount: this.price
-          })
-        }
-        this.popupVisible = false;
-        window.document.body.style.overflow = 'unset';
-        // VueScrollTo.scrollTo('#Benefits');
-  
-      },
-      closePopup2(e){
-        localStorage.setItem('Button step_2', 'true')
-        this.mixpanel.track('Landing Page 2 Shown')
-        this.popupVisible2 = false;
-        window.document.body.style.overflow = 'unset';
-        
-        window.scrollTo({
-          top: document.getElementById('paypal').offsetTop,
-          left: 0,
-          behavior: "smooth",
-        });
-  
-        //  VueScrollTo.scrollTo('#paymentForm');
-       // this.getPayPalIntent();
-      },
-      closePopup3(e) {
-        const height = sessionStorage.getItem('scrollto')
-        setTimeout(function(){ window.scrollTo( 0, height ) })
-        this.popupVisible3 = false
-        window.document.body.style.overflow = 'unset';
-        // VueScrollTo.scrollTo('#paypal');
-      },
       BtnActiveYes() {
         this.isActiveYes = this.closeActive = true;
         this.isActiveNo = false;
         this.price = 1;
         this.item = "kegel_1-USD-Every-3-months"
-        this.oldprice = 19.88;
         localStorage.setItem("price", 1);
         localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
       },
@@ -473,7 +407,6 @@
         this.isActiveNo = this.closeActive = true;
         this.price = 9.73;
         this.item = "kegel_2-USD-Every-3-months"
-        this.oldprice = 19.88;
         localStorage.setItem("price", 9.73);
         localStorage.setItem("LandingItem", "kegel_2-USD-Every-3-months");
       },
@@ -483,11 +416,6 @@
       },
     },
     watch:{
-      ggg(){
-        if(this.ggg == 1){
-          this.showModal("this.popupVisible" , false)
-        }
-      },
   
     },
     computed: {
@@ -520,7 +448,6 @@
             this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
           }else{
             this.imageitem = require(`@/assets/images/json/Step_1_2.json`);
-            this.imgProba = true
           }
         }else{
           this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
@@ -537,23 +464,6 @@
           }
         });
         
-      },
-      MyScrollModal(){
-          document.addEventListener('scroll', (e) => {
-          let x = window.scrollY
-          if(x>400){
-            if(localStorage.getItem('Comfortable amount Pop-up')){
-              this.ggg = 0
-            }else{
-              this.ggg = 1
-            }
-          }
-          if(localStorage.getItem('Button step_2')){
-            this.step_2 = true
-          }else{
-            this.step_2 = false
-          }
-        })
       },
       ...mapGetters(['tracks']),
       purpose(){
@@ -596,23 +506,6 @@
       clearInterval(this.numanim)
     },
     mounted() {
-      // if (this.$abtest('experiment_1') == 'VariationA') {
-      //   localStorage.setItem('Comfortable amount Pop-up', 'true')
-      //   this.price = 1;
-      //   this.item = "kegel_1-USD-Every-3-months"
-      //   this.oldprice = 19.88;
-      //   localStorage.setItem("price", 1);
-      //   localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
-      // }
-      // this.payPalSelect();
-      this.apple_pay = true;
-          // if (window.ApplePaySession) {
-      //     var merchantIdentifier = 'merchant.appercut.stripe';
-      //     var promise = ApplePaySession.canMakePaymentsWithActiveCard(merchantIdentifier);
-      //     promise.then(function (canMakePayments) {
-      //       this.apple_pay = canMakePayments;
-      //     });
-      // }
       this.numanim = setInterval(() => {
         if (this.numanimate == 1) {
           this.dataPP3 = sessionStorage.getItem('data34')
@@ -652,6 +545,19 @@
   
   <style lang="scss" scoped>
 
+  .payment-popup {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 85vw;
+    z-index: 999;
+  }
+  .questions {
+    padding: 48px 32px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
   .info-block {
     margin-top: 48px;
 
@@ -712,6 +618,7 @@
     color: #FFFFFF;
     border: none;
     display: block;
+    text-decoration: none;
   }
   }
 
@@ -737,6 +644,8 @@
   &__list {
     display: flex;
     flex-direction: column;
+    max-width: 311px;
+    margin: 0 auto;
   }
 
   .payment-block__item.checkedValue {
@@ -1557,6 +1466,8 @@
   .price{
     max-width: 600px;
     margin: 0 auto;
+    position: relative;
+
     &__title {
       background: #F1F3F9;
       padding: 24px 38px;
@@ -1731,16 +1642,6 @@
     @media (min-width: 600px) {
       padding-bottom: 160px;
     }
-  }
-  
-  .step_2 {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 0 32px;
-      box-sizing: border-box;
-      @media (min-width: 600px) {
-        padding: 0 40px;
-      }
   }
   
   .check {

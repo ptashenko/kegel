@@ -5,10 +5,10 @@
     {{btnAddPurpose}}
     {{imagechart}}
     <!-- {{backUrlNot}} -->
-    <div class="fixedTime" :class="{'active': blockFixed}">
+    <div v-if="pickedTarif" class="fixedTime" :class="{'active': blockFixed}">
       <p class="fixedTime__timer__text">
         <span class="fixedTime__timer__text--red">
-          {{ discount }}% discount
+          {{ pickedTarifParams.discount }}% discount
         </span> expires in:
         <countdown style="display: inline;" />
       </p>
@@ -18,7 +18,7 @@
       <h2 class="content__title">
         Your Kegel Plan to {{ purpose }} is ready!
       </h2>
-      <p class="content__subtitle"><span class="content__subtitle--red">{{discount}}% discount</span> reserved for 15 minutes:</p>
+      <p class="content__subtitle" v-if="pickedTarif"><span class="content__subtitle--red">{{ pickedTarifParams.discount }}% discount</span> reserved for 15 minutes:</p>
       <div id="blockScroll" class="content__timer" @click="onScroll">
         <img class="content__timer--icon" src="@/assets/images/icons/icon_timer.svg" alt="icon">
         <div>
@@ -268,9 +268,20 @@
         @click="closeWindowError"
       >
     </vpopup>
-    <vpopup textTitle="Select Payment method" class="payment-popup">
-      <PaymentFormCompanentModal @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item"
-        :auth_price="this.price" id="paymentForm" />
+    <vpopup v-if="pickedTarif" textTitle="Select Payment method" class="payment-popup">
+      <PaymentFormCompanentModal 
+        @error="paymentError" 
+        @success="nextUrl" 
+        @clickButton="closeWindowError" 
+        :item="this.item"
+        :auth_price="this.price"
+        :discount="pickedTarifParams.discount"
+        :discountAmount="pickedTarifParams.discountAmount"
+        :discountPrice="pickedTarifParams.discountPrice"
+        :fullPrice="pickedTarifParams.fullPrice" 
+        :subscription="pickedTarifParams.subscriptionName" 
+        :subscriptionDate="pickedTarifParams.subscriptionPeriod"
+        id="paymentForm" />
     </vpopup>
   </div>
   <!-- При выборе оплаты класс active задать одной из button line 223,232, 235 -->
@@ -308,21 +319,23 @@
     data() {
       return {
         item: localStorage.getItem('LandingItem'),
-        discount: 51,
         tarifs: [
           {
+            id: 1,
             name: '1-WEEK PLAN',
             fullprice: '1.50 USD',
             cost: '0.99 USD',
             text: 'per day'
           },
           {
+            id: 2,
             name: '1-MONTH PLAN',
             fullprice: '1.00 USD',
             cost: '0.49 USD',
             text: 'per day'
           },
           {
+            id: 3,
             name: '3-MONTH PLAN',
             fullprice: '0.59 USD',
             cost: '0.29 USD',
@@ -356,9 +369,6 @@
     methods: {
       setDate(index) {
         return dayjs().add(index,'month').format("MMM")
-      },
-      chan(data) {
-        console.log(data)
       },
       nextUrl() {
         this.mixpanel.track('Trial Started',{
@@ -394,31 +404,59 @@
         clearInterval(this.polling);
         this.windowError = false;
       },
-      BtnActiveYes() {
-        this.isActiveYes = this.closeActive = true;
-        this.isActiveNo = false;
-        this.price = 1;
-        this.item = "kegel_1-USD-Every-3-months"
-        localStorage.setItem("price", 1);
-        localStorage.setItem("LandingItem", "kegel_1-USD-Every-3-months");
-      },
-      BtnActiveNo() {
-        this.isActiveYes = false;
-        this.isActiveNo = this.closeActive = true;
-        this.price = 9.73;
-        this.item = "kegel_2-USD-Every-3-months"
-        localStorage.setItem("price", 9.73);
-        localStorage.setItem("LandingItem", "kegel_2-USD-Every-3-months");
-      },
       showReview() {
         this.numreview = this.numreview + 2;
         console.log(this.base.length);
       },
-    },
-    watch:{
-  
+      chan() {
+        console.log(this.pickedTarifParams)
+      }
     },
     computed: {
+      discount() {
+        if (this.pickedTarif.id === 1) {
+          return 34
+        } else {
+          return 51
+        }
+      },
+      pickedTarifParams() {
+        const priceParams = {
+          subscriptionPeriod: '',
+          fullPrice: '',
+          discountPrice: '',
+          discountAmount: '',
+          subscriptionName: '',
+          discount: null,
+        };
+        switch (this.pickedTarif.id) {
+          case 1:
+            priceParams.subscriptionPeriod = '1 week'
+            priceParams.fullPrice = '10.49 USD'
+            priceParams.discountPrice = '6.93 USD'
+            priceParams.discountAmount = '-3.56 USD'
+            priceParams.subscriptionName = '1-week subscription'
+            priceParams.discount = 34
+            break;
+          case 2:
+            priceParams.subscriptionPeriod = '1 month'
+            priceParams.fullPrice = '30.99 USD'
+            priceParams.discountPrice = '15.19 USD'
+            priceParams.discountAmount = '-15.80 USD'
+            priceParams.subscriptionName = '1-month subscription'
+            priceParams.discount = 51
+            break;
+          case 3:
+            priceParams.subscriptionPeriod = '3 month'
+            priceParams.fullPrice = '53.19 USD'
+            priceParams.discountPrice = '25.99 USD'
+            priceParams.discountAmount = '-27.20 USD'
+            priceParams.subscriptionName = '3-month subscription'
+            priceParams.discount = 51
+            break;
+        }
+        return priceParams;
+      },
       cal(){
         let json = localStorage.getItem('track');
         let obj = JSON.parse(json);

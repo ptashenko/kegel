@@ -7,7 +7,7 @@
       <button
         class="buttons-container__apple payButton"
         :class="{ active: paymentMethodType == 3 }"
-        v-if="!apple_pay"
+        v-if="apple_pay"
         @click="applePaySelect"
       >
         <img class="buttons-container__logo" src="@/assets/images/icons/apple_pay.png" alt="apple_pay" />
@@ -29,17 +29,16 @@
     </div>
     <div class="paymentInfo-container">
       <div class="paymentInfo-container__line">
-        <p class="paymentInfo-container__text">subscribtion</p>
-        <p class="paymentInfo-container__text">full price</p>
+        <p class="paymentInfo-container__text">{{ subscription }}</p>
+        <p class="paymentInfo-container__text">{{ fullPrice }}</p>
       </div>
       <div class="paymentInfo-container__line">
-        <p class="paymentInfo-container__text">[disc %] introductory price discount</p>
-        <p class="paymentInfo-container__text">[disc USD]</p>
+        <p class="paymentInfo-container__text">{{ discount }}% introductory price discount</p>
+        <p class="paymentInfo-container__text">{{ discountAmount }}</p>
       </div>
     </div>
     <div class="total-container">
-      <p class="total-container__title">Total</p>
-      <p class="total-container__text"><span class="total-container__text--red">[disc price]</span> per [subscr period]</p>
+      <p class="total-container__text"><span class="total-container__title">Total </span><span class="total-container__text--red">{{ discountPrice }}</span> per {{ subscription }}</p>
     </div>
   </div>
   <PayPalComponent
@@ -59,6 +58,9 @@
     @clickButton="clickButton"
     :item="this.item"
     :auth_price="this.auth_price"
+    :discountPrice="discountPrice"
+    :fullPrice="fullPrice"
+    :subscriptionDate="subscriptionDate"
   />
     <CardCompanentZip
     class=""
@@ -90,7 +92,7 @@ export default {
   },
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ["item", "auth_price"],
+  props: ["item", "auth_price", "discount", "discountAmount", "discountPrice", "fullPrice", "discountAmount", "subscription", "subscriptionDate"],
   data() {
     return {
       // item: "kegel_1-USD-Every-3-months",
@@ -197,6 +199,7 @@ export default {
   },
   mounted() {
     this.payPalSelect();
+    console.log(this.paymentMethodType)
     if (window.ApplePaySession) {
       this.apple_pay = ApplePaySession.canMakePayments();
     }
@@ -215,6 +218,7 @@ export default {
     font-weight: 600;
     font-size: 14px;
     line-height: 150%;
+    color: #000;
   }
 
   &__text {
@@ -446,5 +450,33 @@ textarea {
 }
 textarea {
   resize: horizontal;
+}
+
+.card-pay-button {
+  display: block;
+  color: #ffffff;
+  border-radius: 100px;
+  margin: 34px auto 10px;
+  width: 100%;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 15px 65px;
+  font-family: "SF Pro Text Semibold";
+  background: #e44240;
+  border: 3px solid #e44240;
+  max-width: 375px;
+  &:focus {
+    background: #eb6967;
+    border: 3px solid #e44240;
+  }
+}
+
+.card-pay-button.submit {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ic3ZnLWxvYWRlciIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTUiIGhlaWdodD0iNTUiIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQwIDcyQzIyLjQgNzIgOCA1Ny42IDggNDBTMjIuNCA4IDQwIDhzMzIgMTQuNCAzMiAzMmMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTJjMC0xNS40LTEyLjYtMjgtMjgtMjhTMTIgMjQuNiAxMiA0MHMxMi42IDI4IDI4IDI4YzEuMSAwIDIgLjkgMiAycy0uOSAyLTIgMnoiPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgNDAgNDAiIHRvPSIzNjAgNDAgNDAiIGR1cj0iMC42cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  color: transparent !important;
+  transition-duration: 0s;
 }
 </style>

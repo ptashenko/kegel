@@ -10,14 +10,16 @@
         </div>
       </div>
     </div>
-
+    <p class="card-pay-text">
+      You agree that {{ discountPrice }} will be charged as an intro offer, then {{ fullPrice }} will be automatically billed every {{ subscriptionDate }}. Manage subscription via billing center.
+    </p>
     <button
       type="submit"
       :class="{ submit: loading }"
       class="card-pay-button red-shadow"
       @click="authorize"
     >
-      Get my plan
+      Continue
     </button>
     <!-- <div class="error" role="alert" v-if="error">{{ error }}</div> -->
     <!-- <div class="token" v-if="token">{{ token }}</div> -->
@@ -28,7 +30,7 @@
 export default {
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ["item", "auth_price"],
+  props: ["item", "auth_price", "discountPrice", "fullPrice", "subscriptionDate"],
   data() {
     return {
       loading: false,
@@ -217,6 +219,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card-pay-text {
+  font-family: "SF Pro Text Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 135%;
+  text-align: center;
+  color: #11111380;
+}
+
 .ex1.container {
   margin: auto;
   padding: 100px 0;

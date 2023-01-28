@@ -1,6 +1,7 @@
 <template>
   <div class="">
     <div class="v-popup">
+      <img class="v-popup__close" @click="closePopup" src="@/assets/images/icons/btn_close_cwindow.svg" />
       <div class="v-popup__header h2">
         {{textTitle}}
       </div>
@@ -18,9 +19,9 @@ export default {
   name:'v-popup',
   props:{
     textTitle:{
-      type:String,
+      type: String,
       default: ''
-    }
+    },
   },
   data(){
     return{
@@ -48,7 +49,7 @@ export default {
     bottom: 0;
     background-color: rgba(17, 17, 19, 0.35);
   }
-  .v-popup{
+  .v-popup {
     position: fixed;
     z-index: 9999999;
     width: 100%;
@@ -62,6 +63,14 @@ export default {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+
+    &__close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+    }
+
     @media (max-width:480px) {
       max-width: 320px;
     }

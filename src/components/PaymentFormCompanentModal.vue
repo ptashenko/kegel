@@ -7,10 +7,17 @@
       <button
         class="buttons-container__apple payButton"
         :class="{ active: paymentMethodType == 3 }"
-        v-if="apple_pay"
+        v-if="!apple_pay"
         @click="applePaySelect"
       >
         <img class="buttons-container__logo" src="@/assets/images/icons/apple_pay.png" alt="apple_pay" />
+      </button>
+      <button
+        class="buttons-container__gpay payButton"
+        :class="{ active: paymentMethodType == 3 }"
+        v-else
+      >
+        <img class="buttons-container__logo" src="@/assets/images/icons/google-pay.png" alt="google-pay" />
       </button>
       <button
         class="buttons-container__notApple payButton"
@@ -38,7 +45,8 @@
       </div>
     </div>
     <div class="total-container">
-      <p class="total-container__text"><span class="total-container__title">Total </span><span class="total-container__text--red">{{ discountPrice }}</span> per {{ subscription }}</p>
+      <p class="total-container__title">Total</p>
+      <p class="total-container__text"><span :class="`total-container__text--${theme}`">{{ discountPrice }}</span> per {{ subscriptionDate }}</p>
     </div>
   </div>
   <PayPalComponent
@@ -49,6 +57,9 @@
     @success="success"
     @clickButton="clickButton"
     :item="this.item"
+    :discountPrice="discountPrice"
+    :fullPrice="fullPrice"
+    :subscriptionDate="subscriptionDate"
   />
   <CardCompanentModal
     class=""
@@ -61,6 +72,7 @@
     :discountPrice="discountPrice"
     :fullPrice="fullPrice"
     :subscriptionDate="subscriptionDate"
+    :theme="theme"
   />
     <CardCompanentZip
     class=""
@@ -92,7 +104,7 @@ export default {
   },
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ["item", "auth_price", "discount", "discountAmount", "discountPrice", "fullPrice", "discountAmount", "subscription", "subscriptionDate"],
+  props: ["item","theme","auth_price", "discount", "discountAmount", "discountPrice", "fullPrice", "discountAmount", "subscription", "subscriptionDate"],
   data() {
     return {
       // item: "kegel_1-USD-Every-3-months",
@@ -199,7 +211,6 @@ export default {
   },
   mounted() {
     this.payPalSelect();
-    console.log(this.paymentMethodType)
     if (window.ApplePaySession) {
       this.apple_pay = ApplePaySession.canMakePayments();
     }
@@ -228,9 +239,13 @@ export default {
     line-height: 150%;
     color: #11111380;
 
-    &--red {
+    &--false {
       font-weight: 600;
       color: #E44240;
+    }
+    &--true {
+      font-weight: 600;
+      color: #5773D6;
     }
   }
 }

@@ -15,8 +15,8 @@
     </p>
     <button
       type="submit"
-      :class="{ submit: loading }"
-      class="card-pay-button red-shadow"
+      :class="[{ submit: loading }, theme ? 'blue blue-shadow' : 'red-shadow']"
+      class="card-pay-button"
       @click="authorize"
     >
       Continue
@@ -30,7 +30,7 @@
 export default {
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ["item", "auth_price", "discountPrice", "fullPrice", "subscriptionDate"],
+  props: ["item","theme", "auth_price", "discountPrice", "fullPrice", "subscriptionDate"],
   data() {
     return {
       loading: false,
@@ -379,6 +379,11 @@ export default {
   &:focus {
     background: #eb6967;
     border: 3px solid #e44240;
+  }
+
+  &.blue {
+    background: #5773D6;
+    border: none;
   }
 }
 

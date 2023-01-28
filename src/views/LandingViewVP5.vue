@@ -7,7 +7,7 @@
     <!-- {{backUrlNot}} -->
     <div v-if="pickedTarif" class="fixedTime" :class="{'active': blockFixed}">
       <p class="fixedTime__timer__text">
-        <span class="fixedTime__timer__text--red">
+        <span :class="`fixedTime__timer__text--${superDiscount.theme}`">
           {{ pickedTarifParams.discount }}% discount
         </span> expires in:
         <countdown style="display: inline;" />
@@ -146,10 +146,37 @@
     <div style="position: absolute; top: 100%; width: 100%; height: 70px" id="selectPlan"></div>
     </div>
     <div  class="payment-block">
-      <h2 class="payment-block__title">
+      <div v-if="superDiscount.theme">
+        <SuperDiscountGift style="margin-bottom: 32px;" />
+        <h2 class="payment-block__title">
+          Choose Your Plan
+        </h2>
+      </div>
+      <h2 v-else class="payment-block__title">
         Get Your Kegel Plan to {{ purpose }}
       </h2>
-      <div class="payment-block__list">
+      <div v-if="superDiscount.theme" class="payment-block__list">
+        <label class="payment-block__item payment-block__item-blue" :class="{'checkedValue': pickedTarif.name === tarif.name, 'popular': idx === 1, 'popularChecked-blue': pickedTarif.name === tarif.name && idx === 1}" v-for="(tarif, idx) of tarifs" :key="idx">
+          <div class="payment-block__label payment-block__label-blue">
+            <input 
+              class="payment-block__input payment-block__input-blue"
+              type="radio" 
+              name="subscribe" 
+              :value="tarif"
+              v-model="pickedTarif"
+            />
+            <span class="label label-blue" :class="{'checkedValue': pickedTarif.name === tarif.name}">
+              {{tarif.name}}
+            </span>
+          </div>
+          <div class="payment-block__right payment-block__right-blue" :class="{'checkedValue': pickedTarif.name === tarif.name}">
+            <p class="payment-block__oldPrice payment-block__oldPrice-blue" :class="{'checkedValue': pickedTarif.name === tarif.name}"> {{tarif.fullprice }}</p>
+            <p class="payment-block__newPrice payment-block__newPrice-blue" :class="{'checkedValue': pickedTarif.name === tarif.name}">{{ tarif.cost }}</p>
+            <p class="payment-block__text payment-block__text-blue" :class="{'checkedValue': pickedTarif.name === tarif.name}">{{ tarif.text }}</p>
+          </div>
+        </label>
+      </div>
+      <div v-else class="payment-block__list">
         <label class="payment-block__item" :class="{'checkedValue': pickedTarif.name === tarif.name, 'popular': idx === 1, 'popularChecked': pickedTarif.name === tarif.name && idx === 1}" v-for="(tarif, idx) of tarifs" :key="idx">
           <div class="payment-block__label">
             <input 
@@ -170,7 +197,7 @@
           </div>
         </label>
       </div>
-      <button class="payment-block__button red-shadow">
+      <button @click="openPaymentPopup" :disabled="!pickedTarif" class="payment-block__button" :class="[superDiscount.theme ? 'blue blue-shadow' : 'red-shadow']">
         Get my plan
       </button>
       <p class="payment-block__description">
@@ -178,9 +205,9 @@
       </p>
 
       <Guarantee
-        borderColor="#E44240"
+        :borderColor="superDiscount.theme ? '#5773D6' : '#E44240'"
         textColor="#fff"
-        icon="red"
+        :icon="superDiscount.theme ? 'blue' : 'red'"
       />
     </div>
     <div class="questions">
@@ -268,7 +295,12 @@
         @click="closeWindowError"
       >
     </vpopup>
-    <vpopup v-if="pickedTarif" textTitle="Select Payment method" class="payment-popup">
+    <vpopup 
+      v-if="paymentPopup" 
+      textTitle="Select Payment method" 
+      class="payment-popup"
+      @closePopup="cancelPayment"
+    >
       <PaymentFormCompanentModal 
         @error="paymentError" 
         @success="nextUrl" 
@@ -281,8 +313,14 @@
         :fullPrice="pickedTarifParams.fullPrice" 
         :subscription="pickedTarifParams.subscriptionName" 
         :subscriptionDate="pickedTarifParams.subscriptionPeriod"
+        :theme="superDiscount.theme"
         id="paymentForm" />
     </vpopup>
+    <SuperDiscountWindow 
+      v-if="superDiscount.popup" 
+      @close="closeSuperDiscountPopup"
+      :goal="purpose" 
+    />
   </div>
   <!-- При выборе оплаты класс active задать одной из button line 223,232, 235 -->
   </template>
@@ -293,6 +331,8 @@
   import btnComponent from '@/components/questions/btnPopup.vue';
   import faqQuestions from "@/constants/landingV3";
   import countdown from '@/components/Countdown.vue';
+  import SuperDiscountWindow from '@/components/SuperDiscountWindow.vue';
+  import SuperDiscountGift from '@/components/SuperDiscountGift.vue';
   import Guarantee from '@/components/Guarantee.vue';
   import FaqBlock from '@/components/common/FaqBlock.vue';
   import Footer from '@/components/Footer.vue';
@@ -311,6 +351,8 @@
       btnComponent,
       countdown,
       PaymentFormCompanentModal,
+      SuperDiscountWindow,
+      SuperDiscountGift,
       Guarantee,
       FaqBlock,
       Footer,
@@ -319,30 +361,12 @@
     data() {
       return {
         item: localStorage.getItem('LandingItem'),
-        tarifs: [
-          {
-            id: 1,
-            name: '1-WEEK PLAN',
-            fullprice: '1.50 USD',
-            cost: '0.99 USD',
-            text: 'per day'
-          },
-          {
-            id: 2,
-            name: '1-MONTH PLAN',
-            fullprice: '1.00 USD',
-            cost: '0.49 USD',
-            text: 'per day'
-          },
-          {
-            id: 3,
-            name: '3-MONTH PLAN',
-            fullprice: '0.59 USD',
-            cost: '0.29 USD',
-            text: 'per day'
-          }
-        ],
+        superDiscount: {
+          popup: false,
+          theme: false,
+        },
         pickedTarif: '',
+        paymentPopup: false,
         faqQuestions,
         version: getItem('ver'),
         blockFixed: false,
@@ -369,6 +393,20 @@
     methods: {
       setDate(index) {
         return dayjs().add(index,'month').format("MMM")
+      },
+      closeSuperDiscountPopup() {
+        this.superDiscount.popup = false;
+      },
+      openPaymentPopup() {
+        this.paymentPopup = true;
+      },
+      cancelPayment() {
+        if (!this.superDiscount.theme) {
+          this.superDiscount.popup = true;
+          this.superDiscount.theme = true;
+        }
+        this.paymentPopup = false;
+        this.pickedTarif = '';
       },
       nextUrl() {
         this.mixpanel.track('Trial Started',{
@@ -420,6 +458,31 @@
           return 51
         }
       },
+      tarifs() {
+        return [
+          {
+            id: 1,
+            name: '1-WEEK PLAN',
+            fullprice: '1.50 USD',
+            cost: this.superDiscount.theme ? '0.79 USD' : '0.99 USD',
+            text: 'per day'
+          },
+          {
+            id: 2,
+            name: '1-MONTH PLAN',
+            fullprice: '1.00 USD',
+            cost: this.superDiscount.theme ? '0.39 USD' : '0.49 USD',
+            text: 'per day'
+          },
+          {
+            id: 3,
+            name: '3-MONTH PLAN',
+            fullprice: '0.59 USD',
+            cost: this.superDiscount.theme ? '0.24 USD' : '0.29 USD',
+            text: 'per day'
+          }
+        ]
+      },
       pickedTarifParams() {
         const priceParams = {
           subscriptionPeriod: '',
@@ -433,26 +496,26 @@
           case 1:
             priceParams.subscriptionPeriod = '1 week'
             priceParams.fullPrice = '10.49 USD'
-            priceParams.discountPrice = '6.93 USD'
-            priceParams.discountAmount = '-3.56 USD'
-            priceParams.subscriptionName = '1-week subscription'
-            priceParams.discount = 34
+            priceParams.discountPrice = this.superDiscount.theme ? '5.50 USD' : '6.93 USD'
+            priceParams.discountAmount = this.superDiscount.theme ? '-4.99 USD' : '-3.56 USD'
+            priceParams.subscriptionName = this.superDiscount.theme ? '1-week plan with trial' : '1-week subscription'
+            priceParams.discount = this.superDiscount.theme ? 48 : 34
             break;
           case 2:
             priceParams.subscriptionPeriod = '1 month'
             priceParams.fullPrice = '30.99 USD'
-            priceParams.discountPrice = '15.19 USD'
-            priceParams.discountAmount = '-15.80 USD'
-            priceParams.subscriptionName = '1-month subscription'
-            priceParams.discount = 51
+            priceParams.discountPrice = this.superDiscount.theme ? '11.99 USD' : '15.19 USD'
+            priceParams.discountAmount = this.superDiscount.theme ? '-19.00 USD' : '-15.80 USD'
+            priceParams.subscriptionName = this.superDiscount.theme ? '1-month plan with trial' : '1-month subscription'
+            priceParams.discount = this.superDiscount.theme ? 61 : 51
             break;
           case 3:
             priceParams.subscriptionPeriod = '3 month'
             priceParams.fullPrice = '53.19 USD'
-            priceParams.discountPrice = '25.99 USD'
-            priceParams.discountAmount = '-27.20 USD'
-            priceParams.subscriptionName = '3-month subscription'
-            priceParams.discount = 51
+            priceParams.discountPrice = this.superDiscount.theme ? '21.49 USD' : '25.99 USD'
+            priceParams.discountAmount = this.superDiscount.theme ? '-31.70 USD' : '-27.20 USD'
+            priceParams.subscriptionName = this.superDiscount.theme ? '3-month plan with trial' : '3-month subscription'
+            priceParams.discount = this.superDiscount.theme ? 60 : 51
             break;
         }
         return priceParams;
@@ -699,11 +762,34 @@
     }
     & .payment-block__oldPrice.checkedValue {
       color: #000;
+
     }
     & .payment-block__newPrice.checkedValue {
       color: #fff;
     }
     & .payment-block__text.checkedValue {
+      color: #fff;
+    }
+  }
+  .payment-block__item-blue.checkedValue {
+    border: 1px solid #5773D6;
+    transition: 0.5s ease all;
+    .label-blue.checkedValue {
+      color: #fff;
+    }
+
+    & .payment-block__right-blue.checkedValue {
+      background: #5773D6;
+      transition: 0.5s ease all;
+    }
+    & .payment-block__oldPrice-blue.checkedValue {
+      color: #000;
+
+    }
+    & .payment-block__newPrice-blue.checkedValue {
+      color: #fff;
+    }
+    & .payment-block__text-blue.checkedValue {
       color: #fff;
     }
   }
@@ -755,6 +841,18 @@
       border-radius: 50px;
       padding: 3px 10px;
     }
+    &.popularChecked-blue::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      font-size: 12px;
+      top: -10px;
+      left: 20px;
+      width: fit-content;
+      background: #5773D6;
+      color: #fff;
+      border-radius: 50px;
+      padding: 3px 10px;
+    }
   }
 
   &__label {
@@ -797,6 +895,10 @@
     color: #e4424080;
     mix-blend-mode: normal;
     margin: 5px 0;
+
+    &-blue {
+      color: #5773d680;
+    }
   }
 
   &__text {
@@ -842,6 +944,14 @@
       background-size: cover;
       border: none;
     }
+
+    &-blue {
+      &:checked + span::before {
+        background: url('../assets/img/icons/icon_active-blue.png');
+        background-size: cover;
+        border: none;
+      }
+    }
   }
 
   &__button {
@@ -859,6 +969,16 @@
     color: #FFFFFF;
     border: none;
     display: block;
+
+    transition: 0.5s ease all;
+
+    &.blue {
+      background: #5773D6;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+    }
   }
 
   &__description {
@@ -1476,10 +1596,17 @@
       margin: 0;
     }
 
-    &__timer__text--red {
+    &__timer__text {
       display: block;
-      color: #E44240;
-      font-weight: 600;
+
+      &--false {
+        color: #E44240;
+        font-weight: 600;
+      }
+      &--true {
+        color: #5773D6;
+        font-weight: 600;
+      }
     }
   }
   .fixedTime.active{

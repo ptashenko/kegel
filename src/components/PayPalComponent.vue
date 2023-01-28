@@ -1,4 +1,7 @@
 <template>
+  <p class="card-pay-text">
+    You agree that {{ discountPrice }} will be charged as an intro offer, then {{ fullPrice }} will be automatically billed every {{ subscriptionDate }}. Manage subscription via billing center.
+  </p>
   <div id="paypal-button" ref="paypalButton"></div>
 </template>
 
@@ -132,4 +135,15 @@ export default {
 .zoid-outlet{
     max-width: 300px;
     }
+
+.card-pay-text {
+  font-family: "SF Pro Text Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 135%;
+  text-align: center;
+  color: #11111380;
+  margin-bottom: 32px;
+}
 </style>

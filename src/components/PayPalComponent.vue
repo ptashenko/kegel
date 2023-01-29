@@ -9,7 +9,7 @@
 export default {
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ["item"],
+  props: ["item", "discountPrice", "fullPrice", "subscriptionDate"],
   data() {
     return {
       ver: Array.isArray(localStorage.getItem('ver')) ? 1 : localStorage.getItem('ver')

@@ -18,7 +18,6 @@
           />
           <!-- <label class="ex1-label">Name on Card</label
             > -->
-          <i class="ex1-bar" id="nameBar"></i>
         </div>
         <div class="ex1-field">
           <div class="ex1-input" id="card-combined"></div>

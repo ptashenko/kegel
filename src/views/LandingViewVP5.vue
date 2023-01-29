@@ -5,7 +5,8 @@
     {{btnAddPurpose}}
     {{imagechart}}
     <!-- {{backUrlNot}} -->
-    <div v-if="pickedTarif" class="fixedTime" :class="{'active': blockFixed}">
+    <div class="land-wrapper">
+      <div v-if="pickedTarif" class="fixedTime" :class="{'active': blockFixed}">
       <p class="fixedTime__timer__text">
         <span :class="`fixedTime__timer__text--${superDiscount.theme}`">
           {{ pickedTarifParams.discount }}% discount
@@ -14,7 +15,7 @@
       </p>
     </div>
     
-    <div id="topPage" class="content container-main">
+    <div id="topPage" class="content">
       <h2 class="content__title">
         Your Kegel Plan to {{ purpose }} is ready!
       </h2>
@@ -145,9 +146,10 @@
         </div>
     <div style="position: absolute; top: 100%; width: 100%; height: 70px" id="selectPlan"></div>
     </div>
+  </div>
     <div  class="payment-block">
       <div v-if="superDiscount.theme">
-        <SuperDiscountGift style="margin-bottom: 32px;" />
+        <SuperDiscountGift style="margin: 0 auto 32px; max-width: 311px" />
         <h2 class="payment-block__title">
           Choose Your Plan
         </h2>
@@ -319,7 +321,6 @@
     <SuperDiscountWindow 
       v-if="superDiscount.popup" 
       @close="closeSuperDiscountPopup"
-      :goal="purpose" 
     />
   </div>
   <!-- При выборе оплаты класс active задать одной из button line 223,232, 235 -->
@@ -366,6 +367,7 @@
           theme: false,
         },
         pickedTarif: '',
+        apple_pay: true,
         paymentPopup: false,
         faqQuestions,
         version: getItem('ver'),
@@ -396,6 +398,7 @@
       },
       closeSuperDiscountPopup() {
         this.superDiscount.popup = false;
+        document.body.style.overflow = 'unset'
       },
       openPaymentPopup() {
         this.paymentPopup = true;
@@ -404,6 +407,7 @@
         if (!this.superDiscount.theme) {
           this.superDiscount.popup = true;
           this.superDiscount.theme = true;
+          document.body.style.overflow = 'hidden'
         }
         this.paymentPopup = false;
         this.pickedTarif = '';
@@ -607,6 +611,7 @@
       clearInterval(this.numanim)
     },
     mounted() {
+      this.apple_pay = true;
       this.numanim = setInterval(() => {
         if (this.numanimate == 1) {
           this.dataPP3 = sessionStorage.getItem('data34')
@@ -648,10 +653,11 @@
 
   .payment-popup {
     position: fixed;
+    display: flex;
+    justify-content: center;
     top: 100px;
-    left: 50%;
-    transform: translate(-50%);
-    width: 85vw;
+    left: 0;
+    right: 0;
     z-index: 999;
   }
   .questions {
@@ -720,14 +726,20 @@
     border: none;
     display: block;
     text-decoration: none;
+    cursor: pointer;
   }
   }
 
 .payment-block {
-  padding: 32px;
-  max-width: 520px;
+  padding: 40px;
+  max-width: 600px;
   margin: 0 auto;
   background: #111113;
+  box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    padding: 32px;
+  }
 
   &__title {
     color: #fff;
@@ -969,6 +981,7 @@
     color: #FFFFFF;
     border: none;
     display: block;
+    cursor: pointer;
 
     transition: 0.5s ease all;
 
@@ -978,6 +991,7 @@
 
     &:disabled {
       opacity: 0.3;
+      cursor: default;
     }
   }
 
@@ -997,6 +1011,17 @@
 }
 
   .landing {
+
+    .land-wrapper {
+      position: relative;
+      max-width: 600px;
+      padding: 0 40px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      @media (max-width: 480px) {
+        padding: 0 32px;
+      }
+    }
     .content {
       display: flex;
       flex-direction: column;

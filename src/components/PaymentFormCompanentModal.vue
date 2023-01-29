@@ -7,7 +7,7 @@
       <button
         class="buttons-container__apple payButton"
         :class="{ active: paymentMethodType == 3 }"
-        v-if="!apple_pay"
+        v-if="apple_pay"
         @click="applePaySelect"
       >
         <img class="buttons-container__logo" src="@/assets/images/icons/apple_pay.png" alt="apple_pay" />

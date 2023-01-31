@@ -203,7 +203,7 @@
         Get my plan
       </button>
       <p class="payment-block__description">
-        We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of {{ pickedTarif.fullprice || '__' }} at the end of the chosen subscription period. Your payment method will be automatically charged every {{ normalizedSubscriptionDate }} until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
+        We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of {{ pickedTarifParams.fullPrice }} at the end of the chosen subscription period. Your payment method will be automatically charged every {{ normalizedSubscriptionDate }} until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
       </p>
 
       <Guarantee
@@ -366,7 +366,13 @@
           popup: false,
           theme: false,
         },
-        pickedTarif: '',
+        pickedTarif: {
+          id: 2,
+          name: '1-MONTH PLAN',
+          fullprice: '1.00 USD',
+          cost: '0.39 USD',
+          text: 'per day'
+        },
         apple_pay: true,
         paymentPopup: false,
         faqQuestions,
@@ -399,6 +405,13 @@
       closeSuperDiscountPopup() {
         this.superDiscount.popup = false;
         document.body.style.overflow = 'unset'
+        this.pickedTarif = {
+          id: 2,
+          name: '1-MONTH PLAN',
+          fullprice: '1.00 USD',
+          cost: '0.49 USD',
+          text: 'per day'
+        }
       },
       openPaymentPopup() {
         this.paymentPopup = true;
@@ -450,18 +463,8 @@
         this.numreview = this.numreview + 2;
         console.log(this.base.length);
       },
-      chan() {
-        console.log(this.pickedTarifParams)
-      }
     },
     computed: {
-      discount() {
-        if (this.pickedTarif.id === 1) {
-          return 34
-        } else {
-          return 51
-        }
-      },
       tarifs() {
         return [
           {

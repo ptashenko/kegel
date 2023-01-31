@@ -13,13 +13,6 @@
         <img class="buttons-container__logo" src="@/assets/images/icons/apple_pay.png" alt="apple_pay" />
       </button>
       <button
-        class="buttons-container__gpay payButton"
-        :class="{ active: paymentMethodType == 3 }"
-        v-else
-      >
-        <img class="buttons-container__logo" src="@/assets/images/icons/google-pay.png" alt="google-pay" />
-      </button>
-      <button
         class="buttons-container__notApple payButton"
         :class="{ active: paymentMethodType == 2 }"
         @click="payPalSelect"

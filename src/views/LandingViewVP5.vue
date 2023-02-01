@@ -158,23 +158,24 @@
         Get Your Kegel Plan to {{ purpose }}
       </h2>
       <div v-if="superDiscount.theme" class="payment-block__list">
-        <label class="payment-block__item payment-block__item-blue" :class="{'checkedValue': pickedTarif.name === tarif.name, 'popular': idx === 1, 'popularChecked-blue': pickedTarif.name === tarif.name && idx === 1}" v-for="(tarif, idx) of tarifs" :key="idx">
+        <label class="payment-block__item payment-block__item-blue" :class="{'checkedValue': pickedTarif.id === tarif.id, 'popular': idx === 1, 'popularChecked-blue': pickedTarif.id === tarif.id && idx === 1}" v-for="(tarif, idx) of tarifs" :key="idx">
           <div class="payment-block__label payment-block__label-blue">
             <input 
               class="payment-block__input payment-block__input-blue"
               type="radio" 
-              name="subscribe" 
+              name="subscribe"
+              :checked="pickedTarif.name === tarif.name"
               :value="tarif"
               v-model="pickedTarif"
             />
-            <span class="label label-blue" :class="{'checkedValue': pickedTarif.name === tarif.name}">
+            <span class="label label-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}">
               {{tarif.name}}
             </span>
           </div>
-          <div class="payment-block__right payment-block__right-blue" :class="{'checkedValue': pickedTarif.name === tarif.name}">
-            <p class="payment-block__oldPrice payment-block__oldPrice-blue" :class="{'checkedValue': pickedTarif.name === tarif.name}"> {{tarif.fullprice }}</p>
-            <p class="payment-block__newPrice payment-block__newPrice-blue" :class="{'checkedValue': pickedTarif.name === tarif.name}">{{ tarif.cost }}</p>
-            <p class="payment-block__text payment-block__text-blue" :class="{'checkedValue': pickedTarif.name === tarif.name}">{{ tarif.text }}</p>
+          <div class="payment-block__right payment-block__right-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}">
+            <p class="payment-block__oldPrice payment-block__oldPrice-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}"> {{tarif.fullprice }}</p>
+            <p class="payment-block__newPrice payment-block__newPrice-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}">{{ tarif.cost }}</p>
+            <p class="payment-block__text payment-block__text-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}">{{ tarif.text }}</p>
           </div>
         </label>
       </div>
@@ -185,8 +186,10 @@
               class="payment-block__input"
               type="radio" 
               name="subscribe" 
+              :checked="pickedTarif.name === tarif.name"
               :value="tarif"
               v-model="pickedTarif"
+              @change="asd"
             />
             <span class="label" :class="{'checkedValue': pickedTarif.name === tarif.name}">
               {{tarif.name}}
@@ -203,7 +206,7 @@
         Get my plan
       </button>
       <p class="payment-block__description">
-        We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of {{ pickedTarifParams.fullPrice }} at the end of the chosen subscription period. Your payment method will be automatically charged every {{ normalizedSubscriptionDate }} until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
+        We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of {{ pickedTarifParams.fullPrice }} at the end of the chosen subscription period. Your payment method will be automatically charged every {{ pickedTarifParams.subscriptionPeriod }} until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
       </p>
 
       <Guarantee
@@ -399,6 +402,9 @@
       };
     },   
     methods: {
+      asd() {
+        console.log(this.pickedTarif)
+      },
       setDate(index) {
         return dayjs().add(index,'month').format("MMM")
       },
@@ -532,13 +538,6 @@
         let obj = JSON.parse(json);
         this.track = obj.id
         return this.track
-      },
-      normalizedSubscriptionDate() {
-        if (this.pickedTarif) {
-          return this.pickedTarif.name.replace('-', ' ').replace('PLAN', '').toLowerCase()
-        } else {
-          return '__'
-        }
       },
       graphText() {
         switch (this.version) {

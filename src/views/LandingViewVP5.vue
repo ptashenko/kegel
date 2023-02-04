@@ -21,12 +21,15 @@
       </h2>
       <p class="content__subtitle" v-if="pickedTarif"><span class="content__subtitle--red">{{ pickedTarifParams.discount }}% discount</span> reserved for 15 minutes:</p>
       <div id="blockScroll" class="content__timer" @click="onScroll">
-        <img class="content__timer--icon" src="@/assets/images/icons/icon_timer.svg" alt="icon">
+        <div class="content__timer--wrapper">
+          <img class="content__timer--glow" src="@/assets/img/lp_v5/glow.png" alt="icon" />
+          <img class="content__timer--icon" src="@/assets/img/lp_v5/timer.png" alt="icon" />
+        </div>
         <div>
+          <p class="content__timer--start">{{pickedTarifParams.discount}}% <br/> discount</p>
           <p class="d-flex content__timer--text">
-            Time left:	&nbsp;  <countdown />
+            Expires in:	&nbsp;  <countdown />
           </p>
-          <p class="content__timer--start">Scroll down to start!</p>
         </div>
       </div>
       <div id="trigger1" class="content__date">
@@ -165,7 +168,7 @@
               type="radio" 
               name="subscribe"
               :checked="pickedTarif.name === tarif.name"
-              :value="tarif"
+              :value="tarif.name"
               v-model="pickedTarif"
             />
             <span class="label label-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}">
@@ -189,7 +192,6 @@
               :checked="pickedTarif.name === tarif.name"
               :value="tarif"
               v-model="pickedTarif"
-              @change="asd"
             />
             <span class="label" :class="{'checkedValue': pickedTarif.name === tarif.name}">
               {{tarif.name}}
@@ -402,14 +404,21 @@
       };
     },   
     methods: {
-      asd() {
-        console.log(this.pickedTarif)
+      superDiscountCheck() {
+        const superDiscount = JSON.parse(localStorage.getItem('superDiscount'))
+        this.superDiscount.theme = superDiscount ? superDiscount : false;
+        if (this.superDiscount.theme) {
+          console.log(this.superDiscount.theme)
+          this.superDiscount.popup = true
+        }
       },
       setDate(index) {
         return dayjs().add(index,'month').format("MMM")
       },
       closeSuperDiscountPopup() {
         this.superDiscount.popup = false;
+        const tarifSelectorElem = document.getElementById('selectPlan');
+        tarifSelectorElem.scrollIntoView()
         document.body.style.overflow = 'unset'
         this.pickedTarif = {
           id: 2,
@@ -421,6 +430,7 @@
       },
       openPaymentPopup() {
         this.paymentPopup = true;
+        localStorage.setItem('superDiscount', true)
       },
       cancelPayment() {
         if (!this.superDiscount.theme) {
@@ -613,6 +623,8 @@
       clearInterval(this.numanim)
     },
     mounted() {
+      this.superDiscountCheck()
+      console.log(this.pickedTarif)
       this.apple_pay = true;
       this.numanim = setInterval(() => {
         if (this.numanimate == 1) {
@@ -647,12 +659,20 @@
     },
     created () {
       this.mixpanel.track('Landing Page 1 Shown')
-    }
+    },
   };
   </script>
   
   <style lang="scss" scoped>
+  @keyframes glowRotating {
+    0% {
+      transform: translate(-50%, -50%) rotate(0);
+    }
 
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
   .payment-popup {
     position: fixed;
     display: flex;
@@ -1063,30 +1083,38 @@
         display: flex;
         align-items: center;
         border-radius: 17px;
-        padding: 17px 0;
         background: #111113;
         width: 100%;
         max-width: 373px;
         margin: 0 auto 32px;
         color: #fff;
+
+        &--wrapper {
+          position: relative;
+          width: 110px;
+          height: 110px;
+        }
   
         &--icon {
-          width: 52px;
-          height: 52px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 50%;
-          background: rgba(#FFFFFF, .07);
-          margin-right: 24px;
-          margin-left: 24px;
-          @media (min-width: 600px) {
-            margin-left: 65px;
-          }
+          position: absolute;
+          width: 60%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+        }
+
+        &--glow {
+          position: absolute;
+          width: 100%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          animation: glowRotating 10s linear infinite;
         }
   
         &--text {
-          font-family: "SF Pro Text Bold";
+          font-family: "SF Pro Text Regular";
           font-size: 16px;
           line-height: 150%;
           opacity: 1;
@@ -1095,9 +1123,12 @@
         }
   
         &--start {
-          font-size: 14px;
-          line-height: 150%;
-          opacity: 0.75;
+          font-family: "SF Pro Text Regular";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 1.2;
+          color: #E44240;
         }
       }
       &__date {
@@ -1158,11 +1189,11 @@
       }
       &__item {
         padding: 15px;
-        border-radius: 10px;
+        border-radius: 9px;
         margin: 0 auto;
         max-width: 370px;
         width: 100%;
-        background-color: #F1F1F1;
+        background-color: #F9F9F9;
         display: none;
         transition: .3s;
         box-sizing: border-box;

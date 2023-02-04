@@ -12,7 +12,7 @@
         <p class="wrapper__text mt-16px">
             We want you to reach your goal. That's why we're giving you the super discount so you can start improving your men's health at the best price.
         </p>
-        <a href="#selectPlan" class="wrapper__button blue-shadow" @click="closePopup">Got it</a>
+        <a class="wrapper__button blue-shadow" @click="closePopup">Got it</a>
     </div>
   </div>
 </template>

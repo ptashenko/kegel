@@ -62,3 +62,9 @@
 		},
 	}
 </script>
+
+<style scoped>
+.timer {
+	font-weight: 800;
+}
+</style>

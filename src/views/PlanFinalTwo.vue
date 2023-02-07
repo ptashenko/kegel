@@ -53,9 +53,13 @@
           Every exercise has video & audio instructions from the coach
         </p>
       </div>
-      <div v-if="!ios_v1">
-        <img v-if="open == 1" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="diskont_red">
-        <img v-if="open > 2" class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="diskont_blue">
+      <div class="flag-wrapper" v-if="!ios_v1">
+        <!-- <img v-if="open == 1" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="diskont_red"> -->
+        <!-- <img v-if="open > 2" class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="diskont_blue"> -->
+        <DiscountFlag 
+          :disc-price="price.discPrice"
+          :full-price="price.fullPrice" 
+        />
       </div>
       <div v-else>
         <img v-if="open == 1" class="diskont" src="@/assets/images/icons/discont_red_ios.png" alt="discont_red_ios">
@@ -166,38 +170,11 @@
     >
     I give up accelerated results forever &gt;
     </div>
-    <template v-if="!ios_v1">
-      <div v-if="open == 1" class="mw-520">
+      <div class="mw-520">
         <div class="android-footer__text">
-          Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are
-          3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
-          If you are unsure how to cancel, visit our Terms of Use.
+          We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of {{price.fullPrice}} at the end of the chosen subscription period. Your payment method will be automatically charged every {{subscriotionInfo.period}} until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
         </div>
       </div>
-      <div v-else-if="open == 3" class="mw-520">
-        <div class="android-footer__text">
-          Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are
-          3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
-          If you are unsure how to cancel, visit our Terms of Use.
-        </div>
-      </div>
-    </template>
-    <template v-else>
-      <div v-if="open == 1" class="mw-520">
-        <div class="ios-footer__text">
-          Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are
-          1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
-          If you are unsure how to cancel, visit our Terms of Use.
-        </div>
-      </div>
-      <div v-else-if="open == 3" class="mw-520">
-        <div class="ios-footer__text">
-          Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are
-          1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel.
-          If you are unsure how to cancel, visit our Terms of Use.
-        </div>
-      </div>
-    </template>
   </div>
   <vpopup
     class="windowError"
@@ -241,6 +218,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import Review from '@/components/Review.vue';
+import DiscountFlag from '@/components/DiscountFlag.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import ButtonField from '@/components/ui/Button.vue';
 import VueScrollTo from "vue-scrollto";
@@ -249,8 +227,15 @@ import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 export default {
   name: 'PlanFinalTwo',
   inject: ['mixpanel'],
-  data(){
-    return{
+  props: {
+    content: {
+      required: true,
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  data() {
+    return {
       item: "Fitness_1-USD-Every-3-months",
       VueScrollTo: require('vue-scrollto'),
       popupVisible: false,
@@ -268,6 +253,13 @@ export default {
       ios_v1:  sessionStorage.getItem('ios_v1')
     }
   },
+  components: {
+    Review,
+    vpopup,
+    ButtonField,
+    PaymentFormCompanent,
+    DiscountFlag
+  },
   computed: {
     ...mapGetters(['tracks', 'contentBy']),
     purpose(){
@@ -280,13 +272,34 @@ export default {
       const obj = JSON.parse(json);
       return obj.addpurpose;
     },
+    subscriotionInfo() {
+      return JSON.parse(localStorage.getItem('usersSubscriptionInfo'))
+    },
+    price() {
+      let currPrice = {
+        discPrice: null,
+        fullPrice: null,
+      }
+      switch(this.subscriotionInfo.id) {
+        case 1:
+          currPrice.discPrice = '1.66 USD';
+          currPrice.fullPrice = '2.49 USD';
+          break;
+        case 2:
+          currPrice.discPrice = '6.69 USD';
+          currPrice.fullPrice = '9.99 USD';
+          break;
+        case 3:
+          currPrice.discPrice = '19.99 USD';
+          currPrice.fullPrice = '29.99 USD';
+          break
+        default:
+        currPrice.discPrice = '6.69 USD';
+          currPrice.fullPrice = '9.99 USD';
+      }
+      return currPrice;
+    }
   },
-  components: {
-    Review,
-    vpopup,
-    ButtonField,
-    PaymentFormCompanent
-},
   methods: {
     addonRequest(){
       this.loading = true;
@@ -413,7 +426,6 @@ export default {
       this.nextUrl();
     },
     nextUrl(){
-
       let body = document.querySelector('body')
       body.classList.remove('fixed');
       this.$router.push('CodeQR')
@@ -446,19 +458,12 @@ export default {
       }
     }
   },
-  props: {
-    content: {
-      required: true,
-      type: Object,
-      default: () => ({}),
-    },
-  },
   beforeUnmount () {
     clearInterval(this.polling)
     clearInterval(this.pollingTwo)
-
   },
-  mounted(){
+  mounted() {
+    console.log(this.subscriotionInfo)
     this.storeEdit()
     if (!this.ios_v1) {
       if (open == 1) {
@@ -482,11 +487,18 @@ export default {
   },
   created () {
     this.mixpanel.track('Upsale Offered')
+  },
+  beforeRouteLeave (to, from, next) {
+    next(false)
   }
 };
 </script>
 
 <style lang="scss" scoped>
+
+.flag-wrapper {
+  padding: 26px 0 32px;
+}
 .final{
   margin: 0 auto;
   display: block;
@@ -600,13 +612,6 @@ export default {
         }
       }
     }
-    .diskont{
-      width: 100%;
-      margin: 50px 0 0px;
-      @media (max-width:480px) {
-        margin: 28px 0 0px;
-      }
-    }
   }
   .price{
     background: #F1F3F9;
@@ -667,6 +672,9 @@ export default {
     cursor: pointer;
     @media (min-width: 600px) {
       margin: 32px auto 48px;
+    }
+    @media (max-width: 420px) {
+      font-size: 14px;
     }
     
   }

@@ -96,7 +96,6 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import VueScrollTo from "vue-scrollto";
 import CustomSelect from "../components/CustomSelect.vue";
 
 export default {
@@ -125,13 +124,34 @@ export default {
       this.textpurpose = obj.purpose
       return this.textpurpose;
     },
+    billingAdress() {
+      return {
+        country: this.country,
+        address1: this.address1,
+        address2: this.address2,
+        city: this.city,
+        region: this.region,
+        post: this.post
+      }
+    }
   },
 
   mounted() {
+    this.checkAdressStore()
   },
 
   methods: {
     // ...mapActions(['setEmail']),
+    checkAdressStore() {
+      const adressIsNotEmpty = JSON.parse(localStorage.getItem('billingAdress'))
+      if (adressIsNotEmpty) {
+        for (let [key, value] of Object.entries(adressIsNotEmpty)) {
+          this[key] = value
+        }
+      } else {
+        return
+      }
+    },
     diselect(id) {
       document.getElementById(id).classList.remove("invalid");
     },
@@ -161,8 +181,11 @@ export default {
       } else {
         document.getElementById("post").classList.remove("invalid");
       }
+      console.log(this.billingAdress)
       if (this.valid) {
-        this.sendRequest()
+        localStorage.setItem('billingAdress', JSON.stringify(this.billingAdress))
+        this.$router.push("PlanFinalTwo");
+        // this.sendRequest()
       }
     },
     sendRequest() {
@@ -213,9 +236,9 @@ export default {
   },
   created () {
     this.mixpanel.track('Address Screen Shown')
-    if(this.$route.params.paymentIntentId == null) {
-      this.$router.push("LandingView");
-    }
+    // if(this.$route.params.paymentIntentId == null) {
+    //   this.$router.push("LandingViewVP5");
+    // }
   }
 };
 </script>

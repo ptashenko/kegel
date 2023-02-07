@@ -21,7 +21,8 @@ export default {
         dataPP2: "",
         emailUser: "",
         timerLand: "",
-        addpurpose: false
+        addpurpose: false,
+        subscription: '',
     },
     getters: {
         DATAPP1: (state) => state.dataPP1,
@@ -29,6 +30,7 @@ export default {
         EMAILUSER: (state) => state.emailUser,
         TIMERLAND: (state) => state.timerLand,
         ADDPURPOSE: (state) => state.addpurpose,
+        SUBSCRIPTION: (state) => state.subscription,
     },
     mutations: {
         SET_DATAPP1: (state, payload) => {
@@ -46,6 +48,9 @@ export default {
         SET_ADDPURPOSE: (state, payload) => {
             state.addpurpose = payload;
         },
+        SET_SUBSCRIPTION: (state, payload) => {
+            state.subscription = payload
+        }
     },
     actions: {
 

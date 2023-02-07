@@ -6,7 +6,7 @@
     {{imagechart}}
     <!-- {{backUrlNot}} -->
     <div class="land-wrapper">
-      <div v-if="pickedTarif" class="fixedTime" :class="{'active': blockFixed}">
+      <div v-if="subscribe" class="fixedTime" :class="{'active': blockFixed}">
       <p class="fixedTime__timer__text">
         <span :class="`fixedTime__timer__text--${superDiscount.theme}`">
           {{ pickedTarifParams.discount }}% discount
@@ -19,7 +19,7 @@
       <h2 class="content__title">
         Your Kegel Plan to {{ purpose }} is ready!
       </h2>
-      <p class="content__subtitle" v-if="pickedTarif"><span class="content__subtitle--red">{{ pickedTarifParams.discount }}% discount</span> reserved for 15 minutes:</p>
+      <p class="content__subtitle" v-if="subscribe"><span class="content__subtitle--red">{{ pickedTarifParams.discount }}% discount</span> reserved for 15 minutes:</p>
       <div id="blockScroll" class="content__timer" @click="onScroll">
         <div class="content__timer--wrapper">
           <img class="content__timer--glow" src="@/assets/img/lp_v5/glow.png" alt="icon" />
@@ -161,50 +161,101 @@
         Get Your Kegel Plan to {{ purpose }}
       </h2>
       <div v-if="superDiscount.theme" class="payment-block__list">
-        <label class="payment-block__item payment-block__item-blue" :class="{'checkedValue': pickedTarif.id === tarif.id, 'popular': idx === 1, 'popularChecked-blue': pickedTarif.id === tarif.id && idx === 1}" v-for="(tarif, idx) of tarifs" :key="idx">
+        <label 
+          v-for="({id, fullprice, cost, text, name}, idx) of tarifs" 
+          :key="idx"
+          class="payment-block__item payment-block__item-blue" 
+          :class="{
+            'checkedValue': subscribe === id,
+            'popular': idx === 1,
+            'popularChecked-blue': subscribe === id && idx === 1
+            }" 
+          >
           <div class="payment-block__label payment-block__label-blue">
             <input 
               class="payment-block__input payment-block__input-blue"
               type="radio" 
               name="subscribe"
-              :checked="pickedTarif.name === tarif.name"
-              :value="tarif.name"
-              v-model="pickedTarif"
+              :value="id"
+              v-model="subscribe"
             />
-            <span class="label label-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}">
-              {{tarif.name}}
+            <span class="label label-blue" :class="{'checkedValue': subscribe === id}">
+              {{name}}
             </span>
           </div>
-          <div class="payment-block__right payment-block__right-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}">
-            <p class="payment-block__oldPrice payment-block__oldPrice-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}"> {{tarif.fullprice }}</p>
-            <p class="payment-block__newPrice payment-block__newPrice-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}">{{ tarif.cost }}</p>
-            <p class="payment-block__text payment-block__text-blue" :class="{'checkedValue': pickedTarif.id === tarif.id}">{{ tarif.text }}</p>
+          <div 
+            class="payment-block__right payment-block__right-blue" 
+            :class="{'checkedValue': subscribe === id}"
+          >
+            <p 
+              class="payment-block__oldPrice payment-block__oldPrice-blue" 
+              :class="{'checkedValue': subscribe === id}"
+            >
+              {{fullprice }}
+            </p>
+            <p 
+              class="payment-block__newPrice payment-block__newPrice-blue" 
+              :class="{'checkedValue': subscribe === id}"
+            >
+              {{ cost }}
+            </p>
+            <p 
+              class="payment-block__text payment-block__text-blue" 
+              :class="{'checkedValue': subscribe === id}"
+            >
+              {{ text }}
+            </p>
           </div>
         </label>
       </div>
       <div v-else class="payment-block__list">
-        <label class="payment-block__item" :class="{'checkedValue': pickedTarif.name === tarif.name, 'popular': idx === 1, 'popularChecked': pickedTarif.name === tarif.name && idx === 1}" v-for="(tarif, idx) of tarifs" :key="idx">
+        <label 
+          v-for="({id, fullprice, cost, text, name}, idx) of tarifs" 
+          :key="idx"
+          class="payment-block__item" 
+          :class="{
+            'checkedValue': subscribe === id,
+            'popular': idx === 1,
+            'popularChecked': subscribe === id && idx === 1
+            }" 
+          >
           <div class="payment-block__label">
-            <input 
+            <input
               class="payment-block__input"
               type="radio" 
               name="subscribe" 
-              :checked="pickedTarif.name === tarif.name"
-              :value="tarif"
-              v-model="pickedTarif"
+              :value="id"
+              v-model="subscribe"
             />
-            <span class="label" :class="{'checkedValue': pickedTarif.name === tarif.name}">
-              {{tarif.name}}
+            <span class="label" :class="{'checkedValue': subscribe === id}">
+              {{name}}
             </span>
           </div>
-          <div class="payment-block__right" :class="{'checkedValue': pickedTarif.name === tarif.name}">
-            <p class="payment-block__oldPrice" :class="{'checkedValue': pickedTarif.name === tarif.name}"> {{tarif.fullprice }}</p>
-            <p class="payment-block__newPrice" :class="{'checkedValue': pickedTarif.name === tarif.name}">{{ tarif.cost }}</p>
-            <p class="payment-block__text" :class="{'checkedValue': pickedTarif.name === tarif.name}">{{ tarif.text }}</p>
+          <div 
+            class="payment-block__right" 
+            :class="{'checkedValue': subscribe === id}">
+            <p 
+              class="payment-block__oldPrice" 
+              :class="{'checkedValue': subscribe === id}"
+            >
+              {{fullprice }}
+            </p>
+            <p 
+              class="payment-block__newPrice" 
+              :class="{'checkedValue': subscribe === id}"
+              >
+              {{ cost }}
+            </p>
+            <p 
+              class="payment-block__text" 
+              :class="{'checkedValue': subscribe === id}"
+              >
+              {{ text }}
+            </p>
           </div>
         </label>
       </div>
-      <button @click="openPaymentPopup" :disabled="!pickedTarif" class="payment-block__button" :class="[superDiscount.theme ? 'blue blue-shadow' : 'red-shadow']">
+      <button @click="openPaymentPopup" :disabled="!subscribe" class="payment-block__button" :class="[superDiscount.theme ? 'blue blue-shadow' : 'red-shadow']">
         Get my plan
       </button>
       <p class="payment-block__description">
@@ -270,24 +321,6 @@
       </div>
     </div>
     <Footer />
-    <vpopup
-    class="popup_wraper"
-      textTitle="Why now?"
-      v-if="popupVisible3"
-    > 
-      <p class="opasity_75">
-        We ask for your payment information now, so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.
-      </p>
-      <p class="opasity_75">
-        If you cancel anytime before the end of the 7-day trial, you won't be charged.
-      </p>
-      <button 
-        class="v-popup__submit_btn min180 active"
-        :class="{active: closeActive}"
-      >
-      Got it
-      </button>
-    </vpopup>
     <vpopup
       class="windowError"
       v-if="windowError"
@@ -371,28 +404,18 @@
           popup: false,
           theme: false,
         },
-        pickedTarif: {
-          id: 2,
-          name: '1-MONTH PLAN',
-          fullprice: '1.00 USD',
-          cost: '0.39 USD',
-          text: 'per day'
-        },
+        subscribe: 2,
         apple_pay: true,
         paymentPopup: false,
         faqQuestions,
         version: getItem('ver'),
         blockFixed: false,
-        dataPP2:'September 25',
         base: {},
         numreview: 3,
         track: 0,
         windowError: false,
         numTimeError:0,
         polling: null,
-        isActiveYes: false,
-        isActiveNo: false,
-        closeActive: false,
         price: localStorage.getItem('price'),
         numanimate: 1,
         show: false,
@@ -400,7 +423,6 @@
         AddPurposeCom: false,
         addItem: false,
         numanim: null,
-        popupVisible3: false,
       };
     },   
     methods: {
@@ -408,7 +430,6 @@
         const superDiscount = JSON.parse(localStorage.getItem('superDiscount'))
         this.superDiscount.theme = superDiscount ? superDiscount : false;
         if (this.superDiscount.theme) {
-          console.log(this.superDiscount.theme)
           this.superDiscount.popup = true
         }
       },
@@ -420,17 +441,19 @@
         const tarifSelectorElem = document.getElementById('selectPlan');
         tarifSelectorElem.scrollIntoView()
         document.body.style.overflow = 'unset'
-        this.pickedTarif = {
-          id: 2,
-          name: '1-MONTH PLAN',
-          fullprice: '1.00 USD',
-          cost: '0.49 USD',
-          text: 'per day'
-        }
+        this.subscribe = 2;
       },
       openPaymentPopup() {
         this.paymentPopup = true;
         localStorage.setItem('superDiscount', true)
+        const pickedSubscription = {
+          id: this.pickedTarifParams.discountType,
+          name: this.pickedTarifParams.subscriptionPeriod,
+          superDiscount: this.pickedTarifParams.superDiscount,
+          period: this.pickedTarifParams.subscriptionPeriod
+        }
+        this.$store.commit('SET_SUBSCRIPTION', pickedSubscription)
+        localStorage.setItem('usersSubscriptionInfo', JSON.stringify(pickedSubscription))
       },
       cancelPayment() {
         if (!this.superDiscount.theme) {
@@ -439,7 +462,6 @@
           document.body.style.overflow = 'hidden'
         }
         this.paymentPopup = false;
-        this.pickedTarif = '';
       },
       nextUrl() {
         this.mixpanel.track('Trial Started',{
@@ -448,9 +470,6 @@
         setTimeout(() => {
           this.$router.push("PlanFinal");
         }, 0);
-      },
-      dayjs() {
-        return dayjs();
       },
       paymentError() {
         this.mixpanel.track('Payment Error', {
@@ -481,6 +500,9 @@
       },
     },
     computed: {
+      ...mapGetters([
+        'tracks',
+      ]),
       tarifs() {
         return [
           {
@@ -514,8 +536,10 @@
           discountAmount: '',
           subscriptionName: '',
           discount: null,
+          superDiscount: this.superDiscount.theme ? true : false,  
+          discountType: this.subscribe
         };
-        switch (this.pickedTarif.id) {
+        switch (priceParams.discountType) {
           case 1:
             priceParams.subscriptionPeriod = '1 week'
             priceParams.fullPrice = '10.49 USD'
@@ -542,12 +566,6 @@
             break;
         }
         return priceParams;
-      },
-      cal(){
-        let json = localStorage.getItem('track');
-        let obj = JSON.parse(json);
-        this.track = obj.id
-        return this.track
       },
       graphText() {
         switch (this.version) {
@@ -582,7 +600,6 @@
         });
         
       },
-      ...mapGetters(['tracks']),
       purpose(){
         var json = localStorage.getItem('track');
         var obj = JSON.parse(json);
@@ -624,7 +641,6 @@
     },
     mounted() {
       this.superDiscountCheck()
-      console.log(this.pickedTarif)
       this.apple_pay = true;
       this.numanim = setInterval(() => {
         if (this.numanimate == 1) {
@@ -664,15 +680,7 @@
   </script>
   
   <style lang="scss" scoped>
-  @keyframes glowRotating {
-    0% {
-      transform: translate(-50%, -50%) rotate(0);
-    }
-
-    100% {
-      transform: translate(-50%, -50%) rotate(360deg);
-    }
-  }
+@import '@/assets/css/animations.css';
   .payment-popup {
     position: fixed;
     display: flex;

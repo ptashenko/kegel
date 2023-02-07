@@ -1,7 +1,8 @@
 <template>
   <div class="wrapper">
     <div class="wrapper__icon">
-        <img class="wrapper__image" src="@/assets/images/gift.png" />
+        <img class="wrapper__glow" src="@/assets/img/lp_v5/glow.png" />
+        <img class="wrapper__image" src="@/assets/img/lp_v5/gift-red.png" />
     </div>
     <p class="wrapper__text">Get a <span class="wrapper__text-old">51%</span> <span class="wrapper__text-new">61% discount</span> on your Kegel plan</p>
   </div>
@@ -14,6 +15,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/css/animations.css';
 .wrapper {
     position: relative;
     display: flex;
@@ -35,6 +37,13 @@ export default {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+    &__glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: glowRotating 10s linear infinite;
     }
 
     &__text {

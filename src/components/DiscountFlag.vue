@@ -1,7 +1,7 @@
 <template>
-    <div class="discountFlag">
+    <div class="discountFlag" :style="{borderColor: color}">
         <div class="discountFlag__left">
-            <img src="@/assets/img/lp_v5/flag-red.png" class="discountFlag__flag" />
+            <img :src="require(`@/assets/img/lp_v5/${icon}.png`)" class="discountFlag__flag" />
         </div>
         <div class="discountFlag__right">
             <h2 class="discountFlag__title">
@@ -26,6 +26,14 @@ export default {
             type: String,
             required: true,
             default: ''
+        },
+        color: {
+            type: String,
+            default: '#E44240'
+        },
+        icon: {
+            type: String,
+            default: 'discountFlag'
         }
     },
 }

@@ -28,14 +28,10 @@
       </button>
     </div>
     <div class="paymentInfo-container">
-      <div class="paymentInfo-container__line">
         <p class="paymentInfo-container__text">{{ subscription }}</p>
-        <p class="paymentInfo-container__text">{{ fullPrice }}</p>
-      </div>
-      <div class="paymentInfo-container__line">
+        <p class="paymentInfo-container__text amount">{{ fullPrice }}</p>
         <p class="paymentInfo-container__text">{{ discount }}% introductory price discount</p>
-        <p class="paymentInfo-container__text">{{ discountAmount }}</p>
-      </div>
+        <p class="paymentInfo-container__text amount">{{ discountAmount }}</p>
     </div>
     <div class="total-container">
       <p class="total-container__title">Total</p>
@@ -217,6 +213,7 @@ export default {
   justify-content: space-between;
   margin: 16px 0 32px;
 
+
   &__title {
     font-style: normal;
     font-weight: 600;
@@ -246,14 +243,12 @@ export default {
   padding: 16px 0;
   border-top: 1px solid #F1F3F9;
   border-bottom: 1px solid #F1F3F9;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  row-gap: 10px;
 
-  &__line {
-    display: flex;
-    justify-content: space-between;
-
-    &:not(:last-child) {
-      margin-bottom: 10px;
-    }
+  .amount {
+    text-align: end;
   }
 
   &__text {

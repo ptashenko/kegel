@@ -450,7 +450,8 @@
           id: this.pickedTarifParams.discountType,
           name: this.pickedTarifParams.subscriptionPeriod,
           superDiscount: this.pickedTarifParams.superDiscount,
-          period: this.pickedTarifParams.subscriptionPeriod
+          period: this.pickedTarifParams.subscriptionPeriod,
+          fullPrice: this.pickedTarifParams.fullPrice
         }
         this.$store.commit('SET_SUBSCRIPTION', pickedSubscription)
         localStorage.setItem('usersSubscriptionInfo', JSON.stringify(pickedSubscription))

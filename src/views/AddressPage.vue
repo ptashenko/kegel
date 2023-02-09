@@ -185,7 +185,7 @@ export default {
       if (this.valid) {
         localStorage.setItem('billingAdress', JSON.stringify(this.billingAdress))
         this.$router.push("PlanFinalTwo");
-        // this.sendRequest()
+        this.sendRequest()
       }
     },
     sendRequest() {
@@ -217,9 +217,8 @@ export default {
                   ).then((response) => {
                     if (response.status == 204 || response.status == 200) {
                     this.loading = false;
-                    this.$router.push("PlanFinal");
+                    this.$router.push("PlanFinalTwo");
                     }
-                    //this.nextUrl();
                   });
     },
   },
@@ -236,9 +235,9 @@ export default {
   },
   created () {
     this.mixpanel.track('Address Screen Shown')
-    // if(this.$route.params.paymentIntentId == null) {
-    //   this.$router.push("LandingViewVP5");
-    // }
+    if(this.$route.params.paymentIntentId == null) {
+      this.$router.push("LandingViewVP5");
+    }
   }
 };
 </script>

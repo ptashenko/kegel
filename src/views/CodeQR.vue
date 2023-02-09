@@ -121,7 +121,6 @@ export default {
     },
   },
   mounted(){
-    
       var oneLinkURL = "https://kegel.onelink.me/b5X4/";
             var mediaSource = {
                 keys: ["pid"],
@@ -212,6 +211,9 @@ export default {
   },
   created () {
     this.mixpanel.track('Final Screen Shown')
+  },
+  beforeRouteLeave (to, from, next) {
+    next(false)
   }
 };
 </script>

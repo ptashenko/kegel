@@ -53,18 +53,14 @@
           Every exercise has video & audio instructions from the coach
         </p>
       </div>
-      <div class="flag-wrapper" v-if="!ios_v1">
-        <!-- <img v-if="open == 1" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="diskont_red"> -->
-        <!-- <img v-if="open > 2" class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="diskont_blue"> -->
-        <DiscountFlag 
-          :disc-price="price.discPrice"
-          :full-price="price.fullPrice" 
+      <DiscountFlag
+          v-if="open !== 2"
+          :disc-price="open === 1 ? price.discPrice : price.superDiscPrice"
+          :full-price="price.fullPrice"
+          style="margin: 24px 0 32px;"
+          :color="open === 1 ? '#E44240' : '#5773D6'"
+          :icon="open === 1 ? 'discountFlag' : 'superDiscountFlag'"
         />
-      </div>
-      <div v-else>
-        <img v-if="open == 1" class="diskont" src="@/assets/images/icons/discont_red_ios.png" alt="discont_red_ios">
-        <img v-if="open > 2" class="diskont" src="@/assets/images/icons/discont_blue_ios.png" alt="discont_blue_ios">
-      </div>
     </div>
     <div
       v-if="open == 2"
@@ -80,10 +76,14 @@
       <p class="diagram-description">
         *This diagram is a non-personalized illustration based on scientific research.
       </p>
-      <div class="block_blue">
-        <div class="block_blue__content d-flex align-items-center">
-          <img src="@/assets/images/icons/icon_present.svg" alt="">
-          <p>We want you to be successful, so we're offering <span class="text-bold"> 25% off </span> the Groin Fitness just for you!</p>
+      <div class="block-blue">
+        <div class="block-blue__left">
+            <img :src="require(`@/assets/img/lp_v5/blue-gift.png`)" class="block-blue__flag" />
+        </div>
+        <div class="block-blue__right">
+            <p class="block-blue__text">
+              We want you to succeed, so we’re giving you <strong>a super discount on Groin Fitness!</strong>
+            </p>
         </div>
       </div>
     </div>
@@ -157,7 +157,7 @@
     </div>
     <div v-else-if="open == 2" class="text-center">
       <button 
-        class="v-popup__submit_btn active blue-shadow"
+        class="v-popup__submit_btn active w-full blue-shadow"
         @click="closePopup"
       >
       Continue
@@ -207,10 +207,17 @@
       class="closeBtn" 
       @click="closePopupWindowPay"
     >
-      <img src="@/assets/images/icons/btn_close_cwindow.svg" alt="apple_pay">
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <PaymentFormCompanent @error="paymentError" @success="payingSuccess" @click="closeWindowError" :item="this.item"/>
+      <PaymentFormCompanent 
+        @error="paymentError" 
+        @success="payingSuccess" 
+        @click="closeWindowError" 
+        :item="this.item"
+        :period="subscriotionInfo.period"
+        :discPrice="price.discPrice"
+        :fullPrice="subscriotionInfo.fullPrice"
+      />
     </div>
   </vpopup>
 </template>
@@ -279,23 +286,28 @@ export default {
       let currPrice = {
         discPrice: null,
         fullPrice: null,
+        superDiscPrice: null,
       }
       switch(this.subscriotionInfo.id) {
         case 1:
           currPrice.discPrice = '1.66 USD';
           currPrice.fullPrice = '2.49 USD';
+          currPrice.superDiscPrice = '0.80 USD';
           break;
         case 2:
           currPrice.discPrice = '6.69 USD';
           currPrice.fullPrice = '9.99 USD';
+          currPrice.superDiscPrice = '3.30 USD';
           break;
         case 3:
           currPrice.discPrice = '19.99 USD';
           currPrice.fullPrice = '29.99 USD';
+          currPrice.superDiscPrice = '9.99 USD';
           break
         default:
-        currPrice.discPrice = '6.69 USD';
+          currPrice.discPrice = '6.69 USD';
           currPrice.fullPrice = '9.99 USD';
+          currPrice.superDiscPrice = '3.30 USD';
       }
       return currPrice;
     }
@@ -463,7 +475,6 @@ export default {
     clearInterval(this.pollingTwo)
   },
   mounted() {
-    console.log(this.subscriotionInfo)
     this.storeEdit()
     if (!this.ios_v1) {
       if (open == 1) {
@@ -496,6 +507,44 @@ export default {
 
 <style lang="scss" scoped>
 
+.w-full {
+  width: 100%;
+}
+.block-blue {
+    background: #F9F9F9;
+    border: 2px solid #5773D6;
+    border-radius: 9px;
+    display: flex;
+    min-height: 100px;
+    align-items: center;
+    justify-content: space-around;
+
+    &__left {
+        flex-basis: 25%;
+    }
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-basis: 65%;
+    }
+
+    &__text {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.21;
+        color: #111113;
+        opacity: 0.75;
+        margin: 0 !important;
+    }
+
+    &__flag {
+      display: block;
+      width: 70%;
+    }
+}
 .flag-wrapper {
   padding: 26px 0 32px;
 }
@@ -535,6 +584,7 @@ export default {
     font-family: "SF-Pro-Display-Bold";
     margin-top: 0;
     line-height: 135%;
+    text-align: center;
     font-size: 30px;
     line-height: 135%;
     @media (max-width:480px) {
@@ -729,9 +779,7 @@ export default {
   color: #ffffff;
   margin-top: 32px;
   cursor: pointer;
-  @media (max-width: 480px){
-    margin-bottom: 40px;
-  }
+  margin-bottom: 40px;
 }
 @media (max-width: 480px){
   .container-main {

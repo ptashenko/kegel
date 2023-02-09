@@ -3,7 +3,6 @@
     class="d-flex w100 flex-column align-items-center justify-content-center"
     id="paymentForm"
   >
-    <span class="payment-info mb-32">You will only be charged $1 for your 7-day trial.</span>
     <div id="solid-payment-form-container" class="w100">
       <button
         class="pay cursor"
@@ -39,14 +38,20 @@
     @success="success"
     @clickButton="clickButton"
     :item="this.item"
+    :subscriptionDate="period"
+    :discountPrice="discPrice"
+    :fullPrice="fullPrice"
   />
-  <CardCompanent
+  <CardCompanentModal
     class="w-100 flex-column align-items-center justify-content-center"
     v-if="paymentMethodType == 1 && (ver == 1 || ver == 3)"
     @error="error"
     @success="success"
     @clickButton="clickButton"
     :item="this.item"
+    :subscriptionDate="period"
+    :discountPrice="discPrice"
+    :fullPrice="fullPrice"
     :auth_price="this.auth_price"
   />
     <CardCompanentZip
@@ -68,18 +73,33 @@
 
 <script>
 import PayPalComponent from "../components/PayPalComponent.vue";
-import CardCompanent from "@/components/CardCompanent.vue";
+import CardCompanentModal from "@/components/CardCompanentModal.vue";
 import CardCompanentZip from "./CardCompanentZip.vue";
 
 export default {
   components: {
     PayPalComponent,
-    CardCompanent,
+    CardCompanentModal,
     CardCompanentZip
   },
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ["item", "auth_price"],
+  props: {
+    item: {
+      type: Array,
+    },
+    period: {
+      type: String,
+    },
+    fullPrice: {
+      type: String,
+      default: '9.99 USD'
+    },
+    discPrice: {
+      type: String,
+      default: '6.69 USD'
+    }
+  },
   data() {
     return {
       // item: "kegel_1-USD-Every-3-months",

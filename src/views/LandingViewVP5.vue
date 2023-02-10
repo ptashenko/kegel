@@ -19,14 +19,14 @@
       <h2 class="content__title">
         Your Kegel Plan to {{ purpose }} is ready!
       </h2>
-      <p class="content__subtitle" v-if="subscribe"><span class="content__subtitle--red">{{ pickedTarifParams.discount }}% discount</span> reserved for 15 minutes:</p>
+      <p class="content__subtitle" v-if="subscribe"><b>Limited offer</b> reserved for 15 minutes</p>
       <div id="blockScroll" class="content__timer" @click="onScroll">
         <div class="content__timer--wrapper">
           <img class="content__timer--glow" src="@/assets/img/lp_v5/glow.png" alt="icon" />
           <img class="content__timer--icon" src="@/assets/img/lp_v5/timer.png" alt="icon" />
         </div>
         <div>
-          <p class="content__timer--start">{{pickedTarifParams.discount}}% <br/> discount</p>
+          <p class="content__timer--start" :class="[superDiscount.theme ? 'blue' : 'red']">{{pickedTarifParams.discount}}% <br/> discount</p>
           <p class="d-flex content__timer--text">
             Expires in:	&nbsp;  <countdown />
           </p>
@@ -1094,7 +1094,7 @@
         border-radius: 17px;
         background: #111113;
         width: 100%;
-        max-width: 373px;
+        max-width: 311px;
         margin: 0 auto 32px;
         color: #fff;
 
@@ -1137,7 +1137,13 @@
           font-weight: 700;
           font-size: 20px;
           line-height: 1.2;
-          color: #E44240;
+
+          &.red {
+            color: #E44240;
+          }
+          &.blue {
+            color: #5773D6;
+          }
         }
       }
       &__date {

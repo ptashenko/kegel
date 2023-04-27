@@ -6,7 +6,7 @@
                 <div class="emailPage__title">
                   {{ title }}
                 </div>
-                <p class="email__text">to get your Kegel Training Plan & {{ purpose }}</p>
+                <p class="email__text">to get your Kegel Training Plan & improve {{ purpose }}</p>
                 <label class="email__label" for="email">
                   <input v-model="upValue" id="email" class="email__input" type="email"
                     :placeholder="email || 'Enter your email here'">

@@ -11,13 +11,13 @@
         <span :class="`fixedTime__timer__text--${superDiscount.theme}`">
           {{ pickedTarifParams.discount }}% discount
         </span> expires in:
-        <countdown style="display: inline;" />
+        <countdown v-if="!superDiscount.popup" style="display: inline;" />
       </p>
     </div>
     
     <div id="topPage" class="content">
       <h2 class="content__title">
-        Your Kegel Plan to {{ purpose }} is ready!
+        Your Kegel Plan to improve {{ purpose }} is ready!
       </h2>
       <p class="content__subtitle" v-if="subscribe"><b>Limited offer</b> reserved for 15 minutes</p>
       <div id="blockScroll" class="content__timer" @click="onScroll">
@@ -27,7 +27,7 @@
         </div>
         <div>
           <p class="content__timer--start" :class="[superDiscount.theme ? 'blue' : 'red']">{{pickedTarifParams.discount}}% <br/> discount</p>
-          <p class="d-flex content__timer--text">
+          <p v-if="!superDiscount.popup" class="d-flex content__timer--text">
             Expires in:	&nbsp;  <countdown />
           </p>
         </div>
@@ -35,7 +35,7 @@
       <div id="trigger1" class="content__date">
         <div class="content__purpose">
           <span>
-          Based on your personal goals you can 
+            Based on your personal goals you can improve 
           </span>
           <br>
           <span v-if="AddPurposeCom" class="content__purpose--bold">
@@ -86,11 +86,11 @@
         <ul class="benefits__list">
           <li class="benefits__item">
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
-            <p>Reach your goal and <b> {{ purpose }} </b></p>
+            <p>Reach your goal and improve <b> {{ purpose }} </b></p>
           </li>
           <li class="benefits__item">
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
-            {{ addpurpose }}
+            Improve {{ addpurpose }}
           </li>
           <li class="benefits__item" v-if="addItem">
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
@@ -158,11 +158,11 @@
         </h2>
       </div>
       <h2 v-else class="payment-block__title">
-        Get Your Kegel Plan to {{ purpose }}
+        Get Your Kegel Plan to improve {{ purpose }}
       </h2>
       <div v-if="superDiscount.theme" class="payment-block__list">
         <label 
-          v-for="({id, fullprice, cost, text, name}, idx) of tarifs" 
+          v-for="({id, fullprice, cost, text, name, totalCost, superDiscPrice}, idx) of tarifs" 
           :key="idx"
           class="payment-block__item payment-block__item-blue" 
           :class="{
@@ -182,6 +182,9 @@
             <span class="label label-blue" :class="{'checkedValue': subscribe === id}">
               {{name}}
             </span>
+            <div class="label__totalCost">
+              <span class="label__totalCost-text"><span class="line">{{ totalCost }}</span> {{ superDiscPrice }}</span>
+            </div>
           </div>
           <div 
             class="payment-block__right payment-block__right-blue" 
@@ -210,7 +213,7 @@
       </div>
       <div v-else class="payment-block__list">
         <label 
-          v-for="({id, fullprice, cost, text, name}, idx) of tarifs" 
+          v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs" 
           :key="idx"
           class="payment-block__item" 
           :class="{
@@ -230,6 +233,9 @@
             <span class="label" :class="{'checkedValue': subscribe === id}">
               {{name}}
             </span>
+            <div class="label__totalCost">
+              <span class="label__totalCost-text"><span class="line">{{ totalCost }}</span> {{ totalDiscCost }}</span>
+            </div>
           </div>
           <div 
             class="payment-block__right" 
@@ -258,7 +264,10 @@
       <button @click="openPaymentPopup" :disabled="!subscribe" class="payment-block__button" :class="[superDiscount.theme ? 'blue blue-shadow' : 'red-shadow']">
         Get my plan
       </button>
-      <p class="payment-block__description">
+      <p v-if="pickedTarifParams.discountType === 1" class="payment-block__description">
+        By clicking «Get my plan», I agree to pay {{ pickedTarifParams.discountPrice }} for my plan and that if I do not cancel before the end of the {{ pickedTarifParams.subscriptionPeriod }} introductory plan, Dr. Kegel will automatically charge my payment method the regular price {{ pickedTarifParams.fullPrice }} every {{ pickedTarifParams.subscriptionPeriod }} thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
+      </p>
+      <p v-else class="payment-block__description">
         We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of {{ pickedTarifParams.fullPrice }} at the end of the chosen subscription period. Your payment method will be automatically charged every {{ pickedTarifParams.subscriptionPeriod }} until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
       </p>
 
@@ -442,6 +451,7 @@
         tarifSelectorElem.scrollIntoView()
         document.body.style.overflow = 'unset'
         this.subscribe = 2;
+        localStorage.removeItem('timer')
       },
       openPaymentPopup() {
         this.paymentPopup = true;
@@ -511,21 +521,30 @@
             name: '1-WEEK PLAN',
             fullprice: '1.50 USD',
             cost: this.superDiscount.theme ? '0.79 USD' : '0.99 USD',
-            text: 'per day'
+            text: 'per day',
+            totalCost: '10.49 USD',
+            totalDiscCost: '6.93 USD',
+            superDiscPrice: '5.50 USD'
           },
           {
             id: 2,
             name: '1-MONTH PLAN',
             fullprice: '1.00 USD',
             cost: this.superDiscount.theme ? '0.39 USD' : '0.49 USD',
-            text: 'per day'
+            text: 'per day',
+            totalCost: '30.99 USD',
+            totalDiscCost: '15.19 USD',
+            superDiscPrice: '11.99 USD'
           },
           {
             id: 3,
             name: '3-MONTH PLAN',
             fullprice: '0.59 USD',
             cost: this.superDiscount.theme ? '0.24 USD' : '0.29 USD',
-            text: 'per day'
+            text: 'per day',
+            totalCost: '53.19 USD',
+            totalDiscCost: '25.99 USD',
+            superDiscPrice: '21.49 USD'
           }
         ]
       },
@@ -792,6 +811,25 @@
     margin: 0 auto;
   }
 
+  .label {
+    &__totalCost {
+      display: flex;
+      width: 80%;
+      margin-left: auto;
+
+      &-text {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 10px;
+        line-height: 1.4;
+
+        & .line {
+          text-decoration-line: line-through;
+        }
+      }
+    }
+  }
+
   .payment-block__item.checkedValue {
     border: 1px solid #E44240;
     transition: 0.5s ease all;
@@ -1027,16 +1065,18 @@
   }
 
   &__description {
+    padding: 16px;
     margin-top: 32px;
     font-family: "SF Pro Text Regular";
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 150%;
-    text-align: center;
     color: #FFFFFF;
     opacity: 0.5;
     margin-bottom: 48px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9px;
   }
 
 }

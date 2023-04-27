@@ -7,7 +7,7 @@
             Get your plan with a SUPER Discount!
         </h2>
         <p class="wrapper__text">
-            We're sure that by following this Kegel plan you can {{ goal }}. This is confirmed by a huge number of positive reviews.
+            We're sure that by following this Kegel plan you can improve {{ goal }}. This is confirmed by a huge number of positive reviews.
         </p>
         <p class="wrapper__text mt-16px">
             We want you to reach your goal. That's why we're giving you the super discount so you can start improving your men's health at the best price.

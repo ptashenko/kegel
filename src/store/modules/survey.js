@@ -144,8 +144,8 @@ const state = () => ({
         {
             id: 2,
             title: 'The quality of your erection depends on the Pelvic Floor (PF) muscle tone',
-            text: 'The PF muscles help to fill the penis with blood and prevent its outflow, so you can get & maintain a ',
-            textBold: 'hard erection',
+            text: 'The PF muscles help to fill the penis with blood and prevent its outflow, so you can get & maintain an ',
+            textBold: 'erection',
             video: 'ED_s1.mp4',
             poster: 'ED_s1.png',
             layoutName: 'standart',
@@ -247,7 +247,7 @@ const state = () => ({
         },
         {
             id: 9,
-            title: 'You can strengthen your PF muscles & improve erection by doing Kegel exercises',
+            title: 'You can strengthen your PF muscles & improve erectile function by doing Kegel exercises',
             layoutName: 'standart',
             thumbnail: 'ED_s3_img.png',
             buttons: [{
@@ -307,7 +307,7 @@ const state = () => ({
         {
             id: 333,
             active: true,
-            title: ' of men improved their erections with Kegel exercises',
+            title: ' of men improved their erectile function with Kegel exercises',
             tilteRed: '75.5% ',
             thumbnail: 'ED_s4.json',
             layoutName: 'KegelReview',
@@ -489,7 +489,7 @@ const state = () => ({
         },
         {
             id: 23,
-            title: 'Do you want to increase your sexual stamina?',
+            title: 'Do you want to improve ejaculation control?',
             layoutName: 'Reviews',
             answer: {
                 style: 'radio',
@@ -502,7 +502,7 @@ const state = () => ({
         },
         {
             id: 24,
-            title: `Men who perform Kegel exercises can increase their sexual stamina up to `,
+            title: `Men who perform Kegel exercises can increase their stamina up to `,
             afterTilteRed: '7x',
             layoutName: 'standart',
             thumbnail: 'ED_s5.png',

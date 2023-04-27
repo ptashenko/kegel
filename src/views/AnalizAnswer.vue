@@ -204,7 +204,7 @@ export default {
       closeActive: false,
       isLoad:true ,
       percent: 0,
-      mystop: 70,
+      mystop: 100,
       loadProsentTwo:0,
       loadProsentTree: 0,
       loadProsentFoo:0,
@@ -257,8 +257,7 @@ export default {
         this.percent += 1;
       } else {
         this.isActiveCheck_1 = true
-        this.$refs.animed.pause()
-        this.showModal()
+        this.ased()
         clearInterval(this.as);
       }
     }, 60);

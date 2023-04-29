@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div class="v-popup">
-      <img class="v-popup__close" @click="closePopup" src="@/assets/images/icons/btn_close_cwindow.svg" />
+      <img v-if="closeButton" class="v-popup__close" @click="closePopup" src="@/assets/images/icons/btn_close_cwindow.svg" />
       <div class="v-popup__header h2">
         {{textTitle}}
       </div>
@@ -22,6 +22,10 @@ export default {
       type: String,
       default: ''
     },
+    closeButton: {
+      type: Boolean,
+      default: true
+    }
   },
   data(){
     return{

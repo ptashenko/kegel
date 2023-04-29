@@ -443,9 +443,6 @@ input[type="email"]{font-size:1em;}
 
 .AdressPage {
   padding-bottom: 50px;
-  @media (min-width: 600px) {
-    padding: 0 114px 50px;
-  }
 }
 
 .v-popup__submit_btn.submit {

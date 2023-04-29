@@ -59,7 +59,11 @@
 			}
 		},
 		mounted(){
+			console.log('mounted')
 		},
+		beforeUnmount() {
+			console.log('unmount')
+		}
 	}
 </script>
 

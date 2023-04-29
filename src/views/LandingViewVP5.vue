@@ -11,7 +11,7 @@
         <span :class="`fixedTime__timer__text--${superDiscount.theme}`">
           {{ pickedTarifParams.discount }}% discount
         </span> expires in:
-        <countdown v-if="!superDiscount.popup" style="display: inline;" />
+        <countdown v-if="timer" style="display: inline;" />
       </p>
     </div>
     
@@ -27,7 +27,7 @@
         </div>
         <div>
           <p class="content__timer--start" :class="[superDiscount.theme ? 'blue' : 'red']">{{pickedTarifParams.discount}}% <br/> discount</p>
-          <p v-if="!superDiscount.popup" class="d-flex content__timer--text">
+          <p v-if="timer" class="d-flex content__timer--text">
             Expires in:	&nbsp;  <countdown />
           </p>
         </div>
@@ -333,6 +333,7 @@
     <vpopup
       class="windowError"
       v-if="windowError"
+      :close-button="false"
     > 
       <p class="opasity_75">
         Your payment was declined. Please try again or use a different payment method.
@@ -366,7 +367,7 @@
         id="paymentForm" />
     </vpopup>
     <SuperDiscountWindow 
-      v-if="superDiscount.popup" 
+      v-if="superDiscount.popup && !superDiscWindow" 
       @close="closeSuperDiscountPopup"
     />
   </div>
@@ -413,6 +414,8 @@
           popup: false,
           theme: false,
         },
+        timer: true,
+        superDiscWindow: localStorage.getItem('superDiscWindow'),
         subscribe: 2,
         apple_pay: true,
         paymentPopup: false,
@@ -433,25 +436,36 @@
         addItem: false,
         numanim: null,
       };
-    },   
+    },
+    watch: {
+      timer(newValue) {
+        if (!newValue) {
+          console.log('destroued')
+          setTimeout(() => {
+            this.timer = true
+          }, 200)
+        }
+      }
+    },  
     methods: {
       superDiscountCheck() {
         const superDiscount = JSON.parse(localStorage.getItem('superDiscount'))
         this.superDiscount.theme = superDiscount ? superDiscount : false;
         if (this.superDiscount.theme) {
-          this.superDiscount.popup = true
-        }
+          this.superDiscount.popup = true        }
       },
       setDate(index) {
         return dayjs().add(index,'month').format("MMM")
       },
       closeSuperDiscountPopup() {
         this.superDiscount.popup = false;
+        localStorage.setItem('superDiscWindow', true)
+        localStorage.removeItem('timer')
+        this.timer = false
         const tarifSelectorElem = document.getElementById('selectPlan');
         tarifSelectorElem.scrollIntoView()
         document.body.style.overflow = 'unset'
         this.subscribe = 2;
-        localStorage.removeItem('timer')
       },
       openPaymentPopup() {
         this.paymentPopup = true;
@@ -479,7 +493,7 @@
           amount: this.price
         })
         setTimeout(() => {
-          this.$router.push("PlanFinal");
+          this.$router.push("AddressPage");
         }, 0);
       },
       paymentError() {
@@ -660,6 +674,7 @@
       clearInterval(this.numanim)
     },
     mounted() {
+      this.timer = true
       this.superDiscountCheck()
       this.apple_pay = true;
       this.numanim = setInterval(() => {
@@ -1502,6 +1517,7 @@
     }
     .error{
       width: 100%;
+      margin-bottom: auto;
       display: flex;
       align-items: center;
       justify-content: center;

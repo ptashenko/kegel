@@ -72,6 +72,7 @@
     :item="this.item"
     :auth_price="this.auth_price"
   />
+  <button @click="success">PAYMENT IS SUCCESSFUL</button>
   <div
     id="apple-pay-button"
     class=""

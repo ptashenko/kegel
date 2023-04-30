@@ -235,9 +235,9 @@ export default {
   },
   created () {
     this.mixpanel.track('Address Screen Shown')
-    if(this.$route.params.paymentIntentId == null) {
-      this.$router.push("LandingViewVP5");
-    }
+    // if(this.$route.params.paymentIntentId == null) {
+    //   this.$router.push("LandingViewVP5");
+    // }
   }
 };
 </script>

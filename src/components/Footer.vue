@@ -1,7 +1,7 @@
 <template>
     <div class="main-pre-footer">
         <div class="footer-container">
-            <div class="main-pre-footer-disclaimer">
+            <div v-if="disclaimer" class="main-pre-footer-disclaimer">
                 Disclaimer: Each individual’s results may vary from person to person based on health condition, body type,
                 starting
                 point, his or her unique background, dedication, desire, motivation, actions, and numerous other factors. This
@@ -30,7 +30,12 @@
 
 <script>
 export default {
-
+    props: {
+        disclaimer: {
+            type: Boolean,
+            default: true
+        }
+    }
 }
 </script>
 

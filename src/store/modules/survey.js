@@ -16,8 +16,8 @@ const state = () => ({
             id: 1,
         title: 'Get & stay hard easier',
             titleShortQuiz: 'Improve potency',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
-            purpose: 'Strengthen erection',
-            addpurpose: 'Increase sexual stamina',
+            purpose: 'Erectile Function',
+            addpurpose: 'Ejaculation Control',
             text: 'Get & stay hard easier',
             layouts: [
                 { id: 1, separation: true },
@@ -38,8 +38,8 @@ const state = () => ({
             id: 2,
             title: 'Last up to 7x longer', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
             titleShortQuiz: 'Increase endurance',
-            purpose: 'Increase sexual stamina',
-            addpurpose: 'Strengthen erection',
+            purpose: 'Ejaculation Control',
+            addpurpose: 'Erectile Function',
             text: 'Last up to 7x longer',
             layouts: [
                 { id: 1, separation: true },
@@ -60,8 +60,8 @@ const state = () => ({
             id: 3,
             title: 'I just want to maximize my intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
             titleShortQuiz: 'Maximize intimate wellness',
-            purpose: 'Improve sexual performance',
-            addpurpose: 'Strengthen erection',
+            purpose: 'Sexual Wellness',
+            addpurpose: '',
             text: 'I want to improve both of the above',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
             layouts: [
                 { id: 1, separation: true },
@@ -211,8 +211,8 @@ const state = () => ({
         {
             id: 61,
             title: 'The quality of your erection also depends on the Pelvic Floor (PF) muscle tone',
-            text: 'The PF muscles help to fill the penis with blood and prevent its outflow, so you can get & maintain a ',
-            textBold: ' strong erection',
+            text: 'The PF muscles help to fill the penis with blood and prevent its outflow, so you can get & maintain an ',
+            textBold: ' erection',
             video: 'ED_s1.mp4',
             poster: 'ED_s1.png',
             layoutName: 'StandartTwo',
@@ -561,7 +561,7 @@ const state = () => ({
         },
         {
             id: 272,
-            title: 'Do you take any medications to increase stamina?',
+            title: 'Do you take any medications for premature ejaculation?',
             answer: {
                 style: 'radio',
                 answerList: [
@@ -701,8 +701,8 @@ const state = () => ({
             poster: 'PE_s1.png',
             layoutName: 'standart',
             aftertext: 'Thanks to the strong PF muscles you can ',
-            textbold: ' delay ejaculation ',
-            text: ' for as long as you want',
+            textbold: ' suppress the ejaculatory reflex ',
+            text: ' to prevent early climax',
             dark: true,
         },
         {
@@ -712,8 +712,8 @@ const state = () => ({
             poster: 'PE_s1.png',
             layoutName: 'standart',
             aftertext: 'Thanks to the strong PF muscles you can ',
-            textbold: ' delay ejaculation ',
-            text: ' for as long as you want',
+            textbold: ' suppress the ejaculatory reflex ',
+            text: ' to prevent early climax',
             buttonsText: ['Back', 'Continue'],
             dark: true,
         },
@@ -778,9 +778,9 @@ const state = () => ({
         },
         {
             id: 39,
-            title: 'You can strengthen your PF muscles & increase sexual stamina up to ',
+            title: 'You can strengthen your PF muscles & increase stamina up to ',
             afterTilteRed: '7x',
-            afterTilteText: ' by doing Kegel exercises',
+            afterTilteText: '  by doing Kegel exercises',
             layoutName: 'standart',
             thumbnail: 'ED_s5_img.png',
             buttons: [{
@@ -813,7 +813,7 @@ const state = () => ({
         },
         {
             id: 41,
-            title: ' men improved their stamina with Kegel exercises',
+            title: ' men improved their ejaculation control with Kegel exercises',
             tilteRed: '8/10 ',
             thumbnail: 'ED_s4.json',
             layoutName: 'KegelReview',
@@ -893,7 +893,7 @@ const state = () => ({
         },
         {
             id: 450,
-            title: 'Have you ever failed to get a full erection for sex?',
+            title: 'Have you ever failed to get a full erection?',
             answer: {
                 style: 'radio',
                 answerList: [
@@ -933,7 +933,7 @@ const state = () => ({
         },
         {
             id: 46,
-            title: 'Do you want to strengthen your erection?',
+            title: 'Do you want to strengthen your erectile function?',
             answer: {
                 style: 'radio',
                 answerClass: 'sexual',
@@ -946,7 +946,7 @@ const state = () => ({
         {
             id: 47,
             afterTilteRed: '75.5%',
-            afterTilteText: ' of men improved their erection with Kegel exercises',
+            afterTilteText: ' of men improved their erectile function with Kegel exercises',
             layoutName: 'standart',
             thumbnail: 'PE_s5.png',
             buttons: [{
@@ -966,7 +966,7 @@ const state = () => ({
         },
         {
             id: 49,
-            title: 'How satisfied are you with your sexual performance?',
+            title: 'How satisfied are you with your sexual wellness (erection quality & ejaculation control)?',
             answer: {
                 style: 'buttons',
                 textLeft: 'Not satisfied',
@@ -982,7 +982,7 @@ const state = () => ({
         },
         {
             id: 50,
-            title: 'You can strengthen your PF muscles & improve sexual performance by doing Kegel exercises',
+            title: 'You can strengthen your PF muscles & improve sexual wellness by doing Kegel exercises',
             layoutName: 'standart',
             thumbnail: 'OK_s3.png',
             buttons: [{
@@ -1002,7 +1002,7 @@ const state = () => ({
         },
         {
             id: 51,
-            title: 'Men who perform Kegel exercises can increase their stamina up to ',
+            title: 'Men who perform Kegel exercises can increase their ejaculation control up to ',
             afterTilteRed: '7 times',
             layoutName: 'standart',
             thumbnail: 'ED_s5_img.png',

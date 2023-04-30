@@ -171,7 +171,10 @@
     I give up accelerated results forever &gt;
     </div>
       <div class="mw-520">
-        <div class="android-footer__text">
+        <div v-if="subscriotionInfo.id === 1 && open !== 2" class="android-footer__text">
+          In addition to your subscription, your account will be charged {{ price.discPrice }} for the add-on as you click "Add to my plan". Item on this page is a {{ subscriotionInfo.period }} subscription. Unless you cancel it in your profile before the end of then-current period, you agree that the subscription will renew automatically at the end of each period. You can cancel the subscription online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
+        </div>
+        <div v-else-if="subscriotionInfo.id !== 1 && open !== 2" class="android-footer__text">
           We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of {{price.fullPrice}} at the end of the chosen subscription period. Your payment method will be automatically charged every {{subscriotionInfo.period}} until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
         </div>
       </div>
@@ -179,6 +182,7 @@
   <vpopup
     class="windowError"
     v-if="windowError"
+    :close-button="false"
   > 
     <div>
       <p class="opasity_75">
@@ -228,7 +232,6 @@ import Review from '@/components/Review.vue';
 import DiscountFlag from '@/components/DiscountFlag.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import ButtonField from '@/components/ui/Button.vue';
-import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 
 export default {
@@ -244,7 +247,6 @@ export default {
   data() {
     return {
       item: "Fitness_1-USD-Every-3-months",
-      VueScrollTo: require('vue-scrollto'),
       popupVisible: false,
       open: 1,
       active: true,
@@ -290,9 +292,9 @@ export default {
       }
       switch(this.subscriotionInfo.id) {
         case 1:
-          currPrice.discPrice = '1.66 USD';
-          currPrice.fullPrice = '2.49 USD';
-          currPrice.superDiscPrice = '0.80 USD';
+          currPrice.discPrice = '6.69 USD';
+          currPrice.fullPrice = '9.99 USD';
+          currPrice.superDiscPrice = '3.30 USD';
           break;
         case 2:
           currPrice.discPrice = '6.69 USD';
@@ -440,7 +442,7 @@ export default {
     nextUrl(){
       let body = document.querySelector('body')
       body.classList.remove('fixed');
-      this.$router.push('CodeQR')
+      this.$router.push('Whatsapp')
     },
     showModal(){
       this.mixpanel.track('Upsale Answered',{

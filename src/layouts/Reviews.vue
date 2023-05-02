@@ -252,7 +252,7 @@ export default {
   &__redDate {
     font-family: "SF Pro Text Bold";
     font-weight: 700;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 1.5;
 
     color: #E44240;

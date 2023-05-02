@@ -5,8 +5,8 @@
   <h2 class="page-title">{{ content.title }}</h2>
 
   <div class="goalDate">
-    <h3 class="goalDate__purpose" v-if="AddPurpose" v-html="addPurposeText"></h3>
-    <h3 class="goalDate__purpose" v-else>{{ track.purpose }}</h3>
+    <h3 class="goalDate__purpose" v-if="AddPurpose && content.id !== 20 && content.id !== 57" v-html="addPurposeText"></h3>
+    <h3 class="goalDate__purpose" v-else>Improve {{ track.purpose }}</h3>
     <div class="goalDate__redDate">
       <transition name="slide-fade">
         <span v-if="show">by {{selectedPages ? dataPP1 : dataPP2}}</span> 
@@ -133,7 +133,7 @@ export default {
       }
     },
     addPurposeText() {
-      return `${this.track.purpose} <span class="goalDate__purpose--regular"> and</span> ${this.track.addpurpose}`
+      return `<span class="goalDate__purpose--regular">Improve</span> ${this.track.purpose} <span class="goalDate__purpose--regular"> and</span> ${this.track.addpurpose}`
     },
     imagePE() {
       const json = localStorage.getItem('track');

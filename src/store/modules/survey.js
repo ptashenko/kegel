@@ -15,10 +15,10 @@ const state = () => ({
     tracks: [{
             id: 1,
         title: 'Get & stay hard easier',
-            titleShortQuiz: 'Improve potency',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
+            titleShortQuiz: 'Improve Erectile Function',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
             purpose: 'Erectile Function',
             addpurpose: 'Ejaculation Control',
-            text: 'Get & stay hard easier',
+            text: '',
             layouts: [
                 { id: 1, separation: true },
                 { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 },
@@ -36,11 +36,11 @@ const state = () => ({
         },
         {
             id: 2,
-            title: 'Last up to 7x longer', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
+            title: 'Improve Ejaculation Control', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
             titleShortQuiz: 'Increase endurance',
             purpose: 'Ejaculation Control',
             addpurpose: 'Erectile Function',
-            text: 'Last up to 7x longer',
+            text: '',
             layouts: [
                 { id: 1, separation: true },
                 { id: 35 }, { id: 3 }, { id: 21 }, { id: 351 },
@@ -58,11 +58,11 @@ const state = () => ({
         },
         {
             id: 3,
-            title: 'I just want to maximize my intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
+            title: 'Maximize intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
             titleShortQuiz: 'Maximize intimate wellness',
             purpose: 'Sexual Wellness',
             addpurpose: '',
-            text: 'I want to improve both of the above',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
+            text: '(Improve both of the above)',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
             layouts: [
                 { id: 1, separation: true },
                 { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },

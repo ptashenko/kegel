@@ -19,10 +19,10 @@
           <img v-else src="@/assets/images/header.png" class="bg-image" />
           <div class="body">
             <div class="body__title">
-              Boost male performance without pills
+              Improve Sexual<br>Health & Wellness
             </div>
             <div class="body__text">
-              Select a goal & take a short quiz to get your step-by-step plan
+              Select a goal to get a step-by-step plan
             </div>
             <div class="str">
               <lottie-animation ref="arrowmain" class="animationArrow" :class="{ active: isActiveHand }"

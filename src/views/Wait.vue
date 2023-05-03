@@ -119,6 +119,7 @@ export default {
 
 <style lang="scss" scoped>
 .wait {
+  padding-bottom: 100px;
 
   &__body {
     width: 100%;

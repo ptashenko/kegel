@@ -58,6 +58,7 @@ export default {
     z-index: 9999999;
     width: 100%;
     max-width: 452px;
+
     padding: 32px 24px 24px;
     background: #ffffff;
     margin: 0 auto;
@@ -76,7 +77,9 @@ export default {
     }
 
     @media (max-width:480px) {
-      max-width: 320px;
+      max-width: 375px;
+      min-height: 75vh;
+      bottom: -10px;
     }
     &__content, &__footer{
       display: flex;
@@ -134,6 +137,8 @@ export default {
       max-width: 280px;
       font-size: 14px;
       line-height: 150%;
+      min-height: unset;
+      bottom: unset;
     }
     .h2{
       margin-bottom: 0px;

@@ -1,7 +1,4 @@
 <template>
-  <p class="card-pay-text">
-    You agree that {{ discountPrice }} will be charged as an intro offer, then {{ fullPrice }} will be automatically billed every {{ subscriptionDate }}. Manage subscription via billing center.
-  </p>
   <div id="paypal-button" ref="paypalButton"></div>
 </template>
 

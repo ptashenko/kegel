@@ -43,6 +43,8 @@ export default {
     width: 100%;
     background: #111113;
     z-index: 99999;
+    overflow: scroll;
+    padding-bottom: 50px;
 
     &__content {
         max-width: 600px;

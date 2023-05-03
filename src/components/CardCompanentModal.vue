@@ -10,9 +10,6 @@
         </div>
       </div>
     </div>
-    <p class="card-pay-text">
-      You agree that {{ discountPrice }} will be charged as an intro offer, then {{ fullPrice }} will be automatically billed every {{ subscriptionDate }}. Manage subscription via billing center.
-    </p>
     <button
       type="submit"
       :class="[{ submit: loading }, theme ? 'blue blue-shadow' : 'red-shadow']"

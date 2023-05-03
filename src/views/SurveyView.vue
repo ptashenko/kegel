@@ -48,6 +48,7 @@ export default {
   padding: 0 32px;
   margin: 0 auto;
   box-sizing: border-box;
+  padding-bottom: 100px;
 
   @media (min-width: 600px) {
     padding: 0 40px;

@@ -9,9 +9,9 @@
       <div v-if="subscribe" class="fixedTime" :class="{'active': blockFixed}">
       <p class="fixedTime__timer__text">
         <span :class="`fixedTime__timer__text--${superDiscount.theme}`">
-          {{ pickedTarifParams.discount }}% discount
-        </span> expires in:
-        <countdown v-if="timer" style="display: inline;" />
+          {{ pickedTarifParams.discount }}% discount<br>
+        </span>
+        <span>expires in: </span><countdown v-if="timer" style="display: inline;" />
       </p>
     </div>
     
@@ -25,8 +25,8 @@
           <img class="content__timer--glow" src="@/assets/img/lp_v5/glow.png" alt="icon" />
           <img class="content__timer--icon" src="@/assets/img/lp_v5/timer.png" alt="icon" />
         </div>
-        <div>
-          <p class="content__timer--start" :class="[superDiscount.theme ? 'blue' : 'red']">{{pickedTarifParams.discount}}% <br/> discount</p>
+        <div class="content__timer--body">
+          <p class="content__timer--start" :class="[superDiscount.theme ? 'blue' : 'red']">{{pickedTarifParams.discount}}% discount</p>
           <p v-if="timer" class="d-flex content__timer--text">
             Expires in:	&nbsp;  <countdown />
           </p>
@@ -35,17 +35,17 @@
       <div id="trigger1" class="content__date">
         <div class="content__purpose">
           <span>
-            Based on your personal goals you can improve 
+            Based on your personal goals you can 
           </span>
           <br>
           <span v-if="AddPurposeCom" class="content__purpose--bold">
-            {{ purpose }}
+            <span class="content__purpose--regular">imporve</span> {{ purpose }}
             <span class="content__purpose--regular"> and </span>
             <span>{{ addpurpose }}</span>
           </span>
           <span v-if="!AddPurposeCom">
             <span class="content__purpose--bold">
-            {{ purpose }}
+              <span class="content__purpose--regular">imporve</span> {{ purpose }}
             </span>
           </span>
         </div>
@@ -88,7 +88,7 @@
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
             <p>Reach your goal and improve <b> {{ purpose }} </b></p>
           </li>
-          <li class="benefits__item">
+          <li v-if="addpurpose" class="benefits__item">
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
             Improve {{ addpurpose }}
           </li>
@@ -190,7 +190,13 @@
             class="payment-block__right payment-block__right-blue" 
             :class="{'checkedValue': subscribe === id}"
           >
-            <p 
+          <div class="payment-block__triangle">
+              <svg width="112" height="56" viewBox="0 0 112 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.5604 2.5193C15.4506 0.96143 17.1073 0 18.9016 0H107C109.761 0 112 2.23858 112 5V51C112 53.7614 109.761 56 107 56H18.9016C17.1073 56 15.4506 55.0386 14.5604 53.4807L1.41754 30.4807C0.53916 28.9435 0.539161 27.0565 1.41754 25.5193L14.5604 2.5193Z" :fill="subscribe === id ? '#5773D6' : '#fff'"/>
+              </svg>
+            </div>
+            <div class="payment-block__right-price">
+              <p 
               class="payment-block__oldPrice payment-block__oldPrice-blue" 
               :class="{'checkedValue': subscribe === id}"
             >
@@ -208,6 +214,7 @@
             >
               {{ text }}
             </p>
+            </div>
           </div>
         </label>
       </div>
@@ -240,7 +247,13 @@
           <div 
             class="payment-block__right" 
             :class="{'checkedValue': subscribe === id}">
-            <p 
+            <div class="payment-block__triangle">
+              <svg width="112" height="56" viewBox="0 0 112 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.5604 2.5193C15.4506 0.96143 17.1073 0 18.9016 0H107C109.761 0 112 2.23858 112 5V51C112 53.7614 109.761 56 107 56H18.9016C17.1073 56 15.4506 55.0386 14.5604 53.4807L1.41754 30.4807C0.53916 28.9435 0.539161 27.0565 1.41754 25.5193L14.5604 2.5193Z" :fill="subscribe === id ? '#E44240' : '#fff'"/>
+              </svg>
+            </div>
+            <div class="payment-block__right-price">
+              <p 
               class="payment-block__oldPrice" 
               :class="{'checkedValue': subscribe === id}"
             >
@@ -258,18 +271,19 @@
               >
               {{ text }}
             </p>
+            </div>
           </div>
         </label>
       </div>
+      <p v-if="pickedTarifParams.discountType === 1" class="payment-block__description">
+        By clicking «Get my plan», I agree to pay <b>{{ pickedTarifParams.discountPrice }}</b> for my plan and that if I do not cancel before the end of the <b>{{ pickedTarifParams.subscriptionPeriod }}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>30.99 USD</b> every <b>1 month</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
+      </p>
+      <p v-else class="payment-block__description">
+        We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of <b>{{ pickedTarifParams.fullPrice }}</b> at the end of the chosen subscription period. Your payment method will be automatically charged every <b>{{ pickedTarifParams.subscriptionPeriod }}</b> until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
+      </p>
       <button @click="openPaymentPopup" :disabled="!subscribe" class="payment-block__button" :class="[superDiscount.theme ? 'blue blue-shadow' : 'red-shadow']">
         Get my plan
       </button>
-      <p v-if="pickedTarifParams.discountType === 1" class="payment-block__description">
-        By clicking «Get my plan», I agree to pay {{ pickedTarifParams.discountPrice }} for my plan and that if I do not cancel before the end of the {{ pickedTarifParams.subscriptionPeriod }} introductory plan, Dr. Kegel will automatically charge my payment method the regular price {{ pickedTarifParams.fullPrice }} every {{ pickedTarifParams.subscriptionPeriod }} thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
-      </p>
-      <p v-else class="payment-block__description">
-        We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of {{ pickedTarifParams.fullPrice }} at the end of the chosen subscription period. Your payment method will be automatically charged every {{ pickedTarifParams.subscriptionPeriod }} until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
-      </p>
 
       <Guarantee
         :borderColor="superDiscount.theme ? '#5773D6' : '#E44240'"
@@ -368,6 +382,7 @@
     </vpopup>
     <SuperDiscountWindow 
       v-if="superDiscount.popup && !superDiscWindow" 
+      :goal="purpose"
       @close="closeSuperDiscountPopup"
     />
   </div>
@@ -469,6 +484,7 @@
       },
       openPaymentPopup() {
         this.paymentPopup = true;
+        document.body.style.overflow = 'hidden'
         localStorage.setItem('superDiscount', true)
         const pickedSubscription = {
           id: this.pickedTarifParams.discountType,
@@ -487,6 +503,7 @@
           document.body.style.overflow = 'hidden'
         }
         this.paymentPopup = false;
+        document.body.style.overflow = 'auto'
       },
       nextUrl() {
         this.mixpanel.track('Trial Started',{
@@ -579,7 +596,7 @@
             priceParams.fullPrice = '10.49 USD'
             priceParams.discountPrice = this.superDiscount.theme ? '5.50 USD' : '6.93 USD'
             priceParams.discountAmount = this.superDiscount.theme ? '-4.99 USD' : '-3.56 USD'
-            priceParams.subscriptionName = this.superDiscount.theme ? '1-week plan with trial' : '1-week subscription'
+            priceParams.subscriptionName = '1-week  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 48 : 34
             break;
           case 2:
@@ -587,7 +604,7 @@
             priceParams.fullPrice = '30.99 USD'
             priceParams.discountPrice = this.superDiscount.theme ? '11.99 USD' : '15.19 USD'
             priceParams.discountAmount = this.superDiscount.theme ? '-19.00 USD' : '-15.80 USD'
-            priceParams.subscriptionName = this.superDiscount.theme ? '1-month plan with trial' : '1-month subscription'
+            priceParams.subscriptionName = '1-month  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 61 : 51
             break;
           case 3:
@@ -595,7 +612,7 @@
             priceParams.fullPrice = '53.19 USD'
             priceParams.discountPrice = this.superDiscount.theme ? '21.49 USD' : '25.99 USD'
             priceParams.discountAmount = this.superDiscount.theme ? '-31.70 USD' : '-27.20 USD'
-            priceParams.subscriptionName = this.superDiscount.theme ? '3-month plan with trial' : '3-month subscription'
+            priceParams.subscriptionName = '1-months  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 60 : 51
             break;
         }
@@ -833,6 +850,7 @@
       margin-left: auto;
 
       &-text {
+        font-family: "SF Pro Text Regular";
         font-style: normal;
         font-weight: 300;
         font-size: 10px;
@@ -852,8 +870,8 @@
       color: #fff;
     }
 
-    & .payment-block__right.checkedValue {
-      background: #E44240;
+    & .payment-block__right.checkedValue .payment-block__triangle svg {
+      opacity: 1;
       transition: 0.5s ease all;
     }
     & .payment-block__oldPrice.checkedValue {
@@ -875,7 +893,6 @@
     }
 
     & .payment-block__right-blue.checkedValue {
-      background: #5773D6;
       transition: 0.5s ease all;
     }
     & .payment-block__oldPrice-blue.checkedValue {
@@ -921,6 +938,7 @@
       top: -10px;
       left: 20px;
       width: fit-content;
+      color: #ffffff80;
       background: #29292A;
       border-radius: 50px;
       padding: 3px 10px;
@@ -962,11 +980,17 @@
     cursor: pointer;
   }
 
-  &__right {
-    padding: 5px 13px 5px 25px;
-    background: #ffffff0d;
-    border-radius: 5px;
-    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+  &__triangle {
+    position: relative;
+    & svg {
+      opacity: 0.05;
+    }
+  }
+
+  &__right-price {
+    position: absolute;
+    top: 11px;
+    right: 20px;
   }
 
   &__oldPrice {
@@ -1056,7 +1080,7 @@
     font-family: "SF Pro Text Regular";
     padding: 20px 0;
     width: 100%;
-    margin: 32px auto 0;
+    margin: 0 auto 64px;
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -1081,7 +1105,7 @@
 
   &__description {
     padding: 16px;
-    margin-top: 32px;
+    margin: 32px 0;
     font-family: "SF Pro Text Regular";
     font-style: normal;
     font-weight: 400;
@@ -1089,7 +1113,6 @@
     line-height: 150%;
     color: #FFFFFF;
     opacity: 0.5;
-    margin-bottom: 48px;
     border: 2px solid rgba(255, 255, 255, 0.25);
     border-radius: 9px;
   }
@@ -1155,8 +1178,13 @@
 
         &--wrapper {
           position: relative;
-          width: 110px;
-          height: 110px;
+          width: 84px;
+          height: 84px;
+          margin-left: 10px;
+        }
+
+        &--body {
+          margin-left: 15px;
         }
   
         &--icon {
@@ -1717,7 +1745,7 @@
     color: #FFFFFF;
     top:0; left:0; right:0;
     @media (max-width:600px) {
-      padding: 16px 0px;
+      padding: 21px 0px;
       max-width: 600px;
     }
     p{
@@ -1727,14 +1755,13 @@
 
     &__timer__text {
       display: block;
+      font-weight: 800;
 
       &--false {
         color: #E44240;
-        font-weight: 600;
       }
       &--true {
         color: #5773D6;
-        font-weight: 600;
       }
     }
   }

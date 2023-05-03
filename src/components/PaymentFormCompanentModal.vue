@@ -31,11 +31,13 @@
         <p class="paymentInfo-container__text">{{ subscription }}</p>
         <p class="paymentInfo-container__text amount">{{ fullPrice }}</p>
         <p class="paymentInfo-container__text">{{ discount }}% introductory price discount</p>
-        <p class="paymentInfo-container__text amount">{{ discountAmount }}</p>
+        <p class="paymentInfo-container__text amount" :style="!theme ? 'color: #E44240;' : 'color: #5773D6'" style="font-weight: 700;">{{ discountAmount }}</p>
     </div>
-    <div class="total-container">
+    <div class="paymentInfo-container reverse" style="border: none">
       <p class="total-container__title">Total</p>
-      <p class="total-container__text"><span :class="`total-container__text--${theme}`">{{ discountPrice }}</span> per {{ subscriptionDate }}</p>
+      <p class="total-container__title" style="text-align: end;">{{ discountPrice }}</p>
+        <p class="paymentInfo-container__text" style="font-size: 12px;">per {{ subscriptionDate }}</p>
+        <p class="paymentInfo-container__text amount" :style="!theme ? 'color: #E44240;' : 'color: #5773D6'" style="font-weight: 700; font-size: 12px;">You just saved {{discountAmount}} ({{discount}}% off)</p>
     </div>
   </div>
   <PayPalComponent
@@ -217,8 +219,8 @@ export default {
 
   &__title {
     font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 18px;
     line-height: 150%;
     color: #000;
   }
@@ -248,6 +250,10 @@ export default {
   grid-template-columns: 2fr 1fr;
   row-gap: 10px;
 
+  &.reverse {
+    grid-template-columns: 1fr 2fr;
+  }
+
   .amount {
     text-align: end;
   }
@@ -256,7 +262,7 @@ export default {
     font-family: "SF Pro Text Regular";
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 150%;
     color: #11111380;
   }
@@ -276,8 +282,15 @@ export default {
     background: #f9f9f9;
     border: none;
     border-radius: 9px;
+    min-height: 49px;
+    box-sizing: border-box;
+    height: 49px;
 
     &:active, &:focus {
+      border: 2px solid #5773D6;
+    }
+
+    &.active {
       border: 2px solid #5773D6;
     }
   }

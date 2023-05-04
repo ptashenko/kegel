@@ -72,7 +72,9 @@ export default {
     Footer
   },
   mounted(){
-    console.log('mounted')
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 50)
   },
   created () {
     this.mixpanel.track('Final Screen Shown')

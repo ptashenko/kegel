@@ -138,6 +138,9 @@ export default {
 
   mounted() {
     this.checkAdressStore()
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 50)
   },
 
   methods: {

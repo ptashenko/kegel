@@ -502,7 +502,11 @@ export default {
     this.mixpanel.track('Upsale Offered')
   },
   beforeRouteLeave (to, from, next) {
-    next(false)
+    if (to.name === 'Whatsapp') {
+      next()
+    } else {
+      next(false)
+    }
   }
 };
 </script>

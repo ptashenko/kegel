@@ -44,13 +44,14 @@ export default {
     background: #111113;
     z-index: 99999;
     overflow: scroll;
-    padding-bottom: 50px;
 
     &__content {
         max-width: 600px;
         padding: 0 40px;
         margin: 0 auto;
         box-sizing: border-box;
+        padding-bottom: 120px;
+
     }
 
     &__image {

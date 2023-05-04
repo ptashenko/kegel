@@ -232,6 +232,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .ex1.container {
   margin: auto;
   padding: 100px 0;

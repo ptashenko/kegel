@@ -608,7 +608,7 @@
             priceParams.discount = this.superDiscount.theme ? 61 : 51
             break;
           case 3:
-            priceParams.subscriptionPeriod = '3 month'
+            priceParams.subscriptionPeriod = '3 months'
             priceParams.fullPrice = '53.19 USD'
             priceParams.discountPrice = this.superDiscount.theme ? '21.49 USD' : '25.99 USD'
             priceParams.discountAmount = this.superDiscount.theme ? '-31.70 USD' : '-27.20 USD'
@@ -737,9 +737,10 @@
     position: fixed;
     display: flex;
     justify-content: center;
-    top: 100px;
+    top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     z-index: 999;
   }
   .questions {
@@ -839,7 +840,7 @@
   &__list {
     display: flex;
     flex-direction: column;
-    max-width: 311px;
+    max-width: 430px;
     margin: 0 auto;
   }
 
@@ -865,14 +866,13 @@
 
   .payment-block__item.checkedValue {
     border: 1px solid #E44240;
-    transition: 0.5s ease all;
+
     .label.checkedValue {
       color: #fff;
     }
 
     & .payment-block__right.checkedValue .payment-block__triangle svg {
       opacity: 1;
-      transition: 0.5s ease all;
     }
     & .payment-block__oldPrice.checkedValue {
       color: #000;
@@ -887,14 +887,10 @@
   }
   .payment-block__item-blue.checkedValue {
     border: 1px solid #5773D6;
-    transition: 0.5s ease all;
     .label-blue.checkedValue {
       color: #fff;
     }
 
-    & .payment-block__right-blue.checkedValue {
-      transition: 0.5s ease all;
-    }
     & .payment-block__oldPrice-blue.checkedValue {
       color: #000;
 

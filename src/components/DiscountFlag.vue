@@ -56,7 +56,7 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        flex-basis: 65%;
+        flex-basis: 80%;
     }
 
     &__title {
@@ -64,6 +64,7 @@ export default {
         font-weight: 600;
         font-size: 14px;
         line-height: 1.21;
+        letter-spacing: 0px;
         color: #111113;
         margin: 0;
         margin-bottom: 5px;

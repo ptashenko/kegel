@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="popup_wraper">
     <div class="v-popup">
       <img v-if="closeButton" class="v-popup__close" @click="closePopup" src="@/assets/images/icons/btn_close_cwindow.svg" />
       <div class="v-popup__header h2">
@@ -113,7 +113,7 @@ export default {
   pointer-events: none;
   display: flex;
   justify-content: center;
-  align-items: top;
+  align-items: flex-start;
   position: fixed;
   z-index: 9;
   top: 32px;

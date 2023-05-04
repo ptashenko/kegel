@@ -114,6 +114,7 @@ export default {
     },
     success() {
       this.blockSelect = false;
+      document.body.style.overflow = 'auto'
       this.$emit("success");
     },
     clickButton() {
@@ -251,11 +252,17 @@ export default {
   row-gap: 10px;
 
   &.reverse {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 0.7fr 2fr;
   }
 
   .amount {
+    font-family: "SF Pro Text Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
     text-align: end;
+    letter-spacing: 0px;
   }
 
   &__text {
@@ -275,6 +282,8 @@ export default {
 
   &__apple {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-basis: 100%
   }
 
@@ -284,7 +293,6 @@ export default {
     border-radius: 9px;
     min-height: 49px;
     box-sizing: border-box;
-    height: 49px;
 
     &:active, &:focus {
       border: 2px solid #5773D6;
@@ -292,6 +300,10 @@ export default {
 
     &.active {
       border: 2px solid #5773D6;
+    }
+
+    @media (max-width: 430px) {
+      height: 49px;
     }
   }
 

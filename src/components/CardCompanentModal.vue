@@ -216,6 +216,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#card-pay-container {
+  width: 100%;
+  margin-top: 32px;
+}
 .card-pay-text {
   font-family: "SF Pro Text Regular";
   font-style: normal;

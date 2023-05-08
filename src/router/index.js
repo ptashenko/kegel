@@ -202,10 +202,11 @@ const routes = [{
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
-    scrollBehavior(to, from, savedPosition) {
-        return { x: 0, y: 0 }
-    }
 });
+
+router.afterEach((to, from) => {
+    window.scrollTo(0, 0)
+})
 
 router.beforeEach((to, from, next) => {
     const isRedirectDisabled =

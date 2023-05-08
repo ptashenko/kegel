@@ -6,9 +6,8 @@
           Your Kegel Plan is waiting for you on your email
         </div>
       </div>
-      <hr class="divider">
       <p class="instructions">
-        Instruction on <b>how to access and activate your personal plan</b> has been sent to you at {{ EMAILUSER }}
+        Instruction on <b>how to access and activate your personal plan</b> has been sent to you at <span style="color: #5773D6; font-weight: bold;">{{ EMAILUSER }}</span>
       </p>
 
       <div class="mw-450 d-flex flex-column mb-32 text-center">
@@ -20,28 +19,24 @@
             </p>
           </div>
         </div>
-        <div class="text-center">
-          <div class="text-line">
-            <span>optional</span>
-          </div>
-        </div>
+        <hr class="divider" />
       </div>
       <div class="block-bottom text-center">
-        <p class="instructions">
-          We can send access and activation instruction for your personal plan directly to your <b>Whatsapp</b>
-       </p>
+        <p class="contacts__questions">
+          <img src="@/assets/img/lp_v5/help.svg" />
+          Any questions or concerns?
+        </p>
        <button class="whatsapp-btn">
         <img src="@/assets/img/lp_v5/svg_watsapp.svg" />
-        Send to Whatsapp
+        Text us on WhatsApp
        </button>
       </div>
       <div class="contacts">
-        <p class="contacts__questions">
-          <img src="@/assets/img/lp_v5/help.svg" />
-          Any questions?
-        </p>
         <p class="contacts__email">
-          Contact us at <span class="red">contact@kegel.men</span>
+          or by email <span class="red">contact@kegel.men</span>
+        </p>
+        <p class="contacts__offer">
+          We offer personalized assistance and will promptly contact you to help with any issues or inquiries &#9786;
         </p>
       </div>
     </div>
@@ -71,11 +66,6 @@ export default {
   components: {
     Footer
   },
-  mounted(){
-    setTimeout(() => {
-      window.scrollTo(0, 0)
-    }, 50)
-  },
   created () {
     this.mixpanel.track('Final Screen Shown')
   },
@@ -87,7 +77,7 @@ export default {
 
 <style lang="scss" scoped>
 .divider {
-  margin: 24px 0;
+  margin: 32px 0;
   opacity: 0.1;
 }
 
@@ -105,24 +95,36 @@ align-items: center;
     font-family: "SF-Pro-Display-Bold";
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 135%;
     color: #111113;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
   }
 
   &__email {
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 150%;
     text-align: center;
     color: #111113;
   }
+
+  &__offer {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: rgba(17, 17, 19, 0.75);
+    margin-top: 32px;
+  }
 }
 
 .whatsapp-btn {
-  background: #111113;
+  background: linear-gradient(0deg, #20CB42, #20CB42), #111113;
+  box-shadow: 0px 15px 37px rgba(32, 203, 66, 0.64);
+  border-radius: 9px;
   border: none;
   color: #fff;
   font-family: "SF Pro Text Regular";
@@ -131,14 +133,14 @@ align-items: center;
   font-size: 18px;
   line-height: 1;
   padding: 12px;
-  border-radius: 9px;
-  margin: 24px auto 48px;
+  margin: 0 auto;
   display: flex;
+  justify-content: center;
   cursor: pointer;
   align-items: center;
   box-sizing: border-box;
-  min-width: 249px;
-
+  width: 100%;
+  max-width: 311px;
 
   & img {
     width: 36px;
@@ -153,6 +155,7 @@ align-items: center;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
+  margin-top: 24px;
   /* or 24px */
 
   text-align: center;
@@ -222,7 +225,7 @@ align-items: center;
     max-width: 450px;
     margin: 32px auto 48px;
     @media (max-width:480px) {
-      margin: 32px auto 32px;
+      margin: 32px auto 0;
     }
     .layout__thumbnail{
       display: block;
@@ -286,7 +289,7 @@ align-items: center;
     font-family: "SF Pro Text Semibold";
     font-size: 18px;
     line-height: 150%;
-    margin-bottom: 64px;
+    margin-bottom: 24px;
     @media (max-width:480px) {
       font-size: 16px;
     }

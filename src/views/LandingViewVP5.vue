@@ -94,7 +94,11 @@
           </li>
           <li class="benefits__item" v-if="addItem">
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
-            Increase stamina
+            <span>Increase <b>Erective Function</b></span>
+          </li>
+          <li class="benefits__item" v-if="addItem">
+            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            <span>Increase <b>Ejaculation Control</b></span>
           </li>
           <li class="benefits__item">
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
@@ -966,7 +970,6 @@
   }
 
   &__label {
-    font-family: "SF-Pro-Display-Bold";
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -1020,9 +1023,9 @@
   &__text {
     font-family: "SF Pro Text Regular";
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 12px;
-    line-height: 0.88;
+    line-height: 1.16;
     text-align: center;
     color: #ffffff80;
     mix-blend-mode: normal;

@@ -25,8 +25,7 @@
                   Your data is perfectly safe. We won't share your personal information with third parties.
                 </p>
               </div>
-          </div>
-            <div class="block-fixed">
+              <div class="block-fixed">
               <p class="emailPage__dataInfo">
                 By giving your email address you can also receive offers from Appercut Sp. z o.o. You can unsubscribe at any time.
               </p>
@@ -35,6 +34,7 @@
                 <a href="/privacy-policy.html" target="_blank">Policy</a>
               </div>
             </div>
+          </div>
       </div>
 </template>
 
@@ -128,11 +128,19 @@ export default {
   &__wrapper {
     max-width: 600px;
     margin: 0 auto;
-    padding: 0 40px 190px;
+    padding: 0 40px 25px;
     box-sizing: border-box;
     height: 100%;
     display: flex;
     flex-direction: column;
+    max-height: calc(100% - 103px);
+
+    @media (max-width: 480px) {
+      max-height: calc(100% - 80px) !important;
+    }
+    @media (max-width: 599px) {
+      max-height: calc(100% - 87px);
+    }
   }
 
   &__title {
@@ -151,11 +159,9 @@ export default {
 
   &__content {
     height: 100%;
-    flex-shrink: 0;
-    overflow: scroll;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     & img {
       display: block;

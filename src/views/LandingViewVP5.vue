@@ -183,12 +183,15 @@
               :value="id"
               v-model="subscribe"
             />
-            <span class="label label-blue" :class="{'checkedValue': subscribe === id}">
-              {{name}}
-            </span>
-            <div class="label__totalCost">
-              <span class="label__totalCost-text"><span class="line">{{ totalCost }}</span> {{ superDiscPrice }}</span>
-            </div>
+            <div class="payment-block__check" :class="{'active-blue': subscribe === id}" />
+            <div class="payment-block__body">
+              <span class="label label-blue" :class="{'checkedValue': subscribe === id}">
+                {{name}}
+              </span>
+              <div class="label__totalCost">
+                <span class="label__totalCost-text"><span class="line">{{ totalCost }}</span> {{ superDiscPrice }}</span>
+              </div>
+              </div>
           </div>
           <div 
             class="payment-block__right payment-block__right-blue" 
@@ -241,11 +244,14 @@
               :value="id"
               v-model="subscribe"
             />
-            <span class="label" :class="{'checkedValue': subscribe === id}">
-              {{name}}
-            </span>
-            <div class="label__totalCost">
-              <span class="label__totalCost-text"><span class="line">{{ totalCost }}</span> {{ totalDiscCost }}</span>
+            <div class="payment-block__check" :class="{active: subscribe === id}" />
+            <div class="payment-block__body">
+              <span class="label" :class="{'checkedValue': subscribe === id}">
+                {{name}}
+              </span>
+              <div class="label__totalCost">
+                <span class="label__totalCost-text"><span class="line">{{ totalCost }}</span> {{ totalDiscCost }}</span>
+              </div>
             </div>
           </div>
           <div 
@@ -851,8 +857,6 @@
   .label {
     &__totalCost {
       display: flex;
-      width: 80%;
-      margin-left: auto;
 
       &-text {
         font-family: "SF Pro Text Regular";
@@ -970,13 +974,39 @@
   }
 
   &__label {
+    display: flex;
+    align-items: center;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 135%;
     color: #ffffff80;
-    display: block;
     cursor: pointer;
+  }
+
+  &__check {
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-right: 16px;
+
+    &.active {
+      background-image: url('@/assets/images/icons/check_no_bg_black.svg');
+      background-size: 69%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #E44240;
+      border-color: #E44240;
+    }
+    &.active-blue {
+      background-image: url('@/assets/images/icons/check_no_bg_black.svg');
+      background-size: 69%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #5773D6;
+      border-color: #5773D6;
+    }
   }
 
   &__triangle {
@@ -1044,32 +1074,6 @@
     & + span {
       display: flex;
       align-items: center;
-    }
-
-    & + span::before {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 2px solid #ffffff26;
-      margin-right: 0.75em;
-      transition: 0.5s ease all;
-      box-sizing: border-box;
-    }
-
-    &:checked + span::before {
-      background: url('../assets/img/icons/icon_active.png');
-      background-size: cover;
-      border: none;
-    }
-
-    &-blue {
-      &:checked + span::before {
-        background: url('../assets/img/icons/icon_active-blue.png');
-        background-size: cover;
-        border: none;
-      }
     }
   }
 

@@ -37,7 +37,7 @@ const state = () => ({
         {
             id: 2,
             title: 'Improve Ejaculation Control', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
-            titleShortQuiz: 'Increase endurance',
+            titleShortQuiz: 'Improve Increase endurance',
             purpose: 'Ejaculation Control',
             addpurpose: 'Erectile Function',
             text: '',

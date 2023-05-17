@@ -90,15 +90,15 @@
           </li>
           <li v-if="addpurpose" class="benefits__item">
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
-            Improve {{ addpurpose }}
+            <p>Improve <b> {{ addpurpose }} </b></p>
           </li>
           <li class="benefits__item" v-if="addItem">
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
-            <span>Increase <b>Erective Function</b></span>
+            <span>Improve <b>Erective Function</b></span>
           </li>
           <li class="benefits__item" v-if="addItem">
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
-            <span>Increase <b>Ejaculation Control</b></span>
+            <span>Improve <b>Ejaculation Control</b></span>
           </li>
           <li class="benefits__item">
             <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
@@ -154,9 +154,9 @@
     <div style="position: absolute; top: 100%; width: 100%; height: 70px" id="selectPlan"></div>
     </div>
   </div>
-    <div  class="payment-block">
+    <div ref="payment-block" class="payment-block">
       <div v-if="superDiscount.theme">
-        <SuperDiscountGift style="margin: 0 auto 32px; max-width: 311px" />
+        <SuperDiscountGift :discount="pickedTarifParams.discount" :discountOriginal="pickedTarifParams.discountOriginal" style="margin: 0 auto 32px; max-width: 311px" />
         <h2 class="payment-block__title">
           Choose Your Plan
         </h2>
@@ -283,7 +283,7 @@
         By clicking «Get my plan», I agree to pay <b>{{ pickedTarifParams.discountPrice }}</b> for my plan and that if I do not cancel before the end of the <b>{{ pickedTarifParams.subscriptionPeriod }}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>30.99 USD</b> every <b>1 month</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
       </p>
       <p v-else class="payment-block__description">
-        We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of <b>{{ pickedTarifParams.fullPrice }}</b> at the end of the chosen subscription period. Your payment method will be automatically charged every <b>{{ pickedTarifParams.subscriptionPeriod }}</b> until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
+        By clicking «Get my plan», I agree to pay <b>{{ pickedTarifParams.discountPrice }}</b> for my plan and that if I do not cancel before the end of the <b>{{ pickedTarifParams.subscriptionPeriod }}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>{{ pickedTarifParams.fullPrice }}</b> every <b>{{ pickedTarifParams.subscriptionPeriod }}</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
       </p>
       <button @click="openPaymentPopup" :disabled="!subscribe" class="payment-block__button" :class="[superDiscount.theme ? 'blue blue-shadow' : 'red-shadow']">
         Get my plan
@@ -342,7 +342,7 @@
             Contact us here: <a href="mailto:contact@kegel.men" class="info-block__link">contact@kegel.men</a>
           </p>
         </div>
-        <a href="#selectPlan" class="info-block__button red-shadow">
+        <a @click="scrollToPaymentBlock" class="info-block__button red-shadow">
           Get my plan
         </a>
       </div>
@@ -467,6 +467,13 @@
       }
     },  
     methods: {
+      scrollToPaymentBlock() {
+        const el = this.$refs["payment-block"];
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 50;
+
+        window.scrollTo({top: y, behavior: 'smooth'});
+        //.scrollIntoView({ behavior: "smooth", block: 'center'})
+      },
       superDiscountCheck() {
         const superDiscount = JSON.parse(localStorage.getItem('superDiscount'))
         this.superDiscount.theme = superDiscount ? superDiscount : false;
@@ -513,9 +520,9 @@
         this.mixpanel.track('Trial Started',{
           amount: this.price
         })
-        setTimeout(() => {
-          this.$router.push("AddressPage");
-        }, 0);
+        // setTimeout(() => {
+        //   this.$router.push("AddressPage");
+        // }, 0);
       },
       paymentError() {
         this.mixpanel.track('Payment Error', {
@@ -559,7 +566,8 @@
             text: 'per day',
             totalCost: '10.49 USD',
             totalDiscCost: '6.93 USD',
-            superDiscPrice: '5.50 USD'
+            superDiscPrice: '5.50 USD',
+            chargebeeId: "kegel_1-USD-Every-3-months"
           },
           {
             id: 2,
@@ -569,7 +577,8 @@
             text: 'per day',
             totalCost: '30.99 USD',
             totalDiscCost: '15.19 USD',
-            superDiscPrice: '11.99 USD'
+            superDiscPrice: '11.99 USD',
+            chargebeeId: "kegel_1-USD-Every-3-months"
           },
           {
             id: 3,
@@ -579,7 +588,8 @@
             text: 'per day',
             totalCost: '53.19 USD',
             totalDiscCost: '25.99 USD',
-            superDiscPrice: '21.49 USD'
+            superDiscPrice: '21.49 USD',
+            chargebeeId: "kegel_1-USD-Every-3-months"
           }
         ]
       },
@@ -591,6 +601,7 @@
           discountAmount: '',
           subscriptionName: '',
           discount: null,
+          discountOriginal: null,
           superDiscount: this.superDiscount.theme ? true : false,  
           discountType: this.subscribe
         };
@@ -599,25 +610,37 @@
             priceParams.subscriptionPeriod = '1 week'
             priceParams.fullPrice = '10.49 USD'
             priceParams.discountPrice = this.superDiscount.theme ? '5.50 USD' : '6.93 USD'
-            priceParams.discountAmount = this.superDiscount.theme ? '-4.99 USD' : '-3.56 USD'
+            priceParams.discountAmount = this.superDiscount.theme ? '4.99 USD' : '3.56 USD'
             priceParams.subscriptionName = '1-week  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 48 : 34
+            priceParams.discountOriginal = 34
+            priceParams.chargebeeId = "kegel_1-USD-Every-3-months"
+            this.price = this.superDiscount.theme ? 5.50 : 6.93
+            this.item = priceParams.chargebeeId
             break;
           case 2:
             priceParams.subscriptionPeriod = '1 month'
             priceParams.fullPrice = '30.99 USD'
             priceParams.discountPrice = this.superDiscount.theme ? '11.99 USD' : '15.19 USD'
-            priceParams.discountAmount = this.superDiscount.theme ? '-19.00 USD' : '-15.80 USD'
+            priceParams.discountAmount = this.superDiscount.theme ? '19.00 USD' : '15.80 USD'
             priceParams.subscriptionName = '1-month  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 61 : 51
+            priceParams.discountOriginal = 51
+            priceParams.chargebeeId = "kegel_1-USD-Every-3-months"
+            this.price = this.superDiscount.theme ? 11.99 : 15.19
+            this.item = priceParams.chargebeeId
             break;
           case 3:
             priceParams.subscriptionPeriod = '3 months'
             priceParams.fullPrice = '53.19 USD'
             priceParams.discountPrice = this.superDiscount.theme ? '21.49 USD' : '25.99 USD'
-            priceParams.discountAmount = this.superDiscount.theme ? '-31.70 USD' : '-27.20 USD'
-            priceParams.subscriptionName = '1-months  Kegel Plan'
+            priceParams.discountAmount = this.superDiscount.theme ? '31.70 USD' : '27.20 USD'
+            priceParams.subscriptionName = '3-months  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 60 : 51
+            priceParams.discountOriginal = 51
+            priceParams.chargebeeId = "kegel_1-USD-Every-3-months"
+            this.price = this.superDiscount.theme ? 21.49 : 25.99 
+            this.item = priceParams.chargebeeId
             break;
         }
         return priceParams;
@@ -866,6 +889,7 @@
         }
       }
     }
+    padding-left: 30px;
   }
 
   .payment-block__item.checkedValue {
@@ -912,7 +936,7 @@
     align-items: center;
     justify-content: space-between;
 
-    border: 1px solid #000;
+    border: 1px solid transparent;
     border-radius: 9px;
     background: #ffffff0e;
     color: #fff;
@@ -1054,8 +1078,11 @@
       border-radius: 50%;
       border: 2px solid #ffffff26;
       margin-right: 0.75em;
-      transition: 0.5s ease all;
+      transition: 0.0s ease all;
       box-sizing: border-box;
+      position: absolute;
+      margin-left: -30px;
+      margin-top: 15px;
     }
 
     &:checked + span::before {

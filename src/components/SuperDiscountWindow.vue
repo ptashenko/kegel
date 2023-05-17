@@ -2,7 +2,7 @@
   <div class="wrapper">
     <header-layout :isDark="true" />
     <div class="wrapper__content">
-        <img class="wrapper__image" src="@/assets/images/superDiscount.jpg" />
+        <img class="wrapper__image" src="@/assets/images/superDiscount.png" />
         <h2 class="wrapper__title">
             Get your plan with a SUPER Discount!
         </h2>

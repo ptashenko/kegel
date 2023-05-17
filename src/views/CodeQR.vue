@@ -200,7 +200,7 @@ export default {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '450334773666656');
+            fbq('init', '739994357762334');
             fbq('track', 'Purchase', {value:  localStorage.getItem('price') == null ? 4.2 : localStorage.getItem('price'), currency: "USD"});
             gtag('event', 'conversion', {
               'send_to': 'AW-407765903/i-0JCPCIvdcDEI-HuMIB',

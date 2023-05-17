@@ -172,10 +172,10 @@
     </div>
       <div class="mw-520">
         <div v-if="subscriotionInfo.id === 1 && open !== 2" class="android-footer__text">
-          In addition to your subscription, your account will be charged {{ price.discPrice }} for the add-on as you click "Add to my plan". Item on this page is a 1 month subscription. Unless you cancel it in your profile before the end of then-current period, you agree that the subscription will renew automatically at the end of each period. You can cancel the subscription online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
+          In addition to your subscription, your account will be charged <b>{{ this.open === 1 ? this.price.discPrice : this.price.superDiscPrice }}</b> for the add-on as you click "Add to my plan". Item on this page is a <b>1 month</b> subscription. Unless you cancel it in your profile before the end of then-current period, you agree that the subscription will renew automatically at the end of each period. You can cancel the subscription online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
         </div>
         <div v-else-if="subscriotionInfo.id !== 1 && open !== 2" class="android-footer__text">
-          We’ve automatically applied the discount to your first subscription price. Please note that your subscription will be automatically renewed at the full price of {{price.fullPrice}} at the end of the chosen subscription period. Your payment method will be automatically charged every {{subscriotionInfo.period}} until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of the subscription period, you will not receive a partial refund. If you want to manage your subscription, you may do so via your personal account in the Billing Center.
+          In addition to your subscription, your account will be charged <b>{{ this.open === 1 ? this.price.discPrice : this.price.superDiscPrice }}</b> for the add-on as you click "Add to my plan". Item on this page is a <b>{{ this.subscriotionInfo.period }}</b> subscription. Unless you cancel it in your profile before the end of then-current period, you agree that the subscription will renew automatically at the end of each period. You can cancel the subscription online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
         </div>
       </div>
   </div>
@@ -206,12 +206,13 @@
     v-if="popupWindowPay"
     textTitle="Select Payment method"
     class="popup_wraper"
+    @closePopup="closePopupWindowPay"
   >
-    <div 
+    <!-- <div 
       class="closeBtn" 
       @click="closePopupWindowPay"
     >
-    </div>
+    </div> -->
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <PaymentFormCompanent 
         @error="paymentError" 
@@ -353,7 +354,7 @@ export default {
     },
     closePopupWindowPay(){
       const height = sessionStorage.getItem('scrollto')
-      setTimeout(function(){ window.scrollTo( 0, height ) })
+      setTimeout(function(){ window.scrollTo( 0, -100) })
       this.popupWindowPay = false
       let body = document.querySelector('body')
       body.classList.remove('fixed');
@@ -450,7 +451,9 @@ export default {
       })
       var element = document.getElementById("topPage");
       var top = element.offsetTop;
-      window.scrollTo(0, top);
+      setTimeout(() => {
+        window.scrollTo(0, 0)
+      }, 50)
       this.open = 2
       localStorage.setItem('addPlan', 2)
     },
@@ -458,7 +461,12 @@ export default {
       this.mixpanel.track('Discunted Upsale Offered')
       var element = document.getElementById("topPage");
       var top = element.offsetTop;
-      window.scrollTo(0, top);
+      setTimeout(() => {
+        window.scrollTo(0, -100)
+      }, 50)
+      setTimeout(() => {
+        window.scrollTo(0, -100)
+      }, 100)
       this.open = 3
       localStorage.setItem('addPlan', 3)
     },
@@ -477,6 +485,9 @@ export default {
     clearInterval(this.pollingTwo)
   },
   mounted() {
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 50)
     this.storeEdit()
     if (!this.ios_v1) {
       if (open == 1) {

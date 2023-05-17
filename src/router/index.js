@@ -211,6 +211,8 @@ router.afterEach((to, from) => {
 router.beforeEach((to, from, next) => {
     const isRedirectDisabled =
         (from.name === 'pre-email' && to.name === 'LandingViewV2') ||
+        (from.name === 'pre-email' && to.name === 'LandingViewVP5') ||
+        (from.name === 'AddressPage' && to.name === 'LandingViewVP5') ||
         (from.name === 'PlanFinal' && to.name === 'EmailAdress2') ||
         (from.name === 'PlanFinal' && to.name === 'LandingView') ||
         (from.name === 'CodeQR' && to.name === 'PlanFinal') ||

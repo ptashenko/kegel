@@ -206,9 +206,9 @@ export default {
   },
   mounted() {
     this.payPalSelect();
-    if (window.ApplePaySession) {
-      this.apple_pay = ApplePaySession.canMakePayments();
-    }
+    // if (window.ApplePaySession) {
+    //   this.apple_pay = ApplePaySession.canMakePayments();
+    // }
   },
 };
 </script>

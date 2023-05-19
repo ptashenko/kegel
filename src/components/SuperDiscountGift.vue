@@ -4,13 +4,13 @@
         <img class="wrapper__glow" src="@/assets/img/lp_v5/glow.png" />
         <img class="wrapper__image" src="@/assets/img/lp_v5/gift-red.png" />
     </div>
-    <p class="wrapper__text">Get a <span class="wrapper__text-old">51%</span> <span class="wrapper__text-new">61% discount</span> on your Kegel plan</p>
+    <p class="wrapper__text">Get a <span class="wrapper__text-old">{{ this.discountOriginal }}%</span> <span class="wrapper__text-new">{{ this.discount }}% discount</span> on your Kegel plan</p>
   </div>
 </template>
 
 <script>
 export default {
-
+    props: ["discount", "discountOriginal"],
 }
 </script>
 
@@ -37,6 +37,7 @@ export default {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        height: 64px;
     }
     &__glow {
         position: absolute;

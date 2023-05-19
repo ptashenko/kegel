@@ -66,6 +66,11 @@ export default {
   components: {
     Footer
   },
+  mounted() {
+    setTimeout(() => {
+      window.scrollTo(0, -100)
+    }, 100)
+  },
   created () {
     this.mixpanel.track('Final Screen Shown')
   },
@@ -126,7 +131,7 @@ align-items: center;
   background: linear-gradient(0deg, #20CB42, #20CB42), #111113;
   box-shadow: 0px 15px 37px rgba(32, 203, 66, 0.64);
   border-radius: 9px;
-  border: none;
+  border: hidden;
   color: #fff;
   font-family: "SF Pro Text Regular";
   font-style: normal;

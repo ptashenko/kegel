@@ -5,6 +5,22 @@
     <div class="ex1-contain">
       <div class="ex1-fieldset">
         <div class="ex1-field">
+          <input
+            class="ex1-input"
+            type="text"
+            id="nameInput"
+            v-model="name"
+            placeholder="Name on Card"
+            minlength="2"
+            required
+            pattern="[A-Za-z ]{2,}"
+            @click="diselectName"
+          />
+          <!-- <label class="ex1-label">Name on Card</label
+            > -->
+          <i class="ex1-bar" id="nameBar"></i>
+        </div>
+        <div class="ex1-field">
           <div class="ex1-input" id="card-combined"></div>
           <label class="ex1-label"></label><i class="ex1-bar" id="cardBar"></i>
         </div>
@@ -81,40 +97,40 @@ export default {
                 // this.error = "";
                 console.log(paymentIntent);
 
-                if(this.ver == 3) {
-                  this.$router.push({
-                    name: "AddressPage",
-                    params: {
-                      paymentIntentId: paymentIntent.id,
-                      name: document.getElementById("nameInput").value,
-                      item: this.item
-                    }
-                  });
-                } else {
-                  const requestOptions = {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                      Authorization: "Bearer test",
-                    },
-                    body: JSON.stringify({
-                      web_user_uuid: localStorage
-                        .getItem("web_user_uuid")
-                        .replaceAll('"', ""),
-                      intent_id: paymentIntent.id,
-                      item: this.item,
-                      name: document.getElementById("nameInput").value,
-                    }),
-                  };
-                  fetch(
-                    "https://int2.kegel.men/api/web-payment/accept/card-payment/",
-                    requestOptions
-                  ).then((response) => {
-                    this.loading = false;
-                    this.$emit("success");
-                    //this.nextUrl();
-                  });
-                }
+                // if(this.ver == 3) {
+                this.$router.push({
+                  name: "AddressPage",
+                  params: {
+                    paymentIntentId: paymentIntent.id,
+                    name: document.getElementById("nameInput").value,
+                    item: this.item
+                  }
+                });
+                // } else {
+                //   const requestOptions = {
+                //     method: "POST",
+                //     headers: {
+                //       "Content-Type": "application/json",
+                //       Authorization: "Bearer test",
+                //     },
+                //     body: JSON.stringify({
+                //       web_user_uuid: localStorage
+                //         .getItem("web_user_uuid")
+                //         .replaceAll('"', ""),
+                //       intent_id: paymentIntent.id,
+                //       item: this.item,
+                //       name: document.getElementById("nameInput").value,
+                //     }),
+                //   };
+                //   fetch(
+                //     "https://int2.kegel.men/api/web-payment/accept/card-payment/",
+                //     requestOptions
+                //   ).then((response) => {
+                //     this.loading = false;
+                //     this.$emit("success");
+                //     //this.nextUrl();
+                //   });
+                // }
                 // Send ajax call to create a subscription or to create a card payment source using the paymentIntent ID
               })
               .catch((error) => {
@@ -135,8 +151,8 @@ export default {
   },
   mounted() {
     window.Chargebee.init({
-      site: "appercut",
-      publishableKey: "live_H5n9AkhJPqxJcus1SjSCzY4581sNVtH8w",
+      site: "appercut-test",
+      publishableKey: "test_7FOVxVHry4i95p9iFcivpmIr8zdZMKDA",
     });
     console.log("Init Card");
     var options = {

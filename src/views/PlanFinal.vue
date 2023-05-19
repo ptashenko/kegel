@@ -443,6 +443,9 @@ export default {
     clearInterval(this.pollingTwo)
   },
   mounted(){
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 50)
     this.$nextTick(function (){
       // chrome
       document.body.scrollTop = 0

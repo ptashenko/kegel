@@ -248,7 +248,8 @@ export default {
       if (this.numreview < 2) {
         this.numreview += 1;
       } else {
-        clearInterval(this.numrew);
+        this.numreview = 0
+        // clearInterval(this.numrew);
       }
     }, 4000);
   

@@ -31,7 +31,7 @@
         <p class="paymentInfo-container__text">{{ subscription }}</p>
         <p class="paymentInfo-container__text amount">{{ fullPrice }}</p>
         <p class="paymentInfo-container__text">{{ discount }}% introductory price discount</p>
-        <p class="paymentInfo-container__text amount" :style="!theme ? 'color: #E44240;' : 'color: #5773D6'" style="font-weight: 700;">{{ discountAmount }}</p>
+        <p class="paymentInfo-container__text amount" :style="!theme ? 'color: #E44240;' : 'color: #5773D6'" style="font-weight: 700;">-{{ discountAmount }}</p>
     </div>
     <div class="paymentInfo-container reverse" style="border: none">
       <p class="total-container__title">Total</p>
@@ -74,7 +74,7 @@
     :item="this.item"
     :auth_price="this.auth_price"
   />
-  <button @click="success">PAYMENT IS SUCCESSFUL</button>
+  <!-- <button @click="success">PAYMENT IS SUCCESSFUL</button> -->
   <div
     id="apple-pay-button"
     class=""
@@ -96,7 +96,7 @@ export default {
   },
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ["item","theme","auth_price", "discount", "discountAmount", "discountPrice", "fullPrice", "discountAmount", "subscription", "subscriptionDate"],
+  props: ["item","theme","auth_price", "discount", "discountAmount", "discountPrice", "fullPrice", "subscription", "subscriptionDate"],
   data() {
     return {
       // item: "kegel_1-USD-Every-3-months",
@@ -153,7 +153,7 @@ export default {
         }),
       };
       fetch(
-        "https://int2.kegel.men/api/web-payment/init/card-payment/",
+        "http://192.168.88.187:8000/api/web-payment/init/card-payment/",
         requestOptions
       )
         .then((response) => response.json())
@@ -186,7 +186,7 @@ export default {
                     }),
                   };
                   fetch(
-                    "https://int2.kegel.men/api/web-payment/accept/card-payment/",
+                    "http://192.168.88.187:8000/api/web-payment/accept/card-payment/",
                     requestOptions
                   ).then((response) => {
                     this.loading = false;
@@ -204,9 +204,9 @@ export default {
   },
   mounted() {
     this.payPalSelect();
-    if (window.ApplePaySession) {
-      this.apple_pay = ApplePaySession.canMakePayments();
-    }
+    // if (window.ApplePaySession) {
+    //   this.apple_pay = ApplePaySession.canMakePayments();
+    // }
   },
 };
 </script>

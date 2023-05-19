@@ -187,7 +187,18 @@ export default {
       console.log(this.billingAdress)
       if (this.valid) {
         localStorage.setItem('billingAdress', JSON.stringify(this.billingAdress))
-        this.$router.push("PlanFinalTwo");
+        let isiPhone = window.navigator.platform == "iPhone"
+        // let mediaQuery = window.matchMedia('(max-width: 480px)');
+        if (isiPhone) {
+          let body = document.querySelector('body')
+          body.classList.remove('fixed');
+          this.$router.push('PlanFinalTwo')
+        }else{
+          let body = document.querySelector('body')
+          body.classList.remove('fixed');
+          this.$router.push('Whatsapp')
+        }
+        //this.$router.push("PlanFinalTwo");
         this.sendRequest()
       }
     },
@@ -220,7 +231,17 @@ export default {
                   ).then((response) => {
                     if (response.status == 204 || response.status == 200) {
                     this.loading = false;
-                    this.$router.push("PlanFinalTwo");
+                    let isiPhone = window.navigator.platform == "iPhone"
+                    // let mediaQuery = window.matchMedia('(max-width: 480px)');
+                    if (isiPhone) {
+                      let body = document.querySelector('body')
+                      body.classList.remove('fixed');
+                      this.$router.push('PlanFinalTwo')
+                    }else{
+                      let body = document.querySelector('body')
+                      body.classList.remove('fixed');
+                      this.$router.push('Whatsapp')
+                    }
                     }
                   });
     },

@@ -174,8 +174,8 @@ export default {
   },
   mounted() {
     window.Chargebee.init({
-      site: "appercut",
-      publishableKey: "live_H5n9AkhJPqxJcus1SjSCzY4581sNVtH8w",
+      site: "appercut-test",
+      publishableKey: "test_7FOVxVHry4i95p9iFcivpmIr8zdZMKDA",
     });
     console.log("Init Card");
     var options = {

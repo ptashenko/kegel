@@ -1,6 +1,5 @@
 <template>
 <div class="landing">
-  <header-layout :fixed="true"/>
   <div class="dark-layout light" id="topPage">
     <div class="container-main is-page land">
       <div class="landing__content">
@@ -70,7 +69,7 @@
       </div>
     </div>
   </div>
-  <div class="price">
+  <div class="price mw-450">
     <div class="price__text">
       PRICE TODAY
     </div>
@@ -87,7 +86,7 @@
   <div class="mw-450 trial_description opac_5">
     <i>*You'll have 7 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
   </div>
-  <div class="price">
+  <div class="price mw-450 afterTrial">
     <div class="price__text">
       PRICE AFTER TRIAL
     </div>
@@ -119,21 +118,9 @@
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item" id="paymentForm"/>
-      <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
-        <div class="d-flex align-items-center star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-        </div>
-        <div class="d-flex align-items-center">
-          <img src="@/assets/images/icons/out48.svg" alt="out">
-        </div>
-        <p> <span class="bold">36k</span> 5-star ratings</p>
-      </div>
     </div>
-    <div class="block__text mw-450" style="margin-top:48px">
+    <RatingStars class="rating" />
+    <div class="block__text mw-450" style="margin-top:37px">
       <p class="title">Email confirmation</p>
       <p class="fs-16-14">You will get an email confirmation every time your subscription renews.</p>
     </div>
@@ -154,12 +141,13 @@
         Get my plan
       </button>
     </div>
-    <div class="mw-450 d-flex flex-column mb-32">
+    <div class="mw-450 d-flex flex-column mb-64">
       <p class="text-description">
         <span class="bold">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="bold">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$4.2) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
       </p>
     </div>
   </div>
+  <Footer />
   <vpopup
   class="popup_wraper"
     textTitle="Why now?"
@@ -206,6 +194,8 @@ import btnComponent from '@/components/questions/btnPopup.vue';
 import countdown from '@/components/Countdown.vue';
 import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
+import RatingStars from '@/components/RatingStars.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'Landing_ios_v1', 
@@ -215,7 +205,9 @@ export default {
     vpopup,
     btnComponent,
     countdown,
-    PaymentFormCompanent
+    PaymentFormCompanent,
+    RatingStars,
+    Footer,
 },
   data() {
     return {
@@ -262,7 +254,7 @@ export default {
       })
       setTimeout(() => {
         sessionStorage.setItem('ios_v1', true);
-        this.$router.push("PlanFinalTwo");
+        this.$router.push("PlanFinalTwo_ios");
       }, 0);
     },
     moment() {
@@ -563,7 +555,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.rating {
+  margin-top: 48px;
+}
 .token {
   color: #555;
   padding: 10px;
@@ -747,10 +741,10 @@ export default {
   max-width: 310px;
   margin: 0px auto;
 }
-.mb-32{
-  margin-bottom: 48px;
+.mb-64{
+  margin-bottom: 64px;
   @media (max-width:480px) {
-    margin-bottom: 32px;
+    margin-bottom: 64px;
   }
 }
 .fs-16-14{
@@ -759,16 +753,9 @@ export default {
     font-size: 14px;
   }
 }
-.landing{
-  padding-bottom: 32px;
-}
+
 .block__timer .p-14{
   margin-bottom: 16px;
-}
-.container-main{
-  @media (max-width:480px) {
-    padding-bottom: 50px;
-  }
 }
 .answer{
   width: 45%;
@@ -786,7 +773,7 @@ hr{
   }
 }
 .payment{
-  margin: 84px auto 16px;
+  margin: 64px auto 16px;
   @media (max-width:480px) {
     margin: 64px auto 16px;
   }
@@ -806,7 +793,14 @@ hr{
     }
   }
 }
+
+::v-deep .v-popup {
+    max-width: 320px;
+    min-height: unset;
+    bottom: unset;
+  }
 .popup_wraper{
+
   h2{
     margin: 0 0 16px;
     font-family: "SF-Pro-Display-Bold";
@@ -1065,7 +1059,7 @@ hr{
   margin-right: 4px;
 }
 .trial_description{
-  padding: 16px 32px 25px;
+  padding: 16px 32px 0;
   margin: 0 auto;
   line-height: 150%;
   @media (max-width:480px) {
@@ -1075,6 +1069,11 @@ hr{
 .price{
   background: #F1F3F9;
   padding: 16px 74px;
+  margin-top: 32px;
+
+  &.afterTrial {
+    margin-top: 16px;
+  }
   @media (max-width:480px) {
     padding: 16px 32px;
   }
@@ -1119,19 +1118,20 @@ ul{
   margin: 0px auto 8px;
   font-size: 30px;
   line-height: 135%;
-  margin: 0px auto 24px;
+  margin: 0px auto 16px;
   font-family: "SF-Pro-Display-Bold";
   @media (max-width:480px) {
-    font-size: 24px;
+    font-size: 32px;
   }
 }
 .h2.inside {
   font-family: "SF-Pro-Display-Bold";
   font-size: 20px;
   margin-top: 16px;
+  margin-bottom: 24px;
 }
 .dark-layout{
-  padding: 84px 32px 0px;
+  padding: 6px 32px 0px;
   .p-14{
     font-size: 16px;
     text-align: center;
@@ -1234,7 +1234,7 @@ ul{
   }
 
   &__thumbnail {
-    margin: 32px auto;
+    margin: 24px auto;
     text-align: center;
     width: 100%;
     max-width: 450px;

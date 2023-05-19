@@ -118,7 +118,7 @@ export default {
 }
 
 .footer-container {
-    max-width: 520px;
+    max-width: 450px;
     margin: 0 auto;
     box-sizing: border-box;
 }

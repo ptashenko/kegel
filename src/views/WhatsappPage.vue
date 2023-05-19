@@ -6,7 +6,7 @@
           Your Kegel Plan is waiting for you on your email
         </div>
       </div>
-      <p class="instructions">
+      <p class="mw-520 instructions">
         Instruction on <b>how to access and activate your personal plan</b> has been sent to you at <span style="color: #5773D6; font-weight: bold;">{{ EMAILUSER }}</span>
       </p>
 
@@ -35,7 +35,7 @@
         <p class="contacts__email">
           or by email <span class="red">contact@kegel.men</span>
         </p>
-        <p class="contacts__offer">
+        <p class="mw-520 contacts__offer">
           We offer personalized assistance and will promptly contact you to help with any issues or inquiries &#9786;
         </p>
       </div>
@@ -108,6 +108,7 @@ align-items: center;
     line-height: 150%;
     text-align: center;
     color: #111113;
+    margin-bottom: 32px;
   }
 
   &__offer {
@@ -117,7 +118,7 @@ align-items: center;
     line-height: 150%;
     text-align: center;
     color: rgba(17, 17, 19, 0.75);
-    margin-top: 32px;
+    padding: 0;
   }
 }
 
@@ -155,8 +156,7 @@ align-items: center;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
-  margin-top: 24px;
-  /* or 24px */
+  padding: 24px 0 0;
 
   text-align: center;
 
@@ -166,7 +166,6 @@ align-items: center;
 }
 .Final{
   max-width: 311px;
-  padding-top: 12px;
   padding-bottom: 64px !important;
   @media (min-width: 600px) {
     max-width: 600px;
@@ -223,7 +222,7 @@ align-items: center;
   }
   .mw-450{
     max-width: 450px;
-    margin: 32px auto 48px;
+    margin: 32px auto 32px;
     @media (max-width:480px) {
       margin: 32px auto 0;
     }

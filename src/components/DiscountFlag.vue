@@ -49,7 +49,7 @@ export default {
 
     &__left {
         position: relative;
-        flex-basis: 25%;
+        flex-basis: 40%;
     }
 
     &__right {
@@ -81,7 +81,7 @@ export default {
     }
 
     &__flag {
-        width: 60%;
+        width: 52%;
         position: absolute;
         top: -25px;
         left: 50%;

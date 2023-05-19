@@ -30,7 +30,7 @@ export default {
         downloads: {
             type: Number,
             isRequired: true,
-            default: '1.6M+'
+            default: '2M+'
         }
     }
 }
@@ -38,7 +38,7 @@ export default {
 
 <style lang="scss">
 .rating {
-    margin: 32px 0;
+    margin: 32px 0 0;
     &__text {
         font-family: 'SF Pro Text Regular';
         font-style: normal;

@@ -27,6 +27,7 @@ import Landing_android_v3 from '@/views/Landing_android_v3.vue';
 import Landing_android_v4 from '@/views/Landing_android_v4.vue';
 import PlanFinal from '@/views/PlanFinal.vue';
 import PlanFinalTwo from '@/views/PlanFinalTwo.vue';
+import PlanFinalTwo_ios from '@/views/PlanFinalTwo_ios.vue';
 import CodeQR from '@/views/CodeQR.vue';
 import WhatsappPage from '@/views/WhatsappPage.vue';
 import FeedBack from '@/views/FeedBack.vue';
@@ -36,7 +37,7 @@ import PreLandv2 from "@/views/PreLandv2";
 const routes = [{
         path: '/',
         name: 'home',
-    component: HomeView_v2,
+        component: HomeView_v2,
     },
     {
         path: '/survey/:survey',
@@ -153,6 +154,11 @@ const routes = [{
         name: 'PlanFinalTwo',
         component: PlanFinalTwo,
     },
+    {
+      path: '/PlanFinalTwo_ios',
+      name: 'PlanFinalTwo_ios',
+      component: PlanFinalTwo_ios,
+  },
     {
         path: '/CodeQR',
         name: 'CodeQR',

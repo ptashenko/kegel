@@ -464,6 +464,13 @@
             this.timer = true
           }, 200)
         }
+      },
+      paymentPopup(newValue, oldValue) {
+        if (oldValue && !newValue && !this.superDiscount.theme) {
+          this.superDiscount.popup = true;
+          this.superDiscount.theme = true;
+          document.body.style.overflow = 'hidden'
+        }
       }
     },  
     methods: {
@@ -508,11 +515,6 @@
         localStorage.setItem('usersSubscriptionInfo', JSON.stringify(pickedSubscription))
       },
       cancelPayment() {
-        if (!this.superDiscount.theme) {
-          this.superDiscount.popup = true;
-          this.superDiscount.theme = true;
-          document.body.style.overflow = 'hidden'
-        }
         this.paymentPopup = false;
         document.body.style.overflow = 'auto'
       },
@@ -716,6 +718,14 @@
     beforeUnmount () {
       clearInterval(this.polling)
       clearInterval(this.numanim)
+    },
+    beforeRouteLeave(to, from, next) { 
+      if (this.paymentPopup) {
+        this.paymentPopup = false
+        next(false)
+      } else {
+        next()
+      }
     },
     mounted() {
       this.timer = true

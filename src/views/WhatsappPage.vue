@@ -26,14 +26,14 @@
           <img src="@/assets/img/lp_v5/help.svg" />
           Any questions or concerns?
         </p>
-       <button class="whatsapp-btn">
+       <button @click="openWhatsapp" class="whatsapp-btn">
         <img src="@/assets/img/lp_v5/svg_watsapp.svg" />
         Text us on WhatsApp
        </button>
       </div>
       <div class="contacts">
         <p class="contacts__email">
-          or by email <span class="red">contact@kegel.men</span>
+          or by email <a href="mailto:contact@kegel.men"><span class="red">contact@kegel.men</span></a>
         </p>
         <p class="mw-520 contacts__offer">
           We offer personalized assistance and will promptly contact you to help with any issues or inquiries &#9786;
@@ -65,6 +65,11 @@ export default {
   },
   components: {
     Footer
+  },
+  methods: {
+    openWhatsapp() {
+      window.location.href = `https://web.whatsapp.com/send?phone=15593547145&text=I’d%20like%20help%20regarding%20the%20Dr.%20Kegel%20Plan%20that%20I%20purchased.%0AHere’s%20the%20email%20address%20from%20which%20the%20purchase%20was%20made%3A%20${{EMAILUSER}}`;
+    }
   },
   mounted() {
     setTimeout(() => {
@@ -114,6 +119,11 @@ align-items: center;
     text-align: center;
     color: #111113;
     margin-bottom: 32px;
+
+    a:link { text-decoration: none; }
+    a:visited { text-decoration: none; }
+    a:hover { text-decoration: none; }
+    a:active { text-decoration: none; }
   }
 
   &__offer {

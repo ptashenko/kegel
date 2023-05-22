@@ -348,21 +348,6 @@
       </div>
     </div>
     <Footer />
-    <vpopup
-      class="windowError"
-      v-if="windowError"
-      :close-button="false"
-    > 
-      <p class="opasity_75">
-        Your payment was declined. Please try again or use a different payment method.
-      </p>
-      <img 
-        class="error" 
-        src="@/assets/images/icons/btn_close_communicate.svg" 
-        alt="error"
-        @click="closeWindowError"
-      >
-    </vpopup>
     <vpopup 
       v-if="paymentPopup" 
       textTitle="Select Payment method" 
@@ -383,6 +368,21 @@
         :subscriptionDate="pickedTarifParams.subscriptionPeriod"
         :theme="superDiscount.theme"
         id="paymentForm" />
+    </vpopup>
+    <vpopup
+      class="windowError"
+      v-if="windowError"
+      :close-button="false"
+    > 
+      <p class="opasity_75">
+        Your payment was declined. Please try again or use a different payment method.
+      </p>
+      <img 
+        class="error" 
+        src="@/assets/images/icons/btn_close_communicate.svg" 
+        alt="error"
+        @click="closeWindowError"
+      >
     </vpopup>
     <SuperDiscountWindow 
       v-if="superDiscount.popup && !superDiscWindow" 
@@ -569,7 +569,7 @@
             totalCost: '10.49 USD',
             totalDiscCost: '6.93 USD',
             superDiscPrice: '5.50 USD',
-            chargebeeId: "kegel_1-USD-Every-3-months"
+            chargebeeId: "kegel_1_trial-USD-Monthly"
           },
           {
             id: 2,
@@ -580,7 +580,7 @@
             totalCost: '30.99 USD',
             totalDiscCost: '15.19 USD',
             superDiscPrice: '11.99 USD',
-            chargebeeId: "kegel_1-USD-Every-3-months"
+            chargebeeId: "kegel_2_trial-USD-Monthly"
           },
           {
             id: 3,
@@ -591,7 +591,7 @@
             totalCost: '53.19 USD',
             totalDiscCost: '25.99 USD',
             superDiscPrice: '21.49 USD',
-            chargebeeId: "kegel_1-USD-Every-3-months"
+            chargebeeId: "kegel-3-trial-USD-Every-3-months"
           }
         ]
       },
@@ -616,7 +616,7 @@
             priceParams.subscriptionName = '1-week  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 48 : 34
             priceParams.discountOriginal = 34
-            priceParams.chargebeeId = "kegel_1-USD-Every-3-months"
+            priceParams.chargebeeId = "kegel_1_trial-USD-Monthly"
             this.price = this.superDiscount.theme ? 5.50 : 6.93
             this.item = priceParams.chargebeeId
             break;
@@ -628,7 +628,7 @@
             priceParams.subscriptionName = '1-month  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 61 : 51
             priceParams.discountOriginal = 51
-            priceParams.chargebeeId = "kegel_1-USD-Every-3-months"
+            priceParams.chargebeeId = "kegel_2_trial-USD-Monthly"
             this.price = this.superDiscount.theme ? 11.99 : 15.19
             this.item = priceParams.chargebeeId
             break;
@@ -640,7 +640,7 @@
             priceParams.subscriptionName = '3-months  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 60 : 51
             priceParams.discountOriginal = 51
-            priceParams.chargebeeId = "kegel_1-USD-Every-3-months"
+            priceParams.chargebeeId = "kegel-3-trial-USD-Every-3-months"
             this.price = this.superDiscount.theme ? 21.49 : 25.99 
             this.item = priceParams.chargebeeId
             break;
@@ -1700,7 +1700,7 @@
     justify-content: center;
     align-items: top;
     position: fixed;
-    z-index: 9;
+    z-index: 999;
     top: 32px;
     left: 0;
     right: 0;

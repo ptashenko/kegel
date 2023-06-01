@@ -71,7 +71,7 @@ export default {
 
     &:before {
       background-color: transparent;
-      background-image: url("@/assets/images/icons/check.svg");
+      background-image: url("@/assets/images/svg/icon_check.svg");
     }
   }
 

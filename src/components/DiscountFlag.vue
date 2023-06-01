@@ -1,7 +1,7 @@
 <template>
     <div class="discountFlag" :style="{borderColor: color}">
         <div class="discountFlag__left">
-            <img :src="require(`@/assets/img/lp_v5/${icon}.png`)" class="discountFlag__flag" />
+            <img :src="require(`@/assets/images/${icon}.png`)" class="discountFlag__flag" />
         </div>
         <div class="discountFlag__right">
             <h2 class="discountFlag__title">

@@ -2,15 +2,15 @@
   <div class="dark-layout light" id="topPage">
     <div class="container-main is-page Final">
       <div class="mw-520">
-        <div 
-          v-if="active && open == 1" 
+        <div
+          v-if="active && open == 1"
           class="h2 text-center"
           :class="{active: active}"
         >
-          Add Groin Fitness 
+          Add Groin Fitness
           <p>to accelerate the result</p>
         </div>
-        <div 
+        <div
           v-else-if="open == 2"
           class="show text-center"
         >
@@ -33,22 +33,22 @@
       </div>
       <div class="mw-450 d-flex flex-column mb-32">
       <div v-if="open !== 2" class="item-li d-flex align-items-center">
-        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <img v-if="open == 1" class="check" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           Build groin muscles strength & flexibility
         </p>
       </div>
       <div v-if="open !== 2" class="item-li d-flex align-items-center">
-        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <img v-if="open == 1" class="check" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           Increase blood flow to intimate organs
         </p>
       </div>
       <div v-if="open !== 2" class="item-li d-flex align-items-center">
-        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <img v-if="open == 1" class="check" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           Every exercise has video & audio instructions from the coach
         </p>
@@ -79,7 +79,7 @@
 
         <div v-if="ios_v1" class="block-blue">
           <div class="block-blue__left">
-            <img :src="require(`@/assets/img/lp_v5/blue-gift.png`)" class="block-blue__flag" />
+            <img :src="require(`@/assets/images/blue-gift.png`)" class="block-blue__flag" />
           </div>
           <div class="block-blue__right">
             <p class="block-blue__text">
@@ -90,7 +90,7 @@
 
         <div v-else class="block_blue">
           <div v-if-else class="block_blue__content d-flex align-items-center">
-            <img src="@/assets/images/icons/icon_present.svg" alt="">
+            <img src="@/assets/images/svg/icon_present.svg" alt="">
             <p>We want you to be successful, so we're offering <span class="text-bold"> 25% off </span> the Groin Fitness just for you!</p>
           </div>
         </div>
@@ -99,7 +99,7 @@
 
       <div v-if="open == 1">
         <button-field
-          
+
           text='Add to my plan'
           theme="Back"
           class="footer-controls__button red"
@@ -116,7 +116,7 @@
           class="footer-controls__button btnLoader loader"
           :class="{ hiden: !isActive }"
         >
-          <lottie-animation 
+          <lottie-animation
             class="check"
             ref="anim"
             :animationData="require(`@/assets/images/json/loader_white.json`)"
@@ -147,7 +147,7 @@
           class="footer-controls__button btnLoader loader bg-blue"
           :class="{ hiden: !isActive }"
         >
-          <lottie-animation 
+          <lottie-animation
             class="check"
             ref="anim"
             :animationData="require(`@/assets/images/json/loader_white.json`)"
@@ -164,19 +164,19 @@
       I don’t want to accelerate my results &gt;
       </div>
       <div v-else-if="open == 2" class="text-center">
-        <button v-if="ios_v1" 
+        <button v-if="ios_v1"
           class="v-popup__submit_btn_first active"
           @click="closePopup"
         >
         Continue
         </button>
-        
-        <button v-else 
+
+        <button v-else
           class="v-popup__submit_btn active"
           @click="closePopup"
         >
         Continue
-        <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" >
+        <img src="@/assets/images/svg/icon_arrow-next.svg" class="btn__next" alt="" >
         </button>
       </div>
       <div v-else
@@ -186,50 +186,50 @@
       I give up accelerated results forever &gt;
       </div>
       <div v-if="!ios_v1">
-      <div v-if="open == 1" class="mw-520"> 
+      <div v-if="open == 1" class="mw-520">
         <div  class="footer__text">
         Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
         </div>
       </div>
-      <div v-else-if="open == 3" class="mw-520"> 
+      <div v-else-if="open == 3" class="mw-520">
         <div  class="footer__text">
         Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
         </div>
       </div>
     </div>
     <div v-else>
-      <div v-if="open == 1" class="mw-520"> 
+      <div v-if="open == 1" class="mw-520">
         <div  class="footer__text">
-        Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use. 
+        Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
         </div>
       </div>
-      <div v-else-if="open == 3" class="mw-520"> 
+      <div v-else-if="open == 3" class="mw-520">
         <div  class="footer__text">
         Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
         </div>
       </div>
     </div>
     </div>
-    
+
   </div>
   <vpopup
     class="windowError"
     v-if="windowError"
-  > 
+  >
     <div>
       <p class="opasity_75">
         Your payment was declined.
       </p>
-      <p 
+      <p
         class="opasity_75 blue"
         @click="popupPay"
       >
         Tap here to select a different payment method.
       </p>
     </div>
-    <img 
-      class="error" 
-      src="@/assets/images/icons/btn_close_communicate.svg" 
+    <img
+      class="error"
+      src="@/assets/images/svg/icon_btn-close-communicate.svg"
       alt="error"
       @click="closeWindowError"
     >
@@ -239,11 +239,11 @@
     textTitle="Select Payment method"
     class="popup_wraper"
   >
-    <div 
-      class="closeBtn" 
+    <div
+      class="closeBtn"
       @click="closePopupWindowPay"
     >
-      <img src="@/assets/images/icons/btn_close_cwindow.svg" alt="apple_pay">
+      <img src="@/assets/images/svg/icon_btn-close-window.svg" alt="apple_pay">
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <PaymentFormCompanent @error="paymentError" @success="payingSuccess" @click="closeWindowError" :item="this.item"/>
@@ -386,7 +386,7 @@ export default {
             clearInterval(this.pollingTwo)
             this.numTimeError = 0
             this.isActive = false
-            this.paymentError() 
+            this.paymentError()
           }
         }, 1000)
     },
@@ -653,12 +653,12 @@ export default {
     font-family: "SF Pro Text Medium";
     font-size: 16px;
     line-height: 150%;
-    opacity: 0.5;  
-    margin: 16px auto 32px;  
+    opacity: 0.5;
+    margin: 16px auto 32px;
     cursor: pointer;
-    
+
   }
-  
+
   .opacity_05 {
     opacity: 0.5;
     font-size: 12px;
@@ -670,8 +670,8 @@ export default {
   }
 
   .video{
-    max-height: 260px; 
-    height: 100vh; 
+    max-height: 260px;
+    height: 100vh;
     max-width: 100%;
     // border-radius: 14px;
     @media (max-width:480px) {
@@ -714,7 +714,7 @@ export default {
 }
 @media (max-width: 480px){
   .container-main {
-    padding-bottom: 0px; 
+    padding-bottom: 0px;
   }
 }
 
@@ -740,7 +740,7 @@ export default {
 }
 @media (max-width: 480px){
   .container-main {
-    padding-bottom: 0px; 
+    padding-bottom: 0px;
   }
 }
 .popup_wraper{
@@ -766,7 +766,7 @@ export default {
       }
     @media (max-width:480px) {
       font-size: 14px;
-    }  
+    }
   }
   img{
     // width: 100%;
@@ -921,7 +921,7 @@ export default {
 .check{
   width: 25px;
   height: 25px;
-  
+
   @media (max-width:480px) {
     width: 16px;
     height: 16px;
@@ -941,7 +941,7 @@ export default {
     cursor: pointer;
   }
 }
-.block-pay{  
+.block-pay{
   .d-flex{
     width: 100%;
     max-width: 310px;

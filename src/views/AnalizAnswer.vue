@@ -3,7 +3,7 @@
       <div class="h2 text-center">
         {{title}}
       </div>
-      
+
       <div class="loading as"
         @click="openPopup"
       >
@@ -11,9 +11,9 @@
           <div>
             Intimate health indicators
           </div>
-          <div class="d-flex align-items-center"> 
+          <div class="d-flex align-items-center">
             <div class="d-flex">
-              <lottie-animation 
+              <lottie-animation
                 class="check"
                 :class="{ active: isActiveCheck_1 }"
                 ref="animed"
@@ -40,9 +40,9 @@
           <div>
             Sexual behaviours
           </div>
-          <div class="d-flex align-items-center"> 
+          <div class="d-flex align-items-center">
             <div class="d-flex">
-              <lottie-animation 
+              <lottie-animation
                 class="check"
                 :class="{ active: isActiveCheck_2 }"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
@@ -68,9 +68,9 @@
           <div>
             Lifestyle
           </div>
-          <div class="d-flex align-items-center"> 
+          <div class="d-flex align-items-center">
             <div class="d-flex">
-              <lottie-animation 
+              <lottie-animation
                 class="check"
                 :class="{ active: isActiveCheck_3 }"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
@@ -96,16 +96,16 @@
           <div>
             Creating your plan
           </div>
-          <div class="d-flex align-items-center"> 
+          <div class="d-flex align-items-center">
             <div class="d-flex">
-              <lottie-animation 
+              <lottie-animation
                 class="check"
                 :class="{ active: isActiveCheck_4 }"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
                 :loop="true"
                 :autoPlay="true"
                 :speed="1"
-     
+
               />
             </div>
             <div  class="number__procent">
@@ -126,10 +126,10 @@
             <div class="review__title">{{ reviewItem.title }}</div>
             <div class="review__rating">
               <div v-for="i in reviewItem.rating" :key="i">
-                <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="star-yellow">
               </div>
               <div v-for="i in Number(5 - reviewItem.rating)" :key="i">
-                <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="star-yellow">
               </div>
             </div>
           </div>
@@ -143,14 +143,14 @@
           {{ reviewItem.text }}
         </div>
       </div>
-      
+
 
 
       <vpopup
         class="popup_wraper analize "
         :textTitle = textTitle
         v-if="popupVisible"
-      >   
+      >
         <btnComponent
           :class="{ active: isActiveYes }"
           @clickBtn="BtnActiveYes"
@@ -163,12 +163,12 @@
           answer="No, I don't"
         >
         </btnComponent>
-        <button 
+        <button
           class="v-popup__submit_btn"
           :class="{active: closeActive}"
           @click="closePopup"
         >
-        Ok 
+        Ok
         </button>
       </vpopup>
     </div>
@@ -219,7 +219,7 @@ export default {
       loadTreePooling: null,
       refreshId: null,
       numReviewPooling: null,
-      userAnswer:"", 
+      userAnswer:"",
     }
   },
 
@@ -239,10 +239,10 @@ export default {
       } else {
         this.base = this.$store.state.review.msgED
       }
-      return console.log(this.track);  
+      return console.log(this.track);
     }
   },
-  
+
   mounted() {
     this.numrew = setInterval(() => {
       if (this.numreview < 2) {
@@ -252,7 +252,7 @@ export default {
         // clearInterval(this.numrew);
       }
     }, 4000);
-  
+
     this.as = setInterval(() => {
       if (this.percent < this.mystop) {
         this.percent += 1;
@@ -263,8 +263,8 @@ export default {
       }
     }, 60);
   },
-  
-  
+
+
 
   methods:{
     showModal(){
@@ -275,7 +275,7 @@ export default {
       this.isLoad = false
       clearInterval(this.numrew);
     },
-  
+
     closePopup(e){
       const x = e.target
       const body = document.querySelector('body')
@@ -286,7 +286,7 @@ export default {
         this.popupVisible = false
         this.isLoad = true
         this.mystop = 100
-        this.ased()  
+        this.ased()
         this.numReview()
         this.mixpanel.track('Quiz Answer', {
           question: this.textTitle,
@@ -297,7 +297,7 @@ export default {
 
     BtnActiveYes(){
       this.userAnswer = "Yes, I do"
-      this.isActiveYes = this.closeActive = true 
+      this.isActiveYes = this.closeActive = true
       this.isActiveNo = false
     },
 
@@ -418,7 +418,7 @@ export default {
 .review__animate{
   width: 17px;
   height: 17px;
-  
+
 }
 .review__animate.loadanime{
   animation: preloader-rotate 1s infinite ease-in-out;
@@ -472,7 +472,7 @@ export default {
   }
 }
 .number__procent{
-  width: 45px; 
+  width: 45px;
   text-align: right;
 }
 .text__percent.active{
@@ -534,7 +534,7 @@ export default {
   @media (min-width: 600px) {
       max-width: 100%;
     }
-  
+
   &:not(.light) {
     background-color: #1D1D1F;
   }

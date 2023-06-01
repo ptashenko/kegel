@@ -1,8 +1,8 @@
 <template>
   <button :class="theme" class="btn">
-    <img src="@/assets/images/arrow-prev.svg" class="btn__prev" alt="" v-if="icon === 'prev'">
+    <img src="@/assets/images/svg/icon_arrow-prev.svg" class="btn__prev" alt="" v-if="icon === 'prev'">
     <span>{{ text }}</span>
-    <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" v-if="icon === 'next'">
+    <img src="@/assets/images/svg/icon_arrow-next.svg" class="btn__next" alt="" v-if="icon === 'next'">
   </button>
 </template>
 

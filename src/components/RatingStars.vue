@@ -5,10 +5,10 @@
         </p>
         <div class="rating__rate">
             <div class="rating__stars">
-                <img v-for="(_, idx) of stars" :key="idx" class="rating__star" src="@/assets/images/star1.png" :alt="idx + 'star'">
+                <img v-for="(_, idx) of stars" :key="idx" class="rating__star" src="@/assets/images/svg/icon_star.svg" :alt="idx + 'star'">
             </div>
             <div class="rating__out">
-                <img src="@/assets/images/icons/out48-black.svg" alt="out">
+                <img src="@/assets/images/svg/icon_rating48.svg" alt="out">
             </div>
         </div>
     </div>

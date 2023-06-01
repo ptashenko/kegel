@@ -2,7 +2,7 @@
 
   <div class="preloader" v-if="loading">
     <div class="block-loader">
-      <lottie-animation 
+      <lottie-animation
         class="check"
         ref="anim"
         :animationData="require(`@/assets/images/json/f5_loader.json`)"
@@ -24,7 +24,7 @@
             Select a goal to get a step-by-step plan
           </div>
           <div class="str">
-            <lottie-animation 
+            <lottie-animation
                 ref="arrowmain"
                 class="animationArrow"
                 :class="{ active: isActiveHand }"
@@ -49,7 +49,7 @@
             >
               <b>{{ track.title }}</b>
               <span></span>
-              <lottie-animation 
+              <lottie-animation
                 v-if="track.id == 1"
                 :class="{ active: isActiveHand }"
                 class="animationHand"
@@ -70,8 +70,8 @@
       <div class="footer">
         <div class="container-main">
           <div class="advantage" v-for="advantage in advantages" :key="advantage.title">
-            <img 
-            :src="advantage.img" 
+            <img
+            :src="advantage.img"
             :alt="advantage.title"
             :style="{  width: advantage.width + 'px' }"
             >
@@ -91,7 +91,7 @@
       {{dataP2}}
       {{dataP3}}
     </div>
-  </transition> 
+  </transition>
 </template>
 
 <script>
@@ -115,15 +115,15 @@ export default {
           title: 'Dr. Kegel: For Men’s Health',
           text: 'is a complex approach to strengthen male intimate health',
           logo: 'logo',
-          img: require(`../assets/images/logo_footer.png`),
+          img: require(`../assets/images/logos/logo_footer.png`),
           width: 44
         },
         {
           title: 'Need support?',
           text: 'Contact Customer Service if you have any questions. We\'ll be sure to help you.',
           email: 'contact@kegel-plan.com',
-          logo: 'subtract',
-          img: require(`../assets/images/Subtract.png`),
+          logo: 'icon_support',
+          img: require(`../assets/images/svg/icon_support.svg`),
           width: 48
         },
       ],
@@ -135,7 +135,7 @@ export default {
   },
   computed: {
     ...mapGetters(['tracks', 'contentBy']),
-    
+
     dataP1(){
       this.randomData = (Math.floor(Math.random( ) * (22 - 16 + 1)) + 16);
       moment();
@@ -180,19 +180,19 @@ export default {
           let param = moment().add(4,'month').format("MMMM") + ' ' + ost ;
           sessionStorage.setItem(key, param);
         }
-        
+
         return param
       }
       days(28, 'dataPP3_day', 'data3')
       days(24, 'dataPP32_day', 'data32')
       days(20, 'dataPP33_day', 'data33')
       days(16, 'dataPP34_day', 'data34')
-    
+
     },
     myHand(){
       this.animated = setInterval(() => {
         if (this.numhand < 10) {
-          
+
           this.numhand += 1;
         } else {
           this.isActiveHand = true
@@ -208,7 +208,7 @@ export default {
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),
     getRandomInt(max,min) {
-      console.log(Math.floor(Math.random() * (max - min + 1)) + min); 
+      console.log(Math.floor(Math.random() * (max - min + 1)) + min);
     },
     getData(track) {
       const content = this.contentBy({
@@ -228,7 +228,7 @@ export default {
     },
     bgBodyMain(){
       let mediaQuery = window.matchMedia('(max-width: 480px)');
-      
+
       let body = document.querySelector('body')
       if(this.loading === false){
         body.classList.remove('fixed');
@@ -239,15 +239,15 @@ export default {
         body.style.backgroundColor = '#ffffff';
       }
     },
-    
+
   },
   mounted() {
     // this.clearHistory()
     this.bgBodyMain()
-    document.onreadystatechange = () => { 
+    document.onreadystatechange = () => {
       let body = document.querySelector('body')
       body.classList.add('fixed');
-      if (document.readyState == "complete") { 
+      if (document.readyState == "complete") {
         body.classList.remove('fixed');
         this.loading = false
         this.$store.commit('setLOADER', false);
@@ -293,7 +293,7 @@ export default {
   display: block;
 }
 .animation {
-    display: block; 
+    display: block;
 }
 .str{
   width: 20px;
@@ -505,13 +505,13 @@ body{
 .check{
   width: 48px;
   height: auto;
-  
+
 }
 .translate-enter-active,
   .translate-leave-active {
     transition: all .65s ease;
   }
-  
+
   .translate-enter-from,
   .translate-leave-to {
     opacity: 0;

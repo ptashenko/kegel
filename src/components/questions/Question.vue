@@ -70,7 +70,7 @@ export default {
     &:before {
       // background-color: transparent;
       background-color: white;
-      background-image: url("@/assets/images/icons/check_no_bg_black.svg");
+      background-image: url("@/assets/images/svg/icon_check-no-bg-black.svg");
       background-repeat: no-repeat;
       background-position: 60% 55%;
       background-size:65%;

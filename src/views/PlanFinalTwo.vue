@@ -1,15 +1,15 @@
 <template>
   <div id="topPage" class="container-main final">
     <div class="mw-520">
-      <div 
-        v-if="active && open == 1" 
+      <div
+        v-if="active && open == 1"
         class="final__title"
         :class="{active: active}"
       >
-        Add Groin Fitness 
+        Add Groin Fitness
         <p class="final__title--regular">to accelerate the result</p>
       </div>
-      <h2 
+      <h2
         v-else-if="open == 2"
         class="final__secondTitle"
       >
@@ -33,22 +33,22 @@
     </div>
     <div class="mw-450 d-flex flex-column mb-32">
       <div v-if="open !== 2" class="item-li d-flex align-items-center">
-        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <img v-if="open == 1" class="check" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           Build groin muscles strength & flexibility
         </p>
       </div>
       <div v-if="open !== 2" class="item-li d-flex align-items-center">
-        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <img v-if="open == 1" class="check" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           Increase blood flow to intimate organs
         </p>
       </div>
       <div v-if="open !== 2" class="item-li d-flex align-items-center">
-        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <img v-if="open == 1" class="check" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           Every exercise has video & audio instructions from the coach
         </p>
@@ -59,7 +59,7 @@
           :full-price="price.fullPrice"
           style="margin: 24px 0 32px;"
           :color="open === 1 ? '#E44240' : '#5773D6'"
-          :icon="open === 1 ? 'discountFlag' : 'superDiscountFlag'"
+          :icon="open === 1 ? 'red-discount-flag' : 'blue-discount-flag'"
         />
     </div>
     <div
@@ -78,7 +78,7 @@
       </p>
       <div class="block-blue">
         <div class="block-blue__left">
-            <img :src="require(`@/assets/img/lp_v5/blue-gift.png`)" class="block-blue__flag" />
+            <img :src="require(`@/assets/images/blue-gift.png`)" class="block-blue__flag" />
         </div>
         <div class="block-blue__right">
             <p class="block-blue__text">
@@ -91,7 +91,7 @@
 
     <div v-if="open == 1">
       <button-field
-        
+
         text='Add to my plan'
         theme="Back"
         class="footer-controls__button red red-shadow"
@@ -109,7 +109,7 @@
         class="footer-controls__button btnLoader loader"
         :class="{ hiden: !isActive }"
       >
-        <lottie-animation 
+        <lottie-animation
           class="check"
           ref="anim"
           :animationData="require(`@/assets/images/json/loader_white.json`)"
@@ -140,7 +140,7 @@
         class="footer-controls__button btnLoader loader bg-blue"
         :class="{ hiden: !isActive }"
       >
-        <lottie-animation 
+        <lottie-animation
           class="check"
           ref="anim"
           :animationData="require(`@/assets/images/json/loader_white.json`)"
@@ -157,12 +157,12 @@
     I don’t want to accelerate my results &gt;
     </div>
     <div v-else-if="open == 2" class="text-center">
-      <button 
+      <button
         class="v-popup__submit_btn active w-full blue-shadow"
         @click="closePopup"
       >
       Continue
-      <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" >
+      <img src="@/assets/images/svg/icon_arrow-next.svg" class="btn__next" alt="" >
       </button>
     </div>
     <div v-else
@@ -184,21 +184,21 @@
     class="windowError"
     v-if="windowError"
     :close-button="false"
-  > 
+  >
     <div>
       <p class="opasity_75">
         Your payment was declined.
       </p>
-      <p 
+      <p
         class="opasity_75 blue"
         @click="popupPay"
       >
         Tap here to select a different payment method.
       </p>
     </div>
-    <img 
-      class="error" 
-      src="@/assets/images/icons/btn_close_communicate.svg" 
+    <img
+      class="error"
+      src="@/assets/images/svg/icon_btn-close-communicate.svg"
       alt="error"
       @click="closeWindowError"
     >
@@ -209,16 +209,16 @@
     class="popup_wraper"
     @closePopup="closePopupWindowPay"
   >
-    <!-- <div 
-      class="closeBtn" 
+    <!-- <div
+      class="closeBtn"
       @click="closePopupWindowPay"
     >
     </div> -->
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <PaymentFormCompanent 
-        @error="paymentError" 
-        @success="payingSuccess1" 
-        @click="closeWindowError" 
+      <PaymentFormCompanent
+        @error="paymentError"
+        @success="payingSuccess1"
+        @click="closeWindowError"
         :item="this.item"
         :period="subscriotionInfo.period"
         :discPrice="price.discPrice"
@@ -406,7 +406,7 @@ export default {
             clearInterval(this.pollingTwo)
             this.numTimeError = 0
             this.isActive = false
-            this.paymentError() 
+            this.paymentError()
           }
         }, 1000)
     },
@@ -742,8 +742,8 @@ export default {
     font-family: "SF Pro Text Medium";
     font-size: 16px;
     line-height: 150%;
-    opacity: 0.5;  
-    margin: 32px auto;  
+    opacity: 0.5;
+    margin: 32px auto;
     cursor: pointer;
     @media (min-width: 600px) {
       margin: 32px auto 48px;
@@ -751,11 +751,11 @@ export default {
     @media (max-width: 420px) {
       font-size: 14px;
     }
-    
+
   }
 
   .video{
-    height: 100vh; 
+    height: 100vh;
     max-width: 100%;
     // border-radius: 14px;
     @media (max-width:480px) {
@@ -808,7 +808,7 @@ export default {
 }
 @media (max-width: 480px){
   .container-main {
-    padding-bottom: 50px; 
+    padding-bottom: 50px;
   }
 }
 
@@ -939,7 +939,7 @@ export default {
 .check{
   width: 25px;
   height: 25px;
-  
+
   @media (max-width:480px) {
     width: 16px;
     height: 16px;
@@ -959,7 +959,7 @@ export default {
     cursor: pointer;
   }
 }
-.block-pay{  
+.block-pay{
   .d-flex{
     width: 100%;
     max-width: 310px;

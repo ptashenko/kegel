@@ -8,12 +8,12 @@
         </h2>
         <div class="timePlan__content">
           <div class="w-50 text-center">
-            <img src="@/assets/images/icons/icon_research.svg" alt="">
+            <img src="@/assets/images/svg/icon_research.svg" alt="">
             <h3>700+</h3>
             <p>Hours research</p>
           </div>
           <div class="w-50 text-center">
-            <img src="@/assets/images/icons/icon_studies.svg" alt="">
+            <img src="@/assets/images/svg/icon_studies.svg" alt="">
             <h3>150+</h3>
             <p>Studies analysis</p>
           </div>
@@ -30,7 +30,7 @@
             text: 'I got it',
             click: btnClick ,
             theme: 'red'
-          }" 
+          }"
         />
       </div>
   </Transition>

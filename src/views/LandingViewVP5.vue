@@ -14,7 +14,7 @@
         <span>expires in: </span><countdown v-if="timer" style="display: inline;" />
       </p>
     </div>
-    
+
     <div id="topPage" class="content">
       <h2 class="content__title">
         Your Kegel Plan to improve {{ purpose }} is ready!
@@ -22,8 +22,8 @@
       <p class="content__subtitle" v-if="subscribe"><b>Limited offer</b> reserved for 15 minutes</p>
       <div id="blockScroll" class="content__timer" @click="onScroll">
         <div class="content__timer--wrapper">
-          <img class="content__timer--glow" src="@/assets/img/lp_v5/glow.png" alt="icon" />
-          <img class="content__timer--icon" src="@/assets/img/lp_v5/timer.png" alt="icon" />
+          <img class="content__timer--glow" src="@/assets/images/glow.png" alt="icon" />
+          <img class="content__timer--icon" src="@/assets/images/timer.png" alt="icon" />
         </div>
         <div class="content__timer--body">
           <p class="content__timer--start" :class="[superDiscount.theme ? 'blue' : 'red']">{{pickedTarifParams.discount}}% discount</p>
@@ -35,7 +35,7 @@
       <div id="trigger1" class="content__date">
         <div class="content__purpose">
           <span>
-            Based on your personal goals you can 
+            Based on your personal goals you can
           </span>
           <br>
           <span v-if="AddPurposeCom" class="content__purpose--bold">
@@ -55,10 +55,10 @@
             </transition>
         </div>
       </div>
-  
+
       <div class="graphic">
-        <lottie-animation 
-          class="animation" 
+        <lottie-animation
+          class="animation"
           ref="content.ref"
           :animationData="imageitem"
           :loop="false"
@@ -72,7 +72,7 @@
         />
         <div class="graphic__date">
           <p class="graphic__month"
-            v-for="(_, idx) of new Array(6)" 
+            v-for="(_, idx) of new Array(6)"
             :key="idx">
             {{setDate(idx)}}
           </p>
@@ -85,35 +85,35 @@
         <h2 class="benefits__title">Kegel Plan Benefits</h2>
         <ul class="benefits__list">
           <li class="benefits__item">
-            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
             <p>Reach your goal and improve <b> {{ purpose }} </b></p>
           </li>
           <li v-if="addpurpose" class="benefits__item">
-            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
             <p>Improve <b> {{ addpurpose }} </b></p>
           </li>
           <li class="benefits__item" v-if="addItem">
-            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
             <span>Improve <b>Erective Function</b></span>
           </li>
           <li class="benefits__item" v-if="addItem">
-            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
             <span>Improve <b>Ejaculation Control</b></span>
           </li>
           <li class="benefits__item">
-            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
             Pill-free approach
           </li>
           <li class="benefits__item">
-            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
             Long-lasting improvement
           </li>
           <li class="benefits__item">
-            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
             Takes <span class="text-bold">&nbsp;5 min a day</span>
           </li>
           <li class="benefits__item">
-            <img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check" />
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
             More happiness for you and for your partner
           </li>
         </ul>
@@ -124,7 +124,7 @@
         />
       </div>
     </div>
-  
+
     <div class="price">
         <div class="reviews container-main">
           <div class="reviews__title">Customer reviews</div>
@@ -134,21 +134,21 @@
                 <div>
                   <div class="reviews__topic">{{ item.title }}</div>
                   <div class="reviews__rating">
-                      <img v-for="i in item.rating" :key="i" src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+                      <img v-for="i in item.rating" :key="i" src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="star-yellow">
                   </div>
                 </div>
-        
+
                 <p class="reviews__name">
                   {{ item.name }}
                 </p>
               </div>
-        
+
               <p class="reviews__text">
                 {{ item.text }}
               </p>
-        
+
           </div>
-        
+
           <button class="reviews__showMore" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
         </div>
     <div style="position: absolute; top: 100%; width: 100%; height: 70px" id="selectPlan"></div>
@@ -165,20 +165,20 @@
         Get Your Kegel Plan to improve {{ purpose }}
       </h2>
       <div v-if="superDiscount.theme" class="payment-block__list">
-        <label 
-          v-for="({id, fullprice, cost, text, name, totalCost, superDiscPrice}, idx) of tarifs" 
+        <label
+          v-for="({id, fullprice, cost, text, name, totalCost, superDiscPrice}, idx) of tarifs"
           :key="idx"
-          class="payment-block__item payment-block__item-blue" 
+          class="payment-block__item payment-block__item-blue"
           :class="{
             'checkedValue': subscribe === id,
             'popular': idx === 1,
             'popularChecked-blue': subscribe === id && idx === 1
-            }" 
+            }"
           >
           <div class="payment-block__label payment-block__label-blue">
-            <input 
+            <input
               class="payment-block__input payment-block__input-blue"
-              type="radio" 
+              type="radio"
               name="subscribe"
               :value="id"
               v-model="subscribe"
@@ -190,8 +190,8 @@
               <span class="label__totalCost-text"><span class="line">{{ totalCost }}</span> {{ superDiscPrice }}</span>
             </div>
           </div>
-          <div 
-            class="payment-block__right payment-block__right-blue" 
+          <div
+            class="payment-block__right payment-block__right-blue"
             :class="{'checkedValue': subscribe === id}"
           >
           <div class="payment-block__triangle">
@@ -200,20 +200,20 @@
               </svg>
             </div>
             <div class="payment-block__right-price">
-              <p 
-              class="payment-block__oldPrice payment-block__oldPrice-blue" 
+              <p
+              class="payment-block__oldPrice payment-block__oldPrice-blue"
               :class="{'checkedValue': subscribe === id}"
             >
               {{fullprice }}
             </p>
-            <p 
-              class="payment-block__newPrice payment-block__newPrice-blue" 
+            <p
+              class="payment-block__newPrice payment-block__newPrice-blue"
               :class="{'checkedValue': subscribe === id}"
             >
               {{ cost }}
             </p>
-            <p 
-              class="payment-block__text payment-block__text-blue" 
+            <p
+              class="payment-block__text payment-block__text-blue"
               :class="{'checkedValue': subscribe === id}"
             >
               {{ text }}
@@ -223,21 +223,21 @@
         </label>
       </div>
       <div v-else class="payment-block__list">
-        <label 
-          v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs" 
+        <label
+          v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs"
           :key="idx"
-          class="payment-block__item" 
+          class="payment-block__item"
           :class="{
             'checkedValue': subscribe === id,
             'popular': idx === 1,
             'popularChecked': subscribe === id && idx === 1
-            }" 
+            }"
           >
           <div class="payment-block__label">
             <input
               class="payment-block__input"
-              type="radio" 
-              name="subscribe" 
+              type="radio"
+              name="subscribe"
               :value="id"
               v-model="subscribe"
             />
@@ -248,8 +248,8 @@
               <span class="label__totalCost-text"><span class="line">{{ totalCost }}</span> {{ totalDiscCost }}</span>
             </div>
           </div>
-          <div 
-            class="payment-block__right" 
+          <div
+            class="payment-block__right"
             :class="{'checkedValue': subscribe === id}">
             <div class="payment-block__triangle">
               <svg width="112" height="56" viewBox="0 0 112 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -257,20 +257,20 @@
               </svg>
             </div>
             <div class="payment-block__right-price">
-              <p 
-              class="payment-block__oldPrice" 
+              <p
+              class="payment-block__oldPrice"
               :class="{'checkedValue': subscribe === id}"
             >
               {{fullprice }}
             </p>
-            <p 
-              class="payment-block__newPrice" 
+            <p
+              class="payment-block__newPrice"
               :class="{'checkedValue': subscribe === id}"
               >
               {{ cost }}
             </p>
-            <p 
-              class="payment-block__text" 
+            <p
+              class="payment-block__text"
               :class="{'checkedValue': subscribe === id}"
               >
               {{ text }}
@@ -300,7 +300,7 @@
       <div class="info-block">
         <div class="info-block__item">
           <div class="info-block__top">
-            <img src="../assets/img/icons/icon_notification.svg" class="info-block__icon" />
+            <img src="../assets/images/svg/icon_notification.svg" class="info-block__icon" />
             <h3 class="info-block__title">
               Get notifications
             </h3>
@@ -311,7 +311,7 @@
         </div>
         <div class="info-block__item">
           <div class="info-block__top">
-            <img src="../assets/img/icons/icon_safe.svg" class="info-block__icon" />
+            <img src="../assets/images/svg/icon_safe.svg" class="info-block__icon" />
             <h3 class="info-block__title">
               Your information is safe
             </h3>
@@ -322,7 +322,7 @@
         </div>
         <div class="info-block__item">
           <div class="info-block__top">
-            <img src="../assets/img/icons/icon_secure.svg" class="info-block__icon" />
+            <img src="../assets/images/svg/icon_secure.svg" class="info-block__icon" />
             <h3 class="info-block__title">
               Secure checkout
             </h3>
@@ -333,7 +333,7 @@
         </div>
         <div class="info-block__item">
           <div class="info-block__top">
-            <img src="../assets/img/icons/icon_help.svg" class="info-block__icon" />
+            <img src="../assets/images/svg/icon_help.svg" class="info-block__icon" />
             <h3 class="info-block__title">
               Need help?
             </h3>
@@ -348,23 +348,23 @@
       </div>
     </div>
     <Footer />
-    <vpopup 
-      v-if="paymentPopup" 
-      textTitle="Select Payment method" 
+    <vpopup
+      v-if="paymentPopup"
+      textTitle="Select Payment method"
       class="payment-popup"
       @closePopup="cancelPayment"
     >
-      <PaymentFormCompanentModal 
-        @error="paymentError" 
-        @success="nextUrl" 
-        @clickButton="closeWindowError" 
+      <PaymentFormCompanentModal
+        @error="paymentError"
+        @success="nextUrl"
+        @clickButton="closeWindowError"
         :item="this.item"
         :auth_price="this.price"
         :discount="pickedTarifParams.discount"
         :discountAmount="pickedTarifParams.discountAmount"
         :discountPrice="pickedTarifParams.discountPrice"
-        :fullPrice="pickedTarifParams.fullPrice" 
-        :subscription="pickedTarifParams.subscriptionName" 
+        :fullPrice="pickedTarifParams.fullPrice"
+        :subscription="pickedTarifParams.subscriptionName"
         :subscriptionDate="pickedTarifParams.subscriptionPeriod"
         :theme="superDiscount.theme"
         id="paymentForm" />
@@ -373,19 +373,19 @@
       class="windowError"
       v-if="windowError"
       :close-button="false"
-    > 
+    >
       <p class="opasity_75">
         Your payment was declined. Please try again or use a different payment method.
       </p>
-      <img 
-        class="error" 
-        src="@/assets/images/icons/btn_close_communicate.svg" 
+      <img
+        class="error"
+        src="@/assets/images/svg/icon_btn-close-communicate.svg"
         alt="error"
         @click="closeWindowError"
       >
     </vpopup>
-    <SuperDiscountWindow 
-      v-if="superDiscount.popup && !superDiscWindow" 
+    <SuperDiscountWindow
+      v-if="superDiscount.popup && !superDiscWindow"
       :goal="purpose"
       @close="closeSuperDiscountPopup"
     />
@@ -396,7 +396,6 @@
   import { mapGetters } from 'vuex';
   import ButtonField from '@/components/ui/Button.vue';
   import vpopup from '@/components/modal/v-popup.vue';
-  import btnComponent from '@/components/questions/btnPopup.vue';
   import faqQuestions from "@/constants/landingV3";
   import countdown from '@/components/Countdown.vue';
   import SuperDiscountWindow from '@/components/SuperDiscountWindow.vue';
@@ -408,15 +407,14 @@
   import PaymentFormCompanentModal from '@/components/PaymentFormCompanentModal.vue';
   import { getItem } from '@/common/localStorage';
   import dayjs from 'dayjs';
-  
-  
+
+
   export default {
-    name: 'LandingView', 
+    name: 'LandingView',
     inject: ['mixpanel'],
     components: {
       ButtonField,
       vpopup,
-      btnComponent,
       countdown,
       PaymentFormCompanentModal,
       SuperDiscountWindow,
@@ -472,7 +470,7 @@
           document.body.style.overflow = 'hidden'
         }
       }
-    },  
+    },
     methods: {
       scrollToPaymentBlock() {
         const el = this.$refs["payment-block"];
@@ -525,9 +523,6 @@
         this.paymentPopup = false
         document.body.style.overflow = 'unset'
         this.localStorage.setItem("LandingItem", this.item)
-        // setTimeout(() => {
-        //   this.$router.push("AddressPage");
-        // }, 0);
       },
       paymentError() {
         this.mixpanel.track('Payment Error', {
@@ -607,7 +602,7 @@
           subscriptionName: '',
           discount: null,
           discountOriginal: null,
-          superDiscount: this.superDiscount.theme ? true : false,  
+          superDiscount: this.superDiscount.theme ? true : false,
           discountType: this.subscribe
         };
         switch (priceParams.discountType) {
@@ -644,7 +639,7 @@
             priceParams.discount = this.superDiscount.theme ? 60 : 51
             priceParams.discountOriginal = 51
             priceParams.chargebeeId = this.superDiscount.theme ? "kegel-6-trial-USD-Every-3-months" : "kegel-3-trial-USD-Every-3-months"
-            this.price = this.superDiscount.theme ? 21.49 : 25.99 
+            this.price = this.superDiscount.theme ? 21.49 : 25.99
             this.item = priceParams.chargebeeId
             break;
         }
@@ -675,13 +670,13 @@
         document.addEventListener('scroll', (e) => {
           let x = window.scrollY
           if(x>310){
-            
+
             this.blockFixed = true
           }else{
             this.blockFixed = false
           }
         });
-        
+
       },
       purpose(){
         var json = localStorage.getItem('track');
@@ -693,14 +688,14 @@
         var obj = JSON.parse(json);
         console.log(obj.addpurpose);
         return obj.addpurpose;
-        
+
       },
       btnAddPurpose(){
         if(sessionStorage.getItem('resbtn') == 'Yes'){
           this.AddPurposeCom = true
         }else{
           this.AddPurposeCom = false
-        } 
+        }
       },
       lengthReviews(){
         var json = localStorage.getItem('track');
@@ -715,14 +710,14 @@
         }else{
           this.base = this.$store.state.review.msgEdLand
         }
-        return console.log(this.track);  ; 
+        return console.log(this.track);  ;
       },
     },
     beforeUnmount () {
       clearInterval(this.polling)
       clearInterval(this.numanim)
     },
-    beforeRouteLeave(to, from, next) { 
+    beforeRouteLeave(to, from, next) {
       if (this.paymentPopup) {
         this.paymentPopup = false
         next(false)
@@ -770,7 +765,7 @@
     },
   };
   </script>
-  
+
   <style lang="scss" scoped>
 @import '@/assets/css/animations.css';
   .payment-popup {
@@ -955,7 +950,7 @@
     color: #fff;
 
     width: 100%;
-    
+
     padding: 8px 8px 8px 16px;
     margin: 0 auto;
 
@@ -1099,14 +1094,14 @@
     }
 
     &:checked + span::before {
-      background: url('../assets/img/icons/icon_active.png');
+      background: url('../assets/images/svg/icon_active.svg');
       background-size: cover;
       border: none;
     }
 
     &-blue {
       &:checked + span::before {
-        background: url('../assets/img/icons/icon_active-blue.png');
+        background: url('../assets/images/svg/icon_active-blue.svg');
         background-size: cover;
         border: none;
       }
@@ -1225,7 +1220,7 @@
         &--body {
           margin-left: 15px;
         }
-  
+
         &--icon {
           position: absolute;
           width: 60%;
@@ -1243,7 +1238,7 @@
           transform: translate(-50%, -50%);
           animation: glowRotating 10s linear infinite;
         }
-  
+
         &--text {
           font-family: "SF Pro Text Regular";
           font-size: 16px;
@@ -1252,7 +1247,7 @@
           margin: 0;
           color:#FFFFFF;
         }
-  
+
         &--start {
           font-family: "SF Pro Text Regular";
           font-style: normal;
@@ -1299,7 +1294,7 @@
           position: relative;
           justify-content: center;
           min-height: 30px;
-  
+
           @media (min-width: 600px) {
               font-size: 24px;
               min-height: 36px;
@@ -1337,11 +1332,11 @@
         &:not(.light) {
           background-color: #1D1D1F;
         }
-  
+
         &:not(:last-child) {
           margin-bottom: 8px;
         }
-  
+
         @media (min-width: 600px) {
           max-width: 520px;
         }
@@ -1357,7 +1352,7 @@
           font-size: 14px;
         }
       }
-  
+
       &__rating {
         display: flex;
         margin-top: 5px;
@@ -1366,28 +1361,28 @@
             height: 14px;
           }
       }
-  
+
       &__name {
         font-weight: 500;
         font-size: 16px;
         line-height: 150%;
         opacity: .5;
-  
+
         @media (max-width: 480px) {
           font-size: 12px;
         }
       }
-  
+
       &__text {
         font-weight: 400;
         font-size: 16px;
         line-height: 150%;
-  
+
         @media (max-width: 480px) {
           font-size: 12px;
         }
       }
-  
+
       &__showMore {
         border: none;
         text-align: center;
@@ -1402,7 +1397,7 @@
             font-size: 18px;
         }
       }
-  
+
       &__top {
         display: flex;
         justify-content: space-between;
@@ -1410,7 +1405,7 @@
       }
     }
   }
-  
+
   .payment {
     display: flex;
     align-items: center;
@@ -1419,7 +1414,7 @@
     @media (max-width:480px) {
       margin: 64px auto 16px;
     }
-  
+
     &__method {
       margin: 0;
       font-family: "SF-Pro-Display-Semibold";
@@ -1427,7 +1422,7 @@
           font-size: 18px;
         }
     }
-  
+
     &__button {
       border: none;
       background: transparent;
@@ -1435,17 +1430,17 @@
       opacity: 0.75;
       font-family: "SF-Pro-Display-Medium";
       cursor: pointer;
-  
+
       @media (max-width:480px) {
         font-size: 14px;
       }
     }
   }
-  
+
   .text-description{
     font-size: 14px;
     line-height: 150%;
-    opacity: 0.5; 
+    opacity: 0.5;
     text-align: center;
     .bold{
       font-family: "SF Pro Text Semibold";
@@ -1489,16 +1484,16 @@
       color: #E44240;
     }
   }
-  
+
   .benefit {
     margin-top: 0px;
     line-height: 150%;
-  
+
     &:not(:last-child) {
       margin-bottom: 15px;
     }
   }
-  
+
   .block-pay{
     width: 100%;
     margin-bottom: 32px;
@@ -1555,7 +1550,7 @@
       img{
         max-width: 100%;
       }
-    } 
+    }
     button.pay.active {
       background: rgba(87, 115, 214, 0.1);
       border: 2px solid #5773D6;
@@ -1612,12 +1607,12 @@
       }
     }
   }
-  
+
   .mw-300{
     max-width: 300px;
     margin: 0px auto;
   }
-  
+
   .mb-32{
     margin-bottom: 32px;
   }
@@ -1639,7 +1634,7 @@
       max-width: 320px;
     }
   }
-  
+
   .popup_wraper{
     h2{
       margin: 0 0 16px;
@@ -1816,13 +1811,13 @@
     }
   }
   // reviews
-  
-  
+
+
   .star-yellow {
     max-width: 14px;;
     height: auto;
   }
-  
+
   .price{
     max-width: 600px;
     margin: 0 auto;
@@ -1837,7 +1832,7 @@
       @media (max-width:480px) {
         padding: 16px 32px;
         font-size: 14px;
-  
+
       }
     }
     &__list {
@@ -1872,7 +1867,7 @@
       margin: 0;
       align-items: end;
     }
-  
+
     &__description {
       padding: 16px 32px;
       margin: 0 auto;
@@ -1883,7 +1878,7 @@
       }
     }
   }
-  
+
   .graphic {
     margin: 32px auto;
     text-align: center;
@@ -1895,13 +1890,13 @@
       width: 100%;
       height: auto;
     }
-  
+
     &__date {
       display: flex;
       justify-content: space-between;
       margin: 0 12%;
     }
-  
+
     &__month {
       margin: 12px 0 0;
       font-size: 18px;
@@ -1911,7 +1906,7 @@
           font-size: 12px;
       }
     }
-  
+
     &__description {
       font-size: 14px!important;
       max-width: 450px;
@@ -1923,7 +1918,7 @@
       }
     }
   }
-  
+
   .benefits {
     &__title {
       font-family: "SF-Pro-Display-Bold";
@@ -1933,7 +1928,7 @@
       @media (min-width: 600px) {
         font-size: 24px;
         margin: 32px auto 52px;
-      }  
+      }
     }
     &__list {
       max-width: 310px;
@@ -1973,7 +1968,7 @@
       }
     }
   }
-  
+
   .text-bold{
     font-family: "SF Pro Text Semibold";
   }
@@ -1992,29 +1987,29 @@
     display: block;
     height: 168px;
   }
-  
+
   .mt-64 {
     margin-top: 64px;
   }
-  
+
   .price-padding {
     padding-bottom: 170px;
     @media (min-width: 600px) {
       padding-bottom: 160px;
     }
   }
-  
+
   .check {
     display: block;
     margin-right: 20px;
     width: 14px;
     height: 14px;
   }
-  
+
   .price-trial {
     margin: 16px auto;
   }
-  
+
   input, textarea{outline:none;}
   input:active, textarea:active{outline:none;}
   :focus {outline:none;}
@@ -2022,4 +2017,3 @@
   textarea {resize:vertical;}
   textarea {resize:horizontal;}
   </style>
-  

@@ -9,7 +9,6 @@ const state = () => ({
     track: {},
     content: {},
     separations: [],
-    version: localStorage.getItem('ver'),
     layotStep: 1,
     loader: true,
     tracks: [{
@@ -22,16 +21,16 @@ const state = () => ({
             layouts: [
                 { id: 1, separation: true },
                 { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 },
-                { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10, ver4: true },
+                { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10 },
                 { id: 11 }, { id: 12 },
                 { id: 333, separation: true },
-                { id: 14, ver4: true }, { id: 15, ver4: true }, { id: 16, ver4: true }, { id: 17, ver4: true },
-                { id: 18 }, { id: 20, ver6: true }, { id: 21 }, { id: 22, ver4: true },
+                { id: 14 }, { id: 15 }, { id: 16 }, { id: 17 },
+                { id: 18 }, { id: 20 }, { id: 21 }, { id: 22 },
                 { id: 23 },
-                { id: 24, separation: true }, { id: 25, ver4: true }, { id: 26 }, { id: 27 },
-                { id: 28 }, { id: 29, ver4: true }, { id: 30, ver4: true }, { id: 31, ver4: true },
-                { id: 32 }, { id: 322, ver6: true }, { id: 33, ver4: true },
-                { id: 34, ver4: true, separation: true }
+                { id: 24, separation: true }, { id: 25 }, { id: 26 }, { id: 27 },
+                { id: 28 }, { id: 29 }, { id: 30 }, { id: 31 },
+                { id: 32 }, { id: 322 }, { id: 33 },
+                { id: 34, separation: true }
             ],
         },
         {
@@ -47,13 +46,13 @@ const state = () => ({
                 { id: 352 }, { id: 37 }, { id: 38 }, { id: 39 },
                 { id: 40 }, { id: 401 },
                 { id: 41, separation: true },
-                { id: 14, ver4: true }, { id: 15, ver4: true }, { id: 42, ver4: true }, { id: 43, ver4: true },
-                { id: 56, ver4: true }, { id: 57, ver6: true }, { id: 44 }, { id: 45, ver4: true }, { id: 451, ver4: true }, { id: 46 },
+                { id: 14 }, { id: 15 }, { id: 42 }, { id: 43 },
+                { id: 56 }, { id: 57 }, { id: 44 }, { id: 45 }, { id: 451 }, { id: 46 },
                 { id: 47, separation: true },
-                { id: 25, ver4: true }, { id: 26 }, { id: 272 }, { id: 282 }, { id: 29, ver4: true },
-                { id: 30, ver4: true }, { id: 31, ver4: true }, { id: 32 },
-                { id: 321, ver6: true }, { id: 33, ver4: true },
-                { id: 34, separation: true, ver4: true }
+                { id: 25 }, { id: 26 }, { id: 272 }, { id: 282 }, { id: 29 },
+                { id: 30 }, { id: 31 }, { id: 32 },
+                { id: 321 }, { id: 33 },
+                { id: 34, separation: true }
             ],
         },
         {
@@ -66,16 +65,16 @@ const state = () => ({
             layouts: [
                 { id: 1, separation: true },
                 { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },
-                { id: 50 }, { id: 21 }, { id: 22, ver4: true }, { id: 51 },
-                { id: 44 }, { id: 450, ver4: true }, { id: 453, ver4: true },
+                { id: 50 }, { id: 21 }, { id: 22 }, { id: 51 },
+                { id: 44 }, { id: 450 }, { id: 453 },
                 { id: 333, separation: true },
-                { id: 14, ver4: true }, { id: 15, ver4: true }, { id: 52 },
-                { id: 53, ver4: true }, { id: 201, ver6: true },
-                { id: 54, ver4: true }, { id: 26 }, { id: 55 },
+                { id: 14 }, { id: 15 }, { id: 52 },
+                { id: 53 }, { id: 201 },
+                { id: 54 }, { id: 26 }, { id: 55 },
                 { id: 283, separation: true },
-                { id: 29, ver4: true }, { id: 30, ver4: true }, { id: 31, ver4: true },
-                { id: 32 }, { id: 323, ver6: true }, { id: 33, ver4: true },
-                { id: 34, separation: true, ver4: true }
+                { id: 29 }, { id: 30 }, { id: 31 },
+                { id: 32 }, { id: 323 }, { id: 33 },
+                { id: 34, separation: true }
             ],
         },
     ],
@@ -339,23 +338,6 @@ const state = () => ({
             },
         },
         {
-            id: 99,
-            title: 'How much do problems with stamina affect your quality of life?',
-            layoutName: 'Questions',
-            answer: {
-                style: 'buttons',
-                textLeft: 'They don\'t affect',
-                textRight: 'They affect a lot',
-                answerList: [
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                ],
-            },
-        },
-        {
             id: 15,
             title: 'How satisfied were you with your sex life last month?',
             layoutName: 'Questions',
@@ -422,33 +404,12 @@ const state = () => ({
             },
         },
         {
-            id: 19,
-            title: 'How strongly problems with erection affect your quality of life?',
-            answer: {
-                style: 'buttons',
-                answerList: [
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                ],
-            },
-        },
-        {
             id: 20,
             title: 'Based on your personal goals you can',
             layoutName: 'Reviews',
             ref: "EDcan",
             thumbnail: 'ED.json',
             reviews: [1, 2, 3, 4, 5, 6],
-        },
-        {
-            id: 200,
-            title: 'Congrats, we\'re a match!',
-            layoutName: 'WeMatch',
-            image: 'img_match.png',
-            text: 'We\'re analyzing your answers and it appears that you\'re exactly the kind of person this Kegel Plan was made for.\nNow, let\'s dive deeper into your lifestyle to know you better.',
         },
         {
             id: 201,
@@ -744,13 +705,6 @@ const state = () => ({
             dark: true,
         },
         {
-            id: 36,
-            title: 'When was the first time you\'ve experienced premature ejaculation?',
-            text: 'Weak PF muscles can\'t let you compress the urethra enough to delay ejaculation as long as you want',
-            thumbnail: '9.png',
-            layoutName: 'standart',
-        },
-        {
             id: 37,
             title: 'When was the first time you\'ve experienced premature ejaculation?',
             answer: {
@@ -839,18 +793,6 @@ const state = () => ({
                     '3',
                     '4',
                     '5',
-                ],
-            },
-        },
-        {
-            id: 43,
-            title: 'Does early ejaculation worsen the relationship with your partner?',
-            answer: {
-                style: 'radio',
-                answerList: [
-                    'Yes, it does',
-                    'No, it doesn\'t',
-                    'I don\'t want to answer',
                 ],
             },
         },
@@ -956,13 +898,6 @@ const state = () => ({
                 text: 'Source:',
             }, ],
             dark: true,
-        },
-        {
-            id: 48,
-            title: 'The quality of your erection also depends on the Pelvic Floor (PF) muscle tone',
-            thumbnail: '2.png',
-            layoutName: 'standart',
-            text: 'Thanks to the strong PF muscles you can delay ejaculation as long as you want',
         },
         {
             id: 49,
@@ -1083,13 +1018,6 @@ const state = () => ({
             thumbnail: 'PE.json',
             reviews: [4, 5, 6, 1, 2, 3],
         },
-        {
-            id: 601,
-            title: 'You\'re almost there!',
-            layoutName: 'ReviewsV4',
-            image: 'img_almost.png',
-            reviews: [1, 2, 3, 4, 5, 6],
-        },
     ],
 });
 
@@ -1184,18 +1112,10 @@ const getters = {
             track,
             content,
             contents,
-            ver,
         } = state;
         let index = null;
         let currentQuiz = null;
-        const version = Number(localStorage.getItem('ver'));
-        if (version === 4) {
-            currentQuiz = track.layouts.filter(item => !item.ver4)
-        } else if (version === 6) {
-            currentQuiz = track.layouts.filter(item => !item.ver6);
-        } else {
-            currentQuiz = track.layouts;
-        }
+        currentQuiz = track.layouts;
         currentQuiz.forEach((layout) => {
             if (layout.id === content.id) {
                 index = currentQuiz.indexOf(layout);
@@ -1217,33 +1137,10 @@ const getters = {
             track,
             content,
             contents,
-            ver,
         } = state;
         let index = null;
-        const version = Number(localStorage.getItem('ver'));
         let currentQuiz = null;
-
-        if (version === 4) {
-            currentQuiz = track.layouts.filter(item => !item.ver4)
-            track.id === 2 && currentQuiz.splice(12, 0, { id: 99 });
-        } else if (version === 6) {
-            currentQuiz = track.layouts.filter(item => !item.ver6);
-            switch (track.id) {
-                case 1:
-                    currentQuiz.splice(18, 0, { id: 200 });
-                    currentQuiz.splice(31, 0, { id: 601 });
-                    break;
-                case 2:
-                    currentQuiz.splice(17, 0, { id: 200 });
-                    currentQuiz.splice(31, 0, { id: 601 });
-                    break;
-                case 3:
-                    currentQuiz.splice(17, 0, { id: 200 });
-                    currentQuiz.splice(26, 0, { id: 601 });
-            }
-        } else {
-            currentQuiz = track.layouts;
-        }
+        currentQuiz = track.layouts;
 
         currentQuiz.forEach((layout) => {
             if (layout.id === content.id) {
@@ -1334,9 +1231,6 @@ const actions = {
     getContent({ commit }) {
         const content = getItem('content');
         commit('saveContent', content);
-        // if (Object.values(content).length === 0) {
-        //     router.push({ name: 'home' });
-        // }
     },
     getHistory({ commit }) {
         console.log("GetHistory");

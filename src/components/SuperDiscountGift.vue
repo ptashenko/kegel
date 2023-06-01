@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <div class="wrapper__icon">
-        <img class="wrapper__glow" src="@/assets/img/lp_v5/glow.png" />
-        <img class="wrapper__image" src="@/assets/img/lp_v5/gift-red.png" />
+        <img class="wrapper__glow" src="@/assets/images/glow.png" />
+        <img class="wrapper__image" src="@/assets/images/gift-red.png" />
     </div>
     <p class="wrapper__text">Get a <span class="wrapper__text-old">{{ this.discountOriginal }}%</span> <span class="wrapper__text-new">{{ this.discount }}% discount</span> on your Kegel plan</p>
   </div>

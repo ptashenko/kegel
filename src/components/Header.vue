@@ -1,7 +1,7 @@
 <template>
   <header :class="{ 'header': true, 'absolute': $route.name === 'home' }">
-      <img src="@/assets/images/Logo_white.png" alt="logo" class="header__logo" v-if="isDark">
-      <img src="@/assets/images/logo_black.png" alt="logo" class="header__logo" v-else>
+      <img src="@/assets/images/logos/logo_white.png" alt="logo" class="header__logo" v-if="isDark">
+      <img src="@/assets/images/logos/logo_black.png" alt="logo" class="header__logo" v-else>
     {{bgBody}}
   </header>
 </template>

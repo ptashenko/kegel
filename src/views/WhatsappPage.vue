@@ -13,7 +13,7 @@
       <div class="mw-450 d-flex flex-column mb-32 text-center">
         <div class="block-bg d-flex flex-column align-items-center justify-content-center">
           <div class="item-li d-flex align-items-center justify-content-center">
-            <img class="check" src="@/assets/images/icons/attantion_icon.svg" alt="check">
+            <img class="check" src="@/assets/images/svg/icon_attention-triangle.svg" alt="check">
             <p class="fs-16-14">
               Check your spam or promotions folder <b>if you can't find the instruction in your inbox</b>
             </p>
@@ -23,11 +23,11 @@
       </div>
       <div class="block-bottom text-center">
         <p class="contacts__questions">
-          <img src="@/assets/img/lp_v5/help.svg" />
+          <img src="@/assets/images/svg/icon_help.svg" />
           Any questions or concerns?
         </p>
        <button @click="openWhatsapp" class="whatsapp-btn">
-        <img src="@/assets/img/lp_v5/svg_watsapp.svg" />
+        <img src="@/assets/images/svg/icon_whatsapp.svg" />
         Text us on WhatsApp
        </button>
       </div>
@@ -364,7 +364,7 @@ align-items: center;
 }
 @media (max-width: 480px){
   .container-main {
-    padding-bottom: 0px; 
+    padding-bottom: 0px;
   }
 }
 

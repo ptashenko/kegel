@@ -5,13 +5,13 @@
       <div class="steps">
         <div class="steps__col d-flex" v-for="(_, idx) of new Array(4)" :key="idx">
           <div class="d-flex align-items-center justify-content-center w-100">
-            <img src="@/assets/images/icons/check_no_bg.svg" class="checker" alt="check">
+            <img src="@/assets/images/svg/icon_check-no-bg.svg" class="checker" alt="check">
           </div>
         </div>
       </div>
 
       <div class="wait__content">
-        <lottie-animation 
+        <lottie-animation
           class="wait__animation"
           ref="animJust"
           :animationData="require(`@/assets/images/json/f1_loader.json`)"
@@ -87,7 +87,7 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/wait/${name}.png`);
     },
-    
+
   },
   computed: {
     backClick(){

@@ -7,8 +7,8 @@
       :class="{active: index < activeDisplay}"
     >
     <div class="d-flex align-items-center justify-content-center w-100" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100">
-      <img src="@/assets/images/icons/check_no_bg_black.svg" class="checker" :class="{active: index < activeDisplay}" alt="check" v-if="light">
-      <img src="@/assets/images/icons/check_no_bg.svg" class="checker" :class="{active: index < activeDisplay}" alt="check" v-else>
+      <img src="@/assets/images/svg/icon_check-no-bg-black.svg" class="checker" :class="{active: index < activeDisplay}" alt="check" v-if="light">
+      <img src="@/assets/images/svg/icon_check-no-bg.svg" class="checker" :class="{active: index < activeDisplay}" alt="check" v-else>
     </div>
     </div>
     <span :style="`width: ${loadPercent}%`">  </span>
@@ -58,11 +58,11 @@ export default {
           this.activeDisplay = 3
         }
       }
-      return this.myStep                       
+      return this.myStep
     },
   },
   watch:{
-    
+
   } ,
   props: {
     light: {

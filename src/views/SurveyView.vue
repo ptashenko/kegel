@@ -9,16 +9,11 @@
 import KegelReview from '@/layouts/KegelReview.vue';
 import Processing from '@/layouts/Processing.vue';
 import Reviews from '@/layouts/Reviews.vue';
-import ReviewsV4 from '@/layouts/ReviewsV4.vue';
-import WeMatch from '@/layouts/WeMatch.vue';
 import Standart from '@/layouts/Standart.vue';
 import StandartTwo from '@/layouts/StandartTwo.vue';
 import Questions from '@/layouts/Questions.vue';
-import AfterMap from '@/views/TimePlan.vue';
 import { mapGetters } from 'vuex';
-import Steps from '@/components/Steps.vue';
 import nextContentUrl from '@/mixins/contollers';
-import { Transition} from 'vue'
 
 export default {
   mixins: [nextContentUrl],
@@ -29,11 +24,6 @@ export default {
     Standart,
     StandartTwo,
     Questions,
-    AfterMap,
-    Steps,
-    Transition,
-    WeMatch,
-    ReviewsV4
   },
   computed: {
     ...mapGetters(['content', 'track']),

@@ -1,7 +1,7 @@
 <template>
   <div class="popup_wraper">
     <div class="v-popup">
-      <img v-if="closeButton" class="v-popup__close" @click="closePopup" src="@/assets/images/icons/btn_close_cwindow.svg" />
+      <img v-if="closeButton" class="v-popup__close" @click="closePopup" src="@/assets/images/svg/icon_btn-close-window.svg" />
       <div class="v-popup__header h2">
         {{textTitle}}
       </div>
@@ -9,7 +9,7 @@
           <slot></slot>
       </div>
       <div class="v-popup__footer">
-       
+
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
   },
   data(){
     return{
-      
+
     }
   },
   methods:{
@@ -37,7 +37,7 @@ export default {
       this.$emit('closePopup')
     }
   }
-  
+
 }
 </script>
 <style lang="scss" scoped>
@@ -145,9 +145,9 @@ export default {
     }
     &__content{
       flex-direction: row;
-      
+
     }
-    
+
   }
 }
 

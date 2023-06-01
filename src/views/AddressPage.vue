@@ -2,10 +2,10 @@
   <div class="dark-layout light">
     <div class="container-main is-page AdressPage">
       <div class="block__steps" :data-step=true>
-      <img src="@/assets/images/icons/img_progressbar_final.svg" style="height: 18px; width: 100%;"/>
+      <img src="@/assets/images/svg/img_progressbar_final.svg" style="height: 18px; width: 100%;"/>
       </div>
       <div class="email__content">
-        
+
         <!-- <div class="d-flex  align-items-center justify-content-center flex-column block"> -->
           <div class="d-flex flex-column">
             <div class="h2">
@@ -22,11 +22,11 @@
 
             <div class="input-label">Address 1</div>
               <label>
-                <input 
+                <input
                   v-model="address1"
-                  id="address1" 
-                  class="email" 
-                  type="address1" 
+                  id="address1"
+                  class="email"
+                  type="address1"
                   :placeholder="'Street address or P.O. Box'"
                   minlength="5"
                   required
@@ -35,21 +35,21 @@
               </label>
               <div class="input-label">Address 2(Optional)</div>
               <label>
-                <input 
+                <input
                   v-model="address2"
-                  id="address2" 
-                  class="email" 
-                  type="address2" 
+                  id="address2"
+                  class="email"
+                  type="address2"
                   :placeholder="'Apartment, suite, etc.'"
                 >
               </label>
               <div class="input-label">City</div>
               <label>
-                <input 
+                <input
                   v-model="city"
-                  id="city" 
-                  class="email" 
-                  type="city" 
+                  id="city"
+                  class="email"
+                  type="city"
                   :placeholder="'Enter City here'"
                   minlength="2"
                   required
@@ -64,11 +64,11 @@
               </label>
               <div class="input-label">Postal/ZIP Code</div>
               <label>
-                <input 
+                <input
                   v-model="post"
-                  id="post" 
-                  class="email" 
-                  type="post" 
+                  id="post"
+                  class="email"
+                  type="post"
                   :placeholder="'Enter Postal/Zip Code here'"
                   minlength="5"
                   maxlength="5"
@@ -86,8 +86,8 @@
               </div>
             </div>
 
-           
-  
+
+
           <!-- </div> -->
         </div>
       </div>
@@ -96,15 +96,11 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import CustomSelect from "../components/CustomSelect.vue";
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'AddressPage',
   inject: ['mixpanel'],
-  components: {
-    CustomSelect
-},
   data() {
     return {
       loading: false,
@@ -117,7 +113,7 @@ export default {
       submited: false
     };
   },
- 
+
   computed: {
     ...mapGetters(['tracks']),
     purpose(){
@@ -137,7 +133,7 @@ export default {
       }
     }
   },
-  beforeRouteLeave(to, from, next) { 
+  beforeRouteLeave(to, from, next) {
       if (this.submited) {
         next()
       } else {
@@ -336,7 +332,7 @@ select {
   background-color: #fff;
   background-image: none;
   cursor: pointer;
-  
+
 }
 /* Remove IE arrow */
 select::-ms-expand {
@@ -397,7 +393,7 @@ input[type="email"]{font-size:1em;}
   &__text{
     font-family: "SF Pro Text Regular";
     font-size: 20px;
-    line-height: 135%;  
+    line-height: 135%;
     color: #111113;
     opacity: 0.75;
     margin: 0 auto;
@@ -466,7 +462,7 @@ input[type="email"]{font-size:1em;}
   &__text__small{
     font-family: "SF Pro Text Regular";
     font-size: 14px;
-    line-height: 135%; 
+    line-height: 135%;
     color: #111113;
     opacity: 0.5;
     text-align: center;
@@ -510,7 +506,7 @@ input[type="email"]{font-size:1em;}
       color: #111113;
       font-family: "SF Pro Text Regular";
       font-size: 10px;
-      line-height: 135%; 
+      line-height: 135%;
       color: #111113;
       opacity: 0.5;
       margin: 0 15px;

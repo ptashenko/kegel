@@ -10,14 +10,14 @@
         v-if="apple_pay"
         @click="applePaySelect"
       >
-        <img class="buttons-container__logo" src="@/assets/images/icons/apple_pay.png" alt="apple_pay" />
+        <img class="buttons-container__logo" src="@/assets/images/svg/icon_apple-pay.svg" alt="apple_pay" />
       </button>
       <button
         class="buttons-container__notApple payButton"
         :class="{ active: paymentMethodType == 2 }"
         @click="payPalSelect"
       >
-        <img class="buttons-container__logo" src="@/assets/images/icons/paypal.png" alt="apple_pay" />
+        <img class="buttons-container__logo" src="@/assets/images/svg/icon_paypal.svg" alt="apple_pay" />
       </button>
       <button
         class="buttons-container__notApple payButton"
@@ -54,7 +54,7 @@
   />
   <CardCompanentModal
     class=""
-    v-if="paymentMethodType == 1 && (ver == 1 || ver == 3)"
+    v-if="paymentMethodType == 1"
     @error="error"
     @success="success"
     @clickButton="clickButton"
@@ -64,15 +64,6 @@
     :fullPrice="fullPrice"
     :subscriptionDate="subscriptionDate"
     :theme="theme"
-  />
-    <CardCompanentZip
-    class=""
-    v-if="paymentMethodType == 1 && (ver == 2 || ver == 4)" 
-    @error="error"
-    @success="success"
-    @clickButton="clickButton"
-    :item="this.item"
-    :auth_price="this.auth_price"
   />
   <!-- <button @click="success">PAYMENT IS SUCCESSFUL</button> -->
   <div
@@ -86,13 +77,11 @@
 <script>
 import PayPalComponent from "../components/PayPalComponent.vue";
 import CardCompanentModal from "@/components/CardCompanentModal.vue";
-import CardCompanentZip from "./CardCompanentZip.vue";
 
 export default {
   components: {
     PayPalComponent,
     CardCompanentModal,
-    CardCompanentZip
   },
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
@@ -104,7 +93,6 @@ export default {
       paymentMethodType: 1, //1- card, 2 - paypal
       blockSelect: false,
       apple_pay: false,
-      ver: localStorage.getItem('ver') == null ? 1 : localStorage.getItem('ver')
     };
   },
   methods: {
@@ -130,7 +118,6 @@ export default {
     payPalSelect() {
       if (this.paymentMethodType != 2 && !this.blockSelect) {
         this.paymentMethodType = 2;
-        // this.getPayPalIntent();
       }
     },
     cardSelect() {
@@ -204,9 +191,6 @@ export default {
   },
   mounted() {
     this.payPalSelect();
-    // if (window.ApplePaySession) {
-    //   this.apple_pay = ApplePaySession.canMakePayments();
-    // }
   },
 };
 </script>

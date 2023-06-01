@@ -5,10 +5,10 @@
         <div class="review__title">{{ reviewItem.title }}</div>
         <div class="review__rating">
           <div v-for="i in reviewItem.rating" :key="i">
-            <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+            <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="star-yellow">
           </div>
           <div v-for="i in Number(5 - reviewItem.rating)" :key="i">
-            <img src="@/assets/images/star.png" alt="star-yellow" class="star-yellow">
+            <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="star-yellow">
           </div>
         </div>
       </div>

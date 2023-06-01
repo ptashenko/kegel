@@ -18,15 +18,15 @@
                 <span class="m20">by &nbsp;</span>
                 <!-- <div class="blockAnimate"> -->
                   <transition name="slide-fade">
-                    <span v-if="show" class="block__anim">{{dataPP3}}</span> 
-                  </transition> 
+                    <span v-if="show" class="block__anim">{{dataPP3}}</span>
+                  </transition>
                 <!-- </div> -->
               </div>
             </div>
 
             <div class=" layout__thumbnail">
-              <lottie-animation 
-                class="animation" 
+              <lottie-animation
+                class="animation"
                 ref="content.ref"
                 :animationData="imageitem"
                 :loop="false"
@@ -48,19 +48,19 @@
             </div>
             <ul>
               <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
+                <span><img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check"></span>
                 <p>Pill-free approach</p>
               </li>
               <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
+                <span><img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check"></span>
                 Long-lasting improvement
               </li>
               <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
+                <span><img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check"></span>
                 Takes <span class="text-bold">&nbsp;5 min a day</span>
               </li>
               <li class="li">
-                <span><img src="@/assets/images/icons/check_no_bg_black.svg" alt="check" class="check"></span>
+                <span><img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check"></span>
                 More happiness for you and for your partner
               </li>
             </ul>
@@ -106,7 +106,7 @@
   </div>
   <div id="paypal" class="step_2">
     <div class="mw-450 payment d-flex align-items-center justify-content-beetwen">
-      <div class="after"> 
+      <div class="after">
         <span class="bold">Payment method</span>
       </div>
       <div class="d-flex flex-column align-items-end">
@@ -152,14 +152,14 @@
   class="popup_wraper"
     textTitle="Why now?"
     v-if="popupVisible3"
-  > 
+  >
     <p class="opasity_75">
       We ask for your payment information now, so you can enjoy Kegel Plan uninterrupted after your 14-day trial ends.
     </p>
     <p class="opasity_75">
       If you cancel anytime before the end of the 14-day trial, you won't be charged.
     </p>
-    <button 
+    <button
       class="v-popup__submit_btn min180 active"
       :class="{active: closeActive}"
       @click="closePopup3"
@@ -170,13 +170,13 @@
   <vpopup
     class="windowError"
     v-if="windowError"
-  > 
+  >
     <p class="opasity_75">
       Your payment was declined. Please try again or use a different payment method.
     </p>
-    <img 
-      class="error" 
-      src="@/assets/images/icons/btn_close_communicate.svg" 
+    <img
+      class="error"
+      src="@/assets/images/svg/icon_btn-close-communicate.svg"
       alt="error"
       @click="closeWindowError"
     >
@@ -190,20 +190,17 @@ import { mapGetters } from 'vuex';
 import moment from 'moment';
 import ButtonField from '@/components/ui/Button.vue';
 import vpopup from '@/components/modal/v-popup.vue';
-import btnComponent from '@/components/questions/btnPopup.vue';
 import countdown from '@/components/Countdown.vue';
-import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 import RatingStars from '@/components/RatingStars.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
-  name: 'Landing_android_v2', 
+  name: 'Landing_android_v2',
   inject: ['mixpanel'],
   components: {
     ButtonField,
     vpopup,
-    btnComponent,
     countdown,
     PaymentFormCompanent,
     RatingStars,
@@ -214,7 +211,7 @@ export default {
       item: "kegel_6-USD-Weekly",
       VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
-      apple_pay: true, 
+      apple_pay: true,
       dataPP2:'September 25',
       ggg:0,
       textBtn:'Start my plan',
@@ -245,7 +242,7 @@ export default {
       addItem: false,
       numanim: null,
     };
-  },   
+  },
   methods: {
     nextUrl() {
       this.mixpanel.track('[Web Mail] Trial Started',{
@@ -352,7 +349,7 @@ export default {
         this.popupVisible2 = false
         body.classList.remove('fixed');
       }
-      
+
       window.scrollTo({
         top: document.getElementById('paypal').offsetTop,
         left: 0,
@@ -363,7 +360,7 @@ export default {
      // this.getPayPalIntent();
     },
     async scrollToForm() {
-      
+
     },
     closePopup3(e) {
       const height = sessionStorage.getItem('scrollto')
@@ -415,13 +412,13 @@ export default {
       document.addEventListener('scroll', (e) => {
         let x = window.scrollY
         if(x>310){
-          
+
           this.blockFixed = true
         }else{
           this.blockFixed = false
         }
       });
-      
+
     },
     MyScrollModal(){
         document.addEventListener('scroll', (e) => {
@@ -451,14 +448,14 @@ export default {
       var obj = JSON.parse(json);
       console.log(obj.addpurpose);
       return obj.addpurpose;
-      
+
     },
     btnAddPurpose(){
       if(sessionStorage.getItem('resbtn') == 'Yes'){
         this.AddPurposeCom = true
       }else{
         this.AddPurposeCom = false
-      } 
+      }
     },
     lengthReviews(){
       var json = localStorage.getItem('track');
@@ -473,7 +470,7 @@ export default {
       }else{
         this.base = this.$store.state.review.msgEdLand
       }
-      return console.log(this.track);  ; 
+      return console.log(this.track);  ;
     },
   },
   beforeUnmount () {
@@ -499,7 +496,7 @@ export default {
           let param = moment().add(4,'month').format("MMMM") + ' ' + ost ;
           sessionStorage.setItem(key, param);
         }
-        
+
         return param
       }
       days(28, 'dataPP3_day', 'data3')
@@ -569,7 +566,7 @@ export default {
 .text-description{
   font-size: 14px;
   line-height: 150%;
-  opacity: 0.5; 
+  opacity: 0.5;
   text-align: center;
   .bold{
     font-family: "SF Pro Text Semibold";
@@ -664,7 +661,7 @@ export default {
     img{
       max-width: 100%;
     }
-  } 
+  }
   button.pay.active {
     background: rgba(87, 115, 214, 0.1);
     border: 2px solid #5773D6;
@@ -1039,7 +1036,7 @@ hr{
 .review.active{
   display: block;
 }
-// 
+//
 
 
 .opac_5{
@@ -1166,13 +1163,13 @@ ul{
 .timer__text{
   font-size: 16px;
   line-height: 150%;
-  font-family: "SF Pro Text Bold"; 
+  font-family: "SF Pro Text Bold";
 }
 .layout__button .timer__start{
   font-size: 14px;
   line-height: 150%;
   opacity: 0.75;
-  
+
 }
 .layout {
   &__buttons{
@@ -1276,7 +1273,7 @@ ul{
       line-height: 24px;
     }
   }
-} 
+}
 .text-purpose{
   font-size: 18px;
   line-height: 150%;

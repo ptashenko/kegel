@@ -10,7 +10,7 @@
         v-if="apple_pay"
         @click="applePaySelect"
       >
-        <img src="@/assets/images/icons/apple_pay.png" alt="apple_pay" />
+        <img src="@/assets/images/svg/icon_apple-pay.svg" alt="apple_pay" />
       </button>
     </div>
   </div>
@@ -20,7 +20,7 @@
       :class="{ active: paymentMethodType == 2 }"
       @click="payPalSelect"
     >
-      <img src="@/assets/images/icons/paypal.png" alt="apple_pay" />
+      <img src="@/assets/images/svg/icon_paypal.svg" alt="apple_pay" />
     </button>
     <button
       class="pay small ml-2 cursor"
@@ -54,15 +54,6 @@
     :fullPrice="fullPrice"
     :auth_price="this.auth_price"
   />
-    <CardCompanentZip
-    class="w-100 flex-column align-items-center justify-content-center"
-    v-if="paymentMethodType == 1 && (ver == 2 || ver == 4)" 
-    @error="error"
-    @success="success"
-    @clickButton="clickButton"
-    :item="this.item"
-    :auth_price="this.auth_price"
-  />
   <div
     id="apple-pay-button"
     class="d-flex align-items-center justify-content-beetwen"
@@ -74,13 +65,11 @@
 <script>
 import PayPalComponent from "../components/PayPalComponent.vue";
 import CardCompanentModal from "@/components/CardCompanentModal.vue";
-import CardCompanentZip from "./CardCompanentZip.vue";
 
 export default {
   components: {
     PayPalComponent,
     CardCompanentModal,
-    CardCompanentZip
   },
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],

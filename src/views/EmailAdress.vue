@@ -2,7 +2,7 @@
         <div class="emailPage__wrapper">
           <div class="emailPage__content">
               <div class="emailPage__body">
-                <img src="@/assets/images/icons/email_img.svg" alt="email">
+                <img src="@/assets/images/svg/icon_email-img.svg" alt="email">
                 <div class="emailPage__title">
                   {{ title }}
                 </div>
@@ -11,7 +11,7 @@
                   <input v-model="upValue" id="email" class="email__input" type="email"
                     :placeholder="email || 'Enter your email here'">
                   <span class="email__lock">
-                    <img src="@/assets/images/icons/lock.svg" alt="img">
+                    <img src="@/assets/images/svg/icon_lock.svg" alt="img">
                   </span>
                 </label>
                 <div v-if="email" class="v-popup__submit_btn active" @click="nextUrlEmail">
@@ -20,7 +20,7 @@
                 <div v-else :class="['v-popup__submit_btn', { active: closeActive }]" @click="nextUrl">
                   See my plan
                 </div>
-              
+
                 <p class="emailPage__dataInfo">
                   Your data is perfectly safe. We won't share your personal information with third parties.
                 </p>
@@ -56,7 +56,7 @@ export default {
       version: localStorage.getItem('ver'),
     };
   },
- 
+
   computed: {
     ...mapGetters(['tracks', 'EMAILUSER']),
     purpose(){
@@ -95,14 +95,14 @@ export default {
         gtag('event', 'conversion', {'send_to': 'AW-407765903/QV5XCL7WjdgDEI-HuMIB'});
         this.mixpanel.people.set({ "$email": this.upValue });
       } else {
-      } 
+      }
     },
-  
+
     nextUrlEmail(){
       VueScrollTo.scrollTo('.dark-layout')
       this.setEmail(this.upValue)
       this.$router.push(this.ladningView)
-      
+
     },
   },
 
@@ -244,7 +244,7 @@ export default {
       color: #111113;
       font-family: "SF Pro Text Regular";
       font-size: 10px;
-      line-height: 135%; 
+      line-height: 135%;
       color: #111113;
       opacity: 0.5;
       margin: 0 15px;
@@ -262,7 +262,7 @@ export default {
       margin: 0 auto;
       text-align: center;
       max-width: 400px;
-    
+
       @media (max-width: 480px) {
         font-size: 14px;
       }
@@ -288,11 +288,11 @@ export default {
         position: relative;
         font-size: 1em;
         box-sizing: border-box;
-      
+
         @media (max-width: 480px) {
           width: 275px;
         }
-      
+
         &:focus,
         :active {
           border: none;

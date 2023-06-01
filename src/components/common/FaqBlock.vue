@@ -9,11 +9,11 @@
           {{ item.title }}
           <img
               v-if="id === selectedId"
-              src="@/assets/img/land_v3/minus.svg"
+              src="@/assets/images/svg/icon_minus.svg"
               alt="">
           <img
               v-else
-              src="@/assets/img/land_v3/plus.svg"
+              src="@/assets/images/svg/icon_plus.svg"
               alt="">
         </div>
         <div class="faq-item-content" v-if="selectedId === id">

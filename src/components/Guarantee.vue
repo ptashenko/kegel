@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import blue from '@/assets/images/guarantee_icon.svg'
-import red from '@/assets/images/guarantee_icon-red.svg'
+import blue from '@/assets/images/svg/icon_guarantee_icon.svg'
+import red from '@/assets/images/svg/icon_guarantee_icon-red.svg'
 
 export default {
     props: {

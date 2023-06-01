@@ -1,79 +1,73 @@
 <template>
-  <header-layout :fixed="true" :dark="false"/>
+  <steps
+    :light="false"
+    v-if="content.id > 3 && content.id !== 35 && content.id !== 353 && content.id !== 61"
+  />
+
+  <div class="h2 layout__title">
+    <span v-if="content.title">{{ content.title }}</span>
+    <span class="red" v-if="content.afterTilteRed">{{ content.afterTilteRed }}</span>
+    <span v-if="content.afterTilteText">{{ content.afterTilteText }}</span>
+  </div>
   
-  <div class="dark-layout">
-    <div class="container-main is-page standart">
-      <steps
-        :light="false"
-        v-if="content.id > 3 && content.id !== 35 && content.id !== 353 && content.id !== 61"
-      />
+  <div class="questions__thumbnail" v-if="content.video">
+    <video-background 
+      :src="video(content.video)"
+      :poster="video(content.poster)"
+      class="video"
+    >
+    </video-background>
+  </div>
 
-      <div class="h2 layout__title">
-        <span v-if="content.title !== false">{{ content.title }}</span>
-        <span class="red" v-if="content.afterTilteRed !== false">{{ content.afterTilteRed }}</span>
-        <span v-if="content.afterTilteText !== false">{{ content.afterTilteText }}</span>
-      </div>
-      
-      <div class="questions__thumbnail" v-if="content.video">
-        <video-background 
-          :src="video(content.video)"
-          :poster="video(content.poster)"
-          class="video"
-        >
-        </video-background>
-      </div>
+  <div class="layout__thumbnail full" v-if="content.thumbnail">
+    <!-- <video-background 
+      :src="image(content.thumbnail)"
+      :poster="image(content.thumbnail)"
+      :alt="content.title"
+    >
+    </video-background> -->
+    <img
+      :src="image(content.thumbnail)"
+      :alt="content.title"
+    > 
+  </div>
+  
 
-      <div class="layout__thumbnail full" v-if="content.thumbnail">
-        <!-- <video-background 
-          :src="image(content.thumbnail)"
-          :poster="image(content.thumbnail)"
-          :alt="content.title"
-        >
-        </video-background> -->
-        <img
-          :src="image(content.thumbnail)"
-          :alt="content.title"
-        > 
-      </div>
-      
+  <div class="layout__bottom-text" v-if="content.text">
+    <span v-if="content.aftertext">{{ content.aftertext }}</span>
+    <span class="bold-text" v-if="content.textbold">{{ content.textbold }}</span>
+    {{ content.text }}
+    <span class="bold-text" v-if="content.textBold">{{ content.textBold }}</span>
+    <span class="after__text__bold" v-if="content.AfterTextBold">{{ content.AfterTextBold }}</span>
+  </div>
 
-      <div class="layout__bottom-text" v-if="content.text">
-        <span v-if="content.aftertext">{{ content.aftertext }}</span>
-        <span class="bold-text" v-if="content.textbold">{{ content.textbold }}</span>
-        {{ content.text }}
-        <span class="bold-text" v-if="content.textBold">{{ content.textBold }}</span>
-        <span class="after__text__bold" v-if="content.AfterTextBold">{{ content.AfterTextBold }}</span>
+  <div class="layout__buttons" v-if="content.buttons">
+    <div class="layout__button" v-for="button in content.buttons" :key="button.id">
+      <div class="layout__button-icon" v-if="button.logo">
+        <img :src="`${buttonIcon(button.logo)}`" :alt="button.title">
       </div>
-
-      <div class="layout__buttons" v-if="content.buttons">
-        <div class="layout__button" v-for="button in content.buttons" :key="button.id">
-          <div class="layout__button-icon" v-if="button.logo">
-            <img :src="`${buttonIcon(button.logo)}`" :alt="button.title">
-          </div>
-          <div>
-            <span>{{ button.text }}</span>
-            <div>{{ button.title }}</div>
-          </div>
-        </div>
+      <div>
+        <span>{{ button.text }}</span>
+        <div>{{ button.title }}</div>
       </div>
-      
-      <footer-controls
-        :dark="true"
-        :buttonBack="{
-        text: content.buttonsText ? content.buttonsText[0] : 'Back',
-        icon: 'prev',
-        click: backURL,
-        theme: 'grey'
-      }"
-        :buttonNext="{
-        icon: 'next',
-        text: content.buttonsText ? content.buttonsText[1] : 'I got it',
-        click: nextURL,
-        theme: 'red'
-      }"
-      />
     </div>
   </div>
+  
+  <footer-controls
+    :dark="true"
+    :buttonBack="{
+      text: content.buttonsText ? content.buttonsText[0] : 'Back',
+      icon: 'prev',
+      click: backURL,
+      theme: 'grey'
+    }"
+    :buttonNext="{
+      icon: 'next',
+      text: content.buttonsText ? content.buttonsText[1] : 'I got it',
+      click: nextURL,
+      theme: 'red'
+    }"
+  />
 </template>
 
 <script>
@@ -83,12 +77,6 @@ import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Standart-layout',
-  data(){
-    return{
-      yourMethod: true,
-      timePlay: 0,
-    }
-  },
   props: {
     content: {
       required: true,
@@ -121,10 +109,6 @@ export default {
       this.next()
     },
   },
-  
-  created () {
-    
-  }
 };
 </script>
 
@@ -158,6 +142,9 @@ export default {
       width: 100%;
       max-width: 450px;
       height: auto;
+        @media (min-width: 600px) {
+            max-width: 520px;
+          }
     }
   }
   &__thumbnail{
@@ -210,7 +197,7 @@ export default {
     font-family: "SF Pro Text Regular";
     font-weight: 400;
     font-size: 18px;
-    margin-top: 32px;
+    margin-top: 25px;
     line-height: 150%;
     text-align: center;
     color: #FFFFFF;
@@ -245,5 +232,4 @@ export default {
         max-height: 200px;
     }
 }
-
 </style>

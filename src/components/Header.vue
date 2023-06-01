@@ -1,11 +1,7 @@
 <template>
-  <header :class="{'is-fixed': fixed}">
-    <div class="container-main">
-      <!-- <router-link :to="{name: 'home'}"> -->
-        <img src="@/assets/images/logo_black.png" alt="logo" class="logo" v-if="dark">
-        <img src="@/assets/images/Logo_white.png" alt="logo" class="logo" v-else>
-      <!-- </router-link> -->
-    </div>
+  <header :class="{ 'header': true, 'absolute': $route.name === 'home' }">
+      <img src="@/assets/images/Logo_white.png" alt="logo" class="header__logo" v-if="isDark">
+      <img src="@/assets/images/logo_black.png" alt="logo" class="header__logo" v-else>
     {{bgBody}}
   </header>
 </template>
@@ -14,58 +10,43 @@
 export default {
   name: 'HeaderLayout',
   props: {
-    fixed: {
-      default: false,
+    isDark: {
       type: Boolean,
-    },
-    dark: {
+      required: true,
       default: true,
-      type: Boolean,
-    },
-  },
-  data(){
-    return{
-      bgTheBody: '#000000'
-    }
-  },
-  computed:{
-    bgBody(){
-      let mediaQuery = window.matchMedia('(max-width: 480px)');
-      if (mediaQuery.matches) {
-         if(this.dark){
-          document.body.style.backgroundColor = '#ffffff';
-        }else {
-          document.body.style.backgroundColor = '#111113';
-        }
-      }
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-header {
-  padding-top: 25px;
-  padding-bottom: 25px;
+.header {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
 
-  &.is-fixed {
-    position: absolute;
-    top: 0;
-    max-width: 100%;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    padding: 24px 32px;
-  }
+  padding: 24px 0;
+  margin: 0 auto;
 
-  .container-main {
-    background-color: transparent;
-    .logo{
-      width: 150px;
-      @media (max-width: 480px) {
-        width: 120px;
-      }
+  max-width: 311px;
+  background-color: transparent;
+
+    @media (min-width: 600px) {
+      padding: 32px 0;
+      max-width: 520px;
     }
-  }
+
+  &__logo{
+      width: 150px;
+        @media (max-width: 480px) {
+          width: 120px;
+        }
+    }
 }
+
+.absolute {
+  position: absolute;
+}
+
 </style>

@@ -1,8 +1,6 @@
 <template>
-  <header-layout :fixed="true"/>
-
   <div class="dark-layout light">
-    <div class="container-main is-page">
+    <div class="container-main is-page AdressPage">
       <div class="block__steps" :data-step=true>
       <img src="@/assets/images/icons/img_progressbar_final.svg" style="height: 18px; width: 100%;"/>
       </div>
@@ -72,14 +70,15 @@
                   class="email" 
                   type="post" 
                   :placeholder="'Enter Postal/Zip Code here'"
-                  minlength="3"
+                  minlength="5"
+                  maxlength="5"
                   required
                   @click="diselect('post')"
                 >
               </label>
 
               <div
-                class="v-popup__submit_btn active"
+                class="v-popup__submit_btn active red-shadow"
                 :class="{ submit: loading }"
                 @click="confirm"
               >
@@ -98,11 +97,10 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import VueScrollTo from "vue-scrollto";
 import CustomSelect from "../components/CustomSelect.vue";
 
 export default {
-  name: 'EmailAdress',
+  name: 'AddressPage',
   inject: ['mixpanel'],
   components: {
     CustomSelect
@@ -115,7 +113,8 @@ export default {
       email: null,
       valid: false,
       country: 'US',
-      region: ''
+      region: '',
+      submited: false
     };
   },
  
@@ -127,13 +126,44 @@ export default {
       this.textpurpose = obj.purpose
       return this.textpurpose;
     },
+    billingAdress() {
+      return {
+        country: this.country,
+        address1: this.address1,
+        address2: this.address2,
+        city: this.city,
+        region: this.region,
+        post: this.post
+      }
+    }
   },
-
+  beforeRouteLeave(to, from, next) { 
+      if (this.submited) {
+        next()
+      } else {
+        next(false)
+      }
+    },
   mounted() {
+    this.checkAdressStore()
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+      document.body.style.overflow = 'unset'
+    }, 50)
   },
 
   methods: {
     // ...mapActions(['setEmail']),
+    checkAdressStore() {
+      const adressIsNotEmpty = JSON.parse(localStorage.getItem('billingAdress'))
+      if (adressIsNotEmpty) {
+        for (let [key, value] of Object.entries(adressIsNotEmpty)) {
+          this[key] = value
+        }
+      } else {
+        return
+      }
+    },
     diselect(id) {
       document.getElementById(id).classList.remove("invalid");
     },
@@ -163,9 +193,59 @@ export default {
       } else {
         document.getElementById("post").classList.remove("invalid");
       }
+      console.log(this.billingAdress)
       if (this.valid) {
-        this.sendRequest()
+        this.submited = true
+        localStorage.setItem('billingAdress', JSON.stringify(this.billingAdress))
+        // let isiPhone = window.navigator.platform == "iPhone"
+        // // let mediaQuery = window.matchMedia('(max-width: 480px)');
+        // // if (isiPhone) {
+        //   let body = document.querySelector('body')
+        //   body.classList.remove('fixed');
+        //   if (sessionStorage.getItem('ios_v1')) {
+        //     this.$router.push('PlanFinalTwo_ios')
+        //   } else {
+        //     this.$router.push('PlanFinalTwo')
+        //   }
+        // }else{
+        //   let body = document.querySelector('body')
+        //   body.classList.remove('fixed');
+        //   this.$router.push('Whatsapp')
+        // }
+        //this.$router.push("PlanFinalTwo");
+        if (this.$route.params.item.includes('Fitness')) {
+          this.sendRequestAddon()
+        } else {
+          this.sendRequest()
+        }
       }
+    },
+    sendRequestAddon() {
+      this.loading = true;
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer test",
+        },
+        body: JSON.stringify({
+          web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
+          item: this.$route.params.item,
+        }),
+      };
+      fetch(
+        "https://int2.kegel.men/api/web-payment/addons/",
+        requestOptions
+      ).then((response) => {
+        console.log(response)
+        if (response.status == 204) {
+          this.loading = false;
+          this.$router.push("Whatsapp");
+        } else {
+          this.loading = false;
+          this.$router.push("Whatsapp");
+        }
+      });
     },
     sendRequest() {
       this.loading = true;
@@ -196,9 +276,26 @@ export default {
                   ).then((response) => {
                     if (response.status == 204 || response.status == 200) {
                     this.loading = false;
-                    this.$router.push("PlanFinal");
+                    let isiPhone = window.navigator.platform == "iPhone"
+                    // let mediaQuery = window.matchMedia('(max-width: 480px)');
+                    if (isiPhone) {
+                      let body = document.querySelector('body')
+                      body.classList.remove('fixed');
+                      if (!sessionStorage.getItem('disableFitness')) {
+                        if (sessionStorage.getItem('ios_v1')) {
+                          this.$router.push('PlanFinalTwo_ios')
+                        } else {
+                          this.$router.push('PlanFinalTwo')
+                        }
+                      } else {
+                        this.$router.push("Whatsapp");
+                      }
+                    }else{
+                      let body = document.querySelector('body')
+                      body.classList.remove('fixed');
+                      this.$router.push('Whatsapp')
                     }
-                    //this.nextUrl();
+                    }
                   });
     },
   },
@@ -215,15 +312,14 @@ export default {
   },
   created () {
     this.mixpanel.track('Address Screen Shown')
-    if(this.$route.params.paymentIntentId == null) {
-      this.$router.push("LandingView");
-    }
+    // if(this.$route.params.paymentIntentId == null) {
+    //   this.$router.push("LandingViewVP5");
+    // }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
 select {
   /* Reset Select */
   appearance: none;
@@ -277,6 +373,10 @@ input[type="email"]{font-size:1em;}
   margin: 24px auto 8px;
   line-height: 135%;
   font-size: 24px;
+  @media (min-width: 600px) {
+    font-size: 36px;
+    margin: 24px auto 16px;
+  }
 }
 .form {
   margin-top: 32px;
@@ -296,7 +396,7 @@ input[type="email"]{font-size:1em;}
   }
   &__text{
     font-family: "SF Pro Text Regular";
-    font-size: 18px;
+    font-size: 20px;
     line-height: 135%;  
     color: #111113;
     opacity: 0.75;
@@ -351,9 +451,13 @@ input[type="email"]{font-size:1em;}
       font-size: 18px;
       line-height: 135%;
       color: #ffffff;
-      // margin: 0 auto;
+      margin: 32px auto 0;
       // width: 165px;
       text-align: center;
+      max-width: 311px;
+      @media (min-width: 600px) {
+        margin: 48px auto 0;
+      }
   }
   .v-popup__submit_btn.active{
     background-color: #E44240;
@@ -412,6 +516,10 @@ input[type="email"]{font-size:1em;}
       margin: 0 15px;
     }
   }
+}
+
+.AdressPage {
+  padding-bottom: 50px;
 }
 
 .v-popup__submit_btn.submit {

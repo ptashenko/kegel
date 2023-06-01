@@ -1,14 +1,9 @@
 <template lang="">
-  <header-layout :fixed="true" :dark="true"/>
-
-  <div class="dark-layout light">
-    <div class="container-main is-page TimePlan">
+    <div class="container-main">
       <div class="h2 text-center">
         {{title}}
       </div>
       
-      
-
       <div class="loading as"
         @click="openPopup"
       >
@@ -148,8 +143,6 @@
           {{ reviewItem.text }}
         </div>
       </div>
-
-      </div>
       
 
 
@@ -211,7 +204,7 @@ export default {
       closeActive: false,
       isLoad:true ,
       percent: 0,
-      mystop: 70,
+      mystop: 100,
       loadProsentTwo:0,
       loadProsentTree: 0,
       loadProsentFoo:0,
@@ -255,7 +248,8 @@ export default {
       if (this.numreview < 2) {
         this.numreview += 1;
       } else {
-        clearInterval(this.numrew);
+        this.numreview = 0
+        // clearInterval(this.numrew);
       }
     }, 4000);
   
@@ -264,8 +258,7 @@ export default {
         this.percent += 1;
       } else {
         this.isActiveCheck_1 = true
-        this.$refs.animed.pause()
-        this.showModal()
+        this.ased()
         clearInterval(this.as);
       }
     }, 60);
@@ -446,6 +439,10 @@ export default {
   @media (max-width:480px) {
     font-size: 20px;
   }
+  @media (min-width: 600px) {
+    font-size: 30px;
+    margin-bottom: 64px;
+  }
 }
 
 .v-popup__submit_btn{
@@ -534,6 +531,9 @@ export default {
   margin: 64px auto 0;
   max-width: 370px;
   background-color: #F1F1F1;
+  @media (min-width: 600px) {
+      max-width: 100%;
+    }
   
   &:not(.light) {
     background-color: #1D1D1F;
@@ -605,5 +605,4 @@ export default {
   max-width: 14px;;
   height: auto;
 }
-
 </style>

@@ -17,7 +17,7 @@
   <div class="footer">
     <div class="footer__text">
       Questions? Feel free to contact me at <br>
-      <a class="blue" href="mailto:alex@kegel.men" >alex@kegel.men</a>
+      <a class="blue" href="mailto:alex@kegel-plan.com" >alex@kegel-plan.com</a>
     </div>
     <div class="footer__address">
       Appercut sp z o o <br>

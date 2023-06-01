@@ -1,202 +1,189 @@
 <template>
-  <header-layout :fixed="true"/>
+  <div id="topPage" class="container-main final">
+    <div class="mw-520">
+      <div 
+        v-if="active && open == 1" 
+        class="final__title"
+        :class="{active: active}"
+      >
+        Add Groin Fitness 
+        <p class="final__title--regular">to accelerate the result</p>
+      </div>
+      <h2 
+        v-else-if="open == 2"
+        class="final__secondTitle"
+      >
+        Did you know?
+      </h2>
+      <h2 v-else class="final__title">
+        <span class="final__title--blue"> Final Offer:</span> get Groin Fitness at the best deal!
+      </h2>
+    </div>
+    <div
+      v-if="open !== 2"
+      class="mw-520"
+    >
+      <video-background
+        :src="require('@/assets/video/mini_vid.mp4')"
+        :poster="require(`@/assets/video/zaglushki/mini_vid.png`)"
+        class="video"
+        objectFit="fill"
+      >
+      </video-background>
+    </div>
+    <div class="mw-450 d-flex flex-column mb-32">
+      <div v-if="open !== 2" class="item-li d-flex align-items-center">
+        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <p class="fs-16-14">
+          Build groin muscles strength & flexibility
+        </p>
+      </div>
+      <div v-if="open !== 2" class="item-li d-flex align-items-center">
+        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <p class="fs-16-14">
+          Increase blood flow to intimate organs
+        </p>
+      </div>
+      <div v-if="open !== 2" class="item-li d-flex align-items-center">
+        <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
+        <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
+        <p class="fs-16-14">
+          Every exercise has video & audio instructions from the coach
+        </p>
+      </div>
+      <DiscountFlag
+          v-if="open !== 2"
+          :disc-price="open === 1 ? price.discPrice : price.superDiscPrice"
+          :full-price="price.fullPrice"
+          style="margin: 24px 0 32px;"
+          :color="open === 1 ? '#E44240' : '#5773D6'"
+          :icon="open === 1 ? 'discountFlag' : 'superDiscountFlag'"
+        />
+    </div>
+    <div
+      v-if="open == 2"
+      class="popup_wraper"
+    >
+      <p>
+        <span class="text-semibold">Groin Fitness</span> improves blood flow to the groin, which has a big impact on sexual performance.
+      </p>
+      <p>
+        Bad blood flow to the groin area can put you at <span class="text-semibold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
+      </p>
+      <img class="content_img" src="@/assets/images/content/Final_modal.png" alt="">
+      <p class="diagram-description">
+        *This diagram is a non-personalized illustration based on scientific research.
+      </p>
+      <div class="block-blue">
+        <div class="block-blue__left">
+            <img :src="require(`@/assets/img/lp_v5/blue-gift.png`)" class="block-blue__flag" />
+        </div>
+        <div class="block-blue__right">
+            <p class="block-blue__text">
+              We want you to succeed, so we’re giving you <strong>a super discount on Groin Fitness!</strong>
+            </p>
+        </div>
+      </div>
+    </div>
 
-  <div class="dark-layout light" id="topPage">
-    <div class="container-main is-page Final" style="padding-bottom:70px;">
+
+    <div v-if="open == 1">
+      <button-field
+        
+        text='Add to my plan'
+        theme="Back"
+        class="footer-controls__button red red-shadow"
+        :class="{ submit: loading }"
+        @click="addonRequest"
+      />
+      <!-- <button-field
+        text='Add to my plan'
+        theme="Back"
+        class="footer-controls__button red loader"
+        :class="{ hiden: isActive }"
+        @click="loadingBtn"
+      /> -->
+      <div
+        class="footer-controls__button btnLoader loader"
+        :class="{ hiden: !isActive }"
+      >
+        <lottie-animation 
+          class="check"
+          ref="anim"
+          :animationData="require(`@/assets/images/json/loader_white.json`)"
+          :loop="mytrue"
+          :autoPlay="true"
+          :speed="1"
+        />
+      </div>
+    </div>
+    <div
+      v-if="open == 3"
+    >
+      <button-field
+        text='Add to my plan'
+        theme="Back"
+        class="footer-controls__button bg-blue blue-shadow"
+        :class="{ submit: loading }"
+        @click="addonRequest"
+      />
+      <!-- <button-field
+        text='Add to my plan'
+        theme="Back"
+        class="footer-controls__button loader bg-blue"
+        :class="{ hiden: isActive }"
+        @click="loadingBtn"
+      /> -->
+      <div
+        class="footer-controls__button btnLoader loader bg-blue"
+        :class="{ hiden: !isActive }"
+      >
+        <lottie-animation 
+          class="check"
+          ref="anim"
+          :animationData="require(`@/assets/images/json/loader_white.json`)"
+          :loop="mytrue"
+          :autoPlay="true"
+          :speed="1"
+        />
+      </div>
+    </div>
+    <div v-if="active && open == 1"
+      class="btn_popup"
+      @click="showModal"
+    >
+    I don’t want to accelerate my results &gt;
+    </div>
+    <div v-else-if="open == 2" class="text-center">
+      <button 
+        class="v-popup__submit_btn active w-full blue-shadow"
+        @click="closePopup"
+      >
+      Continue
+      <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" >
+      </button>
+    </div>
+    <div v-else
+      class="btn_popup"
+      @click="withoutUpsaleDiscounted"
+    >
+    I give up accelerated results forever &gt;
+    </div>
       <div class="mw-520">
-        <div 
-          v-if="active && open == 1" 
-          class="h2 text-center"
-          :class="{active: active}"
-        >
-          Add Groin Fitness 
-          <p>to accelerate the result</p>
+        <div v-if="subscriotionInfo.id === 1 && open !== 2" class="android-footer__text">
+          In addition to your subscription, your account will be charged <b>{{ this.open === 1 ? this.price.discPrice : this.price.superDiscPrice }}</b> for the add-on as you click "Add to my plan". Item on this page is a <b>1 month</b> subscription. Unless you cancel it in your profile before the end of then-current period, you agree that the subscription will renew automatically at the end of each period. You can cancel the subscription online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
         </div>
-        <div 
-          v-else-if="open == 2"
-          class="show text-center"
-        >
-          Did you know?
-        </div>
-        <div v-else class="h2 text-center">
-          <span class="blue"> Final Offer:</span> get Groin Fitness at the best deal!
+        <div v-else-if="subscriotionInfo.id !== 1 && open !== 2" class="android-footer__text">
+          In addition to your subscription, your account will be charged <b>{{ this.open === 1 ? this.price.discPrice : this.price.superDiscPrice }}</b> for the add-on as you click "Add to my plan". Item on this page is a <b>{{ this.subscriotionInfo.period }}</b> subscription. Unless you cancel it in your profile before the end of then-current period, you agree that the subscription will renew automatically at the end of each period. You can cancel the subscription online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
         </div>
       </div>
-      <div
-        v-if="open !== 2"
-        class="mw-450"
-      >
-        <video-background
-          :src="require('@/assets/video/mini_vid.mp4')"
-          :poster="require(`@/assets/video/zaglushki/mini_vid.png`)"
-          class="video"
-        >
-        </video-background>
-      </div>
-      <div class="mw-450 d-flex flex-column mb-32">
-        <div v-if="open !== 2" class="item-li d-flex align-items-center">
-          <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-          <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
-          <p class="fs-16-14">
-            Build groin muscles strength & flexibility
-          </p>
-        </div>
-        <div v-if="open !== 2" class="item-li d-flex align-items-center">
-          <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-          <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
-          <p class="fs-16-14">
-            Increase blood flow to intimate organs
-          </p>
-        </div>
-        <div v-if="open !== 2" class="item-li d-flex align-items-center">
-          <img v-if="open == 1" class="check" src="@/assets/images/icons/check_red.svg" alt="check">
-          <img v-if="open > 2" class="check" src="@/assets/images/icons/icon_check_blue.svg" alt="check">
-          <p class="fs-16-14">
-            Every exercise has video & audio instructions from the coach
-          </p>
-        </div>
-        <div v-if="!ios_v1">
-          <img v-if="open == 1" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="diskont_red">
-          <img v-if="open > 2" class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="diskont_blue">
-        </div>
-        <div v-else>
-          <img v-if="open == 1" class="diskont" src="@/assets/images/icons/discont_red_ios.png" alt="discont_red_ios">
-          <img v-if="open > 2" class="diskont" src="@/assets/images/icons/discont_blue_ios.png" alt="discont_blue_ios">
-        </div>
-      </div>
-      <div
-        v-if="open == 2"
-        class="popup_wraper"
-      >
-        <p>
-          <span class="text-semibold">Groin Fitness</span> improves blood flow to the groin, which has a big impact on sexual performance.
-        </p>
-        <p>
-          Bad blood flow to the groin area can put you at <span class="text-semibold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
-        </p>
-        <img class="content_img" src="@/assets/images/content/Final_modal.png" alt="">
-        <p class="opacity_05 text-center text-bottom-img">
-          *This diagram is a non-personalized illustration based on scientific research.
-        </p>
-        <div class="block_blue">
-          <div class="block_blue__content d-flex align-items-center">
-            <img src="@/assets/images/icons/icon_present.svg" alt="">
-            <p>We want you to be successful, so we're offering <span class="text-bold"> 25% off </span> the Groin Fitness just for you!</p>
-          </div>
-        </div>
-      </div>
-
-
-      <div v-if="open == 1">
-        <button-field
-          
-          text='Add to my plan'
-          theme="Back"
-          class="footer-controls__button red"
-          @click="addonRequest"
-        />
-        <!-- <button-field
-          text='Add to my plan'
-          theme="Back"
-          class="footer-controls__button red loader"
-          :class="{ hiden: isActive }"
-          @click="loadingBtn"
-        /> -->
-        <div
-          class="footer-controls__button btnLoader loader"
-          :class="{ hiden: !isActive }"
-        >
-          <lottie-animation 
-            class="check"
-            ref="anim"
-            :animationData="require(`@/assets/images/json/loader_white.json`)"
-            :loop="mytrue"
-            :autoPlay="true"
-            :speed="1"
-          />
-        </div>
-      </div>
-      <div
-        v-if="open == 3"
-      >
-        <button-field
-          text='Add to my plan'
-          theme="Back"
-          class="footer-controls__button bg-blue"
-          :class="{ submit: loading }"
-          @click="addonRequest"
-        />
-        <!-- <button-field
-          text='Add to my plan'
-          theme="Back"
-          class="footer-controls__button loader bg-blue"
-          :class="{ hiden: isActive }"
-          @click="loadingBtn"
-        /> -->
-        <div
-          class="footer-controls__button btnLoader loader bg-blue"
-          :class="{ hiden: !isActive }"
-        >
-          <lottie-animation 
-            class="check"
-            ref="anim"
-            :animationData="require(`@/assets/images/json/loader_white.json`)"
-            :loop="mytrue"
-            :autoPlay="true"
-            :speed="1"
-          />
-        </div>
-      </div>
-      <div v-if="active && open == 1"
-        class="btn_popup"
-        @click="showModal"
-      >
-      I don’t want to accelerate my results &gt;
-      </div>
-      <div v-else-if="open == 2" class="text-center">
-        <button 
-          class="v-popup__submit_btn active"
-          @click="closePopup"
-        >
-        Continue
-        <img src="@/assets/images/arrow-next.svg" class="btn__next" alt="" >
-        </button>
-      </div>
-      <div v-else
-        class="btn_popup"
-        @click="withoutUpsaleDiscounted"
-      >
-      I give up accelerated results forever &gt;
-      </div>
-    </div>
-    <div v-if="!ios_v1">
-      <div v-if="open == 1" class="mw-520"> 
-        <div  class="footer__text">
-        Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
-        </div>
-      </div>
-      <div v-else-if="open == 3" class="mw-520"> 
-        <div  class="footer__text">
-        Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
-        </div>
-      </div>
-    </div>
-    <div v-else>
-      <div v-if="open == 1" class="mw-520"> 
-        <div  class="footer__text">
-        Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use. 
-        </div>
-      </div>
-      <div v-else-if="open == 3" class="mw-520"> 
-        <div  class="footer__text">
-        Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
-        </div>
-      </div>
-    </div>
   </div>
   <vpopup
     class="windowError"
     v-if="windowError"
+    :close-button="false"
   > 
     <div>
       <p class="opasity_75">
@@ -220,15 +207,23 @@
     v-if="popupWindowPay"
     textTitle="Select Payment method"
     class="popup_wraper"
+    @closePopup="closePopupWindowPay"
   >
-    <div 
+    <!-- <div 
       class="closeBtn" 
       @click="closePopupWindowPay"
     >
-      <img src="@/assets/images/icons/btn_close_cwindow.svg" alt="apple_pay">
-    </div>
+    </div> -->
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
-      <PaymentFormCompanent @error="paymentError" @success="payingSuccess" @click="closeWindowError" :item="this.item"/>
+      <PaymentFormCompanent 
+        @error="paymentError" 
+        @success="payingSuccess1" 
+        @click="closeWindowError" 
+        :item="this.item"
+        :period="subscriotionInfo.period"
+        :discPrice="price.discPrice"
+        :fullPrice="subscriotionInfo.fullPrice"
+      />
     </div>
   </vpopup>
 </template>
@@ -236,18 +231,24 @@
 <script>
 import { mapGetters } from 'vuex';
 import Review from '@/components/Review.vue';
+import DiscountFlag from '@/components/DiscountFlag.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import ButtonField from '@/components/ui/Button.vue';
-import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 
 export default {
   name: 'PlanFinalTwo',
   inject: ['mixpanel'],
-  data(){
-    return{
-      item: "Fitness_1-USD-Every-3-months",
-      VueScrollTo: require('vue-scrollto'),
+  props: {
+    content: {
+      required: true,
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  data() {
+    return {
+      item: "Fitness-1-trial-USD-Monthly",
       popupVisible: false,
       open: 1,
       active: true,
@@ -263,6 +264,13 @@ export default {
       ios_v1:  sessionStorage.getItem('ios_v1')
     }
   },
+  components: {
+    Review,
+    vpopup,
+    ButtonField,
+    PaymentFormCompanent,
+    DiscountFlag
+  },
   computed: {
     ...mapGetters(['tracks', 'contentBy']),
     purpose(){
@@ -275,13 +283,43 @@ export default {
       const obj = JSON.parse(json);
       return obj.addpurpose;
     },
+    subscriotionInfo() {
+      return JSON.parse(localStorage.getItem('usersSubscriptionInfo'))
+    },
+    price() {
+      let currPrice = {
+        discPrice: null,
+        fullPrice: null,
+        superDiscPrice: null,
+      }
+      switch(this.subscriotionInfo.id) {
+        case 1:
+          currPrice.discPrice = '6.69 USD';
+          currPrice.fullPrice = '9.99 USD';
+          currPrice.superDiscPrice = '3.30 USD';
+          this.item = this.open === 1 ? "Fitness-1-trial-USD-Monthly" : "Fitness-3-trial-USD-Monthly"
+          break;
+        case 2:
+          currPrice.discPrice = '6.69 USD';
+          currPrice.fullPrice = '9.99 USD';
+          currPrice.superDiscPrice = '3.30 USD';
+          this.item = this.open === 1 ? "Fitness-1-trial-USD-Monthly" : "Fitness-3-trial-USD-Monthly"
+          break;
+        case 3:
+          currPrice.discPrice = '19.99 USD';
+          currPrice.fullPrice = '29.99 USD';
+          currPrice.superDiscPrice = '9.99 USD';
+          this.item = this.open === 1 ? "Fitness-2-trial-USD-Every-3-months" : "Fitness-4-trial-USD-Every-3-months"
+          break
+        default:
+          currPrice.discPrice = '6.69 USD';
+          currPrice.fullPrice = '9.99 USD';
+          currPrice.superDiscPrice = '3.30 USD';
+          this.item = this.open === 1 ? "Fitness-1-trial-USD-Monthly" : "Fitness-3-trial-USD-Monthly"
+      }
+      return currPrice;
+    }
   },
-  components: {
-    Review,
-    vpopup,
-    ButtonField,
-    PaymentFormCompanent
-},
   methods: {
     addonRequest(){
       this.loading = true;
@@ -321,7 +359,7 @@ export default {
     },
     closePopupWindowPay(){
       const height = sessionStorage.getItem('scrollto')
-      setTimeout(function(){ window.scrollTo( 0, height ) })
+      setTimeout(function(){ window.scrollTo( 0, -100) })
       this.popupWindowPay = false
       let body = document.querySelector('body')
       body.classList.remove('fixed');
@@ -380,6 +418,9 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/video/${path}`);
     },
+    payingSuccess1() {
+      this.closePopupWindowPay()
+    },
     payingSuccess() {
       this.nextUrl()
 
@@ -408,10 +449,9 @@ export default {
       this.nextUrl();
     },
     nextUrl(){
-
       let body = document.querySelector('body')
       body.classList.remove('fixed');
-      this.$router.push('CodeQR')
+      this.$router.push('Whatsapp')
     },
     showModal(){
       this.mixpanel.track('Upsale Answered',{
@@ -419,7 +459,9 @@ export default {
       })
       var element = document.getElementById("topPage");
       var top = element.offsetTop;
-      window.scrollTo(0, top);
+      setTimeout(() => {
+        window.scrollTo(0, 0)
+      }, 50)
       this.open = 2
       localStorage.setItem('addPlan', 2)
     },
@@ -427,7 +469,12 @@ export default {
       this.mixpanel.track('Discunted Upsale Offered')
       var element = document.getElementById("topPage");
       var top = element.offsetTop;
-      window.scrollTo(0, top);
+      setTimeout(() => {
+        window.scrollTo(0, -100)
+      }, 50)
+      setTimeout(() => {
+        window.scrollTo(0, -100)
+      }, 100)
       this.open = 3
       localStorage.setItem('addPlan', 3)
     },
@@ -441,59 +488,137 @@ export default {
       }
     }
   },
-  props: {
-    content: {
-      required: true,
-      type: Object,
-      default: () => ({}),
-    },
-  },
   beforeUnmount () {
     clearInterval(this.polling)
     clearInterval(this.pollingTwo)
-
   },
-  mounted(){
+  mounted() {
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 50)
     this.storeEdit()
-    if (!this.ios_v1) {
-      if (open == 1) {
-        //19.99
-        this.item = "Fitness_1-USD-Every-3-months"
-      }
-      if (open == 3) {
-        //9.99
-        this.item = "Fitness_4-USD-Every-3-months"
-      }
-    } else {
-      if (open == 1) {
-        //1.74
-        this.item = "Fitness_2-USD-Weekly"
-      }
-      if (open == 3) {
-        //0.99
-        this.item = "Fitness_3-USD-Weekly"
-      }
-    }
+    // if (!this.ios_v1) {
+    //   if (open == 1) {
+    //     //19.99
+    //     this.item = "Fitness-1-trial-USD-Monthly"
+    //   }
+    //   if (open == 3) {
+    //     //9.99
+    //     this.item = "Fitness-3-trial-USD-Monthly"
+    //   }
+    // } else {
+    //   if (open == 1) {
+    //     //1.74
+    //     this.item = "Fitness_2-USD-Weekly"
+    //   }
+    //   if (open == 3) {
+    //     //0.99
+    //     this.item = "Fitness_3-USD-Weekly"
+    //   }
+    // }
   },
   created () {
     this.mixpanel.track('Upsale Offered')
+  },
+  beforeRouteLeave (to, from, next) {
+    if (to.name === 'Whatsapp' || to.name === "AddressPage") {
+      next()
+    } else {
+      next(false)
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.Final{
-  .h2 {
+
+.w-full {
+  width: 100%;
+}
+.block-blue {
+    background: #F9F9F9;
+    border: 2px solid #5773D6;
+    border-radius: 9px;
+    display: flex;
+    min-height: 100px;
+    align-items: center;
+    justify-content: space-around;
+
+    &__left {
+        flex-basis: 25%;
+    }
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-basis: 65%;
+    }
+
+    &__text {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.21;
+        color: #111113;
+        opacity: 0.75;
+        margin: 0 !important;
+    }
+
+    &__flag {
+      display: block;
+      width: 70%;
+    }
+}
+.flag-wrapper {
+  padding: 26px 0 32px;
+}
+.final{
+  margin: 0 auto;
+  display: block;
+  padding-bottom: 100px;
+  max-width: 311px;
+  @media (min-width: 600px) {
+    max-width: 520px;
+  }
+  &__title {
+    margin-top: 0;
     margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
-    font-size: 32px;
+    font-size: 36px;
     line-height: 135%;
+    text-align: center;
+    &--regular {
+      font-family: "SF-Pro-Display-Medium";
+      font-size: 24px;
+      @media (max-width:480px) {
+      font-size: 20px;
+    }
+    }
+    &--blue {
+      color: #5773D6;
+    }
     @media (max-width:480px) {
       font-size: 24px;
     }
   }
-  .h2.active {
+
+  &__secondTitle {
+    margin-bottom: 32px;
+    font-family: "SF-Pro-Display-Bold";
+    margin-top: 0;
+    line-height: 135%;
+    text-align: center;
+    font-size: 30px;
+    line-height: 135%;
+    @media (max-width:480px) {
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__title.active {
     margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
@@ -511,17 +636,6 @@ export default {
       }
     }
 
-  }
-  .show{
-    margin-bottom: 32px;
-    font-family: "SF-Pro-Display-Bold";
-    line-height: 135%;
-    font-size: 30px;
-    line-height: 135%;
-    @media (max-width:480px) {
-      font-size: 24px;
-      margin-bottom: 24px;
-    }
   }
   .blue{
     color: #5773D6;
@@ -546,9 +660,9 @@ export default {
   }
   .mw-450{
     max-width: 450px;
-    margin: 47px auto 48px;
+    margin: 32px auto;
     @media (max-width:480px) {
-      margin: 32px auto 32px;
+      margin: 12px auto;
     }
     .layout__thumbnail{
       display: block;
@@ -571,13 +685,6 @@ export default {
         @media (max-width:480px) {
           width: 13px;
         }
-      }
-    }
-    .diskont{
-      width: 100%;
-      margin: 50px 0 0px;
-      @media (max-width:480px) {
-        margin: 28px 0 0px;
       }
     }
   }
@@ -636,19 +743,18 @@ export default {
     font-size: 16px;
     line-height: 150%;
     opacity: 0.5;  
-    margin: 16px auto 48px;  
+    margin: 32px auto;  
     cursor: pointer;
+    @media (min-width: 600px) {
+      margin: 32px auto 48px;
+    }
+    @media (max-width: 420px) {
+      font-size: 14px;
+    }
     
-  }
-  
-  .mw-520{
-    max-width: 520px;
-    margin: 0 auto;
-    display: block;
   }
 
   .video{
-    max-height: 260px; 
     height: 100vh; 
     max-width: 100%;
     // border-radius: 14px;
@@ -662,14 +768,27 @@ export default {
       max-height: 180px;
     }
   }
+  .diagram-description {
+  font-family: 'SF Pro Text Regular';
+  font-style: normal;
+  font-weight: 300 !important;
+  font-size: 12px !important;
+  line-height: 150% !important;
+  text-align: center;
+  color: #111113 !important;
+  opacity: 0.5 !important;
+  margin: 16px auto 32px !important;
+  @media (min-width: 600px) {
+    font-size: 14px !important;
+  }
 }
-.footer__text{
+}
+.android-footer__text, .ios-footer__text {
     font-family: "SF Pro Text Light";
     font-size: 14px;
     line-height: 150%;
     opacity: 0.5;
     text-align: center;
-    padding-bottom: 48px;
     @media (max-width:480px) {
       font-size: 12px;
     }
@@ -684,84 +803,108 @@ export default {
   line-height: 135%;
   color: #ffffff;
   margin-top: 32px;
-  margin-bottom: 132px;
   cursor: pointer;
-  @media (max-width: 480px){
-    margin-bottom: 40px;
-  }
+  margin-bottom: 40px;
 }
 @media (max-width: 480px){
   .container-main {
-    padding-bottom: 0px; 
+    padding-bottom: 50px; 
   }
 }
-.popup_wraper{
-  overflow-y: inherit!important;;
-  h2{
+
+// Logic
+#app .popup_wraper{
+  height: 100%;
+}
+
+.popup_wraper {
+  overflow-y: inherit !important;
+  ;
+
+  h2 {
     font-family: "SF-Pro-Display-Bold";
     font-size: 24px;
     line-height: 135%;
     margin: 16px auto 16px;
+
     @media (max-width:480px) {
       font-size: 20px;
     }
   }
-  p{
+
+  p {
     font-size: 18px;
     line-height: 150%;
     font-family: "SF Pro Text Regular";
     opacity: 1;
     margin-bottom: 16px;
-    .text-semibold{
-        font-family: "SF Pro Text Semibold";
-      }
-      .text-bold{
-        font-family: "SF Pro Text Bold";
-      }
+
+    .text-semibold {
+      font-family: "SF Pro Text Semibold";
+    }
+
+    .text-bold {
+      font-family: "SF Pro Text Bold";
+    }
+
     @media (max-width:480px) {
       font-size: 14px;
-    }  
+    }
   }
-  img{
+
+  img {
     // width: 100%;
-    max-width: 450px;
     margin: 32px auto;
     display: flex;
+
     @media (max-width:480px) {
       margin: 0px auto 0px;
     }
   }
-  .text-bottom-img{
+
+  .text-bottom-img {
     font-size: 14px;
     opacity: 0.5;
     font-family: "SF Pro Text Light";
     margin: 0 auto 32px;
     max-width: 450px;
     text-align: center;
+
     @media (max-width:480px) {
       font-size: 12px;
     }
   }
-  .block_blue{
+
+  .block_blue {
     padding: 16px 24px;
     background: #5773D6;
     color: #ffffff;
-    @media (max-width:480px){
+
+    @media (max-width:480px) {
       margin-left: -32px;
       margin-right: -32px;
     }
-    &__content{
+
+    &__content {
       max-width: 450px;
       margin: 0 auto;
-      @media (max-width:480px){
+
+      @media (max-width:480px) {
         max-width: 400px;
       }
     }
-    img{
+
+    @media (min-width: 600px) {
+      border: 2px solid #5773D6;
+      border-radius: 9px;
+    }
+
+    img {
       max-width: 70px;
       margin: 0;
     }
-    p{
+
+    p {
       margin: 0;
       margin-left: 16px;
       font-size: 16px;
@@ -771,35 +914,14 @@ export default {
       }
     }
   }
-  .v-popup__submit_btn{
+
+  .v-popup__submit_btn {
     background: #5773D6;
   }
-  .btn__next{
+
+  .btn__next {
     max-width: 14px;
     margin: 0 0 0 12px;
-  }
-}
-// Logic
-#app .popup_wraper{
-  height: 100%;
-  h2{
-    font-family: "SF-Pro-Display-Bold";
-    font-size: 24px;
-    line-height: 135%;
-    margin: 16px auto 16px;
-    @media (max-width:480px) {
-      font-size: 20px;
-    }
-  }
-  p{
-    font-size: 16px;
-    line-height: 150%;
-    font-family: "SF Pro Text Regular";
-    opacity: 1;
-    margin-bottom: 16px;
-    .text-bold{
-      font-family: "SF Pro Text Semibold";
-    }
   }
 }
 .btnLoader{

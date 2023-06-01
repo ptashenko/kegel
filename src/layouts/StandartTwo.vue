@@ -1,6 +1,4 @@
 <template>
-  <header-layout :fixed="true" :dark="false"/>
-  
   <div class="dark-layout">
     <div class="container-main is-page standart">
 

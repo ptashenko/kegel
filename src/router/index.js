@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import notFound from '@/views/NotFound.vue';
-import HomeView from '@/views/HomeView.vue';
+import HomeView_v2 from '@/views/HomeView_v2.vue';
 import SurveyView from '@/views/SurveyView.vue';
 import Wait from '@/views/Wait.vue';
 import TimePlan from '@/views/TimePlan.vue';
@@ -13,6 +13,9 @@ import AddressPage from '@/views/AddressPage.vue';
 import LandingView from '@/views/LandingView.vue';
 import LandingViewV2 from '@/views/LandingViewV2.vue';
 import LandingViewV3 from '@/views/LandingViewV3.vue';
+import LandingViewV5 from '@/views/LandingViewV5.vue';
+import LandingViewV4 from '@/views/LandingViewV4.vue';
+import LandingViewVP5 from '@/views/LandingViewVP5.vue';
 import Landing_ios_v1 from '@/views/Landing_ios_v1.vue';
 import Landing_ios_v2 from '@/views/Landing_ios_v2.vue';
 import Landing_ios_v3 from '@/views/Landing_ios_v3.vue';
@@ -24,7 +27,9 @@ import Landing_android_v3 from '@/views/Landing_android_v3.vue';
 import Landing_android_v4 from '@/views/Landing_android_v4.vue';
 import PlanFinal from '@/views/PlanFinal.vue';
 import PlanFinalTwo from '@/views/PlanFinalTwo.vue';
+import PlanFinalTwo_ios from '@/views/PlanFinalTwo_ios.vue';
 import CodeQR from '@/views/CodeQR.vue';
+import WhatsappPage from '@/views/WhatsappPage.vue';
 import FeedBack from '@/views/FeedBack.vue';
 import Preland from '@/views/PreLand.vue';
 import PreLandv2 from "@/views/PreLandv2";
@@ -32,7 +37,7 @@ import PreLandv2 from "@/views/PreLandv2";
 const routes = [{
         path: '/',
         name: 'home',
-        component: HomeView,
+        component: HomeView_v2,
     },
     {
         path: '/survey/:survey',
@@ -73,6 +78,21 @@ const routes = [{
         path: '/LandingView',
         name: 'LandingView',
         component: LandingView,
+    },
+    {
+        path: '/LandingViewV4',
+        name: 'LandingViewV4',
+        component: LandingViewV4,
+    },
+    {
+        path: '/LandingViewV5',
+        name: 'LandingViewV5',
+        component: LandingViewV5,
+    },
+    {
+        path: '/LandingViewVP5',
+        name: 'LandingViewVP5',
+        component: LandingViewVP5,
     },
     {
         path: '/AddressPage',
@@ -135,9 +155,19 @@ const routes = [{
         component: PlanFinalTwo,
     },
     {
+      path: '/PlanFinalTwo_ios',
+      name: 'PlanFinalTwo_ios',
+      component: PlanFinalTwo_ios,
+  },
+    {
         path: '/CodeQR',
         name: 'CodeQR',
         component: CodeQR,
+    },
+    {
+        path: '/Whatsapp',
+        name: 'Whatsapp',
+        component: WhatsappPage,
     },
     {
         path: '/FeedBack',
@@ -178,22 +208,29 @@ const routes = [{
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
-    scrollBehavior(to, from, savedPosition) {
-        return { x: 0, y: 0 }
-    }
 });
+
+router.afterEach((to, from) => {
+    window.scrollTo(0, 0)
+})
 
 router.beforeEach((to, from, next) => {
     const isRedirectDisabled =
         (from.name === 'pre-email' && to.name === 'LandingViewV2') ||
+        (from.name === 'pre-email' && to.name === 'LandingViewVP5') ||
+        (from.name === 'AddressPage' && to.name === 'LandingViewVP5') ||
+        (from.name === 'AddressPage' && to.name === 'EmailAdress') ||
         (from.name === 'PlanFinal' && to.name === 'EmailAdress2') ||
         (from.name === 'PlanFinal' && to.name === 'LandingView') ||
         (from.name === 'CodeQR' && to.name === 'PlanFinal') ||
         (from.name === 'CodeQR' && to.name === 'PlanFinalTwo') ||
+        (from.name === 'Whatsapp' && to.name === 'PlanFinal') ||
+        (from.name === 'Whatsapp' && to.name === 'PlanFinalTwo') ||
         (from.name === 'PlanFinalTwo' && to.name === 'PlanFinal') ||
         (from.name === 'PlanFinalTwo' && to.name === 'Landing_ios_v1')
         // also need add info about succes payment
     if (isRedirectDisabled) {
+        console.log('es')
         router.push({ name: from.name })
         next()
     } else {

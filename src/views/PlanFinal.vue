@@ -1,14 +1,11 @@
 <template>
-  <header-layout :fixed="true"/>
   {{btnAddPurpose}}
   {{imagePE}}
-  <div class="dark-layout light">
-    <div class="container-main is-page Final">
-      <div class="mw-520">
-        <div class="h2 text-center">
+    <div class="container-main final">
+        <h2 class="final__title">
           Looking to increase your chance of success by 4 times? 
-        </div>
-        <div class="purpose">
+        </h2>
+        <div class="final__purpose">
           <p>Studies show that people feel more obligated to follow through with something once they've made a strong commitment.</p>
           <p>This principle also applies to improving intimate health. You can 
             <span>{{ purpose }}<span v-if="!AddPurpose">.</span>
@@ -22,60 +19,47 @@
           <p>
             Kegel Plan users who have a strong commitment at the beginning are 4 times more likely to achieve improvements, than users who choose trial. 
           </p>
-        </div>                    
-      </div>
-      <div class="mw-450"> 
-        <div class=" layout__thumbnail">
+        </div>
+        <div class="graphic">
           <img src="@/assets/images/content/Step_2_img.png" :alt="Step_2_img">
         </div>
 
-        <div class="desc text-center">
+        <p class="graphic__description">
           *According to studies, it takes 12 weeks of Kegel exercises to achieve improvements. Kegel Plan users who have strong commitment are 4 times more likely to finish 12 weeks of Kegel exercises, than users who choose trial
-        </div>
-      </div>
-      <div id="price" class="price">
-        <div class="price__text">
-          Price breakdown
-        </div>
-      </div>
-      <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-          <p class="">
-            12-week plan with trial
-          </p>
-          <span class="bold">$80-${{price}}</span>
-      </div>
-      <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-        <p class="">
-          Skip trial
         </p>
-        <span class="bold">-${{trial}}</span>
+      <div id="price" class="price">
+        <h2 class="price__title">
+          Price breakdown
+        </h2>
+        <p class="price__text">
+          12-week plan with trial
+          <span class="price__text--bold">$80-${{price}}</span>
+        </p>
+        <p class="price__text">
+          Skip trial
+          <span class="price__text--bold">-${{trial}}</span>
+        </p>
       </div>
       <hr v-if="!addToDo">
       <div v-if="addToDo">
-        <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-          <p class="bg_blue">
-            20% off
-          </p>
-          <span class="bold">-$16</span>
-        </div>
-        <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-          <p class="">
-              Total saving
-            </p>
-            <span class="bold"> $36</span>
-        </div>
+        <p class="price__text">
+          <span class="price__text--blueBg">20% off</span>
+          <span class="price__text--bold">-$16</span>
+        </p>
+        <p class="price__text">
+            Total saving
+            <span class="price__text--bold"> $36</span>
+        </p>
         <hr>
       </div>
-      <div class="price__today d-flex mw-450 align-items-center justify-content-beetwen">
-        <p class="bold">
-            Total
-          </p>
-          <span class="bold"><span class="opacity_05 underline">$80</span> ${{pricenew}}</span>
-      </div>
+        <p class="price__text price__text--bold">
+          Total
+          <span class="price__text--bold"><span class="price__text--total">$80</span> ${{pricenew}}</span>
+        </p>
       <button-field
         text='Skip trial and start plan'
         theme="Back"
-        class="footer-controls__button red"
+        class="footer-controls__button red red-shadow"
         :class="{ submit: loading }"
         @click="changePlanRequest"
       />
@@ -117,21 +101,27 @@
       >
       Continue with trial &gt;
       </div>
-    </div>
-    <div class="mw-520">
-      <div class="footer__text" v-if="!addToDo">
-        When you click "Skip Trial and Start Plan", your original trial payment will be charged $60. Your payment method will then be automatically charged $60 every 3 months (your "subscription period") until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of a subscription period, you will not receive a partial refund.
+      <div class="final-footer">
+        <div class="final-footer__text" v-if="!addToDo">
+          When you click "Skip Trial and Start Plan", your original trial payment will be charged $60. Your payment method
+          will then be automatically charged $60 every 3 months (your "subscription period") until you cancel. You can cancel
+          anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the
+          end of a subscription period, you will not receive a partial refund.
+        </div>
+        <div class="final-footer__text" v-else>
+          When you click "Skip Trial and Start Plan", your original trial payment will be charged $44. Your payment method
+          will then be automatically charged $44 every 3 months (your "subscription period") until you cancel. You can cancel
+          anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the
+          end of a subscription period, you will not receive a partial refund.
+        </div>
       </div>
-      <div class="footer__text" v-else>
-        When you click "Skip Trial and Start Plan", your original trial payment will be charged $44. Your payment method will then be automatically charged $44 every 3 months (your "subscription period") until you cancel. You can cancel anytime before the first day of your next subscription period to avoid automatic renewal. If you cancel before the end of a subscription period, you will not receive a partial refund.
-      </div>
-    </div>  
+    </div> 
 
     
-  </div>
     <vpopup
-    class="popup_wraper"
+    class="popup_wraper sure"
     textTitle="Are you sure?"
+    style="{width: 452px;}"
     v-if="popupVisible"
   > 
     <p>
@@ -187,13 +177,13 @@
 </template>
 
 <script>
-import moment from 'moment';
 import { mapGetters } from 'vuex';
 import Review from '@/components/Review.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import ButtonField from '@/components/ui/Button.vue';
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 import VueScrollTo from "vue-scrollto";
+import '../assets/css/animations.css';
 
 export default {
   name: 'PlanFinal',
@@ -404,9 +394,6 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/images/content/${path}`);
     },
-    moment(){
-      return moment();
-    },
     getRandomArbitrary(min, max){
       return Math.random() * (max - min) + min;
     },
@@ -456,6 +443,9 @@ export default {
     clearInterval(this.pollingTwo)
   },
   mounted(){
+    setTimeout(() => {
+      window.scrollTo(0, 0)
+    }, 50)
     this.$nextTick(function (){
       // chrome
       document.body.scrollTop = 0
@@ -473,17 +463,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Final{
-  .h2 {
+.final{
+  @media (max-width: 599px) {
+    padding: 0 32px;
+  }
+
+  &__title {
     margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
     font-size: 30px;
+    text-align: center;
     @media (max-width:480px) {
       font-size: 24px;
     }
   }
-  .purpose{
+  &__purpose{
     font-family: "SF Pro Text Regular";
     font-size: 18px;
     line-height: 150%;
@@ -498,57 +493,58 @@ export default {
       }
     }
   }
-  .mw-450{
-    max-width: 450px;
-    margin: 0 auto;
-    .layout__thumbnail{
-      display: block;
-      max-width: 450px;
-      margin: 0 auto 32px;
-      img{
-        width: 100%;
-      }
-    }
-    .desc{
-      font-family: "SF Pro Text Light";
-      font-size: 14px;
-      line-height: 150%;
-      opacity: 0.5;
-      text-align: center;
-      margin-bottom: 48px;
-      @media (max-width:480px) {
-        font-size: 12px;
-      }
+
+.graphic {
+  display: block;
+  max-width: 520px;
+  margin: 0 auto 32px;
+
+  img {
+    width: 100%;
+  }
+  &__description {
+    font-family: "SF Pro Text Light";
+    font-size: 14px;
+    line-height: 150%;
+    opacity: 0.5;
+    text-align: center;
+    margin-bottom: 48px;
+
+    @media (max-width:480px) {
+      font-size: 12px;
     }
   }
+}
+
   .price{
-    background: #F1F3F9;
-    padding: 16px 74px;
-    margin: 0 -32px;
-    @media (max-width:480px) {
-      padding: 16px 32px;
-    }
-    &__text{
+
+    &__title{
       font-family: "SF-Pro-Display-Semibold";
       font-size: 16px;
       line-height: 150%;
+      margin: 0;
+      background: #F1F3F9;
+      padding: 16px 32px;
+      @media (min-width: 600px) {
+        font-size: 18px;
+        padding: 24px 38px;
+      }
     }
-    &__today{
-      font-size: 16px;
-      margin-top: 16px ;
+
+    &__text {
+      font-size: 18px;
+      margin: 16px auto 0;
+      max-width: 450px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       @media (max-width:480px) {
         font-size: 14px;
       }
-      .bold{
+      &--bold {
         font-family: "SF Pro Text Semibold";
       }
-      .small{
-        font-size: 14px;
-        @media (max-width:480px) {
-          font-size: 11px;
-        }
-      }
-      .bg_blue{
+      &--blueBg {
         padding: 4px 12px;;
         background: #5773D6;
         border-radius: 70px;
@@ -558,16 +554,20 @@ export default {
         border: 0px solid #5773d681;
         animation: blick .75s ease-in-out infinite;
       }
-    }
-    &__today.mt-32{
-      margin-top: 32px;
+      &--total {
+        opacity: 0.5;
+        text-decoration: line-through;
+      }
     }
   }
-  
+
   .footer-controls__button{
     max-width: 310px;
     margin: 48px auto 0;
     z-index: 0;
+    @media (min-width: 600px) {
+      max-width: 375px;
+    }
   }
   .footer-controls__button.loader{
     max-width: 310px;
@@ -596,11 +596,7 @@ export default {
     margin: 16px auto 48px;  
     cursor: pointer;
   }
-  .mw-520{
-    max-width: 520px;
-    margin: 0 auto;
-    display: block;
-  }
+
   hr{
     color: #F1F3F9;
     background: #F1F3F9;
@@ -614,22 +610,7 @@ export default {
     }
   }
 }
-@keyframes blick {
-  0% {box-shadow:0px 0px 0px 0px #5773d681;}
-  50%{box-shadow:0px 0px 0px 4px #5773d681;}
-  100%{box-shadow:0px 0px 0px 0px #5773d681;}
-}
-.footer__text{
-    font-family: "SF Pro Text Light";
-    font-size: 14px;
-    line-height: 150%;
-    opacity: 0.5;
-    text-align: center;
-    padding-bottom: 48px;
-    @media (max-width:480px) {
-      font-size: 12px;
-    }
-  }
+
 .v-popup__submit_btn, .v-popup__btn{
   background-color: rgb(228, 66, 64);
   border:none;
@@ -663,8 +644,23 @@ export default {
     font-family: "SF Pro Text Regular";
     opacity: 0.75;
     margin-bottom: 16px;
+    @media (min-width: 600px) {
+      font-size: 18px;
+    }
     .text-bold{
       font-family: "SF Pro Text Semibold";
+    }
+  }
+}
+
+.sure {
+  .v-popup {
+    &__content p {
+      font-size: 14px;
+
+      @media (min-width: 600px) {
+        font-size: 18px;
+      }
     }
   }
 }
@@ -808,6 +804,20 @@ export default {
       background: #FFBB1B;
       border: 3px solid #F3F3F3;
     }
+  }
+}
+.final-footer {
+  &__text {
+      font-family: "SF Pro Text Light";
+      font-size: 14px;
+      line-height: 150%;
+      opacity: 0.5;
+      text-align: center;
+      padding-bottom: 48px;
+    
+      @media (max-width:480px) {
+        font-size: 12px;
+      }
   }
 }
 .closeBtn{

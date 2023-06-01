@@ -1,13 +1,10 @@
 <template>
 <Transition name="slider" mode="out-in" appear>
-  <div>
-    <header-layout :fixed="true"/>
-    
-    <div class="dark-layout light">
-      <div class="container-main is-page GoodHands">
-        <div class="h2">{{title}}</div>
-        <img class="map" src="@/assets/images/content/map.png" alt="map">
-        <p>More than <span> 1.575.179 </span> men got closer to their goal thanks to this Kegel Training Plan</p>
+  <div class="container-main">
+      <div class="goodHands">
+        <h2 class="goodHands__title">{{title}}</h2>
+        <img class="goodHands__image" src="@/assets/images/content/map.png" alt="map">
+        <p clas="goodHands__text">More than <span class="goodHands__text--bold"> 1.575.179 </span> men got closer to their goal thanks to this Kegel Training Plan</p>
       </div>
 
       <footer-controls
@@ -24,7 +21,6 @@
           theme: 'red'
         }"
       />
-    </div>
   </div>
   </Transition>
 </template>
@@ -53,34 +49,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.h2 {
-  font-family: "SF-Pro-Display-Bold";
-  line-height: 135%;
-  font-size: 24px;
-  @media (max-width: 480px) {
-    font-size: 20px;
-  }
-}
-.map{
-  width: 100%;
-  max-width: 450px;
-  margin: 32px auto;
-}
-.container-main {
+
+.goodHands {
   text-align: center;
-}
-
-img {
-  margin: 32px 0;
-  max-width: 100%;
-}
-
-p {
   
-  font-size: 16px;
-  line-height: 150%;
-  span{
-    font-family: "SF Pro Text Semibold";
+  &__title {
+    margin: 0;
+    font-family: "SF-Pro-Display-Bold";
+    line-height: 135%;
+    font-size: 24px;
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
+    @media (min-width: 600px) {
+      font-size: 30px;
+    }
+  }
+  
+  &__image {
+    width: 100%;
+    max-width: 450px;
+    margin: 32px auto;
+    @media (min-width: 600px) {
+      max-width: 100%;
+    }
+  }
+
+  &__text {
+    font-size: 16px;
+    line-height: 150%;
+    @media (min-width: 600px) {
+        font-size: 18px;
+      }
+    &--bold {
+      font-family: "SF Pro Text Semibold";
+    }
   }
 }
 

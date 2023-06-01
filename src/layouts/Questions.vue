@@ -1,65 +1,30 @@
 <template>
-    <header-layout :fixed="true" :dark="true"/>
-    <div class="block__steps" :data-step="content.steps">
-      <steps v-if="content.steps !== false" />
+    <div class="block__steps" v-if="content.steps !== false" :data-step="content.steps">
+      <steps />
     </div>
     <transition name="slide" mode="out-in">
-      <div
-      v-if="show"
-      >
+      <div v-if="show" class="questions__wrapper">
         <div class="questions__title">
           {{ survey.title }}
         </div>
+
         <div class="questions__thumbnail" v-if="survey.video">
-          <video-background 
-            :src="video(content.video)"
-            :poster="video(content.poster)"
-            class="video"
-          >
-          </video-background>
+          <video-background :src="video(content.video)" :poster="video(content.poster)" class="video"></video-background>
         </div>
-        <div>
-        </div> 
+
         <div class="questions__thumbnail" v-if="survey.thumbnail">
-          <img
-            :src="image(survey.thumbnail)"
-            :alt="survey.title"
-            width="400"
-            height="200"
-          >
+          <img :src="image(survey.thumbnail)" :alt="survey.title" width="400" height="200" />
         </div>
+
         <div class="questions__thumbnail" v-if="survey.json">
-          <lottie-animation 
-              class="animation" 
-              ref="survey.ref"
-              :animationData="json(survey.json)"
-              :loop="false"
-              :autoPlay="true"
-              :speed="1"
-              @loopComplete="loopComplete"
-              @complete="complete"
-              @enterFrame="enterFrame"
-              @segmentStart="segmentStart"
-              @stopped="stopped"
-            />
+          <lottie-animation class="animation" ref="survey.ref" :animationData="json(survey.json)" :loop="false" :autoPlay="true" :speed="1" @loopComplete="loopComplete" @complete="complete" @enterFrame="enterFrame" @segmentStart="segmentStart" @stopped="stopped" />
         </div>
 
         <div v-if="survey.answer.style === 'buttons'" class="questions__rate">
           {{ rateTo }}
         </div>
-        <div
-          class="answer__list"
-          :class="survey.answer.style === 'buttons' ? 'answer__list--flex' : ''"
-        >
-          <component
-            :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'"
-            v-for="answer in survey.answer.answerList"
-            :class="survey.answer.answerClass"
-            @click="myAvesomeClickFunction"
-            :key="answer.id"
-            :answer="answer"
-          />
-        
+        <div :class="[survey.answer.style === 'buttons' ? 'answer__list--flex' : '', {'answer__list': true}]">
+          <component :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'" v-for="answer in survey.answer.answerList" :class="survey.answer.answerClass" @click="myAvesomeClickFunction" :key="answer.id" :answer="answer" />
         </div>
         <div v-if="survey.answer.style === 'buttons'" class="questions__lvl">
           <div>{{survey.answer.textLeft}}</div>
@@ -104,11 +69,8 @@ export default {
 
   data() {
     return {
-      num: 0,
-      timePlay: 0,
       show: true,
       selectedAnswer: true,
-      but:1,
       layotname: [2, 6, 61, 9, 333, 14, 20, 201, 24, 28, 32, 321, 322, 323, 35, 353, 352, 36, 39, 41, 47, 48, 50, 51, 57]
     }
   },
@@ -137,7 +99,8 @@ export default {
         icon: 'next',
         disabled: this.selectedAnswer,
         click: this.nextWait,
-        theme: 'dark'
+        theme: 'dark',
+        short: this.content.short
       }
     }
   },
@@ -166,34 +129,33 @@ export default {
       const answeres = document.querySelectorAll('.answer'),
             active = document.querySelector('.answer.active'),
             index = Array.prototype.indexOf.call(answeres, active),
-            userAnswer = this.content.answer.answerList[index];
-
+        userAnswer = this.content.answer.answerList[index];
       this.mixpanel.track('Quiz Answer', {
         question: this.content.title,
         answer: userAnswer,
       })
-      if(this.survey.id === 3){
-        this.mixpanel.people.set({"Age Group": userAnswer})
-      }
-      if(this.survey.id === 34){
-        this.$router.push({
-          name: 'wait',
-        });
-      } else {
-        this.selectedAnswer = true
-        if (this.layotname.includes(this.nextContentId)){
-          this.next()
-        } else {
-          this.show= false
-          setTimeout(() => {
-            this.show= true
-            this.next()
-            setTimeout(() => {
-              this.classActive()
-            },500)
-          }, 500);
+        if (this.survey.id === 3) {
+          this.mixpanel.people.set({ "Age Group": userAnswer })
         }
-      }
+        if (this.survey.id === 34) {
+          this.$router.push({
+            name: 'wait',
+          });
+        } else {
+          this.selectedAnswer = true
+          if (this.layotname.includes(this.nextContentId)) {
+            this.next()
+          } else {
+            this.show = false
+            setTimeout(() => {
+              this.show = true
+              this.next()
+              setTimeout(() => {
+                this.classActive()
+              }, 500)
+            }, 500);
+          }
+        }
     },
     
     classActive(){
@@ -236,11 +198,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.block__steps{
-  position: relative;
-    padding-top: 100px;
-}
 .questions {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
   &__rate {
     opacity: 0.75;
     text-align: center;
@@ -268,15 +230,23 @@ export default {
     margin: 0px auto 32px;
     text-align: center;
     max-width: 450px;
+    width: 100%;
+    @media (min-width: 600px) {
+      max-width: 100%;
+    }
     img {
       max-width: 100%;
       height: auto;
+          @media (min-width: 600px) {
+              max-width: 520px;
+            }
     }
   }
 
   &__lvl {
     display: flex;
     max-width: 390px;
+    width: 100%;
     margin: 0 auto;
     margin-top: 16px;
     justify-content: space-between;
@@ -288,11 +258,11 @@ export default {
     }
   }
 }
-.video{
-      max-width: 520px;
-      width: 100%;
-      margin: 0 auto;
-    }
+.video {
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+}
 .answer {
   &__list {
     &--flex {

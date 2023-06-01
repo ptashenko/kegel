@@ -98,7 +98,7 @@ export default {
           },
           body: JSON.stringify({
             currency_code: "USD",
-            amount: 100,
+            amount: this.auth_price * 100,
             payment_method_type: "card",
           }),
         };

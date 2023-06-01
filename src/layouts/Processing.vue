@@ -1,7 +1,4 @@
 <template>
-  <header-layout :fixed="true" :dark="false"/>
-
-  <div class="dark-layout">
     <div class="container-main is-page Processing__layouts">
       <processing>
         Processing...
@@ -12,7 +9,6 @@
         <img src="@/assets/images/content/s7.png" alt="">
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -62,7 +58,16 @@ export default {
     margin: 0 -30px;
   }
   img {
-    width: 100%;
+    display: block;
+    max-width: 311px;
+    margin: 0 auto;
+    @media (min-width: 600px) {
+      max-width: 520px;
+    }
   }
+}
+
+.Processing__layouts {
+  padding: 0;
 }
 </style>

@@ -1,65 +1,41 @@
 <template>
-  <header-layout :fixed="true"/>
-
-  <div class="dark-layout light">
-    <div class="container-main is-page">
-
-      <div class="email__content">
-        
-        <div class="d-flex  align-items-center justify-content-center flex-column block">
-          <img src="@/assets/images/icons/email_img.svg" alt="email">
-          <div class="d-flex flex-column">
-            <div class="h2">
-              {{title}}
-            </div>
-            <p class="email__content__text">to get your Kegel Training Plan & {{ purpose }}</p>
-            
-              <label for="email">
-                
-                <input 
-                  v-model="upValue"
-                  id="email" 
-                  class="email" 
-                  type="email" 
-                  :placeholder="email || 'Enter your email here'"
-                >
-                <span class="lock">
-                  <img src="@/assets/images/icons/lock.svg" alt="img">
-                </span>
-              </label>
-              <div
-                v-if="email"
-                class="v-popup__submit_btn active"
-                @click="nextUrlEmail"
-              >
-              See my plan
+        <div class="emailPage__wrapper">
+          <div class="emailPage__content">
+              <div class="emailPage__body">
+                <img src="@/assets/images/icons/email_img.svg" alt="email">
+                <div class="emailPage__title">
+                  {{ title }}
+                </div>
+                <p class="email__text">to get your Kegel Training Plan & improve {{ purpose }}</p>
+                <label class="email__label" for="email">
+                  <input v-model="upValue" id="email" class="email__input" type="email"
+                    :placeholder="email || 'Enter your email here'">
+                  <span class="email__lock">
+                    <img src="@/assets/images/icons/lock.svg" alt="img">
+                  </span>
+                </label>
+                <div v-if="email" class="v-popup__submit_btn active" @click="nextUrlEmail">
+                  See my plan
+                </div>
+                <div v-else :class="['v-popup__submit_btn', { active: closeActive }]" @click="nextUrl">
+                  See my plan
+                </div>
+              
+                <p class="emailPage__dataInfo">
+                  Your data is perfectly safe. We won't share your personal information with third parties.
+                </p>
               </div>
-              <div 
-                v-else
-                :class="['v-popup__submit_btn', {active: closeActive}]"
-                @click="nextUrl"
-              >
-              See my plan
-              </div>
-           
-            <p class="email__content__text__small">
-              Your data is perfectly safe. We won't share your personal information with third parties.
-            </p>
-
-            <div class="block-fixed">
-              <p class="email__content__text__small">
+              <div class="block-fixed">
+              <p class="emailPage__dataInfo">
                 By giving your email address you can also receive offers from Appercut Sp. z o.o. You can unsubscribe at any time.
               </p>
-              <div class="footer__terms">
+              <div class="emailPage__terms">
                 <a href="/terms.html" target="_blank">Terms</a>
                 <a href="/privacy-policy.html" target="_blank">Policy</a>
               </div>
             </div>
           </div>
-        </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -77,6 +53,7 @@ export default {
       isEmailTouched: false,
       upValue: this.EMAILUSER,
       title: 'Enter email adress',
+      version: localStorage.getItem('ver'),
     };
   },
  
@@ -88,6 +65,17 @@ export default {
       this.textpurpose = obj.purpose
       return this.textpurpose;
     },
+    ladningView() {
+      return 'LandingViewVP5'
+      // switch (Number(this.version)) {
+      //   case 5:
+      //     return 'LandingViewV5'
+      //   case 6:
+      //     return 'LandingViewV4'
+      //   default:
+      //     return 'LandingView'
+      // }
+    },
   },
 
   mounted() {
@@ -96,11 +84,11 @@ export default {
 
   methods: {
     ...mapActions(['setEmail']),
-    nextUrl(){
+    nextUrl() {
       if (this.closeActive) {
         VueScrollTo.scrollTo('.dark-layout');
         this.setEmail(this.upValue)
-        this.$router.push('LandingView');
+        this.$router.push(this.ladningView);
         this.mixpanel.track('E-mail Screen Completed', {
           email: this.upValue
         })
@@ -113,7 +101,7 @@ export default {
     nextUrlEmail(){
       VueScrollTo.scrollTo('.dark-layout')
       this.setEmail(this.upValue)
-      this.$router.push('LandingView')
+      this.$router.push(this.ladningView)
       
     },
   },
@@ -130,127 +118,121 @@ export default {
   },
   created () {
     this.mixpanel.track('E-mail Screen Shown')
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-input[type="email"]{font-size:1em;}
-.h2 {
-  font-family: "SF-Pro-Display-Bold";
-  margin: 24px auto 8px;
-  line-height: 135%;
-  font-size: 24px;
-  @media (max-width: 480px) {
-    font-size: 20px;
-  }
-}
-.email__content{
-  form{
-    text-align: center;
-  }
-  &__text{
-    font-family: "SF Pro Text Regular";
-    font-size: 18px;
-    line-height: 135%;  
-    color: #111113;
-    opacity: 0.75;
+.emailPage {
+
+  &__wrapper {
+    max-width: 600px;
     margin: 0 auto;
-    text-align: center;
-    max-width: 400px;
-    @media (max-width: 480px) {
-    font-size: 14px;
-  }
-  }
-  label{
-    position: relative;
-    text-align: center;
-    input{
-      background: #F1F3F9;
-      box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.04);
-      border-radius: 9px;
-      border:none;
-      font-size: 16px;
-      padding: 17px;
-      line-height: 135%;
-      color: #111113;
-      margin: 32px 0;
-      width: 375px;
-      position: relative;
-      @media (max-width: 480px) {
-        width: 275px;
-      }
-      &:focus,:active{
-        border: none;
-      }
-    }
-    input::placeholder{
-      color: #111113;
-      opacity: 0.5;
-    }
-    .lock{
-      position: relative;
-      width: 17px;
-      img{
-        position: absolute;
-        top: 0px;
-        right: 20px;
-      }
-    }
-  }
-  .v-popup__submit_btn{
-      background-color: #CACACA;
-      border:none;
-      border-radius: 9px;
-      padding: 16px 16px;
-      font-family: "SF Pro Text Medium";
-      font-size: 18px;
-      line-height: 135%;
-      color: #ffffff;
-      margin: 0 auto;
-      width: 165px;
-      text-align: center;
-  }
-  .v-popup__submit_btn.active{
-    background-color: #E44240;
-    cursor: pointer;
-  }
-  &__text__small{
-    font-family: "SF Pro Text Regular";
-    font-size: 14px;
-    line-height: 135%; 
-    color: #111113;
-    opacity: 0.5;
-    text-align: center;
-    margin: 32px auto;
-    max-width: 400px;
-    @media (max-width:480px) {
-      font-size: 10px;
-    }
-  }
-  .block-fixed{
-    position: relative;
-    bottom: 32px;
-    margin: 480px auto 0;
+    padding: 0 40px 25px;
+    box-sizing: border-box;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    width: 540px;
-    @media (max-width:480px) {
-        max-width: 310px;
-        margin: 270px auto 0;
-      }
-    .email__content__text__small{
-      max-width: 520px;
-      font-size: 14px;
-      @media (max-width:480px) {
-        max-width: 310px;
-        font-size: 10px;
-      }
+    max-height: calc(100% - 103px);
+
+    @media (max-width: 480px) {
+      max-height: calc(100% - 80px) !important;
+    }
+    @media (max-width: 599px) {
+      max-height: calc(100% - 87px);
     }
   }
+
+  &__title {
+    font-family: "SF-Pro-Display-Bold";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 135%;
+    text-align: center;
+    margin: 24px auto 8px;
+    @media (min-width: 600px) {
+      font-size: 30px;
+      margin: 24px auto 16px;
+    }
+  }
+
+  &__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  &__body {
+      margin-top: 24px;
+      max-width: 375px;
+      margin: 0 auto;
+  }
+  &__dataInfo {
+    font-family: 'SF Pro Text Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 135%;
+    text-align: center;
+    color: #111113;
+    opacity: 0.5;
+    @media (min-width: 600px) {
+      font-size: 14px;
+    }
+  }
+    &__terms {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      & a {
+        text-decoration: underline;
+        color: #111113;
+        font-family: "SF Pro Text Regular";
+        font-size: 10px;
+        line-height: 135%;
+        color: #111113;
+        opacity: 0.5;
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+        @media (min-width: 600px) {
+          font-size: 14px;
+          &:not(:last-child) {
+              margin-right: 16px;
+            }
+        }
+      }
+    }
+
+}
+
+
+
+
+.v-popup__submit_btn.active {
+  background-color: #E44240;
+  cursor: pointer;
+}
+
+.v-popup__submit_btn {
+  background-color: #CACACA;
+  border: none;
+  border-radius: 9px;
+  padding: 16px 16px;
+  font-family: "SF Pro Text Medium";
+  font-size: 18px;
+  line-height: 135%;
+  color: #ffffff;
+  margin: 32px auto;
+  width: 165px;
+  text-align: center;
 }
 .footer {
   &__terms {
@@ -269,6 +251,73 @@ input[type="email"]{font-size:1em;}
     }
   }
 }
+
+.email {
+  &__text {
+    font-family: "SF Pro Text Regular";
+      font-size: 18px;
+      line-height: 135%;
+      color: #111113;
+      opacity: 0.75;
+      margin: 0 auto;
+      text-align: center;
+      max-width: 400px;
+    
+      @media (max-width: 480px) {
+        font-size: 14px;
+      }
+  }
+  &__label {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+    margin: 32px auto 0;
+  }
+  &__input {
+      background: #F1F3F9;
+        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.04);
+        border-radius: 9px;
+        border: none;
+        font-size: 16px;
+        padding: 17px;
+        line-height: 135%;
+        color: #111113;
+        width: 375px;
+        position: relative;
+        font-size: 1em;
+        box-sizing: border-box;
+      
+        @media (max-width: 480px) {
+          width: 275px;
+        }
+      
+        &:focus,
+        :active {
+          border: none;
+        }
+        &::placeholder {
+            color: #111113;
+            opacity: 0.5;
+        }
+  }
+  &__lock {
+        width: 17px;
+    & img {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+  }
+}
+
+.emailPage {
+  padding: 16px 0 0;
+  height: 100%;
+}
+
 a:active, a:focus { outline: none; }
 
 input, textarea {outline:none;}

@@ -1,15 +1,11 @@
 <template>
-	<div class="countdown">
-		<div class="time-unite created">
-			<div class="time-unite-value">
-				<span v-if="minutes < 10 ">0{{ minutes }}</span> 
-				<span v-else>{{ minutes }}</span> 
-				<span>:</span> 
-				<span v-if="seconds < 10 ">0{{ seconds }}</span> 
-				<span v-else>{{ seconds }}</span> </div>
-		</div>
+	<div class="timer">
+		<span v-if="minutes < 10 ">0{{ minutes }}</span> 
+		<span v-else>{{ minutes }}</span> 
+		<span>:</span> 
+		<span v-if="seconds < 10 ">0{{ seconds }}</span> 
+		<span v-else>{{ seconds }}</span>
 	</div>
-
 </template>
 
 <script>
@@ -63,6 +59,16 @@
 			}
 		},
 		mounted(){
+			console.log('mounted')
 		},
+		beforeUnmount() {
+			console.log('unmount')
+		}
 	}
 </script>
+
+<style scoped>
+.timer {
+	font-weight: 800;
+}
+</style>

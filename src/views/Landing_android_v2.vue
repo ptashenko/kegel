@@ -1,6 +1,5 @@
 <template>
 <div class="landing">
-  <header-layout :fixed="true"/>
   <div class="dark-layout light" id="topPage">
     <div class="container-main is-page land">
       <div class="landing__content">
@@ -70,7 +69,7 @@
       </div>
     </div>
   </div>
-  <div class="price">
+  <div class="price mw-450">
     <div class="price__text">
       PRICE TODAY
     </div>
@@ -87,7 +86,7 @@
   <div class="mw-450 trial_description opac_5">
     <i>*You'll have 14 days to see how Kegel Plan uses scientific advances in urology to create long-lasting results</i>
   </div>
-  <div class="price">
+  <div class="price mw-450">
     <div class="price__text">
       PRICE AFTER TRIAL
     </div>
@@ -119,20 +118,8 @@
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item" id="paymentForm"/>
-      <div class="d-flex align-items-center justify-content-beetwen flex-wrap">
-        <div class="d-flex align-items-center star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-          <img src="@/assets/images/star.png" alt="star">
-        </div>
-        <div class="d-flex align-items-center">
-          <img src="@/assets/images/icons/out48.svg" alt="out">
-        </div>
-        <p> <span class="bold">36k</span> 5-star ratings</p>
-      </div>
     </div>
+      <RatingStars />
     <div class="block__text mw-450" style="margin-top:48px">
       <p class="title">Email confirmation</p>
       <p class="fs-16-14">You will get an email confirmation every time your subscription renews.</p>
@@ -147,19 +134,20 @@
     </div>
     <div class="block__text mw-450">
       <p class="title">Need help?</p>
-      <p class="fs-16-14">Contact us here: <span class="red">contact@kegel.men</span></p>
+      <p class="fs-16-14">Contact us here: <span class="red">contact@kegel-plan.com</span></p>
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <button class="btn_bottom" v-scroll-to="'#paypal'">
         Get my plan
       </button>
     </div>
-    <div class="mw-450 d-flex flex-column mb-32">
+    <div class="mw-450 d-flex flex-column mb-64">
       <p class="text-description">
         <span class="bold">Your 14-day trial will last until {{moment().add(14,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="bold">{{moment().add(14,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="bold">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 14-day trial and charge the membership fee (currently US$4) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
       </p>
     </div>
   </div>
+  <Footer />
   <vpopup
   class="popup_wraper"
     textTitle="Why now?"
@@ -206,6 +194,8 @@ import btnComponent from '@/components/questions/btnPopup.vue';
 import countdown from '@/components/Countdown.vue';
 import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
+import RatingStars from '@/components/RatingStars.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'Landing_android_v2', 
@@ -215,7 +205,9 @@ export default {
     vpopup,
     btnComponent,
     countdown,
-    PaymentFormCompanent
+    PaymentFormCompanent,
+    RatingStars,
+    Footer
 },
   data() {
     return {
@@ -261,7 +253,7 @@ export default {
         number: this.$route.query.nr
       })
       setTimeout(() => {
-        this.$router.push("CodeQR");
+        this.$router.push("Whatsapp");
       }, 0);
     },
     moment() {
@@ -490,6 +482,7 @@ export default {
   },
   mounted() {
           moment();
+          sessionStorage.setItem('disableFitness', true);
       let ppp = (Math.floor(Math.random( ) * (22 - 16 + 1)) + 16);
       function days(numer, param, key){
         if(ppp < numer){
@@ -746,10 +739,10 @@ export default {
   max-width: 310px;
   margin: 0px auto;
 }
-.mb-32{
-  margin-bottom: 48px;
+.mb-64{
+  margin-bottom: 64px;
   @media (max-width:480px) {
-    margin-bottom: 32px;
+    margin-bottom: 64px;
   }
 }
 .fs-16-14{
@@ -758,17 +751,10 @@ export default {
     font-size: 14px;
   }
 }
-.landing{
-  padding-bottom: 32px;
-}
 .block__timer .p-14{
   margin-bottom: 16px;
 }
-.container-main{
-  @media (max-width:480px) {
-    padding-bottom: 50px;
-  }
-}
+
 .answer{
   width: 45%;
 }
@@ -1064,7 +1050,7 @@ hr{
   margin-right: 4px;
 }
 .trial_description{
-  padding: 16px 32px 25px;
+  padding: 25px 32px 0;
   margin: 0 auto;
   line-height: 150%;
   @media (max-width:480px) {
@@ -1130,7 +1116,7 @@ ul{
   margin-top: 16px;
 }
 .dark-layout{
-  padding: 84px 32px 0px;
+  padding: 6px 32px 0px;
   .p-14{
     font-size: 16px;
     text-align: center;

@@ -72,7 +72,6 @@ export default {
   left: 0;
   right: 0;
   padding: 0 30px;
-  max-width: 540px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
   @media (max-width:480px) {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
@@ -107,7 +106,7 @@ export default {
     background: none;
     
     &:before {
-      background: linear-gradient(180deg, rgba(17, 17, 19, 0) 0%, #111113 29.7%);
+      background: #111113;
     }
     
   }
@@ -130,5 +129,4 @@ export default {
     }
   }
 }
-
 </style>

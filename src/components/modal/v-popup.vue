@@ -1,6 +1,7 @@
 <template>
-  <div class="">
+  <div class="popup_wraper">
     <div class="v-popup">
+      <img v-if="closeButton" class="v-popup__close" @click="closePopup" src="@/assets/images/icons/btn_close_cwindow.svg" />
       <div class="v-popup__header h2">
         {{textTitle}}
       </div>
@@ -18,8 +19,12 @@ export default {
   name:'v-popup',
   props:{
     textTitle:{
-      type:String,
+      type: String,
       default: ''
+    },
+    closeButton: {
+      type: Boolean,
+      default: true
     }
   },
   data(){
@@ -36,7 +41,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .popup_wraper{
+.popup_wraper{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,23 +51,35 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(17, 17, 19, 0.75);
+    background-color: rgba(17, 17, 19, 0.35);
   }
-  .v-popup{
+  .v-popup {
     position: fixed;
     z-index: 9999999;
     width: 100%;
-    max-width: 400px;
+    max-width: 452px;
+
     padding: 32px 24px 24px;
     background: #ffffff;
     margin: 0 auto;
     border-radius: 9px;
     overflow-y: auto;
-    max-height: 80vh;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+
+    &__close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+    }
+
     @media (max-width:480px) {
-      max-width: 300px;
+      max-width: 375px;
+      min-height: 75vh;
+      bottom: -10px;
     }
     &__content, &__footer{
       display: flex;
@@ -96,7 +113,7 @@ export default {
   pointer-events: none;
   display: flex;
   justify-content: center;
-  align-items: top;
+  align-items: flex-start;
   position: fixed;
   z-index: 9;
   top: 32px;
@@ -107,7 +124,7 @@ export default {
   .v-popup{
     pointer-events: auto;
     box-shadow:(6px 6px 13px rgba(0, 0, 0, 0.25));
-    max-width: 418px;
+    max-width: 452px;
     font-family: "SF Pro Text Medium";
     font-size: 18px;
     line-height: 150%;
@@ -120,6 +137,8 @@ export default {
       max-width: 280px;
       font-size: 14px;
       line-height: 150%;
+      min-height: unset;
+      bottom: unset;
     }
     .h2{
       margin-bottom: 0px;
@@ -129,6 +148,15 @@ export default {
       
     }
     
+  }
+}
+
+.sure {
+  .v-popup {
+    max-width: 311px;
+    @media (min-width: 600px) {
+      max-width: 452px;
+    }
   }
 }
 </style>

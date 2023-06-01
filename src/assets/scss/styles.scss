@@ -1,7 +1,14 @@
 body {
     font-family: "SF Pro Text Regular";
     background: #E5E5E5;
+    height: 100%;
     @media (max-width: 480px) {}
+}
+
+html {
+    background: #fff;
+    height: 100%;
+    scroll-behavior: smooth;
 }
 
 .fixed {
@@ -44,6 +51,10 @@ p {
 
 .video-wrapper{
     border-radius: 25px;
+}
+
+.light-layout {
+    background-color: #FFFFFF !important;
 }
 
 .dark-layout.light {
@@ -99,7 +110,6 @@ p {
 
 .dark-layout {
     background-color: #111113;
-    padding: 100px 32px 0px;
     // min-height: calc(100vh - 100px);
     .steps {
         background-color: #2C2C2E;
@@ -142,34 +152,39 @@ p {
 }
 
 #app {
-    max-width: 600px;
-    margin: 0 auto;
+    height: 100%;
 }
 
 .container {
     position: relative;
+    height: 100%;
+}
+
+.container-header {
+    position: relative;
+    max-width: 600px;
+    // padding-bottom: 35px;
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .container-main {
-    padding-bottom: 50px;
-    @media (max-width: 480px) {
-        padding-bottom: 150px;
+    position: relative;
+    max-width: 311px;
+    // padding-bottom: 35px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    @media (min-width: 600px) {
+        max-width: 520px;
     }
 }
 
-.container-main.home {
-    padding-bottom: 32px;
-    @media (max-width: 480px) {
-        padding-bottom: 32px;
-    }
-}
-
-header .container-main {
-    padding-bottom: 50px;
-    @media (max-width: 480px) {
-        padding-bottom: 0px;
-    }
-}
+// header .container-main {
+//     padding-bottom: 50px;
+//     @media (max-width: 480px) {
+//         padding-bottom: 0px;
+//     }
+// }
 
 .dark-layout .btn__prev {
     filter: invert(1);
@@ -182,7 +197,7 @@ header .container-main {
     margin: 0 12%;
     &__item {
         margin: 12px 0 0;
-        font-size: 17px;
+        font-size: 18px;
         color: #111113;
         @media (max-width: 480px) {
             margin: 9px 0 0;
@@ -233,6 +248,10 @@ header .container-main {
     justify-content: space-between;
 }
 
+.justify-content-around {
+    justify-content: space-around;
+}
+
 .w-100 {
     width: 100%;
 }
@@ -252,16 +271,26 @@ header .container-main {
     height: 100vh;
 }
 
+.red-shadow {
+    box-shadow: 0px 15px 37px rgba(228, 66, 64, 0.64);
+}
+
+.blue-shadow {
+    box-shadow: 0px 15px 37px #5773D6;
+}
+
 .btn__show__more {
     border: none;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     font-family: "SF Pro Text Bold";
     color: #5773D6;
     background: none;
-    margin-top: 40px;
     cursor: pointer;
     width: 100%;
+    @media (min-width: 600px) {
+        font-size: 18px;
+    }
 }
 
 .date {
@@ -278,15 +307,19 @@ header .container-main {
         max-width: 170px;
         margin: 0 auto;
         position: relative;
+        justify-content: center;
         // padding-left: 50px;
-        .block__anim {
-            margin-left: 30px;
+        // .block__anim {
+        //     margin-left: 30px;
+        // }
+        @media (min-width: 600px) {
+            max-width: 190px;
         }
     }
 }
 
 .block__anim {
-    position: absolute;
+    position: relative;
     transform: translate(0);
 }
 

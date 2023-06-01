@@ -13,7 +13,6 @@
       </div>
     </div>
 
-    <header-layout :fixed="true"/>
     <div class="dark-layout light" id="topPage">
       <div class="container-main is-page land">
         <div class="landing__content">
@@ -238,7 +237,7 @@
       </div>
       <div class="block__text mw-450">
         <p class="title">Need help?</p>
-        <p class="fs-16-14">Contact us here: <span class="red">support@kegel.men</span></p>
+        <p class="fs-16-14">Contact us here: <span class="red">support@kegel-plan.com</span></p>
       </div>
       <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
         <button class="btn_bottom" v-scroll-to="'#paypal'">
@@ -670,7 +669,7 @@ export default {
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '450334773666656');
+    fbq('init', '739994357762334');
     fbq('track', 'ContentView');
     this.mixpanel.track('Landing Page Shown', {
       version: "prlp_v1"

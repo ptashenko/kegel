@@ -1,21 +1,20 @@
 <template>
   <div
-    class="d-flex flex-column align-items-center justify-content-center"
+    class="d-flex w100 flex-column align-items-center justify-content-center"
     id="paymentForm"
   >
-    <span class="payment-info mb-32">You will only be charged $1 for your 7-day trial.</span>
-    <div id="solid-payment-form-container">
+    <div id="solid-payment-form-container" class="w100">
       <button
         class="pay cursor"
-        v-if="apple_pay"
         :class="{ active: paymentMethodType == 3 }"
+        v-if="apple_pay"
         @click="applePaySelect"
       >
         <img src="@/assets/images/icons/apple_pay.png" alt="apple_pay" />
       </button>
     </div>
   </div>
-  <div class="d-flex align-items-center justify-content-beetwen">
+  <div class="d-flex w100 align-items-center justify-content-beetwen">
     <button
       class="pay small mr-2 cursor"
       :class="{ active: paymentMethodType == 2 }"
@@ -39,14 +38,20 @@
     @success="success"
     @clickButton="clickButton"
     :item="this.item"
+    :subscriptionDate="period"
+    :discountPrice="discPrice"
+    :fullPrice="fullPrice"
   />
-  <CardCompanent
+  <CardCompanentModal
     class="w-100 flex-column align-items-center justify-content-center"
     v-if="paymentMethodType == 1 && (ver == 1 || ver == 3)"
     @error="error"
     @success="success"
     @clickButton="clickButton"
     :item="this.item"
+    :subscriptionDate="period"
+    :discountPrice="discPrice"
+    :fullPrice="fullPrice"
     :auth_price="this.auth_price"
   />
     <CardCompanentZip
@@ -68,22 +73,37 @@
 
 <script>
 import PayPalComponent from "../components/PayPalComponent.vue";
-import CardCompanent from "@/components/CardCompanent.vue";
+import CardCompanentModal from "@/components/CardCompanentModal.vue";
 import CardCompanentZip from "./CardCompanentZip.vue";
 
 export default {
   components: {
     PayPalComponent,
-    CardCompanent,
+    CardCompanentModal,
     CardCompanentZip
   },
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ["item", "auth_price"],
+  props: {
+    item: {
+      type: Array,
+    },
+    period: {
+      type: String,
+    },
+    fullPrice: {
+      type: String,
+      default: '9.99 USD'
+    },
+    discPrice: {
+      type: String,
+      default: '6.69 USD'
+    }
+  },
   data() {
     return {
       // item: "kegel_1-USD-Every-3-months",
-      auth_price: 100,
+      //auth_price: 100,
       paymentMethodType: 1, //1- card, 2 - paypal
       blockSelect: false,
       apple_pay: false,
@@ -130,7 +150,7 @@ export default {
         },
         body: JSON.stringify({
           currency_code: "USD",
-          amount: 100,
+          amount: this.auth_price * 100,
           payment_method_type: "apple_pay",
         }),
       };
@@ -186,23 +206,30 @@ export default {
   },
   mounted() {
     this.payPalSelect();
-    if (window.ApplePaySession) {
-      this.apple_pay = ApplePaySession.canMakePayments();
-    }
+    // if (window.ApplePaySession) {
+    //   this.apple_pay = ApplePaySession.canMakePayments();
+    // }
   },
 };
 </script>
 <style lang="scss" scoped>
+.w100 {
+  width: 100%;
+}
 .mb-32 {
   margin-bottom: 32px;
 }
 .payment-info {
+  margin-top: 16px;
   font-style: italic;
   font-weight: 400;
   font-size: 14px;
   line-height: 150%;
   color: #111113;
   opacity: 0.75;
+  @media (min-width: 600px) {
+    width: 100%;
+  }
 }
 .cursor {
   cursor: pointer;
@@ -240,13 +267,14 @@ export default {
     border: 2px solid #f9f9f9;
     border-radius: 9px;
     margin-bottom: 10px;
-    max-width: 300px;
+    width: 100%;
     display: block;
     // &:focus, &:hover, &:active{
     //   background: rgba(87, 115, 214, 0.1);
     //   border: 2px solid #5773D6;
     // }
     img {
+      max-height: 49px;
       max-width: 100%;
     }
   }
@@ -259,6 +287,16 @@ export default {
     height: 49px;
     img {
       width: 100%;
+      @media (min-width: 600px) {
+          width: 153px;
+        }
+    }
+    @media (min-width: 600px) {
+      max-width: 255px;
+      width: 255px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   .aple_pay {

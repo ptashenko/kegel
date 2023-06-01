@@ -9,34 +9,37 @@ const state = () => ({
     track: {},
     content: {},
     separations: [],
+    version: localStorage.getItem('ver'),
     layotStep: 1,
     loader: true,
     tracks: [{
             id: 1,
-            title: 'Get & stay hard easier',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
-            purpose: 'Strengthen erection',
-            addpurpose: 'Increase sexual stamina',
+        title: 'Get & stay hard easier',
+            titleShortQuiz: 'Improve Erectile Function',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
+            purpose: 'Erectile Function',
+            addpurpose: 'Ejaculation Control',
             text: '',
             layouts: [
                 { id: 1, separation: true },
                 { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 },
-                { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10 },
+                { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10, ver4: true },
                 { id: 11 }, { id: 12 },
                 { id: 333, separation: true },
-                { id: 14 }, { id: 15 }, { id: 16 }, { id: 17 },
-                { id: 18 }, { id: 20 }, { id: 21 }, { id: 22 },
+                { id: 14, ver4: true }, { id: 15, ver4: true }, { id: 16, ver4: true }, { id: 17, ver4: true },
+                { id: 18 }, { id: 20, ver6: true }, { id: 21 }, { id: 22, ver4: true },
                 { id: 23 },
-                { id: 24, separation: true }, { id: 25 }, { id: 26 }, { id: 27 },
-                { id: 28 }, { id: 29 }, { id: 30 }, { id: 31 },
-                { id: 32 }, { id: 322 }, { id: 33 },
-                { id: 34, separation: true }
+                { id: 24, separation: true }, { id: 25, ver4: true }, { id: 26 }, { id: 27 },
+                { id: 28 }, { id: 29, ver4: true }, { id: 30, ver4: true }, { id: 31, ver4: true },
+                { id: 32 }, { id: 322, ver6: true }, { id: 33, ver4: true },
+                { id: 34, ver4: true, separation: true }
             ],
         },
         {
             id: 2,
-            title: 'Last up to 7x longer', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
-            purpose: 'Increase sexual stamina',
-            addpurpose: 'Strengthen erection',
+            title: 'Improve Ejaculation Control', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
+            titleShortQuiz: 'Improve Ejaculation Control',
+            purpose: 'Ejaculation Control',
+            addpurpose: 'Erectile Function',
             text: '',
             layouts: [
                 { id: 1, separation: true },
@@ -44,34 +47,35 @@ const state = () => ({
                 { id: 352 }, { id: 37 }, { id: 38 }, { id: 39 },
                 { id: 40 }, { id: 401 },
                 { id: 41, separation: true },
-                { id: 14 }, { id: 15 }, { id: 42 }, { id: 43 },
-                { id: 56 }, { id: 57 }, { id: 44 }, { id: 45 }, { id: 451 }, { id: 46 },
+                { id: 14, ver4: true }, { id: 15, ver4: true }, { id: 42, ver4: true }, { id: 43, ver4: true },
+                { id: 56, ver4: true }, { id: 57, ver6: true }, { id: 44 }, { id: 45, ver4: true }, { id: 451, ver4: true }, { id: 46 },
                 { id: 47, separation: true },
-                { id: 25 }, { id: 26 }, { id: 272 }, { id: 282 }, { id: 29 },
-                { id: 30 }, { id: 31 }, { id: 32 },
-                { id: 321 }, { id: 33 },
-                { id: 34, separation: true }
+                { id: 25, ver4: true }, { id: 26 }, { id: 272 }, { id: 282 }, { id: 29, ver4: true },
+                { id: 30, ver4: true }, { id: 31, ver4: true }, { id: 32 },
+                { id: 321, ver6: true }, { id: 33, ver4: true },
+                { id: 34, separation: true, ver4: true }
             ],
         },
         {
             id: 3,
-            title: 'I just want to maximize my intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
-            purpose: 'Improve sexual performance',
-            addpurpose: 'Strengthen erection',
-            text: '',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
+            title: 'Maximize intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
+            titleShortQuiz: 'Maximize intimate wellness',
+            purpose: 'Sexual Wellness',
+            addpurpose: '',
+            text: '(Improve both of the above)',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
             layouts: [
                 { id: 1, separation: true },
                 { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },
-                { id: 50 }, { id: 21 }, { id: 22 }, { id: 51 },
-                { id: 44 }, { id: 450 }, { id: 453 },
+                { id: 50 }, { id: 21 }, { id: 22, ver4: true }, { id: 51 },
+                { id: 44 }, { id: 450, ver4: true }, { id: 453, ver4: true },
                 { id: 333, separation: true },
-                { id: 14 }, { id: 15 }, { id: 52 },
-                { id: 53 }, { id: 201 },
-                { id: 54 }, { id: 26 }, { id: 55 },
+                { id: 14, ver4: true }, { id: 15, ver4: true }, { id: 52 },
+                { id: 53, ver4: true }, { id: 201, ver6: true },
+                { id: 54, ver4: true }, { id: 26 }, { id: 55 },
                 { id: 283, separation: true },
-                { id: 29 }, { id: 30 }, { id: 31 },
-                { id: 32 }, { id: 323 }, { id: 33 },
-                { id: 34, separation: true }
+                { id: 29, ver4: true }, { id: 30, ver4: true }, { id: 31, ver4: true },
+                { id: 32 }, { id: 323, ver6: true }, { id: 33, ver4: true },
+                { id: 34, separation: true, ver4: true }
             ],
         },
     ],
@@ -140,12 +144,13 @@ const state = () => ({
         {
             id: 2,
             title: 'The quality of your erection depends on the Pelvic Floor (PF) muscle tone',
-            text: 'The PF muscles help to fill the penis with blood and prevent its outflow, so you can get & maintain a ',
-            textBold: 'hard erection',
+            text: 'The PF muscles help to fill the penis with blood and prevent its outflow, so you can get & maintain an ',
+            textBold: 'erection',
             video: 'ED_s1.mp4',
             poster: 'ED_s1.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 3,
@@ -201,16 +206,18 @@ const state = () => ({
             poster: 'ED_s2.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 61,
             title: 'The quality of your erection also depends on the Pelvic Floor (PF) muscle tone',
-            text: 'The PF muscles help to fill the penis with blood and prevent its outflow, so you can get & maintain a ',
-            textBold: ' strong erection',
+            text: 'The PF muscles help to fill the penis with blood and prevent its outflow, so you can get & maintain an ',
+            textBold: ' erection',
             video: 'ED_s1.mp4',
             poster: 'ED_s1.png',
             layoutName: 'StandartTwo',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 7,
@@ -240,7 +247,7 @@ const state = () => ({
         },
         {
             id: 9,
-            title: 'You can strengthen your PF muscles & improve erection by doing Kegel exercises',
+            title: 'You can strengthen your PF muscles & improve erectile function by doing Kegel exercises',
             layoutName: 'standart',
             thumbnail: 'ED_s3_img.png',
             buttons: [{
@@ -249,6 +256,7 @@ const state = () => ({
                 title: 'The Nuffield Somerset Hospital',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 10,
@@ -299,12 +307,19 @@ const state = () => ({
         {
             id: 333,
             active: true,
-            title: ' of men improved their erections with Kegel exercises',
+            title: ' of men improved their erectile function with Kegel exercises',
             tilteRed: '75.5% ',
             thumbnail: 'ED_s4.json',
             layoutName: 'KegelReview',
             reviews: [8],
-            proc: 'Connecting to the database'
+            proc: 'Connecting to the database',
+            buttons: [{
+                id: 1,
+                logo: 'logo_source_3',
+                title: 'British Journal of General Practice',
+                text: 'Source:',
+            }, ],
+            dark: true,
         },
         {
             id: 14,
@@ -314,6 +329,23 @@ const state = () => ({
                 style: 'buttons',
                 textLeft: 'Not satisfied',
                 textRight: 'Very satisfied',
+                answerList: [
+                    '1',
+                    '2',
+                    '3',
+                    '4',
+                    '5',
+                ],
+            },
+        },
+        {
+            id: 99,
+            title: 'How much do problems with stamina affect your quality of life?',
+            layoutName: 'Questions',
+            answer: {
+                style: 'buttons',
+                textLeft: 'They don\'t affect',
+                textRight: 'They affect a lot',
                 answerList: [
                     '1',
                     '2',
@@ -412,6 +444,13 @@ const state = () => ({
             reviews: [1, 2, 3, 4, 5, 6],
         },
         {
+            id: 200,
+            title: 'Congrats, we\'re a match!',
+            layoutName: 'WeMatch',
+            image: 'img_match.png',
+            text: 'We\'re analyzing your answers and it appears that you\'re exactly the kind of person this Kegel Plan was made for.\nNow, let\'s dive deeper into your lifestyle to know you better.',
+        },
+        {
             id: 201,
             title: 'Based on your personal goals you can',
             layoutName: 'Reviews',
@@ -450,7 +489,7 @@ const state = () => ({
         },
         {
             id: 23,
-            title: 'Do you want to increase your sexual stamina?',
+            title: 'Do you want to improve ejaculation control?',
             layoutName: 'Reviews',
             answer: {
                 style: 'radio',
@@ -463,7 +502,7 @@ const state = () => ({
         },
         {
             id: 24,
-            title: `Men who perform Kegel exercises can increase their sexual stamina up to `,
+            title: `Men who perform Kegel exercises can increase their stamina up to `,
             afterTilteRed: '7x',
             layoutName: 'standart',
             thumbnail: 'ED_s5.png',
@@ -473,6 +512,7 @@ const state = () => ({
                 title: 'the Sapienza University',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 25,
@@ -492,7 +532,7 @@ const state = () => ({
         },
         {
             id: 26,
-            title: 'How would you rate your libido now?',
+            title: 'How would you rate your libido?',
             answer: {
                 style: 'buttons',
                 textLeft: 'Low',
@@ -521,7 +561,7 @@ const state = () => ({
         },
         {
             id: 272,
-            title: 'Do you take any medications to increase stamina?',
+            title: 'Do you take any medications for premature ejaculation?',
             answer: {
                 style: 'radio',
                 answerList: [
@@ -538,6 +578,7 @@ const state = () => ({
             thumbnail: 'ED_s6.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 282,
@@ -545,6 +586,7 @@ const state = () => ({
             thumbnail: 'PE_s6.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 283,
@@ -552,6 +594,7 @@ const state = () => ({
             thumbnail: 'OK_s6.png',
             layoutName: 'standart',
             buttonsText: ['Back', 'I got it'],
+            dark: true,
         },
         {
             id: 29,
@@ -598,6 +641,7 @@ const state = () => ({
         {
             id: 32,
             layoutName: 'Processing',
+            dark: true,
         },
         {
             id: 321,
@@ -657,8 +701,9 @@ const state = () => ({
             poster: 'PE_s1.png',
             layoutName: 'standart',
             aftertext: 'Thanks to the strong PF muscles you can ',
-            textbold: ' delay ejaculation ',
-            text: ' for as long as you want',
+            textbold: ' suppress the ejaculatory reflex ',
+            text: ' to prevent early climax',
+            dark: true,
         },
         {
             id: 353,
@@ -667,9 +712,10 @@ const state = () => ({
             poster: 'PE_s1.png',
             layoutName: 'standart',
             aftertext: 'Thanks to the strong PF muscles you can ',
-            textbold: ' delay ejaculation ',
-            text: ' for as long as you want',
+            textbold: ' suppress the ejaculatory reflex ',
+            text: ' to prevent early climax',
             buttonsText: ['Back', 'Continue'],
+            dark: true,
         },
         {
             id: 351,
@@ -695,6 +741,7 @@ const state = () => ({
             aftertext: '',
             textbold: '',
             text: 'When the PF muscles are weak the ejaculation reflex can get triggered too quickly. This can lead to unwanted ejaculation',
+            dark: true,
         },
         {
             id: 36,
@@ -731,9 +778,9 @@ const state = () => ({
         },
         {
             id: 39,
-            title: 'You can strengthen your PF muscles & increase sexual stamina up to ',
+            title: 'You can strengthen your PF muscles & increase stamina up to ',
             afterTilteRed: '7x',
-            afterTilteText: ' by doing Kegel exercises',
+            afterTilteText: '  by doing Kegel exercises',
             layoutName: 'standart',
             thumbnail: 'ED_s5_img.png',
             buttons: [{
@@ -742,6 +789,7 @@ const state = () => ({
                 title: 'the Sapienza University',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 40,
@@ -765,11 +813,18 @@ const state = () => ({
         },
         {
             id: 41,
-            title: ' men improved their stamina with Kegel exercises',
+            title: ' men improved their ejaculation control with Kegel exercises',
             tilteRed: '8/10 ',
             thumbnail: 'ED_s4.json',
             layoutName: 'KegelReview',
             reviews: [7],
+            buttons: [{
+                id: 1,
+                logo: 'logo_source_4',
+                title: 'Therapeutic Advances in Urology',
+                text: 'Source:',
+            }, ],
+            dark: true,
         },
         {
             id: 42,
@@ -838,7 +893,7 @@ const state = () => ({
         },
         {
             id: 450,
-            title: 'Have you ever failed to get a full erection for sex?',
+            title: 'Have you ever failed to get a full erection?',
             answer: {
                 style: 'radio',
                 answerList: [
@@ -878,7 +933,7 @@ const state = () => ({
         },
         {
             id: 46,
-            title: 'Do you want to strengthen your erection?',
+            title: 'Do you want to strengthen your erectile function?',
             answer: {
                 style: 'radio',
                 answerClass: 'sexual',
@@ -891,7 +946,7 @@ const state = () => ({
         {
             id: 47,
             afterTilteRed: '75.5%',
-            afterTilteText: ' of men improved their erection with Kegel exercises',
+            afterTilteText: ' of men improved their erectile function with Kegel exercises',
             layoutName: 'standart',
             thumbnail: 'PE_s5.png',
             buttons: [{
@@ -900,6 +955,7 @@ const state = () => ({
                 title: 'The Nuffield Somerset Hospital',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 48,
@@ -910,7 +966,7 @@ const state = () => ({
         },
         {
             id: 49,
-            title: 'How satisfied are you with your sexual performance?',
+            title: 'How satisfied are you with your sexual wellness (erection quality & ejaculation control)?',
             answer: {
                 style: 'buttons',
                 textLeft: 'Not satisfied',
@@ -926,7 +982,7 @@ const state = () => ({
         },
         {
             id: 50,
-            title: 'You can strengthen your PF muscles & improve sexual performance by doing Kegel exercises',
+            title: 'You can strengthen your PF muscles & improve sexual wellness by doing Kegel exercises',
             layoutName: 'standart',
             thumbnail: 'OK_s3.png',
             buttons: [{
@@ -942,10 +998,11 @@ const state = () => ({
                     text: 'Source:',
                 },
             ],
+            dark: true,
         },
         {
             id: 51,
-            title: 'Men who perform Kegel exercises can increase their stamina up to ',
+            title: 'Men who perform Kegel exercises can increase their ejaculation control up to ',
             afterTilteRed: '7 times',
             layoutName: 'standart',
             thumbnail: 'ED_s5_img.png',
@@ -955,6 +1012,7 @@ const state = () => ({
                 title: 'the Sapienza University',
                 text: 'Source:',
             }, ],
+            dark: true,
         },
         {
             id: 52,
@@ -1024,6 +1082,13 @@ const state = () => ({
             layoutName: 'Reviews',
             thumbnail: 'PE.json',
             reviews: [4, 5, 6, 1, 2, 3],
+        },
+        {
+            id: 601,
+            title: 'You\'re almost there!',
+            layoutName: 'ReviewsV4',
+            image: 'img_almost.png',
+            reviews: [1, 2, 3, 4, 5, 6],
         },
     ],
 });
@@ -1119,17 +1184,27 @@ const getters = {
             track,
             content,
             contents,
+            ver,
         } = state;
         let index = null;
-        track.layouts.forEach((layout) => {
+        let currentQuiz = null;
+        const version = Number(localStorage.getItem('ver'));
+        if (version === 4) {
+            currentQuiz = track.layouts.filter(item => !item.ver4)
+        } else if (version === 6) {
+            currentQuiz = track.layouts.filter(item => !item.ver6);
+        } else {
+            currentQuiz = track.layouts;
+        }
+        currentQuiz.forEach((layout) => {
             if (layout.id === content.id) {
-                index = track.layouts.indexOf(layout);
+                index = currentQuiz.indexOf(layout);
             }
         });
         const myPrewContentId = contents.find((content) => {
             let result = null;
-            if (track.layouts[index - 1]) {
-                if (track.layouts[index - 1].id === content.id) {
+            if (currentQuiz[index - 1]) {
+                if (currentQuiz[index - 1].id === content.id) {
                     result = content;
                 }
             }
@@ -1142,18 +1217,43 @@ const getters = {
             track,
             content,
             contents,
+            ver,
         } = state;
         let index = null;
-        track.layouts.forEach((layout) => {
+        const version = Number(localStorage.getItem('ver'));
+        let currentQuiz = null;
+
+        if (version === 4) {
+            currentQuiz = track.layouts.filter(item => !item.ver4)
+            track.id === 2 && currentQuiz.splice(12, 0, { id: 99 });
+        } else if (version === 6) {
+            currentQuiz = track.layouts.filter(item => !item.ver6);
+            switch (track.id) {
+                case 1:
+                    currentQuiz.splice(18, 0, { id: 200 });
+                    currentQuiz.splice(31, 0, { id: 601 });
+                    break;
+                case 2:
+                    currentQuiz.splice(17, 0, { id: 200 });
+                    currentQuiz.splice(31, 0, { id: 601 });
+                    break;
+                case 3:
+                    currentQuiz.splice(17, 0, { id: 200 });
+                    currentQuiz.splice(26, 0, { id: 601 });
+            }
+        } else {
+            currentQuiz = track.layouts;
+        }
+
+        currentQuiz.forEach((layout) => {
             if (layout.id === content.id) {
-                index = track.layouts.indexOf(layout);
+                index = currentQuiz.indexOf(layout);
             }
         });
         const nextContent = contents.find((content) => {
             let result = null;
-
-            if (track.layouts[index + 1]) {
-                if (track.layouts[index + 1].id === content.id) {
+            if (currentQuiz[index+1]) {
+                if (currentQuiz[index+1].id === content.id) {
                     result = content;
                 }
             }

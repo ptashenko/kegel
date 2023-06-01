@@ -1,6 +1,4 @@
 <template>
-  <header-layout :fixed="true"/>
-  
   <div class="dark-layout light">
     <div class="container-main is-page Final">
       <div class="mw-520">
@@ -24,7 +22,7 @@
           theme="Back"
           class="footer-controls__button "
           @click="downloadButton"
-          :class="{ 'bg-blue': !active, 'red': active }"
+          :class="{ 'bg-blue': !active, 'red': active, 'red-shadow': active }"
         />
         <div class="text-center">
           <div class="text-line">
@@ -40,12 +38,13 @@
         <p>Special link to your plan was also sent to your email: <span class="blue"> {{email}} </span></p>
       </div>
     </div>
-  </div>
-  <div class="footer">
-      <div class="footer__text">
-        Any questions? Contact us at <span class="blue">contact@kegel.men</span>
+      <div class="qr-footer">
+        <div class="qr-footer__text">
+          Any questions? Contact us at <span class="blue">contact@kegel-plan.com</span>
+        </div>
       </div>
-    </div>  
+  </div>
+
 </template>
 
 <script>
@@ -122,7 +121,6 @@ export default {
     },
   },
   mounted(){
-    
       var oneLinkURL = "https://kegel.onelink.me/b5X4/";
             var mediaSource = {
                 keys: ["pid"],
@@ -202,7 +200,7 @@ export default {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '450334773666656');
+            fbq('init', '739994357762334');
             fbq('track', 'Purchase', {value:  localStorage.getItem('price') == null ? 4.2 : localStorage.getItem('price'), currency: "USD"});
             gtag('event', 'conversion', {
               'send_to': 'AW-407765903/i-0JCPCIvdcDEI-HuMIB',
@@ -213,24 +211,31 @@ export default {
   },
   created () {
     this.mixpanel.track('Final Screen Shown')
+  },
+  beforeRouteLeave (to, from, next) {
+    next(false)
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .Final{
+  max-width: 311px;
+  @media (min-width: 600px) {
+    max-width: 600px;
+  }
   .h2 {
     margin-bottom: 32px;
     font-family: "SF-Pro-Display-Bold";
     line-height: 135%;
-    font-size: 30px;
+    font-size: 36px;
     line-height: 135%;
     @media (max-width:480px) {
       font-size: 24px;
     }
     p{
       font-family: "SF Pro Text Semibold";
-      font-size: 18px;
+      font-size: 20px;
       line-height: 150%;
       margin-top: 24px;
       @media (max-width:480px) {
@@ -246,7 +251,7 @@ export default {
     background: #F1F3F9;
     border-radius: 9px;
     .text{
-      font-size: 16px;
+      font-size: 18px;
       line-height: 150%;
       margin-top: 16px;
       .text-bold{
@@ -274,7 +279,7 @@ export default {
   }
   .mw-450{
     max-width: 450px;
-    margin: 32px auto 32px;
+    margin: 32px auto 48px;
     @media (max-width:480px) {
       margin: 32px auto 32px;
     }
@@ -340,10 +345,9 @@ export default {
     font-family: "SF Pro Text Semibold";
     font-size: 18px;
     line-height: 150%;
-    margin-bottom: 14px;
+    margin-bottom: 64px;
     @media (max-width:480px) {
       font-size: 16px;
-      margin-bottom: 64px;
     }
   }
   .mw-520{
@@ -363,11 +367,11 @@ export default {
   .bg-blue{
     background: #5773D6;
   }
-.footer{
+.qr-footer{
   background: #111113;
   width: 100%;
   display: block;
-  max-width: 600px;
+  width: 100%;
   font-family: "SF Pro Text Regular";
   font-size: 18px;
   line-height: 142.34%;
@@ -375,10 +379,13 @@ export default {
   @media (max-width:480px) {
     font-size: 16px;
   }
-  .footer__text{
+  &__text{
     color: #ffffff;
     text-align: center;
-    padding: 48px;
+    padding: 24px 48px;
+    @media (min-width: 600px) {
+      padding: 32px 48px;
+    }
   }
 }
 

@@ -6,7 +6,7 @@
 export default {
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
-  props: ["item"],
+  props: ["item", "discountPrice", "fullPrice", "subscriptionDate"],
   data() {
     return {
       ver: Array.isArray(localStorage.getItem('ver')) ? 1 : localStorage.getItem('ver')
@@ -34,6 +34,25 @@ export default {
       )
         .then((response) => {
           this.$emit("success");
+          let isiPhone = window.navigator.platform == "iPhone"
+          // let mediaQuery = window.matchMedia('(max-width: 480px)');
+          if (isiPhone) {
+            let body = document.querySelector('body')
+            body.classList.remove('fixed');
+            if (!sessionStorage.getItem('disableFitness')) {
+              if (sessionStorage.getItem('ios_v1')) {
+                this.$router.push('PlanFinalTwo_ios')
+              } else {
+                this.$router.push('PlanFinalTwo')
+              }
+            } else {
+              this.$router.push("Whatsapp");
+            }
+          }else{
+            let body = document.querySelector('body')
+            body.classList.remove('fixed');
+            this.$router.push('Whatsapp')
+          }
         });
     },
     onClickPayPal() {
@@ -132,4 +151,15 @@ export default {
 .zoid-outlet{
     max-width: 300px;
     }
+
+.card-pay-text {
+  font-family: "SF Pro Text Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 135%;
+  text-align: center;
+  color: #11111380;
+  margin-bottom: 32px;
+}
 </style>

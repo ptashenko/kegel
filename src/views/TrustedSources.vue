@@ -1,17 +1,13 @@
 <template lang="">
 
-<div>
-  <header-layout :fixed="true" :dark="true"/>
-  
-  <div class="dark-layout light">
-    <div class="container-main is-page TimePlan">
+    <div class="container-main trustedSources">
       
-      <div class="h2 text-center">
+      <h2 class="trustedSources__title">
         {{title}}
-      </div>
+      </h2>
 
 
-      <div class="layout__buttons">
+      <div class="trustedSources__image">
           <img src="@/assets/images/content/f4_img.png">
       </div>
       <footer-controls
@@ -29,9 +25,6 @@
         }"
       />
     </div>
-  </div>
-  
-  </div> 
 
   </template>
 <script>
@@ -76,104 +69,29 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-.h2 {
+
+.trustedSources {
+
+  &__title {
     font-family: "SF-Pro-Display-Bold";
     font-size: 24px;
     text-align: center;
-  @media (max-width:480px) {
-    font-size: 20px;
+    margin: 0;
+    @media (max-width:480px) {
+      font-size: 20px;
+    }
+    @media (min-width: 600px) {
+      font-size: 30px;
+    }
   }
-}
-.d-flex{
-  display: flex;
-  justify-content: center;
-}
-.layout {
-  &__buttons{
-    text-align: center;
-    max-width: 400px;
+
+  &__image {
+    max-width: 373px;
     margin: 17px auto;
     img{
       width: 100%;
     }
   }
-  &__title {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 135%;
-    text-align: center;
-    margin-bottom: 32px;
-    color: #111113;
+}
 
-    @media (max-width: 480px) {
-      font-size: 20px;
-    }
-  }
-
-  &__thumbnail {
-    margin-bottom: 32px;
-    text-align: center;
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  }
-
-  &__button {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    display: flex;
-    align-items: center;
-
-    &:not(:last-child) {
-      margin-bottom: 20px;
-    }
-
-    &-icon {
-      width: 37px;
-      height: 37px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(#FFFFFF, .07);
-      margin-right: 12px;
-    }
-
-    p {
-      font-weight: 400;
-      font-size: 12px;
-      line-height: 125%;
-      opacity: 1;
-      padding: 0;
-      margin: 0;
-      color:#111113;
-    }
-
-    // &s {
-    //   border-radius: 17px;
-    //   padding: 9px;
-    //   background: rgba(grey, 0.05);
-    //   max-width: 270px;
-    //   margin: 0 auto;
-    // }
-  }
-
-  &__bottom-text {
-    font-family: "SF Pro Text Regular";
-    font-weight: 400;
-    font-size: 18px;
-    margin-top: 32px;
-    line-height: 150%;
-    text-align: center;
-    color: #111113;
-
-    @media (max-width: 480px) {
-      font-size: 16px;
-      line-height: 24px;
-    }
-  }
-} 
 </style>

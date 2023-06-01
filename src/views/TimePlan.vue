@@ -1,42 +1,38 @@
 
 <template lang="">
   <Transition name="slider" mode="out-in" appear>
-    <div>
-      <header-layout :fixed="true" :dark="true"/>
-      <div class="dark-layout light">
-        <div class="container-main is-page TimePlan">
-          <div class="h2 text-center">
-            This is how much it took to create your plan
+
+      <div class="container-main timePlan">
+        <h2 class="timePlan__title">
+          This is how much it took to create your plan
+        </h2>
+        <div class="timePlan__content">
+          <div class="w-50 text-center">
+            <img src="@/assets/images/icons/icon_research.svg" alt="">
+            <h3>700+</h3>
+            <p>Hours research</p>
           </div>
-          <div class="d-flex">
-            <div class="w-50 text-center">
-              <img src="@/assets/images/icons/icon_research.svg" alt="">
-              <h3>700+</h3>
-              <p>Hours research</p>
-            </div>
-            <div class="w-50 text-center">
-              <img src="@/assets/images/icons/icon_studies.svg" alt="">
-              <h3>150+</h3>
-              <p>Studies analysis</p>
-            </div>
+          <div class="w-50 text-center">
+            <img src="@/assets/images/icons/icon_studies.svg" alt="">
+            <h3>150+</h3>
+            <p>Studies analysis</p>
           </div>
-          <footer-controls
-            :buttonBack="{
-              text: 'Back',
-              click: btnBack,
-              icon: 'prev',
-              theme: 'light'
-            }"
-            :buttonNext="{
-              icon: 'next',
-              text: 'I got it',
-              click: btnClick ,
-              theme: 'red'
-            }" 
-          />
         </div>
+        <footer-controls
+          :buttonBack="{
+            text: 'Back',
+            click: btnBack,
+            icon: 'prev',
+            theme: 'light'
+          }"
+          :buttonNext="{
+            icon: 'next',
+            text: 'I got it',
+            click: btnClick ,
+            theme: 'red'
+          }" 
+        />
       </div>
-    </div>
   </Transition>
 </template>
 <script>
@@ -65,23 +61,32 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-.h2 {
+
+.timePlan {
+  &__title {
     font-family: "SF-Pro-Display-Bold";
     font-size: 24px;
     text-align: center;
-  @media (max-width:480px) {
-    font-size: 20px;
-  }
-}
-  .d-flex{
-    justify-content: center;
-    .w-50{
-      max-width: 180px;
+    margin: 16px 0 0;
+    @media (min-width: 600px) {
+      font-size: 30px;
     }
+    @media (max-width:480px) {
+    font-size: 20px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+
     img{
       max-width: 72px;
       height: auto;
       margin: 48px 0 14px;
+      @media (min-width: 600px) {
+          margin-top: 32px;
+        }
     };
     h3{
       margin: 0;
@@ -89,6 +94,9 @@ export default {
       font-size: 32px;
       @media (max-width:480px) {
         font-size: 26px;
+      }
+      @media (min-width: 600px) {
+        margin-bottom: 5px;
       }
     };
     p{
@@ -100,5 +108,8 @@ export default {
       }
     }
   }
-  
+}
+.w-50{
+  max-width: 180px;
+}
 </style>

@@ -339,7 +339,7 @@
             </h3>
           </div>
           <p class="info-block__text">
-            Contact us here: <a href="mailto:contact@kegel.men" class="info-block__link">contact@kegel.men</a>
+            Contact us here: <a href="mailto:contact@kegel-plan.com" class="info-block__link">contact@kegel-plan.com</a>
           </p>
         </div>
         <a @click="scrollToPaymentBlock" class="info-block__button red-shadow">
@@ -522,6 +522,9 @@
         this.mixpanel.track('Trial Started',{
           amount: this.price
         })
+        this.paymentPopup = false
+        document.body.style.overflow = 'unset'
+        this.localStorage.setItem("LandingItem", this.item)
         // setTimeout(() => {
         //   this.$router.push("AddressPage");
         // }, 0);
@@ -569,7 +572,7 @@
             totalCost: '10.49 USD',
             totalDiscCost: '6.93 USD',
             superDiscPrice: '5.50 USD',
-            chargebeeId: "kegel_1_trial-USD-Monthly"
+            chargebeeId: this.superDiscount.theme ? "kegel-4-trial-USD-Monthly" : "kegel_1_trial-USD-Monthly"
           },
           {
             id: 2,
@@ -580,7 +583,7 @@
             totalCost: '30.99 USD',
             totalDiscCost: '15.19 USD',
             superDiscPrice: '11.99 USD',
-            chargebeeId: "kegel_2_trial-USD-Monthly"
+            chargebeeId: this.superDiscount.theme ? "kegel-5-trial-USD-Monthly" : "kegel-2-trial-USD-Monthly"
           },
           {
             id: 3,
@@ -591,7 +594,7 @@
             totalCost: '53.19 USD',
             totalDiscCost: '25.99 USD',
             superDiscPrice: '21.49 USD',
-            chargebeeId: "kegel-3-trial-USD-Every-3-months"
+            chargebeeId: this.superDiscount.theme ? "kegel-6-trial-USD-Every-3-months" : "kegel-3-trial-USD-Every-3-months"
           }
         ]
       },
@@ -616,7 +619,7 @@
             priceParams.subscriptionName = '1-week  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 48 : 34
             priceParams.discountOriginal = 34
-            priceParams.chargebeeId = "kegel_1_trial-USD-Monthly"
+            priceParams.chargebeeId = this.superDiscount.theme ? "kegel-4-trial-USD-Monthly" : "kegel_1_trial-USD-Monthly"
             this.price = this.superDiscount.theme ? 5.50 : 6.93
             this.item = priceParams.chargebeeId
             break;
@@ -628,7 +631,7 @@
             priceParams.subscriptionName = '1-month  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 61 : 51
             priceParams.discountOriginal = 51
-            priceParams.chargebeeId = "kegel_2_trial-USD-Monthly"
+            priceParams.chargebeeId = this.superDiscount.theme ? "kegel-5-trial-USD-Monthly" : "kegel-2-trial-USD-Monthly"
             this.price = this.superDiscount.theme ? 11.99 : 15.19
             this.item = priceParams.chargebeeId
             break;
@@ -640,7 +643,7 @@
             priceParams.subscriptionName = '3-months  Kegel Plan'
             priceParams.discount = this.superDiscount.theme ? 60 : 51
             priceParams.discountOriginal = 51
-            priceParams.chargebeeId = "kegel-3-trial-USD-Every-3-months"
+            priceParams.chargebeeId = this.superDiscount.theme ? "kegel-6-trial-USD-Every-3-months" : "kegel-3-trial-USD-Every-3-months"
             this.price = this.superDiscount.theme ? 21.49 : 25.99 
             this.item = priceParams.chargebeeId
             break;

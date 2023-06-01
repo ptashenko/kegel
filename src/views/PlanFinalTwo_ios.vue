@@ -264,7 +264,7 @@ export default {
   inject: ['mixpanel'],
   data(){
     return{
-      item: "Fitness_1-USD-Every-3-months",
+      item: "Fitness-1-trial-USD-Monthly",
       VueScrollTo: require('vue-scrollto'),
       popupVisible: false,
       open: 1,
@@ -473,25 +473,25 @@ export default {
   },
   mounted(){
     this.storeEdit()
-    if (!this.ios_v1) {
-      if (open == 1) {
-        //19.99
-        this.item = "Fitness_1-USD-Every-3-months"
-      }
-      if (open == 3) {
-        //9.99
-        this.item = "Fitness_4-USD-Every-3-months"
-      }
-    } else {
-      if (open == 1) {
+    // if (!this.ios_v1) {
+    //   if (open == 1) {
+    //     //19.99
+    //     this.item = "Fitness-1-trial-USD-Monthly"
+    //   }
+    //   if (open == 3) {
+    //     //9.99
+    //     this.item = "Fitness-3-trial-USD-Monthly"
+    //   }
+    // } else {
+      if (this.open == 1) {
         //1.74
         this.item = "Fitness_2-USD-Weekly"
       }
-      if (open == 3) {
+      if (this.open == 3) {
         //0.99
         this.item = "Fitness_3-USD-Weekly"
       }
-    }
+    // }
   },
   created () {
     this.mixpanel.track('Upsale Offered')

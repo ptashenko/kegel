@@ -5,7 +5,7 @@
             <p class="guarantee-description">We believe that our plan may work for you, and you’ll get visible results in a
                 few weeks!
                 And we are so confident that we are even ready to <span>return your money without any questions</span>.
-                All you have to do is send an email to contact@kegel.men <span>within 30 days and ask for a refund</span>.
+                All you have to do is send an email to contact@kegel-plan.com <span>within 30 days and ask for a refund</span>.
                 But we are sure that the plan will show its effectiveness and there will be no need for a refund. Find more
                 about the
                 refund process in our <a href="./refund.html" target="_blank" :style="{color: borderColor}">refund policy</a>.</p>

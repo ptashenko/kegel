@@ -80,7 +80,7 @@ export default {
           },
           body: JSON.stringify({
             currency_code: "USD",
-            amount: 100,
+            amount: this.auth_price * 100,
             payment_method_type: "card",
           }),
         };
@@ -96,7 +96,7 @@ export default {
                 // this.token = paymentIntent;
                 // this.error = "";
                 console.log(paymentIntent);
-
+                this.$emit("success");
                 // if(this.ver == 3) {
                 this.$router.push({
                   name: "AddressPage",
@@ -151,8 +151,8 @@ export default {
   },
   mounted() {
     window.Chargebee.init({
-      site: "appercut-test",
-      publishableKey: "test_7FOVxVHry4i95p9iFcivpmIr8zdZMKDA",
+      site: "appercut",
+      publishableKey: "live_H5n9AkhJPqxJcus1SjSCzY4581sNVtH8w",
     });
     console.log("Init Card");
     var options = {

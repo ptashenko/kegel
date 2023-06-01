@@ -40,7 +40,7 @@
     </div>
       <div class="qr-footer">
         <div class="qr-footer__text">
-          Any questions? Contact us at <span class="blue">contact@kegel.men</span>
+          Any questions? Contact us at <span class="blue">contact@kegel-plan.com</span>
         </div>
       </div>
   </div>

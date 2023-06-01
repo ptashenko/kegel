@@ -114,7 +114,7 @@ export default {
         {
           title: 'Need support?',
           text: 'Contact Customer Service if you have any questions. We\'ll be sure to help you.',
-          email: 'contact@kegel.men',
+          email: 'contact@kegel-plan.com',
           logo: 'subtract',
           img: require(`../assets/images/Subtract.png`),
           width: 48
@@ -266,6 +266,7 @@ export default {
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '739994357762334');
+    fbq.disablePushState = true
     fbq('track', 'PageView');
     this.mixpanel.track('Start Screen Shown')
   }

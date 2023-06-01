@@ -237,7 +237,7 @@
       </div>
       <div class="block__text mw-450">
         <p class="title">Need help?</p>
-        <p class="fs-16-14">Contact us here: <span class="red">support@kegel.men</span></p>
+        <p class="fs-16-14">Contact us here: <span class="red">support@kegel-plan.com</span></p>
       </div>
       <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
         <button class="btn_bottom" v-scroll-to="'#paypal'">

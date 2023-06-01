@@ -70,7 +70,8 @@
                   class="email" 
                   type="post" 
                   :placeholder="'Enter Postal/Zip Code here'"
-                  minlength="3"
+                  minlength="5"
+                  maxlength="5"
                   required
                   @click="diselect('post')"
                 >
@@ -99,7 +100,7 @@ import { mapActions, mapGetters } from 'vuex';
 import CustomSelect from "../components/CustomSelect.vue";
 
 export default {
-  name: 'EmailAdress',
+  name: 'AddressPage',
   inject: ['mixpanel'],
   components: {
     CustomSelect
@@ -112,7 +113,8 @@ export default {
       email: null,
       valid: false,
       country: 'US',
-      region: ''
+      region: '',
+      submited: false
     };
   },
  
@@ -135,11 +137,18 @@ export default {
       }
     }
   },
-
+  beforeRouteLeave(to, from, next) { 
+      if (this.submited) {
+        next()
+      } else {
+        next(false)
+      }
+    },
   mounted() {
     this.checkAdressStore()
     setTimeout(() => {
       window.scrollTo(0, 0)
+      document.body.style.overflow = 'unset'
     }, 50)
   },
 
@@ -186,21 +195,57 @@ export default {
       }
       console.log(this.billingAdress)
       if (this.valid) {
+        this.submited = true
         localStorage.setItem('billingAdress', JSON.stringify(this.billingAdress))
-        let isiPhone = window.navigator.platform == "iPhone"
-        // let mediaQuery = window.matchMedia('(max-width: 480px)');
-        if (isiPhone) {
-          let body = document.querySelector('body')
-          body.classList.remove('fixed');
-          this.$router.push('PlanFinalTwo')
-        }else{
-          let body = document.querySelector('body')
-          body.classList.remove('fixed');
-          this.$router.push('Whatsapp')
-        }
+        // let isiPhone = window.navigator.platform == "iPhone"
+        // // let mediaQuery = window.matchMedia('(max-width: 480px)');
+        // // if (isiPhone) {
+        //   let body = document.querySelector('body')
+        //   body.classList.remove('fixed');
+        //   if (sessionStorage.getItem('ios_v1')) {
+        //     this.$router.push('PlanFinalTwo_ios')
+        //   } else {
+        //     this.$router.push('PlanFinalTwo')
+        //   }
+        // }else{
+        //   let body = document.querySelector('body')
+        //   body.classList.remove('fixed');
+        //   this.$router.push('Whatsapp')
+        // }
         //this.$router.push("PlanFinalTwo");
-        this.sendRequest()
+        if (this.$route.params.item.includes('Fitness')) {
+          this.sendRequestAddon()
+        } else {
+          this.sendRequest()
+        }
       }
+    },
+    sendRequestAddon() {
+      this.loading = true;
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer test",
+        },
+        body: JSON.stringify({
+          web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
+          item: this.$route.params.item,
+        }),
+      };
+      fetch(
+        "https://int2.kegel.men/api/web-payment/addons/",
+        requestOptions
+      ).then((response) => {
+        console.log(response)
+        if (response.status == 204) {
+          this.loading = false;
+          this.$router.push("Whatsapp");
+        } else {
+          this.loading = false;
+          this.$router.push("Whatsapp");
+        }
+      });
     },
     sendRequest() {
       this.loading = true;
@@ -236,7 +281,15 @@ export default {
                     if (isiPhone) {
                       let body = document.querySelector('body')
                       body.classList.remove('fixed');
-                      this.$router.push('PlanFinalTwo')
+                      if (!sessionStorage.getItem('disableFitness')) {
+                        if (sessionStorage.getItem('ios_v1')) {
+                          this.$router.push('PlanFinalTwo_ios')
+                        } else {
+                          this.$router.push('PlanFinalTwo')
+                        }
+                      } else {
+                        this.$router.push("Whatsapp");
+                      }
                     }else{
                       let body = document.querySelector('body')
                       body.classList.remove('fixed');

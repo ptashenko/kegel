@@ -95,6 +95,7 @@
         text='Add to my plan'
         theme="Back"
         class="footer-controls__button red red-shadow"
+        :class="{ submit: loading }"
         @click="addonRequest"
       />
       <!-- <button-field
@@ -216,7 +217,7 @@
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <PaymentFormCompanent 
         @error="paymentError" 
-        @success="payingSuccess" 
+        @success="payingSuccess1" 
         @click="closeWindowError" 
         :item="this.item"
         :period="subscriotionInfo.period"
@@ -247,7 +248,7 @@ export default {
   },
   data() {
     return {
-      item: "Fitness_1-USD-Every-3-months",
+      item: "Fitness-1-trial-USD-Monthly",
       popupVisible: false,
       open: 1,
       active: true,
@@ -296,21 +297,25 @@ export default {
           currPrice.discPrice = '6.69 USD';
           currPrice.fullPrice = '9.99 USD';
           currPrice.superDiscPrice = '3.30 USD';
+          this.item = this.open === 1 ? "Fitness-1-trial-USD-Monthly" : "Fitness-3-trial-USD-Monthly"
           break;
         case 2:
           currPrice.discPrice = '6.69 USD';
           currPrice.fullPrice = '9.99 USD';
           currPrice.superDiscPrice = '3.30 USD';
+          this.item = this.open === 1 ? "Fitness-1-trial-USD-Monthly" : "Fitness-3-trial-USD-Monthly"
           break;
         case 3:
           currPrice.discPrice = '19.99 USD';
           currPrice.fullPrice = '29.99 USD';
           currPrice.superDiscPrice = '9.99 USD';
+          this.item = this.open === 1 ? "Fitness-2-trial-USD-Every-3-months" : "Fitness-4-trial-USD-Every-3-months"
           break
         default:
           currPrice.discPrice = '6.69 USD';
           currPrice.fullPrice = '9.99 USD';
           currPrice.superDiscPrice = '3.30 USD';
+          this.item = this.open === 1 ? "Fitness-1-trial-USD-Monthly" : "Fitness-3-trial-USD-Monthly"
       }
       return currPrice;
     }
@@ -413,6 +418,9 @@ export default {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(`@/assets/video/${path}`);
     },
+    payingSuccess1() {
+      this.closePopupWindowPay()
+    },
     payingSuccess() {
       this.nextUrl()
 
@@ -489,31 +497,31 @@ export default {
       window.scrollTo(0, 0)
     }, 50)
     this.storeEdit()
-    if (!this.ios_v1) {
-      if (open == 1) {
-        //19.99
-        this.item = "Fitness_1-USD-Every-3-months"
-      }
-      if (open == 3) {
-        //9.99
-        this.item = "Fitness_4-USD-Every-3-months"
-      }
-    } else {
-      if (open == 1) {
-        //1.74
-        this.item = "Fitness_2-USD-Weekly"
-      }
-      if (open == 3) {
-        //0.99
-        this.item = "Fitness_3-USD-Weekly"
-      }
-    }
+    // if (!this.ios_v1) {
+    //   if (open == 1) {
+    //     //19.99
+    //     this.item = "Fitness-1-trial-USD-Monthly"
+    //   }
+    //   if (open == 3) {
+    //     //9.99
+    //     this.item = "Fitness-3-trial-USD-Monthly"
+    //   }
+    // } else {
+    //   if (open == 1) {
+    //     //1.74
+    //     this.item = "Fitness_2-USD-Weekly"
+    //   }
+    //   if (open == 3) {
+    //     //0.99
+    //     this.item = "Fitness_3-USD-Weekly"
+    //   }
+    // }
   },
   created () {
     this.mixpanel.track('Upsale Offered')
   },
   beforeRouteLeave (to, from, next) {
-    if (to.name === 'Whatsapp') {
+    if (to.name === 'Whatsapp' || to.name === "AddressPage") {
       next()
     } else {
       next(false)

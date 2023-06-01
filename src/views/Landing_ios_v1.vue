@@ -134,7 +134,7 @@
     </div>
     <div class="block__text mw-450">
       <p class="title">Need help?</p>
-      <p class="fs-16-14">Contact us here: <span class="red">contact@kegel.men</span></p>
+      <p class="fs-16-14">Contact us here: <span class="red">contact@kegel-plan.com</span></p>
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <button class="btn_bottom" v-scroll-to="'#paypal'">
@@ -252,10 +252,10 @@ export default {
         amount: this.price,
         number: this.$route.query.nr
       })
-      setTimeout(() => {
+      // setTimeout(() => {
         sessionStorage.setItem('ios_v1', true);
-        this.$router.push("PlanFinalTwo_ios");
-      }, 0);
+        
+      // }, 0);
     },
     moment() {
       return moment();

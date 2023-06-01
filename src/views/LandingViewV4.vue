@@ -215,7 +215,7 @@
     </div>
     <div class="block__text">
       <p class="title">Need help?</p>
-      <p class="fs-16-14">Contact us here: <span class="red">contact@kegel.men</span></p>
+      <p class="fs-16-14">Contact us here: <span class="red">contact@kegel-plan.com</span></p>
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <button class="btn_bottom red-shadow" v-scroll-to="'#paypal'">

@@ -134,7 +134,7 @@
     </div>
     <div class="block__text mw-450">
       <p class="title">Need help?</p>
-      <p class="fs-16-14">Contact us here: <span class="red">contact@kegel.men</span></p>
+      <p class="fs-16-14">Contact us here: <span class="red">contact@kegel-plan.com</span></p>
     </div>
     <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
       <button class="btn_bottom" v-scroll-to="'#paypal'">
@@ -482,6 +482,7 @@ export default {
   },
   mounted() {
           moment();
+          sessionStorage.setItem('disableFitness', true);
       let ppp = (Math.floor(Math.random( ) * (22 - 16 + 1)) + 16);
       function days(numer, param, key){
         if(ppp < numer){

@@ -56,6 +56,7 @@ export default {
 
         setEmail({ commit, dispatch }, email) {
             commit('SET_EMAILUSER', email)
+            addItem('email', email)
             const UUID = getItem('web_user_uuid')
             if (!UUID.length) {
                 dispatch('generatUUID');

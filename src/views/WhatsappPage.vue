@@ -7,7 +7,7 @@
         </div>
       </div>
       <p class="mw-520 instructions">
-        Instruction on <b>how to access and activate your personal plan</b> has been sent to you at <span style="color: #5773D6; font-weight: bold;">{{ EMAILUSER }}</span>
+        Instruction on <b>how to access and activate your personal plan</b> has been sent to you at <span style="color: #5773D6; font-weight: bold;">{{ this.email }}</span>
       </p>
 
       <div class="mw-450 d-flex flex-column mb-32 text-center">
@@ -33,7 +33,7 @@
       </div>
       <div class="contacts">
         <p class="contacts__email">
-          or by email <a href="mailto:contact@kegel.men"><span class="red">contact@kegel.men</span></a>
+          or by email <a href="mailto:contact@kegel-plan.com"><span class="red">contact@kegel-plan.com</span></a>
         </p>
         <p class="mw-520 contacts__offer">
           We offer personalized assistance and will promptly contact you to help with any issues or inquiries &#9786;
@@ -56,7 +56,8 @@ export default {
     return{
       popupVisible: false,
       active: true,
-      url: ""
+      url: "",
+      email: ""
     }
   },
   computed: {
@@ -68,12 +69,14 @@ export default {
   },
   methods: {
     openWhatsapp() {
-      window.location.href = `https://web.whatsapp.com/send?phone=15593547145&text=I’d%20like%20help%20regarding%20the%20Dr.%20Kegel%20Plan%20that%20I%20purchased.%0AHere’s%20the%20email%20address%20from%20which%20the%20purchase%20was%20made%3A%20${{EMAILUSER}}`;
+      window.location.href = `https://wa.me/15593547145/?text=I’d%20like%20help%20regarding%20the%20Dr.%20Kegel%20Plan%20that%20I%20purchased.%0AHere’s%20the%20email%20address%20from%20which%20the%20purchase%20was%20made%3A%20` + this.email;
     }
   },
   mounted() {
     setTimeout(() => {
       window.scrollTo(0, -100)
+      document.body.style.overflow = 'unset'
+      this.email = localStorage.getItem('email').replaceAll('\"','');
     }, 100)
   },
   created () {

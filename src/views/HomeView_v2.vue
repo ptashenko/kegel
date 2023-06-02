@@ -1,8 +1,8 @@
 <template>
-  <div class="preloader" v-if="loading">
-    <div class="block-loader">
+  <div class="z-9999 fixed h-full w-full bg-[#fff] overflow-hidden" v-if="loading">
+    <div class="w-full h-full flex items-center justify-center">
       <lottie-animation
-        class="check"
+        class="w-48px h-auto"
         ref="anim"
         :animationData="require(`@/assets/images/json/f5_loader.json`)"
         :loop="true"
@@ -12,38 +12,43 @@
     </div>
   </div>
   <transition name="translate" mode="out-in">
-    <div v-if="true" :class="this.$route.name">
-      <div class="main">
-        <header-layout :fixed="true" :dark="false" />
-          <img v-if="!device.mobile" src="@/assets/images/header-desktop.jpg" class="bg-image" />
-          <img v-else src="@/assets/images/header.png" class="bg-image" />
-          <div class="body">
-            <div class="body__title">
+    <div>
+      <div class="mb-[-5px]">
+        <header-layout fixed :dark="false" />
+          <img v-if="!device.mobile" src="@/assets/images/header-desktop.jpg" class="inline-block w-full" />
+          <img v-else src="@/assets/images/header.png" class="inline-block w-full" />
+          <div class="relative max-w-311px top-[-16vw] mx-auto sm:(top-[-8vw] px-40px max-w-600px box-border)">
+            <div class="font-displayBold text-32px leading-tight text-center text-shadow-title sm:(font-600 text-40px leading-tight)">
               Improve Sexual<br>Health & Wellness
             </div>
-            <div class="body__text">
+            <div class="font-displaySemiBold text-18px leading-normal text-center my-15px opacity-76 sm:(font-600 text-24px)">
               Select a goal to get a step-by-step plan
             </div>
             <div class="str">
-              <lottie-animation ref="arrowmain" class="animationArrow" :class="{ active: isActiveHand }"
-                :animationData="require(`@/assets/images/json/main_arrow.json`)" :loop="true" :autoPlay="true" :speed="1" />
+              <lottie-animation
+                ref="arrowmain"
+                class="animationArrow"
+                :animationData="require(`@/assets/images/json/main_arrow.json`)"
+                :loop="true"
+                :autoPlay="true"
+                :speed="1"
+              />
             </div>
           <!-- {{preload}} -->
           {{myHand}}
           <div class="navigation">
 
                 <button
-                  class="navigation__item"
+                  class="relative w-full py-14px px-20px duration-400 font-sansBold text-16px leading-tight text-white font-700 flex flex-col justify-center items-center rounded-9px bg-body cursor-pointer text-[#fff] border-none mb-15px hover:(bg-[#1B1B1E])"
                   v-for="track in tracks"
                   :key="track.id"
                   @click="getData(track)"
                 >
-                  <span class="navigation__item--title">{{ track.titleShortQuiz }}</span>
-                  <span class="navigation__item--text">{{ track.text }}</span>
+                  <span class="font-700 text-16px leading-normal text-center text-white sm:(text-22px leading-normal)">{{ track.titleShortQuiz }}</span>
+                  <span class="font-sansMedium text-14px mt-4px font-500 leading-tight sm:(text-18px leading-tight)">{{ track.text }}</span>
                   <lottie-animation
-                    v-if="track.id == 1"
-                    :class="{ active: isActiveHand }"
-                    class="animationHand"
+                    v-if="track.id === 1 && isActiveHand"
+                    class="absolute w-84px h-auto top-0 right-[-10px]"
                     ref="animhand"
                     :animationData="require(`@/assets/images/json/main_hand.json`)"
                     :loop="true"
@@ -51,7 +56,7 @@
                   />
                 </button>
 
-              <div class="navigation__text">
+              <div class="font-sansLight opacity-50 text-center mx-auto mt-32px text-12px leading-normal sm:(text-14px leading-normal)">
                 Each individual’s results may vary from person to person based on health condition, body type, starting point, his or
                 her unique background, dedication, desire, motivation, actions, and numerous other factors
               </div>
@@ -185,6 +190,7 @@ export default {
     myHand(){
       this.animated = setInterval(() => {
         if (this.numhand < 10) {
+          console.log(this.numhand)
 
           this.numhand += 1;
         } else {
@@ -363,6 +369,8 @@ export default {
 .navigation {
 
   &__item {
+
+
     position: relative;
 
     width: 100%;
@@ -407,6 +415,7 @@ export default {
       margin-top: 4px;
       font-weight: 500;
       line-height: 1.16;
+
       @media (min-width: 600px) {
         font-size: 18px;
       }

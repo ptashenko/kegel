@@ -17,7 +17,7 @@ import { BrowserTracing } from "@sentry/tracing";
 import '@/assets/scss/styles.scss';
 import '@/assets/scss/fonts.scss';
 import vueCountryRegionSelect from 'vue3-country-region-select'
-
+import 'windi.css'
 import { createDeviceDetector } from "next-vue-device-detector";
 const device = createDeviceDetector()
 

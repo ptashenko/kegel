@@ -1,7 +1,7 @@
 <template>
   <steps
-    :light="false"
     v-if="content.id > 3 && content.id !== 35 && content.id !== 353 && content.id !== 61"
+    :dark="dark"
   />
 
   <div class="h2 layout__title">
@@ -9,9 +9,9 @@
     <span class="red" v-if="content.afterTilteRed">{{ content.afterTilteRed }}</span>
     <span v-if="content.afterTilteText">{{ content.afterTilteText }}</span>
   </div>
-  
+
   <div class="questions__thumbnail" v-if="content.video">
-    <video-background 
+    <video-background
       :src="video(content.video)"
       :poster="video(content.poster)"
       class="video"
@@ -20,7 +20,7 @@
   </div>
 
   <div class="layout__thumbnail full" v-if="content.thumbnail">
-    <!-- <video-background 
+    <!-- <video-background
       :src="image(content.thumbnail)"
       :poster="image(content.thumbnail)"
       :alt="content.title"
@@ -29,9 +29,9 @@
     <img
       :src="image(content.thumbnail)"
       :alt="content.title"
-    > 
+    >
   </div>
-  
+
 
   <div class="layout__bottom-text" v-if="content.text">
     <span v-if="content.aftertext">{{ content.aftertext }}</span>
@@ -52,7 +52,7 @@
       </div>
     </div>
   </div>
-  
+
   <footer-controls
     :dark="true"
     :buttonBack="{
@@ -83,6 +83,10 @@ export default {
       type: Object,
       default: () => ({})
     },
+    dark: {
+      type: Boolean,
+      default: false
+    }
   },
   components: {
     Steps,
@@ -126,7 +130,7 @@ export default {
     line-height: 135%;
     text-align: center;
     margin-bottom: 32px;
-    
+
 
     @media (max-width: 480px) {
       font-size: 20px;
@@ -208,7 +212,7 @@ export default {
     }
 
   }
- 
+
 }
 .video{
       max-width: 520px;

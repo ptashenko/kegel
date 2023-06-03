@@ -94,39 +94,11 @@ p {
                 filter: invert(0);
             }
         }
-        .steps {
-            background-color: #111113;
-            img {
-                filter: invert(0);
-            }
-            span {
-                background-color: #111113;
-            }
-        }
     }
 }
 
 .dark-layout {
     background-color: #111113;
-    // min-height: calc(100vh - 100px);
-    .steps {
-        background-color: #2C2C2E;
-    }
-    .steps__col {
-        background-color: #2C2C2E;
-        img {
-            position: relative;
-            z-index: 1;
-            width: 12px;
-            filter: invert(0.8);
-        }
-    }
-    .steps__col.active {
-        background-color: #E44240
-    }
-    .steps span {
-        background-color: #E44240
-    }
     .review {
         color: #FFFFFF;
         &__title {

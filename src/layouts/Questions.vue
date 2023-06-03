@@ -1,7 +1,5 @@
 <template>
-    <div class="block__steps" v-if="content.steps !== false" :data-step="content.steps">
-      <steps />
-    </div>
+    <steps :dark="dark" />
     <transition name="slide" mode="out-in">
       <div v-if="show" class="questions__wrapper">
         <div class="questions__title">
@@ -31,7 +29,7 @@
           <div>{{survey.answer.textRight}}</div>
         </div>
       </div>
-       
+
     </transition>
     <footer-controls
       :buttonBack="getBackButtonProps"
@@ -65,6 +63,10 @@ export default {
       type: Object,
       default: () => ({})
     },
+    dark: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data() {
@@ -77,7 +79,7 @@ export default {
 
   computed: {
     ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId','history']),
-    
+
     rateTo() {
       const list = this.survey.answer.answerList;
       return `Rate from 1 to ${list[list.length - 1]}`;
@@ -115,7 +117,7 @@ export default {
         this.selectedAnswer = false
         this.show = false
         if (this.layotname.includes(this.myPrewContentId)) {
-          this.show = true 
+          this.show = true
           this.back()
         } else {
           setTimeout(() => {
@@ -157,27 +159,27 @@ export default {
           }
         }
     },
-    
+
     classActive(){
         const answeres = document.querySelectorAll('.answer')
         const divsArr = Array.from(answeres);
         this.selectedAnswer = !divsArr.some((item) => item.classList.contains('active'))
     },
-  
+
     json(json) {
       return require(`@/assets/images/json/${json}`);
     },
-  
+
     image(path) {
       return require(`@/assets/images/content/${path}`);
     },
-  
+
     video(path) {
       return require(`@/assets/video/${path}`);
     },
-  
+
     myAvesomeClickFunction(e){
-      let str = [] 
+      let str = []
       str = e.target.innerText
       str = str.split(',')[0]
       this.selectedAnswer = false
@@ -185,7 +187,7 @@ export default {
         sessionStorage.setItem('resbtn', str);
       }
     },
-  }, 
+  },
   watch:{
   },
   mounted() {
@@ -193,7 +195,7 @@ export default {
       this.classActive()
     });
   },
- 
+
 };
 </script>
 
@@ -213,10 +215,10 @@ export default {
     @media (max-width: 480px) {
       font-size: 16px;
     }
-    
+
   }
   &__title{
-    font-family: "SF-Pro-Display-Bold"; 
+    font-family: "SF-Pro-Display-Bold";
     font-size: 24px;
     text-align: center;
     padding: 0px 0 32px;

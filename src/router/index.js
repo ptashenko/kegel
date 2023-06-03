@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import notFound from '@/views/NotFound.vue';
-import HomeView_v2 from '@/views/HomeView_v2.vue';
+import HomePage from '@/views/HomePage.vue';
 import SurveyView from '@/views/SurveyView.vue';
 import Wait from '@/views/Wait.vue';
 import TimePlan from '@/views/TimePlan.vue';
@@ -26,7 +26,7 @@ import WhatsappPage from '@/views/WhatsappPage.vue';
 const routes = [{
         path: '/',
         name: 'home',
-        component: HomeView_v2,
+        component: HomePage,
     },
     {
         path: '/survey/:survey',

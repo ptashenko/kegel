@@ -34,3 +34,13 @@
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+
+.translate-enter-active,
+.translate-leave-active {
+  transition: all .65s ease;
+}
+
+.translate-enter-from,
+.translate-leave-to {
+  opacity: 0;
+}

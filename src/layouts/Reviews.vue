@@ -9,30 +9,30 @@
     <h3 class="goalDate__purpose" v-else>Improve {{ track.purpose }}</h3>
     <div class="goalDate__redDate">
       <transition name="slide-fade">
-        <span v-if="show">by {{selectedPages ? dataPP1 : dataPP2}}</span> 
-      </transition> 
+        <span v-if="show">by {{selectedPages ? dataPP1 : dataPP2}}</span>
+      </transition>
     </div>
   </div>
 
   <div class="graphic">
-    <lottie-animation 
-      class="animation" 
-      ref="content.ref" 
-      :animationData="imageitem" 
-      :loop="false" 
-      :autoPlay="true" 
-      :speed="1" 
-      @loopComplete="loopComplete" 
-      @complete="complete" 
-      @enterFrame="enterFrame" 
-      @segmentStart="segmentStart" 
-      @stopped="stopped" 
+    <lottie-animation
+      class="animation"
+      ref="content.ref"
+      :animationData="imageitem"
+      :loop="false"
+      :autoPlay="true"
+      :speed="1"
+      @loopComplete="loopComplete"
+      @complete="complete"
+      @enterFrame="enterFrame"
+      @segmentStart="segmentStart"
+      @stopped="stopped"
       />
     <div>
       <div class="graphic__date">
-        <p 
-          class="graphic__month" 
-          v-for="(_, idx) of new Array(6)" 
+        <p
+          class="graphic__month"
+          v-for="(_, idx) of new Array(6)"
           :key="idx">
           {{setDate(idx)}}
         </p>
@@ -45,11 +45,10 @@
 
   <div class="reviews">
     <div class="reviews__title">Customer reviews</div>
-    <review 
-      v-for="id in content.reviews" 
-      :key="id" 
-      :id="id" 
-      :light="true"
+    <review
+      v-for="id in content.reviews"
+      :key="id"
+      :id="id"
     />
   </div>
 
@@ -114,13 +113,13 @@ export default {
     selectedPages() {
       return this.content.id == 20 || this.content.id == 57 || this.content.id == 201;
     },
-  
+
     btnAddPurpose(){
       if (sessionStorage.getItem('resbtn') == 'Yes') {
         this.AddPurpose = true
       } else {
         this.AddPurpose = false
-      } 
+      }
     },
     graphText() {
       switch (this.version) {
@@ -128,7 +127,7 @@ export default {
           return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
         case 5:
           return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
-        default: 
+        default:
           return 'This diagram is non-personalized data based on scientific research'
       }
     },
@@ -139,17 +138,17 @@ export default {
       const json = localStorage.getItem('track');
       const obj = JSON.parse(json);
       this.track = obj.id
-      if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes') 
+      if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes')
       {
         this.imageitem = require(`@/assets/images/json/ED.json`);
       } else if (this.track.id == 3) {
-        this.AddPurpose = false 
+        this.AddPurpose = false
       }
       return  console.log(this.imageitem);
     }
   },
 
-  
+
   mounted(){
     this.numanim = setInterval(() => {
       if (this.numanimate == 1) {

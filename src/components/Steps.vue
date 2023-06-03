@@ -1,17 +1,27 @@
 <template>
-  <div class="steps" :class="{'light': light}" v-if="layoutSeparationsIds">
+  <div class="h-6px w-full max-w-280px mx-auto mb-32px flex items-center relative justify-between" :class="[dark ? 'bg-[#2C2C2E]' : 'bg-[#F1F3F9]']" v-if="layoutSeparationsIds">
     <div
-      class="steps__col d-flex"
+      class="w-18px h-18px rounded-full flex z-999"
       v-for="(separation, index) in layoutSeparationsIds"
       :key="separation"
-      :class="{active: index < activeDisplay}"
+      :class="[
+        dark ? 'bg-[#2C2C2E]' : 'bg-[#F1F3F9]',
+         {'!bg-red': index < activeDisplay && dark},
+         {'!bg-body': index < activeDisplay && !dark},
+         {'ml-[-15px]': index === 0},
+         {'mr-[-15px]': index === layoutSeparationsIds.length - 1}
+         ]"
     >
-    <div class="d-flex align-items-center justify-content-center w-100" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100">
-      <img src="@/assets/images/svg/icon_check-no-bg-black.svg" class="checker" :class="{active: index < activeDisplay}" alt="check" v-if="light">
-      <img src="@/assets/images/svg/icon_check-no-bg.svg" class="checker" :class="{active: index < activeDisplay}" alt="check" v-else>
+      <div class="flex items-center w-25rem justify-center" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100">
+        <img src="@/assets/images/svg/icon_check-no-bg.svg" class="checker" alt="check" v-if="!dark && index !== 0">
+        <img src="@/assets/images/svg/icon_check-no-bg-black.svg" class="checker" :class="{'invert-80': dark}" alt="check" v-if="dark && index !== 0" >
+      </div>
     </div>
-    </div>
-    <span :style="`width: ${loadPercent}%`">  </span>
+    <span
+      class="absolute left-0 right-0 top-0 bottom-0 duration-200 rounded-5px"
+      :class="[dark ? 'bg-red' : 'bg-body']"
+      :style="`width: ${loadPercent}%`"
+    />
   </div>
 
 </template>
@@ -22,6 +32,12 @@ import nextContentUrl from '@/mixins/contollers';
 
 export default {
   name: 'Steps-item',
+  props: {
+    dark: {
+      default: false,
+      type: Boolean,
+    },
+  },
   mixins: [nextContentUrl],
   data(){
     return {
@@ -59,15 +75,6 @@ export default {
         }
       }
       return this.myStep
-    },
-  },
-  watch:{
-
-  } ,
-  props: {
-    light: {
-      default: false,
-      type: Boolean,
     },
   },
 };

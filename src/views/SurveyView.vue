@@ -1,7 +1,7 @@
 <template>
-    <div :class="{content: true, 'dark-layout': content.dark, minHeight: content.id === 50}" >
-        <questions v-if="content && content.answer" :survey="content" />
-        <component v-else :is="content && content.layoutName" :content="content" />
+    <div class="max-w-600px px-32px mx-auto box-border pb-100px sm:(px-40px)" :class="{'dark-layout': content.dark, 'min-h-700px sm:(min-h-800px)': content.id === 50}" >
+        <questions v-if="content && content.answer" :survey="content"  />
+        <component v-else :is="content && content.layoutName" :content="content" :dark="content.dark" />
     </div>
 </template>
 
@@ -32,18 +32,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.content {
-  max-width: 600px;
-  padding: 0 32px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding-bottom: 100px;
-
-  @media (min-width: 600px) {
-    padding: 0 40px;
-  }
-}
 .dark {
   background: #111113;
   min-height: 100%;

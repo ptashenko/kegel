@@ -16,11 +16,10 @@
 
       <div class="reviews">
         <div class="reviews__title">Customer reviews</div>
-        <review 
-          v-for="id in content.reviews" 
-          :key="id" 
-          :id="id" 
-          :light="true"
+        <review
+          v-for="id in content.reviews"
+          :key="id"
+          :id="id"
         />
       </div>
     </div>
@@ -87,7 +86,7 @@ export default {
     image(path) {
       return require(`@/assets/img/land_v6/${path}`);
     },
-    
+
     moment() {
       return moment();
     },
@@ -167,7 +166,7 @@ export default {
   }
 }
 .text-center{
-  
+
   text-align: center;
 }
 .h2 {

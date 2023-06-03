@@ -3,8 +3,8 @@
     <div class="container-main is-page standart">
 
       <steps
-        :light="false"
         v-if="content.id > 3 && content.id !== 35 && content.id !== 353 && content.id !== 61"
+        :dark="dark"
       />
 
       <div class="h2 layout__title">
@@ -13,7 +13,7 @@
         <span v-if="content.afterTilteText !== false">{{ content.afterTilteText }}</span>
       </div>
       <div class="questions__thumbnail" v-if="content.video">
-        <video-background 
+        <video-background
           :src="video(content.video)"
           :poster="video(content.poster)"
           class="video"
@@ -27,9 +27,9 @@
           :alt="content.title"
           width="400"
           height="200"
-        > 
+        >
       </div>
-      
+
 
       <div class="layout__bottom-text" v-if="content.text">
         <span v-if="content.aftertext">{{ content.aftertext }}</span>
@@ -87,6 +87,10 @@ export default {
       required: true,
       type: Object,
     },
+    dark: {
+      type: Boolean,
+      default: false
+    }
   },
   components: {
     Steps,
@@ -115,7 +119,7 @@ export default {
   computed:{
   },
   mounted(){
-      
+
   }
 };
 </script>
@@ -134,7 +138,7 @@ export default {
     line-height: 135%;
     text-align: center;
     margin-bottom: 32px;
-    
+
 
     @media (max-width: 480px) {
       font-size: 20px;
@@ -158,7 +162,7 @@ export default {
       max-width: 520px;
       width: 100%;
     }
-    
+
   }
   &__button {
     font-weight: 500;
@@ -213,7 +217,7 @@ export default {
     }
 
   }
- 
+
 }
 .video{
       max-width: 520px;

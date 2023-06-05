@@ -20,6 +20,7 @@ module.exports = defineConfig({
                     },
                     textShadow: {
                         title: '0 0 17px #fff',
+                        button: '0 0 0 3px rgba(#3E3E3E, .3)',
                     },
                     colors: {
                         body: '#111113',
@@ -27,6 +28,9 @@ module.exports = defineConfig({
                         blue: '#5773D6',
                         gray: '#9e9e9e',
                     },
+                },
+                shortcuts: {
+                    'container-mob': 'max-w-311px relative mx-auto sm:(max-w-520px)',
                 },
             },
         },

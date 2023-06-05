@@ -1,7 +1,8 @@
 <template>
-  <div class="answer__div">
+  <div class="flex-1 w-full mx-4px max-w-73px">
     <button
-      :class="['answer', {'active': selected === answer}]"
+      class="flex items-center justify-center bg-[#F1F3F9] rounded-9px border-none font-700 text-16px h-53px leading-normal w-full cursor-pointer max-w-73px text-body sm:(text-18px leading-normal h-70px)"
+      :class="{'bg-body text-[#fff]': selected === answer}"
       @click="saveHistory"
     >
       {{ answer }}
@@ -29,40 +30,3 @@ export default {
   mixins: [history],
 };
 </script>
-
-<style lang="scss" scoped>
-.answer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #F1F3F9;
-  border-radius: 9px;
-  border: none;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 150%;
-  width: 100%;
-  cursor: pointer;
-  // transition: 0.2s;
-  height: 70px;
-  max-width: 73px;
-  color: #111113;
-
-  @media (max-width: 480px) {
-    font-size: 16px;
-    height: 53px;
-  }
-
-  &.active {
-    background-color: #111113;
-    color: white;
-  }
-
-  &__div {
-    flex-grow: 1;
-    width: 100%;
-    margin: 0 4px;
-    max-width: 73px;
-  }
-}
-</style>

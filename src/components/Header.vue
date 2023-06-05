@@ -1,8 +1,6 @@
 <template>
-  <header :class="{ 'header': true, 'absolute': $route.name === 'home' }">
-      <img src="@/assets/images/logos/logo_white.png" alt="logo" class="header__logo" v-if="isDark">
-      <img src="@/assets/images/logos/logo_black.png" alt="logo" class="header__logo" v-else>
-    {{bgBody}}
+  <header class="relative top-0 left-0 right-0 bottom-0 py-24px mx-auto bg-transparent max-w-311px sm:(max-w-520px py-32px)" :class="{'!absolute': $route.name === 'home' }">
+    <img :src="require(`@/assets/images/logos/${logo}.png`)" alt="logo" class="w-120px sm:w-150px">
   </header>
 </template>
 
@@ -15,38 +13,11 @@ export default {
       required: true,
       default: true,
     }
+  },
+  computed: {
+    logo() {
+      return this.isDark ? 'logo_white' : 'logo_black'
+    }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.header {
-  position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  padding: 24px 0;
-  margin: 0 auto;
-
-  max-width: 311px;
-  background-color: transparent;
-
-    @media (min-width: 600px) {
-      padding: 32px 0;
-      max-width: 520px;
-    }
-
-  &__logo{
-      width: 150px;
-        @media (max-width: 480px) {
-          width: 120px;
-        }
-    }
-}
-
-.absolute {
-  position: absolute;
-}
-
-</style>

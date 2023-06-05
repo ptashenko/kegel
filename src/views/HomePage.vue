@@ -35,13 +35,13 @@
             </div>
           <div>
                 <button
-                  class="relative w-full py-14px px-20px duration-400 font-sansBold text-16px leading-tight text-white font-700 flex flex-col justify-center items-center rounded-9px bg-body cursor-pointer text-[#fff] border-none mb-15px hover:(bg-[#1B1B1E])"
+                  class="relative w-full py-14px px-20px duration-400 font-sansBold text-16px leading-tight text-white font-700 block rounded-9px bg-body cursor-pointer text-[#fff] border-none mb-15px hover:(bg-[#1B1B1E])"
                   v-for="track in tracks"
                   :key="track.id"
                   @click="getData(track)"
                 >
                   <span class="font-700 text-16px leading-normal text-center text-white sm:(text-22px leading-normal)">{{ track.titleShortQuiz }}</span>
-                  <span class="font-sansMedium text-14px mt-4px font-500 leading-tight sm:(text-18px leading-tight)">{{ track.text }}</span>
+                  <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 leading-tight sm:(text-18px leading-tight)">{{ track.text }}</span>
                   <lottie-animation
                     v-if="track.id === 1 && isActiveHand"
                     class="absolute w-84px h-auto top-0 right-[-10px]"

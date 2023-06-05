@@ -13,6 +13,10 @@
   }
 }
 
+.animate-seconds {
+  animation: second 5s;
+}
+
 @keyframes blick {
   0% {
     box-shadow: 0px 0px 0px 0px #5773d681;
@@ -37,10 +41,30 @@
 
 .translate-enter-active,
 .translate-leave-active {
-  transition: all .65s ease;
+  transition: all 0.65s ease;
 }
 
 .translate-enter-from,
 .translate-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.65s;
+}
+
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }

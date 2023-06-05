@@ -1,11 +1,15 @@
 <template>
-  <div class="h-6px w-full max-w-280px mx-auto mb-32px flex items-center relative justify-between" :class="[dark ? 'bg-[#2C2C2E]' : 'bg-[#F1F3F9]']" v-if="layoutSeparationsIds">
+  <div
+    v-if="layoutSeparationsIds"
+    class="h-6px w-full max-w-280px mx-auto mb-32px flex items-center relative justify-between"
+    :class="[dark ? 'bg-[#2C2C2E]' : 'bg-[#F1F3F9]']"
+  >
     <div
       class="w-18px h-18px rounded-full flex z-999"
       v-for="(separation, index) in layoutSeparationsIds"
       :key="separation"
       :class="[
-        dark ? 'bg-[#2C2C2E]' : 'bg-[#F1F3F9]',
+        dark || finished ? 'bg-[#2C2C2E]' : 'bg-[#F1F3F9]',
          {'!bg-red': index < activeDisplay && dark},
          {'!bg-body': index < activeDisplay && !dark},
          {'ml-[-15px]': index === 0},
@@ -37,6 +41,10 @@ export default {
       default: false,
       type: Boolean,
     },
+    finished: {
+      type: Boolean,
+      default: false
+    }
   },
   mixins: [nextContentUrl],
   data(){

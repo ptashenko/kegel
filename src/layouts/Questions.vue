@@ -1,30 +1,61 @@
 <template>
     <steps :dark="dark" />
     <transition name="slide" mode="out-in">
-      <div v-if="show" class="questions__wrapper">
-        <div class="questions__title">
+      <div v-if="show" class="flex flex-col">
+        <div class="font-displayBold text-20px text-left pb-32px leading-normal sm:(text-left text-24px leading-normal)">
           {{ survey.title }}
         </div>
 
-        <div class="questions__thumbnail" v-if="survey.video">
-          <video-background :src="video(content.video)" :poster="video(content.poster)" class="video"></video-background>
+        <div v-if="survey.video" class="mb-32px text-center max-w-450px w-full sm:max-w-full">
+          <video-background
+            :src="video(content.video)"
+            :poster="video(content.poster)"
+            class="max-w-520px w-full mx-auto"
+          />
         </div>
 
-        <div class="questions__thumbnail" v-if="survey.thumbnail">
-          <img :src="image(survey.thumbnail)" :alt="survey.title" width="400" height="200" />
+        <div v-if="survey.thumbnail" class="mb-32px text-center max-w-450px w-full sm:max-w-full">
+          <img
+            :src="image(survey.thumbnail)"
+            :alt="survey.title"
+            class="max-w-full h-auto sm:max-w-520px"
+            width="400"
+            height="200"
+          />
         </div>
 
-        <div class="questions__thumbnail" v-if="survey.json">
-          <lottie-animation class="animation" ref="survey.ref" :animationData="json(survey.json)" :loop="false" :autoPlay="true" :speed="1" @loopComplete="loopComplete" @complete="complete" @enterFrame="enterFrame" @segmentStart="segmentStart" @stopped="stopped" />
+        <div class="mb-32px text-center max-w-450px w-full sm:max-w-full" v-if="survey.json">
+          <lottie-animation
+            ref="survey.ref"
+            :animationData="json(survey.json)"
+            :loop="false"
+            :autoPlay="true"
+            :speed="1"
+            @loopComplete="loopComplete"
+            @complete="complete"
+            @enterFrame="enterFrame"
+            @segmentStart="segmentStart"
+            @stopped="stopped"
+          />
         </div>
 
-        <div v-if="survey.answer.style === 'buttons'" class="questions__rate">
+        <div
+          v-if="surveyAnswerIsButtons"
+          class="opacity-75 text-center mb-30px text-16px font-500 sm:text-16px"
+        >
           {{ rateTo }}
         </div>
-        <div :class="[survey.answer.style === 'buttons' ? 'answer__list--flex' : '', {'answer__list': true}]">
-          <component :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'" v-for="answer in survey.answer.answerList" :class="survey.answer.answerClass" @click="myAvesomeClickFunction" :key="answer.id" :answer="answer" />
+        <div :class="{'flex justify-center mx-[-8px] pb-0': surveyAnswerIsButtons}">
+          <component
+            :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'"
+            v-for="answer in survey.answer.answerList"
+            :class="survey.answer.answerClass"
+            @click="myAvesomeClickFunction"
+            :key="answer.id"
+            :answer="answer"
+          />
         </div>
-        <div v-if="survey.answer.style === 'buttons'" class="questions__lvl">
+        <div v-if="surveyAnswerIsButtons" class="flex max-w-390px w-full mx-auto mt-16px justify-between opacity-75 text-14px sm:text-18px">
           <div>{{survey.answer.textLeft}}</div>
           <div>{{survey.answer.textRight}}</div>
         </div>
@@ -44,8 +75,7 @@ import {  mapGetters, mapMutations } from 'vuex';
 import Steps from '@/components/Steps.vue';
 import history from '@/mixins/history';
 import nextContentUrl from '@/mixins/contollers';
-
-
+import '@/assets/css/animations.css'
 export default {
   inject: ['mixpanel'],
   name: 'Question-layout',
@@ -80,6 +110,10 @@ export default {
   computed: {
     ...mapGetters(['content', 'track', 'myPrewContentId','nextContentId','history']),
 
+    surveyAnswerIsButtons () {
+      return this.survey.answer.style === 'buttons'
+    },
+
     rateTo() {
       const list = this.survey.answer.answerList;
       return `Rate from 1 to ${list[list.length - 1]}`;
@@ -91,7 +125,7 @@ export default {
           text: 'Back',
           icon: 'prev',
           click: this.backHome,
-          theme: 'light'
+          theme: 'text-[#4A4A4B] bg-[#F1F3F9] hover:bg-[#E5E9F5]'
         }
     },
     getNextButtonProps() {
@@ -101,7 +135,7 @@ export default {
         icon: 'next',
         disabled: this.selectedAnswer,
         click: this.nextWait,
-        theme: 'dark',
+        theme: 'bg-body hover:bg-[#1B1B1E] disabled:opacity-30',
         short: this.content.short
       }
     }
@@ -188,8 +222,6 @@ export default {
       }
     },
   },
-  watch:{
-  },
   mounted() {
     this.$nextTick(() => {
       this.classActive()
@@ -198,88 +230,3 @@ export default {
 
 };
 </script>
-
-<style lang="scss" scoped>
-.questions {
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-  &__rate {
-    opacity: 0.75;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 20px;
-    font-weight: 500;
-
-    @media (max-width: 480px) {
-      font-size: 16px;
-    }
-
-  }
-  &__title{
-    font-family: "SF-Pro-Display-Bold";
-    font-size: 24px;
-    text-align: center;
-    padding: 0px 0 32px;
-    line-height:135%;
-    @media (max-width: 480px) {
-      font-size: 20px;
-      text-align: left;
-    }
-  }
-  &__thumbnail {
-    margin: 0px auto 32px;
-    text-align: center;
-    max-width: 450px;
-    width: 100%;
-    @media (min-width: 600px) {
-      max-width: 100%;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-          @media (min-width: 600px) {
-              max-width: 520px;
-            }
-    }
-  }
-
-  &__lvl {
-    display: flex;
-    max-width: 390px;
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 16px;
-    justify-content: space-between;
-    opacity: 0.75;
-    font-size: 18px;
-
-    @media (max-width: 480px) {
-      font-size: 14px;
-    }
-  }
-}
-.video {
-  max-width: 520px;
-  width: 100%;
-  margin: 0 auto;
-}
-.answer {
-  &__list {
-    &--flex {
-      display: flex;
-      justify-content: center;
-      margin: 0 -8px;
-      padding-bottom: 0;
-    }
-  }
-}
-.slide-enter-active, .slide-leave-active {
-  transition: opacity .5s ease
-}
-
-.slide-enter-from, .slide-leave-to {
-  opacity: 0
-}
-</style>

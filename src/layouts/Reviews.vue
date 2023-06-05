@@ -57,14 +57,14 @@
       text: content.buttonsText ? content.buttonsText[0] : 'Back',
       icon: 'prev',
       click: back,
-      theme: 'light prevBtnReviews'
+      theme: 'text-[#4A4A4B] bg-[#F1F3F9] hover:bg-[#E5E9F5]'
     }"
     :buttonNext="{
       icon: false,
       text: content.buttonsText ? content.buttonsText[1] : 'Claim my plan',
       click: next,
       button: false,
-      theme: 'red'
+      theme: 'bg-red hover:bg-[#F5423FFF]'
     }"
   />
 </template>

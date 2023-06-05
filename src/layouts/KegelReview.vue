@@ -8,20 +8,25 @@
         <span class="red" v-if="content.tilteRed">{{content.tilteRed}}</span>
         <span v-else></span>
         {{ content.title }}
-        
+
       </div>
 
       <div class="peoples">
 
-        <lottie-animation 
+        <lottie-animation
           v-if="content.thumbnail"
-          class="animation" 
+          class="animation"
           ref="anim"
           :animationData="require(`@/assets/images/json/${content.thumbnail}`)"
         />
       </div>
 
-      <review v-for="id in content.reviews" :key="id" :id="id"/>
+      <review
+        v-for="id in content.reviews"
+        :key="id"
+        :id="id"
+        :dark="content.dark"
+      />
 
       <processing>
         Connecting to the database
@@ -76,7 +81,7 @@ export default {
   padding-bottom: 30px;
 }
 .h2{
-  font-family: "SF-Pro-Display-Semibold"; 
+  font-family: "SF-Pro-Display-Semibold";
   font-size: 24px;
   color: #FFFFFF;
   text-align: center;

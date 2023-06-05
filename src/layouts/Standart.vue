@@ -59,13 +59,13 @@
       text: content.buttonsText ? content.buttonsText[0] : 'Back',
       icon: 'prev',
       click: backURL,
-      theme: 'grey'
+      theme: 'bg-[#282828] hover:bg-[#373737FF]'
     }"
     :buttonNext="{
       icon: 'next',
       text: content.buttonsText ? content.buttonsText[1] : 'I got it',
       click: nextURL,
-      theme: 'red'
+      theme: 'bg-red hover:bg-[#F5423FFF]'
     }"
   />
 </template>

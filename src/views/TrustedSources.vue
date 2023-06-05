@@ -1,7 +1,7 @@
 <template lang="">
 
     <div class="container-main trustedSources">
-      
+
       <h2 class="trustedSources__title">
         {{title}}
       </h2>
@@ -15,13 +15,13 @@
           text: 'Back',
           click: btnBack,
           icon: 'prev',
-          theme: 'light'
+          theme: 'text-[#4A4A4B] bg-[#F1F3F9] hover:bg-[#E5E9F5]'
         }"
         :buttonNext="{
           icon: 'next',
           text: 'Continue',
           click: btnClick ,
-          theme: 'red'
+          theme: 'bg-red hover:bg-[#F5423FFF]'
         }"
       />
     </div>

@@ -1,23 +1,23 @@
 <template>
-  <div class="footer-controls" :class="{'dark': dark}">
-    <div>
-      <button-field
-        :text="buttonBack.text"
-        :theme="buttonBack.theme"
-        :icon="buttonBack.icon"
-        @click="buttonBack.click()"
-        class="footer-controls__button"
-      />
-    </div> 
-    <div>
-      <button-field
-        :text="buttonNext.text"
-        :disabled="buttonNext.disabled"
-        :theme="buttonNext.theme"
-        :icon="buttonNext.icon"
-        @click="buttonNext.click()"
-        class="footer-controls__button"
-      />
+  <div class="footer-bg h-100px text-center mx-auto mt-25px fixed bottom-0 left-0 right-0" :class="{'dark': dark}">
+    <div class="flex items-center h-100px justify-between max-w-311px sm:(max-w-322px) mx-auto">
+      <div class="max-w-153px basis-[49%]">
+        <button-field
+          :text="buttonBack.text"
+          :theme="buttonBack.theme"
+          :icon="buttonBack.icon"
+          @click="buttonBack.click()"
+        />
+      </div>
+      <div class="max-w-153px basis-[49%]">
+        <button-field
+          :text="buttonNext.text"
+          :disabled="buttonNext.disabled"
+          :theme="buttonNext.theme"
+          :icon="buttonNext.icon"
+          @click="buttonNext.click()"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
     },
   },
   computed:{
-    
+
   },
   watch: {
     buttonBack(val) {
@@ -59,74 +59,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.footer-controls {
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-  margin: 25px auto 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0 30px;
+.footer-bg {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
-  @media (max-width:480px) {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
-  }
-  & > * {
-    position: relative;
-    z-index: 3;
-  }
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    @media (max-width:480px) {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
-    }
-  }
-
-  @media (max-width: 480px) {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0 30px;
-    max-width: 540px;
-  }
 
   &.dark {
     background: none;
-    
+
     &:before {
       background: #111113;
     }
-    
-  }
 
-  @media (max-width: 480px) {
-    &__button {
-      width: 100%;
-    }
-
-    & > * {
-      width: 50%;
-      flex: 0 0 50%;
-    }
-  }
-
-  & > * {
-    padding: 0 8px;
-    @media (max-width: 480px) {
-      padding: 0 2.5px;
-    }
   }
 }
 </style>

@@ -1,30 +1,27 @@
 <template>
   <div
-    class="review"
-    :class="{
-      light: light,
-      active: active
-    }"
+    class="review p-15px mx-auto max-w-370px bg-[#F9F9F9] sm:(max-w-520px rounded-11px) mb-15px"
+    :class="{'!bg-[#1D1D1F] rounded-9px': dark}"
   >
-    <div class="review__top">
+    <div class="flex justify-between mb-15px">
       <div>
-        <div class="review__title">{{ reviewItem.title }}</div>
-        <div class="review__rating">
-          <div v-for="i in reviewItem.rating" :key="i">
-            <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="star-yellow">
+        <div class="font-700 text-14px leading-normal max-w-full sm:text-18px">{{ reviewItem.title }}</div>
+        <div class="flex mt-5px">
+          <div v-for="i in reviewItem.rating" :key="i" class="w-14px h-14px">
+            <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="max-w-14px h-auto">
           </div>
-          <div v-for="i in Number(5 - reviewItem.rating)" :key="i">
-            <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="star-yellow">
+          <div v-for="i in Number(5 - reviewItem.rating)" :key="i" class="w-14px h-14px">
+            <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="max-w-14px h-auto">
           </div>
         </div>
       </div>
 
-      <div class="review__name">
+      <div class="font-500 text-12px leading-normal opacity-50 sm:(text-16px leading-normal)">
         {{ reviewItem.name }}
       </div>
     </div>
 
-    <div class="review__text">
+    <div class="font-400 text-12px leading-normal sm:(text-16px leading-normal)">
       {{ reviewItem.text }}
     </div>
   </div>
@@ -46,8 +43,7 @@ export default {
       required: true,
       type: Boolean,
     },
-
-    light: {
+    dark: {
       default: false,
       type: Boolean,
     },
@@ -58,98 +54,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.review {
-  padding: 15px;
-  border-radius: 11px;
-  margin: 0 auto;
-  max-width: 370px;
-  background-color: #F9F9F9;
-  @media (min-width: 600px) {
-    max-width: 520px;
-  }
-  @media (max-width: 480px) {
-    border-radius: 9px;
-  }
-
-  &:not(.light) {
-    background-color: #1D1D1F;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 15px;
-  }
-
-  &__top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
-
-  &__title {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 150%;
-
-    @media (max-width: 480px) {
-      font-size: 14px;
-      max-width: 100%;
-    }
-  }
-
-  &__text {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-
-    @media (max-width: 480px) {
-      font-size: 12px;
-    }
-  }
-
-  &__name {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 150%;
-    opacity: .5;
-
-    @media (max-width: 480px) {
-      font-size: 12px;
-    }
-  }
-
-  &__rating {
-    display: flex;
-    margin-top: 5px;
-
-    div {
-      width: 14px;
-      height: 14px;
-
-      @media (max-width: 480px) {
-        width: 14px;
-        height: 14px;
-
-        svg {
-          width: 14px;
-          height: 14px;
-        }
-      }
-    }
-  }
-}
-
-.star-yellow {
-  max-width: 14px;;
-  height: auto;
-}
-
-.star-dark {
-  fill: white;
-}
-.h2{
-  font-family: "SF-Pro-Display-Bold";
-}
-
-</style>

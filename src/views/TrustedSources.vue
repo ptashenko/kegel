@@ -1,14 +1,14 @@
-<template lang="">
+<template>
 
-    <div class="container-main trustedSources">
+    <div class="container-mob">
 
-      <h2 class="trustedSources__title">
+      <h2 class="font-displayBold text-center m-0 text-20px leading-normal sm:(text-30px leading-normal)">
         {{title}}
       </h2>
 
 
-      <div class="trustedSources__image">
-          <img src="@/assets/images/content/f4_img.png">
+      <div class="max-w-373px my-17px mx-auto">
+          <img src="@/assets/images/content/f4_img.png" class="w-full">
       </div>
       <footer-controls
         :buttonBack="{
@@ -68,30 +68,3 @@ export default {
 }
 
 </script>
-<style lang="scss" scoped>
-
-.trustedSources {
-
-  &__title {
-    font-family: "SF-Pro-Display-Bold";
-    font-size: 24px;
-    text-align: center;
-    margin: 0;
-    @media (max-width:480px) {
-      font-size: 20px;
-    }
-    @media (min-width: 600px) {
-      font-size: 30px;
-    }
-  }
-
-  &__image {
-    max-width: 373px;
-    margin: 17px auto;
-    img{
-      width: 100%;
-    }
-  }
-}
-
-</style>

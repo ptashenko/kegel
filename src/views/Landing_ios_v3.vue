@@ -4,7 +4,7 @@
     <div class="container-main is-page land">
       <div class="landing__content">
         <div class="d-flex align-items-center justify-content-center flex-column">
-          <div class="d-flex flex-column block__timer" >
+          <div class="d-flex flex-column block__timer">
             <div class="h2">
               Your Kegel Plan is waiting for you!
             </div>

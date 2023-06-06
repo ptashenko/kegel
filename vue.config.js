@@ -20,13 +20,20 @@ module.exports = defineConfig({
                     },
                     textShadow: {
                         title: '0 0 17px #fff',
+                    },
+                    boxShadow: {
                         button: '0 0 0 3px rgba(#3E3E3E, .3)',
+                        input: 'inset 0px 4px 4px #0000000A',
                     },
                     colors: {
                         body: '#111113',
                         red: '#E44240',
                         blue: '#5773D6',
                         gray: '#9e9e9e',
+                    },
+                    width: {
+                        fit: 'fit-content',
+                        full: '100%'
                     },
                 },
                 shortcuts: {

@@ -1,21 +1,19 @@
-<template lang="">
-    <div class="container-main">
-      <div class="h2 text-center">
+<template>
+    <div class="container-mob">
+      <h2 class="font-displayBold text-center text-20px leading-normal sm:(text-30px leading-normal)">
         {{title}}
-      </div>
+      </h2>
 
-      <div class="loading as"
-        @click="openPopup"
-      >
-        <div class="text__percent d-flex justify-content-beetwen" :class="{'active': percent > 0}">
+      <div class="max-w-450px mx-auto mt-48px mb-0 w-full sm:(mt-64px)">
+        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'opacity-100': percent > 0}">
           <div>
             Intimate health indicators
           </div>
-          <div class="d-flex align-items-center">
-            <div class="d-flex">
+          <div class="flex items-center">
+            <div class="flex">
               <lottie-animation
-                class="check"
-                :class="{ active: isActiveCheck_1 }"
+                v-show="isActiveCheck_1"
+                class="w-16px h-16px sm:(w-20px h-20px)"
                 ref="animed"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
                 :loop="true"
@@ -24,27 +22,27 @@
 
               />
             </div>
-            <div class="number__procent">
+            <div class="w-45px text-right">
               {{ percent }}%
             </div>
           </div>
         </div>
-        <div class="loading__bar">
-          <span></span>
-          <span class="loading__percent" :style="`width: ${percent}%`"></span>
+        <div class="h-10px bg-[#F1F3F9] rounded-9px font-700 text-18px leading-normal flex items-center justify-center relative overflow-hidden text-[#fff]">
+          <span class="relative z-4"></span>
+          <span class="bg-body absolute left-0 top-0 bottom-0 w-[20%] rounded-5px" :style="`width: ${percent}%`"></span>
         </div>
       </div>
-      <div class="loading as">
-        <div class="loading__title"></div>
-        <div class="text__percent d-flex justify-content-beetwen" :class="{'active': loadProsentTwo > 0}">
+      <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
+        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'opacity-100': loadProsentTwo > 0}">
           <div>
             Sexual behaviours
           </div>
-          <div class="d-flex align-items-center">
-            <div class="d-flex">
+          <div class="flex items-center">
+            <div class="flex">
               <lottie-animation
-                class="check"
-                :class="{ active: isActiveCheck_2 }"
+                v-show="isActiveCheck_2"
+                class="w-16px h-16px sm:(w-20px h-20px)"
+                ref="animed"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
                 :loop="true"
                 :autoPlay="true"
@@ -52,27 +50,27 @@
 
               />
             </div>
-            <div  class="number__procent">
+            <div  class="w-45px text-right">
               {{ loadProsentTwo }}%
             </div>
           </div>
         </div>
-        <div class="loading__bar">
-          <span></span>
-          <span class="loading__percent" :style="`width: ${loadProsentTwo}%`"></span>
+        <div class="h-10px bg-[#F1F3F9] rounded-9px font-700 text-18px leading-normal flex items-center justify-center relative overflow-hidden text-[#fff]">
+          <span class="relative z-4"></span>
+          <span class="bg-body absolute left-0 top-0 bottom-0 w-[20%] rounded-5px" :style="`width: ${loadProsentTwo}%`"></span>
         </div>
       </div>
-      <div class="loading as">
-        <div class="loading__title"></div>
-        <div class="text__percent d-flex justify-content-beetwen" :class="{'active': loadProsentTree > 0}">
+      <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
+        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'opacity-100': loadProsentTree > 0}">
           <div>
             Lifestyle
           </div>
-          <div class="d-flex align-items-center">
-            <div class="d-flex">
+          <div class="flex items-center">
+            <div class="flex">
               <lottie-animation
-                class="check"
-                :class="{ active: isActiveCheck_3 }"
+                v-show="isActiveCheck_3"
+                class="w-16px h-16px sm:(w-20px h-20px)"
+                ref="animed"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
                 :loop="true"
                 :autoPlay="true"
@@ -80,27 +78,26 @@
 
               />
             </div>
-            <div  class="number__procent">
+            <div  class="w-45px text-right">
               {{ loadProsentTree }}%
             </div>
           </div>
         </div>
-        <div class="loading__bar">
-          <span></span>
-          <span class="loading__percent" :style="`width: ${loadProsentTree}%`"></span>
+        <div class="h-10px bg-[#F1F3F9] rounded-9px font-700 text-18px leading-normal flex items-center justify-center relative overflow-hidden text-[#fff]">
+          <span class="relative z-4"></span>
+          <span class="bg-body absolute left-0 top-0 bottom-0 w-[20%] rounded-5px" :style="`width: ${loadProsentTree}%`"></span>
         </div>
       </div>
-      <div class="loading as">
-        <div class="loading__title"></div>
-        <div class="text__percent d-flex justify-content-beetwen" :class="{'active': loadProsentFoo > 0}">
+      <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
+        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'active': loadProsentFoo > 0}">
           <div>
             Creating your plan
           </div>
-          <div class="d-flex align-items-center">
-            <div class="d-flex">
+          <div class="flex items-center">
+            <div class="flex">
               <lottie-animation
-                class="check"
-                :class="{ active: isActiveCheck_4 }"
+                v-show="isActiveCheck_4"
+                class="w-16px h-16px sm:(w-20px h-20px)"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
                 :loop="true"
                 :autoPlay="true"
@@ -108,85 +105,52 @@
 
               />
             </div>
-            <div  class="number__procent">
+            <div  class="w-45px text-right">
               {{ loadProsentFoo }}%
             </div>
           </div>
         </div>
-        <div class="loading__bar">
-          <span></span>
-          <span class="loading__percent" :style="`width: ${loadProsentFoo}%`"></span>
+        <div class="h-10px bg-[#F1F3F9] rounded-9px font-700 text-18px leading-normal flex items-center justify-center relative overflow-hidden text-[#fff]">
+          <span class="relative z-4"></span>
+          <span class="bg-body absolute left-0 top-0 bottom-0 w-[20%] rounded-5px" :style="`width: ${loadProsentFoo}%`"></span>
         </div>
       </div>
 
       <div v-for="(reviewItem, key)  in base" :key="key" >
-        <div class="review light" :class="{'active': key == this.numreview}">
-        <div class="review__top">
-          <div>
-            <div class="review__title">{{ reviewItem.title }}</div>
-            <div class="review__rating">
-              <div v-for="i in reviewItem.rating" :key="i">
-                <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="star-yellow">
+        <div v-show="key == this.numreview" class="p-15px rounded-10px mt-64px mx-auto mb-0 max-w-370px bg-[#F1F1F1] sm:(max-w-full)">
+          <div class="flex justify-between mb-15px">
+            <div>
+              <div class="font-700 text-14px leading-normal sm:(text-18px leading-normal)">{{ reviewItem.title }}</div>
+              <div class="flex mt-5px">
+                <div v-for="i in reviewItem.rating" :key="i" class="w-14px h-14px">
+                  <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="max-w-14px h-auto">
+                </div>
+                <div v-for="i in Number(5 - reviewItem.rating)" :key="i" class="w-14px h-14px">
+                  <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="max-w-14px h-auto">
+                </div>
               </div>
-              <div v-for="i in Number(5 - reviewItem.rating)" :key="i">
-                <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="star-yellow">
-              </div>
+            </div>
+
+            <div class="font-500 text-12px leading-normal opacity-50 sm:(text-16px leading-normal)">
+              {{ reviewItem.name }}
             </div>
           </div>
 
-          <div class="review__name">
-            {{ reviewItem.name }}
+          <div class="font-400 text-12px leading-normal sm:(text-16px leading-normal)">
+            {{ reviewItem.text }}
           </div>
         </div>
-
-        <div class="review__text">
-          {{ reviewItem.text }}
-        </div>
       </div>
-
-
-
-      <vpopup
-        class="popup_wraper analize "
-        :textTitle = textTitle
-        v-if="popupVisible"
-      >
-        <btnComponent
-          :class="{ active: isActiveYes }"
-          @clickBtn="BtnActiveYes"
-          answer="Yes, I do"
-        >
-        </btnComponent>
-        <btnComponent
-          :class="{ active: isActiveNo }"
-          @clickBtn="BtnActiveNo"
-          answer="No, I don't"
-        >
-        </btnComponent>
-        <button
-          class="v-popup__submit_btn"
-          :class="{active: closeActive}"
-          @click="closePopup"
-        >
-        Ok
-        </button>
-      </vpopup>
-    </div>
   </div>
-  <div>{{lengthReviews}}</div>
 </template>
 <script>
 
-import vpopup from '@/components/modal/v-popup.vue';
-import btnComponent from '@/components/questions/btnPopup.vue';
 import analizProcessing from '@/components/ui/analizProcessing.vue';
 
 export default {
   inject: ['mixpanel'],
   name: 'AnalizAnswer',
   components:{
-    vpopup,
-    btnComponent,
     analizProcessing
   },
 
@@ -223,33 +187,13 @@ export default {
     }
   },
 
-  computed:{
-    products(){
-        return this.$store.state.review.msgPE
-    },
-
-    lengthReviews(){
-      const json = localStorage.getItem('track');
-      const obj = JSON.parse(json);
-      this.track = obj.id
-      if (this.track == 3) {
-        this.base =  this.$store.state.review.msgOK
-      } else if(this.track == 2) {
-        this.base = this.$store.state.review.msgPE
-      } else {
-        this.base = this.$store.state.review.msgED
-      }
-      return console.log(this.track);
-    }
-  },
-
   mounted() {
+    this.lengthReviews()
     this.numrew = setInterval(() => {
       if (this.numreview < 2) {
         this.numreview += 1;
       } else {
         this.numreview = 0
-        // clearInterval(this.numrew);
       }
     }, 4000);
 
@@ -267,44 +211,17 @@ export default {
 
 
   methods:{
-    showModal(){
-      const body = document.querySelector('body')
-      body.classList.add('fixed');
-      this.popupVisible = true
-      this.isActiveNo = this.isActiveYes = this.closeActive = false
-      this.isLoad = false
-      clearInterval(this.numrew);
-    },
-
-    closePopup(e){
-      const x = e.target
-      const body = document.querySelector('body')
-      if(x.classList.contains('active')) {
-        body.classList.remove('fixed');
-        this.isActiveCheck_1 = true
-        this.$refs.animed.play()
-        this.popupVisible = false
-        this.isLoad = true
-        this.mystop = 100
-        this.ased()
-        this.numReview()
-        this.mixpanel.track('Quiz Answer', {
-          question: this.textTitle,
-          answer: this.userAnswer,
-        })
+    lengthReviews(){
+      const json = localStorage.getItem('track');
+      const obj = JSON.parse(json);
+      this.track = obj.id
+      if (this.track == 3) {
+        this.base =  this.$store.state.review.msgOK
+      } else if(this.track == 2) {
+        this.base = this.$store.state.review.msgPE
+      } else {
+        this.base = this.$store.state.review.msgED
       }
-    },
-
-    BtnActiveYes(){
-      this.userAnswer = "Yes, I do"
-      this.isActiveYes = this.closeActive = true
-      this.isActiveNo = false
-    },
-
-    BtnActiveNo(){
-      this.userAnswer = "No, I don't"
-      this.isActiveYes = false
-      this.isActiveNo = this.closeActive = true
     },
 
     ased(){
@@ -354,16 +271,6 @@ export default {
         }
       }, 60);
     },
-
-  numReview(){
-      this.numReviewPooling = setInterval(() => {
-        if (this.numreview < (this.base.length - 1)) {
-          this.numreview += 1;
-        } else{
-          this.numreview = 0
-        }
-      }, 4500);
-    }
   },
   beforeUnmount(){
     clearInterval(this.numrew);
@@ -396,213 +303,3 @@ export default {
 }
 
 </script>
-<style lang="scss" scoped>
-.check{
-  display: none;
-  width: 20px;
-  height: 20px;
-  @media (max-width:480px) {
-    width: 16px;
-    height: 16px;
-  }
-}
-.check.active{
-  display: block;
-}
-.review{
-  display: none;
-}
-.review.active{
-  display: block;
-}
-.review__animate{
-  width: 17px;
-  height: 17px;
-
-}
-.review__animate.loadanime{
-  animation: preloader-rotate 1s infinite ease-in-out;
-}
-@keyframes preloader-rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(350deg);
-  }
-}
-
-.h2 {
-  font-family: "SF-Pro-Display-Bold";
-  font-size: 24px;
-  text-align: center;
-  @media (max-width:480px) {
-    font-size: 20px;
-  }
-  @media (min-width: 600px) {
-    font-size: 30px;
-    margin-bottom: 64px;
-  }
-}
-
-.v-popup__submit_btn{
-      background-color: #CACACA;
-      border:none;
-      border-radius: 9px;
-      padding: 16px 64px;
-      font-family: "SF Pro Text Medium";
-      font-size: 18px;
-      line-height: 135%;
-      color: #ffffff;
-      margin-top: 32px;
-    }
-.v-popup__submit_btn.active{
-  background-color: #111113;
-}
-.text__percent{
-  font-size: 18px;
-  line-height: 150%;
-  font-family: "SF Pro Text Semibold";
-  color: #111113;
-  opacity: 0.75;
-  margin-bottom: 4px;
-  @media (max-width: 480px) {
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-}
-.number__procent{
-  width: 45px;
-  text-align: right;
-}
-.text__percent.active{
-  opacity: 1;
-}
-.loading {
-  max-width: 450px;
-  margin: 25px auto 0;
-  width: 100%;
-
-  &__title {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 150%;
-    margin-bottom: 8px;
-    text-align: center;
-    color: #FFFFFF;
-  }
-
-  &__bar {
-    height: 10px;
-    background: #F1F3F9;
-    border-radius: 9px;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 150%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    color: #FFFFFF;
-
-    span {
-      &:first-child {
-        position: relative;
-        z-index: 4;
-      }
-    }
-  }
-
-  &__percent {
-    background-color: #111113;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 20%;
-    border-radius: 5px;
-  }
-}
-// review
-.review {
-  padding: 15px;
-  border-radius: 10px;
-  margin: 64px auto 0;
-  max-width: 370px;
-  background-color: #F1F1F1;
-  @media (min-width: 600px) {
-      max-width: 100%;
-    }
-
-  &:not(.light) {
-    background-color: #1D1D1F;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 15px;
-  }
-
-  &__top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
-
-  &__title {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 150%;
-
-    @media (max-width: 480px) {
-      font-size: 14px;
-    }
-  }
-
-  &__text {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-
-    @media (max-width: 480px) {
-      font-size: 12px;
-    }
-  }
-
-  &__name {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 150%;
-    opacity: .5;
-
-    @media (max-width: 480px) {
-      font-size: 12px;
-    }
-  }
-
-  &__rating {
-    display: flex;
-    margin-top: 5px;
-
-    div {
-      width: 14px;
-      height: 14px;
-
-      @media (max-width: 480px) {
-        width: 14px;
-        height: 14px;
-
-        svg {
-          width: 14px;
-          height: 14px;
-        }
-      }
-    }
-  }
-}
-
-.star-yellow {
-  max-width: 14px;;
-  height: auto;
-}
-</style>

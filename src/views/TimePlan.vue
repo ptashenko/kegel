@@ -1,21 +1,21 @@
 
-<template lang="">
+<template>
   <Transition name="slider" mode="out-in" appear>
 
-      <div class="container-main timePlan">
-        <h2 class="timePlan__title">
+      <div class="container-mob">
+        <h2 class="font-displayBold text-20px leading-normal text-center m-0 mt-16px sm:(text-30px leading-normal)">
           This is how much it took to create your plan
         </h2>
-        <div class="timePlan__content">
-          <div class="w-50 text-center">
-            <img src="@/assets/images/svg/icon_research.svg" alt="">
-            <h3>700+</h3>
-            <p>Hours research</p>
+        <div class="flex justify-evenly mt-48px">
+          <div class="max-w-180px text-center">
+            <img src="@/assets/images/svg/icon_research.svg" alt="" class="max-w-72px h-auto mx-auto mb-14px">
+            <h3 class="m-0 font-sansBold text-26px leading-normal sm:(text-32px leading-normal mb-5px)">700+</h3>
+            <p class="font-sans m-0 text-16px leading-normal sm:(text-18px leading-normal)">Hours research</p>
           </div>
-          <div class="w-50 text-center">
-            <img src="@/assets/images/svg/icon_studies.svg" alt="">
-            <h3>150+</h3>
-            <p>Studies analysis</p>
+          <div class="max-w-180px text-center">
+            <img src="@/assets/images/svg/icon_studies.svg" alt="" class="max-w-72px h-auto mx-auto mb-14px">
+            <h3 class="m-0 font-sansBold text-26px leading-normal sm:(text-32px leading-normal mb-5px)">150+</h3>
+            <p class="font-sans m-0 text-16px leading-normal sm:(text-18px leading-normal)">Studies analysis</p>
           </div>
         </div>
         <footer-controls
@@ -60,56 +60,3 @@ export default {
 }
 
 </script>
-<style lang="scss" scoped>
-
-.timePlan {
-  &__title {
-    font-family: "SF-Pro-Display-Bold";
-    font-size: 24px;
-    text-align: center;
-    margin: 16px 0 0;
-    @media (min-width: 600px) {
-      font-size: 30px;
-    }
-    @media (max-width:480px) {
-    font-size: 20px;
-    }
-  }
-
-  &__content {
-    display: flex;
-    justify-content: center;
-
-    img{
-      max-width: 72px;
-      height: auto;
-      margin: 48px 0 14px;
-      @media (min-width: 600px) {
-          margin-top: 32px;
-        }
-    };
-    h3{
-      margin: 0;
-      font-family: "SF Pro Text Bold";
-      font-size: 32px;
-      @media (max-width:480px) {
-        font-size: 26px;
-      }
-      @media (min-width: 600px) {
-        margin-bottom: 5px;
-      }
-    };
-    p{
-      font-family: "SF Pro Text Regular";
-      margin: 0;
-      font-size: 18px;
-      @media (max-width:480px) {
-        font-size: 16px;
-      }
-    }
-  }
-}
-.w-50{
-  max-width: 180px;
-}
-</style>

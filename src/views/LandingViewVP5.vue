@@ -1,33 +1,38 @@
 <template>
   <div class="landing">
     {{MyScrollFixed}}
-    {{MyScrollModal}}
     {{btnAddPurpose}}
     {{imagechart}}
-    <!-- {{backUrlNot}} -->
-    <div class="land-wrapper">
-      <div v-if="subscribe" class="fixedTime" :class="{'active': blockFixed}">
-      <p class="fixedTime__timer__text">
-        <span :class="`fixedTime__timer__text--${superDiscount.theme}`">
+    <div class="relative max-w-600px px-32px mx-auto sm:(px-40px)">
+      <div v-if="subscribe" class="max-w-536px opacity-0 fixed block mx-auto w-full text-center py-16px px-32px bg-body z-2 text-[#fff] top-0 left-0 right-0 sm:(py-21px px-0 max-w-600px)" :class="{'!opacity-100': blockFixed}">
+      <p class="p-0 m-0 block font-800">
+        <span :class="[superDiscount.theme ? 'text-blue' : 'text-red']">
           {{ pickedTarifParams.discount }}% discount<br>
         </span>
-        <span>expires in: </span><countdown v-if="timer" style="display: inline;" />
+        <span>expires in: </span>
+        <countdown
+          v-if="timer"
+          class="inline"
+        />
       </p>
     </div>
 
-    <div id="topPage" class="content">
-      <h2 class="content__title">
+    <div id="topPage" class="flex flex-col">
+      <h2 class="m-0 mx-auto mb-24px text-24px leading-normal text-center font-displayBold sm:(text-36px leading-normal)">
         Your Kegel Plan to improve {{ purpose }} is ready!
       </h2>
-      <p class="content__subtitle" v-if="subscribe"><b>Limited offer</b> reserved for 15 minutes</p>
-      <div id="blockScroll" class="content__timer" @click="onScroll">
-        <div class="content__timer--wrapper">
-          <img class="content__timer--glow" src="@/assets/images/glow.png" alt="icon" />
-          <img class="content__timer--icon" src="@/assets/images/timer.png" alt="icon" />
+      <p v-if="subscribe" class="text-14px leading-normal text-center mb-16px sm:(text-18px leading-normal)">
+        <b>Limited offer</b>
+        reserved for 15 minutes
+      </p>
+      <div id="blockScroll" class="mb-32px font-500 text-14px leading-tight flex items-center rounded-17px bg-body w-full max-w-311px m-0 mx-auto mb-32px text-[#fff]">
+        <div class="relative w-84px h-84px ml-10px">
+          <img class="absolute w-full top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] rotation" src="@/assets/images/glow.png" alt="icon" />
+          <img class="absolute w-[60%] top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]" src="@/assets/images/timer.png" alt="icon" />
         </div>
-        <div class="content__timer--body">
-          <p class="content__timer--start" :class="[superDiscount.theme ? 'blue' : 'red']">{{pickedTarifParams.discount}}% discount</p>
-          <p v-if="timer" class="d-flex content__timer--text">
+        <div class="ml-15px">
+          <p class="font-sans font-700 text-20px leading-tight" :class="[superDiscount.theme ? 'text-blue' : 'text-red']">{{pickedTarifParams.discount}}% discount</p>
+          <p v-if="timer" class="flex font-sans text-16px leading-normal m-0 text-[#fff]">
             Expires in:	&nbsp;  <countdown />
           </p>
         </div>
@@ -1236,7 +1241,7 @@
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          animation: glowRotating 10s linear infinite;
+
         }
 
         &--text {
@@ -2016,4 +2021,8 @@
   textarea {resize:none;}
   textarea {resize:vertical;}
   textarea {resize:horizontal;}
+
+  .rotation {
+    animation: glowRotating 10s linear infinite;
+  }
   </style>

@@ -1,21 +1,21 @@
 <template>
-    <div class="block__steps" :data-step="content.steps">
-      <steps v-if="content.steps" />
+    <div
+      v-if="content.steps"
+      :data-step="content.steps"
+    >
+      <steps />
     </div>
 
-    <div class="container-main is-page KegalReview">
-      <div class="h2 text-center">
-        <span class="red" v-if="content.tilteRed">{{content.tilteRed}}</span>
-        <span v-else></span>
+    <div class="container-mob pb-30px">
+      <div class="font-sansSemiBold text-20px leading-normal text-center text-[#fff] sm:(text-24px leading-normal)">
+        <span v-if="content.tilteRed" class="text-red">{{content.tilteRed}}</span>
         {{ content.title }}
-
       </div>
 
-      <div class="peoples">
+      <div class="text-center my-30px mx-auto block max-w-400px w-full sm:max-w-520px">
 
         <lottie-animation
           v-if="content.thumbnail"
-          class="animation"
           ref="anim"
           :animationData="require(`@/assets/images/json/${content.thumbnail}`)"
         />
@@ -32,12 +32,19 @@
         Connecting to the database
       </processing>
 
-      <div class="layout__buttons" v-if="content.buttons">
-        <div class="layout__button" v-for="button in content.buttons" :key="button.id">
-          <div class="layout__button-icon" v-if="button.logo">
+      <div v-if="content.buttons" class="rounded-17px p-9px max-w-300px my-32px mx-auto bg-[#8080800C] mb-20px">
+        <div
+          v-for="button in content.buttons"
+          :key="button.id"
+          class="font-500 text-14px leading-tight flex items-center"
+        >
+          <div
+            v-if="button.logo"
+            class="w-37px h-37px flex items-center justify-center rounded-full bg-[#fff] bg-opacity-70 mr-12px"
+          >
             <img :src="`${buttonIcon(button.logo)}`" :alt="button.title" />
           </div>
-          <div>
+          <div class="text-[#fff]">
             <span>{{ button.text }}</span>
             <div>{{ button.title }}</div>
           </div>
@@ -79,6 +86,7 @@ export default {
 <style scoped lang="scss">
 .container-main.is-page {
   padding-bottom: 30px;
+  color: rgba(128, 128, 128, 0.05)
 }
 .h2{
   font-family: "SF-Pro-Display-Semibold";

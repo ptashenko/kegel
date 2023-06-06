@@ -1,12 +1,12 @@
 <template>
-    <div class="container-main is-page Processing__layouts">
+    <div class="container-mob p-0">
       <processing>
         Processing...
       </processing>
 
 
-      <div class="layout__thumbnail">
-        <img src="@/assets/images/content/s7.png" alt="">
+      <div class="mx-[-30px] sm:(mx-[-32px])">
+        <img src="@/assets/images/content/s7.png" alt="" class="block max-w-311px mx-auto sm:max-w-520px">
       </div>
     </div>
 </template>
@@ -35,39 +35,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.peoples {
-  text-align: center;
-  margin: 30px 0;
-
-  img {
-    max-width: 100%;
-    width: 100%;
-  }
-}
-
-.loading {
-  margin-top: 0;
-  margin-bottom: 65px;
-}
-
-.layout__thumbnail{
-  margin: 0 -32px;
-  @media (max-width: 480px) {
-    margin: 0 -30px;
-  }
-  img {
-    display: block;
-    max-width: 311px;
-    margin: 0 auto;
-    @media (min-width: 600px) {
-      max-width: 520px;
-    }
-  }
-}
-
-.Processing__layouts {
-  padding: 0;
-}
-</style>

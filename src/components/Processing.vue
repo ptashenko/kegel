@@ -1,12 +1,12 @@
 <template>
-  <div class="loading">
-    <div class="loading__title">
+  <div class="max-w-400px mx-auto mt-25px mb-64px w-full">
+    <div class="font-400 text-14px leading-normal mb-8px text-center text-[#fff]">
       <slot></slot>
       </div>
 
-    <div class="loading__bar">
-      <span>{{ percent }}%</span>
-      <span class="loading__percent" :style="`width: ${percent}%`"></span>
+    <div class="h-40px bg-[#1D1D1F] rounded-9px font-700 text-18px leading-normal flex items-center justify-center relative overflow-hidden text-[#fff]">
+      <span class="relative z-4">{{ percent }}%</span>
+      <span class="bg-red absolute left-0 top-0 bottom-0 w-[20%]" :style="`width: ${percent}%`"></span>
     </div>
   </div>
 </template>
@@ -43,52 +43,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-
-.loading {
-  max-width: 400px;
-  margin: 25px auto 0;
-  width: 100%;
-
-  &__title {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 150%;
-    margin-bottom: 8px;
-    text-align: center;
-    color: #FFFFFF;
-  }
-
-  &__bar {
-    height: 40px;
-    background: #1D1D1F;
-    border-radius: 9px;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 150%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    color: #FFFFFF;
-
-    span {
-      &:first-child {
-        position: relative;
-        z-index: 4;
-      }
-    }
-  }
-
-  &__percent {
-    background-color: #E44240;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 20%;
-  }
-}
-</style>

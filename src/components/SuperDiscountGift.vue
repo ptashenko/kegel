@@ -1,70 +1,37 @@
 <template>
-  <div class="wrapper">
-    <div class="wrapper__icon">
-        <img class="wrapper__glow" src="@/assets/images/glow.png" />
-        <img class="wrapper__image" src="@/assets/images/gift-red.png" />
+  <div class="relative flex w-full py-12px px-0 bg-[#ffffff1a] border-2px border-[#ffffff1a] rounded-9px justify-between">
+    <div class="relative basis-[30%]">
+        <img
+          class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] glow"
+          src="@/assets/images/glow.png"
+        />
+        <img
+          class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] h-64px"
+          src="@/assets/images/gift-red.png"
+        />
     </div>
-    <p class="wrapper__text">Get a <span class="wrapper__text-old">{{ this.discountOriginal }}%</span> <span class="wrapper__text-new">{{ this.discount }}% discount</span> on your Kegel plan</p>
+    <p
+      class="basis-[65%] font-sans font-700 text-16px leading-normal text-[#fff]"
+    >
+      Get a
+      <span
+        class="opacity-50 line-through"
+      >
+        {{ this.discountOriginal }}%
+      </span>
+      <span
+        class="text-blue"
+      >
+        {{ this.discount }}% discount
+      </span>
+      on your Kegel plan
+    </p>
   </div>
 </template>
 
 <script>
+import '@/assets/css/animations.css'
 export default {
     props: ["discount", "discountOriginal"],
 }
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/css/animations.css';
-.wrapper {
-    position: relative;
-    display: flex;
-    width: 100%;
-    padding: 12px 0;
-    background: #ffffff1a;
-    border: 2px solid #ffffff40;
-    border-radius: 9px;
-    justify-content: space-between;
-
-
-    &__icon {
-        position: relative;
-        flex-basis: 30%;
-    }
-
-    &__image {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 64px;
-    }
-    &__glow {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        animation: glowRotating 10s linear infinite;
-    }
-
-    &__text {
-        flex-basis: 65%;
-        font-family: "SF Pro Text Regular";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 150%;
-        color: #FFFFFF;
-
-        &-old {
-            opacity: 0.5;
-            text-decoration: line-through;
-        }
-
-        &-new {
-            color: #5773D6;
-        }
-    }
-
-}
-</style>

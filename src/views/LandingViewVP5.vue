@@ -37,33 +37,32 @@
           </p>
         </div>
       </div>
-      <div id="trigger1" class="content__date">
-        <div class="content__purpose">
+      <div id="trigger1" class="text-center mb-0">
+        <div class="text-16px leading-normal sm:(text-20px leading-normal)">
           <span>
             Based on your personal goals you can
           </span>
           <br>
-          <span v-if="AddPurposeCom" class="content__purpose--bold">
-            <span class="content__purpose--regular">imporve</span> {{ purpose }}
-            <span class="content__purpose--regular"> and </span>
+          <span v-if="AddPurposeCom" class="font-sansSemiBold">
+            <span class="font-sans">imporve</span> {{ purpose }}
+            <span class="font-sans"> and </span>
             <span>{{ addpurpose }}</span>
           </span>
           <span v-if="!AddPurposeCom">
-            <span class="content__purpose--bold">
-              <span class="content__purpose--regular">imporve</span> {{ purpose }}
+            <span class="font-sansSemiBold">
+              <span class="font-sans">imporve</span> {{ purpose }}
             </span>
           </span>
         </div>
-        <div class="content__purpose--red">
+        <div class="font-sansBold text-red font-700 text-20px leading-normal flex w-full mx-auto relative justify-center min-h-30px sm:(text-24px leading-normal min-h-36px)">
             <transition name="slide-fade">
-              <span v-if="show" class="block__anim">by {{dataPP3}}</span>
+              <span v-if="show" class="relative transform translate-x-0 translate-y-0">by {{dataPP3}}</span>
             </transition>
         </div>
       </div>
 
-      <div class="graphic">
+      <div class="my-32px mx-auto text-center w-full sm:(max-w-520px)">
         <lottie-animation
-          class="animation"
           ref="content.ref"
           :animationData="imageitem"
           :loop="false"
@@ -75,51 +74,51 @@
           @segmentStart="segmentStart"
           @stopped="stopped"
         />
-        <div class="graphic__date">
-          <p class="graphic__month"
+        <div class="flex justify-between mx-[12%]">
+          <p class="m-0 mt-9px text-12px leading-normal text-body sm:(text-18px leading-normal mt-12px)"
             v-for="(_, idx) of new Array(6)"
             :key="idx">
             {{setDate(idx)}}
           </p>
         </div>
       </div>
-      <p class="graphic__description">
+      <p class="!text-14px leading-normal max-w-450px mx-auto opacity-50 text-center sm:(max-w-520px)">
         {{graphText}}
       </p>
-      <div id="Benefits" class="benefits" >
-        <h2 class="benefits__title">Kegel Plan Benefits</h2>
-        <ul class="benefits__list">
-          <li class="benefits__item">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
+      <div id="Benefits">
+        <h2 class="font-displayBold text-20px leading-normal my-32px mx-auto text-center sm:(text-24px leading-normal mb-52px)">Kegel Plan Benefits</h2>
+        <ul class="max-w-310px m-0 mx-auto mb-48px p-0 sm:(max-w-375px)">
+          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
             <p>Reach your goal and improve <b> {{ purpose }} </b></p>
           </li>
           <li v-if="addpurpose" class="benefits__item">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
-            <p>Improve <b> {{ addpurpose }} </b></p>
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+            <p>Improve <span class="font-sansSemiBold">{{ addpurpose }}</span></p>
           </li>
           <li class="benefits__item" v-if="addItem">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
-            <span>Improve <b>Erective Function</b></span>
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+            <p>Improve <span class="font-sansSemiBold">Erective Function</span></p>
           </li>
           <li class="benefits__item" v-if="addItem">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
-            <span>Improve <b>Ejaculation Control</b></span>
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+            <p>Improve <span class="font-sansSemiBold">Ejaculation Control</span></p>
           </li>
           <li class="benefits__item">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
-            Pill-free approach
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+            <p>Pill-free approach</p>
           </li>
           <li class="benefits__item">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
-            Long-lasting improvement
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+            <p>Long-lasting improvement</p>
           </li>
           <li class="benefits__item">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
-            Takes <span class="text-bold">&nbsp;5 min a day</span>
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+            <p>Takes <span class="font-sansSemiBold">&nbsp;5 min a day</span></p>
           </li>
           <li class="benefits__item">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="check" />
-            More happiness for you and for your partner
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+            <p>More happiness for you and for your partner</p>
           </li>
         </ul>
         <RatingStars
@@ -130,156 +129,201 @@
       </div>
     </div>
 
-    <div class="price">
-        <div class="reviews container-main">
-          <div class="reviews__title">Customer reviews</div>
+    <div class="max-w-600px mx-auto relative">
+        <div class="flex flex-col my-16px mx-auto mb-40px container-mob">
+          <div class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:(text-24px leading-normal)">Customer reviews</div>
           {{lengthReviews}}
-          <div class="reviews__item light" v-for="(item, key) in base" :key="key" :class="{'active': key < this.numreview }">
-              <div class="reviews__top">
+          <template v-for="(item, key) in base" :key="key">
+            <div
+              v-show="key < this.numreview"
+              class="p-15px rounded-9px mx-auto max-w-370px w-full bg-[#F9F9F9] duration-300 mb-8px sm:(max-w-520px)"
+            >
+              <div class="flex justify-between mb-15px">
                 <div>
-                  <div class="reviews__topic">{{ item.title }}</div>
-                  <div class="reviews__rating">
-                      <img v-for="i in item.rating" :key="i" src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="star-yellow">
+                  <div class="text-14px leading-normal font-sansBold sm:(text-18px leading-normal)">{{ item.title }}</div>
+                  <div class="flex mt-5px">
+                    <img v-for="i in item.rating" :key="i" src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="w-14px h-14px max-w-14px h-auto">
                   </div>
                 </div>
 
-                <p class="reviews__name">
+                <p class="font-500 text-12px leading-normal opacity-50 sm:(text-16px leading-normal)">
                   {{ item.name }}
                 </p>
               </div>
 
-              <p class="reviews__text">
+              <p class="text-12px leading-normal font-400 sm:(text-16px leading-normal)">
                 {{ item.text }}
               </p>
 
-          </div>
+            </div>
+          </template>
 
-          <button class="reviews__showMore" v-if="this.base.length > this.numreview" @click="showReview">Show more</button>
+
+          <button
+            v-if="this.base.length > this.numreview"
+            class="text-center text-14px leading-normal font-sansBold text-blue bg-none cursor-pointer w-full mt-8px sm:(text-18px leading-normal)"
+            @click="showReview"
+          >
+            Show more
+          </button>
         </div>
-    <div style="position: absolute; top: 100%; width: 100%; height: 70px" id="selectPlan"></div>
+    <div class="absolute top-[100%] w-full h-70px" id="selectPlan"></div>
     </div>
   </div>
-    <div ref="payment-block" class="payment-block">
+    <div ref="payment-block" class="p-32px max-w-600px mx-auto bg-body sm:(px-40px)">
       <div v-if="superDiscount.theme">
-        <SuperDiscountGift :discount="pickedTarifParams.discount" :discountOriginal="pickedTarifParams.discountOriginal" style="margin: 0 auto 32px; max-width: 311px" />
-        <h2 class="payment-block__title">
+        <SuperDiscountGift
+          :discount="pickedTarifParams.discount"
+          :discountOriginal="pickedTarifParams.discountOriginal"
+          class="m-0 mx-auto mb-32px max-w-311px"
+        />
+        <h2 class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-24px text-center font-displayBold sm:(text-36px leading-normal)">
           Choose Your Plan
         </h2>
       </div>
-      <h2 v-else class="payment-block__title">
+      <h2 v-else class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-24px text-center font-displayBold sm:(text-36px leading-normal)">
         Get Your Kegel Plan to improve {{ purpose }}
       </h2>
-      <div v-if="superDiscount.theme" class="payment-block__list">
+      <div v-if="superDiscount.theme" class="flex flex-col max-w-430px mx-auto">
         <label
           v-for="({id, fullprice, cost, text, name, totalCost, superDiscPrice}, idx) of tarifs"
           :key="idx"
-          class="payment-block__item payment-block__item-blue"
-          :class="{
-            'checkedValue': subscribe === id,
-            'popular': idx === 1,
-            'popularChecked-blue': subscribe === id && idx === 1
-            }"
-          >
-          <div class="payment-block__label payment-block__label-blue">
-            <input
-              class="payment-block__input payment-block__input-blue"
-              type="radio"
-              name="subscribe"
-              :value="id"
-              v-model="subscribe"
-            />
-            <span class="label label-blue" :class="{'checkedValue': subscribe === id}">
-              {{name}}
-            </span>
-            <div class="label__totalCost">
-              <span class="label__totalCost-text"><span class="line">{{ totalCost }}</span> {{ superDiscPrice }}</span>
+          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent"
+          :class="{'border-1px border-blue': subscribe === id}"
+        >
+          <div class="flex items-center">
+            <div>
+              <input
+                class="appearance-none absolute"
+                type="radio"
+                name="subscribe"
+                :value="id"
+                v-model="subscribe"
+              />
+              <span
+                class="relative block w-20px h-20px rounded-full border-2px border-[#ffffff26] mr-16px"
+                :class="{'bg-blue border-none': subscribe === id}"
+              >
+                <img
+                  v-if="subscribe === id"
+                  src="@/assets/images/svg/icon_check-no-bg-black.svg"
+                  class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
+                />
+              </span>
+            </div>
+            <div>
+              <p
+                class="font-displayBold leading-normal text-[#fff] opacity-50"
+                :class="{ '!opacity-100' : subscribe === id }"
+              >
+                {{name}}
+              </p>
+              <p
+                class="font-sans text-10px leading-normal text-[#fff] opacity-25"
+                :class="{ '!opacity-75' : subscribe === id }"
+              >
+                <span class="line-through">{{totalCost}}</span>
+                {{superDiscPrice}}
+              </p>
             </div>
           </div>
-          <div
-            class="payment-block__right payment-block__right-blue"
-            :class="{'checkedValue': subscribe === id}"
-          >
-          <div class="payment-block__triangle">
+          <div class="relative">
+            <div :class="[subscribe === id ? 'opacity-100' : 'opacity-5']">
               <svg width="112" height="56" viewBox="0 0 112 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.5604 2.5193C15.4506 0.96143 17.1073 0 18.9016 0H107C109.761 0 112 2.23858 112 5V51C112 53.7614 109.761 56 107 56H18.9016C17.1073 56 15.4506 55.0386 14.5604 53.4807L1.41754 30.4807C0.53916 28.9435 0.539161 27.0565 1.41754 25.5193L14.5604 2.5193Z" :fill="subscribe === id ? '#5773D6' : '#fff'"/>
+                <path d="M14.5604 2.5193C15.4506 0.96143 17.1073 0 18.9016 0H107C109.761 0 112 2.23858 112 5V51C112 53.7614 109.761 56 107 56H18.9016C17.1073 56 15.4506 55.0386 14.5604 53.4807L1.41754 30.4807C0.53916 28.9435 0.539161 27.0565 1.41754 25.5193L14.5604 2.5193Z" :fill="subscribe === id ? '#5773D6' : '#fff'" />
               </svg>
             </div>
-            <div class="payment-block__right-price">
+            <div class="absolute flex flex-col items-center gap-2px w-full top-[50%] left-[50%] transform translate-x-[-45%] translate-y-[-50%]">
               <p
-              class="payment-block__oldPrice payment-block__oldPrice-blue"
-              :class="{'checkedValue': subscribe === id}"
-            >
-              {{fullprice }}
-            </p>
-            <p
-              class="payment-block__newPrice payment-block__newPrice-blue"
-              :class="{'checkedValue': subscribe === id}"
-            >
-              {{ cost }}
-            </p>
-            <p
-              class="payment-block__text payment-block__text-blue"
-              :class="{'checkedValue': subscribe === id}"
-            >
-              {{ text }}
-            </p>
+                class="font-sans font-600 text-12px leading-tight text-[#fff] opacity-25 line-through"
+                :class="{ '!text-body !opacity-100' : subscribe === id }"
+              >
+                {{fullprice}}
+              </p>
+              <p
+                class="font-sans font-700 text-16px leading-none text-center text-blue opacity-50"
+                :class="{ '!text-[#fff] !opacity-100' : subscribe === id }"
+              >
+                {{cost}}
+              </p>
+              <p
+                class="font-sans font-600 text-12px leading-none text-center text-[#fff] opacity-50"
+                :class="{ '!opacity-100' : subscribe === id }"
+              >
+                per day
+              </p>
             </div>
           </div>
         </label>
       </div>
-      <div v-else class="payment-block__list">
+      <div v-else class="flex flex-col max-w-430px mx-auto">
         <label
           v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs"
           :key="idx"
-          class="payment-block__item"
-          :class="{
-            'checkedValue': subscribe === id,
-            'popular': idx === 1,
-            'popularChecked': subscribe === id && idx === 1
-            }"
-          >
-          <div class="payment-block__label">
-            <input
-              class="payment-block__input"
-              type="radio"
-              name="subscribe"
-              :value="id"
-              v-model="subscribe"
-            />
-            <span class="label" :class="{'checkedValue': subscribe === id}">
-              {{name}}
-            </span>
-            <div class="label__totalCost">
-              <span class="label__totalCost-text"><span class="line">{{ totalCost }}</span> {{ totalDiscCost }}</span>
+          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent"
+          :class="{'border-1px border-red': subscribe === id}"
+        >
+          <div class="flex items-center">
+            <div>
+              <input
+                class="appearance-none absolute"
+                type="radio"
+                name="subscribe"
+                :value="id"
+                v-model="subscribe"
+              />
+              <span
+                class="relative block w-20px h-20px rounded-full border-2px border-[#ffffff26] mr-16px"
+                :class="{'bg-red border-none': subscribe === id}"
+              >
+                <img
+                  v-if="subscribe === id"
+                  src="@/assets/images/svg/icon_check-no-bg-black.svg"
+                  class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
+                />
+              </span>
+            </div>
+            <div>
+              <p
+                class="font-displayBold leading-normal text-[#fff] opacity-50"
+                :class="{ '!opacity-100' : subscribe === id }"
+              >
+                {{name}}
+              </p>
+              <p
+                class="font-sans text-10px leading-normal text-[#fff] opacity-25"
+                :class="{ '!opacity-75' : subscribe === id }"
+              >
+                <span class="line-through">{{totalCost}}</span>
+                {{totalDiscCost}}
+              </p>
             </div>
           </div>
-          <div
-            class="payment-block__right"
-            :class="{'checkedValue': subscribe === id}">
-            <div class="payment-block__triangle">
+          <div class="relative">
+            <div :class="[subscribe === id ? 'opacity-100' : 'opacity-5']">
               <svg width="112" height="56" viewBox="0 0 112 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.5604 2.5193C15.4506 0.96143 17.1073 0 18.9016 0H107C109.761 0 112 2.23858 112 5V51C112 53.7614 109.761 56 107 56H18.9016C17.1073 56 15.4506 55.0386 14.5604 53.4807L1.41754 30.4807C0.53916 28.9435 0.539161 27.0565 1.41754 25.5193L14.5604 2.5193Z" :fill="subscribe === id ? '#E44240' : '#fff'"/>
+                <path d="M14.5604 2.5193C15.4506 0.96143 17.1073 0 18.9016 0H107C109.761 0 112 2.23858 112 5V51C112 53.7614 109.761 56 107 56H18.9016C17.1073 56 15.4506 55.0386 14.5604 53.4807L1.41754 30.4807C0.53916 28.9435 0.539161 27.0565 1.41754 25.5193L14.5604 2.5193Z" :fill="subscribe === id ? '#E44240' : '#fff'" />
               </svg>
             </div>
-            <div class="payment-block__right-price">
+            <div class="absolute flex flex-col items-center gap-2px w-full top-[50%] left-[50%] transform translate-x-[-45%] translate-y-[-50%]">
               <p
-              class="payment-block__oldPrice"
-              :class="{'checkedValue': subscribe === id}"
-            >
-              {{fullprice }}
-            </p>
-            <p
-              class="payment-block__newPrice"
-              :class="{'checkedValue': subscribe === id}"
+                class="font-sans font-600 text-12px leading-tight text-[#fff] opacity-25 line-through"
+                :class="{ '!text-body !opacity-100' : subscribe === id }"
               >
-              {{ cost }}
-            </p>
-            <p
-              class="payment-block__text"
-              :class="{'checkedValue': subscribe === id}"
+                {{fullprice}}
+              </p>
+              <p
+                class="font-sans font-700 text-16px leading-none text-center text-red opacity-50"
+                :class="{ '!text-[#fff] !opacity-100' : subscribe === id }"
               >
-              {{ text }}
-            </p>
+                {{cost}}
+              </p>
+              <p
+                class="font-sans font-600 text-12px leading-none text-center text-[#fff] opacity-50"
+                :class="{ '!opacity-100' : subscribe === id }"
+              >
+                per day
+              </p>
             </div>
           </div>
         </label>
@@ -967,19 +1011,6 @@
     &:not(:last-child) {
       margin-bottom: 16px;
     }
-
-    &.popular::before {
-      content: 'MOST POPULAR';
-      position: absolute;
-      font-size: 12px;
-      top: -10px;
-      left: 20px;
-      width: fit-content;
-      color: #ffffff80;
-      background: #29292A;
-      border-radius: 50px;
-      padding: 3px 10px;
-    }
     &.popularChecked::before {
       content: 'MOST POPULAR';
       position: absolute;
@@ -992,18 +1023,7 @@
       border-radius: 50px;
       padding: 3px 10px;
     }
-    &.popularChecked-blue::before {
-      content: 'MOST POPULAR';
-      position: absolute;
-      font-size: 12px;
-      top: -10px;
-      left: 20px;
-      width: fit-content;
-      background: #5773D6;
-      color: #fff;
-      border-radius: 50px;
-      padding: 3px 10px;
-    }
+
   }
 
   &__label {
@@ -1081,21 +1101,6 @@
     & + span {
       display: flex;
       align-items: center;
-    }
-
-    & + span::before {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 2px solid #ffffff26;
-      margin-right: 0.75em;
-      transition: 0.0s ease all;
-      box-sizing: border-box;
-      position: absolute;
-      margin-left: -30px;
-      margin-top: 15px;
     }
 
     &:checked + span::before {
@@ -2025,4 +2030,42 @@
   .rotation {
     animation: glowRotating 10s linear infinite;
   }
+
+.popular::before {
+  content: 'MOST POPULAR';
+  position: absolute;
+  font-size: 12px;
+  top: -10px;
+  left: 20px;
+  width: fit-content;
+  color: #ffffff80;
+  background: #29292A;
+  border-radius: 50px;
+  padding: 3px 10px;
+}
+
+.popularChecked-blue::before {
+  content: 'MOST POPULAR';
+  position: absolute;
+  font-size: 12px;
+  top: -10px;
+  left: 20px;
+  width: fit-content;
+  background: #5773D6;
+  color: #fff;
+  border-radius: 50px;
+  padding: 3px 10px;
+}
+
+.unchecked::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ffffff26;
+  transition: 0.0s ease all;
+  box-sizing: border-box;
+}
+
   </style>

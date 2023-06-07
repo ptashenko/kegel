@@ -1,13 +1,31 @@
 <template>
-    <div class="rating">
-        <p class="rating__text">
-            <span class="rating__text--bold">{{ amount }}</span> 5-star ratings <span style="margin: 0 5px;">|</span> <span class="rating__text--bold">{{downloads}}</span> downloads
+    <div class="m-0 mt-32px">
+        <p class="font-sans text-14px leading-tight text-center text-body sm:(text-18px leading-tight)">
+            <span class="font-sansBold">
+              {{ amount }}
+            </span>
+          5-star ratings
+          <span
+            class="m-0 mx-5px"
+          >
+            |
+          </span>
+          <span class="font-sansBold">
+            {{downloads}}
+          </span>
+          downloads
         </p>
-        <div class="rating__rate">
-            <div class="rating__stars">
-                <img v-for="(_, idx) of stars" :key="idx" class="rating__star" src="@/assets/images/svg/icon_star.svg" :alt="idx + 'star'">
+        <div class="flex justify-center items-center mt-10px">
+            <div class="flex justify-center mr-10px">
+                <img
+                  v-for="(_, idx) of stars"
+                  :key="idx"
+                  class="block w-20px h-20px"
+                  src="@/assets/images/svg/icon_star.svg"
+                  :alt="idx + 'star'"
+                />
             </div>
-            <div class="rating__out">
+            <div>
                 <img src="@/assets/images/svg/icon_rating48.svg" alt="out">
             </div>
         </div>
@@ -35,39 +53,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-.rating {
-    margin: 32px 0 0;
-    &__text {
-        font-family: 'SF Pro Text Regular';
-        font-style: normal;
-        font-size: 14px;
-        line-height: 118.5%;
-        text-align: center;
-        color: #111113;
-        &--bold {
-            font-family: 'SF Pro Text Bold';
-        }
-        @media (min-width: 600px) {
-            font-size: 18px;
-        }
-    }
-    &__rate {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-    }
-    &__stars {
-        display: flex;
-        justify-content: center;
-        margin-right: 10px;
-    }
-    &__star {
-        display: block;
-        width: 20px;
-        height: 20px;
-    }
-}
-</style>

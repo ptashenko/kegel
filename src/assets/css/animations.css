@@ -17,6 +17,10 @@
   animation: second 5s;
 }
 
+.glow {
+  animation: glowRotating 10s linear infinite;
+}
+
 @keyframes blick {
   0% {
     box-shadow: 0px 0px 0px 0px #5773d681;

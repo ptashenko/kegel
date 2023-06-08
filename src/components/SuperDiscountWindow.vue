@@ -1,18 +1,18 @@
 <template>
-  <div class="wrapper">
+  <div class="fixed top-0 left-0 h-100vh w-full bg-body z-999 overflow-scroll">
     <header-layout :isDark="true" />
-    <div class="wrapper__content">
-        <img class="wrapper__image" src="@/assets/images/superDiscount.png" />
-        <h2 class="wrapper__title">
+    <div class="max-w-600px py-0 px-40px mx-auto pb-120px">
+        <img class="block mx-auto w-[80%]" src="@/assets/images/superDiscount.png" />
+        <h2 class="font-displayBold font-600 text-24px leading-normal text-center text-[#fff] m-0 mb-24px">
             Get your plan with a SUPER Discount!
         </h2>
-        <p class="wrapper__text">
+        <p class="font-sans font-400 text-14px leading-normal text-[#fff]">
             We're sure that by following this Kegel plan you can improve {{ goal }}. This is confirmed by a huge number of positive reviews.
         </p>
-        <p class="wrapper__text mt-16px">
+        <p class="font-sans font-400 text-14px leading-normal text-[#fff] mt-16px">
             We want you to reach your goal. That's why we're giving you the super discount so you can start improving your men's health at the best price.
         </p>
-        <a class="wrapper__button blue-shadow" @click="closePopup">Got it</a>
+        <a class="border-none block no-underline text-center w-full font-700 text-18px bg-blue text-[#fff] rounded-100px py-16px px-0 mt-32px shadow-button-blue" @click="closePopup">Got it</a>
     </div>
   </div>
 </template>
@@ -33,70 +33,3 @@ export default {
 
 }
 </script>
-
-<style lang="scss" scoped>
-.wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;
-    background: #111113;
-    z-index: 99999;
-    overflow: scroll;
-
-    &__content {
-        max-width: 600px;
-        padding: 0 40px;
-        margin: 0 auto;
-        box-sizing: border-box;
-        padding-bottom: 120px;
-
-    }
-
-    &__image {
-        display: block;
-        margin: 0 auto;
-        width: 80%;
-    }
-
-    &__title {
-        font-family: "SF-Pro-Display-Bold";
-        font-style: normal;
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 135%;
-        text-align: center;
-        color: #FFFFFF;
-        margin: 0 0 24px;
-    }
-
-    &__text {
-        font-family: "SF Pro Text Regular";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 150%;
-        color: #FFFFFF;
-
-        &.mt-16px {
-            margin-top: 16px;
-        }
-    }
-
-    &__button {
-        border: none;
-        display: block;
-        text-decoration: none;
-        text-align: center;
-        width: 100%;
-        font-weight: 700;
-        font-size: 18px;
-        background: #5773D6;
-        color: #fff;
-        border-radius: 100px;
-        padding: 16px 0;
-        margin-top: 32px;
-    }
-}
-</style>

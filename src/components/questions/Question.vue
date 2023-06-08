@@ -1,7 +1,7 @@
 <template>
   <button
     class="answer relative cursor-pointer font-sansMedium w-full py-15px pr-60px pl-20px font-500 text-14px leading-tight text-left bg-[#F1F3F9] border-none rounded-9px text-body sm:(text-18px leading-tight)"
-    :class="{'active font-sansSemiBold bg-body font-600 text-[#fff]': selected === answer}"
+    :class="{'active !font-sansSemiBold !bg-body !font-600 !text-[#fff]': selected === answer}"
     @click="saveHistory"
   >
     {{ answer }}

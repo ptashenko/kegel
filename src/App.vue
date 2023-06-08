@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="[dark ? 'dark-theme' : 'light-theme']">
+  <div id="app" class="min-h-100vh" :class="[dark ? 'dark-theme' : 'light-theme']">
     <header-layout :isDark="dark" />
     <router-view />
   </div>
@@ -147,4 +147,3 @@ export default {
   background-color: #fff;
 }
 </style>
- 

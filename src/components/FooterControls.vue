@@ -1,5 +1,8 @@
 <template>
-  <div class="footer-bg h-100px text-center mx-auto mt-25px fixed bottom-0 left-0 right-0" :class="{'dark': dark}">
+  <div
+    class="h-100px text-center mx-auto mt-25px fixed bottom-0 left-0 right-0"
+    :class="[dark ? 'bg-body' : 'footer-bg ']"
+  >
     <div class="flex items-center h-100px justify-between max-w-311px sm:(max-w-322px) mx-auto">
       <div class="max-w-153px basis-[49%]">
         <button-field

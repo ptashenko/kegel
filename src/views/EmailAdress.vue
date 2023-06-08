@@ -1,6 +1,6 @@
 <template>
-        <div class="max-w-600px mx-auto px-40px pt-0 pb-25px h-full flex flex-col max-h-85vh">
-          <div class="h-full flex flex-col justify-between">
+        <div class="max-w-600px mx-auto px-40px pt-0 pb-25px h-full flex flex-col max-h-85vh min-h-87vh">
+          <div class="h-full flex flex-col justify-between flex-1">
               <div class="mt-24px max-w-375px mx-auto">
                 <img src="@/assets/images/svg/icon_email-img.svg" alt="email" class="mx-auto block">
                 <div class="fond-displayBold font-600 text-20px leading-normal text-center mt-24px mx-auto mb-8px sm:(text-30px leading-normal mb-16px)">

@@ -1,46 +1,44 @@
 <template>
-  <div class="dark-layout light">
-    <div class="container-main is-page Final">
-      <div class="mw-520">
-        <div class="h2 text-center">
-          Your Kegel Plan is waiting for you on your email
-        </div>
-      </div>
-      <p class="mw-520 instructions">
+  <div class="sm:(min-h-90vh flex flex-col)">
+    <div class="container-mob pb-64px">
+      <h2 class="font-displayBold text-24px leading-normal sm:(text-36px leading-normal) text-center">
+        Your Kegel Plan is waiting for you on your email
+      </h2>
+      <p class="font-sans font-400 text-16px leading-normal p-0 pt-24px text-center text-body">
         Instruction on <b>how to access and activate your personal plan</b> has been sent to you at <span style="color: #5773D6; font-weight: bold;">{{ this.email }}</span>
       </p>
 
-      <div class="mw-450 d-flex flex-column mb-32 text-center">
-        <div class="block-bg d-flex flex-column align-items-center justify-content-center">
-          <div class="item-li d-flex align-items-center justify-content-center">
-            <img class="check" src="@/assets/images/svg/icon_attention-triangle.svg" alt="check">
-            <p class="fs-16-14">
+      <div class="flex flex-col mb-32px text-center">
+        <div class="max-w-full p-16px bg-[#F1F3F9] rounded-9px flex flex-col items-center justify-center mt-32px max-w-390px mx-auto">
+          <div class="text-14px leading-normal font-sansSemiBold sm:(text-18px leading-normal) flex items-center justify-center">
+            <img class="w-32px h-32px mr-16px" src="@/assets/images/svg/icon_attention-triangle.svg" alt="check">
+            <p class="font-sans text-left">
               Check your spam or promotions folder <b>if you can't find the instruction in your inbox</b>
             </p>
           </div>
         </div>
-        <hr class="divider" />
       </div>
-      <div class="block-bottom text-center">
-        <p class="contacts__questions">
-          <img src="@/assets/images/svg/icon_help.svg" />
+      <hr class="my-32px opacity-10" />
+      <div class="font-sansSemiBold text-16px leading-normal mb-24px sm:(text-18px leading-normal) text-center">
+        <p class="font-displayBold font-600 text-18px leading-normal text-body mb-24px flex items-center justify-center">
+          <img src="@/assets/images/svg/icon_help.svg" class="mr-12px" />
           Any questions or concerns?
         </p>
-       <button @click="openWhatsapp" class="whatsapp-btn">
-        <img src="@/assets/images/svg/icon_whatsapp.svg" />
+       <button @click="openWhatsapp" class="whatsapp-btn rounded-9px border-none text-[#fff] font-sans font-700 text-18px leading-none p-12px mx-auto flex justify-center cursor-pointer items-center w-full max-w-311px">
+        <img src="@/assets/images/svg/icon_whatsapp.svg" class="w-36px h-36px mr-16px" />
         Text us on WhatsApp
        </button>
       </div>
-      <div class="contacts">
-        <p class="contacts__email">
-          or by email <a href="mailto:contact@kegel-plan.com"><span class="red">contact@kegel-plan.com</span></a>
+      <div class="flex flex-col items-center">
+        <p class="text-16px leading-normal text-center text-body mb-32px">
+          or by email <a href="mailto:contact@kegel-plan.com"><span class="text-red">contact@kegel-plan.com</span></a>
         </p>
-        <p class="mw-520 contacts__offer">
+        <p class="text-16px leading-normal text-center p-0 text-[#111113BF]">
           We offer personalized assistance and will promptly contact you to help with any issues or inquiries &#9786;
         </p>
       </div>
     </div>
-    <Footer :disclaimer="false" />
+    <Footer :disclaimer="false" class="mb-0 flex-1" />
   </div>
 
 </template>
@@ -143,23 +141,23 @@ align-items: center;
 .whatsapp-btn {
   background: linear-gradient(0deg, #20CB42, #20CB42), #111113;
   box-shadow: 0px 15px 37px rgba(32, 203, 66, 0.64);
-  border-radius: 9px;
-  border: hidden;
-  color: #fff;
-  font-family: "SF Pro Text Regular";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1;
-  padding: 12px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-  align-items: center;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 311px;
+  //border-radius: 9px;
+  //border: hidden;
+  //color: #fff;
+  //font-family: "SF Pro Text Regular";
+  //font-style: normal;
+  //font-weight: 700;
+  //font-size: 18px;
+  //line-height: 1;
+  //padding: 12px;
+  //margin: 0 auto;
+  //display: flex;
+  //justify-content: center;
+  //cursor: pointer;
+  //align-items: center;
+  //box-sizing: border-box;
+  //width: 100%;
+  //max-width: 311px;
 
   & img {
     width: 36px;

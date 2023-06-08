@@ -27,7 +27,7 @@
       </p>
       <div id="blockScroll" class="mb-32px font-500 text-14px leading-tight flex items-center rounded-17px bg-body w-full max-w-311px m-0 mx-auto mb-32px text-[#fff]">
         <div class="relative w-84px h-84px ml-10px">
-          <img class="absolute w-full top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] rotation" src="@/assets/images/glow.png" alt="icon" />
+          <img class="glow absolute w-full top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] rotation" src="@/assets/images/glow.png" alt="icon" />
           <img class="absolute w-[60%] top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]" src="@/assets/images/timer.png" alt="icon" />
         </div>
         <div class="ml-15px">
@@ -188,7 +188,7 @@
         <label
           v-for="({id, fullprice, cost, text, name, totalCost, superDiscPrice}, idx) of tarifs"
           :key="idx"
-          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent"
+          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
           :class="{'border-1px border-blue': subscribe === id}"
         >
           <div class="flex items-center">
@@ -260,7 +260,7 @@
         <label
           v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs"
           :key="idx"
-          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent"
+          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
           :class="{'border-1px border-red': subscribe === id}"
         >
           <div class="flex items-center">

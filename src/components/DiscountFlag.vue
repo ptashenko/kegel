@@ -1,13 +1,27 @@
 <template>
-    <div class="discountFlag" :style="{borderColor: color}">
-        <div class="discountFlag__left">
-            <img :src="require(`@/assets/images/${icon}.png`)" class="discountFlag__flag" />
+    <div
+      class="bg-[#F9F9F9] border-2px border-red rounded-9px flex py-20px px-0 max-w-310px w-full mx-auto"
+      :style="{borderColor: color}"
+    >
+        <div
+          class="relative basis-[40%]"
+        >
+            <img
+              :src="require(`@/assets/images/${icon}.png`)"
+              class="w-[52%] absolute top-[-25px] left-[50%] transform translate-x-[-50%]"
+            />
         </div>
-        <div class="discountFlag__right">
-            <h2 class="discountFlag__title">
+        <div
+          class="flex flex-col justify-center basis-[80%]"
+        >
+            <h2
+              class="font-600 text-14px leading-tight tracking-normal text-body m-0 mb-5px"
+            >
                 One-time price of {{discPrice}}
             </h2>
-            <p class="discountFlag__text">
+            <p
+              class="font-400 text-14px leading-tight text-body opacity-75 m-0"
+            >
                 Original price is {{fullPrice}}
             </p>
         </div>
@@ -38,55 +52,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss" scoped>
-.discountFlag {
-    background: #F9F9F9;
-    border: 2px solid #E44240;
-    border-radius: 9px;
-    display: flex;
-    padding: 20px 0;
-
-    &__left {
-        position: relative;
-        flex-basis: 40%;
-    }
-
-    &__right {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-basis: 80%;
-    }
-
-    &__title {
-        font-style: normal;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 1.21;
-        letter-spacing: 0px;
-        color: #111113;
-        margin: 0;
-        margin-bottom: 5px;
-    }
-
-    &__text {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 1.21;
-        color: #111113;
-        opacity: 0.75;
-        margin: 0;
-    }
-
-    &__flag {
-        width: 52%;
-        position: absolute;
-        top: -25px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-
-</style>

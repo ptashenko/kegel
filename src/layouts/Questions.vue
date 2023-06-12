@@ -10,7 +10,7 @@
           <video-background
             :src="video(content.video)"
             :poster="video(content.poster)"
-            class="max-w-520px w-full mx-auto"
+            class="h-209px rounded-14px max-w-520px w-full sm:(h-340px)"
           />
         </div>
 

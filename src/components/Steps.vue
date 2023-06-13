@@ -16,7 +16,7 @@
          {'mr-[-15px]': index === layoutSeparationsIds.length - 1}
          ]"
     >
-      <div class="flex items-center w-25rem justify-center" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100">
+      <div class="flex items-center w-25rem justify-center" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100 || finished">
         <img src="@/assets/images/svg/icon_check-no-bg.svg" class="checker" alt="check" v-if="!dark && index !== 0">
         <img src="@/assets/images/svg/icon_check-no-bg-black.svg" class="checker" :class="{'invert-80': dark}" alt="check" v-if="dark && index !== 0" >
       </div>

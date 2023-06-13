@@ -190,8 +190,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.contents)
-    console.log(this.tracks)
     this.randomData = (Math.floor(Math.random( ) * (22 - 16 + 1)) + 16);
     setTimeout(() => {
       this.isActiveHand = true

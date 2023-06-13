@@ -1,6 +1,7 @@
 import { mapGetters, mapMutations, state } from 'vuex';
-
+import settings from "@/mixins/settings";
 export default {
+    mixins: [settings],
     computed: {
         ...mapGetters({
             myPrewContentId: 'myPrewContentId',
@@ -37,7 +38,8 @@ export default {
         },
 
         back() {
-            let infolayout = this.$store.state.survey.contents.find(x => x.id === this.myPrewContentId)
+
+            let infolayout = this.contents.find(x => x.id === this.myPrewContentId)
             if (infolayout.layoutName === "KegelReview" || infolayout.layoutName === "Processing") {
                 this.$router.push({
                     name: 'survey',

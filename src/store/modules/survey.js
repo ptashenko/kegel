@@ -161,6 +161,7 @@ const getters = {
                 index = currentQuiz.indexOf(layout);
             }
         });
+
         const myPrewContentId = contents.find((content) => {
             let result = null;
             if (currentQuiz[index - 1]) {

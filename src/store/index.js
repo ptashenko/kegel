@@ -3,10 +3,12 @@ import survey from './modules/survey';
 import review from './modules/review';
 import dataPurporse from './modules/dataPurporse';
 
-export default createStore({
+const store = createStore({
     modules: {
         survey,
         review,
         dataPurporse,
     },
 });
+
+export default store;

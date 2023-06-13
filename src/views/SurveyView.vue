@@ -8,6 +8,7 @@
 <script>
 import KegelReview from '@/layouts/KegelReview.vue';
 import Processing from '@/layouts/Processing.vue';
+import Processing_v2 from '@/layouts/baseline_v2/Processing.vue';
 import Reviews from '@/layouts/Reviews.vue';
 import Standart from '@/layouts/Standart.vue';
 import StandartTwo from '@/layouts/StandartTwo.vue';
@@ -20,6 +21,7 @@ export default {
   components: {
     KegelReview,
     Processing,
+    Processing_v2,
     Reviews,
     Standart,
     StandartTwo,

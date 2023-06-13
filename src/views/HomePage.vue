@@ -79,17 +79,19 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import {mapActions, mapGetters, mapMutations} from 'vuex';
 import dayjs from 'dayjs';
 import HeaderLayout from '@/components/Header.vue';
 import FooterHomeView from '@/components/FooterHomeView.vue';
 import { addItem } from "../common/localStorage";
 import { useDevice } from 'next-vue-device-detector';
+import settings from "@/mixins/settings";
 import '@/assets/css/animations.css'
 
 export default {
   name: 'HomePage',
   inject: ['mixpanel'],
+  mixins: [settings],
   components: {
     HeaderLayout,
     FooterHomeView
@@ -119,7 +121,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['tracks', 'contentBy', 'LOADER']),
+    ...mapGetters(['contentBy', 'LOADER']),
   },
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),
@@ -178,6 +180,7 @@ export default {
       this.mixpanel.track('Quize Started', {
         "flow": track.id
       })
+
       this.saveContent(content);
       this.saveTrack(track);
       this.$router.push({
@@ -187,6 +190,8 @@ export default {
     },
   },
   mounted() {
+    console.log(this.contents)
+    console.log(this.tracks)
     this.randomData = (Math.floor(Math.random( ) * (22 - 16 + 1)) + 16);
     setTimeout(() => {
       this.isActiveHand = true

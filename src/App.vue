@@ -44,9 +44,9 @@ export default {
         );
       }
       // Сохраняем информацию в vuex в localStorage при обновлении страницы
-      window.addEventListener("beforeunload", () => {
-        sessionStorage.setItem("store", JSON.stringify(this.$store.state));
-      });
+      // window.addEventListener("beforeunload", () => {
+      //   sessionStorage.setItem("store", JSON.stringify(this.$store.state));
+      // });
     } else {
       // Считываем информацию о статусе в localStorage при загрузке страницы
       if (localStorage.getItem("store")) {
@@ -59,14 +59,19 @@ export default {
         );
       }
       // Сохраняем информацию в vuex в localStorage при обновлении страницы
-      window.addEventListener("beforeunload", () => {
-        localStorage.setItem("store", JSON.stringify(this.$store.state));
-      });
+      // window.addEventListener("beforeunload", () => {
+      //   localStorage.setItem("store", JSON.stringify(this.$store.state));
+      // });
     }
   },
-  watch: {},
+  watch: {
+    $route(to) {
+      if (to.name === 'home') {
+        localStorage.setItem('ver', to.query.ver ? 'baseline_v2' : 'baseline')
+      }
+    }
+  },
   mounted() {
-    this.getContent();
     this.getTrack();
     this.getHistory();
     this.getSeparators();
@@ -121,10 +126,6 @@ export default {
     gtag("get", "G-7MV4FLS470", "gclid", (gclid) => {
       addItem("ga_gclid", gclid);
     });
-  },
-  created() {
-    // this.$abtest('experiment_1', { Baseline: 50, VariationA: 50 })
-    // console.log("created APP")
   },
 };
 </script>

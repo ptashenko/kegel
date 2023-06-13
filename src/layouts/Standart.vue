@@ -5,9 +5,7 @@
   />
 
   <div class="text-center text-[#fff] font-displayBold font-600 text-20px leading-normal mb-32px sm:(text-24px leading-normal)">
-    <span v-if="content.title">{{ content.title }}</span>
-    <span class="red" v-if="content.afterTilteRed">{{ content.afterTilteRed }}</span>
-    <span v-if="content.afterTilteText">{{ content.afterTilteText }}</span>
+    <span v-if="content.title" v-html="content.title" />
   </div>
 
   <div v-if="content.video">
@@ -36,8 +34,12 @@
   </div>
 
   <div v-if="content.buttons" class="rounded-17px p-9px max-w-300px my-32px mx-auto bg-[#8080800C] mb-20px">
-    <div v-for="button in content.buttons" :key="button.id" class="font-500 text-14px leading-tight flex items-center" >
-      <div v-if="button.logo" class="w-37px h-37px flex items-center justify-center rounded-full bg-[#fff] bg-opacity-70 mr-12px">
+    <div
+        v-for="(button, idx) in content.buttons"
+        :key="button.id"
+        class="font-500 text-14px leading-tight flex items-center"
+        :class="{'mb-3': idx !== content.buttons.length - 1}">
+      <div v-if="button.logo" class="w-37px h-37px flex items-center justify-center rounded-full mr-12px">
         <img :src="`${buttonIcon(button.logo)}`" :alt="button.title">
       </div>
       <div class="text-[#fff]">

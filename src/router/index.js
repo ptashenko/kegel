@@ -3,11 +3,16 @@ import notFound from '@/views/NotFound.vue';
 import HomePage from '@/views/HomePage.vue';
 import SurveyView from '@/views/SurveyView.vue';
 import Wait from '@/views/Wait.vue';
+import Wait_v2 from '@/views/baseline_v2/Wait.vue';
 import TimePlan from '@/views/TimePlan.vue';
 import TrustedSources from '@/views/TrustedSources.vue';
 import AnalizAnswer from '@/views/AnalizAnswer.vue';
+import AnalizAnswer_v2 from '@/views/baseline_v2/AnalizAnswer.vue';
 import GoodHands from '@/views/GoodHands.vue';
+import HighEfficacy from '@/views/baseline_v2/HighEfficacy.vue';
+import FeelImprovements from '@/views/baseline_v2/FeelImprovements.vue';
 import EmailAdress from '@/views/EmailAdress.vue';
+import EmailAdress_v2 from '@/views/baseline_v2/EmailAdress.vue';
 import AddressPage from '@/views/AddressPage.vue';
 import LandingViewVP5 from '@/views/LandingViewVP5.vue';
 import Landing_ios_v1 from '@/views/Landing_ios_v1.vue';
@@ -23,6 +28,9 @@ import PlanFinalTwo from '@/views/PlanFinalTwo.vue';
 import PlanFinalTwo_ios from '@/views/PlanFinalTwo_ios.vue';
 import WhatsappPage from '@/views/WhatsappPage.vue';
 
+const versionName = localStorage.getItem('ver')
+const isBaseline = versionName === 'baseline'
+
 const routes = [{
         path: '/',
         name: 'home',
@@ -36,7 +44,17 @@ const routes = [{
     {
         path: '/wait',
         name: 'wait',
-        component: Wait,
+        component: isBaseline ? Wait : Wait_v2,
+    },
+    {
+        path: '/efficacy',
+        name: 'efficacy',
+        component: HighEfficacy,
+    },
+    {
+        path: '/feel-improvements',
+        name: 'feelImprovements',
+        component: FeelImprovements,
     },
     {
         path: '/good-hands',
@@ -56,12 +74,12 @@ const routes = [{
     {
         path: '/AnalizAnswer',
         name: 'AnalizAnswer',
-        component: AnalizAnswer,
+        component: isBaseline ? AnalizAnswer : AnalizAnswer_v2,
     },
     {
         path: '/EmailAdress',
         name: 'EmailAdress',
-        component: EmailAdress,
+        component: isBaseline ? EmailAdress : EmailAdress_v2,
     },
     {
         path: '/LandingViewVP5',

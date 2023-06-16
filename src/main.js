@@ -10,6 +10,7 @@ import store from './store';
 import LottieAnimation from "lottie-web-vue";
 import VueScrollTo from "vue-scrollto";
 import VueMixpanel from 'vue-mixpanel';
+import VueCookies from 'vue-cookies'
 import VideoBackground from 'vue-responsive-video-background-player';
 import * as Sentry from "@sentry/vue";
 import { BrowserTracing } from "@sentry/tracing";
@@ -41,6 +42,7 @@ createApp(App)
     // .use(VueAB)
     .use(LottieAnimation)
     .use(VueScrollTo)
+    .use(VueCookies)
     .use(store)
     .use(router)
     .use(vueCountryRegionSelect)

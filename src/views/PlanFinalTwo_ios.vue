@@ -1,234 +1,216 @@
 <template>
-  <div class="dark-layout light" id="topPage">
-    <div class="container-main is-page Final">
-      <div class="mw-520">
-        <div
-          v-if="active && open == 1"
-          class="h2 text-center"
-          :class="{active: active}"
-        >
-          Add Groin Fitness
-          <p>to accelerate the result</p>
-        </div>
-        <div
-          v-else-if="open == 2"
-          class="show text-center"
-        >
-          Did you know?
-        </div>
-        <div v-else class="h2 text-center">
-          <span class="blue"> Final Offer:</span> get Groin Fitness at the best deal!
-        </div>
-      </div>
-      <div
+  <div class="relative mx-auto pb-48px sm:(max-w-600px mt-16px)" id="topPage">
+    <div v-if="active && open == 1" class="px-32px sm:px-40px">
+      <h2 class="font-displayBold text-32px leading-normal text-center">Add Groin Fitness</h2>
+      <p class="text-20px leading-normal font-displayMedium text-center">to accelerate the result</p>
+    </div>
+    <div v-else-if="open == 2" class="px-32px sm:px-40px">
+      <h2 class="mb-32px font-displayBold text-24px leading-normal text-center sm:(text-30px leading-normal)">
+        Did you know?
+      </h2>
+    </div>
+    <div v-else class="font-displayBold font-bold text-24px leading-normal text-center px-32px sm:(px-40px text-36px leading-normal)">
+      <span class="text-blue"> Final Offer:</span> get Groin Fitness at the best deal!
+    </div>
+    <div
         v-if="open !== 2"
-        class="mw-450"
-      >
-        <video-background
+        class="mt-24px mb-32px px-32px sm:(my-32px px-40px)"
+    >
+      <video-background
           :src="require('@/assets/video/mini_vid.mp4')"
           :poster="require(`@/assets/video/zaglushki/mini_vid.png`)"
-          class="video"
-        >
-        </video-background>
-      </div>
-      <div class="mw-450 d-flex flex-column mb-32">
-      <div v-if="open !== 2" class="item-li d-flex align-items-center">
-        <img v-if="open == 1" class="check" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
-        <img v-if="open > 2" class="check" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
+          class="h-[calc(100dvh)] max-h-210px max-w-full rounded-14px sm:(max-h-280px)"
+      >
+      </video-background>
+    </div>
+    <div v-if="open !== 2" class="px-32px sm:px-40px">
+      <div v-if="open !== 2" class="text-14px leading-normal flex items-center sm:(text-18px leading-normal)">
+        <img v-if="open == 1" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
+        <img v-if="open > 2" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           Build groin muscles strength & flexibility
         </p>
       </div>
-      <div v-if="open !== 2" class="item-li d-flex align-items-center">
-        <img v-if="open == 1" class="check" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
-        <img v-if="open > 2" class="check" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
+      <div v-if="open !== 2" class="mt-16px text-14px leading-normal flex items-center sm:(text-18px leading-normal)">
+        <img v-if="open == 1" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
+        <img v-if="open > 2" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           Increase blood flow to intimate organs
         </p>
       </div>
-      <div v-if="open !== 2" class="item-li d-flex align-items-center">
-        <img v-if="open == 1" class="check" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
-        <img v-if="open > 2" class="check" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
+      <div v-if="open !== 2" class="mt-16px text-14px leading-normal flex items-center sm:(text-18px leading-normal)">
+        <img v-if="open == 1" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
+        <img v-if="open > 2" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           Every exercise has video & audio instructions from the coach
         </p>
       </div>
-        <div v-if="!ios_v1">
-          <img v-if="open == 1" class="diskont" src="@/assets/images/icons/diskont_red.png" alt="diskont_red">
-          <img v-if="open > 2" class="diskont" src="@/assets/images/icons/diskont_blue.png" alt="diskont_blue">
-        </div>
-        <div v-else>
-          <img v-if="open == 1" class="diskont" src="@/assets/images/icons/discont_red_ios.png" alt="discont_red_ios">
-          <img v-if="open > 2" class="diskont" src="@/assets/images/icons/discont_blue_ios.png" alt="discont_blue_ios">
-        </div>
+      <div v-if="!ios_v1" class="max-w-420px mt-26px mx-auto sm:mt-48px">
+        <img v-if="open == 1" class="w-full" src="@/assets/images/icons/diskont_red.png" alt="diskont_red">
+        <img v-if="open > 2" class="w-full" src="@/assets/images/icons/diskont_blue.png" alt="diskont_blue">
       </div>
-      <div
+      <div v-else class="max-w-420px mt-48px mx-auto">
+        <img v-if="open == 1" class="w-full" src="@/assets/images/icons/discont_red_ios.png" alt="discont_red_ios">
+        <img v-if="open > 2" class="w-full" src="@/assets/images/icons/discont_blue_ios.png" alt="discont_blue_ios">
+      </div>
+    </div>
+    <div
         v-if="open == 2"
-        class="popup_wraper"
-      >
-        <p>
-          <span class="text-semibold">Groin Fitness</span> improves blood flow to the groin, which has a big impact on sexual performance.
+        class="overflow-y-inherit"
+    >
+      <div class="px-32px sm:px-40px">
+        <p class="font-sans text-14px leading-normal mb-16px sm:(text-18px leading-normal)">
+          <span class="font-sansSemiBold">Groin Fitness</span> improves blood flow to the groin, which has a big impact on sexual performance.
         </p>
-        <p>
-          Bad blood flow to the groin area can put you at <span class="text-semibold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
+        <p class="font-sans text-14px leading-normal mb-27px sm:(text-18px leading-normal)">
+          Bad blood flow to the groin area can put you at <span class="font-sansSemiBold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
         </p>
-        <img class="content_img" src="@/assets/images/content/Final_modal.png" alt="">
-        <p class="opacity_05 text-center text-bottom-img">
-          <em>*This diagram is a non-personalized illustration based on scientific research.</em>
+        <img class="w-full mt-0px mx-auto mb-16px flex sm:(my-32px mx-auto)" src="@/assets/images/content/Final_modal.png" alt="">
+        <p class="opacity-50 text-12px leading-normal text-center font-sansLight mb-32px sm:(text-14px leading-normal)">
+          *This diagram is a non-personalized illustration based on scientific research.
         </p>
+      </div>
 
-        <div v-if="ios_v1" class="block-blue">
-          <div class="block-blue__left">
-            <img :src="require(`@/assets/images/blue-gift.png`)" class="block-blue__flag" />
-          </div>
-          <div class="block-blue__right">
-            <p class="block-blue__text">
-              We want you to succeed, so we’re giving you <span class="text-semibold">a super discount on Groin Fitness!</span>
-            </p>
-          </div>
+      <div v-if="ios_v1" class="flex items-center justify-around min-h-100px rounded-9px bg-[#f9f9f9] border-2px border-[#5773D6] mb-32px pt-21px pr-24px pb-18px pl-8px">
+        <div class="basis-1/4">
+          <img :src="require(`@/assets/images/blue-gift.png`)" class="block w-3/4 my-0 mx-auto" />
         </div>
-
-        <div v-else class="block_blue">
-          <div v-if-else class="block_blue__content d-flex align-items-center">
-            <img src="@/assets/images/svg/icon_present.svg" alt="">
-            <p>We want you to be successful, so we're offering <span class="text-bold"> 25% off </span> the Groin Fitness just for you!</p>
-          </div>
+        <div class="flex flex-col justify-center basis-2/3">
+          <p class="text-14px leading-normal font-sans text-[#111113] opacity-100 m-0 sm:(text-16px lading-normal)">
+            We want you to succeed, so we’re giving you <span class="font-sansSemiBold">a super discount on Groin Fitness!</span>
+          </p>
         </div>
       </div>
 
-
-      <div v-if="open == 1">
-        <button-field
-
+      <div v-else class="flex items-center justify-around min-h-100px bg-blue border-2px border-[#5773D6] mb-32px py-16px px-32px sm:(py-20px px-40px rounded-9px)">
+        <img src="@/assets/images/svg/icon_present.svg" alt="">
+        <p class="text-14px leading-normal font-sans text-[#fff] m-0 ml-16px sm:(text-18px leading-normal ml-32px)">
+          We want you to be successful, so we're offering <span class="font-sansSemiBold">25% off </span>the Groin Fitness just for you!
+        </p>
+      </div>
+    </div>
+    <div class="my-0 mx-auto max-w-311px sm:max-w-373px" v-if="open == 1">
+      <button-field
           text='Add to my plan'
           theme="Back"
-          class="footer-controls__button red"
+          class="block bg-red shadow-button-red mx-auto !mb-32px"
           @click="addonRequest"
-        />
-        <!-- <button-field
-          text='Add to my plan'
-          theme="Back"
-          class="footer-controls__button red loader"
-          :class="{ hiden: isActive }"
-          @click="loadingBtn"
-        /> -->
-        <div
-          class="footer-controls__button btnLoader loader"
-          :class="{ hiden: !isActive }"
-        >
-          <lottie-animation
-            class="check"
+      />
+      <div
+          class="max-w-310px my-0 mx-auto z-0 flex items-center py-16px px-0 justify-center bg-red rounded-9px mt-16px mx-auto mb-0 py-21px px-0"
+          :class="{ hidden: !isActive }"
+      >
+        <lottie-animation
+            class="w-16px h-16px sm:(w-25px h-25px)"
             ref="anim"
             :animationData="require(`@/assets/images/json/loader_white.json`)"
             :loop="mytrue"
             :autoPlay="true"
             :speed="1"
-          />
-        </div>
+        />
       </div>
-      <div
-        v-if="open == 3"
-      >
-        <button-field
+    </div>
+    <div class="my-0 mx-auto max-w-311px mb-32px sm:max-w-373px"
+         v-if="open == 3"
+    >
+      <button-field
           text='Add to my plan'
           theme="Back"
-          class="footer-controls__button bg-blue"
+          class="my-0 mx-auto z-0 bg-blue shadow-button-blue"
           :class="{ submit: loading }"
           @click="addonRequest"
-        />
-        <!-- <button-field
-          text='Add to my plan'
-          theme="Back"
-          class="footer-controls__button loader bg-blue"
-          :class="{ hiden: isActive }"
-          @click="loadingBtn"
-        /> -->
-        <div
-          class="footer-controls__button btnLoader loader bg-blue"
-          :class="{ hiden: !isActive }"
-        >
-          <lottie-animation
-            class="check"
+      />
+      <!-- <button-field
+        text='Add to my plan'
+        theme="Back"
+        class="footer-controls__button loader bg-blue"
+        :class="{ hiden: isActive }"
+        @click="loadingBtn"
+      /> -->
+      <div
+          class="max-w-310px my-0 mx-auto z-0 flex items-center py-16px px-0 justify-center bg-red rounded-9px mt-16px mx-auto mb-0 py-21px px-0 bg-blue"
+          :class="{ hidden: !isActive }"
+      >
+        <lottie-animation
+            class="w-16px h-16px sm:(w-25px h-25px)"
             ref="anim"
             :animationData="require(`@/assets/images/json/loader_white.json`)"
             :loop="mytrue"
             :autoPlay="true"
             :speed="1"
-          />
-        </div>
+        />
       </div>
-      <div v-if="active && open == 1"
-        class="btn_popup"
-        @click="showModal"
-      >
+    </div>
+    <div v-if="active && open == 1"
+         class="relative text-center font-sans text-14px leading-normal opacity-50 mt-0 mb-32px mx-auto cursor-pointer sm:(text-16px leading-normal)"
+         @click="showModal"
+    >
       I don’t want to accelerate my results &gt;
-      </div>
-      <div v-else-if="open == 2" class="text-center">
-        <button v-if="ios_v1"
-          class="v-popup__submit_btn_first active"
-          @click="closePopup"
-        >
-        Continue
-        </button>
-
-        <button v-else
-          class="v-popup__submit_btn active"
-          @click="closePopup"
-        >
-        Continue
-        <img src="@/assets/images/svg/icon_arrow-next.svg" class="btn__next" alt="" >
-        </button>
-      </div>
-      <div v-else
-        class="btn_popup"
-        @click="withoutUpsaleDiscounted"
+    </div>
+    <div v-else-if="open == 2" class="text-center max-w-311px sm:max-w-373px mx-auto">
+      <button v-if="ios_v1"
+              class="bg-[#5773D6] border-none rounded-9px py-16px px-37px font-sansMedium text-18px leading-normal text-[#fff] cursor-pointer w-full mb-100px shadow-button-blue"
+              @click="closePopup"
       >
-      I give up accelerated results forever &gt;
-      </div>
-      <div v-if="!ios_v1">
-      <div v-if="open == 1" class="mw-520">
-        <div  class="footer__text">
-        Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
-        </div>
-      </div>
-      <div v-else-if="open == 3" class="mw-520">
-        <div  class="footer__text">
-        Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
-        </div>
-      </div>
-    </div>
-    <div v-else>
-      <div v-if="open == 1" class="mw-520">
-        <div  class="footer__text">
-        Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
-        </div>
-      </div>
-      <div v-else-if="open == 3" class="mw-520">
-        <div  class="footer__text">
-        Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
-        </div>
-      </div>
-    </div>
-    </div>
+        Continue
+      </button>
 
+      <button v-else
+              class="bg-[#5773D6] border-none rounded-9px py-16px px-37px font-sansMedium text-18px leading-normal text-[#fff] cursor-pointer flex justify-center items-center w-full shadow-button-blue mb-52px"
+              @click="closePopup"
+      >
+        Continue
+        <img src="@/assets/images/svg/icon_arrow-next.svg" class="max-w-14px my-0 ml-12px mr-0" alt="" >
+      </button>
+    </div>
+    <div v-else
+         class="relative text-center font-sans text-14px leading-normal opacity-50 mt-0 mb-32px mx-auto cursor-pointer sm:(text-16px leading-normal)"
+         @click="withoutUpsaleDiscounted"
+    >
+      I give up accelerated results forever &gt;
+    </div>
+    <div v-if="!ios_v1" class="px-32px sm:px-40px">
+      <div v-if="open == 1" class="block my-0 mx-auto">
+        <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0  sm:(text-14px leading-normal)">
+          Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+        </div>
+      </div>
+      <div v-else-if="open == 3" class="block my-0 mx-auto">
+        <div  class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 sm:(text-14px leading-normal)">
+          Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+        </div>
+      </div>
+      <div v-else>
+        <div v-if="open == 1" class="block my-0 mx-auto">
+          <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 sm:(text-14px leading-normal)">
+            Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+          </div>
+        </div>
+        <div v-else-if="open == 3" class="block my-0 mx-auto">
+          <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 pb-48px sm:(text-14px leading-normal)">
+            Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <vpopup
-    class="windowError"
+    class="z-999"
     v-if="windowError"
   >
     <div>
-      <p class="opasity_75">
+      <p class="opacity-75">
         Your payment was declined.
       </p>
       <p
-        class="opasity_75 blue"
+        class="opacity-75 text-blue mt-4px cursor-pointer underline"
         @click="popupPay"
       >
         Tap here to select a different payment method.
       </p>
     </div>
     <img
-      class="error"
+      class="w-full flex items-center bg-red border-3px border-red focus:(bg-[#eb6967] border-3px border-[#E44240])"
       src="@/assets/images/svg/icon_btn-close-communicate.svg"
       alt="error"
       @click="closeWindowError"
@@ -237,15 +219,15 @@
   <vpopup
     v-if="popupWindowPay"
     textTitle="Select Payment method"
-    class="popup_wraper"
+    class="overflow-y-inherit"
   >
     <div
-      class="closeBtn"
+      class="absolute right-8px top-8px cursor-pointer"
       @click="closePopupWindowPay"
     >
       <img src="@/assets/images/svg/icon_btn-close-window.svg" alt="apple_pay">
     </div>
-    <div class="mw-300 block-pay d-flex flex-column align-items-center justify-content-center">
+    <div class="flex flex-col items-center justify-center">
       <PaymentFormCompanent @error="paymentError" @success="payingSuccess" @click="closeWindowError" :item="this.item"/>
     </div>
   </vpopup>
@@ -500,568 +482,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Final{
-  .h2 {
-    margin-bottom: 32px;
-    font-family: "SF-Pro-Display-Bold";
-    line-height: 135%;
-    font-size: 32px;
-    line-height: 135%;
-    @media (max-width:480px) {
-      font-size: 24px;
-    }
-  }
-  .h2.active {
-    margin-bottom: 32px;
-    font-family: "SF-Pro-Display-Bold";
-    line-height: 135%;
-    font-size: 36px;
-    line-height: 135%;
-    @media (max-width:480px) {
-      font-size: 32px;
-    }
-    p{
-      font-family: "SF-Pro-Display-Medium";
-      font-size: 24px;
-      line-height: 135%;
-      @media (max-width:480px) {
-        font-size: 20px;
-      }
-    }
-
-  }
-  .show{
-    margin-bottom: 12px;
-    font-family: "SF-Pro-Display-Bold";
-    line-height: 135%;
-    font-size: 30px;
-    line-height: 135%;
-    @media (max-width:480px) {
-      font-size: 24px;
-    }
-  }
-  .blue{
-    color: #5773D6;
-  }
-  .bg-blue{
-    background: #5773D6;
-  }
-  .purpose{
-    font-family: "SF Pro Text Regular";
-    font-size: 18px;
-    line-height: 150%;
-    p{
-      margin-bottom: 16px;
-      @media (max-width:480px) {
-        font-size: 14px;
-        line-height: 150%;
-      }
-      span{
-        font-family: "SF Pro Text Medium";
-      }
-    }
-  }
-  .mw-450{
-    max-width: 450px;
-    margin: 20px auto;
-    @media (max-width:480px) {
-      margin: 12px auto;
-    }
-    .layout__thumbnail{
-      display: block;
-      max-width: 450px;
-      margin: 0 auto 32px;
-      img{
-        width: 100%;
-      }
-    }
-    .item-li{
-      line-height: 150%;
-      margin-top: 16px;
-      font-size: 18px;
-      @media (max-width:480px) {
-        font-size: 14px;
-      }
-      .check{
-        margin-right: 18px;
-        width: 18px;
-        @media (max-width:480px) {
-          width: 13px;
-        }
-      }
-    }
-
-    .diskont{
-      width: 100%;
-      margin: 50px 0 0px;
-      @media (max-width:480px) {
-        margin: 26px 0 32px;
-      }
-    }
-  }
-  .price{
-    background: #F1F3F9;
-    padding: 16px 74px;
-    margin: 0 -32px;
-    @media (max-width:480px) {
-      padding: 16px 32px;
-    }
-    &__text{
-      font-family: "SF-Pro-Display-Semibold";
-      font-size: 16px;
-      line-height: 150%;
-    }
-    &__today{
-      font-size: 16px;
-      margin-top: 16px ;
-      @media (max-width:480px) {
-        font-size: 14px;
-      }
-      .bold{
-        font-family: "SF Pro Text Semibold";
-      }
-      .small{
-        font-size: 14px;
-        @media (max-width:480px) {
-          font-size: 11px;
-        }
-      }
-      .bg_blue{
-        padding: 4px 12px;;
-        background: #5773D6;
-        border-radius: 70px;
-        color: #ffffff;
-        font-size: 16px;
-        line-height: 150%;
-        :hover{
-          background: #5773D6;
-        }
-      }
-    }
-    &__today.mt-32{
-      margin-top: 32px;
-    }
-  }
-  .footer-controls__button{
-    max-width: 310px;
-    margin: 0 auto 0;
-    z-index: 0;
-  }
-  .btn_popup{
-    position: relative;
-    text-align: center;
-    font-family: "SF Pro Text Medium";
-    font-size: 16px;
-    line-height: 150%;
-    opacity: 0.5;
-    margin: 16px auto 32px;
-    cursor: pointer;
-
-  }
-
-  .opacity_05 {
-    opacity: 0.5;
-    font-size: 12px;
-  }
-  .mw-520{
-    max-width: 520px;
-    margin: 0 auto;
-    display: block;
-  }
-
-  .video{
-    max-height: 260px;
-    height: 100vh;
-    max-width: 100%;
-    // border-radius: 14px;
-    @media (max-width:480px) {
-      max-height: 210px;
-    }
-    @media (max-width:440px) {
-      max-height: 195px;
-    }
-    @media (max-width:400px) {
-      max-height: 180px;
-    }
-  }
-}
-.footer__text{
-    font-family: "SF Pro Text Light";
-    font-size: 14px;
-    line-height: 150%;
-    opacity: 0.5;
-    text-align: center;
-    padding: 0 0 48px;
-    @media (max-width:480px) {
-      font-size: 12px;
-    }
-  }
-.v-popup__submit_btn, .v-popup__btn{
-  background-color: #5773D6;
-  border:none;
-  border-radius: 9px;
-  padding: 16px 37px;
-  font-family: "SF Pro Text Medium";
-  font-size: 18px;
-  line-height: 135%;
-  color: #ffffff;
-  margin-top: -32px;
-  cursor: pointer;
-
-  @media (max-width: 480px){
-    margin-bottom: 100px;
-  }
-}
-@media (max-width: 480px){
-  .container-main {
-    padding-bottom: 0px;
-  }
-}
-
-.v-popup__submit_btn_first{
-  width: 100%;
-  box-shadow: 0px 15px 37px #5773D6;
-  background-color: #5773D6;
-  border:none;
-  border-radius: 9px;
-  padding: 16px 37px;
-  font-family: "SF Pro Text Medium";
-  font-size: 18px;
-  line-height: 135%;
-  color: #ffffff;
-  margin-top: 150px;
-  margin-bottom: 132px;
-  cursor: pointer;
-
-  @media (max-width: 480px){
-    margin-bottom: 100px;
-    margin-top: -32px;
-  }
-}
-@media (max-width: 480px){
-  .container-main {
-    padding-bottom: 0px;
-  }
-}
-.popup_wraper{
-  overflow-y: inherit!important;;
-  h2{
-    font-family: "SF-Pro-Display-Bold";
-    font-size: 24px;
-    line-height: 135%;
-    margin: 16px auto 16px;
-    @media (max-width:480px) {
-      font-size: 20px;
-    }
-  }
-  p{
-    font-size: 18px;
-    line-height: 150%;
-    font-family: "SF Pro Text Regular";
-    opacity: 1;
-    margin-bottom: 16px;
-
-      .text-bold{
-        font-family: "SF Pro Text Bold";
-      }
-    @media (max-width:480px) {
-      font-size: 14px;
-    }
-  }
-  img{
-    // width: 100%;
-    max-width: 450px;
-    margin: 32px auto;
-    display: flex;
-    @media (max-width:480px) {
-      margin: 0px auto 16px;
-    }
-  }
-  .text-bottom-img{
-    font-size: 14px;
-    opacity: 0.5;
-    font-family: "SF Pro Text Light";
-    margin: 0 auto 32px;
-    max-width: 450px;
-    text-align: center;
-    @media (max-width:480px) {
-      font-size: 12px;
-    }
-  }
-  .block_blue{
-    padding: 16px 24px;
-    background: #5773D6;
-    color: #ffffff;
-    @media (max-width:480px){
-      margin-left: -32px;
-      margin-right: -32px;
-    }
-    &__content{
-      max-width: 450px;
-      margin: 0 auto;
-      @media (max-width:480px){
-        max-width: 400px;
-      }
-    }
-
-    img{
-      max-width: 70px;
-      margin: 0;
-    }
-    p{
-      margin: 0;
-      margin-left: 16px;
-      font-size: 16px;
-
-      @media (max-width:480px) {
-        font-size: 13px;
-      }
-    }
-  }
-
-  .block-blue {
-    background: #F9F9F9;
-    border: 2px solid #5773D6;
-    border-radius: 9px;
-    display: flex;
-    min-height: 100px;
-    align-items: center;
-    justify-content: space-around;
-
-    &__left {
-        flex-basis: 25%;
-    }
-
-    &__right {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-basis: 65%;
-    }
-
-    &__text {
-        font-style: normal;
-        font-weight: 400;
-        line-height: 150%;
-        color: #111113;
-        opacity: 1;
-        margin: 0 !important;
-      @media (max-width:480px) {
-        font-size: 14px;
-    }
-    }
-
-    &__flag {
-      display: block;
-      width: 70%;
-      margin: 0 auto;
-    }
-}
-  .v-popup__submit_btn{
-    background: #5773D6;
-  }
-  .btn__next{
-    max-width: 14px;
-    margin: 0 0 0 12px;
-  }
-}
-// Logic
-.popup_wraper{
-  height: 100%;
-  h2{
-    font-family: "SF-Pro-Display-Bold";
-    font-size: 24px;
-    line-height: 135%;
-    margin: 16px auto 16px;
-    @media (max-width:480px) {
-      font-size: 20px;
-    }
-  }
-  p{
-    font-size: 18px;
-    font-family: "SF Pro Text Regular";
-
-    em {
-    @media (max-width:480px) {
-      font-size: 12px;
-    }
-      font-size: 14px;
-      font-style: initial;
-      line-height: 18px;
-    }
-    @media (max-width:480px) {
-      font-size: 14px;
-    }
-  }
-  span{
-      font-family: "SF Pro Text Semibold";
-    }
-
-}
-
-#text {
-  font-size: 14px;
-
-  @media (max-width:480px) {
-      font-size: 12px;
-    }
-}
-.btnLoader{
-  display: flex;
-  align-items: center;
-  padding: 16px 0;
-  justify-content: center;
-  background: #E44240;
-  border-radius: 9px;
-  margin: 16px auto 0;
-}
-.hiden{
-  display: none;
-}
-.check{
-  width: 25px;
-  height: 25px;
-
-  @media (max-width:480px) {
-    width: 16px;
-    height: 16px;
-  }
-}
-.check svg{
-  color: #ffffff;
-  stroke: red;
-  fill: red;
-}
-.windowError{
-  z-index: 999;
-  .blue{
-    color:#5773D6;
-    margin-top: 4px;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-}
-.block-pay{
-  .d-flex{
-    width: 100%;
-    max-width: 310px;
-  }
-  .w-100{
-    width: 100%;
-    margin-top: 32px;
-  }
-  .flex-wrap{
-    flex-wrap: wrap;
-    width: 380px;
-    margin-top: 48px;
-    @media (max-width:480px) {
-      max-width: 270px;
-      justify-content: center;
-    }
-    p{
-      font-family: "SF Pro Text Regular";
-      font-size: 16px;
-      .bold{
-        font-family: "SF Pro Text Semibold";
-      }
-      @media (max-width:480px) {
-        font-size: 14px;
-        margin-top: 11px;
-      }
-    }
-  }
-  .star{
-    img{
-      max-width: 20px;
-      height: auto;
-    }
-    @media (max-width:480px) {
-      margin-right: 9px;
-    }
-  }
-  button.pay{
-    background: #F9F9F9;
-    border: 2px solid #F9F9F9;
-    border-radius: 9px;
-    margin-bottom:10px ;
-    max-width: 310px;
-    &:focus{
-      background: rgba(87, 115, 214, 0.1);
-      border: 2px solid #5773D6;
-    }
-  }
-  button.pay.small{
-    max-width: 150px;
-    img{
-      width: 100%;
-    }
-  }
-  .aple_pay{
-    background: #111113;
-    color: #FFFFFF;
-    border: 3px solid #111113;
-    border-radius: 100px;
-    margin-bottom:10px ;
-    width: 100%;
-    font-size: 20px;
-    line-height: 24px;
-    padding: 15px 65px;
-    font-family: "SF Pro Text Semibold";
-    &:focus{
-      background: #1B1B1E;
-      border: 3px solid #C7C7C7;
-    }
-  }
-  .error{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #E44240;
-    border: 3px solid #E44240;
-    &:focus{
-      background: #eb6967;
-      border: 3px solid #E44240;
-    }
-  }
-  .Pay_pay{
-    background: #FFBB1B;
-    color: #2D2F2F;
-    border: 3px solid #FFBB1B;
-    border-radius: 100px;
-    margin-bottom:10px ;
-    width: 100%;
-    font-size: 20px;
-    line-height: 24px;
-    padding: 15px 55px;
-    font-family: "SF Pro Text Regular";
-    &:focus{
-      background: #FFBB1B;
-      border: 3px solid #F3F3F3;
-    }
-  }
-}
-.closeBtn{
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    cursor: pointer;
-  }
-.dark-layout.light .loader {
-  margin-top: 16px;
-}
-@media (max-width: 480px){
-  .dark-layout.light .loader {
-    margin-top: 16px;
-  }
-  div.loader{
-    padding: 20.5px 0;
-  }
-}
-img.apple_pay{
-  max-width: 65px;
-}
-.content_img{
-  width: 100%;
+.submit {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ic3ZnLWxvYWRlciIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTUiIGhlaWdodD0iNTUiIHZpZXdCb3g9IjAgMCA4MCA4MCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTQwIDcyQzIyLjQgNzIgOCA1Ny42IDggNDBTMjIuNCA4IDQwIDhzMzIgMTQuNCAzMiAzMmMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTJjMC0xNS40LTEyLjYtMjgtMjgtMjhTMTIgMjQuNiAxMiA0MHMxMi42IDI4IDI4IDI4YzEuMSAwIDIgLjkgMiAycy0uOSAyLTIgMnoiPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZVR5cGU9InhtbCIgYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgNDAgNDAiIHRvPSIzNjAgNDAgNDAiIGR1cj0iMC42cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  color: transparent !important;
+  transition-duration: 0s;
+  pointer-events: none;
 }
 </style>

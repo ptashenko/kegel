@@ -1,5 +1,5 @@
 <template>
-    <div class="m-0 mt-32px">
+    <div class="m-0 mt-32px sm:mt-48px">
         <p class="font-sans text-14px leading-tight text-center text-body sm:(text-18px leading-tight)">
             <span class="font-sansBold">
               {{ amount }}

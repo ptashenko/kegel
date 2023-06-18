@@ -257,7 +257,7 @@
           Your payment was declined.
         </p>
         <p
-          class="text-blue text-14px leading-normal underline"
+          class="text-blue text-14px leading-normal underline cursor-pointer"
           @click="popupPay"
         >
           Tap here to select a different payment method.
@@ -267,6 +267,7 @@
         src="@/assets/images/svg/icon_btn-close-communicate.svg"
         alt="error"
         @click="closeWindowError"
+        class="cursor-pointer"
       >
     </div>
   </vpopup>

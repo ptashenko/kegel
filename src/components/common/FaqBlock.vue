@@ -1,24 +1,26 @@
 <template>
-  <div class="faq">
-    <div class="faq-wrapper">
-      <h4 class="faq-title">
+  <div>
+    <div>
+      <h4 class="font-displayBold text-20px leading-normal mt-0 mb-16px text-center text-body outline-none">
         People often ask
       </h4>
-      <div class="faq-item" v-for="(item, id) in items" :key="id">
-        <div class="faq-item_title" @click="selectId(id)">
+      <div v-for="(item, id) in items" :key="id">
+        <div class="flex justify-between py-16px px-24px bg-[#f9f9f9] rounded-9px font-displayBold text-16px leading-normal text-body mb-16px" @click="selectId(id)">
           {{ item.title }}
           <img
+          class="ml-16px"
               v-if="id === selectedId"
               src="@/assets/images/svg/icon_minus.svg"
               alt="">
           <img
+              class="ml-16px"
               v-else
               src="@/assets/images/svg/icon_plus.svg"
               alt="">
         </div>
-        <div class="faq-item-content" v-if="selectedId === id">
-          <div class="faq-item-content_item" v-for="(child, idx) in item.children" :key="idx">
-            <span>{{ child }}</span>
+        <div class="px-24px" v-if="selectedId === id">
+          <div v-for="(child, idx) in item.children" :key="idx">
+            <span class="block font-400 text-16px leading-normal text-body mb-24px" :class="{ 'mb-16px': idx === item.children.length - 1 }">{{ child }}</span>
           </div>
         </div>
       </div>
@@ -48,54 +50,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-
-.faq {
-
-  &-title {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 135%;
-    margin-top: 0;
-    margin-bottom: 16px;
-    text-align: center;
-    color: #111113;
-    font-family: "SF-Pro-Display-Bold";
-    outline: none;
-  }
-  &-item {
-    &_title {
-      display: flex;
-      justify-content: space-between;
-      padding: 16px 24px;
-      background: #F9F9F9;
-      border-radius: 9px;
-      font-weight: 600;
-      font-size: 16px;
-      line-height: 150%;
-      color: #111113;
-      font-family: "SF-Pro-Display-Bold";
-      margin-bottom: 16px;
-      img {
-        margin-left: 16px;
-      }
-    }
-    &-content {
-      padding-left: 20px;
-      padding-right: 20px;
-      span {
-        display: block;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 150%;
-        color: #111113;
-        margin-bottom: 24px;
-        &:last-child {
-          margin-bottom: 16px;
-        }
-      }
-    }
-  }
-}
-</style>

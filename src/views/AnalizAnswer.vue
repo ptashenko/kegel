@@ -145,14 +145,9 @@
 </template>
 <script>
 
-import analizProcessing from '@/components/ui/analizProcessing.vue';
-
 export default {
   inject: ['mixpanel'],
   name: 'AnalizAnswer',
-  components:{
-    analizProcessing
-  },
 
   data(){
     return{

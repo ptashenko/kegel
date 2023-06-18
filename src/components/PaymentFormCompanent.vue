@@ -1,12 +1,11 @@
 <template>
   <div
-    class="d-flex w100 flex-column align-items-center justify-content-center"
+    class="flex w-full flex-col items-center justify-center"
     id="paymentForm"
   >
-    <div id="solid-payment-form-container" class="w100">
+    <div id="solid-payment-form-container" class="w-full">
       <button
-        class="pay cursor"
-        :class="{ active: paymentMethodType == 3 }"
+        :class="{ 'bg-[#5773d61a] border-2px border-blue': paymentMethodType == 3 }"
         v-if="apple_pay"
         @click="applePaySelect"
       >
@@ -14,25 +13,24 @@
       </button>
     </div>
   </div>
-  <div class="d-flex w100 align-items-center justify-content-beetwen">
+  <div class="flex w-full items-center justify-beetwen">
     <button
-      class="pay small mr-2 cursor"
-      :class="{ active: paymentMethodType == 2 }"
+      class="h-49px border-2px sm:(flex items-center justify-center) flex-1 mr-5px cursor-pointer bg-[#F9F9F9] rounded-9px border-[#fff] flex items-center"
+      :class="{ 'bg-[#5773d61a] border-2px !border-blue': paymentMethodType == 2 }"
       @click="payPalSelect"
     >
-      <img src="@/assets/images/svg/icon_paypal.svg" alt="apple_pay" />
+      <img src="@/assets/images/svg/icon_paypal.svg" alt="apple_pay" class="w-full sm:w-153px"/>
     </button>
     <button
-      class="pay small ml-2 cursor"
-      :class="{ active: paymentMethodType == 1 }"
+      class="h-49px border-2px sm:(flex items-center justify-center) flex-1 cursor-pointer bg-[#F9F9F9] rounded-9px border-[#fff] flex items-center"
+      :class="{ 'bg-[#5773d61a] border-2px !border-blue': paymentMethodType == 1 }"
       @click="cardSelect"
     >
-      <img src="@/assets/images/icons/card.png" alt="apple_pay" />
+      <img src="@/assets/images/icons/card.png" alt="apple_pay" class="w-full sm:w-153px"/>
     </button>
   </div>
   <PayPalComponent
-    class="d-flex align-items-center justify-content-beetwen"
-    style="position: sticky; padding-top: 18px"
+    class="flex items-center justify-beetwen sticky mt-32px sm:mt-18px"
     v-if="paymentMethodType == 2"
     @error="error"
     @success="success"
@@ -43,7 +41,7 @@
     :fullPrice="fullPrice"
   />
   <CardCompanentModal
-    class="w-100 flex-column align-items-center justify-content-center"
+    class="w-full mt-48px flex flex-col items-center justify-center"
     v-if="paymentMethodType == 1 && (ver == 1 || ver == 3)"
     @error="error"
     @success="success"
@@ -56,8 +54,7 @@
   />
   <div
     id="apple-pay-button"
-    class="d-flex align-items-center justify-content-beetwen"
-    style="width: 100%; display: inline; padding-top: 16px"
+    class="flex items-center justify-beetwen w-full inline pt-16px"
     v-if="paymentMethodType == 3"
   ></div>
 </template>
@@ -202,155 +199,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.w100 {
-  width: 100%;
-}
-.mb-32 {
-  margin-bottom: 32px;
-}
-.payment-info {
-  margin-top: 16px;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 150%;
-  color: #111113;
-  opacity: 0.75;
-  @media (min-width: 600px) {
-    width: 100%;
-  }
-}
-.cursor {
-  cursor: pointer;
-}
-
-.block-pay {
-  width: 310px;
-
-  .w-100 {
-    width: 100%;
-    margin-top: 48px;
-  }
-  .flex-wrap {
-    flex-wrap: wrap;
-    width: 380px;
-    margin-top: 48px;
-    @media (max-width: 480px) {
-      max-width: 270px;
-      justify-content: center;
-    }
-    p {
-      font-family: "SF Pro Text Regular";
-      font-size: 16px;
-      .bold {
-        font-family: "SF Pro Text Semibold";
-      }
-      @media (max-width: 480px) {
-        font-size: 14px;
-        margin-top: 11px;
-      }
-    }
-  }
-  button.pay {
-    background: #f9f9f9;
-    border: 2px solid #f9f9f9;
-    border-radius: 9px;
-    margin-bottom: 10px;
-    width: 100%;
-    display: block;
-    // &:focus, &:hover, &:active{
-    //   background: rgba(87, 115, 214, 0.1);
-    //   border: 2px solid #5773D6;
-    // }
-    img {
-      max-height: 49px;
-      max-width: 100%;
-    }
-  }
-  button.pay.active {
-    background: rgba(87, 115, 214, 0.1);
-    border: 2px solid #5773d6;
-  }
-  button.pay.small {
-    max-width: 150px;
-    height: 49px;
-    img {
-      width: 100%;
-      @media (min-width: 600px) {
-          width: 153px;
-        }
-    }
-    @media (min-width: 600px) {
-      max-width: 255px;
-      width: 255px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-  .aple_pay {
-    background: #111113;
-    color: #ffffff;
-    border: 3px solid #111113;
-    border-radius: 100px;
-    margin-bottom: 10px;
-    width: 100%;
-    font-size: 20px;
-    line-height: 24px;
-    padding: 15px 65px;
-    font-family: "SF Pro Text Semibold";
-    &:focus {
-      background: #1b1b1e;
-      border: 3px solid #c7c7c7;
-    }
-  }
-  .error {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #e44240;
-    border: 3px solid #e44240;
-    &:focus {
-      background: #eb6967;
-      border: 3px solid #e44240;
-    }
-  }
-  .Pay_pay {
-    background: #ffbb1b;
-    color: #2d2f2f;
-    border: 3px solid #ffbb1b;
-    border-radius: 100px;
-    margin-bottom: 10px;
-    width: 100%;
-    font-size: 20px;
-    line-height: 24px;
-    padding: 15px 55px;
-    font-family: "SF Pro Text Regular";
-    &:focus {
-      background: #ffbb1b;
-      border: 3px solid #f3f3f3;
-    }
-  }
-}
-.ml-2 {
-  margin-left: 2px;
-}
-.mr-2 {
-  margin-right: 2px;
-}
-
-.small::before {
-  content: "";
-  width: 1px;
-  height: 14px;
-  position: absolute;
-  display: block;
-  background: #11111350;
-  top: -15px;
-  left: 50%;
-}
-
 input,
 textarea {
   outline: none;

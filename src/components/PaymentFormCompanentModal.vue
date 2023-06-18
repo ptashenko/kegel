@@ -1,48 +1,56 @@
 <template>
   <div
-    class=""
     id="paymentForm"
   >
-    <div id="solid-payment-form-container" class="buttons-container">
+    <div id="solid-payment-form-container" class="flex justify-between flex-wrap pb-32px">
       <button
-        class="buttons-container__apple payButton"
-        :class="{ active: paymentMethodType == 3 }"
+        class="flex justify-center items-center basis-full bg-[#f9f9f9] h-49px border-none rounded-9px min-h-49px mb-5px box-border active:(border-2px border-[#5773D6] border-solid) focus:(border-2px border-[#5773D6] border-solid)"
+        :class="{ 'border-2px border-[#5773D6 border-solid]': paymentMethodType == 3 }"
         v-if="apple_pay"
         @click="applePaySelect"
       >
-        <img class="buttons-container__logo" src="@/assets/images/svg/icon_apple-pay.svg" alt="apple_pay" />
+        <img class="w-full" src="@/assets/images/svg/icon_apple-pay.svg" alt="apple_pay" />
       </button>
-      <button
-        class="buttons-container__notApple payButton"
-        :class="{ active: paymentMethodType == 2 }"
-        @click="payPalSelect"
-      >
-        <img class="buttons-container__logo" src="@/assets/images/svg/icon_paypal.svg" alt="apple_pay" />
-      </button>
-      <button
-        class="buttons-container__notApple payButton"
-        :class="{ active: paymentMethodType == 1 }"
-        @click="cardSelect"
-      >
-        <img class="buttons-container__logo" src="@/assets/images/icons/card.png" alt="apple_pay" />
-      </button>
+      <div class="flex">
+        <button
+            class="flex items-center flex-1 mr-5px bg-[#F9F9F9] rounded-9px border-2px border-[#fff]"
+            :class="{ 'bg-[#5773D61A] !border-blue': paymentMethodType == 2 }"
+            @click="payPalSelect"
+        >
+          <img class="w-full" src="@/assets/images/svg/icon_paypal.svg" alt="apple_pay" />
+        </button>
+        <button
+            class="flex items-center flex-1 bg-[#F9F9F9] rounded-9px border-2px border-[#fff]"
+            :class="{ 'bg-[#5773D61A] !border-blue': paymentMethodType == 1 }"
+            @click="cardSelect"
+        >
+          <img class="w-full" src="@/assets/images/icons/card.png" alt="apple_pay" />
+        </button>
+      </div>
     </div>
-    <div class="paymentInfo-container">
-        <p class="paymentInfo-container__text">{{ subscription }}</p>
-        <p class="paymentInfo-container__text amount">{{ fullPrice }}</p>
-        <p class="paymentInfo-container__text">{{ discount }}% introductory price discount</p>
-        <p class="paymentInfo-container__text amount" :style="!theme ? 'color: #E44240;' : 'color: #5773D6'" style="font-weight: 700;">-{{ discountAmount }}</p>
+    <div class="py-16px px-0 border-t-1px border-[#F1F3F9] border-b-1px grid grid-cols-[2fr,1fr] gap-y-10px">
+        <p class="font-sans font-normal font-400 text-14px leading-normal text-[#11111380]">{{ subscription }}</p>
+        <p class="font-sans font-normal font-400 text-14px leading-normal text-[#11111380] text-right tracking-0px">{{ fullPrice }}</p>
+        <p class="font-sans font-normal font-400 text-14px leading-normal text-[#11111380]">{{ discount }}% introductory price discount</p>
+        <p
+            class="font-sans font-normal font-700 text-14px leading-normal text-[#11111380] text-right tracking-0px"
+            :class="!theme ? 'text-red' : 'text-blue'">
+          -{{ discountAmount }}
+        </p>
     </div>
-    <div class="paymentInfo-container reverse" style="border: none">
-      <p class="total-container__title">Total</p>
-      <p class="total-container__title" style="text-align: end;">{{ discountPrice }}</p>
-        <p class="paymentInfo-container__text" style="font-size: 12px;">per {{ subscriptionDate }}</p>
-        <p class="paymentInfo-container__text amount" :style="!theme ? 'color: #E44240;' : 'color: #5773D6'" style="font-weight: 700; font-size: 12px;">You just saved {{discountAmount}} ({{discount}}% off)</p>
+    <div class="py-16px px-0 border-t-1px border-[#F1F3F9] border-b-1px grid grid-cols-[0.7fr,2fr] gap-y-10px border-none">
+      <p class="font-normal font-700 text-18px leading-normal text-[#000]">Total</p>
+      <p class="font-normal font-700 text-18px leading-normal text-[#000] text-right">{{ discountPrice }}</p>
+        <p class="font-sans font-normal font-400 text-12px leading-normal text-[#11111380]">per {{ subscriptionDate }}</p>
+        <p
+            class="font-sans font-normal font-700 text-12px leading-normal text-[#11111380] text-right tracking-0px"
+            :class="!theme ? 'text-red' : 'text-blue'">
+          You just saved {{discountAmount}} ({{discount}}% off)
+        </p>
     </div>
   </div>
   <PayPalComponent
-    class=""
-    style="position: sticky; padding-top: 18px"
+    class="sticky pt-18px"
     v-if="paymentMethodType == 2"
     @error="error"
     @success="success"
@@ -53,7 +61,6 @@
     :subscriptionDate="subscriptionDate"
   />
   <CardCompanentModal
-    class=""
     v-if="paymentMethodType == 1"
     @error="error"
     @success="success"
@@ -68,8 +75,7 @@
   <!-- <button @click="success">PAYMENT IS SUCCESSFUL</button> -->
   <div
     id="apple-pay-button"
-    class=""
-    style="width: 100%; display: inline; padding-top: 16px"
+    class="w-full inline pt-16px"
     v-if="paymentMethodType == 3"
   ></div>
 </template>

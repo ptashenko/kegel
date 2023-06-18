@@ -6,15 +6,15 @@
       <div class="ex1-fieldset">
         <div class="ex1-field">
           <input
-            class="ex1-input"
-            type="text"
-            id="nameInput"
-            v-model="name"
-            placeholder="Name on Card"
-            minlength="2"
-            required
-            pattern="[A-Za-z ]{2,}"
-            @click="diselectName"
+              class="ex1-input"
+              type="text"
+              id="nameInput"
+              v-model="name"
+              placeholder="Name on Card"
+              minlength="2"
+              required
+              pattern="[A-Za-z ]{2,}"
+              @click="diselectName"
           />
           <!-- <label class="ex1-label">Name on Card</label
             > -->
@@ -27,10 +27,10 @@
     </div>
 
     <button
-      type="submit"
-      :class="{ submit: loading }"
-      class="card-pay-button red-shadow"
-      @click="authorize"
+        type="submit"
+        :class="{ submit: loading }"
+        class="card-pay-button red-shadow"
+        @click="authorize"
     >
       Get my plan
     </button>
@@ -85,63 +85,63 @@ export default {
           }),
         };
         fetch(
-          "https://int2.kegel.men/api/web-payment/init/card-payment/",
-          requestOptions
+            "https://int2.kegel.men/api/web-payment/init/card-payment/",
+            requestOptions
         )
-          .then((response) => response.json())
-          .then((data) =>
-            this.cardComponent
-              .authorizeWith3ds(data.payment_intent, {}, {})
-              .then((paymentIntent) => {
-                // this.token = paymentIntent;
-                // this.error = "";
-                console.log(paymentIntent);
+            .then((response) => response.json())
+            .then((data) =>
+                this.cardComponent
+                    .authorizeWith3ds(data.payment_intent, {}, {})
+                    .then((paymentIntent) => {
+                      // this.token = paymentIntent;
+                      // this.error = "";
+                      console.log(paymentIntent);
 
-                if(this.ver == 3) {
-                  this.$router.push({
-                    name: "AddressPage",
-                    params: {
-                      paymentIntentId: paymentIntent.id,
-                      name: document.getElementById("nameInput").value,
-                      item: this.item
-                    }
-                  });
-                } else {
-                  const requestOptions = {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                      Authorization: "Bearer test",
-                    },
-                    body: JSON.stringify({
-                      web_user_uuid: localStorage
-                        .getItem("web_user_uuid")
-                        .replaceAll('"', ""),
-                      intent_id: paymentIntent.id,
-                      item: this.item,
-                      name: document.getElementById("nameInput").value,
-                    }),
-                  };
-                  fetch(
-                    "https://int2.kegel.men/api/web-payment/accept/card-payment/",
-                    requestOptions
-                  ).then((response) => {
-                    this.loading = false;
-                    this.$emit("success");
-                    //this.nextUrl();
-                  });
-                }
-                // Send ajax call to create a subscription or to create a card payment source using the paymentIntent ID
-              })
-              .catch((error) => {
-                this.loading = false;
-                this.error = error;
-                this.token = "";
-                console.log(error);
-                this.$emit("error", error);
-                //this.paymentError();
-              })
-          );
+                      if(this.ver == 3) {
+                        this.$router.push({
+                          name: "AddressPage",
+                          params: {
+                            paymentIntentId: paymentIntent.id,
+                            name: document.getElementById("nameInput").value,
+                            item: this.item
+                          }
+                        });
+                      } else {
+                        const requestOptions = {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                            Authorization: "Bearer test",
+                          },
+                          body: JSON.stringify({
+                            web_user_uuid: localStorage
+                                .getItem("web_user_uuid")
+                                .replaceAll('"', ""),
+                            intent_id: paymentIntent.id,
+                            item: this.item,
+                            name: document.getElementById("nameInput").value,
+                          }),
+                        };
+                        fetch(
+                            "https://int2.kegel.men/api/web-payment/accept/card-payment/",
+                            requestOptions
+                        ).then((response) => {
+                          this.loading = false;
+                          this.$emit("success");
+                          //this.nextUrl();
+                        });
+                      }
+                      // Send ajax call to create a subscription or to create a card payment source using the paymentIntent ID
+                    })
+                    .catch((error) => {
+                      this.loading = false;
+                      this.error = error;
+                      this.token = "";
+                      console.log(error);
+                      this.$emit("error", error);
+                      //this.paymentError();
+                    })
+            );
       } else {
         if (!document.getElementsByClassName("ex1-input")[0].checkValidity()) {
           document.getElementById("nameBar").classList.add("invalid-bar");
@@ -206,27 +206,27 @@ export default {
       },
     };
     window.Chargebee.getInstance()
-      .load("components")
-      .then(() => {
-        this.cardComponent = window.Chargebee.getInstance()
-          .createComponent("card", options)
-          .at("#card-combined");
+        .load("components")
+        .then(() => {
+          this.cardComponent = window.Chargebee.getInstance()
+              .createComponent("card", options)
+              .at("#card-combined");
 
-        this.cardComponent.mount();
-        var mixpanelSended = false;
-        this.cardComponent.on("change", (currentState) => {
-          console.log(currentState);
-          this.cardComplete = currentState.complete
-          document.getElementById("cardBar").classList.remove("invalid-bar");
-          if (!currentState.empty && !mixpanelSended) {
-            mixpanelSended = true;
-            this.mixpanel.track("Check-out Started", {
-              type: "CC",
-            });
-          }
-          console.log(currentState);
+          this.cardComponent.mount();
+          var mixpanelSended = false;
+          this.cardComponent.on("change", (currentState) => {
+            console.log(currentState);
+            this.cardComplete = currentState.complete
+            document.getElementById("cardBar").classList.remove("invalid-bar");
+            if (!currentState.empty && !mixpanelSended) {
+              mixpanelSended = true;
+              this.mixpanel.track("Check-out Started", {
+                type: "CC",
+              });
+            }
+            console.log(currentState);
+          });
         });
-      });
   },
 };
 </script>
@@ -309,8 +309,8 @@ export default {
   top: -1rem;
   left: 0;
   @media (min-width: 600px) {
-      font-size: 18px;
-    }
+    font-size: 18px;
+  }
 }
 .ex1-bar {
   position: relative;

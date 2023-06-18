@@ -25,7 +25,7 @@ module.exports = defineConfig({
                         button: '0 0 0 3px rgba(#3E3E3E, .3)',
                         input: 'inset 0px 4px 4px #0000000A',
                         'button-red': '0px 15px 37px rgba(228, 66, 64, 0.64)',
-                        'button-blue': '0px 15px 37px #5773D6'
+                        'button-blue': '0px 15px 37px #5773D6',
                     },
                     colors: {
                         body: '#111113',
@@ -39,7 +39,10 @@ module.exports = defineConfig({
                     },
                     height: {
                         fit: 'fit-content'
-                    }
+                    },
+                    size: {
+                      oneEm: '1em'
+                  },
                 },
                 shortcuts: {
                     'container-mob': 'max-w-311px relative mx-auto sm:(max-w-520px)',

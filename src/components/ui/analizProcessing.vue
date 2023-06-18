@@ -1,9 +1,9 @@
 <template>
-  <div class="loading as"
+  <div class="max-w-400px mt-25px mx-auto mb-0 w-full"
     @click="openPopup"
   >
-    <div class="loading__title">Processing...</div>
-    <div class="text__percent d-flex justify-content-beetwen">
+    <div class="font-400 text-14px leading-normal mb-8px text-center text-[#fff]">Processing...</div>
+    <div class="bg-[#111113] absolute left-0 top-0 bottom-0 w-1/5 flex justify-beetwen">
       <div>
         {{title}}
       </div>
@@ -11,9 +11,9 @@
         {{ percent }}%
       </div>
     </div>
-    <div class="loading__bar">
-      <span></span>
-      <span class="loading__percent" :style="`width: ${percent}%`"></span>
+    <div class="h-10px bg-[#F1F3F9] rounded-9px font-700 text-18px leading-normal flex items-center justify-center relative overflow-hidden text-[#fff]">
+      <span class="relative z-4"></span>
+      <span class="bg-[#111113] absolute left-0 top-0 bottom-0 w-1/5 " :style="`width: ${percent}%`"></span>
     </div>
   </div>
 </template>

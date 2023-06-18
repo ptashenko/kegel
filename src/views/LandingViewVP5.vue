@@ -344,7 +344,7 @@
         :icon="superDiscount.theme ? 'blue' : 'red'"
       />
     </div>
-    <div class="py-48px px-32px max-w-520px mx-auto">
+    <div class="py-48px px-32px max-w-600px mx-auto">
       <FaqBlock :items="faqQuestions.faq" />
       <div class="mt-48px">
         <div class="mb-24px">
@@ -391,36 +391,37 @@
             Contact us here: <a href="mailto:contact@kegel-plan.com" class="info-block__link">contact@kegel-plan.com</a>
           </p>
         </div>
-        <a @click="scrollToPaymentBlock" class="bg-red rounded-9px py-20px px-0 w-full mx-auto mt-32px mb-0 font-700 text-18px leading-tight text-center text-[#fff] border-none block no-underline cursor-pointer shadow-button-red">
+        <a @click="scrollToPaymentBlock" class="bg-red rounded-9px py-20px px-0 w-full mx-auto mt-48px mb-0 font-700 text-18px leading-tight text-center text-[#fff] border-none block no-underline cursor-pointer shadow-button-red">
           Get my plan
         </a>
       </div>
     </div>
     <Footer />
     <vpopup
-      v-if="paymentPopup"
-      textTitle="Select Payment method"
-      class="fixed flex justify-center top-0 left-0 right-0 bottom-0 z-999"
-      @closePopup="cancelPayment"
+        v-if="paymentPopup"
+        textTitle="Select Payment method"
+        position="bottom"
+        @closePopup="cancelPayment"
+        close-button
     >
       <PaymentFormCompanentModal
-        @error="paymentError"
-        @success="nextUrl"
-        @clickButton="closeWindowError"
-        :item="this.item"
-        :auth_price="this.price"
-        :discount="pickedTarifParams.discount"
-        :discountAmount="pickedTarifParams.discountAmount"
-        :discountPrice="pickedTarifParams.discountPrice"
-        :fullPrice="pickedTarifParams.fullPrice"
-        :subscription="pickedTarifParams.subscriptionName"
-        :subscriptionDate="pickedTarifParams.subscriptionPeriod"
-        :theme="superDiscount.theme"
-        id="paymentForm" />
+          @error="paymentError"
+          @success="nextUrl"
+          @clickButton="closeWindowError"
+          :item="this.item"
+          :auth_price="this.price"
+          :discount="pickedTarifParams.discount"
+          :discountAmount="pickedTarifParams.discountAmount"
+          :discountPrice="pickedTarifParams.discountPrice"
+          :fullPrice="pickedTarifParams.fullPrice"
+          :subscription="pickedTarifParams.subscriptionName"
+          :subscriptionDate="pickedTarifParams.subscriptionPeriod"
+          :theme="superDiscount.theme"
+          id="paymentForm" />
     </vpopup>
     <vpopup
       v-if="windowError"
-      :error="windowError"
+      error
       :close-button="false"
     >
       <div class="flex items-center">
@@ -428,7 +429,7 @@
           Your payment was declined. Please try again or use a different payment method.
         </p>
         <img
-          class="ml-16px"
+          class="ml-16px cursor-pointer"
           src="@/assets/images/svg/icon_btn-close-communicate.svg"
           alt="error"
           @click="closeWindowError"
@@ -436,7 +437,7 @@
       </div>
     </vpopup>
     <SuperDiscountWindow
-      v-if="superDiscount.popup && !superDiscWindow"
+      v-if="superDiscount.popup"
       :goal="purpose"
       @close="closeSuperDiscountPopup"
     />
@@ -488,7 +489,6 @@
         apple_pay: true,
         paymentPopup: false,
         faqQuestions,
-        version: getItem('ver'),
         blockFixed: false,
         base: {},
         numreview: 3,
@@ -514,13 +514,6 @@
           }, 200)
         }
       },
-      paymentPopup(newValue, oldValue) {
-        if (oldValue && !newValue && !this.superDiscount.theme) {
-          this.superDiscount.popup = true;
-          this.superDiscount.theme = true;
-          document.body.style.overflow = 'hidden'
-        }
-      }
     },
     methods: {
       scrollToPaymentBlock() {
@@ -566,6 +559,11 @@
       cancelPayment() {
         this.paymentPopup = false;
         document.body.style.overflow = 'auto'
+        if (!this.superDiscount.theme) {
+          this.superDiscount.popup = true;
+          this.superDiscount.theme = true;
+          document.body.style.overflow = 'hidden'
+        }
       },
       nextUrl() {
         this.mixpanel.track('Trial Started',{
@@ -697,14 +695,7 @@
         return priceParams;
       },
       graphText() {
-        switch (this.version) {
-          case 1:
-            return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
-          case 5:
-            return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
-          default:
-            return 'This diagram is non-personalized data based on scientific research'
-        }
+        return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
       },
       imagechart(){
         if(this.jsLocal == 2){

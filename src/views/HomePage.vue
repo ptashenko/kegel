@@ -1,6 +1,6 @@
 <template>
-  <div class="z-9999 fixed h-full w-full bg-[#fff] overflow-hidden" v-if="LOADER">
-    <div class="w-full h-full flex items-center justify-center">
+  <div class="z-9999 fixed h-[calc(100dvh)] w-full bg-[#fff] overflow-hidden" v-if="LOADER">
+    <div class="w-full h-[calc(100dvh)] flex items-center justify-center">
       <lottie-animation
         class="w-48px h-auto"
         ref="anim"

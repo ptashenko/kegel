@@ -602,9 +602,6 @@
       },
     },
     computed: {
-      ...mapGetters([
-        'tracks',
-      ]),
       tarifs() {
         return [
           {

@@ -60,92 +60,38 @@ export default {
     diselectName() {
       document.getElementById("nameBar").classList.remove("invalid-bar");
     },
-    authorize() {
-      if (!this.cardComplete) {
-        document.getElementById("cardBar").classList.add("invalid-bar");
-      } else {
-        document.getElementById("cardBar").classList.remove("invalid-bar");
-      }
+    async authorize() {
+      this.$emit("clickButton");
+      this.loading = true;
 
-      if (document.getElementsByClassName("ex1-input")[0].checkValidity() && this.cardComplete) {
-        document.getElementById("nameBar").classList.remove("invalid-bar");
-
-        this.$emit("clickButton");
-        this.loading = true;
-        const requestOptions = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer test",
-          },
-          body: JSON.stringify({
-            currency_code: "USD",
-            amount: this.auth_price * 100,
-            payment_method_type: "card",
-          }),
-        };
-        fetch(
-            "https://int2.kegel.men/api/web-payment/init/card-payment/",
-            requestOptions
-        )
-            .then((response) => response.json())
-            .then((data) =>
-                this.cardComponent
-                    .authorizeWith3ds(data.payment_intent, {}, {})
-                    .then((paymentIntent) => {
-                      // this.token = paymentIntent;
-                      // this.error = "";
-                      console.log(paymentIntent);
-
-                      if(this.ver == 3) {
-                        this.$router.push({
-                          name: "AddressPage",
-                          params: {
-                            paymentIntentId: paymentIntent.id,
-                            name: document.getElementById("nameInput").value,
-                            item: this.item
-                          }
-                        });
-                      } else {
-                        const requestOptions = {
-                          method: "POST",
-                          headers: {
-                            "Content-Type": "application/json",
-                            Authorization: "Bearer test",
-                          },
-                          body: JSON.stringify({
-                            web_user_uuid: localStorage
-                                .getItem("web_user_uuid")
-                                .replaceAll('"', ""),
-                            intent_id: paymentIntent.id,
-                            item: this.item,
-                            name: document.getElementById("nameInput").value,
-                          }),
-                        };
-                        fetch(
-                            "https://int2.kegel.men/api/web-payment/accept/card-payment/",
-                            requestOptions
-                        ).then((response) => {
-                          this.loading = false;
-                          this.$emit("success");
-                          //this.nextUrl();
-                        });
-                      }
-                      // Send ajax call to create a subscription or to create a card payment source using the paymentIntent ID
-                    })
-                    .catch((error) => {
-                      this.loading = false;
-                      this.error = error;
-                      this.token = "";
-                      console.log(error);
-                      this.$emit("error", error);
-                      //this.paymentError();
-                    })
-            );
-      } else {
-        if (!document.getElementsByClassName("ex1-input")[0].checkValidity()) {
-          document.getElementById("nameBar").classList.add("invalid-bar");
+      try {
+        const payload = {
+          currency_code: "USD",
+          amount: this.auth_price * 100,
+          payment_method_type: "card",
         }
+
+        const { data } = await this.$store.dispatch('initPayment', payload)
+        const paymentIntent = await this.cardComponent.authorizeWith3ds(data.payment_intent, {}, {});
+
+        const acceptPaymentPayload = {
+          web_user_uuid: localStorage
+              .getItem("web_user_uuid")
+              .replaceAll('"', ""),
+          intent_id: paymentIntent.id,
+          item: this.item,
+          name: document.getElementById("nameInput").value,
+        }
+
+        await this.$store.dispatch('acceptPayment', acceptPaymentPayload)
+        this.$emit("success");
+      } catch (error) {
+        this.error = error;
+        this.token = "";
+        console.log('error', error);
+        this.$emit("error", error);
+      } finally {
+        this.loading = false;
       }
     },
   },

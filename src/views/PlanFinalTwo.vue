@@ -385,24 +385,16 @@ export default {
   methods: {
     async addonRequest(){
       this.loading = true;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer test",
-        },
-        body: JSON.stringify({
-          web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
-          item: this.item,
-        }),
-      };
+      const payload = {
+        web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
+        item: this.item,
+      }
         try {
-          const { status } = await fetch("https://int2.kegel.men/api/web-payment/addons/", requestOptions)
-          if (status === 200 || status === 204) {
-            this.payingSuccess()
-          } else {
-            this.paymentError()
-          }
+          const { status } = await this.$store.dispatch('addonFetch', payload)
+          status === 200 || status === 204
+              ? this.payingSuccess()
+              : this.paymentError()
+
         } catch (err) {
           this.paymentError()
         } finally {

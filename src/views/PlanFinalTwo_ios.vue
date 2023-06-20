@@ -283,32 +283,25 @@ export default {
     PaymentFormCompanent
 },
   methods: {
-    addonRequest(){
+    async addonRequest(){
       this.loading = true;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer test",
-        },
-        body: JSON.stringify({
-          web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
-          item: this.item,
-        }),
-      };
-      fetch(
-        "https://int2.kegel.men/api/web-payment/addons/",
-        requestOptions
-      ).then((response) => {
-        console.log(response)
-        if (response.status == 204) {
-          this.loading = false;
-          this.payingSuccess();
-        } else {
-          this.loading = false;
-          this.paymentError()
-        }
-      });
+      const payload = {
+        web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
+        item: this.item,
+      }
+
+      try {
+        const { status } = await this.$store.dispatch('addonFetch', payload)
+        status === 200 || status === 204
+            ? this.payingSuccess()
+            : this.paymentError()
+
+      } catch (err) {
+        this.paymentError()
+      } finally {
+        this.loading = false;
+      }
+
     },
     popupPay(){
       let body = document.querySelector('body')

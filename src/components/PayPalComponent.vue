@@ -7,74 +7,41 @@ export default {
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
   props: ["item", "discountPrice", "fullPrice", "subscriptionDate"],
+  computed: {
+    isIphone() {
+      return window.navigator.platform == "iPhone"
+    }
+  },
   methods: {
-    processPayPal(token) {
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer test",
-        },
-        body: JSON.stringify({
-          web_user_uuid: localStorage
+    async processPayPal(token) {
+      const payload = {
+        web_user_uuid: localStorage
             .getItem("web_user_uuid")
             .replaceAll('"', ""),
-          token_id: token,
-          item: this.item,
-        }),
-      };
-      fetch(
-        "https://int2.kegel.men/api/web-payment/accept/pay-pal-payment",
-        requestOptions
-      )
-        .then((response) => {
-          this.$emit("success");
-          let isiPhone = window.navigator.platform == "iPhone"
-          // let mediaQuery = window.matchMedia('(max-width: 480px)');
-          if (isiPhone) {
-            let body = document.querySelector('body')
-            body.classList.remove('fixed');
-            if (!sessionStorage.getItem('disableFitness')) {
-              if (sessionStorage.getItem('ios_v1')) {
-                this.$router.push('PlanFinalTwo_ios')
-              } else {
-                this.$router.push('PlanFinalTwo')
-              }
-            } else {
-              this.$router.push("Whatsapp");
-            }
-          }else{
-            let body = document.querySelector('body')
-            body.classList.remove('fixed');
-            this.$router.push('Whatsapp')
-          }
-        });
+        token_id: token,
+        item: this.item,
+      }
+
+      await this.$store.dispatch('payPalAcceptPayemnt', payload)
+      this.$emit("success");
+      window.document.body.classList.remove('remove')
+      if (this.isIphone) {
+        const disableFitness = sessionStorage.getItem('disableFitness')
+        const ios_v1 = sessionStorage.getItem('ios_v1');
+        if (!disableFitness) {
+          ios_v1 ? this.$router.push('PlanFinalTwo_ios') : this.$router.push('PlanFinalTwo')
+        } else {
+          this.$router.push("Whatsapp");
+        }
+      } else {
+        this.$router.push('Whatsapp')
+      }
     },
-    onClickPayPal() {
-      this.$emit("clickButton");
-      this.mixpanel.track("Check-out Started", {
-        type: "PayPal",
-      });
-    },
-  },
-  mounted() {
-    {
-      var intent = null;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer test",
-        },
-      };
-      fetch(
-        "https://int2.kegel.men/api/web-payment/init/pay-pal-payment/",
-        requestOptions
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          if (this.$refs.paypalButton.childElementCount == 0) {
-            window.paypal.Button.render(
+    async paypalInitPayment() {
+      try {
+        const { data } = await this.$store.dispatch('payPalInitPayemnt');
+        if (this.$refs.paypalButton?.childElementCount === 0) {
+          window.paypal.Button.render(
               {
                 env: "production", // Or 'sandbox',
                 commit: true, // Show a 'Pay Now' button
@@ -98,33 +65,28 @@ export default {
                   this.processPayPal(data.billingToken);
                 },
                 onCancel: (data, actions) => {
-                 this.$emit("error", data);
+                  this.$emit("error", data);
                 },
                 onError: (data, actions) => {
-                 this.$emit("error", data);
+                  this.$emit("error", data);
                 },
               },
               "#paypal-button"
-            );
-          }
-        });
-
-      //     window.Chargebee.getInstance().load("paypal").then((paypalHandler) => {
-
-      //         paypalHandler.setPaymentIntent(this.payPalIntent);
-      //         return paypalHandler.mountPaymentButton("#paypal-button").then(() => {
-      //             // once button mounted
-      //             return paypalHandler.handlePayment();
-      //         })
-      //         .then((paymentIntent) => {
-      //             // handle success
-      //         })
-      //         .catch((error) => {
-      //           //this.paymentError();
-      //             // handle error
-      //         });
-      // });
-    }
+          );
+        }
+      } catch(error) {
+        console.error(error)
+      }
+    },
+    onClickPayPal() {
+      this.$emit("clickButton");
+      this.mixpanel.track("Check-out Started", {
+        type: "PayPal",
+      });
+    },
+  },
+  mounted() {
+    this.paypalInitPayment()
     // container IS finished rendering to the DOM
   },
 };

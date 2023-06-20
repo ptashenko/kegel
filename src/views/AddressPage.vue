@@ -125,6 +125,9 @@ export default {
         region: this.region,
         post: this.post
       }
+    },
+    isIphone() {
+      return window.navigator.platform == "iPhone"
     }
   },
   beforeRouteLeave(to, from, next) {
@@ -210,84 +213,58 @@ export default {
         }
       }
     },
-    sendRequestAddon() {
-      console.log('aa')
+    async sendRequestAddon() {
       this.loading = true;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer test",
-        },
-        body: JSON.stringify({
-          web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
-          item: this.$route.params.item,
-        }),
-      };
-      fetch(
-          "https://int2.kegel.men/api/web-payment/addons/",
-          requestOptions
-      ).then((response) => {
-        console.log(response)
-        if (response.status == 204) {
-          this.loading = false;
-          this.$router.push("Whatsapp");
-        } else {
-          this.loading = false;
-          this.$router.push("Whatsapp");
-        }
-      });
+      const payload = {
+        web_user_uuid: localStorage.getItem("web_user_uuid").replaceAll('\"',''),
+        item: this.$route.params.item,
+      }
+
+      try {
+        const { status } = await this.$store.dispatch('addonFetch', payload)
+        status === 200 || status === 204 && this.$router.push("Whatsapp");
+
+      } catch (err) {
+        console.error(err)
+      } finally {
+        this.loading = false;
+      }
     },
-    sendRequest() {
+    async sendRequest() {
       this.loading = true;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer test",
-        },
-        body: JSON.stringify({
-          web_user_uuid: localStorage
-              .getItem("web_user_uuid")
-              .replaceAll('"', ""),
-          intent_id: this.$route.params.paymentIntentId,
-          item: this.$route.params.item,
-          name: this.$route.params.name,
-          address1: this.address1,
-          address2: this.address2,
-          city: this.city,
-          state: this.region,
-          country: this.country,
-          zip: this.post
-        }),
-      };
-      fetch(
-          "https://int2.kegel.men/api/web-payment/accept/card-payment/",
-          requestOptions
-      ).then((response) => {
-        if (response.status == 204 || response.status == 200) {
-          this.loading = false;
-          let isiPhone = window.navigator.platform == "iPhone"
-          // let mediaQuery = window.matchMedia('(max-width: 480px)');
-          if (isiPhone) {
-            let body = document.querySelector('body')
-            body.classList.remove('fixed');
-            if (!sessionStorage.getItem('disableFitness')) {
-              if (sessionStorage.getItem('ios_v1')) {
-                this.$router.push('PlanFinalTwo_ios')
-              } else {
-                this.$router.push('PlanFinalTwo')
-              }
-            } else {
-              this.$router.push("Whatsapp");
-            }
-          }else{
-            let body = document.querySelector('body')
-            body.classList.remove('fixed');
-            this.$router.push('Whatsapp')
+      const payload = {
+        web_user_uuid: localStorage
+            .getItem("web_user_uuid")
+            .replaceAll('"', ""),
+        intent_id: this.$route.params.paymentIntentId,
+        item: this.$route.params.item,
+        name: this.$route.params.name,
+        address1: this.address1,
+        address2: this.address2,
+        city: this.city,
+        state: this.region,
+        country: this.country,
+        zip: this.post
+      }
+
+      try {
+        const {data, status} = await this.$store.dispatch('acceptPayment', payload)
+        if (status === 204 || status === 200) {
+          window.document.body.classList.remove('fixed')
+          const disableFitness = sessionStorage.getItem('disableFitness')
+          const ios_v1 = sessionStorage.getItem('ios_v1');
+          if (!disableFitness) {
+            ios_v1 ? this.$router.push('PlanFinalTwo_ios') : this.$router.push('PlanFinalTwo')
+          } else {
+            this.$router.push("Whatsapp");
           }
         }
-      });
+      } catch (err) {
+          console.error(err)
+      } finally {
+          this.loading = false
+      }
+
     },
   },
 

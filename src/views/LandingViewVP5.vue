@@ -11,7 +11,7 @@
         </span>
         <span>expires in: </span>
         <countdown
-          v-if="timer"
+          v-model:restart="timerRestarter"
           class="inline"
         />
       </p>
@@ -32,8 +32,8 @@
         </div>
         <div class="ml-15px">
           <p class="font-sans font-700 text-20px leading-tight" :class="[superDiscount.theme ? 'text-blue' : 'text-red']">{{pickedTarifParams.discount}}% discount</p>
-          <p v-if="timer" class="flex font-sans text-16px leading-normal m-0 text-[#fff]">
-            Expires in:	&nbsp;  <countdown />
+          <p class="flex font-sans text-16px leading-normal m-0 text-[#fff]">
+            Expires in:	&nbsp;  <countdown v-model:restart="timerRestarter" />
           </p>
         </div>
       </div>
@@ -159,13 +159,12 @@
           </template>
 
 
-          <button
-            v-if="this.base.length > this.numreview"
-            class="text-center text-14px leading-normal font-sansBold text-blue bg-none cursor-pointer w-full mt-8px sm:(text-18px leading-normal)"
-            @click="showReview"
-          >
-            Show more
-          </button>
+          <base-button
+              v-if="this.base.length > this.numreview"
+              label="Show more"
+              @click="showReview"
+              text-only
+          />
         </div>
     <div class="absolute top-[100%] w-full h-70px" id="selectPlan"></div>
     </div>
@@ -334,9 +333,13 @@
       <p v-else class="p-16px my-32px mx-0 font-sans font-400 text-12px leading-normal text-[#fff] opacity-50 border-2px border-[#FFFFFF3F] rounded-9px">
         By clicking «Get my plan», I agree to pay <b>{{ pickedTarifParams.discountPrice }}</b> for my plan and that if I do not cancel before the end of the <b>{{ pickedTarifParams.subscriptionPeriod }}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>{{ pickedTarifParams.fullPrice }}</b> every <b>{{ pickedTarifParams.subscriptionPeriod }}</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
       </p>
-      <button @click="openPaymentPopup" :disabled="!subscribe" class="rounded-100px font-sans py-20px px-0 w-full mx-auto mt-0 mb-64px font-700 text-18px leading-tight text-center text-[#fff] border-none block cursor-pointer" :class="[superDiscount.theme ? 'bg-blue shadow-button-blue' : 'bg-red shadow-button-red']">
-        Get my plan
-      </button>
+      <base-button
+          label="Get my plan"
+          :theme="colorTheme"
+          :disabled="!subscribe"
+          class="mb-64px"
+          @click="openPaymentPopup"
+      />
 
       <Guarantee
         :borderColor="superDiscount.theme ? '#5773D6' : '#E44240'"
@@ -437,7 +440,7 @@
       </div>
     </vpopup>
     <SuperDiscountWindow
-      v-if="superDiscount.popup"
+      v-if="superDiscount.popup && !superWindowWasOpened"
       :goal="purpose"
       @close="closeSuperDiscountPopup"
     />
@@ -460,11 +463,13 @@
   import { getItem } from '@/common/localStorage';
   import dayjs from 'dayjs';
   import '@/assets/css/animations.css'
+  import BaseButton from "@/components/ui/BaseButton.vue";
 
   export default {
     name: 'LandingView',
     inject: ['mixpanel'],
     components: {
+      BaseButton,
       ButtonField,
       vpopup,
       countdown,
@@ -483,12 +488,12 @@
           popup: false,
           theme: false,
         },
-        timer: true,
         superDiscWindow: localStorage.getItem('superDiscWindow'),
         subscribe: 2,
         apple_pay: true,
         paymentPopup: false,
         faqQuestions,
+        timerRestarter: false,
         blockFixed: false,
         base: {},
         numreview: 3,
@@ -498,22 +503,13 @@
         polling: null,
         price: localStorage.getItem('price'),
         numanimate: 1,
+        superWindowWasOpened: localStorage.getItem('superDiscWindow'),
         show: false,
         imageitem: require(`@/assets/images/json/Step_1_1.json`),
         AddPurposeCom: false,
         addItem: false,
         numanim: null,
       };
-    },
-    watch: {
-      timer(newValue) {
-        if (!newValue) {
-          console.log('destroued')
-          setTimeout(() => {
-            this.timer = true
-          }, 200)
-        }
-      },
     },
     methods: {
       scrollToPaymentBlock() {
@@ -527,7 +523,8 @@
         const superDiscount = JSON.parse(localStorage.getItem('superDiscount'))
         this.superDiscount.theme = superDiscount ? superDiscount : false;
         if (this.superDiscount.theme) {
-          this.superDiscount.popup = true        }
+          this.superDiscount.popup = true
+        }
       },
       setDate(index) {
         return dayjs().add(index,'month').format("MMM")
@@ -535,8 +532,6 @@
       closeSuperDiscountPopup() {
         this.superDiscount.popup = false;
         localStorage.setItem('superDiscWindow', true)
-        localStorage.removeItem('timer')
-        this.timer = false
         const tarifSelectorElem = document.getElementById('selectPlan');
         tarifSelectorElem.scrollIntoView()
         document.body.style.overflow = 'unset'
@@ -557,6 +552,9 @@
         localStorage.setItem('usersSubscriptionInfo', JSON.stringify(pickedSubscription))
       },
       cancelPayment() {
+        if (!this.superDiscount.theme) {
+          this.timerRestarter = true
+        }
         this.paymentPopup = false;
         document.body.style.overflow = 'auto'
         if (!this.superDiscount.theme) {
@@ -641,6 +639,9 @@
             chargebeeId: this.superDiscount.theme ? "kegel-6-trial-USD-Every-3-months" : "kegel-3-trial-USD-Every-3-months"
           }
         ]
+      },
+      colorTheme() {
+        return this.superDiscount.theme ? 'blue' : 'red'
       },
       pickedTarifParams() {
         const priceParams = {
@@ -768,7 +769,6 @@
       }
     },
     mounted() {
-      this.timer = true
       this.superDiscountCheck()
       this.apple_pay = true;
       this.numanim = setInterval(() => {

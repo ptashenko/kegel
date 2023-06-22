@@ -3,7 +3,7 @@
   <Transition name="slider" mode="out-in" appear>
 
       <div class="container-mob">
-        <h2 class="font-displayBold text-20px leading-normal text-center m-0 mt-16px sm:(text-30px leading-normal)">
+        <h2 class="font-displayBold text-20px leading-normal text-center m-0 sm:(text-30px leading-normal)">
           This is how much it took to create your plan
         </h2>
         <div class="flex justify-evenly mt-48px">

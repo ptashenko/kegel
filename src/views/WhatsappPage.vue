@@ -5,7 +5,7 @@
         Your Kegel Plan is waiting for you on your email
       </h2>
       <p class="font-sans font-400 text-16px leading-normal p-0 pt-24px text-center text-body">
-        Instruction on <b>how to access and activate your personal plan</b> has been sent to you at <span style="color: #5773D6; font-weight: bold;">{{ this.email }}</span>
+        Instruction on <b>how to access and activate your personal plan</b> has been sent to you at <span class="text-blue font-bold">{{ this.email }}</span>
       </p>
 
       <div class="flex flex-col mb-32px text-center">
@@ -74,7 +74,7 @@ export default {
     setTimeout(() => {
       window.scrollTo(0, -100)
       document.body.style.overflow = 'unset'
-      this.email = localStorage.getItem('email').replaceAll('\"','');
+      this.email = localStorage.getItem('email')?.replaceAll('\"','');
     }, 100)
   },
   created () {

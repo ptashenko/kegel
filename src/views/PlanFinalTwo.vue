@@ -36,7 +36,7 @@
       >
       </video-background>
     </div>
-    <div class="flex flex-col mb-24px">
+    <div class="flex flex-col mb-32px">
       <div v-if="open !== 2" class="text-14px leading-normal mt-32px sm:(text-18px leading-normal) flex items-center">
         <img
           v-if="open == 1"
@@ -96,7 +96,7 @@
           v-if="open !== 2"
           :disc-price="open === 1 ? price.discPrice : price.superDiscPrice"
           :full-price="price.fullPrice"
-          class="m-0 mt-24px mb-32px"
+          class="m-0 mt-24px"
           :color="open === 1 ? '#E44240' : '#5773D6'"
           :icon="open === 1 ? 'red-discount-flag' : 'blue-discount-flag'"
         />
@@ -156,87 +156,53 @@
     </div>
 
 
-    <div v-if="open == 1">
-      <button-field
-
-        text='Add to my plan'
-        theme="Back"
-        class="max-w-310px m-0 mx-auto z-0 bg-red shadow-button-red"
-        :class="{ submit: loading }"
-        @click="addonRequest"
+    <div
+        v-if="open == 1"
+        class="max-w-310px"
+    >
+      <base-button
+          label='Add to my plan'
+          rounded="half"
+          :loader="loading"
+          @click="addonRequest"
       />
-      <!-- <button-field
-        text='Add to my plan'
-        theme="Back"
-        class="footer-controls__button red loader"
-        :class="{ hiden: isActive }"
-        @click="loadingBtn"
-      /> -->
-      <div
-        v-show="isActive"
-        class="max-w-310px m-0 mx-auto z-0 flex items-center py-16px px-0 justify-center bg-red rounded-9px mx-auto mt-16px mb-0"
-      >
-        <lottie-animation
-          class="w-16px h-16px sm:(w-25px h-25px)"
-          ref="anim"
-          :animationData="require(`@/assets/images/json/loader_white.json`)"
-          :loop="mytrue"
-          :autoPlay="true"
-          :speed="1"
-        />
-      </div>
     </div>
     <div
       v-if="open == 3"
+      class="max-w-310px"
     >
-      <button-field
-        text='Add to my plan'
-        theme="Back"
-        class="max-w-310px m-0 mx-auto z-0 bg-blue shadow-button-blue"
-        :class="{ submit: loading }"
-        @click="addonRequest"
+      <base-button
+          label='Add to my plan'
+          theme="blue"
+          rounded="half"
+          :loader="loading"
+          @click="addonRequest"
       />
-      <!-- <button-field
-        text='Add to my plan'
-        theme="Back"
-        class="footer-controls__button loader bg-blue"
-        :class="{ hiden: isActive }"
-        @click="loadingBtn"
-      /> -->
-      <div
-        v-show="isActive"
-        class="max-w-310px m-0 mx-auto z-0 flex items-center py-16px px-0 justify-center bg-blue rounded-9px mx-auto mt-16px mb-0"
-      >
-        <lottie-animation
-          class="w-16px h-16px sm:(w-25px h-25px)"
-          ref="anim"
-          :animationData="require(`@/assets/images/json/loader_white.json`)"
-          :loop="mytrue"
-          :autoPlay="true"
-          :speed="1"
-        />
-      </div>
     </div>
-    <div v-if="active && open == 1"
-      class="relative text-center font-sansMedium text-14px leading-normal opacity-50 mx-auto my-32px cursor-pointer sm:(text-16px leading-normal mb-48px)"
-      @click="showModal"
-    >
-    I don’t want to accelerate my results &gt;
-    </div>
+    <base-button
+        v-if="active && open == 1"
+        label="I don’t want to accelerate my results &gt;"
+        text-only
+        class="font-sansMedium !text-body text-14px leading-normal opacity-50 my-32px sm:(text-16px leading-normal mb-48px)"
+        @click="showModal"
+    />
     <div v-else-if="open == 2" class="text-center">
-      <button
-        class="bg-blue border-none rounded-9px py-16px px-37px font-sansMedium text-18px leading-normal text-[#fff] mt-32px cursor-pointer mb-40px w-full shadow-button-blue"
-        @click="closePopup"
-      >
-      Continue
-      </button>
+      <base-button
+          label='Continue'
+          theme="blue"
+          class="!mt-32px !mb-40px"
+          rounded="half"
+          :loader="loading"
+          @click="closePopup"
+      />
     </div>
-    <div v-else
-      class="relative text-center font-sansMedium text-14px leading-normal opacity-50 mx-auto my-32px cursor-pointer sm:(text-16px leading-normal mb-48px)"
-      @click="withoutUpsaleDiscounted"
-    >
-    I give up accelerated results forever &gt;
-    </div>
+    <base-button
+        v-else
+        label="I give up accelerated results forever &gt;"
+        text-only
+        class="font-sansMedium !text-body text-14px leading-normal opacity-50 my-32px sm:(text-16px leading-normal mb-48px)"
+        @click="withoutUpsaleDiscounted"
+    />
       <div>
         <p v-if="subscriotionInfo.id === 1 && open !== 2" class="font-sansLight text-12px leading-normal opacity-50 text-center text-14px leading-normal">
           In addition to your subscription, your account will be charged <b>{{ this.open === 1 ? this.price.discPrice : this.price.superDiscPrice }}</b> for the add-on as you click "Add to my plan". Item on this page is a <b>1 month</b> subscription. Unless you cancel it in your profile before the end of then-current period, you agree that the subscription will renew automatically at the end of each period. You can cancel the subscription online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
@@ -297,6 +263,7 @@ import DiscountFlag from '@/components/DiscountFlag.vue';
 import vpopup from '@/components/modal/v-popup.vue';
 import ButtonField from '@/components/ui/Button.vue';
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default {
   name: 'PlanFinalTwo',
@@ -327,6 +294,7 @@ export default {
     }
   },
   components: {
+    BaseButton,
     Review,
     vpopup,
     ButtonField,

@@ -14,7 +14,6 @@
   <transition name="translate" mode="out-in">
     <div>
       <div class="mb-[-5px]">
-        <header-layout fixed :dark="false" />
           <img v-if="!device.mobile" src="@/assets/images/header-desktop.jpg" class="inline-block w-full" />
           <img v-else src="@/assets/images/header.png" class="inline-block w-full" />
           <div class="relative max-w-311px top-[-16vw] mx-auto sm:(top-[-8vw] px-40px max-w-600px box-border)">

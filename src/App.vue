@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="min-h-100vh" :class="[dark ? 'dark-theme' : 'light-theme']">
-    <header-layout :isDark="dark" />
+  <div id="app" :class="appClasses">
+    <header-layout :dark="dark" />
     <router-view />
   </div>
 </template>
@@ -24,10 +24,12 @@ export default {
   computed: {
     ...mapGetters(['content']),
     dark() {
-      if(this.content) {
-       return this.content?.dark ? true : false
-      } else {
-        return false;
+      return this.content?.dark ?? false
+    },
+    appClasses() {
+      return {
+        'min-h-100vh bg-[#fff]': true,
+        '!bg-body': this.dark
       }
     }
   },

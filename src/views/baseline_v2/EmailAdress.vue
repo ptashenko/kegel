@@ -1,7 +1,7 @@
 <template>
         <div class="max-w-600px mx-auto px-32px pt-0 pb-25px h-full flex flex-col max-h-85vh min-h-87vh">
           <div class="h-full flex flex-col justify-between flex-1">
-              <div class="mt-24px max-w-375px mx-auto">
+              <div class="max-w-375px mx-auto">
                 <img src="@/assets/images/svg/icon_email-img.svg" alt="email" class="mx-auto block">
                 <div class="fond-displayBold font-bold text-24px leading-normal text-center my-24px mx-auto sm:(text-30px leading-normal mb-16px)">
                   Where to send your plan?
@@ -9,13 +9,13 @@
                 <p class="font-sans text-14px leading-normal text-body opacity-75 mx-auto text-center max-w-400px mb-32px sm:(text-18px leading-normal)">
                   <span class="font-bold">Double-check</span> that your email is entered correctly because you can get your plan only once
                 </p>
-                <label class="relative text-center mx-auto block w-fit" for="email">
-                  <input v-model="upValue" id="email" class="bg-[#F1F3F9] shadow-input rounded-9px border-none text-14px leading-normal p-17px text-body w-311px sm:w-375px relative outline-none focus:(border-none outline-none) active:(border-none outline-none) placeholder-body/50" type="email"
-                    :placeholder="email || 'Enter your email here'">
-                  <span class="w-17px">
-                    <img src="@/assets/images/svg/icon_lock.svg" alt="img" class="absolute top-[50%] right-20px transform translate-y-[-50%]">
-                  </span>
-                </label>
+                <BaseInput
+                    v-model="upValue"
+                    id="email"
+                    type="email"
+                    :placeholder="name || 'Enter your email here'"
+                    icon="icon_lock"
+                />
                 <div
                   v-if="email"
                   class="border-none rounded-9px p-16px font-sansMedium text-18px leading-normal text-[#fff] my-32px mx-auto max-w-311px text-center bg-red cursor-pointer"

@@ -27,21 +27,24 @@
         </div>
       </div>
     </div>
-    <button
-        type="submit"
-        :class="[theme ? 'bg-blue shadow-button-blue' : 'bg-red shadow-button-red', { submit: loading }]"
+    <base-button
+        label="Continue"
+        button-type="submit"
+        :loader="loading"
         class="card-pay-button"
         @click="authorize"
-    >
-      Continue
-    </button>
+        :theme="theme ? 'blue' : 'red'"
+    />
     <!-- <div class="error" role="alert" v-if="error">{{ error }}</div> -->
     <!-- <div class="token" v-if="token">{{ token }}</div> -->
   </div>
 </template>
 
 <script>
+import BaseButton from "@/components/ui/BaseButton.vue";
+
 export default {
+  components: {BaseButton},
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
   props: ["item","theme", "auth_price", "discountPrice", "fullPrice", "subscriptionDate"],

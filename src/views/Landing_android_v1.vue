@@ -99,7 +99,7 @@
           <span class="font-sansSemiBold">Payment method</span>
         </div>
         <div class="flex flex-col items-end">
-          <span class="cursor-pointer opacity-75 text-14px leading-normal font-displaySemiBold" @click="showModal3">Why now?</span>
+          <span class="cursor-pointer opacity-75 text-14px leading-normal font-displaySemiBold" @click="toggleModal">Why now?</span>
         </div>
       </div>
       <hr class="bg-[#F1F3F9] h-1px max-w-320px my-16px mx-auto border-none sm:(max-w-full)">
@@ -125,9 +125,14 @@
         <p class="font-displaySemiBold mb-12px">Need help?</p>
         <p class="text-14px leading-normal sm:(text-16px leading-normal)">Contact us here: <span class="text-[#E44240]">contact@kegel-plan.com</span></p>
       </div>
-      <button class="bg-[#E44240] text-[#fff] rounded-9px border-none w-full max-w-310px text-18px leading-normal py-16px my-48px font-sans mx-auto block focus:(bg-[#F5423F]) sm:max-w-373px" v-scroll-to="'#paypal'">
-        Get my plan
-      </button>
+      <base-button
+          label="Get my plan"
+          tag="a"
+          rounded="half"
+          class="max-w-310px !my-48px sm:max-w-373px"
+          :shadow="false"
+          url="#paypal"
+      />
       <p class="text-12px leading-normal opacity-50 text-center sm:(text-14px leading-normal)">
         <span class="font-sansSemiBold text-12px leading-normal sm:(text-14px leading-normal)">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="font-sansSemiBold text-12px leading-normal sm:(text-14px leading-normal)">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="font-sansSemiBold text-12px leading-normal sm:(text-14px leading-normal)">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$4.2) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
       </p>
@@ -136,8 +141,8 @@
   <Footer />
   <vpopup
       textTitle="Why now?"
-      v-if="popupVisible3"
-      @closePopup="() => popupVisible3 = false"
+      v-if="modal"
+      @closePopup="toggleModal"
   >
     <p class="opacity-75 mb-16px text-14px leading-normal sm:(text-16px leading-normal)">
       We ask for your payment information now, so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.
@@ -145,13 +150,15 @@
     <p class="opacity-75 text-14px leading-normal sm:(text-16px leading-normal)">
       If you cancel anytime before the end of the 7-day trial, you won't be charged.
     </p>
-    <button
-        class="bg-[#E44240] border-none rounded-9px py-16px px-37px font-sansMedium text-18px leading-normal text-[#fff] mt-32px min-w-180px "
-        :class="{'bg-[#E44240]': closeActive}"
-        @click="closePopup3"
-    >
-      Got it
-    </button>
+    <base-button
+        label="Got it"
+        rounded="half"
+        tag="a"
+        url="#paypal"
+        class="max-w-180px !mt-48px !mb-0"
+        :shadow="false"
+        @click="toggleModal"
+    />
   </vpopup>
   <vpopup
       class="flex justify-center items-top fixed z-9
@@ -183,11 +190,13 @@ import countdown from '@/components/Countdown.vue';
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 import RatingStars from '@/components/RatingStars.vue';
 import Footer from '@/components/Footer.vue';
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default {
   name: 'Landing_android_v1',
   inject: ['mixpanel'],
   components: {
+    BaseButton,
     ButtonField,
     vpopup,
     countdown,
@@ -198,15 +207,10 @@ export default {
   data() {
     return {
       item: "kegel_5-USD-Weekly",
-      VueScrollTo: require('vue-scrollto'),
       blockFixed: false,
       apple_pay: true,
-      dataPP2:'September 25',
-      ggg:0,
-      textBtn:'Start my plan',
+      ggg: 0,
       email: null,
-      isEmailTouched: false,
-      upValue: '',
       step_2: false,
       base: {},
       numreview: 3,
@@ -214,15 +218,7 @@ export default {
       windowError: false,
       numTimeError:0,
       polling: null,
-      popupVisible: false,
-      popupVisible2: false,
-      popupVisible3: false,
-      isActiveYes: false,
-      isActiveNo: false,
-      closeActive: false,
-      scrollPosition: 0,
       price: localStorage.getItem('price'),
-      oldprice: 19.88,
       numanimate: 1,
       show: false,
       imageitem: require(`@/assets/images/json/Step_1_1.json`),
@@ -230,6 +226,7 @@ export default {
       AddPurposeCom: false,
       addItem: false,
       numanim: null,
+      modal: false
     };
   },
   methods: {
@@ -269,102 +266,9 @@ export default {
       clearInterval(this.polling);
       this.windowError = false;
     },
-    showModal() {
-      sessionStorage.setItem('scrollto', window.pageYOffset)
-      console.log(window.pageYOffset);
-      this.mixpanel.track('Comfortable Amount Shown')
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      this.popupVisible = true
-      body.classList.add('fixed');
-    },
-    showModal2() {
-      sessionStorage.setItem('scrollto', window.pageYOffset)
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      this.popupVisible2 = true
-      this.step_2 = true
-      body.classList.add('fixed');
-    },
-    showModal3() {
-      sessionStorage.setItem('scrollto', window.pageYOffset)
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      this.popupVisible3 = true
-      body.classList.add('fixed');
-    },
-    closePopup(e){
-      const height = sessionStorage.getItem('scrollto')
-      setTimeout(function(){ window.scrollTo( 0, height ) })
-      console.log(window.pageYOffset);
-      localStorage.setItem('Comfortable amount Pop-up', 'true')
-      if(this.closeActive){
-        this.mixpanel.track('Comfortable Amount Complted', {
-          amount: this.price
-        })
-      }
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      let x = e.target
-      if(x.classList.contains('active')){
-        this.popupVisible = false
-        body.classList.remove('fixed');
-      }
-      // VueScrollTo.scrollTo('#Benefits');
-
-    },
-    closePopup2(e){
-      localStorage.setItem('Button step_2', 'true')
-      this.mixpanel.track('Landing Page 2 Shown')
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      let x = e.target
-      if(x.classList.contains('active')){
-        this.popupVisible2 = false
-        body.classList.remove('fixed');
-      }
-
-      window.scrollTo({
-        top: document.getElementById('paypal').offsetTop,
-        left: 0,
-        behavior: "smooth",
-      });
-
-      //  VueScrollTo.scrollTo('#paymentForm');
-     // this.getPayPalIntent();
-    },
-    async scrollToForm() {
-
-    },
-    closePopup3(e) {
-      const height = sessionStorage.getItem('scrollto')
-      setTimeout(function(){ window.scrollTo( 0, height ) })
-      let body = document.querySelector('body')
-      if  (window.navigator.platform == "iPhone") {
-        body = document.querySelector('.landing')
-        console.log("iphone")
-      }
-      let x = e.target
-      if(x.classList.contains('bg-[#E44240]')){
-        this.popupVisible3 = false
-        body.classList.remove('fixed');
-      }
-      // VueScrollTo.scrollTo('#paypal');
+    toggleModal () {
+      this.modal = !this.modal
+      this.modal ? window.document.body.style.overflow = 'hidden' : window.document.body.style.overflow = 'unset'
     },
     showReview() {
       this.numreview = this.numreview + 2;
@@ -374,10 +278,9 @@ export default {
   watch:{
     ggg(){
       if(this.ggg == 1){
-        this.showModal("this.popupVisible" , false)
+        this.toggleModal()
       }
     },
-
   },
   computed: {cal(){
       let json = localStorage.getItem('track');

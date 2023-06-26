@@ -18,12 +18,10 @@
           <img v-if="!device.mobile" src="@/assets/images/header-desktop.jpg" class="inline-block w-full" />
           <img v-else src="@/assets/images/header.png" class="inline-block w-full" />
           <div class="relative max-w-311px top-[-16vw] mx-auto sm:(top-[-8vw] px-40px max-w-600px box-border)">
-            <div class="font-displayBold text-32px leading-tight text-center text-shadow-title sm:(font-600 text-40px leading-tight)">
-              Improve Sexual<br>Health & Wellness
-            </div>
-            <div class="font-displaySemiBold text-18px leading-normal text-center my-15px opacity-76 sm:(font-600 text-24px)">
-              Select a goal to get a step-by-step plan
-            </div>
+            <h2 class="font-displayBold text-32px leading-tight text-center text-shadow-title sm:(font-600 text-40px leading-tight)" v-html="$t('home.title')" />
+            <h3 class="font-displaySemiBold text-18px leading-normal text-center my-15px opacity-76 sm:(font-600 text-24px)">
+              {{$t('home.subtitle')}}
+            </h3>
             <div class="w-20px h-auto text-center mx-auto">
               <lottie-animation
                 ref="arrowmain"
@@ -41,10 +39,10 @@
                   @click="getData(track)"
                 >
                   <span class="font-700 text-16px leading-normal text-center text-white sm:(text-22px leading-normal)">
-                    {{ $t(`tracks.titleShortQuiz.${track.titleShortQuiz}`) }}
+                    {{ $t(`home.tracks.titleShortQuiz.${track.titleShortQuiz}`) }}
                   </span>
                   <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 leading-tight sm:(text-18px leading-tight)">
-                    {{ $t(`tracks.text.${track.text}`)}}
+                    {{ $t(`home.tracks.text.${track.text}`)}}
                   </span>
                   <lottie-animation
                     v-if="track.id === 1 && isActiveHand"

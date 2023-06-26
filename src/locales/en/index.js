@@ -1,30 +1,34 @@
 export default {
-    tracks: {
-        titles: {
-            t_1: 'Get & stay hard easier',
-            t_2: 'Improve Ejaculation Control',
-            t_3: 'Maximize intimate wellness'
+    home: {
+        title: 'Improve Sexual<br>Health & Wellness',
+        subtitle: 'Select a goal to get a step-by-step plan',
+        tracks: {
+            titles: {
+                t_1: 'Get & stay hard easier',
+                t_2: 'Improve Ejaculation Control',
+                t_3: 'Maximize intimate wellness'
+            },
+            titleShortQuiz: {
+                subt_1: 'Improve Erectile Function',
+                subt_2: 'Improve Ejaculation Control',
+                subt_3: 'Maximize intimate wellness'
+            },
+            purpose: {
+                purp_1: 'Erectile Function',
+                purp_2: 'Ejaculation Control',
+                purp_3: 'Sexual Wellness',
+            },
+            addpurpose: {
+                addpurp_1: 'Ejaculation Control',
+                addpurp_2: 'Erectile Function',
+                addpurp_3: ''
+            },
+            text: {
+                txt_1: '',
+                txt_2: '',
+                txt_3: '(Improve both of the above)'
+            }
         },
-        titleShortQuiz: {
-            subt_1: 'Improve Erectile Function',
-            subt_2: 'Improve Ejaculation Control',
-            subt_3: 'Maximize intimate wellness'
-        },
-        purpose: {
-            purp_1: 'Erectile Function',
-            purp_2: 'Ejaculation Control',
-            purp_3: 'Sexual Wellness',
-        },
-        addpurpose: {
-            addpurp_1: 'Ejaculation Control',
-            addpurp_2: 'Erectile Function',
-            addpurp_3: ''
-        },
-        text: {
-            txt_1: '',
-            txt_2: '',
-            txt_3: '(Improve both of the above)'
-        }
     },
     survey: {
         id_1: {

@@ -4,14 +4,14 @@
     :dark="dark"
   />
 
-  <div class="text-center text-[#fff] font-displayBold font-600 text-20px leading-normal mb-32px sm:(text-24px leading-normal)">
-    <span v-if="content.title" v-html="content.title" />
+  <div v-if="content.title" class="text-center text-[#fff] font-displayBold font-600 text-20px leading-normal mb-32px sm:(text-24px leading-normal)">
+    <h2 v-html="$t(`survey.id_${content.id}.${content.title}`)" />
   </div>
 
   <div v-if="content.video">
     <video-background
-      :src="video(content.video)"
-      :poster="video(content.poster)"
+      :src="video($t(`survey.id_${content.id}.${content.video}`))"
+      :poster="video($t(`survey.id_${content.id}.${content.poster}`))"
       class="h-209px rounded-14px max-w-520px w-full sm:(h-340px)"
     />
   </div>
@@ -27,9 +27,7 @@
 
   <div v-if="content.text" class="font-sans font-400 text-16px leading-normal mt-25px text-center text-[#fff] sm:(text-18px leading-normal)">
     <span v-if="content.aftertext">{{ content.aftertext }}</span>
-    <span class="font-sansSemiBold" v-if="content.textbold">{{ content.textbold }}</span>
-    {{ content.text }}
-    <span class="font-sansSemiBold" v-if="content.textBold">{{ content.textBold }}</span>
+    <span v-html="$t(`survey.id_${content.id}.${content.text}`)" />
     <span v-if="content.AfterTextBold">{{ content.AfterTextBold }}</span>
   </div>
 
@@ -52,14 +50,14 @@
   <footer-controls
     :dark="true"
     :buttonBack="{
-      text: content.buttonsText ? content.buttonsText[0] : 'Back',
+      text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[0]}`) : 'Back',
       icon: 'prev',
       click: backURL,
       theme: 'bg-[#282828] hover:bg-[#373737FF]'
     }"
     :buttonNext="{
       icon: 'next',
-      text: content.buttonsText ? content.buttonsText[1] : 'I got it',
+      text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[1]}`) : 'I got it',
       click: nextURL,
       theme: 'bg-red hover:bg-[#F5423FFF]'
     }"

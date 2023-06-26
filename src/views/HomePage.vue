@@ -40,8 +40,12 @@
                   :key="track.id"
                   @click="getData(track)"
                 >
-                  <span class="font-700 text-16px leading-normal text-center text-white sm:(text-22px leading-normal)">{{ track.titleShortQuiz }}</span>
-                  <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 leading-tight sm:(text-18px leading-tight)">{{ track.text }}</span>
+                  <span class="font-700 text-16px leading-normal text-center text-white sm:(text-22px leading-normal)">
+                    {{ $t(`tracks.titleShortQuiz.${track.titleShortQuiz}`) }}
+                  </span>
+                  <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 leading-tight sm:(text-18px leading-tight)">
+                    {{ $t(`tracks.text.${track.text}`)}}
+                  </span>
                   <lottie-animation
                     v-if="track.id === 1 && isActiveHand"
                     class="absolute w-84px h-auto top-0 right-[-10px]"
@@ -79,7 +83,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters, mapMutations} from 'vuex';
+import {mapGetters, mapMutations} from 'vuex';
 import dayjs from 'dayjs';
 import HeaderLayout from '@/components/Header.vue';
 import FooterHomeView from '@/components/FooterHomeView.vue';
@@ -122,6 +126,9 @@ export default {
   },
   computed: {
     ...mapGetters(['contentBy', 'LOADER']),
+    locales() {
+      return this.$t('track1_subtitle')
+    }
   },
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),

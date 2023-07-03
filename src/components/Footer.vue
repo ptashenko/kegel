@@ -26,15 +26,3 @@ export default {
     }
 }
 </script>
-
-<style>
-@media (min-width: 640px) {
-  .divider::after {
-    content: '|';
-    position: absolute;
-    top: 0;
-    right: -16px;
-    pointer-events: none;
-  }
-}
-</style>

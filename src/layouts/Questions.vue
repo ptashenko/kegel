@@ -3,13 +3,13 @@
     <transition name="slide" mode="out-in">
       <div v-if="show" class="flex flex-col">
         <div class="font-displayBold text-20px text-left pb-32px leading-normal sm:(text-left text-24px leading-normal)">
-          {{ survey.title }}
+          {{ $t(`survey.id_${content.id}.${survey.title}`) }}
         </div>
 
         <div v-if="survey.video" class="mb-32px text-center max-w-450px w-full sm:max-w-full">
           <video-background
-            :src="video(content.video)"
-            :poster="video(content.poster)"
+            :src="video($t(`survey.id_${content.id}.${content.video}`))"
+            :poster="video($t(`survey.id_${content.id}.${content.poster}`))"
             class="h-209px rounded-14px max-w-520px w-full sm:(h-340px)"
           />
         </div>
@@ -52,12 +52,12 @@
             :class="survey.answer.answerClass"
             @click="myAvesomeClickFunction"
             :key="answer.id"
-            :answer="answer"
+            :answer="$t(`survey.id_${content.id}.${answer}`)"
           />
         </div>
         <div v-if="surveyAnswerIsButtons" class="flex max-w-390px w-full mx-auto mt-16px justify-between opacity-75 text-14px sm:text-18px">
-          <div>{{survey.answer.textLeft}}</div>
-          <div>{{survey.answer.textRight}}</div>
+          <div>{{ $t(`survey.id_${content.id}.textLeft`) }}</div>
+          <div>{{ $t(`survey.id_${content.id}.textRight`) }}</div>
         </div>
       </div>
 
@@ -115,8 +115,8 @@ export default {
     },
 
     rateTo() {
-      const list = this.survey.answer.answerList;
-      return `Rate from 1 to ${list[list.length - 1]}`;
+      const list = Object.values(this.survey.answer.answerList);
+      return `Rate from 1 to ${list.length}`;
     },
 
     getBackButtonProps() {

@@ -2,7 +2,7 @@
   <div class="max-w-400px mt-25px mx-auto mb-0 w-full"
     @click="openPopup"
   >
-    <div class="font-400 text-14px leading-normal mb-8px text-center text-[#fff]">Processing...</div>
+    <div class="font-400 text-14px leading-normal mb-8px text-center text-[#fff]">{{ $t('analizProcessing.title') }}</div>
     <div class="bg-[#111113] absolute left-0 top-0 bottom-0 w-1/5 flex justify-beetwen">
       <div>
         {{title}}

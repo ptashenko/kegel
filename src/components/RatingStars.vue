@@ -1,19 +1,7 @@
 <template>
     <div class="m-0 mt-32px sm:mt-48px">
         <p class="font-sans text-14px leading-tight text-center text-body sm:(text-18px leading-tight)">
-            <span class="font-sansBold">
-              {{ amount }}
-            </span>
-          5-star ratings
-          <span
-            class="m-0 mx-5px"
-          >
-            |
-          </span>
-          <span class="font-sansBold">
-            {{downloads}}
-          </span>
-          downloads
+          <span v-html="$t('ratingStars.rating', {amount, downloads})"></span>
         </p>
         <div class="flex justify-center items-center mt-10px">
             <div class="flex justify-center mr-10px">
@@ -43,7 +31,7 @@ export default {
         amount: {
             type: String,
             isRequired: true,
-            default: '36k'
+            default: '42k'
         },
         downloads: {
             type: Number,

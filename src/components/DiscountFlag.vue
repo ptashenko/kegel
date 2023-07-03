@@ -17,12 +17,11 @@
             <h2
               class="font-600 text-14px leading-tight tracking-normal text-body m-0 mb-5px"
             >
-                One-time price of {{discPrice}}
-            </h2>
+            {{ $t('discountFlag.onePrice', {discPrice}) }}</h2>
             <p
               class="font-400 text-14px leading-tight text-body opacity-75 m-0"
             >
-                Original price is {{fullPrice}}
+            {{ $t('discountFlag.price', {fullPrice}) }}
             </p>
         </div>
     </div>

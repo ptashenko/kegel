@@ -3,16 +3,16 @@
     <div class="max-w-600px py-0 px-40px mx-auto pb-120px">
         <img class="block mx-auto w-[80%]" src="@/assets/images/superDiscount.png" />
         <h2 class="font-displayBold font-600 text-24px leading-normal text-center text-[#fff] m-0 mb-24px">
-            Get your plan with a SUPER Discount!
+            {{ $t('discountGift.title') }}
         </h2>
         <p class="font-sans font-400 text-14px leading-normal text-[#fff]">
-            We're sure that by following this Kegel plan you can improve {{ goal }}. This is confirmed by a huge number of positive reviews.
+          {{ $t('discountGift.textFirst', {goal}) }}
         </p>
         <p class="font-sans font-400 text-14px leading-normal text-[#fff] mt-16px">
-            We want you to reach your goal. That's why we're giving you the super discount so you can start improving your men's health at the best price.
+          {{ $t('discountGift.textSecond') }}
         </p>
         <base-button
-            label="Got it"
+            :label="$t('discountGift.button')"
             theme="blue"
             class="!mt-32px"
             @click="closePopup"

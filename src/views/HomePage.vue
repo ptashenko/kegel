@@ -17,12 +17,10 @@
           <img v-if="!device.mobile" src="@/assets/images/header-desktop.jpg" class="inline-block w-full" />
           <img v-else src="@/assets/images/header.png" class="inline-block w-full" />
           <div class="relative max-w-311px top-[-16vw] mx-auto sm:(top-[-8vw] px-40px max-w-600px box-border)">
-            <div class="font-displayBold text-32px leading-tight text-center text-shadow-title sm:(font-600 text-40px leading-tight)">
-              Improve Sexual<br>Health & Wellness
-            </div>
-            <div class="font-displaySemiBold text-18px leading-normal text-center my-15px opacity-76 sm:(font-600 text-24px)">
-              Select a goal to get a step-by-step plan
-            </div>
+            <h2 class="font-displayBold text-32px leading-tight text-center text-shadow-title sm:(font-600 text-40px leading-tight)" v-html="$t('home.title')" />
+            <h3 class="font-displaySemiBold text-18px leading-normal text-center my-15px opacity-76 sm:(font-600 text-24px)">
+              {{$t('home.subtitle')}}
+            </h3>
             <div class="w-20px h-auto text-center mx-auto">
               <lottie-animation
                 ref="arrowmain"
@@ -39,8 +37,12 @@
                   :key="track.id"
                   @click="getData(track)"
                 >
-                  <span class="font-700 text-16px leading-normal text-center text-white sm:(text-22px leading-normal)">{{ track.titleShortQuiz }}</span>
-                  <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 leading-tight sm:(text-18px leading-tight)">{{ track.text }}</span>
+                  <span class="font-700 text-16px leading-normal text-center text-white sm:(text-22px leading-normal)">
+                    {{ $t(`home.tracks.titleShortQuiz.${track.titleShortQuiz}`) }}
+                  </span>
+                  <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 leading-tight sm:(text-18px leading-tight)">
+                    {{ $t(`home.tracks.text.${track.text}`)}}
+                  </span>
                   <lottie-animation
                     v-if="track.id === 1 && isActiveHand"
                     class="absolute w-84px h-auto top-0 right-[-10px]"
@@ -52,8 +54,7 @@
                 </button>
 
               <div class="font-sansLight opacity-50 text-center mx-auto mt-32px text-12px leading-normal sm:(text-14px leading-normal)">
-                Each individual’s results may vary from person to person based on health condition, body type, starting point, his or
-                her unique background, dedication, desire, motivation, actions, and numerous other factors
+                {{ $t(`home.description`) }}
               </div>
           </div>
           </div>
@@ -61,13 +62,15 @@
       <div class="pt-48px pb-50px bg-[#C4C4C433] sm:(pt-51px)">
         <div class="max-w-311px mx-auto box-border sm:(px-40px pb-32px max-w-600px)">
           <div
-            v-for="(advantage, idx) in advantages"
+          v-for="(advantage, idx) in advantages"
             :key="advantage.title"
             class="text-center mx-auto mb-48px sm:(max-w-373px mb-15px)"
           >
             <img :src="advantage.img" :alt="advantage.title" class="block mx-auto mb-16px" :class="[idx === 0 ? 'w-44px' : 'w-48px']">
-            <div class="font-displayBold font-700 text-20px leading-normal text-center text-shadow-title sm:(font-600 text-24px leading-tight)">{{ advantage.title }}</div>
-            <div class="font-sans text-14px font-400 opacity-65 leading-normal mt-8px sm:(text-18px leading-normal p-0)">{{ advantage.text }}</div>
+            <div class="font-displayBold font-700 text-20px leading-normal text-center text-shadow-title sm:(font-600 text-24px leading-tight)">
+              {{ $t(`home.advantages.titles.${advantage.title}`) }}
+            </div>
+            <div class="font-sans text-14px font-400 opacity-65 leading-normal mt-8px sm:(text-18px leading-normal p-0)">{{ $t(`home.advantages.texts.${advantage.text}`) }}</div>
             <p v-if="advantage.email" class="mt-8px block text-red no-underline text-14px sm:(text-18px leading-normal)">{{ advantage.email }}</p>
           </div>
           <FooterHomeView />
@@ -78,7 +81,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters, mapMutations} from 'vuex';
+import {mapGetters, mapMutations} from 'vuex';
 import dayjs from 'dayjs';
 import HeaderLayout from '@/components/Header.vue';
 import FooterHomeView from '@/components/FooterHomeView.vue';
@@ -100,15 +103,15 @@ export default {
       device: useDevice(),
       advantages: [
         {
-          title: 'Dr. Kegel: For Men’s Health',
-          text: 'is a complex approach to strengthen male intimate health',
+          title: 't_1',
+          text: 'txt_1',
           logo: 'logo',
           img: require(`../assets/images/logos/logo_footer.png`),
           width: 44
         },
         {
-          title: 'Need support?',
-          text: 'Contact Customer Service if you have any questions. We\'ll be sure to help you.',
+          title: 't_2',
+          text: 'txt_2',
           email: 'contact@kegel-plan.com',
           logo: 'icon_support',
           img: require(`../assets/images/svg/icon_support.svg`),
@@ -121,6 +124,9 @@ export default {
   },
   computed: {
     ...mapGetters(['contentBy', 'LOADER']),
+    locales() {
+      return this.$t('track1_subtitle')
+    }
   },
   methods: {
     ...mapMutations(['clearHistory', 'saveContent', 'saveTrack']),

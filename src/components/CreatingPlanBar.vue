@@ -2,7 +2,7 @@
   <div class="flex items-center bg-[#F9F9F9] rounded-140px p-8px pr-32px justify-between max-w-311px mx-auto">
     <img src="@/assets/images/svg/baseline_v2/icon_gear.svg" />
     <div class="">
-      <p class="font-displayBold font-500 text-16px leading-normal text-body opacity-75">Your plan is being created...</p>
+      <p class="font-displayBold font-500 text-16px leading-normal text-body opacity-75">{{ $t('wait.plan') }}</p>
       <div class="relative bg-[#4c4c4d] bg-opacity-25 rounded-54px h-7px bg-red w-full mt-6px">
         <span class="absolute top-0 left-0 h-7px bg-red rounded-54px duration-250" :style="{width: progress + '%'}" />
       </div>

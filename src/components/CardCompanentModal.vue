@@ -10,7 +10,7 @@
               type="text"
               id="nameInput"
               v-model="name"
-              placeholder="Name on Card"
+              :placeholder="$t('cardComponent.cardName')"
               minlength="2"
               required
               pattern="[A-Za-z ]{2,}"
@@ -28,7 +28,7 @@
       </div>
     </div>
     <base-button
-        label="Continue"
+        :label="$t('cardComponent.continue')"
         button-type="submit"
         :loader="loading"
         class="card-pay-button"

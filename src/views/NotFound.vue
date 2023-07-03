@@ -1,5 +1,5 @@
 <template>
-  not found
+  {{ $t('notFound.title') }}
 </template>
 
 <script>

@@ -1,25 +1,22 @@
 <template>
-
     <div class="container-mob">
-
       <h2 class="font-displayBold text-center m-0 text-20px leading-normal sm:(text-30px leading-normal)">
-        {{title}}
+        {{ $t('trustedSources.title') }}
       </h2>
-
 
       <div class="max-w-373px my-17px mx-auto">
           <img src="@/assets/images/content/f4_img.png" class="w-full">
       </div>
       <footer-controls
         :buttonBack="{
-          text: 'Back',
+          text: $t('trustedSources.buttonBack'),
           click: btnBack,
           icon: 'prev',
           theme: 'text-[#4A4A4B] bg-[#F1F3F9] hover:bg-[#E5E9F5]'
         }"
         :buttonNext="{
           icon: 'next',
-          text: 'Continue',
+          text: $t('trustedSources.buttonNext'),
           click: btnClick ,
           theme: 'bg-red hover:bg-[#F5423FFF]'
         }"
@@ -37,12 +34,6 @@ export default {
 
   components:{
   },
-  data() {
-    return {
-      title:'These are some of the trusted sources that have been used',
-    };
-  },
-
   computed: {
     ...mapGetters(['content', 'track']),
     itemImage() {

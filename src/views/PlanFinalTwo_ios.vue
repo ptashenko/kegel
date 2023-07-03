@@ -1,16 +1,15 @@
 <template>
   <div class="relative mx-auto pb-48px sm:(max-w-600px mt-16px)" id="topPage">
     <div v-if="active && open == 1" class="px-32px sm:px-40px">
-      <h2 class="font-displayBold text-32px leading-normal text-center">Add Groin Fitness</h2>
-      <p class="text-20px leading-normal font-displayMedium text-center">to accelerate the result</p>
+      <h2 class="font-displayBold text-32px leading-normal text-center">{{ $t('planFinalTwo.title') }}</h2>
+      <p class="text-20px leading-normal font-displayMedium text-center">{{ $t('planFinalTwo.subtitle') }}</p>
     </div>
     <div v-else-if="open == 2" class="px-32px sm:px-40px">
       <h2 class="mb-32px font-displayBold text-24px leading-normal text-center sm:(text-30px leading-normal)">
-        Did you know?
+        {{ $t('planFinalTwo.didYouKnow') }}
       </h2>
     </div>
-    <div v-else class="font-displayBold font-bold text-24px leading-normal text-center px-32px sm:(px-40px text-36px leading-normal)">
-      <span class="text-blue"> Final Offer:</span> get Groin Fitness at the best deal!
+    <div v-else class="font-displayBold font-bold text-24px leading-normal text-center px-32px sm:(px-40px text-36px leading-normal)" v-html="$t('planFinalTwo.offer')">
     </div>
     <div
         v-if="open !== 2"
@@ -28,21 +27,21 @@
         <img v-if="open == 1" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
         <img v-if="open > 2" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
-          Build groin muscles strength & flexibility
+          {{ $t('planFinalTwo.build') }}
         </p>
       </div>
       <div v-if="open !== 2" class="mt-16px text-14px leading-normal flex items-center sm:(text-18px leading-normal)">
         <img v-if="open == 1" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
         <img v-if="open > 2" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
-          Increase blood flow to intimate organs
+          {{ $t('planFinalTwo.increase') }}
         </p>
       </div>
       <div v-if="open !== 2" class="mt-16px text-14px leading-normal flex items-center sm:(text-18px leading-normal)">
         <img v-if="open == 1" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
         <img v-if="open > 2" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
-          Every exercise has video & audio instructions from the coach
+          {{ $t('planFinalTwo.instructions') }}
         </p>
       </div>
       <div v-if="!ios_v1" class="max-w-420px mt-26px mx-auto sm:mt-48px">
@@ -60,32 +59,29 @@
     >
       <div class="px-32px sm:px-40px">
         <p class="font-sans text-14px leading-normal mb-16px sm:(text-18px leading-normal)">
-          <span class="font-sansSemiBold">Groin Fitness</span> improves blood flow to the groin, which has a big impact on sexual performance.
+          <span v-html="$t('planFinalTwo.groin')"></span>
         </p>
-        <p class="font-sans text-14px leading-normal mb-27px sm:(text-18px leading-normal)">
-          Bad blood flow to the groin area can put you at <span class="font-sansSemiBold"> 50-70% </span> risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
+        <p class="font-sans text-14px leading-normal mb-27px sm:(text-18px leading-normal)" v-html="$t('planFinalTwo.flow')">
         </p>
         <img class="w-full mt-0px mx-auto mb-16px flex sm:(my-32px mx-auto)" src="@/assets/images/content/Final_modal.png" alt="">
-        <p class="opacity-50 text-12px leading-normal text-center font-sansLight mb-32px sm:(text-14px leading-normal)">
-          *This diagram is a non-personalized illustration based on scientific research.
+        <p class="opacity-50 text-12px leading-normal text-center font-sansLight mb-32px sm:(text-16px leading-normal)">
+          {{ $t('planFinalTwo.diagram') }}
         </p>
       </div>
 
-      <div v-if="ios_v1" class="flex items-center justify-around min-h-100px rounded-9px bg-[#f9f9f9] border-2px border-[#5773D6] mb-32px pt-21px pr-24px pb-18px pl-8px">
+      <div v-if="ios_v1" class="flex items-center justify-around min-h-100px rounded-9px bg-[#f9f9f9] border-2px border-[#5773D6] mb-32px pt-21px pr-24px pb-18px pl-8px mr-32px ml-32px">
         <div class="basis-1/4">
           <img :src="require(`@/assets/images/blue-gift.png`)" class="block w-3/4 my-0 mx-auto" />
         </div>
         <div class="flex flex-col justify-center basis-2/3">
-          <p class="text-14px leading-normal font-sans text-[#111113] opacity-100 m-0 sm:(text-16px lading-normal)">
-            We want you to succeed, so we’re giving you <span class="font-sansSemiBold">a super discount on Groin Fitness!</span>
+          <p class="text-14px leading-normal font-sans text-[#111113] opacity-100 m-0 sm:(text-18px leading-normal)" v-html="$t('planFinalTwo.discount')">
           </p>
         </div>
       </div>
 
       <div v-else class="flex items-center justify-around min-h-100px bg-blue border-2px border-[#5773D6] mb-32px py-16px px-32px sm:(py-20px px-40px rounded-9px)">
         <img src="@/assets/images/svg/icon_present.svg" alt="">
-        <p class="text-14px leading-normal font-sans text-[#fff] m-0 ml-16px sm:(text-18px leading-normal ml-32px)">
-          We want you to be successful, so we're offering <span class="font-sansSemiBold">25% off </span>the Groin Fitness just for you!
+        <p class="text-14px leading-normal font-sans text-[#fff] m-0 ml-16px sm:(text-18px leading-normal ml-32px)" v-html="$t('planFinalTwo.offering')">
         </p>
       </div>
     </div>
@@ -110,7 +106,7 @@
     </div>
     <base-button
         v-if="active && open == 1"
-        label="I don’t want to accelerate my results &gt;"
+        :label="$t('planFinalTwo.results')"
         text-only
         class="font-sansMedium !text-body text-14px leading-normal opacity-50 mb-32px sm:(text-16px leading-normal mb-48px)"
         @click="showModal"
@@ -118,7 +114,7 @@
     <div v-else-if="open == 2" class="text-center max-w-311px mt-32px mb-40px sm:max-w-373px mx-auto">
       <base-button
           v-if="ios_v1"
-          label='Continue'
+          :label="$t('planFinalTwo.continue')"
           theme="blue"
           class=""
           rounded="half"
@@ -130,13 +126,13 @@
               class="bg-[#5773D6] border-none rounded-9px py-16px px-37px font-sansMedium text-18px leading-normal text-[#fff] cursor-pointer flex justify-center items-center w-full shadow-button-blue mb-52px"
               @click="closePopup"
       >
-        Continue
+      {{ $t('planFinalTwo.continue') }}
         <img src="@/assets/images/svg/icon_arrow-next.svg" class="max-w-14px my-0 ml-12px mr-0" alt="" >
       </button>
     </div>
     <base-button
         v-else
-        label="I give up accelerated results forever &gt;"
+        :label="$t('planFinalTwo.giveUp')"
         text-only
         class="font-sansMedium !text-body text-14px leading-normal opacity-50 mb-32px sm:(text-16px leading-normal mb-48px)"
         @click="withoutUpsaleDiscounted"
@@ -144,23 +140,23 @@
     <div v-if="!ios_v1" class="px-32px sm:px-40px">
       <div v-if="open == 1" class="block my-0 mx-auto">
         <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0  sm:(text-14px leading-normal)">
-          Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+          {{ $t('planFinalTwo.charged_19') }}
         </div>
       </div>
       <div v-else-if="open == 3" class="block my-0 mx-auto">
         <div  class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 sm:(text-14px leading-normal)">
-          Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+          {{ $t('planFinalTwo.charged_9') }}
         </div>
       </div>
       <div v-else>
         <div v-if="open == 1" class="block my-0 mx-auto">
           <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 sm:(text-14px leading-normal)">
-            Your account will be charged $1.74 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+            {{ $t('planFinalTwo.charged_1') }}
           </div>
         </div>
         <div v-else-if="open == 3" class="block my-0 mx-auto">
           <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 pb-48px sm:(text-14px leading-normal)">
-            Your account will be charged $0.99 for the selected add-ons as you click Add to My Plan. Items on this page are 1-Week period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.
+            {{ $t('planFinalTwo.charged_0') }}
           </div>
         </div>
       </div>
@@ -172,13 +168,13 @@
   >
     <div>
       <p class="opacity-75">
-        Your payment was declined.
+        {{ $t('planFinalTwo.error') }}
       </p>
       <p
         class="opacity-75 text-blue mt-4px cursor-pointer underline"
         @click="popupPay"
       >
-        Tap here to select a different payment method.
+      {{ $t('planFinalTwo.tap') }}
       </p>
     </div>
     <img

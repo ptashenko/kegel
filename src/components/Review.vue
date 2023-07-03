@@ -5,7 +5,7 @@
   >
     <div class="flex justify-between mb-15px">
       <div>
-        <div class="font-700 text-14px leading-normal max-w-full sm:text-18px">{{ reviewItem.title }}</div>
+        <div class="font-700 text-14px leading-normal max-w-full sm:text-18px">{{ $t(`reviewsSurvey.${id}.title`) }}</div>
         <div class="flex mt-5px">
           <div v-for="i in reviewItem.rating" :key="i" class="w-14px h-14px">
             <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="max-w-14px h-auto">
@@ -22,8 +22,7 @@
     </div>
 
     <div class="font-400 text-12px leading-normal sm:(text-16px leading-normal)">
-      {{ reviewItem.text }}
-    </div>
+      {{ $t(`reviewsSurvey.${id}.text`) }}</div>
   </div>
 </template>
 

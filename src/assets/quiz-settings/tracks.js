@@ -1,9 +1,9 @@
 export default [{
     id: 1,
-    title: 'Get & stay hard easier',
-    titleShortQuiz: 'Improve Erectile Function',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
-    purpose: 'Erectile Function',
-    addpurpose: 'Ejaculation Control',
+    title: 't_1',
+    titleShortQuiz: 'subt_1',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
+    purpose: 'purp_1',
+    addpurpose: 'addpurp_1',
     text: '',
     layouts: [
         { id: 1, separation: true },
@@ -22,10 +22,10 @@ export default [{
 },
     {
         id: 2,
-        title: 'Improve Ejaculation Control', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
-        titleShortQuiz: 'Improve Ejaculation Control',
-        purpose: 'Ejaculation Control',
-        addpurpose: 'Erectile Function',
+        title: 't_2', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
+        titleShortQuiz: 'subt_2',
+        purpose: 'purp_2',
+        addpurpose: 'addpurp_2',
         text: '',
         layouts: [
             { id: 1, separation: true },
@@ -44,11 +44,11 @@ export default [{
     },
     {
         id: 3,
-        title: 'Maximize intimate wellness',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
-        titleShortQuiz: 'Maximize intimate wellness',
-        purpose: 'Sexual Wellness',
-        addpurpose: '',
-        text: '(Improve both of the above)',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
+        title: 't_3',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
+        titleShortQuiz: 'subt_3',
+        purpose: 'purp_3',
+        addpurpose: 'addpurp_3',
+        text: 'txt_3',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
         layouts: [
             { id: 1, separation: true },
             { id: 353 }, { id: 61 }, { id: 3 }, { id: 49 },

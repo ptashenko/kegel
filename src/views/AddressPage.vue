@@ -1,75 +1,74 @@
 <template>
   <div class="block__steps" :data-step=true>
-    <img src="@/assets/images/svg/img_progressbar_final.svg" style="height: 18px; width: 100%;"/>
+    <img src="@/assets/images/svg/img_progressbar_final.svg" class="h-18px w-full"/>
   </div>
   <div class="px-32px mx-auto pb-20 sm:(max-w-600px px-40px)">
 
     <!-- <div class="d-flex  align-items-center justify-content-center flex-column block"> -->
     <div class="flex flex-col">
       <h2 class="font-displayBold text-24px leading-normal mt-24px mb-8px text-center sm:(text-36px leading-normal mb-16px)">
-        You are almost done!
-      </h2>
+        {{ $t('address.title') }} </h2>
       <p class="font-sans text-14px leading-normal text-body opacity-75 text-center sm:(text-20px leading-normal)">
-        Enter your Billing Address
+        {{ $t('address.subtitle') }}
       </p>
       <div class="form">
-        <div class="font-bold text-14px leading-normal">Country</div>
+        <div class="font-bold text-14px leading-normal">{{ $t('address.country') }}</div>
         <label>
           <div class="select appereance-none outline-none px-1em mt-8px mb-16px border-2px border-[#F1F3F9] relative flex w-full h-51px rounded-9px overflow-hidden">
             <country-select v-model="country" :country="country" topCountry="US" class="appearance-none flex-1" />
           </div>
         </label>
 
-        <div class="font-bold text-14px leading-normal">Address 1</div>
+        <div class="font-bold text-14px leading-normal">{{ $t('address.firstAddress') }}</div>
         <label>
           <input
               v-model="address1"
               id="address1"
               class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-16px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
               type="address1"
-              :placeholder="'Street address or P.O. Box'"
+              :placeholder="$t('address.firstStreet')"
               minlength="5"
               required
               @click="diselect('address1')"
           >
         </label>
-        <div class="font-bold text-14px leading-normal">Address 2(Optional)</div>
+        <div class="font-bold text-14px leading-normal">{{ $t('address.secondAddress') }}</div>
         <label>
           <input
               v-model="address2"
               id="address2"
               class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-16px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
               type="address2"
-              :placeholder="'Apartment, suite, etc.'"
+              :placeholder="$t('address.secondStreet')"
           >
         </label>
-        <div class="font-bold text-14px leading-normal">City</div>
+        <div class="font-bold text-14px leading-normal">{{ $t('address.city') }}</div>
         <label>
           <input
               v-model="city"
               id="city"
               class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-16px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
               type="city"
-              :placeholder="'Enter City here'"
+              :placeholder="$t('address.enterCity')"
               minlength="2"
               required
               @click="diselect('city')"
           >
         </label>
-        <div class="font-bold text-14px leading-normal">State</div>
+        <div class="font-bold text-14px leading-normal">{{ $t('address.state') }}</div>
         <label>
           <div id="state" class="select outline-none px-1em mt-8px mb-16px border-2px border-[#F1F3F9] relative flex w-full h-51px rounded-9px overflow-hidden" @click="diselect('state')">
             <region-select v-model="region" :country="country" :region="region" class="appearance-none flex-1" />
           </div>
         </label>
-        <div class="font-bold text-14px leading-normal">Postal/ZIP Code</div>
+        <div class="font-bold text-14px leading-normal">{{ $t('address.postalCode') }}</div>
         <label>
           <input
               v-model="post"
               id="post"
               class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-16px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
               type="post"
-              :placeholder="'Enter Postal/Zip Code here'"
+              :placeholder="$t('address.enterCode')"
               minlength="5"
               maxlength="5"
               required
@@ -82,7 +81,7 @@
             :class="{ submit: loading }"
             @click="confirm"
         >
-          Get my plan
+        {{ $t('address.getPlan') }}
         </div>
       </div>
     </div>

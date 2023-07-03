@@ -1,47 +1,40 @@
 <template>
-  {{imagePE}}
-  <h2 class="mt-0 text-center font-displayBold leading-tight text-24px sm:(text-30px leading-tight font-600)">{{ content.title }}</h2>
+  {{ imagePE }}
+  <h2 class="mt-0 text-center font-displayBold leading-tight text-24px sm:(text-30px leading-tight font-600)"> {{ $t(`survey.id_${content.id}.title`) }}</h2>
 
   <div class="mt-15px mb-35px text-center text-18px leading-normal">
-    <h3 class="font-sansSemiBold text-16px leading-normal sm:(text-18px leading-normal)" v-if="AddPurpose && content.id !== 20 && content.id !== 57">
-      <span class="font-sans text-16px sm:(font-400)">
-        Improve
-      </span>
-      {{ this.track.purpose }}
-      <span class="font-sans text-16px sm:(font-400)">
-        and
-      </span>
-      {{ this.track.addpurpose }}
+    <h3 class="font-sansSemiBold text-16px leading-normal sm:(text-18px leading-normal)"
+      v-if="AddPurpose && content.id !== 20 && content.id !== 57">
+      <span class="font-sans text-16px sm:(font-400)"
+        v-html="$t('reviews.title_add', {
+            purpose: $t(`home.tracks.purpose.${track.purpose}`),
+            addPurpose: $t(`home.tracks.addpurpose.${track.addpurpose}`)
+          })"
+      />
     </h3>
-    <h3 class="font-sansSemiBold text-16px leading-normal sm:(text-18px leading-normal)" v-else>Improve {{ track.purpose }}</h3>
-    <div class="font-sansBold font-700 text-19px leading-normal text-red flex max-w-170px mx-auto relative justify-center min-h-30px sm:(max-w-190px min-h-36px)">
+    <h3
+      v-else
+      class="font-sans text-16px leading-normal sm:(text-18px leading-normal)"
+      v-html="$t('reviews.title', {
+        purpose: $t(`home.tracks.purpose.${track.purpose}`)
+      })"
+    />
+    <div
+      class="font-sansBold font-700 text-19px leading-normal text-red flex max-w-170px mx-auto relative justify-center min-h-30px sm:(max-w-190px min-h-36px)">
       <transition name="slide-fade">
-        <span v-if="show">by {{selectedPages ? dataPP1 : dataPP2}}</span>
+        <span v-if="show">{{$t('reviews.date', {dates})}}</span>
       </transition>
     </div>
   </div>
 
   <div class="text-center">
-    <lottie-animation
-      class="w-full max-w-450px mx-auto sm:(max-w-520px)"
-      ref="content.ref"
-      :animationData="imageitem"
-      :loop="false"
-      :autoPlay="true"
-      :speed="1"
-      @loopComplete="loopComplete"
-      @complete="complete"
-      @enterFrame="enterFrame"
-      @segmentStart="segmentStart"
-      @stopped="stopped"
-      />
+    <lottie-animation class="w-full max-w-450px mx-auto sm:(max-w-520px)" :animationData="imageitem"
+      :loop="false" :autoPlay="true" :speed="1" @loopComplete="loopComplete" @complete="complete" @enterFrame="enterFrame"
+      @segmentStart="segmentStart" @stopped="stopped" />
     <div>
       <div class="flex justify-between mx-[12%]">
-        <p
-          class="m-0 mt-12px"
-          v-for="(_, idx) of new Array(6)"
-          :key="idx">
-          {{setDate(idx)}}
+        <p class="m-0 mt-12px capitalize" v-for="(_, idx) of new Array(6)" :key="idx">
+          {{ setDate(idx) }}
         </p>
       </div>
     </div>
@@ -51,33 +44,26 @@
   </div>
 
   <div class="pt-50px pb-100px">
-    <div class="font-displaySemiBold text-16px leading-normal mb-25px text-center sm:(text-16px leading-normal)">Customer reviews</div>
-    <review
-      v-for="id in content.reviews"
-      :key="id"
-      :id="id"
-    />
+    <div class="font-displaySemiBold text-16px leading-normal mb-25px text-center sm:(text-16px leading-normal)">Customer
+      reviews</div>
+    <review v-for="id in content.reviews" :key="id" :id="id" />
   </div>
 
-  <footer-controls
-    :buttonBack="{
-      text: content.buttonsText ? content.buttonsText[0] : 'Back',
-      icon: 'prev',
-      click: back,
-      theme: 'text-[#4A4A4B] bg-[#F1F3F9] hover:bg-[#E5E9F5]'
-    }"
-    :buttonNext="{
-      icon: false,
-      text: content.buttonsText ? content.buttonsText[1] : 'Claim my plan',
-      click: next,
-      button: false,
-      theme: 'bg-red hover:bg-[#F5423FFF]'
-    }"
-  />
+  <footer-controls :buttonBack="{
+    text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[0]}`) : 'Back',
+    icon: 'prev',
+    click: back,
+    theme: 'text-[#4A4A4B] bg-[#F1F3F9] hover:bg-[#E5E9F5]'
+  }" :buttonNext="{
+  icon: false,
+  text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[1]}`) : 'Claim my plan',
+  click: next,
+  button: false,
+  theme: 'bg-red hover:bg-[#F5423FFF]'
+}" />
 </template>
 
 <script>
-import dayjs from 'dayjs';
 import { mapGetters } from 'vuex';
 import nextContentUrl from '@/mixins/contollers';
 import Review from '@/components/Review.vue';
@@ -100,13 +86,13 @@ export default {
   },
 
   data() {
-    return{
+    return {
       base: {},
       numreview: 2,
       dataPP1: sessionStorage.getItem('data1'),
       dataPP2: sessionStorage.getItem('data2'),
-      AddPurpose:false,
-      imageitem: this.image(this.content.thumbnail),
+      AddPurpose: false,
+      imageitem: this.image(this.$t(`survey.id_${this.content.id}.${this.content.thumbnail}`)),
       numanimate: 1,
       show: false,
       numanim: null,
@@ -115,10 +101,13 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['tracks', 'contentBy']),
+    ...mapGetters(['contentBy']),
 
-    selectedPages() {
-      return this.content.id == 20 || this.content.id == 57 || this.content.id == 201;
+    dates() {
+      if (this.content.id === 20 || this.content.id === 57 || this.content.id === 201) {
+        return this.dataPP1
+      }
+      return this.dataPP2;
     },
 
 
@@ -137,18 +126,17 @@ export default {
       const json = localStorage.getItem('track');
       const obj = JSON.parse(json);
       this.track = obj.id
-      if(this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes')
-      {
+      if (this.track.id == 2 && sessionStorage.getItem('resbtn') == 'Yes') {
         this.imageitem = require(`@/assets/images/json/ED.json`);
       } else if (this.track.id == 3) {
         this.AddPurpose = false
       }
-      return  console.log(this.imageitem);
+      return console.log(this.imageitem);
     }
   },
 
   methods: {
-    isAddPurpose(){
+    isAddPurpose() {
       if (sessionStorage.getItem('resbtn') == 'Yes') {
         this.AddPurpose = true
       } else {
@@ -160,12 +148,12 @@ export default {
     },
 
     setDate(index) {
-      return dayjs().add(index,'month').format("MMM")
+      return this.$dayjs().add(index, 'month').format("MMM")
     },
   },
 
 
-  mounted(){
+  mounted() {
     this.isAddPurpose()
     this.numanim = setInterval(() => {
       if (this.numanimate == 1) {
@@ -173,28 +161,28 @@ export default {
         this.dataPP2 = sessionStorage.getItem('data24')
         this.numanimate += 1
         this.show = true;
-      } else if(this.numanimate == 2){
+      } else if (this.numanimate == 2) {
         this.numanimate += 1
         this.show = false;
         this.dataPP1 = sessionStorage.getItem('data13')
         this.dataPP2 = sessionStorage.getItem('data23')
-      } else if(this.numanimate == 3){
+      } else if (this.numanimate == 3) {
         this.numanimate += 1
         this.show = true;
-      } else if(this.numanimate == 4){
+      } else if (this.numanimate == 4) {
         this.numanimate += 1
         this.show = false;
         this.dataPP1 = sessionStorage.getItem('data12')
         this.dataPP2 = sessionStorage.getItem('data22')
-      } else if(this.numanimate == 5){
+      } else if (this.numanimate == 5) {
         this.numanimate += 1
         this.show = true;
-      } else if(this.numanimate == 6){
+      } else if (this.numanimate == 6) {
         this.numanimate += 1
         this.show = false;
         this.dataPP1 = sessionStorage.getItem('data1')
         this.dataPP2 = sessionStorage.getItem('data2')
-      } else if(this.numanimate == 7){
+      } else if (this.numanimate == 7) {
         this.numanimate += 1
         this.show = true;
       } else {

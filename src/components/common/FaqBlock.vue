@@ -2,7 +2,7 @@
   <div>
     <div>
       <h4 class="font-displayBold text-20px leading-normal mt-0 mb-16px text-center text-body outline-none">
-        People often ask
+        {{ $t('faq.title') }}
       </h4>
       <div v-for="(item, id) in items" :key="id">
         <div
@@ -10,7 +10,7 @@
             @click="selectId(id)"
             :class="{ 'mb-16px': id !== items.length - 1 }"
         >
-          {{ item.title }}
+          {{ $t(`faq.questions.${item.title}`) }}
           <img
           class="ml-16px"
               v-if="id === selectedId"
@@ -35,7 +35,7 @@
             :class="{'pt-16px': id === items.length -1}"
         >
           <div v-for="(child, idx) in item.children" :key="idx">
-            <span class="block font-400 text-16px leading-normal text-body" :class="{ 'mb-16px': idx !== item.children.length - 1 }">{{ child }}</span>
+            <span class="block font-400 text-16px leading-normal text-body mb-24px" :class="{ 'mb-16px': idx === item.children.length - 1 }">{{ $t(`faq.questions.${child}`) }}</span>
           </div>
         </div>
         </transition>

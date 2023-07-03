@@ -7,9 +7,10 @@
       <div v-if="subscribe" class="max-w-536px opacity-0 fixed block mx-auto w-full text-center py-16px px-32px bg-body z-2 text-[#fff] top-0 left-0 right-0 sm:(py-21px px-0 max-w-600px)" :class="{'!opacity-100': blockFixed}">
       <p class="p-0 m-0 block font-800">
         <span :class="[superDiscount.theme ? 'text-blue' : 'text-red']">
-          {{ pickedTarifParams.discount }}% discount<br>
+          {{ $t('landingViewVP5.discount', {discount: pickedTarifParams.discount}) }}
+          <br>
         </span>
-        <span>expires in: </span>
+        <span>{{ $t('landingViewVP5.expires2') }}</span>
         <countdown
           v-model:restart="timerRestarter"
           class="inline"
@@ -19,44 +20,40 @@
 
     <div id="topPage" class="flex flex-col">
       <h2 class="m-0 mx-auto mb-24px text-24px leading-normal text-center font-displayBold sm:(text-36px leading-normal)">
-        Your Kegel Plan to improve {{ purpose }} is ready!
+        {{ $t('landingViewVP5.title', {purpose: $t(`home.tracks.purpose.${purpose}`)} ) }}
       </h2>
-      <p v-if="subscribe" class="text-14px leading-normal text-center mb-16px sm:(text-18px leading-normal)">
-        <b>Limited offer</b>
-        reserved for 15 minutes
+      <p v-if="subscribe" class="text-14px leading-normal text-center mb-16px sm:(text-18px leading-normal)" v-html="$t('landingViewVP5.offer')">
       </p>
-      <div id="blockScroll" class="mb-32px font-500 text-14px leading-tight flex items-center rounded-17px bg-body w-full max-w-311px m-0 mx-auto mb-32px text-[#fff]">
+      <div id="blockScroll" class="mb-24px font-500 text-14px leading-tight flex items-center rounded-17px bg-body w-full max-w-311px m-0 mx-auto mb-32px text-[#fff]">
         <div class="relative w-84px h-84px ml-10px">
           <img class="glow absolute w-full top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] rotation" src="@/assets/images/glow.png" alt="icon" />
           <img class="absolute w-[60%] top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]" src="@/assets/images/timer.png" alt="icon" />
         </div>
         <div class="ml-15px">
-          <p class="font-sans font-700 text-20px leading-tight" :class="[superDiscount.theme ? 'text-blue' : 'text-red']">{{pickedTarifParams.discount}}% discount</p>
-          <p class="flex font-sans text-16px leading-normal m-0 text-[#fff]">
-            Expires in:	&nbsp;  <countdown v-model:restart="timerRestarter" />
+          <p class="font-sans font-700 text-20px leading-tight" :class="[superDiscount.theme ? 'text-blue' : 'text-red']">
+            {{ $t('landingViewVP5.discount', {discount: pickedTarifParams.discount}) }}
+          </p>
+          <p v-if="timer" class="flex font-sans text-16px leading-normal m-0 text-[#fff]">
+            {{ $t('landingViewVP5.expires') }} &nbsp;<countdown v-model:restart="timerRestarter" />
           </p>
         </div>
       </div>
       <div id="trigger1" class="text-center mb-0">
         <div class="text-16px leading-normal sm:(text-20px leading-normal)">
-          <span>
-            Based on your personal goals you can
-          </span>
-          <br>
-          <span v-if="AddPurposeCom" class="font-sansSemiBold">
-            <span class="font-sans">imporve</span> {{ purpose }}
-            <span class="font-sans"> and </span>
-            <span>{{ addpurpose }}</span>
-          </span>
-          <span v-if="!AddPurposeCom">
-            <span class="font-sansSemiBold">
-              <span class="font-sans">imporve</span> {{ purpose }}
-            </span>
-          </span>
+          <span
+            v-if="AddPurposeCom"
+            class="font-sans"
+            v-html="$t('landingViewVP5.addGoals', {purpose: $t(`home.tracks.purpose.${purpose}`), addPurpose: $t(`home.tracks.addpurpose.${addpurpose}`)})"
+          />
+          <span
+            v-if="!AddPurposeCom"
+            class="font-sans"
+            v-html="$t('landingViewVP5.goals', {purpose: $t(`home.tracks.purpose.${purpose}`)})"
+          />
         </div>
         <div class="font-sansBold text-red font-700 text-20px leading-normal flex w-full mx-auto relative justify-center min-h-30px sm:(text-24px leading-normal min-h-36px)">
             <transition name="slide-fade">
-              <span v-if="show" class="relative transform translate-x-0 translate-y-0">by {{dataPP3}}</span>
+              <span v-if="show" class="relative transform translate-x-0 translate-y-0">{{ $t('landingViewVP5.date', { dataPP3 }) }}</span>
             </transition>
         </div>
       </div>
@@ -83,42 +80,42 @@
         </div>
       </div>
       <p class="!text-14px !leading-normal max-w-450px mx-auto opacity-50 text-center sm:(max-w-520px)">
-        {{graphText}}
+        {{ $t('landingViewVP5.diagram') }}
       </p>
       <div id="Benefits">
-        <h2 class="font-displayBold text-20px leading-normal my-32px mx-auto text-center sm:(text-24px leading-normal mb-52px)">Kegel Plan Benefits</h2>
+        <h2 class="font-displayBold text-20px leading-normal my-32px mx-auto text-center sm:(text-24px leading-normal mb-52px)">{{ $t('landingViewVP5.benefits') }}</h2>
         <ul class="max-w-310px m-0 mx-auto mb-48px p-0 sm:(max-w-375px)">
           <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
-            <p>Reach your goal and improve <b> {{ purpose }} </b></p>
+            <p v-html="$t('landingViewVP5.firstBenefit', {purpose: $t(`home.tracks.purpose.${purpose}`)})" />
           </li>
-          <li v-if="addpurpose" class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
+          <li v-if="!addItem" class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
-            <p>Improve <span class="font-sansSemiBold">{{ addpurpose }}</span></p>
+            <p v-html="$t('landingViewVP5.secondBenefit', {addPurpose: $t(`home.tracks.addpurpose.${addpurpose}`)})" />
           </li>
-          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)" v-if="addItem">
+          <li v-if="addItem" class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
-            <p>Improve <span class="font-sansSemiBold">Erective Function</span></p>
+            <p v-html="$t('landingViewVP5.thirdBenefit')" />
           </li>
-          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)" v-if="addItem">
+          <li v-if="addItem" class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
-            <p>Improve <span class="font-sansSemiBold">Ejaculation Control</span></p>
-          </li>
-          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
-            <p>Pill-free approach</p>
+            <p v-html="$t('landingViewVP5.fourthBenefit')" />
           </li>
           <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
-            <p>Long-lasting improvement</p>
+            <p>{{ $t('landingViewVP5.fifthBenefit') }}</p>
           </li>
           <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
-            <p>Takes <span class="font-sansSemiBold">&nbsp;5 min a day</span></p>
+            <p>{{ $t('landingViewVP5.sixthBenefit') }}</p>
           </li>
           <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
-            <p>More happiness for you and for your partner</p>
+            <p v-html="$t('landingViewVP5.seventhBenefit')" />
+          </li>
+          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+            <p>{{ $t('landingViewVP5.eighthBenefit') }}</p>
           </li>
         </ul>
         <RatingStars
@@ -131,7 +128,7 @@
 
     <div class="max-w-600px mx-auto relative">
         <div class="flex flex-col my-16px mt-48px mx-auto mb-40px container-mob">
-          <div class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:(text-24px leading-normal)">Customer reviews</div>
+          <div class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:(text-24px leading-normal)">{{ $t('landingViewVP5.reviews') }}</div>
           {{lengthReviews}}
           <template v-for="(item, key) in base" :key="key">
             <div
@@ -140,7 +137,7 @@
             >
               <div class="flex justify-between mb-15px">
                 <div>
-                  <div class="text-14px leading-normal font-sansBold sm:(text-18px leading-normal)">{{ item.title }}</div>
+                  <div class="text-14px leading-normal font-sansBold sm:(text-18px leading-normal)">{{ $t(`review.${item.title}`)}}</div>
                   <div class="flex mt-5px">
                     <img v-for="i in item.rating" :key="i" src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="w-14px h-14px max-w-14px h-auto">
                   </div>
@@ -152,7 +149,7 @@
               </div>
 
               <p class="text-12px leading-normal font-400 sm:(text-16px leading-normal)">
-                {{ item.text }}
+                {{ $t(`review.${item.text}`)}}
               </p>
 
             </div>
@@ -161,7 +158,7 @@
 
           <base-button
               v-if="this.base.length > this.numreview"
-              label="Show more"
+              :label="$t(`landingViewVP5.button`)"
               @click="showReview"
               text-only
           />
@@ -177,11 +174,11 @@
           class="m-0 mx-auto mb-32px max-w-311px"
         />
         <h2 class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-24px text-center font-displayBold sm:(text-36px leading-normal)">
-          Choose Your Plan
+          {{ $t(`landingViewVP5.plan`)}}
         </h2>
       </div>
       <h2 v-else class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-24px text-center font-displayBold sm:(text-36px leading-normal)">
-        Get Your Kegel Plan to improve {{ purpose }}
+        {{ $t('landingViewVP5.getPlan', {purpose: $t(`home.tracks.purpose.${purpose}`)})}}
       </h2>
       <div v-if="superDiscount.theme" class="flex flex-col max-w-430px mx-auto">
         <label
@@ -215,7 +212,7 @@
                 class="font-displayBold leading-normal text-[#fff] opacity-50"
                 :class="{ '!opacity-100' : subscribe === id }"
               >
-                {{name}}
+              {{$t(`landingViewVP5.tarifs.${name}`)}}
               </p>
               <p
                 class="font-sans text-10px leading-normal text-[#fff] opacity-25"
@@ -249,7 +246,7 @@
                 class="font-sans font-600 text-12px leading-none text-center text-[#fff] opacity-50"
                 :class="{ '!opacity-100' : subscribe === id }"
               >
-                per day
+              {{$t(`landingViewVP5.tarifs.txt`)}}
               </p>
             </div>
           </div>
@@ -287,7 +284,7 @@
                 class="font-displayBold leading-normal text-[#fff] opacity-50"
                 :class="{ '!opacity-100' : subscribe === id }"
               >
-                {{name}}
+                {{$t(`landingViewVP5.tarifs.${name}`)}}
               </p>
               <p
                 class="font-sans text-10px leading-normal text-[#fff] opacity-25"
@@ -321,20 +318,24 @@
                 class="font-sans font-600 text-12px leading-none text-center text-[#fff] opacity-50"
                 :class="{ '!opacity-100' : subscribe === id }"
               >
-                per day
+              {{$t(`landingViewVP5.tarifs.txt`)}}
               </p>
             </div>
           </div>
         </label>
       </div>
-      <p v-if="pickedTarifParams.discountType === 1" class="p-16px my-32px mx-0 font-sans font-400 text-12px leading-normal text-[#fff] opacity-50 border-2px border-[#FFFFFF3F] rounded-9px">
-        By clicking «Get my plan», I agree to pay <b>{{ pickedTarifParams.discountPrice }}</b> for my plan and that if I do not cancel before the end of the <b>{{ pickedTarifParams.subscriptionPeriod }}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>30.99 USD</b> every <b>1 month</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
-      </p>
-      <p v-else class="p-16px my-32px mx-0 font-sans font-400 text-12px leading-normal text-[#fff] opacity-50 border-2px border-[#FFFFFF3F] rounded-9px">
-        By clicking «Get my plan», I agree to pay <b>{{ pickedTarifParams.discountPrice }}</b> for my plan and that if I do not cancel before the end of the <b>{{ pickedTarifParams.subscriptionPeriod }}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>{{ pickedTarifParams.fullPrice }}</b> every <b>{{ pickedTarifParams.subscriptionPeriod }}</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
-      </p>
+      <p
+          v-if="pickedTarifParams.discountType === 1"
+          class="p-16px my-32px mx-0 font-sans font-400 text-12px leading-normal text-[#fff] opacity-50 border-2px border-[#FFFFFF3F] rounded-9px"
+          v-html="$t('landingViewVP5.agree_1', {discPrice: pickedTarifParams.discountPrice, subscrPeriod: pickedTarifParams.subscriptionPeriod})"
+      />
+      <p
+          v-else
+          class="p-16px my-32px mx-0 font-sans font-400 text-12px leading-normal text-[#fff] opacity-50 border-2px border-[#FFFFFF3F] rounded-9px"
+          v-html="$t('landingViewVP5.agree_2', {discPrice: pickedTarifParams.discountPrice, subscrPeriod: pickedTarifParams.subscriptionPeriod, fullprice: pickedTarifParams.fullPrice})"
+      />
       <base-button
-          label="Get my plan"
+          :label="$t(`landingViewVP5.getPlanButton`)"
           :theme="colorTheme"
           :disabled="!subscribe"
           class="mb-64px"
@@ -354,48 +355,46 @@
           <div class="flex items-center mb-12px">
             <img src="../assets/images/svg/icon_notification.svg" class="mr-8px" />
             <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-              Get notifications
+              {{$t(`landingViewVP5.notifications`)}}
             </h3>
           </div>
           <p class="font-sans font-400 text-14px leading-normal text-body">
-            You will get an email confirmation every time your subscription renews
+            {{$t(`landingViewVP5.confirmation`)}}
           </p>
         </div>
         <div class="mb-24px">
           <div class="flex items-center mb-12px">
             <img src="../assets/images/svg/icon_safe.svg" class="mr-8px" />
             <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-              Your information is safe
+              {{$t(`landingViewVP5.safe`)}}
             </h3>
           </div>
           <p class="font-sans font-400 text-14px leading-normal text-body">
-            We will not sell or rent your personal contact information for any marketing purposes.
+            {{$t(`landingViewVP5.info`)}}
           </p>
         </div>
         <div class="mb-24px">
           <div class="flex items-center mb-12px">
             <img src="../assets/images/svg/icon_secure.svg" class="mr-8px" />
             <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-              Secure checkout
+              {{$t(`landingViewVP5.secure`)}}
             </h3>
           </div>
           <p class="font-sans font-400 text-14px leading-normal text-body">
-            All information is encrypted and transmitted using Secure Sockets Layer protocol.
+            {{$t(`landingViewVP5.encrypted`)}}
           </p>
         </div>
         <div >
           <div class="flex items-center mb-12px">
             <img src="../assets/images/svg/icon_help.svg" class="mr-8px" />
             <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-              Need help?
+              {{$t(`landingViewVP5.help`)}}
             </h3>
           </div>
-          <p class="font-sans font-400 text-14px leading-normal text-body">
-            Contact us here: <a href="mailto:contact@kegel-plan.com" class="info-block__link">contact@kegel-plan.com</a>
-          </p>
+          <p class="font-sans font-400 text-14px leading-normal text-body" v-html="$t('landingViewVP5.contact', {email: 'contact@kegel-plan.com'})" />
         </div>
         <a @click="scrollToPaymentBlock" class="bg-red rounded-9px py-20px px-0 w-full mx-auto mt-48px mb-0 font-700 text-18px leading-tight text-center text-[#fff] border-none block no-underline cursor-pointer shadow-button-red">
-          Get my plan
+          {{$t(`landingViewVP5.getPlanButton`)}}
         </a>
       </div>
     </div>
@@ -429,7 +428,7 @@
     >
       <div class="flex items-center">
         <p class="opacity-75 font-sans font-500 text-red text-14px leading-normal">
-          Your payment was declined. Please try again or use a different payment method.
+          {{$t(`landingViewVP5.declined`)}}
         </p>
         <img
           class="ml-16px cursor-pointer"
@@ -441,7 +440,7 @@
     </vpopup>
     <SuperDiscountWindow
       v-if="superDiscount.popup && !superWindowWasOpened"
-      :goal="purpose"
+      :goal="$t(`home.tracks.purpose.${purpose}`)"
       @close="closeSuperDiscountPopup"
     />
   </div>
@@ -461,7 +460,6 @@
   import RatingStars from '@/components/RatingStars.vue';
   import PaymentFormCompanentModal from '@/components/PaymentFormCompanentModal.vue';
   import { getItem } from '@/common/localStorage';
-  import dayjs from 'dayjs';
   import '@/assets/css/animations.css'
   import BaseButton from "@/components/ui/BaseButton.vue";
 
@@ -527,7 +525,7 @@
         }
       },
       setDate(index) {
-        return dayjs().add(index,'month').format("MMM")
+        return this.$dayjs().add(index,'month').format("MMM")
       },
       closeSuperDiscountPopup() {
         this.superDiscount.popup = false;
@@ -604,10 +602,10 @@
         return [
           {
             id: 1,
-            name: '1-WEEK PLAN',
+            name: 'name_1',
             fullprice: '1.50 USD',
             cost: this.superDiscount.theme ? '0.79 USD' : '0.99 USD',
-            text: 'per day',
+            text: 'txt',
             totalCost: '10.49 USD',
             totalDiscCost: '6.93 USD',
             superDiscPrice: '5.50 USD',
@@ -615,10 +613,10 @@
           },
           {
             id: 2,
-            name: '1-MONTH PLAN',
+            name: 'name_2',
             fullprice: '1.00 USD',
             cost: this.superDiscount.theme ? '0.39 USD' : '0.49 USD',
-            text: 'per day',
+            text: 'txt',
             totalCost: '30.99 USD',
             totalDiscCost: '15.19 USD',
             superDiscPrice: '11.99 USD',
@@ -626,10 +624,10 @@
           },
           {
             id: 3,
-            name: '3-MONTH PLAN',
+            name: 'name_3',
             fullprice: '0.59 USD',
             cost: this.superDiscount.theme ? '0.24 USD' : '0.29 USD',
-            text: 'per day',
+            text: 'txt',
             totalCost: '53.19 USD',
             totalDiscCost: '25.99 USD',
             superDiscPrice: '21.49 USD',
@@ -691,9 +689,6 @@
             break;
         }
         return priceParams;
-      },
-      graphText() {
-        return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
       },
       imagechart(){
         if(this.jsLocal == 2){

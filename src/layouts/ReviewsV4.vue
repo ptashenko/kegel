@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 import { mapGetters } from 'vuex';
 import nextContentUrl from '@/mixins/contollers';
 import Review from '@/components/Review.vue';
@@ -85,14 +84,7 @@ export default {
     image(path) {
       return require(`@/assets/img/land_v6/${path}`);
     },
-
-    moment() {
-      return moment();
-    },
-
   },
-  mounted() {
-  }
 };
 </script>
 

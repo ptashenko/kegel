@@ -1046,6 +1046,47 @@ export default {
   notFound: {
     title: 'not found'
   },
+  landingViewVP5_v2: {
+    title: 'Your Kegel Plan to Improve <span class="capitalize">{purpose}</span> Is Ready!',
+    benefits: 'Dr.Kegel Plan Benefits',
+    musclesTitle: 'Claim your Plan and get:',
+    bodyVideo: 'video_body',
+    mindVideo: 'video_mind',
+    trainingSystem: {
+      title: 'Kegel Training System',
+      description: 'The core solution to strengthen PF muscles & enhance performance',
+      video: 'video_kegel_training',
+      benefits_1: {
+        b_1: 'Simple <b>5-minute</b> training routine that drives results',
+        b_2: 'Interactive <b>instructions</b> effortlessly guide you on each step of your workout',
+        b_3: 'Automatically adjustable difficulty',
+        b_4: '<b>Personalized</b> training schedule'
+      },
+      subtitle: 'Carefully Selected Kegel Exercises',
+      benefits_2: {
+        b_1: 'Discover <b>23 unique</b> exercises during your journey',
+        b_2: 'Each exercise <b>is verified</b> by a certified pelvic floor therapist',
+        b_3: 'The exercises engage both fast and slow twitch muscle fibers for a comprehensive workout',
+      },
+    },
+    mindTraining: {
+      title: 'Guided Sexology Courses',
+      video: 'video_courses',
+      description: 'Remove limiting beliefs from your mind and unleash hidden potential',
+      benefits_1: {
+        b_1: 'Interactive courses created by <b>certified sex therapists</b>',
+        b_2: 'An immersive journey that replaces more than <b>20 sessions</b> with a specialist',
+        b_3: 'Deep <b>sexological insights</b> for building a perfect love life',
+        b_4: '<b>39 powerful</b> techniques that put theory into practice'
+      },
+      allBenefits: {
+        title: 'Experience All Benefits of Sex Therapy',
+        description: '<b>Without any</b> awkward conversations',
+        image: 'img_all_benefits.png'
+      }
+    }
+
+  },
   landingViewVP5: {
     title: 'Your Kegel Plan to improve {purpose} is ready!',
     offer: '<b>Limited offer</b> reserved for 15 minutes',

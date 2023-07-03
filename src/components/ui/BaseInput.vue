@@ -1,9 +1,9 @@
 <template>
-  <label class="relative text-center mx-auto block w-fit" for="email">
+  <label class="relative text-center mx-auto block" for="email">
     <input
         :value="modelValue"
         :id="id"
-        class="bg-[#F1F3F9] shadow-input rounded-9px border-none text-1em leading-normal p-17px text-body w-275px sm:w-375px relative outline-none focus:(border-none outline-none) active:(border-none outline-none) placeholder-body/50"
+        class="bg-[#F1F3F9] shadow-input rounded-9px border-none text-1em leading-normal p-17px text-body w-full sm:w-375px relative outline-none focus:(border-none outline-none) active:(border-none outline-none) placeholder-body/50"
         :type="type"
         :placeholder="placeholder"
         @input="$emit('update:modelValue', $event.target.value)"

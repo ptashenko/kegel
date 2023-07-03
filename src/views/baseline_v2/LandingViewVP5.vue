@@ -1,90 +1,71 @@
 <template>
-  <div class="landing">
-    {{MyScrollFixed}}
-    {{btnAddPurpose}}
-    {{imagechart}}
-    <div class="relative max-w-600px px-32px mx-auto sm:(px-40px)">
-      <div v-if="subscribe" class="max-w-536px opacity-0 fixed block mx-auto w-full text-center py-16px px-32px bg-body z-2 text-[#fff] top-0 left-0 right-0 sm:(py-21px px-0 max-w-600px)" :class="{'!opacity-100': blockFixed}">
-      <p class="p-0 m-0 block font-800">
-        <span :class="[superDiscount.theme ? 'text-blue' : 'text-red']">
-          {{ $t('landingViewVP5.discount', {discount: pickedTarifParams.discount}) }}
-          <br>
-        </span>
-        <span>{{ $t('landingViewVP5.expires2') }}</span>
+  <div class="max-w-600px px-32px mx-auto sm:(px-40px)">
+    <div v-if="subscribe" class="bg-red absolute top-[-78px] left-0 right-0 flex flex-col items-center justify-center py-12px duration-500ms z-999" :class="{'!top-0 !fixed': blockFixed}">
+      <p class="p-0 m-0 block font-sansBold font-800 text-18px leading-normal">
+        {{ $t('landingViewVP5.discount', {discount: pickedTarifParams.discount}) }}
+      </p>
+      <p class="p-0 m-0 block font-sansBold font-800 text-18px leading-normal text-[#fff]">
+        {{ $t('landingViewVP5.expires2') }}
         <countdown
-          v-model:restart="timerRestarter"
-          class="inline"
+            v-model:restart="timerRestarter"
+            class="inline"
         />
       </p>
     </div>
 
     <div id="topPage" class="flex flex-col">
-      <h2 class="m-0 mx-auto mb-24px text-24px leading-normal text-center font-displayBold sm:(text-36px leading-normal)">
-        {{ $t('landingViewVP5.title', {purpose: $t(`home.tracks.purpose.${purpose}`)} ) }}
-      </h2>
-      <p v-if="subscribe" class="text-14px leading-normal text-center mb-16px sm:(text-18px leading-normal)" v-html="$t('landingViewVP5.offer')">
-      </p>
-      <div id="blockScroll" class="mb-24px font-500 text-14px leading-tight flex items-center rounded-17px bg-body w-full max-w-311px m-0 mx-auto mb-32px text-[#fff]">
-        <div class="relative w-84px h-84px ml-10px">
-          <img class="glow absolute w-full top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] rotation" src="@/assets/images/glow.png" alt="icon" />
-          <img class="absolute w-[60%] top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]" src="@/assets/images/timer.png" alt="icon" />
-        </div>
-        <div class="ml-15px">
-          <p class="font-sans font-700 text-20px leading-tight" :class="[superDiscount.theme ? 'text-blue' : 'text-red']">
-            {{ $t('landingViewVP5.discount', {discount: pickedTarifParams.discount}) }}
-          </p>
-          <p class="flex font-sans text-16px leading-normal m-0 text-[#fff]">
-            {{ $t('landingViewVP5.expires') }} &nbsp;<countdown v-model:restart="timerRestarter" />
-          </p>
-        </div>
-      </div>
+      <h2 class="m-0 mx-auto mb-16px text-24px leading-normal text-center font-displayBold sm:(text-36px leading-normal)" v-html="$t('landingViewVP5_v2.title', {purpose: $t(`home.tracks.purpose.${purpose}`)} )" />
       <div id="trigger1" class="text-center mb-0">
         <div class="text-16px leading-normal sm:(text-20px leading-normal)">
           <span
-            v-if="AddPurposeCom"
-            class="font-sans"
-            v-html="$t('landingViewVP5.addGoals', {purpose: $t(`home.tracks.purpose.${purpose}`), addPurpose: $t(`home.tracks.addpurpose.${addpurpose}`)})"
+              v-if="AddPurposeCom"
+              class="font-sans"
+              v-html="$t('landingViewVP5.addGoals', {purpose: $t(`home.tracks.purpose.${purpose}`), addPurpose: $t(`home.tracks.addpurpose.${addpurpose}`)})"
           />
           <span
-            v-if="!AddPurposeCom"
-            class="font-sans"
-            v-html="$t('landingViewVP5.goals', {purpose: $t(`home.tracks.purpose.${purpose}`)})"
+              v-if="!AddPurposeCom"
+              class="font-sans"
+              v-html="$t('landingViewVP5.goals', {purpose: $t(`home.tracks.purpose.${purpose}`)})"
           />
         </div>
         <div class="font-sansBold text-red font-700 text-20px leading-normal flex w-full mx-auto relative justify-center min-h-30px sm:(text-24px leading-normal min-h-36px)">
-            <transition name="slide-fade">
-              <span v-if="show" class="relative transform translate-x-0 translate-y-0">{{ $t('landingViewVP5.date', { dataPP3 }) }}</span>
-            </transition>
+          <transition name="slide-fade">
+            <span v-if="show" class="relative transform translate-x-0 translate-y-0">{{ $t('landingViewVP5.date', { dataPP3 }) }}</span>
+          </transition>
         </div>
       </div>
 
-      <div class="my-32px mx-auto text-center w-full sm:(max-w-520px)">
+      <div class="mt-32px mx-auto text-center w-full sm:(max-w-520px)">
         <lottie-animation
-          ref="content.ref"
-          :animationData="imageitem"
-          :loop="false"
-          :autoPlay="true"
-          :speed="1"
-          @loopComplete="loopComplete"
-          @complete="complete"
-          @enterFrame="enterFrame"
-          @segmentStart="segmentStart"
-          @stopped="stopped"
+            ref="content.ref"
+            :animationData="require(`@/assets/images/json/Step_1_1.json`)"
+            :loop="false"
+            :autoPlay="true"
+            :speed="1"
+            @loopComplete="loopComplete"
+            @complete="complete"
+            @enterFrame="enterFrame"
+            @segmentStart="segmentStart"
+            @stopped="stopped"
         />
         <div class="flex justify-between mx-[12%]">
           <p class="m-0 mt-9px text-12px leading-normal text-body sm:(text-18px leading-normal mt-12px)"
-            v-for="(_, idx) of new Array(6)"
-            :key="idx">
+             v-for="(_, idx) of new Array(6)"
+             :key="idx">
             {{setDate(idx)}}
           </p>
         </div>
       </div>
-      <p class="!text-14px !leading-normal max-w-450px mx-auto opacity-50 text-center sm:(max-w-520px)">
+      <p class="!text-14px mt-24px !leading-normal max-w-450px mx-auto opacity-50 text-center sm:(max-w-520px)">
         {{ $t('landingViewVP5.diagram') }}
       </p>
-      <div id="Benefits">
-        <h2 class="font-displayBold text-20px leading-normal my-32px mx-auto text-center sm:(text-24px leading-normal mb-52px)">{{ $t('landingViewVP5.benefits') }}</h2>
-        <ul class="max-w-310px m-0 mx-auto mb-48px p-0 sm:(max-w-375px)">
+      <div id="Benefits" class="py-32px">
+        <h2
+            class="font-displayBold mb-24px text-20px leading-normal mx-auto text-center sm:(text-24px leading-normal mb-52px)"
+        >
+          {{ $t('landingViewVP5_v2.benefits') }}
+        </h2>
+        <ul class="max-w-310px m-0 mx-auto mb-32px p-0 sm:(max-w-375px)">
           <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
             <p v-html="$t('landingViewVP5.firstBenefit', {purpose: $t(`home.tracks.purpose.${purpose}`)})" />
@@ -118,60 +99,224 @@
             <p>{{ $t('landingViewVP5.eighthBenefit') }}</p>
           </li>
         </ul>
-        <RatingStars
-          :stars="5"
-          amount="42k"
-          downloads="2M+"
-        />
+        <img src="@/assets/images/landing/baseline_v2/img_rating_3mil.png" alt="rating" />
       </div>
     </div>
-
-    <div class="max-w-600px mx-auto relative">
-        <div class="flex flex-col my-16px mt-48px mx-auto mb-40px container-mob">
-          <div class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:(text-24px leading-normal)">{{ $t('landingViewVP5.reviews') }}</div>
-          {{lengthReviews}}
-          <template v-for="(item, key) in base" :key="key">
-            <div
-              v-show="key < this.numreview"
-              class="p-15px rounded-9px mx-auto max-w-370px w-full bg-[#F9F9F9] duration-300 mb-8px sm:(max-w-520px)"
-            >
-              <div class="flex justify-between mb-15px">
-                <div>
-                  <div class="text-14px leading-normal font-sansBold sm:(text-18px leading-normal)">{{ $t(`review.${item.title}`)}}</div>
-                  <div class="flex mt-5px">
-                    <img v-for="i in item.rating" :key="i" src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="w-14px h-14px max-w-14px h-auto">
-                  </div>
-                </div>
-
-                <p class="font-500 text-12px leading-normal opacity-50 sm:(text-16px leading-normal)">
-                  {{ item.name }}
-                </p>
-              </div>
-
-              <p class="text-12px leading-normal font-400 sm:(text-16px leading-normal)">
-                {{ $t(`review.${item.text}`)}}
-              </p>
-
-            </div>
-          </template>
-
-          <base-button
-              v-if="this.base.length > this.numreview"
-              :label="$t(`landingViewVP5.button`)"
-              class="mt-8px"
-              @click="showReview"
-              text-only
+  </div>
+  <div class="w-full">
+    <h2 class="text-[#fff] font-displayBold py-18px bg-body text-20px leading-normal text-center">
+      {{$t('landingViewVP5_v2.musclesTitle')}}
+    </h2>
+    <div class="bg-body">
+      <video-background
+          :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.bodyVideo')}.mp4`)"
+          :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.bodyVideo')}.png`)"
+          class="w-full h-310px"
+          objectFit="fill"
+      />
+    </div>
+    <div class="bg-[#fff] p-32px relative top-[-35px] z-10 rounded-30px">
+      <h2 class="text-34px leading-normal font-displayBold text-body mb-16px text-center">{{$t('landingViewVP5_v2.trainingSystem.title')}}</h2>
+      <p class="text-16px leading-normal font-sans text-center mb-32px">{{$t('landingViewVP5_v2.trainingSystem.description')}}</p>
+      <video-background
+          :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.trainingSystem.video')}.mp4`)"
+          :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.trainingSystem.video')}.png`)"
+          class="w-full h-210px mb-32px"
+          objectFit="fill"
+      />
+      <ul class="flex flex-col gap-16px mb-48px">
+        <li class="flex justify-between items-center">
+          <img
+              src="@/assets/images/icons/icon_5min.svg"
+              class="mr-24px"
           />
-        </div>
-    <div class="absolute top-[100%] w-full h-70px" id="selectPlan"></div>
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.trainingSystem.benefits_1.b_1')"
+          />
+        </li>
+        <li class="flex justify-between items-center">
+          <img
+              src="@/assets/images/icons/icon_guide.svg"
+              class="mr-24px"
+          />
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.trainingSystem.benefits_1.b_2')"
+          />
+        </li>
+        <li class="flex justify-between items-center">
+          <img
+              src="@/assets/images/icons/icon_difficulty.svg"
+              class="mr-24px"
+          />
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.trainingSystem.benefits_1.b_3')"
+          />
+        </li>
+        <li class="flex items-center">
+          <img
+              src="@/assets/images/icons/icon_schedule.svg"
+              class="mr-24px"
+          />
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.trainingSystem.benefits_1.b_4')"
+          />
+        </li>
+      </ul>
+      <h2 class="font-displayBold flex text-24px leading-snug redline mb-32px">
+        {{$t('landingViewVP5_v2.trainingSystem.subtitle')}}
+      </h2>
+      <ul class="flex flex-col gap-16px">
+        <li class="flex justify-between items-center">
+          <img
+              src="@/assets/images/icons/icon_exercises.svg"
+              class="mr-24px"
+          />
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.trainingSystem.benefits_2.b_1')"
+          />
+        </li>
+        <li class="flex justify-between items-center">
+          <img
+              src="@/assets/images/icons/icon_therapist.svg"
+              class="mr-24px"
+          />
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.trainingSystem.benefits_2.b_2')"
+          />
+        </li>
+        <li class="flex justify-between items-center">
+          <img
+              src="@/assets/images/icons/icon_muscle.svg"
+              class="mr-24px"
+          />
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.trainingSystem.benefits_2.b_3')"
+          />
+        </li>
+      </ul>
+    </div>
+    <div class="bg-body">
+      <video-background
+          :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.mindVideo')}.mp4`)"
+          :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.mindVideo')}.png`)"
+          class="w-full h-310px"
+          objectFit="fill"
+      />
+    </div>
+    <div class="bg-[#fff] p-32px relative top-[-35px] z-10 rounded-30px">
+      <h2 class="text-34px leading-normal font-displayBold text-body mb-16px text-center">{{$t('landingViewVP5_v2.mindTraining.title')}}</h2>
+      <p class="text-16px leading-normal font-sans text-center mb-32px">{{$t('landingViewVP5_v2.mindTraining.description')}}</p>
+      <video-background
+          :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.mindTraining.video')}.mp4`)"
+          :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.mindTraining.video')}.png`)"
+          class="w-full h-210px mb-32px"
+          objectFit="fill"
+      />
+      <ul class="flex flex-col gap-16px mb-64px">
+        <li class="flex justify-between items-center">
+          <img
+              src="@/assets/images/icons/icon_certified.svg"
+              class="mr-24px"
+          />
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.mindTraining.benefits_1.b_1')"
+          />
+        </li>
+        <li class="flex justify-between items-center">
+          <img
+              src="@/assets/images/icons/icon_journey.svg"
+              class="mr-24px"
+          />
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.mindTraining.benefits_1.b_2')"
+          />
+        </li>
+        <li class="flex justify-between items-center">
+          <img
+              src="@/assets/images/icons/icon_insights.svg"
+              class="mr-24px"
+          />
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.mindTraining.benefits_1.b_3')"
+          />
+        </li>
+        <li class="flex items-center">
+          <img
+              src="@/assets/images/icons/icon_techniques.svg"
+              class="mr-24px"
+          />
+          <p
+              class="text-[#111113CC] text-16px leading-normal"
+              v-html="$t('landingViewVP5_v2.mindTraining.benefits_1.b_4')"
+          />
+        </li>
+      </ul>
+      <h2 class="font-displayBold flex text-24px leading-snug text-center mb-16px">
+        {{$t('landingViewVP5_v2.mindTraining.allBenefits.title')}}
+      </h2>
+      <p
+          v-html="$t('landingViewVP5_v2.mindTraining.allBenefits.description')"
+          class="text-16px leading-normal font-sans text-center mb-32px"
+      />
+      <img :src="require(`@/assets/images/content/baseline_v2/${$t('landingViewVP5_v2.mindTraining.allBenefits.image')}`)" />
     </div>
   </div>
-    <div ref="payment-block" class="p-32px max-w-600px mx-auto bg-body sm:(px-40px)">
+  <div class="max-w-600px mx-auto relative">
+    <div class="flex flex-col my-16px mt-48px mx-auto mb-40px container-mob">
+      <div class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:(text-24px leading-normal)">{{ $t('landingViewVP5.reviews') }}</div>
+      {{lengthReviews}}
+      <template v-for="(item, key) in base" :key="key">
+        <div
+            v-show="key < this.numreview"
+            class="p-15px rounded-9px mx-auto max-w-370px w-full bg-[#F9F9F9] duration-300 mb-8px sm:(max-w-520px)"
+        >
+          <div class="flex justify-between mb-15px">
+            <div>
+              <div class="text-14px leading-normal font-sansBold sm:(text-18px leading-normal)">{{ $t(`review.${item.title}`)}}</div>
+              <div class="flex mt-5px">
+                <img v-for="i in item.rating" :key="i" src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="w-14px h-14px max-w-14px h-auto">
+              </div>
+            </div>
+
+            <p class="font-500 text-12px leading-normal opacity-50 sm:(text-16px leading-normal)">
+              {{ item.name }}
+            </p>
+          </div>
+
+          <p class="text-12px leading-normal font-400 sm:(text-16px leading-normal)">
+            {{ $t(`review.${item.text}`)}}
+          </p>
+
+        </div>
+      </template>
+
+      <base-button
+          v-if="this.base.length > this.numreview"
+          :label="$t(`landingViewVP5.button`)"
+          class="mt-8px"
+          @click="showReview"
+          text-only
+      />
+    </div>
+    <div class="absolute top-[100%] w-full h-70px" id="selectPlan"></div>
+  </div>
+  <div class="p-32px max-w-600px mx-auto bg-body sm:(px-40px)"  >
+    <div ref="payment-block">
       <div v-if="superDiscount.theme">
         <SuperDiscountGift
-          :discount="pickedTarifParams.discount"
-          :discountOriginal="pickedTarifParams.discountOriginal"
-          class="m-0 mx-auto mb-32px max-w-311px"
+            :discount="pickedTarifParams.discount"
+            :discountOriginal="pickedTarifParams.discountOriginal"
+            class="m-0 mx-auto mb-32px max-w-311px"
         />
         <h2 class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-24px text-center font-displayBold sm:(text-36px leading-normal)">
           {{ $t(`landingViewVP5.plan`)}}
@@ -182,41 +327,41 @@
       </h2>
       <div v-if="superDiscount.theme" class="flex flex-col max-w-430px mx-auto">
         <label
-          v-for="({id, fullprice, cost, text, name, totalCost, superDiscPrice}, idx) of tarifs"
-          :key="idx"
-          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
-          :class="{'border-1px border-blue': subscribe === id}"
+            v-for="({id, fullprice, cost, text, name, totalCost, superDiscPrice}, idx) of tarifs"
+            :key="idx"
+            class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
+            :class="{'border-1px border-blue': subscribe === id}"
         >
           <div class="flex items-center">
             <div>
               <input
-                class="appearance-none absolute"
-                type="radio"
-                name="subscribe"
-                :value="id"
-                v-model="subscribe"
+                  class="appearance-none absolute"
+                  type="radio"
+                  name="subscribe"
+                  :value="id"
+                  v-model="subscribe"
               />
               <span
-                class="relative block w-20px h-20px rounded-full border-2px border-[#ffffff26] mr-16px"
-                :class="{'bg-blue border-none': subscribe === id}"
+                  class="relative block w-20px h-20px rounded-full border-2px border-[#ffffff26] mr-16px"
+                  :class="{'bg-blue border-none': subscribe === id}"
               >
                 <img
-                  v-if="subscribe === id"
-                  src="@/assets/images/svg/icon_check-no-bg-black.svg"
-                  class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
+                    v-if="subscribe === id"
+                    src="@/assets/images/svg/icon_check-no-bg-black.svg"
+                    class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
                 />
               </span>
             </div>
             <div>
               <p
-                class="font-displayBold leading-normal text-[#fff] opacity-50"
-                :class="{ '!opacity-100' : subscribe === id }"
+                  class="font-displayBold leading-normal text-[#fff] opacity-50"
+                  :class="{ '!opacity-100' : subscribe === id }"
               >
-              {{$t(`landingViewVP5.tarifs.${name}`)}}
+                {{$t(`landingViewVP5.tarifs.${name}`)}}
               </p>
               <p
-                class="font-sans text-10px leading-normal text-[#fff] opacity-25"
-                :class="{ '!opacity-75' : subscribe === id }"
+                  class="font-sans text-10px leading-normal text-[#fff] opacity-25"
+                  :class="{ '!opacity-75' : subscribe === id }"
               >
                 <span class="line-through">{{totalCost}}</span>
                 {{superDiscPrice}}
@@ -231,22 +376,22 @@
             </div>
             <div class="absolute flex flex-col items-center gap-2px w-full top-[50%] left-[50%] transform translate-x-[-45%] translate-y-[-50%]">
               <p
-                class="font-sans font-600 text-12px leading-tight text-[#fff] opacity-25 line-through"
-                :class="{ '!text-body !opacity-100' : subscribe === id }"
+                  class="font-sans font-600 text-12px leading-tight text-[#fff] opacity-25 line-through"
+                  :class="{ '!text-body !opacity-100' : subscribe === id }"
               >
                 {{fullprice}}
               </p>
               <p
-                class="font-sans font-700 text-16px leading-none text-center text-blue opacity-50"
-                :class="{ '!text-[#fff] !opacity-100' : subscribe === id }"
+                  class="font-sans font-700 text-16px leading-none text-center text-blue opacity-50"
+                  :class="{ '!text-[#fff] !opacity-100' : subscribe === id }"
               >
                 {{cost}}
               </p>
               <p
-                class="font-sans font-600 text-12px leading-none text-center text-[#fff] opacity-50"
-                :class="{ '!opacity-100' : subscribe === id }"
+                  class="font-sans font-600 text-12px leading-none text-center text-[#fff] opacity-50"
+                  :class="{ '!opacity-100' : subscribe === id }"
               >
-              {{$t(`landingViewVP5.tarifs.txt`)}}
+                {{$t(`landingViewVP5.tarifs.txt`)}}
               </p>
             </div>
           </div>
@@ -254,41 +399,41 @@
       </div>
       <div v-else class="flex flex-col max-w-430px mx-auto">
         <label
-          v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs"
-          :key="idx"
-          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
-          :class="{'border-1px border-red': subscribe === id}"
+            v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs"
+            :key="idx"
+            class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
+            :class="{'border-1px border-red': subscribe === id}"
         >
           <div class="flex items-center">
             <div>
               <input
-                class="appearance-none absolute"
-                type="radio"
-                name="subscribe"
-                :value="id"
-                v-model="subscribe"
+                  class="appearance-none absolute"
+                  type="radio"
+                  name="subscribe"
+                  :value="id"
+                  v-model="subscribe"
               />
               <span
-                class="relative block w-20px h-20px rounded-full border-2px border-[#ffffff26] mr-16px"
-                :class="{'bg-red border-none': subscribe === id}"
+                  class="relative block w-20px h-20px rounded-full border-2px border-[#ffffff26] mr-16px"
+                  :class="{'bg-red border-none': subscribe === id}"
               >
                 <img
-                  v-if="subscribe === id"
-                  src="@/assets/images/svg/icon_check-no-bg-black.svg"
-                  class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
+                    v-if="subscribe === id"
+                    src="@/assets/images/svg/icon_check-no-bg-black.svg"
+                    class="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
                 />
               </span>
             </div>
             <div>
               <p
-                class="font-displayBold leading-normal text-[#fff] opacity-50"
-                :class="{ '!opacity-100' : subscribe === id }"
+                  class="font-displayBold leading-normal text-[#fff] opacity-50"
+                  :class="{ '!opacity-100' : subscribe === id }"
               >
                 {{$t(`landingViewVP5.tarifs.${name}`)}}
               </p>
               <p
-                class="font-sans text-10px leading-normal text-[#fff] opacity-25"
-                :class="{ '!opacity-75' : subscribe === id }"
+                  class="font-sans text-10px leading-normal text-[#fff] opacity-25"
+                  :class="{ '!opacity-75' : subscribe === id }"
               >
                 <span class="line-through">{{totalCost}}</span>
                 {{totalDiscCost}}
@@ -303,22 +448,22 @@
             </div>
             <div class="absolute flex flex-col items-center gap-2px w-full top-[50%] left-[50%] transform translate-x-[-45%] translate-y-[-50%]">
               <p
-                class="font-sans font-600 text-12px leading-tight text-[#fff] opacity-25 line-through"
-                :class="{ '!text-body !opacity-100' : subscribe === id }"
+                  class="font-sans font-600 text-12px leading-tight text-[#fff] opacity-25 line-through"
+                  :class="{ '!text-body !opacity-100' : subscribe === id }"
               >
                 {{fullprice}}
               </p>
               <p
-                class="font-sans font-700 text-16px leading-none text-center text-red opacity-50"
-                :class="{ '!text-[#fff] !opacity-100' : subscribe === id }"
+                  class="font-sans font-700 text-16px leading-none text-center text-red opacity-50"
+                  :class="{ '!text-[#fff] !opacity-100' : subscribe === id }"
               >
                 {{cost}}
               </p>
               <p
-                class="font-sans font-600 text-12px leading-none text-center text-[#fff] opacity-50"
-                :class="{ '!opacity-100' : subscribe === id }"
+                  class="font-sans font-600 text-12px leading-none text-center text-[#fff] opacity-50"
+                  :class="{ '!opacity-100' : subscribe === id }"
               >
-              {{$t(`landingViewVP5.tarifs.txt`)}}
+                {{$t(`landingViewVP5.tarifs.txt`)}}
               </p>
             </div>
           </div>
@@ -341,111 +486,110 @@
           class="mb-64px"
           @click="openPaymentPopup"
       />
+    </div>
 
-      <Guarantee
+    <Guarantee
         :borderColor="superDiscount.theme ? '#5773D6' : '#E44240'"
         textColor="#fff"
         :icon="superDiscount.theme ? 'blue' : 'red'"
-      />
-    </div>
-    <div class="py-48px px-32px max-w-600px mx-auto">
-      <FaqBlock :items="faqQuestions.faq" />
-      <div class="mt-48px">
-        <div class="mb-24px">
-          <div class="flex items-center mb-12px">
-            <img src="../assets/images/svg/icon_notification.svg" class="mr-8px" />
-            <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-              {{$t(`landingViewVP5.notifications`)}}
-            </h3>
-          </div>
-          <p class="font-sans font-400 text-14px leading-normal text-body">
-            {{$t(`landingViewVP5.confirmation`)}}
-          </p>
+    />
+  </div>
+  <div class="py-48px px-32px max-w-600px mx-auto">
+    <FaqBlock :items="faqQuestions.faq" />
+    <div class="mt-48px">
+      <div class="mb-24px">
+        <div class="flex items-center mb-12px">
+          <img src="@/assets/images/svg/icon_notification.svg" class="mr-8px" />
+          <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
+            {{$t(`landingViewVP5.notifications`)}}
+          </h3>
         </div>
-        <div class="mb-24px">
-          <div class="flex items-center mb-12px">
-            <img src="../assets/images/svg/icon_safe.svg" class="mr-8px" />
-            <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-              {{$t(`landingViewVP5.safe`)}}
-            </h3>
-          </div>
-          <p class="font-sans font-400 text-14px leading-normal text-body">
-            {{$t(`landingViewVP5.info`)}}
-          </p>
-        </div>
-        <div class="mb-24px">
-          <div class="flex items-center mb-12px">
-            <img src="../assets/images/svg/icon_secure.svg" class="mr-8px" />
-            <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-              {{$t(`landingViewVP5.secure`)}}
-            </h3>
-          </div>
-          <p class="font-sans font-400 text-14px leading-normal text-body">
-            {{$t(`landingViewVP5.encrypted`)}}
-          </p>
-        </div>
-        <div >
-          <div class="flex items-center mb-12px">
-            <img src="../assets/images/svg/icon_help.svg" class="mr-8px" />
-            <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-              {{$t(`landingViewVP5.help`)}}
-            </h3>
-          </div>
-          <p class="font-sans font-400 text-14px leading-normal text-body" v-html="$t('landingViewVP5.contact', {email: 'contact@kegel-plan.com'})" />
-        </div>
-        <a @click="scrollToPaymentBlock" class="bg-red rounded-9px py-20px px-0 w-full mx-auto mt-48px mb-0 font-700 text-18px leading-tight text-center text-[#fff] border-none block no-underline cursor-pointer shadow-button-red">
-          {{$t(`landingViewVP5.getPlanButton`)}}
-        </a>
+        <p class="font-sans font-400 text-14px leading-normal text-body">
+          {{$t(`landingViewVP5.confirmation`)}}
+        </p>
       </div>
+      <div class="mb-24px">
+        <div class="flex items-center mb-12px">
+          <img src="@/assets/images/svg/icon_safe.svg" class="mr-8px" />
+          <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
+            {{$t(`landingViewVP5.safe`)}}
+          </h3>
+        </div>
+        <p class="font-sans font-400 text-14px leading-normal text-body">
+          {{$t(`landingViewVP5.info`)}}
+        </p>
+      </div>
+      <div class="mb-24px">
+        <div class="flex items-center mb-12px">
+          <img src="@/assets/images/svg/icon_secure.svg" class="mr-8px" />
+          <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
+            {{$t(`landingViewVP5.secure`)}}
+          </h3>
+        </div>
+        <p class="font-sans font-400 text-14px leading-normal text-body">
+          {{$t(`landingViewVP5.encrypted`)}}
+        </p>
+      </div>
+      <div >
+        <div class="flex items-center mb-12px">
+          <img src="@/assets/images/svg/icon_help.svg" class="mr-8px" />
+          <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
+            {{$t(`landingViewVP5.help`)}}
+          </h3>
+        </div>
+        <p class="font-sans font-400 text-14px leading-normal text-body" v-html="$t('landingViewVP5.contact', {email: 'contact@kegel-plan.com'})" />
+      </div>
+      <a @click="scrollToPaymentBlock" class="bg-red rounded-9px py-20px px-0 w-full mx-auto mt-48px mb-0 font-700 text-18px leading-tight text-center text-[#fff] border-none block no-underline cursor-pointer shadow-button-red">
+        {{$t(`landingViewVP5.getPlanButton`)}}
+      </a>
     </div>
-    <Footer />
-    <vpopup
-        v-if="paymentPopup"
-        textTitle="Select Payment method"
-        position="bottom"
-        @closePopup="cancelPayment"
-        close-button
-    >
-      <PaymentFormCompanentModal
-          @error="paymentError"
-          @success="nextUrl"
-          @clickButton="closeWindowError"
-          :item="this.item"
-          :auth_price="this.price"
-          :discount="pickedTarifParams.discount"
-          :discountAmount="pickedTarifParams.discountAmount"
-          :discountPrice="pickedTarifParams.discountPrice"
-          :fullPrice="pickedTarifParams.fullPrice"
-          :subscription="pickedTarifParams.subscriptionName"
-          :subscriptionDate="pickedTarifParams.subscriptionPeriod"
-          :theme="superDiscount.theme"
-          id="paymentForm" />
-    </vpopup>
-    <vpopup
+  </div>
+  <Footer />
+  <vpopup
+      v-if="paymentPopup"
+      textTitle="Select Payment method"
+      position="bottom"
+      @closePopup="cancelPayment"
+      close-button
+  >
+    <PaymentFormCompanentModal
+        @error="paymentError"
+        @success="nextUrl"
+        @clickButton="closeWindowError"
+        :item="this.item"
+        :auth_price="this.price"
+        :discount="pickedTarifParams.discount"
+        :discountAmount="pickedTarifParams.discountAmount"
+        :discountPrice="pickedTarifParams.discountPrice"
+        :fullPrice="pickedTarifParams.fullPrice"
+        :subscription="pickedTarifParams.subscriptionName"
+        :subscriptionDate="pickedTarifParams.subscriptionPeriod"
+        :theme="superDiscount.theme"
+        id="paymentForm" />
+  </vpopup>
+  <vpopup
       v-if="windowError"
       error
       :close-button="false"
-    >
-      <div class="flex items-center">
-        <p class="opacity-75 font-sans font-500 text-red text-14px leading-normal">
-          {{$t(`landingViewVP5.declined`)}}
-        </p>
-        <img
+  >
+    <div class="flex items-center">
+      <p class="opacity-75 font-sans font-500 text-red text-14px leading-normal">
+        {{$t(`landingViewVP5.declined`)}}
+      </p>
+      <img
           class="ml-16px cursor-pointer"
           src="@/assets/images/svg/icon_btn-close-communicate.svg"
           alt="error"
           @click="closeWindowError"
-        >
-      </div>
-    </vpopup>
-    <SuperDiscountWindow
+      >
+    </div>
+  </vpopup>
+  <SuperDiscountWindow
       v-if="superDiscount.popup && !superWindowWasOpened"
       :goal="$t(`home.tracks.purpose.${purpose}`)"
       @close="closeSuperDiscountPopup"
-    />
-  </div>
-  <!-- При выборе оплаты класс active задать одной из button line 223,232, 235 -->
-  </template>
+  />
+</template>
   <script>
   import { mapGetters } from 'vuex';
   import ButtonField from '@/components/ui/Button.vue';
@@ -503,8 +647,7 @@
         numanimate: 1,
         superWindowWasOpened: localStorage.getItem('superDiscWindow'),
         show: false,
-        imageitem: require(`@/assets/images/json/Step_1_1.json`),
-        AddPurposeCom: false,
+        AddPurposeCom: sessionStorage.getItem('resbtn') === 'Yes',
         addItem: false,
         numanim: null,
       };
@@ -515,7 +658,14 @@
         const y = el.getBoundingClientRect().top + window.pageYOffset - 50;
 
         window.scrollTo({top: y, behavior: 'smooth'});
-        //.scrollIntoView({ behavior: "smooth", block: 'center'})
+      },
+      scrollBorder() {
+        const paymentBlock = this.$refs['payment-block'];
+        const paymentBlockTop = paymentBlock.getBoundingClientRect().top;
+        const paymentBlockHeight = paymentBlock.getBoundingClientRect().height;
+        if (window.scrollY > (paymentBlockTop + paymentBlockHeight)) {
+          this.blockFixed = true
+        }
       },
       superDiscountCheck() {
         const superDiscount = JSON.parse(localStorage.getItem('superDiscount'))
@@ -690,29 +840,6 @@
         }
         return priceParams;
       },
-      imagechart(){
-        if(this.jsLocal == 2){
-          if(sessionStorage.getItem('resbtn') == 'Yes'){
-            this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
-          }else{
-            this.imageitem = require(`@/assets/images/json/Step_1_2.json`);
-          }
-        }else{
-          this.imageitem = require(`@/assets/images/json/Step_1_1.json`);
-        }
-      },
-      MyScrollFixed(){
-        document.addEventListener('scroll', (e) => {
-          let x = window.scrollY
-          if(x>310){
-
-            this.blockFixed = true
-          }else{
-            this.blockFixed = false
-          }
-        });
-
-      },
       purpose(){
         var json = localStorage.getItem('track');
         var obj = JSON.parse(json);
@@ -724,13 +851,6 @@
         console.log(obj.addpurpose);
         return obj.addpurpose;
 
-      },
-      btnAddPurpose(){
-        if(sessionStorage.getItem('resbtn') == 'Yes'){
-          this.AddPurposeCom = true
-        }else{
-          this.AddPurposeCom = false
-        }
       },
       lengthReviews(){
         var json = localStorage.getItem('track');
@@ -749,6 +869,7 @@
       },
     },
     beforeUnmount () {
+      document.removeEventListener('scroll', this.scrollBorder)
       clearInterval(this.polling)
       clearInterval(this.numanim)
     },
@@ -761,6 +882,7 @@
       }
     },
     mounted() {
+      document.addEventListener('scroll', this.scrollBorder)
       this.superDiscountCheck()
       this.apple_pay = true;
       this.numanim = setInterval(() => {
@@ -799,3 +921,15 @@
     },
   };
   </script>
+
+<style scoped>
+.redline::before {
+  content: "";
+  display: block;
+  min-width: 4px;
+  min-height: 100%;
+  background: #E44240;
+  border-radius: 10px;
+  margin-right: 16px;
+}
+</style>

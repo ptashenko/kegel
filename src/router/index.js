@@ -15,6 +15,7 @@ import EmailAdress from '@/views/EmailAdress.vue';
 import EmailAdress_v2 from '@/views/baseline_v2/EmailAdress.vue';
 import AddressPage from '@/views/AddressPage.vue';
 import LandingViewVP5 from '@/views/LandingViewVP5.vue';
+import Landing_v2 from '@/views/baseline_v2/LandingViewVP5.vue'
 import Landing_ios_v1 from '@/views/Landing_ios_v1.vue';
 import Landing_ios_v2 from '@/views/Landing_ios_v2.vue';
 import Landing_ios_v3 from '@/views/Landing_ios_v3.vue';
@@ -82,9 +83,9 @@ const routes = [{
         component: isBaseline ? EmailAdress : EmailAdress_v2,
     },
     {
-        path: '/LandingViewVP5',
+        path: '/landing',
         name: 'LandingViewVP5',
-        component: LandingViewVP5,
+        component: isBaseline ? LandingViewVP5 : Landing_v2
     },
     {
         path: '/AddressPage',

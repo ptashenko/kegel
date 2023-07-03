@@ -26,14 +26,17 @@ export default {
   methods: {
     startTimer() {
       this.timer = this.formatTime(this.timerCount);
-      this.intervalId = setInterval(() => {
-        this.timerCount--;
-        this.timer = this.formatTime(this.timerCount);
+      if (!!Number(this.timerCount)) {
+        this.intervalId = setInterval(() => {
+          this.timerCount--;
+          this.timer = this.formatTime(this.timerCount);
+          console.log(this.timerCount)
 
-        if (this.timerCount === 0) {
-          this.stopTimer(this.intervalId);
-        }
-      }, 1000);
+          if (this.timerCount <= 0) {
+            this.stopTimer(this.intervalId);
+          }
+        }, 1000);
+      }
     },
     stopTimer() {
       clearInterval(this.intervalId);

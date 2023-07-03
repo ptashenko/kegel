@@ -52,10 +52,14 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import VueScrollTo from "vue-scrollto";
+import BaseInput from "@/components/ui/BaseInput.vue";
 
 export default {
   name: 'EmailAdress',
   inject: ['mixpanel'],
+  components: {
+    BaseInput
+  },
   data() {
     return {
       textpurpose:'',

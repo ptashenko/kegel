@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-400px mx-auto mt-25px mb-64px w-full">
+  <div class="max-w-400px mx-auto mb-64px w-full">
     <div class="font-400 text-14px leading-normal mb-8px text-center text-[#fff]">
       <slot></slot>
       </div>

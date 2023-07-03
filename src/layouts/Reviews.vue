@@ -114,11 +114,11 @@ export default {
     graphText() {
       switch (this.version) {
         case 1:
-          return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
-        case 5:
-          return 'This diagram is non-personalized data based on scientific research. Each individual’s results may vary from person to person.'
+          return this.$t('landingViewVP5.diagram')
+        case 2:
+          return this.$t('landingViewVP5.diagram')
         default:
-          return 'This diagram is non-personalized data based on scientific research'
+          return this.$t('landingViewVP5.diagram')
       }
     },
 

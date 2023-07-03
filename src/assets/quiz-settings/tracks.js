@@ -3,7 +3,7 @@ export default [{
     title: 't_1',
     titleShortQuiz: 'subt_1',//abtest('experiment_1') == 'Baseline' ? 'Treat ED' : 'Improve potency',
     purpose: 'purp_1',
-    addpurpose: 'addpurpose',
+    addpurpose: 'addpurp_1',
     text: '',
     layouts: [
         { id: 1, separation: true },
@@ -25,7 +25,7 @@ export default [{
         title: 't_2', //abtest('experiment_1') == 'Baseline' ? 'Treat PE' : 'Increase endurance',
         titleShortQuiz: 'subt_2',
         purpose: 'purp_2',
-        addpurpose: 'addpurpose',
+        addpurpose: 'addpurp_2',
         text: '',
         layouts: [
             { id: 1, separation: true },
@@ -47,7 +47,7 @@ export default [{
         title: 't_3',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
         titleShortQuiz: 'subt_3',
         purpose: 'purp_3',
-        addpurpose: 'addpurpose',
+        addpurpose: 'addpurp_3',
         text: 'txt_3',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
         layouts: [
             { id: 1, separation: true },

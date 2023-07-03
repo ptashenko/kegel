@@ -9,7 +9,7 @@
           :key="step.title"
         >
             <div v-if="step.active" class="w-full relative flex flex-col items-stretch justify-between sm:pb-50px" :class="{'animate-seconds': step.active}">
-              <h2 class="max-w-450px mx-auto font-displayBold text-20px leading-normal my-32px sm:(max-w-full text-30px leading-normal)" v-html="step.title" />
+              <h2 class="max-w-450px mx-auto font-displayBold text-20px leading-normal my-32px sm:(max-w-full text-30px leading-normal)" v-html="$t(`wait_v2.titles.${step.title}`)" />
               <div class="text-center mx-auto max-w-373px h-auto block relative">
                 <img :src="image" alt="" class="max-w-full w-full">
               </div>
@@ -36,23 +36,23 @@ export default {
       timePerStep: 5000,
       steps: [
         {
-          title: 'Dr. Kegel is the most popular Kegel exercise plan in the World!',
+          title: 't_1',
           active: true,
         },
         {
-          title: 'The Dr. Kegel Plan is based on the latest scientific studies',
+          title: 't_2',
           active: false,
         },
         {
-          title: 'It includes only the proven and the most effective Kegel exercises',
+          title: 't_3',
           active: false,
         },
         {
-          title: 'Simply follow interactive guided workouts in a handy mobile app',
+          title: 't_4',
           active: false,
         },
         {
-          title: 'The best part?<br>It only takes 5 minutes a day',
+          title: 't_5',
           active: false,
         },
       ],

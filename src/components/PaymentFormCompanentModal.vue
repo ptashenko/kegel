@@ -31,7 +31,7 @@
     <div class="py-16px px-0 border-t-1px border-[#F1F3F9] border-b-1px grid grid-cols-[2fr,1fr] gap-y-10px">
         <p class="font-sans font-normal font-400 text-14px leading-normal text-[#11111380]">{{ subscription }}</p>
         <p class="font-sans font-normal font-400 text-14px leading-normal text-[#11111380] text-right tracking-0px">{{ fullPrice }}</p>
-        <p class="font-sans font-normal font-400 text-14px leading-normal text-[#11111380]">{{ discount }}% introductory price discount</p>
+        <p class="font-sans font-normal font-400 text-14px leading-normal text-[#11111380]">{{ $t('paymentForm.discount', { discount }) }}</p>
         <p
             class="font-sans font-normal font-700 text-14px leading-normal text-[#11111380] text-right tracking-0px"
             :class="!theme ? 'text-red' : 'text-blue'">
@@ -39,13 +39,13 @@
         </p>
     </div>
     <div class="py-16px px-0 border-t-1px border-[#F1F3F9] border-b-1px grid grid-cols-[0.7fr,2fr] gap-y-10px border-none">
-      <p class="font-normal font-700 text-18px leading-normal text-[#000]">Total</p>
+      <p class="font-normal font-700 text-18px leading-normal text-[#000]">{{ $t('paymentForm.total') }}</p>
       <p class="font-normal font-700 text-18px leading-normal text-[#000] text-right">{{ discountPrice }}</p>
-        <p class="font-sans font-normal font-400 text-12px leading-normal text-[#11111380]">per {{ subscriptionDate }}</p>
+        <p class="font-sans font-normal font-400 text-12px leading-normal text-[#11111380]">{{ $t('paymentForm.perDate', { subscriptionDate }) }}</p>
         <p
             class="font-sans font-normal font-700 text-12px leading-normal text-[#11111380] text-right tracking-0px"
             :class="!theme ? 'text-red' : 'text-blue'">
-          You just saved {{discountAmount}} ({{discount}}% off)
+            {{ $t('paymentForm.saved', { discountAmount }, { discount }) }}
         </p>
     </div>
   </div>

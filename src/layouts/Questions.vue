@@ -56,8 +56,8 @@
           />
         </div>
         <div v-if="surveyAnswerIsButtons" class="flex max-w-390px w-full mx-auto mt-16px justify-between opacity-75 text-14px sm:text-18px">
-          <div>{{survey.answer.textLeft}}</div>
-          <div>{{survey.answer.textRight}}</div>
+          <div>{{ $t(`survey.id_${content.id}.textLeft`) }}</div>
+          <div>{{ $t(`survey.id_${content.id}.textRight`) }}</div>
         </div>
       </div>
 
@@ -115,8 +115,8 @@ export default {
     },
 
     rateTo() {
-      const list = this.survey.answer.answerList;
-      return `Rate from 1 to ${list[list.length - 1]}`;
+      const list = Object.values(this.survey.answer.answerList);
+      return `Rate from 1 to ${list.length}`;
     },
 
     getBackButtonProps() {

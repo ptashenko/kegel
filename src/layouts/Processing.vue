@@ -1,7 +1,7 @@
 <template>
     <div class="container-mob p-0">
       <processing>
-        Processing...
+        {{ $t('processing.title') }}
       </processing>
 
 

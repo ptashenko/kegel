@@ -4,12 +4,12 @@
               <div class="mt-24px max-w-375px mx-auto">
                 <img src="@/assets/images/svg/icon_email-img.svg" alt="email" class="mx-auto block">
                 <div class="fond-displayBold font-600 text-20px leading-normal text-center mt-24px mx-auto mb-8px sm:(text-30px leading-normal mb-16px)">
-                  {{ title }}
+                  {{ $t('emailAdress.title') }}
                 </div>
-                <p class="font-sans text-14px leading-normal text-body opacity-75 mx-auto text-center max-w-400px mb-32px sm:(text-18px leading-normal)">to get your Kegel Training Plan & improve {{ purpose }}</p>
+                <p class="font-sans text-14px leading-normal text-body opacity-75 mx-auto text-center max-w-400px mb-32px sm:(text-18px leading-normal)">{{ $t('emailAdress.text', {purpose: $t(`home.tracks.purpose.${purpose}`)} ) }}</p>
                 <label class="relative text-center mx-auto block w-fit" for="email">
                   <input v-model="upValue" id="email" class="bg-[#F1F3F9] shadow-input rounded-9px border-none text-1em leading-normal p-17px text-body w-275px sm:w-375px relative outline-none focus:(border-none outline-none) active:(border-none outline-none) placeholder-body/50" type="email"
-                    :placeholder="email || 'Enter your email here'">
+                    :placeholder="email || $t('emailAdress.enterEmail')">
                   <span class="w-17px">
                     <img src="@/assets/images/svg/icon_lock.svg" alt="img" class="absolute top-[50%] right-20px transform translate-y-[-50%]">
                   </span>
@@ -19,7 +19,7 @@
                   class="border-none rounded-9px p-16px font-sansMedium text-18px leading-normal text-[#fff] my-32px mx-auto w-165px text-center bg-red cursor-pointer"
                   @click="nextUrlEmail"
                 >
-                  See my plan
+                {{ $t('emailAdress.plan') }}
                 </div>
                 <div
                   v-else
@@ -27,20 +27,20 @@
                   :class="{ '!bg-red cursor-pointer': closeActive }"
                   @click="nextUrl"
                 >
-                  See my plan
+                {{ $t('emailAdress.plan') }}
                 </div>
 
                 <p class="font-sans font-400 text-10px leading-normal text-center text-body opacity-50 sm:(text-14px leading-normal)">
-                  Your data is perfectly safe. We won't share your personal information with third parties.
+                  {{ $t('emailAdress.data') }}
                 </p>
               </div>
               <div>
               <p class="font-sans font-400 text-10px leading-normal text-center text-body opacity-50 sm:(text-14px leading-normal)">
-                By giving your email address you can also receive offers from Appercut Sp. z o.o. You can unsubscribe at any time.
+                {{ $t('emailAdress.offers') }}
               </p>
               <div class="mt-16px flex justify-center">
-                <a href="/terms.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 mr-24px sm:(mr-16px text-14px leading-normal)">Terms</a>
-                <a href="/privacy-policy.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 sm:(text-14px leading-normal)">Policy</a>
+                <a href="/terms.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 mr-24px sm:(mr-16px text-14px leading-normal)">{{ $t('emailAdress.terms') }}</a>
+                <a href="/privacy-policy.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 sm:(text-14px leading-normal)">{{ $t('emailAdress.policy') }}</a>
               </div>
             </div>
           </div>
@@ -61,7 +61,6 @@ export default {
       email: null,
       isEmailTouched: false,
       upValue: this.EMAILUSER,
-      title: 'Enter email adress',
       version: localStorage.getItem('ver'),
     };
   },

@@ -12,19 +12,8 @@
     </div>
     <p
       class="basis-[65%] font-sans font-700 text-16px leading-normal text-[#fff]"
+      v-html="$t('superDiscountGift.discount', {discountOriginal, discount})"
     >
-      Get a
-      <span
-        class="opacity-50 line-through"
-      >
-        {{ this.discountOriginal }}%
-      </span>
-      <span
-        class="text-blue"
-      >
-        {{ this.discount }}% discount
-      </span>
-      on your Kegel plan
     </p>
   </div>
 </template>

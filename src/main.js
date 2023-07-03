@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import svg4everybody from 'svg4everybody';
-import moment from 'moment';
+import dayjs from 'dayjs';
+require('dayjs/locale/es')
 import Header from '@/components/Header.vue';
 import FooterControls from '@/components/FooterControls.vue';
 import Steps from '@/components/Steps.vue';
@@ -53,7 +54,10 @@ createApp(App)
   })
     .use(device)
     .use(svg4everybody)
-    .use(moment)
+  .use({install(app) {
+    dayjs.locale('en')
+    app.config.globalProperties.$dayjs = dayjs;
+    }})
     // .use(VueAB)
     .use(LottieAnimation)
     .use(VueScrollTo)

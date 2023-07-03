@@ -4,14 +4,14 @@
               <div class="mt-24px max-w-375px mx-auto">
                 <img src="@/assets/images/svg/icon_email-img.svg" alt="email" class="mx-auto block">
                 <div class="fond-displayBold font-bold text-24px leading-normal text-center my-24px mx-auto sm:(text-30px leading-normal mb-16px)">
-                  Where to send your plan?
+                  {{ $t('emailAdress_v2.title') }}
                 </div>
                 <p class="font-sans text-14px leading-normal text-body opacity-75 mx-auto text-center max-w-400px mb-32px sm:(text-18px leading-normal)">
-                  <span class="font-bold">Double-check</span> that your email is entered correctly because you can get your plan only once
+                  <span class="font-bold">{{ $t('emailAdress_v2.textFirst') }}</span> {{ $t('emailAdress_v2.textSecond') }}
                 </p>
                 <label class="relative text-center mx-auto block w-fit" for="email">
                   <input v-model="upValue" id="email" class="bg-[#F1F3F9] shadow-input rounded-9px border-none text-14px leading-normal p-17px text-body w-311px sm:w-375px relative outline-none focus:(border-none outline-none) active:(border-none outline-none) placeholder-body/50" type="email"
-                    :placeholder="email || 'Enter your email here'">
+                    :placeholder="email || $t('emailAdress_v2.enterEmail')">
                   <span class="w-17px">
                     <img src="@/assets/images/svg/icon_lock.svg" alt="img" class="absolute top-[50%] right-20px transform translate-y-[-50%]">
                   </span>
@@ -21,7 +21,7 @@
                   class="border-none rounded-9px p-16px font-sansMedium text-18px leading-normal text-[#fff] my-32px mx-auto max-w-311px text-center bg-red cursor-pointer"
                   @click="nextUrlEmail"
                 >
-                  Get my plan
+                {{ $t('emailAdress_v2.plan') }}
                 </div>
                 <div
                   v-else
@@ -29,20 +29,20 @@
                   :class="{ '!bg-red cursor-pointer shadow-button-red': closeActive }"
                   @click="nextUrl"
                 >
-                  Get my plan
+                {{ $t('emailAdress_v2.plan') }}
                 </div>
 
                 <p class="font-sans font-400 text-10px leading-normal text-center text-body opacity-50 sm:(text-14px leading-normal)">
-                  Your data is perfectly safe. We won't share your personal information with third parties.
+                  {{ $t('emailAdress_v2.data') }}
                 </p>
               </div>
               <div>
               <p class="font-sans font-400 text-10px leading-normal text-center text-body opacity-50 sm:(text-14px leading-normal)">
-                By giving your email address you can also receive offers from Appercut Sp. z o.o. You can unsubscribe at any time.
+                {{ $t('emailAdress_v2.offers') }}
               </p>
               <div class="mt-16px flex justify-center">
-                <a href="/terms.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 mr-24px sm:(mr-16px text-14px leading-normal)">Terms</a>
-                <a href="/privacy-policy.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 sm:(text-14px leading-normal)">Policy</a>
+                <a href="/terms.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 mr-24px sm:(mr-16px text-14px leading-normal)">{{ $t('emailAdress_v2.terms') }}</a>
+                <a href="/privacy-policy.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 sm:(text-14px leading-normal)">{{ $t('emailAdress_v2.policy') }}</a>
               </div>
             </div>
           </div>

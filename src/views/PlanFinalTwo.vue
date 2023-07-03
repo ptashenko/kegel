@@ -1,29 +1,26 @@
 <template>
   <div id="topPage" class="container-mob mx-auto block pb-100px max-w-311px sm:(max-w-520px)">
     <div>
+      <!-- v-if="active && open == 1" -->
+
       <div
-        v-if="active && open == 1"
         class="mt-0 mb-32px font-displayBold text-24px leading-normal text-center sm:(text-36px leading-normal)"
         :class="{'mb-32px font-displayBold text-32px leading-normal sm:(text-36px leading-normal)': active}"
       >
-        Add Groin Fitness
-        <p class="font-displayMedium text-20px leading-normal sm:(text-24px leading-normal)">to accelerate the result</p>
+      {{ $t('planFinalTwo.title') }}
+        <p class="font-displayMedium text-20px leading-normal sm:(text-24px leading-normal)">{{ $t('planFinalTwo.subtitle') }}</p>
       </div>
-      <h2
+      <!-- <h2
         v-else-if="open == 2"
         class="mb-0 font-displayBold mt-0 text-24px leading-normal text-center sm:(text-30px leading-normal mb-32px)"
       >
-        Did you know?
+      {{ $t('planFinalTwo.didYouKnow') }}
       </h2>
       <h2
         v-else
-        class="mt-0 mb-32px font-displayBold text-24px leading-normal text-center sm:(text-36px leading-normal)"
+        class="mt-0 mb-32px font-displayBold text-24px leading-normal text-center sm:(text-36px leading-normal)" v-html="$t('planFinalTwo.offer')"
       >
-        <span
-          class="text-blue"
-        > Final Offer:</span>
-        get Groin Fitness at the best deal!
-      </h2>
+      </h2> -->
     </div>
     <div
       v-if="open !== 2"
@@ -51,7 +48,7 @@
           alt="check"
         >
         <p>
-          Build groin muscles strength & flexibility
+          {{ $t('planFinalTwo.build') }}
         </p>
       </div>
       <div
@@ -69,7 +66,7 @@
           src="@/assets/images/svg/icon_check_blue.svg" alt="check"
         >
         <p>
-          Increase blood flow to intimate organs
+          {{ $t('planFinalTwo.increase') }}
         </p>
       </div>
       <div
@@ -89,7 +86,7 @@
           alt="check"
         >
         <p>
-          Every exercise has video & audio instructions from the coach
+          {{ $t('planFinalTwo.instructions') }}
         </p>
       </div>
       <DiscountFlag
@@ -105,22 +102,9 @@
       v-if="open == 2"
       class=""
     >
-      <p class="mb-16px">
-        <span
-          class="font-sansSemiBold"
-        >
-          Groin Fitness
-        </span>
-        improves blood flow to the groin, which has a big impact on sexual performance.
+      <p class="mb-16px" v-html="$t('planFinalTwo.groin')">
       </p>
-      <p class="mb-24px">
-        Bad blood flow to the groin area can put you at
-        <span
-          class="font-sansSemiBold"
-        >
-          50-70%
-        </span>
-        risk of erectile dysfunction. Moreover, lack of physical activity proved to reduce your sexual stamina.
+      <p class="mb-24px" v-html="$t('planFinalTwo.flow')">
       </p>
       <img
         class="w-full"
@@ -128,9 +112,9 @@
         alt=""
       >
       <p
-        class="font-sans font-300 text-12px leading-normal text-center text-body opacity-50 mx-auto mt-16px mb-32px sm:(text-14px leading-normal)"
+        class="font-sans font-300 text-12px leading-normal text-center text-body opacity-50 mx-auto mt-16px mb-32px sm:(text-16px leading-normal)"
       >
-        *This diagram is a non-personalized illustration based on scientific research.
+      {{ $t('planFinalTwo.diagram') }}
       </p>
       <div
         class="bg-[#F9F9F9] border-2px border-blue rounded-9px flex min-h-100px items-center justify-around max-w-310px mx-auto"
@@ -148,8 +132,8 @@
         >
             <p
               class="font-400 text-14px leading-tight text-body opacity-75 !m-0"
+              v-html="$t('planFinalTwo.discount')"
             >
-              We want you to succeed, so we’re giving you <span class="font-displayBold">a super discount on Groin Fitness!</span>
             </p>
         </div>
       </div>
@@ -221,29 +205,33 @@
       class="relative text-center font-sansMedium text-14px leading-normal opacity-50 mx-auto my-32px cursor-pointer sm:(text-16px leading-normal mb-48px)"
       @click="showModal"
     >
-    I don’t want to accelerate my results &gt;
+    {{ $t('planFinalTwo.results') }}&gt;
     </div>
     <div v-else-if="open == 2" class="text-center">
       <button
         class="bg-blue border-none rounded-9px py-16px px-37px font-sansMedium text-18px leading-normal text-[#fff] mt-32px cursor-pointer mb-40px w-full shadow-button-blue"
         @click="closePopup"
       >
-      Continue
+      {{ $t('planFinalTwo.continue') }}
       </button>
     </div>
     <div v-else
       class="relative text-center font-sansMedium text-14px leading-normal opacity-50 mx-auto my-32px cursor-pointer sm:(text-16px leading-normal mb-48px)"
       @click="withoutUpsaleDiscounted"
     >
-    I give up accelerated results forever &gt;
+    {{ $t('planFinalTwo.giveUp') }}&gt;
     </div>
       <div>
-        <p v-if="subscriotionInfo.id === 1 && open !== 2" class="font-sansLight text-12px leading-normal opacity-50 text-center text-14px leading-normal">
-          In addition to your subscription, your account will be charged <b>{{ this.open === 1 ? this.price.discPrice : this.price.superDiscPrice }}</b> for the add-on as you click "Add to my plan". Item on this page is a <b>1 month</b> subscription. Unless you cancel it in your profile before the end of then-current period, you agree that the subscription will renew automatically at the end of each period. You can cancel the subscription online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
-        </p>
-        <p v-else-if="subscriotionInfo.id !== 1 && open !== 2" class="font-sansLight text-12px leading-normal opacity-50 text-center text-14px leading-normal">
-          In addition to your subscription, your account will be charged <b>{{ this.open === 1 ? this.price.discPrice : this.price.superDiscPrice }}</b> for the add-on as you click "Add to my plan". Item on this page is a <b>{{ this.subscriotionInfo.period }}</b> subscription. Unless you cancel it in your profile before the end of then-current period, you agree that the subscription will renew automatically at the end of each period. You can cancel the subscription online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.
-        </p>
+        <p
+          v-if="subscriotionInfo.id === 1 && open !== 2"
+          class="font-sansLight text-12px leading-normal opacity-50 text-center text-14px leading-normal"
+          v-html="$t('planFinalTwo.subscription', {date: this.open === 1 ? this.price.discPrice : this.price.superDiscPrice})"
+        />
+        <p
+          v-else-if="subscriotionInfo.id !== 1 && open !== 2"
+          class="font-sansLight text-12px leading-normal opacity-50 text-center text-14px leading-normal"
+          v-html="$t('planFinalTwo.subscription', {date: this.open === 1 ? this.price.discPrice : this.price.superDiscPrice})"
+        />
       </div>
   </div>
   <vpopup
@@ -254,13 +242,13 @@
     <div class="flex">
       <div>
         <p class="text-red text-14px leading-normal">
-          Your payment was declined.
+          {{ $t('planFinalTwo.error') }}
         </p>
         <p
           class="text-blue text-14px leading-normal underline cursor-pointer"
           @click="popupPay"
         >
-          Tap here to select a different payment method.
+        {{ $t('planFinalTwo.tap') }}
         </p>
       </div>
       <img

@@ -7,46 +7,38 @@
         :dark="dark"
       />
 
-      <div class="h2 layout__title">
-        <span v-if="content.title !== false">{{ content.title }}</span>
-        <span class="red" v-if="content.afterTilteRed !== false">{{ content.afterTilteRed }}</span>
-        <span v-if="content.afterTilteText !== false">{{ content.afterTilteText }}</span>
+      <div v-if="content.title"
+           class="text-center text-[#fff] font-displayBold font-600 text-20px leading-normal mb-32px sm:(text-24px leading-normal)">
+        <h2 v-html="$t(`survey.id_${content.id}.${content.title}`)" />
       </div>
-      <div class="questions__thumbnail" v-if="content.video">
+
+      <div v-if="content.video">
         <video-background
-          :src="video(content.video)"
-          :poster="video(content.poster)"
-          class="video"
-        >
-        </video-background>
-      </div>
-
-      <div class="layout__thumbnail full" v-if="content.thumbnail">
-        <img
-          :src="image(content.thumbnail)"
-          :alt="content.title"
-          width="400"
-          height="200"
-        >
+            :src="video($t(`survey.id_${content.id}.${content.video}`))"
+            :poster="video($t(`survey.id_${content.id}.${content.poster}`))"
+            class="h-209px rounded-14px max-w-520px w-full sm:(h-340px)" />
       </div>
 
 
-      <div class="layout__bottom-text" v-if="content.text">
-        <span v-if="content.aftertext">{{ content.aftertext }}</span>
-        <span class="bold-text" v-if="content.textbold">{{ content.textbold }}</span>
-        {{ content.text }}
-        <span class="bold-text" v-if="content.textBold">{{ content.textBold }}</span>
-        <span class="after__text__bold" v-if="content.AfterTextBold">{{ content.AfterTextBold }}</span>
+      <div class="mb-32px text-center" v-if="content.thumbnail">
+        <img class="w-full max-w-450px h-auto sm:max-w-520px" :src="image($t(`survey.id_${content.id}.${content.thumbnail}`))" :alt="content.title">
       </div>
 
-      <div class="layout__buttons" v-if="content.buttons">
-        <div class="layout__button" v-for="button in content.buttons" :key="button.id">
-          <div class="layout__button-icon" v-if="button.logo">
+
+      <div v-if="content.text"
+           class="font-sans font-400 text-16px leading-normal mt-25px text-center text-[#fff] sm:(text-18px leading-normal)">
+        <span v-html="$t(`survey.id_${content.id}.text`)" />
+      </div>
+
+      <div v-if="content.buttons" class="rounded-17px p-9px max-w-300px my-32px mx-auto bg-[#8080800C] mb-20px">
+        <div v-for="(button, idx) in content.buttons" :key="button.id"
+             class="font-500 text-14px leading-tight flex items-center" :class="{ 'mb-3': idx !== content.buttons.length - 1 }">
+          <div v-if="button.logo" class="w-37px h-37px flex items-center justify-center rounded-full mr-12px">
             <img :src="`${buttonIcon(button.logo)}`" :alt="button.title">
           </div>
-          <div>
-            <span>{{ button.text }}</span>
-            <div>{{ button.title }}</div>
+          <div class="text-[#fff]">
+            <span>{{ $t(`survey.id_${content.id}.buttons.text`) }}</span>
+            <div>{{ $t(`survey.id_${content.id}.buttons.title`) }}</div>
           </div>
         </div>
       </div>
@@ -54,14 +46,14 @@
       <footer-controls
         :dark="true"
         :buttonBack="{
-        text: content.buttonsText ? content.buttonsText[0] : 'Back',
+        text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[0]}`) : 'Back',
         icon: 'prev',
         click: backURL,
         theme: 'bg-[#282828] hover:bg-[#373737FF]'
       }"
         :buttonNext="{
         icon: 'next',
-        text: content.buttonsText ? content.buttonsText[1] : 'I got it',
+        text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[1]}`) : 'I got it',
         click: nextURL,
         theme: 'bg-red hover:bg-[#F5423FFF]'
       }"

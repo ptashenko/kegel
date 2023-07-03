@@ -8,8 +8,7 @@
 
     <div class="container-mob pb-30px">
       <div class="font-sansSemiBold text-20px leading-normal text-center text-[#fff] sm:(text-24px leading-normal)">
-        <span v-if="content.tilteRed" class="text-red">{{content.tilteRed}}</span>
-        {{ content.title }}
+        <h2 v-html="$t(`survey.id_${content.id}.title`)" />
       </div>
 
       <div class="text-center my-30px mx-auto block max-w-400px w-full sm:max-w-520px">
@@ -17,7 +16,7 @@
         <lottie-animation
           v-if="content.thumbnail"
           ref="anim"
-          :animationData="require(`@/assets/images/json/${content.thumbnail}`)"
+          :animationData="require(`@/assets/images/json/${$t(`survey.id_${content.id}.image`)}`)"
         />
       </div>
 
@@ -45,8 +44,8 @@
             <img :src="`${buttonIcon(button.logo)}`" :alt="button.title" />
           </div>
           <div class="text-[#fff]">
-            <span>{{ button.text }}</span>
-            <div>{{ button.title }}</div>
+            <span>{{ $t(`survey.id_${content.id}.buttons.text`) }}</span>
+            <div>{{ $t(`survey.id_${content.id}.buttons.title`) }}</div>
           </div>
         </div>
       </div>

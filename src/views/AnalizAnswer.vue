@@ -1,13 +1,13 @@
 <template>
     <div class="container-mob">
       <h2 class="font-displayBold text-center text-20px leading-normal sm:(text-30px leading-normal)">
-        {{title}}
+        {{ $t('analizAnswer.title') }}
       </h2>
 
       <div class="max-w-450px mx-auto mt-48px mb-0 w-full sm:(mt-64px)">
         <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'opacity-100': percent > 0}">
           <div>
-            Intimate health indicators
+            {{ $t('analizAnswer.indicators') }}
           </div>
           <div class="flex items-center">
             <div class="flex">
@@ -19,7 +19,6 @@
                 :loop="true"
                 :autoPlay="true"
                 :speed="1"
-
               />
             </div>
             <div class="w-45px text-right">
@@ -35,7 +34,7 @@
       <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
         <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'opacity-100': loadProsentTwo > 0}">
           <div>
-            Sexual behaviours
+            {{ $t('analizAnswer.behaviours') }}
           </div>
           <div class="flex items-center">
             <div class="flex">
@@ -47,7 +46,6 @@
                 :loop="true"
                 :autoPlay="true"
                 :speed="1"
-
               />
             </div>
             <div  class="w-45px text-right">
@@ -63,7 +61,7 @@
       <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
         <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'opacity-100': loadProsentTree > 0}">
           <div>
-            Lifestyle
+            {{ $t('analizAnswer.lifestyle') }}
           </div>
           <div class="flex items-center">
             <div class="flex">
@@ -75,7 +73,6 @@
                 :loop="true"
                 :autoPlay="true"
                 :speed="1"
-
               />
             </div>
             <div  class="w-45px text-right">
@@ -91,7 +88,7 @@
       <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
         <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'active': loadProsentFoo > 0}">
           <div>
-            Creating your plan
+            {{ $t('analizAnswer.plan') }}
           </div>
           <div class="flex items-center">
             <div class="flex">
@@ -102,7 +99,6 @@
                 :loop="true"
                 :autoPlay="true"
                 :speed="1"
-
               />
             </div>
             <div  class="w-45px text-right">
@@ -116,11 +112,12 @@
         </div>
       </div>
 
-      <div v-for="(reviewItem, key)  in base" :key="key" >
+      <div v-for="(reviewItem, key) in base" :key="key" >
         <div v-show="key == this.numreview" class="p-15px rounded-10px mt-64px mx-auto mb-0 max-w-370px bg-[#F1F1F1] sm:(max-w-full)">
           <div class="flex justify-between mb-15px">
             <div>
-              <div class="font-700 text-14px leading-normal sm:(text-18px leading-normal)">{{ reviewItem.title }}</div>
+              <div class="font-700 text-14px leading-normal sm:(text-18px leading-normal)">{{ $t(`review.${reviewItem.title}`)}}
+              </div>
               <div class="flex mt-5px">
                 <div v-for="i in reviewItem.rating" :key="i" class="w-14px h-14px">
                   <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="max-w-14px h-auto">
@@ -137,7 +134,7 @@
           </div>
 
           <div class="font-400 text-12px leading-normal sm:(text-16px leading-normal)">
-            {{ reviewItem.text }}
+            {{ $t(`review.${reviewItem.text}`)}}
           </div>
         </div>
       </div>
@@ -151,7 +148,6 @@ export default {
 
   data(){
     return{
-      title:'Analyzing the answers...',
       textTitle:"Do you want to enhance your orgasms?",
       isActiveCheck_1: true,
       isActiveCheck_2: false,
@@ -202,16 +198,13 @@ export default {
       }
     }, 60);
   },
-
-
-
   methods:{
     lengthReviews(){
       const json = localStorage.getItem('track');
       const obj = JSON.parse(json);
       this.track = obj.id
       if (this.track == 3) {
-        this.base =  this.$store.state.review.msgOK
+        this.base = this.$store.state.review.msgOK
       } else if(this.track == 2) {
         this.base = this.$store.state.review.msgPE
       } else {

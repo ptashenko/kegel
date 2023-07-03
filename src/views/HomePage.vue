@@ -55,8 +55,7 @@
                 </button>
 
               <div class="font-sansLight opacity-50 text-center mx-auto mt-32px text-12px leading-normal sm:(text-14px leading-normal)">
-                Each individual’s results may vary from person to person based on health condition, body type, starting point, his or
-                her unique background, dedication, desire, motivation, actions, and numerous other factors
+                {{ $t(`home.description`) }}
               </div>
           </div>
           </div>
@@ -64,13 +63,15 @@
       <div class="pt-48px pb-50px bg-[#C4C4C433] sm:(pt-51px)">
         <div class="max-w-311px mx-auto box-border sm:(px-40px pb-32px max-w-600px)">
           <div
-            v-for="(advantage, idx) in advantages"
+          v-for="(advantage, idx) in advantages"
             :key="advantage.title"
             class="text-center mx-auto mb-48px sm:(max-w-373px mb-15px)"
           >
             <img :src="advantage.img" :alt="advantage.title" class="block mx-auto mb-16px" :class="[idx === 0 ? 'w-44px' : 'w-48px']">
-            <div class="font-displayBold font-700 text-20px leading-normal text-center text-shadow-title sm:(font-600 text-24px leading-tight)">{{ advantage.title }}</div>
-            <div class="font-sans text-14px font-400 opacity-65 leading-normal mt-8px sm:(text-18px leading-normal p-0)">{{ advantage.text }}</div>
+            <div class="font-displayBold font-700 text-20px leading-normal text-center text-shadow-title sm:(font-600 text-24px leading-tight)">
+              {{ $t(`home.advantages.titles.${advantage.title}`) }}
+            </div>
+            <div class="font-sans text-14px font-400 opacity-65 leading-normal mt-8px sm:(text-18px leading-normal p-0)">{{ $t(`home.advantages.texts.${advantage.text}`) }}</div>
             <p v-if="advantage.email" class="mt-8px block text-red no-underline text-14px sm:(text-18px leading-normal)">{{ advantage.email }}</p>
           </div>
           <FooterHomeView />
@@ -103,15 +104,15 @@ export default {
       device: useDevice(),
       advantages: [
         {
-          title: 'Dr. Kegel: For Men’s Health',
-          text: 'is a complex approach to strengthen male intimate health',
+          title: 't_1',
+          text: 'txt_1',
           logo: 'logo',
           img: require(`../assets/images/logos/logo_footer.png`),
           width: 44
         },
         {
-          title: 'Need support?',
-          text: 'Contact Customer Service if you have any questions. We\'ll be sure to help you.',
+          title: 't_2',
+          text: 'txt_2',
           email: 'contact@kegel-plan.com',
           logo: 'icon_support',
           img: require(`../assets/images/svg/icon_support.svg`),

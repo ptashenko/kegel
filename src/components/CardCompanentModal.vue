@@ -10,7 +10,7 @@
               type="text"
               id="nameInput"
               v-model="name"
-              placeholder="Name on Card"
+              :placeholder="$t('cardComponent.cardName')"
               minlength="2"
               required
               pattern="[A-Za-z ]{2,}"
@@ -33,7 +33,7 @@
         class="card-pay-button"
         @click="authorize"
     >
-      Continue
+    {{ $t('cardComponent.continue') }}
     </button>
     <!-- <div class="error" role="alert" v-if="error">{{ error }}</div> -->
     <!-- <div class="token" v-if="token">{{ token }}</div> -->

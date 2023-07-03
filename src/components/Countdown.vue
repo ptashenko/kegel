@@ -1,62 +1,76 @@
 <template>
-	<div class="font-800">
-		<span v-if="minutes < 10 ">0{{ minutes }}</span>
-		<span v-else>{{ minutes }}</span>
-		<span>:</span>
-		<span v-if="seconds < 10 ">0{{ seconds }}</span>
-		<span v-else>{{ seconds }}</span>
-	</div>
+  <div className="font-800">
+    {{ timer }}
+  </div>
 </template>
 
 <script>
-	import moment from 'moment';
-	import { mapGetters } from 'vuex';
-	export default {
-    name: 'countdown',
-		data () {
-			return {
-				actualTime: moment().format('X'),
-				minutes: 0,
-				seconds: 0,
-        timer: moment().add(900, 'seconds').format('X')
-			}
-		},
-		methods: {
-		  addOneSecondToActualTimeEverySecond () {
-				var component = this
-				component.actualTime = moment().format('X')
-				setTimeout(function(){
-					component.addOneSecondToActualTimeEverySecond()
-				}, 1000);
-		  },
-			getDiffInSeconds () {
-				let tikTak = this.timer
-				let numTimer = localStorage.getItem('timer')
-				if(numTimer){
-					tikTak = numTimer
-				}else{
-					localStorage.setItem('timer', tikTak)
-				}
-				tikTak = tikTak - this.actualTime
-		    return tikTak
-		  },
-		  compute () {
-		    var duration = moment.duration(this.getDiffInSeconds(), "seconds")
-		    this.minutes = duration.minutes() > 0 ? duration.minutes() : 0
-		    this.seconds = duration.seconds() > 0 ? duration.seconds() : 0
-		  }
-		},
-		computed:{
-			...mapGetters(['TIMERLAND']),
-		},
-		created () {
-		  this.compute()
-		  this.addOneSecondToActualTimeEverySecond()
-		},
-		watch: {
-			actualTime (val,oldVal) {
-				this.compute()
-			}
-		},
-	}
+export default {
+  name: 'countdown',
+  props: {
+    totalSeconds: {
+      type: Number,
+      default: 900
+    },
+    restart: {
+      type: Boolean
+    }
+  },
+  data() {
+    return {
+      timer: "15:00",
+      intervalId: null,
+      timerCount: null
+    }
+  },
+  methods: {
+    startTimer() {
+      this.timer = this.formatTime(this.timerCount);
+      this.intervalId = setInterval(() => {
+        this.timerCount--;
+        this.timer = this.formatTime(this.timerCount);
+
+        if (this.timerCount === 0) {
+          this.stopTimer(this.intervalId);
+        }
+      }, 1000);
+    },
+    stopTimer() {
+      clearInterval(this.intervalId);
+    },
+    formatTime(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60)
+          .toString()
+          .padStart(2, "0");
+      const seconds = (totalSeconds % 60).toString().padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    }
+  },
+  created() {
+    const savedTimer = localStorage.getItem("timer");
+    if (savedTimer) {
+      this.timerCount = savedTimer;
+    } else {
+      this.timerCount = this.totalSeconds
+    }
+  },
+  watch: {
+    timerCount(newValue) {
+      localStorage.setItem("timer", newValue);
+    },
+    restart(newValue) {
+      if (newValue) {
+        localStorage.removeItem('timer')
+        this.timerCount = this.totalSeconds
+        this.$emit('update:restart', false)
+      }
+    }
+  },
+  mounted() {
+    this.startTimer()
+  },
+  deactivated() {
+    this.stopTimer()
+  }
+}
 </script>

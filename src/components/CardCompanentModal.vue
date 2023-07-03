@@ -14,6 +14,7 @@
               minlength="2"
               required
               pattern="[A-Za-z ]{2,}"
+              @click="diselectName"
           />
           <i class="opacity-0" id="nameBar"></i>
           <!-- <label class="ex1-label">Name on Card</label
@@ -26,22 +27,24 @@
         </div>
       </div>
     </div>
-    <button
-        type="submit"
-        :disabled="!cardComplete"
-        :class="[theme ? 'bg-blue shadow-button-blue' : 'bg-red shadow-button-red', { submit: loading }]"
-        class="card-pay-button disabled:(opacity-50 cursor-default)"
+    <base-button
+        label="Continue"
+        button-type="submit"
+        :loader="loading"
+        class="card-pay-button"
         @click="authorize"
-    >
-      Continue
-    </button>
+        :theme="theme ? 'blue' : 'red'"
+    />
     <!-- <div class="error" role="alert" v-if="error">{{ error }}</div> -->
     <!-- <div class="token" v-if="token">{{ token }}</div> -->
   </div>
 </template>
 
 <script>
+import BaseButton from "@/components/ui/BaseButton.vue";
+
 export default {
+  components: {BaseButton},
   inject: ["mixpanel"],
   emits: ["error", "success", "clickButton"],
   props: ["item","theme", "auth_price", "discountPrice", "fullPrice", "subscriptionDate"],

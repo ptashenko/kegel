@@ -89,71 +89,42 @@
         </p>
       </div>
     </div>
-    <div class="my-0 mx-auto max-w-311px sm:max-w-373px" v-if="open == 1">
-      <button-field
-          text='Add to my plan'
-          theme="Back"
-          class="block bg-red shadow-button-red mx-auto !mb-32px"
+    <div class="my-32px mx-auto max-w-311px sm:max-w-373px" v-if="open == 1">
+      <base-button
+          label='Add to my plan'
+          rounded="half"
+          :loader="loading"
           @click="addonRequest"
       />
-      <div
-          class="max-w-310px my-0 mx-auto z-0 flex items-center py-16px px-0 justify-center bg-red rounded-9px mt-16px mx-auto mb-0 py-21px px-0"
-          :class="{ hidden: !isActive }"
-      >
-        <lottie-animation
-            class="w-16px h-16px sm:(w-25px h-25px)"
-            ref="anim"
-            :animationData="require(`@/assets/images/json/loader_white.json`)"
-            :loop="mytrue"
-            :autoPlay="true"
-            :speed="1"
-        />
-      </div>
     </div>
-    <div class="my-0 mx-auto max-w-311px mb-32px sm:max-w-373px"
+    <div class="my-32px mx-auto max-w-311px sm:max-w-373px"
          v-if="open == 3"
     >
-      <button-field
-          text='Add to my plan'
-          theme="Back"
-          class="my-0 mx-auto z-0 bg-blue shadow-button-blue"
-          :class="{ submit: loading }"
+      <base-button
+          label='Add to my plan'
+          theme="blue"
+          rounded="half"
+          :loader="loading"
           @click="addonRequest"
       />
-      <!-- <button-field
-        text='Add to my plan'
-        theme="Back"
-        class="footer-controls__button loader bg-blue"
-        :class="{ hiden: isActive }"
-        @click="loadingBtn"
-      /> -->
-      <div
-          class="max-w-310px my-0 mx-auto z-0 flex items-center py-16px px-0 justify-center bg-red rounded-9px mt-16px mx-auto mb-0 py-21px px-0 bg-blue"
-          :class="{ hidden: !isActive }"
-      >
-        <lottie-animation
-            class="w-16px h-16px sm:(w-25px h-25px)"
-            ref="anim"
-            :animationData="require(`@/assets/images/json/loader_white.json`)"
-            :loop="mytrue"
-            :autoPlay="true"
-            :speed="1"
-        />
-      </div>
     </div>
-    <div v-if="active && open == 1"
-         class="relative text-center font-sans text-14px leading-normal opacity-50 mt-0 mb-32px mx-auto cursor-pointer sm:(text-16px leading-normal)"
-         @click="showModal"
-    >
-      I don’t want to accelerate my results &gt;
-    </div>
-    <div v-else-if="open == 2" class="text-center max-w-311px sm:max-w-373px mx-auto">
-      <button v-if="ios_v1"
-              class="bg-[#5773D6] border-none rounded-9px py-16px px-37px font-sansMedium text-18px leading-normal text-[#fff] cursor-pointer w-full mb-100px shadow-button-blue"
-              @click="closePopup"
-      >
-        Continue
-      </button>
+    <base-button
+        v-if="active && open == 1"
+        label="I don’t want to accelerate my results &gt;"
+        text-only
+        class="font-sansMedium !text-body text-14px leading-normal opacity-50 mb-32px sm:(text-16px leading-normal mb-48px)"
+        @click="showModal"
+    />
+    <div v-else-if="open == 2" class="text-center max-w-311px mt-32px mb-40px sm:max-w-373px mx-auto">
+      <base-button
+          v-if="ios_v1"
+          label='Continue'
+          theme="blue"
+          class=""
+          rounded="half"
+          :loader="loading"
+          @click="closePopup"
+      />
 
       <button v-else
               class="bg-[#5773D6] border-none rounded-9px py-16px px-37px font-sansMedium text-18px leading-normal text-[#fff] cursor-pointer flex justify-center items-center w-full shadow-button-blue mb-52px"
@@ -163,12 +134,13 @@
         <img src="@/assets/images/svg/icon_arrow-next.svg" class="max-w-14px my-0 ml-12px mr-0" alt="" >
       </button>
     </div>
-    <div v-else
-         class="relative text-center font-sans text-14px leading-normal opacity-50 mt-0 mb-32px mx-auto cursor-pointer sm:(text-16px leading-normal)"
-         @click="withoutUpsaleDiscounted"
-    >
-      I give up accelerated results forever &gt;
-    </div>
+    <base-button
+        v-else
+        label="I give up accelerated results forever &gt;"
+        text-only
+        class="font-sansMedium !text-body text-14px leading-normal opacity-50 mb-32px sm:(text-16px leading-normal mb-48px)"
+        @click="withoutUpsaleDiscounted"
+    />
     <div v-if="!ios_v1" class="px-32px sm:px-40px">
       <div v-if="open == 1" class="block my-0 mx-auto">
         <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0  sm:(text-14px leading-normal)">
@@ -240,6 +212,7 @@ import vpopup from '@/components/modal/v-popup.vue';
 import ButtonField from '@/components/ui/Button.vue';
 import VueScrollTo from "vue-scrollto";
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default {
   name: 'PlanFinalTwo',
@@ -277,6 +250,7 @@ export default {
     },
   },
   components: {
+    BaseButton,
     Review,
     vpopup,
     ButtonField,

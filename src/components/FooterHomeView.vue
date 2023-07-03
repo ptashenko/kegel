@@ -13,7 +13,7 @@
       <div class="flex justify-center flex-col mt-15px sm:(flex-row)">
         <a href="/privacy-policy.html" target="_blank" class="underline text-body divider mb-13px sm:(flex relative mb-0 mr-32px)">Privacy Policy</a>
         <a href="/terms.html" target="_blank" class="underline text-body divider mb-13px sm:(flex relative mb-0 mr-32px)">Terms & Conditions</a>
-        <a href="/refund.html" target="_blank" class="underline text-body divider mb-13px sm:(flex relative mb-0 mr-32px)">Refund Policy</a>
+        <a href="/refund.html" target="_blank" class="underline text-body mb-13px sm:(flex relative mb-0 mr-32px)">Refund Policy</a>
       </div>
   </div>
 </template>
@@ -27,8 +27,7 @@ export default {
 <style lang="scss">
 .divider {
   @media (min-width: 640px) {
-    &:not(:last-child) {
-      &::after {
+    &::after {
         content: '|';
         position: absolute;
         top: 0;
@@ -36,6 +35,5 @@ export default {
         pointer-events: none;
       }
     }
-  }
 }
 </style>

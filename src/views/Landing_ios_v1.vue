@@ -99,7 +99,7 @@
           <span class="font-sansSemiBold">Payment method</span>
         </div>
         <div class="flex flex-col items-end">
-          <span class="cursor-pointer opacity-75 text-14px leading-normal font-displaySemiBold" @click="showModal3">Why now?</span>
+          <span class="cursor-pointer opacity-75 text-14px leading-normal font-displaySemiBold" @click="toggleModal">Why now?</span>
         </div>
       </div>
       <hr class="bg-[#F1F3F9] h-1px max-w-320px my-16px mx-auto border-none sm:(max-w-full)">
@@ -125,9 +125,14 @@
         <p class="font-displaySemiBold mb-12px">Need help?</p>
         <p class="text-14px leading-normal sm:(text-16px leading-normal)">Contact us here: <span class="text-[#E44240]">contact@kegel-plan.com</span></p>
       </div>
-      <button class="bg-[#E44240] text-[#fff] rounded-9px border-none w-full max-w-310px text-18px leading-normal py-16px my-48px font-sans mx-auto block focus:(bg-[#F5423F]) sm:max-w-373px" v-scroll-to="'#paypal'">
-        Get my plan
-      </button>
+      <base-button
+          label="Get my plan"
+          tag="a"
+          rounded="half"
+          class="max-w-310px !my-48px sm:max-w-373px"
+          :shadow="false"
+          url="#paypal"
+      />
       <p class="text-12px leading-normal opacity-50 text-center sm:(text-14px leading-normal)">
         <span class="font-sansSemiBold text-12px leading-normal sm:(text-14px leading-normal)">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="font-sansSemiBold text-12px leading-normal sm:(text-14px leading-normal)">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="font-sansSemiBold text-12px leading-normal sm:(text-14px leading-normal)">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$4.2) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
       </p>
@@ -136,8 +141,8 @@
   <Footer />
   <vpopup
       textTitle="Why now?"
-      v-if="popupVisible3"
-      @closePopup="() => popupVisible3 = false"
+      v-if="modal"
+      @closePopup="toggleModal"
   >
     <p class="opacity-75 mb-16px text-14px leading-normal sm:(text-16px leading-normal)">
       We ask for your payment information now, so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.
@@ -145,13 +150,15 @@
     <p class="opacity-75 text-14px leading-normal sm:(text-16px leading-normal)">
       If you cancel anytime before the end of the 7-day trial, you won't be charged.
     </p>
-    <button
-        class="bg-[#E44240] border-none rounded-9px py-16px px-37px font-sansMedium text-18px leading-normal text-[#fff] mt-32px min-w-180px "
-        :class="{'bg-[#E44240]': closeActive}"
-        @click="closePopup3"
-    >
-      Got it
-    </button>
+    <base-button
+        label="Got it"
+        rounded="half"
+        tag="a"
+        url="#paypal"
+        class="max-w-180px !mt-48px !mb-0"
+        :shadow="false"
+        @click="toggleModal"
+    />
   </vpopup>
   <vpopup
       class="flex justify-center items-top fixed z-9 top-32px left-0 right-0 bottom-0 bg-[#ffffff00]"
@@ -182,6 +189,7 @@ import countdown from '@/components/Countdown.vue';
 import PaymentFormCompanent from '@/components/PaymentFormCompanent.vue';
 import RatingStars from '@/components/RatingStars.vue';
 import Footer from '@/components/Footer.vue';
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default {
   name: 'Landing_ios_v1',
@@ -193,6 +201,7 @@ export default {
     PaymentFormCompanent,
     RatingStars,
     Footer,
+    BaseButton
 },
   data() {
     return {
@@ -229,6 +238,7 @@ export default {
       AddPurposeCom: false,
       addItem: false,
       numanim: null,
+      modal: false
     };
   },
   methods: {
@@ -244,6 +254,10 @@ export default {
     },
     moment() {
       return moment();
+    },
+    toggleModal () {
+      this.modal = !this.modal
+      this.modal ? window.document.body.style.overflow = 'hidden' : window.document.body.style.overflow = 'unset'
     },
     paymentError() {
       this.mixpanel.track('[Web Mail] Payment Error', {
@@ -374,18 +388,19 @@ export default {
   watch:{
     ggg(){
       if(this.ggg == 1){
-        this.showModal("this.popupVisible" , false)
+        this.toggleModal()
       }
     },
 
   },
-  computed: {cal(){
+  computed: {
+    cal() {
       let json = localStorage.getItem('track');
       let obj = JSON.parse(json);
       this.track = obj.id
       return this.track
     },
-    imagechart(){
+    imagechart() {
       if(this.jsLocal == 2){
         if(sessionStorage.getItem('resbtn') == 'Yes'){
           this.imageitem = require(`@/assets/images/json/Step_1_1.json`);

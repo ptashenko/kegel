@@ -47,10 +47,11 @@
         </div>
         <div :class="{'flex justify-center mx-[-8px] pb-0': surveyAnswerIsButtons}">
           <component
+            ref="answer-btn"
             :is="survey.answer.style === 'radio' ? 'question' : 'question-radio'"
             v-for="answer in survey.answer.answerList"
             :class="survey.answer.answerClass"
-            @click="myAvesomeClickFunction"
+            @click="myAvesomeClickFunction($event, answer)"
             :key="answer.id"
             :answer="$t(`survey.id_${content.id}.${answer}`)"
           />
@@ -102,7 +103,7 @@ export default {
   data() {
     return {
       show: true,
-      selectedAnswer: true,
+      selectedAnswer: false,
       layotname: [2, 6, 61, 9, 333, 14, 20, 201, 24, 28, 32, 321, 322, 323, 35, 353, 352, 36, 39, 41, 47, 48, 50, 51, 57]
     }
   },
@@ -133,7 +134,7 @@ export default {
       return {
         text: 'Next',
         icon: 'next',
-        disabled: this.selectedAnswer,
+        disabled: !this.selectedAnswer,
         click: this.nextWait,
         theme: 'bg-body hover:bg-[#1B1B1E] disabled:opacity-30',
         short: this.content.short
@@ -148,7 +149,12 @@ export default {
           path: '/',
         });
       } else {
-        this.selectedAnswer = false
+        console.log('ELSE')
+        this.$nextTick(() => {
+          this.selectedAnswer = true
+          console.log('2', this.selectedAnswer)
+        })
+        console.log('3', this.selectedAnswer)
         this.show = false
         if (this.layotname.includes(this.myPrewContentId)) {
           this.show = true
@@ -178,7 +184,7 @@ export default {
             name: 'wait',
           });
         } else {
-          this.selectedAnswer = true
+          this.selectedAnswer = false
           if (this.layotname.includes(this.nextContentId)) {
             this.next()
           } else {
@@ -195,9 +201,8 @@ export default {
     },
 
     classActive(){
-        const answeres = document.querySelectorAll('.answer')
-        const divsArr = Array.from(answeres);
-        this.selectedAnswer = !divsArr.some((item) => item.classList.contains('active'))
+      const answerButtons = this.$refs['answer-btn'];
+      this.selectedAnswer = answerButtons.some((item) => item.selected)
     },
 
     json(json) {
@@ -213,10 +218,10 @@ export default {
     },
 
     myAvesomeClickFunction(e){
+      this.selectedAnswer = true
       let str = []
       str = e.target.innerText
       str = str.split(',')[0]
-      this.selectedAnswer = false
       if (e.target.classList.contains('sexual')){
         sessionStorage.setItem('resbtn', str);
       }
@@ -225,6 +230,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.classActive()
+      console.log()
     });
   },
 

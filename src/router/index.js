@@ -29,8 +29,7 @@ import PlanFinalTwo from '@/views/PlanFinalTwo.vue';
 import PlanFinalTwo_ios from '@/views/PlanFinalTwo_ios.vue';
 import WhatsappPage from '@/views/WhatsappPage.vue';
 
-const versionName = localStorage.getItem('ver')
-const isBaseline = versionName === 'baseline'
+const isBaseline = localStorage.getItem('ver') === '1'
 
 const routes = [{
         path: '/',

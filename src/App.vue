@@ -20,6 +20,15 @@ export default {
       "getSeparators",
       "generatUUID",
     ]),
+    setClickId() {
+      const clickId = {
+        query: new URLSearchParams(window.location.search).get("clickid"),
+        cookies: this.$cookies.get('rtkclickid-store'),
+      }
+      if (clickId.query || clickId.cookies) {
+        addItem("b_click_id", clickId.query ? clickId.query : clickId.cookies);
+      }
+    }
   },
   computed: {
     ...mapGetters(['content']),
@@ -72,21 +81,20 @@ export default {
         localStorage.setItem('ver', to.query.ver ? 'baseline_v2' : 'baseline')
       }
     }
+    // this.$abtest('experiment_1', { Baseline: 50, VariationA: 50 })
+    // console.log("created APP")
   },
   mounted() {
     this.getTrack();
     this.getHistory();
     this.getSeparators();
     this.generatUUID();
+    this.setClickId()
     // console.log(this.$abtest('experiment_1'))
     const urlParams = new URLSearchParams(window.location.search);
     const webUserUUID = urlParams.get("web_user_id");
     if (webUserUUID != null) {
       addItem("web_user_uuid", webUserUUID);
-    }
-    const b_click_id = urlParams.get("clickid");
-    if (b_click_id != null) {
-      addItem("b_click_id", b_click_id);
     }
     const version = urlParams.get("ver");
     if (version != null) {

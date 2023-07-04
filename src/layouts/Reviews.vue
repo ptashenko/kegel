@@ -33,7 +33,7 @@
       @segmentStart="segmentStart" @stopped="stopped" />
     <div>
       <div class="flex justify-between mx-[12%]">
-        <p class="m-0 mt-12px capitalize" v-for="(_, idx) of new Array(6)" :key="idx">
+        <p class="m-0 mt-9px text-12px leading-normal capitalize opacity-75" v-for="(_, idx) of new Array(6)" :key="idx">
           {{ setDate(idx) }}
         </p>
       </div>
@@ -44,9 +44,15 @@
   </div>
 
   <div class="pt-50px pb-100px">
-    <div class="font-displaySemiBold text-16px leading-normal mb-25px text-center sm:(text-16px leading-normal)">Customer
-      reviews</div>
-    <review v-for="id in content.reviews" :key="id" :id="id" />
+    <h2 class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:(text-16px leading-normal)">
+    {{$t('reviews.reviewTitle')}}
+    </h2>
+    <review
+        v-for="(id, index) in content.reviews"
+        :key="id"
+        :id="id"
+        :class="{'mb-8px': index !== content.reviews.length - 1}"
+    />
   </div>
 
   <footer-controls :buttonBack="{
@@ -137,11 +143,13 @@ export default {
 
   methods: {
     isAddPurpose() {
-      if (sessionStorage.getItem('resbtn') == 'Yes') {
+      console.log(this.AddPurpose)
+      if (sessionStorage.getItem('resbtn') === 'Yes') {
         this.AddPurpose = true
       } else {
         this.AddPurpose = false
       }
+      console.log(this.AddPurpose)
     },
     image(path) {
       return require(`@/assets/images/json/${path}`);

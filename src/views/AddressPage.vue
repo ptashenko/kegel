@@ -2,16 +2,16 @@
   <div class="block__steps" :data-step=true>
     <img src="@/assets/images/svg/img_progressbar_final.svg" class="h-18px w-full"/>
   </div>
-  <div class="px-32px mx-auto pb-20 sm:(max-w-600px px-40px)">
+  <div class="px-32px mx-auto pb-20 mt-24px sm:(max-w-600px px-40px)">
 
     <!-- <div class="d-flex  align-items-center justify-content-center flex-column block"> -->
     <div class="flex flex-col">
-      <h2 class="font-displayBold text-24px leading-normal mt-24px mb-8px text-center sm:(text-36px leading-normal mb-16px)">
+      <h2 class="font-displayBold text-24px leading-normal mb-8px text-center sm:(text-36px leading-normal mb-16px)">
         {{ $t('address.title') }} </h2>
       <p class="font-sans text-14px leading-normal text-body opacity-75 text-center sm:(text-20px leading-normal)">
         {{ $t('address.subtitle') }}
       </p>
-      <div class="form">
+      <div class="form mt-32px">
         <div class="font-bold text-14px leading-normal">{{ $t('address.country') }}</div>
         <label>
           <div class="select appereance-none outline-none px-1em mt-8px mb-16px border-2px border-[#F1F3F9] relative flex w-full h-51px rounded-9px overflow-hidden">
@@ -221,7 +221,7 @@ export default {
 
       try {
         const { status } = await this.$store.dispatch('addonFetch', payload)
-        status === 200 || status === 204 && this.$router.push("Whatsapp");
+        status === 200 || status === 204 && this.$router.push({name: "Whatsapp"});
 
       } catch (err) {
         console.error(err)
@@ -255,7 +255,7 @@ export default {
           if (!disableFitness) {
             ios_v1 ? this.$router.push('PlanFinalTwo_ios') : this.$router.push('PlanFinalTwo')
           } else {
-            this.$router.push("Whatsapp");
+            this.$router.push({name: "Whatsapp"});
           }
         }
       } catch (err) {

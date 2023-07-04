@@ -6,12 +6,12 @@ export default {
       titles: {
         t_1: 'Get & stay hard easier',
         t_2: 'Improve Ejaculation Control',
-        t_3: 'Maximize intimate wellness'
+        t_3: 'Maximize Intimate Wellness'
       },
       titleShortQuiz: {
         subt_1: 'Improve Erectile Function',
         subt_2: 'Improve Ejaculation Control',
-        subt_3: 'Maximize intimate wellness'
+        subt_3: 'Maximize Intimate Wellness'
       },
       purpose: {
         purp_1: 'Erectile Function',
@@ -285,7 +285,7 @@ export default {
     },
     id_24: {
       title: {
-        t_1: 'Men who perform Kegel exercises can increase their stamina up to <span class="red">7x</span>',
+        t_1: 'Men who perform Kegel exercises can increase their stamina up to <span class="red">7 times</span>',
         t_2: '<span class="red">82.5%</span> of men who performed Kegel exercises increased their stamina by up to <span class="red">7 times</span>'
       },
       image: 'ED_s5.png',
@@ -308,7 +308,7 @@ export default {
       }
     },
     id_26: {
-      title: 'How would you rate your libido?',
+      title: 'How would you rate your libido now?',
       textLeft: 'Low',
       textRight: 'High',
       answers: {
@@ -480,8 +480,8 @@ export default {
     },
     id_39: {
       title: {
-        t_1: 'You can strengthen your PF muscles & increase stamina up to <span class="red">7x</span> by doing Kegel exercises',
-        t_2: 'You can strengthen your PF muscles & increase stamina up to <span class="red">7 times</span> by doing Kegel exercises'
+        t_1: 'Men who perform Kegel exercises can increase their stamina up to <span class="red">7 times</span>',
+        t_2: 'You can strengthen your PF muscles & increase stamina up to <span class="red">7x</span> by doing Kegel exercises'
       },
       buttons: {
         title: 'the Sapienza University',
@@ -516,6 +516,7 @@ export default {
     },
     id_41: {
       title: '<span class="text-red">8/10</span> men improved their ejaculation control with Kegel exercises',
+      proc: 'Connecting to the database',
       buttons: {
         title: 'Therapeutic Advances in Urology',
         text: 'Source:',
@@ -696,7 +697,8 @@ export default {
   reviews: {
     title: 'Improve <strong>{purpose}</strong>',
     title_add: 'Improve <strong>{purpose}</strong> and <strong>{addPurpose}</strong>',
-    date: 'by {dates}'
+    date: 'by {dates}',
+    reviewTitle: 'Customer reviews'
   },
   address: {
     title: 'You are almost done!',
@@ -970,6 +972,7 @@ export default {
   },
   discountFlag: {
     onePrice: 'One-time price of {discPrice}',
+    onePriceSuper: 'Try it out for only {discPrice}',
     price: 'Original price is {fullPrice}'
   },
   guarantee: {
@@ -979,7 +982,7 @@ export default {
   discountGift: {
     title: 'Get your plan with a SUPER Discount!',
     textFirst: 'We\'re sure that by following this Kegel plan you can improve {goal}. This is confirmed by a huge number of positive reviews.',
-    textSecond: 'We want you to reach your goal. That\'s why we\'re giving you the super discount so you can start improving your men\'s health at the best price.',
+    textSecond: 'We want you to reach your goal. That\'s why <b>we\'re giving you the super discount</b> so you can start improving your men\'s health at the best price.',
     button: 'Got it',
   },
   feelImprovements: {
@@ -1155,7 +1158,7 @@ export default {
     fourthBenefit: 'Improve <b>Ejaculation Control</b>',
     fifthBenefit: 'Pill-free approach',
     sixthBenefit: 'Long-lasting improvement',
-    seventhBenefit: 'Takes 5 min a day',
+    seventhBenefit: 'Takes <b>5 min a day</b>',
     eighthBenefit: 'More happiness for you and for your partner',
     reviews: 'Customer reviews',
     button: 'Show more',

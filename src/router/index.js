@@ -84,7 +84,7 @@ const routes = [{
     },
     {
         path: '/landing',
-        name: 'LandingViewVP5',
+        name: 'landing',
         component: isBaseline ? LandingViewVP5 : Landing_v2
     },
     {
@@ -148,7 +148,7 @@ const routes = [{
       component: PlanFinalTwo_ios,
     },
     {
-        path: '/Whatsapp',
+        path: '/final',
         name: 'Whatsapp',
         component: WhatsappPage,
     },

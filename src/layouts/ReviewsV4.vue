@@ -32,7 +32,7 @@
       }"
       :buttonNext="{
         icon: 'next',
-  text: content.buttonsText ? content.buttonsText[1] : 'Continue',
+        text: content.buttonsText ? content.buttonsText[1] : 'Continue',
         click: next,
         button: false,
         theme: 'red'

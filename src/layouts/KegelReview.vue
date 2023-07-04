@@ -1,10 +1,8 @@
 <template>
-    <div
-      v-if="content.steps"
-      :data-step="content.steps"
-    >
-      <steps />
-    </div>
+    <steps
+        v-if="content.steps"
+        :dark="content.dark"
+    />
 
     <div class="container-mob pb-30px">
       <div class="font-sansSemiBold text-20px leading-normal text-center text-[#fff] sm:(text-24px leading-normal)">
@@ -27,8 +25,8 @@
         :dark="content.dark"
       />
 
-      <processing>
-        Connecting to the database
+      <processing class="mt-24px !mb-0">
+        {{ $t(`survey.id_${content.id}.proc`) }}
       </processing>
 
       <div v-if="content.buttons" class="rounded-17px p-9px max-w-300px my-32px mx-auto bg-[#8080800C] mb-20px">
@@ -39,13 +37,13 @@
         >
           <div
             v-if="button.logo"
-            class="w-37px h-37px flex items-center justify-center rounded-full bg-[#fff] bg-opacity-70 mr-12px"
+            class="w-37px h-37px flex items-center justify-center rounded-full bg-[#fff] bg-opacity-0 mr-12px"
           >
             <img :src="`${buttonIcon(button.logo)}`" :alt="button.title" />
           </div>
           <div class="text-[#fff]">
-            <span>{{ $t(`survey.id_${content.id}.buttons.text`) }}</span>
-            <div>{{ $t(`survey.id_${content.id}.buttons.title`) }}</div>
+            <p class="text-12px leading-tight opacity-70">{{ $t(`survey.id_${content.id}.buttons.text`) }}</p>
+            <p class="text-14px leading-normal font-displaySemiBold">{{ $t(`survey.id_${content.id}.buttons.title`) }}</p>
           </div>
         </div>
       </div>

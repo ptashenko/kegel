@@ -13,15 +13,15 @@
   </div>
   <transition name="translate" mode="out-in">
     <div>
-      <div class="mb-[-5px]">
+      <div>
           <img v-if="!device.mobile" src="@/assets/images/header-desktop.jpg" class="inline-block w-full" />
           <img v-else src="@/assets/images/header.png" class="inline-block w-full" />
           <div class="relative max-w-311px top-[-16vw] mx-auto sm:(top-[-8vw] px-40px max-w-600px box-border)">
-            <h2 class="font-displayBold text-32px leading-tight text-center text-shadow-title sm:(font-600 text-40px leading-tight)" v-html="$t('home.title')" />
-            <h3 class="font-displaySemiBold text-18px leading-normal text-center my-15px opacity-76 sm:(font-600 text-24px)">
+            <h2 class="font-displayBold text-32px leading-tight text-center text-shadow-title mb-16px sm:(font-600 text-40px leading-tight)" v-html="$t('home.title')" />
+            <h3 class="font-displaySemiBold text-18px leading-normal text-center opacity-76 sm:(font-600 text-24px)">
               {{$t('home.subtitle')}}
             </h3>
-            <div class="w-20px h-auto text-center mx-auto">
+            <div class="w-20px h-auto text-center mx-auto my-16px">
               <lottie-animation
                 ref="arrowmain"
                 :animationData="require(`@/assets/images/json/main_arrow.json`)"
@@ -32,15 +32,16 @@
             </div>
           <div>
                 <button
-                  class="relative w-full py-14px px-20px duration-400 font-sansBold text-16px leading-tight text-white font-700 block rounded-9px bg-body cursor-pointer text-[#fff] border-none mb-15px hover:(bg-[#1B1B1E])"
-                  v-for="track in tracks"
+                  class="relative w-full py-22px duration-400 rounded-9px bg-body cursor-pointer border-none hover:(bg-[#1B1B1E])"
+                  v-for="(track, idx) in tracks"
                   :key="track.id"
+                  :class="{'mb-15px': idx !== tracks.length -1}"
                   @click="getData(track)"
                 >
-                  <span class="font-700 text-16px leading-normal text-center text-white sm:(text-22px leading-normal)">
+                  <span class="font-700 text-16px text-center text-[#fff] sm:(text-22px)">
                     {{ $t(`home.tracks.titleShortQuiz.${track.titleShortQuiz}`) }}
                   </span>
-                  <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 leading-tight sm:(text-18px leading-tight)">
+                  <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 text-[#fff] sm:(text-18px)">
                     {{ $t(`home.tracks.text.${track.text}`)}}
                   </span>
                   <lottie-animation
@@ -66,7 +67,7 @@
             :key="advantage.title"
             class="text-center mx-auto mb-48px sm:(max-w-373px mb-15px)"
           >
-            <img :src="advantage.img" :alt="advantage.title" class="block mx-auto mb-16px" :class="[idx === 0 ? 'w-44px' : 'w-48px']">
+            <img :src="advantage.img" :alt="advantage.title" class="block mx-auto mb-19px" :class="[idx === 0 ? 'w-44px' : 'w-50px']">
             <div class="font-displayBold font-700 text-20px leading-normal text-center text-shadow-title sm:(font-600 text-24px leading-tight)">
               {{ $t(`home.advantages.titles.${advantage.title}`) }}
             </div>

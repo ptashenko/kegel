@@ -97,7 +97,7 @@
           <span class="font-sansSemiBold">{{ $t('landing.payment') }}</span>
         </div>
         <div class="flex flex-col items-end">
-          <span class="cursor-pointer opacity-75 text-14px leading-normal font-displaySemiBold" @click="showModal3">{{ $t('landing.whyNow') }}</span>
+          <span class="cursor-pointer opacity-75 text-14px leading-normal font-displaySemiBold" @click="toggleModal">{{ $t('landing.whyNow') }}</span>
         </div>
       </div>
       <hr class="bg-[#F1F3F9] h-1px max-w-320px my-16px mx-auto border-none sm:(max-w-full)">
@@ -233,7 +233,7 @@ export default {
         number: this.$route.query.nr
       })
       setTimeout(() => {
-        this.$router.push("Whatsapp");
+        this.$router.push({name: "Whatsapp"});
       }, 0);
     },
 

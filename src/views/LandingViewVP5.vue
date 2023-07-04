@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <div class="my-32px mx-auto text-center w-full sm:(max-w-520px)">
+      <div class="mt-32px mb-24px mx-auto text-center w-full sm:(max-w-520px)">
         <lottie-animation
           ref="content.ref"
           :animationData="imageitem"
@@ -71,8 +71,8 @@
           @segmentStart="segmentStart"
           @stopped="stopped"
         />
-        <div class="flex justify-between mx-[12%]">
-          <p class="m-0 mt-9px text-12px leading-normal text-body sm:(text-18px leading-normal mt-12px)"
+        <div class="flex mt-9px justify-between mx-[12%]">
+          <p class="m-0 text-12px leading-normal text-body sm:(text-18px leading-normal mt-12px)"
             v-for="(_, idx) of new Array(6)"
             :key="idx">
             {{setDate(idx)}}
@@ -82,9 +82,13 @@
       <p class="!text-14px !leading-normal max-w-450px mx-auto opacity-50 text-center sm:(max-w-520px)">
         {{ $t('landingViewVP5.diagram') }}
       </p>
-      <div id="Benefits">
-        <h2 class="font-displayBold text-20px leading-normal my-32px mx-auto text-center sm:(text-24px leading-normal mb-52px)">{{ $t('landingViewVP5.benefits') }}</h2>
-        <ul class="max-w-310px m-0 mx-auto mb-48px p-0 sm:(max-w-375px)">
+      <div id="Benefits" class="mt-32px">
+        <h2
+            class="font-displayBold text-20px leading-normal mb-24px mx-auto text-center sm:(text-24px leading-normal mb-52px)"
+        >
+          {{ $t('landingViewVP5.benefits') }}
+        </h2>
+        <ul class="max-w-310px m-0 mx-auto mb-48px p-0 pr-5px sm:(max-w-375px)">
           <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
             <p v-html="$t('landingViewVP5.firstBenefit', {purpose: $t(`home.tracks.purpose.${purpose}`)})" />
@@ -113,7 +117,7 @@
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
             <p v-html="$t('landingViewVP5.seventhBenefit')" />
           </li>
-          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
+          <li class="list-none flex items-center font-sans text-16px leading-normal sm:(text-18px leading-normal)">
             <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
             <p>{{ $t('landingViewVP5.eighthBenefit') }}</p>
           </li>
@@ -126,9 +130,9 @@
       </div>
     </div>
 
-    <div class="max-w-600px mx-auto relative">
-        <div class="flex flex-col my-16px mt-48px mx-auto mb-40px container-mob">
-          <div class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:(text-24px leading-normal)">{{ $t('landingViewVP5.reviews') }}</div>
+    <div class="max-w-600px mx-auto relative mt-48px">
+        <div class="flex flex-col mx-auto mb-40px container-mob">
+          <div class="font-displayBold text-16px leading-normal mb-16px text-center sm:(text-24px leading-normal)">{{ $t('landingViewVP5.reviews') }}</div>
           {{lengthReviews}}
           <template v-for="(item, key) in base" :key="key">
             <div
@@ -173,19 +177,19 @@
           :discountOriginal="pickedTarifParams.discountOriginal"
           class="m-0 mx-auto mb-32px max-w-311px"
         />
-        <h2 class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-24px text-center font-displayBold sm:(text-36px leading-normal)">
+        <h2 class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-32px text-center font-displayBold sm:(text-36px leading-normal)">
           {{ $t(`landingViewVP5.plan`)}}
         </h2>
       </div>
-      <h2 v-else class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-24px text-center font-displayBold sm:(text-36px leading-normal)">
+      <h2 v-else class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-32px text-center font-displayBold sm:(text-36px leading-normal)">
         {{ $t('landingViewVP5.getPlan', {purpose: $t(`home.tracks.purpose.${purpose}`)})}}
       </h2>
       <div v-if="superDiscount.theme" class="flex flex-col max-w-430px mx-auto">
         <label
           v-for="({id, fullprice, cost, text, name, totalCost, superDiscPrice}, idx) of tarifs"
           :key="idx"
-          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
-          :class="{'border-1px border-blue': subscribe === id}"
+          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px border-1px border-transparent cursor-pointer"
+          :class="{'border-1px border-blue': subscribe === id, 'mb-16px': idx !== tarifs.length - 1}"
         >
           <div class="flex items-center">
             <div>
@@ -256,8 +260,8 @@
         <label
           v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs"
           :key="idx"
-          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
-          :class="{'border-1px border-red': subscribe === id}"
+          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px border-1px border-transparent cursor-pointer"
+          :class="{'border-1px border-red': subscribe === id, 'mb-16px': idx !== tarifs.length - 1}"
         >
           <div class="flex items-center">
             <div>

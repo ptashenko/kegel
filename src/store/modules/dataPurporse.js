@@ -1,7 +1,6 @@
 import { uuid } from 'vue-uuid'
 import { addItem, getItem } from '@/common/localStorage';
 
-
 async function postData(url = '', data = {}) {
     const response = await fetch(url, {
         method: 'POST',

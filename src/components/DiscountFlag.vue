@@ -17,7 +17,8 @@
             <h2
               class="font-600 text-14px leading-tight tracking-normal text-body m-0 mb-5px"
             >
-            {{ $t('discountFlag.onePrice', {discPrice}) }}</h2>
+            {{ icon === 'blue-discount-flag' ? $t('discountFlag.onePriceSuper', {discPrice}) : $t('discountFlag.onePrice', {discPrice}) }}
+            </h2>
             <p
               class="font-400 text-14px leading-tight text-body opacity-75 m-0"
             >

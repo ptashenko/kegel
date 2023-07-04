@@ -88,7 +88,7 @@ export default {
       if (this.closeActive) {
         VueScrollTo.scrollTo('.dark-layout');
         this.setEmail(this.upValue)
-        this.$router.push('LandingViewVP5');
+        this.$router.push({name: 'landing'});
         this.mixpanel.track('E-mail Screen Completed', {
           email: this.upValue
         })
@@ -102,7 +102,7 @@ export default {
       console.log('nextUrlEmail')
       VueScrollTo.scrollTo('.dark-layout')
       this.setEmail(this.upValue)
-      this.$router.push('LandingViewVP5')
+      this.$router.push({name: 'landing'})
 
     },
   },

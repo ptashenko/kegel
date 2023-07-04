@@ -4,7 +4,7 @@
       <slot></slot>
       </div>
 
-    <div class="h-40px bg-[#1D1D1F] rounded-9px font-700 text-18px leading-normal flex items-center justify-center relative overflow-hidden text-[#fff]">
+    <div class="h-32px bg-[#1D1D1F] rounded-9px font-700 text-16px leading-normal flex items-center justify-center relative overflow-hidden text-[#fff]">
       <span class="relative z-4">{{ percent }}%</span>
       <span class="bg-red absolute left-0 top-0 bottom-0 w-[20%]" :style="`width: ${percent}%`"></span>
     </div>

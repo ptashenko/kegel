@@ -1,12 +1,12 @@
 <template>
-    <div class="container-mob p-0">
+    <div class="container-mob p-0 mt-20px">
       <processing>
         {{ $t('processing.title') }}
       </processing>
 
 
       <div class="mx-[-30px] sm:(mx-[-32px])">
-        <img src="@/assets/images/content/s7.png" alt="" class="block max-w-311px mx-auto sm:max-w-520px">
+        <img src="@/assets/images/content/s7.png" alt="" class="block mx-auto sm:max-w-520px">
       </div>
     </div>
 </template>

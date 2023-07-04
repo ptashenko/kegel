@@ -47,7 +47,7 @@ export default [{
         title: 't_3',//abtest('experiment_1') == 'Baseline' ? 'I’m ok' : 'Maximize intimate wellness',
         titleShortQuiz: 'subt_3',
         purpose: 'purp_3',
-        addpurpose: 'addpurp_3',
+        addpurpose: '',
         text: 'txt_3',//abtest('experiment_1') == 'Baseline' ? 'I just want to maximize my intimate wellness' : 'I want to improve both of the above',
         layouts: [
             { id: 1, separation: true },

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="review p-15px mx-auto max-w-370px bg-[#F9F9F9] sm:(max-w-520px rounded-11px) mb-15px"
+    class="review p-15px mx-auto max-w-370px bg-[#F9F9F9] sm:(max-w-520px rounded-11px)"
     :class="{'!bg-[#1D1D1F] rounded-9px': dark}"
   >
     <div class="flex justify-between mb-15px">

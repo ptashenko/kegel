@@ -31,10 +31,10 @@ export default {
         if (!disableFitness) {
           ios_v1 ? this.$router.push('PlanFinalTwo_ios') : this.$router.push('PlanFinalTwo')
         } else {
-          this.$router.push("Whatsapp");
+          this.$router.push({name: "Whatsapp"});
         }
       } else {
-        this.$router.push('Whatsapp')
+        this.$router.push({name: "Whatsapp"})
       }
     },
     async paypalInitPayment() {

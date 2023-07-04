@@ -8,9 +8,7 @@
         <p class="font-sans font-400 text-14px leading-normal text-[#fff]">
           {{ $t('discountGift.textFirst', {goal}) }}
         </p>
-        <p class="font-sans font-400 text-14px leading-normal text-[#fff] mt-16px">
-          {{ $t('discountGift.textSecond') }}
-        </p>
+        <p class="font-sans font-400 text-14px leading-normal text-[#fff] mt-16px" v-html="$t('discountGift.textSecond')" />
         <base-button
             :label="$t('discountGift.button')"
             theme="blue"

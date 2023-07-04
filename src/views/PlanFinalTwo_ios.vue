@@ -374,7 +374,7 @@ export default {
 
       let body = document.querySelector('body')
       body.classList.remove('fixed');
-      this.$router.push('Whatsapp')
+      this.$router.push({name: "Whatsapp"})
     },
     showModal(){
       this.mixpanel.track('Upsale Answered',{

@@ -37,8 +37,8 @@
             <img :src="`${buttonIcon(button.logo)}`" :alt="button.title">
           </div>
           <div class="text-[#fff]">
-            <span>{{ $t(`survey.id_${content.id}.buttons.text`) }}</span>
-            <div>{{ $t(`survey.id_${content.id}.buttons.title`) }}</div>
+            <p class="text-12px leading-tight opacity-70">{{ $t(`survey.id_${content.id}.buttons.text`) }}</p>
+            <p class="text-14px leading-normal font-displaySemiBold">{{ $t(`survey.id_${content.id}.buttons.title`) }}</p>
           </div>
         </div>
       </div>

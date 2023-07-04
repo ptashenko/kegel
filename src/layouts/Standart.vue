@@ -1,7 +1,8 @@
 <template>
   <steps v-if="content.id > 3 && content.id !== 35 && content.id !== 353 && content.id !== 61" :dark="dark" />
 
-  <div v-if="content.title"
+  <div
+    v-if="content.title"
     class="text-center text-[#fff] font-displayBold font-600 text-20px leading-normal mb-32px sm:(text-24px leading-normal)">
     <h2 v-html="$t(`survey.id_${content.id}.${content.title}`)" />
   </div>
@@ -22,30 +23,34 @@
     <span v-html="$t(`survey.id_${content.id}.text`)" />
   </div>
 
-  <div v-if="content.buttons" class="rounded-17px p-9px max-w-300px my-32px mx-auto bg-[#8080800C] mb-20px">
+  <div v-if="content.buttons" class="rounded-17px p-9px max-w-300px my-32px mx-auto bg-[#8080800C] mb-20px w-fit pr-30px">
     <div v-for="(button, idx) in content.buttons" :key="button.id"
       class="font-500 text-14px leading-tight flex items-center" :class="{ 'mb-3': idx !== content.buttons.length - 1 }">
       <div v-if="button.logo" class="w-37px h-37px flex items-center justify-center rounded-full mr-12px">
         <img :src="`${buttonIcon(button.logo)}`" :alt="button.title">
       </div>
       <div class="text-[#fff]">
-        <span>{{ $t(`survey.id_${content.id}.buttons.${button.text}`) }}</span>
-        <div>{{ $t(`survey.id_${content.id}.buttons.${button.title}`) }}</div>
+        <p class="text-12px leading-tight opacity-70">{{ $t(`survey.id_${content.id}.buttons.${button.text}`) }}</p>
+        <p class="text-14px leading-normal font-displaySemiBold">{{ $t(`survey.id_${content.id}.buttons.${button.title}`) }}</p>
       </div>
     </div>
   </div>
 
-  <footer-controls :dark="true" :buttonBack="{
-    text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[0]}`) : 'Back',
-    icon: 'prev',
-    click: backURL,
-    theme: 'bg-[#282828] hover:bg-[#373737FF]'
-  }" :buttonNext="{
-  icon: 'next',
-  text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[1]}`) : 'I got it',
-  click: nextURL,
-  theme: 'bg-red hover:bg-[#F5423FFF]'
-}" />
+  <footer-controls
+      :dark="true"
+      :buttonBack="{
+        text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[0]}`) : 'Back',
+        icon: 'prev',
+        click: backURL,
+        theme: 'bg-[#282828] hover:bg-[#373737FF]'
+      }"
+      :buttonNext="{
+        icon: 'next',
+        text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[1]}`) : 'I got it',
+        click: nextURL,
+        theme: 'bg-red hover:bg-[#F5423FFF]'
+      }"
+  />
 </template>
 
 <script>

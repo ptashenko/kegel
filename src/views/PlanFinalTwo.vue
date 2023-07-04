@@ -3,7 +3,7 @@
     <div>
       <div
         v-if="active && open == 1"
-        class="mt-0 mb-32px font-displayBold text-24px leading-normal text-center sm:(text-36px leading-normal)"
+        class="mt-0 mb-24px font-displayBold text-24px leading-normal text-center sm:(text-36px leading-normal)"
         :class="{'mb-32px font-displayBold text-32px leading-normal sm:(text-36px leading-normal)': active}"
       >
         {{ $t('planFinalTwo.title') }}
@@ -11,7 +11,7 @@
       </div>
       <h2
         v-else-if="open == 2"
-        class="mb-0 font-displayBold mt-0 text-24px leading-normal text-center sm:(text-30px leading-normal mb-32px)"
+        class="font-displayBold mt-0 text-24px leading-normal text-center mb-24px sm:(text-30px leading-normal mb-32px)"
       >
         {{ $t('planFinalTwo.didYouKnow') }}
       </h2>
@@ -32,8 +32,8 @@
       >
       </video-background>
     </div>
-    <div class="flex flex-col mb-32px">
-      <div v-if="open !== 2" class="text-14px leading-normal mt-32px sm:(text-18px leading-normal) flex items-center">
+    <div v-if="open !== 2" class="flex flex-col my-32px">
+      <div v-if="open !== 2" class="text-14px leading-normal sm:(text-18px leading-normal) flex items-center">
         <img
           v-if="open == 1"
           class="w-13px mr-18px sm:(w-18px)"
@@ -130,7 +130,7 @@
           class="flex flex-col justify-center basis-[65%]"
         >
             <p
-              class="font-400 text-14px leading-tight text-body opacity-75 !m-0"
+              class="font-400 text-14px leading-tight text-body !m-0"
               v-html="$t('planFinalTwo.discount')"
             />
         </div>
@@ -140,7 +140,7 @@
 
     <div
         v-if="open == 1"
-        class="max-w-310px"
+        class="max-w-310px mx-auto"
     >
       <base-button
           label='Add to my plan'
@@ -151,7 +151,7 @@
     </div>
     <div
       v-if="open == 3"
-      class="max-w-310px"
+      class="max-w-310px mx-auto"
     >
       <base-button
           label='Add to my plan'
@@ -458,7 +458,7 @@ export default {
     nextUrl(){
       let body = document.querySelector('body')
       body.classList.remove('fixed');
-      this.$router.push('Whatsapp')
+      this.$router.push({name: "Whatsapp"})
     },
     showModal(){
       this.mixpanel.track('Upsale Answered',{

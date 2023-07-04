@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h4 class="font-displayBold text-20px leading-normal mt-0 mb-16px text-center text-body outline-none">
+      <h4 class="font-displayBold text-20px leading-normal mt-0 mb-12px text-center text-body outline-none">
         {{ $t('faq.title') }}
       </h4>
       <div v-for="(item, id) in items" :key="id">

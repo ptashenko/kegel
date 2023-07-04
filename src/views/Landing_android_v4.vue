@@ -246,7 +246,7 @@ export default {
         number: this.$route.query.nr
       })
       setTimeout(() => {
-        this.$router.push("Whatsapp");
+        this.$router.push({name: "Whatsapp"});
       }, 0);
     },
     toggleModal () {

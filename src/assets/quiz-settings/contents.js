@@ -1,5 +1,7 @@
 const versionName = localStorage.getItem('ver')
+
 const isBaseline = versionName === 'baseline'
+
 export default [{
   id: 1,
   title: 'title',
@@ -178,6 +180,7 @@ export default [{
 {
   id: 333,
   active: true,
+  steps: true,
   title: 'title',
   thumbnail: 'image',
   layoutName: 'KegelReview',

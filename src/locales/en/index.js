@@ -1084,6 +1084,58 @@ export default {
         description: '<b>Without any</b> awkward conversations',
         image: 'img_all_benefits.png'
       }
+    },
+    extraTools: {
+      title: 'Go Even Further With Extra Tools:',
+      tracker: {
+        title: 'Progress Tracker',
+        description: 'Monitor how workouts strengthen Pelvic Floor muscles',
+        video: 'video_progress_tracker',
+        benefits_1: {
+          b_1: 'Take measurements and see <b>your progress</b> in clear graphs',
+          b_2: 'Get daily, weekly, and monthly <b>statistics overviews</b>',
+          b_3: 'Track progress and increase motivation towards reaching your goal',
+        },
+      },
+      challenges: {
+        title: 'Daily Challenges',
+        description: 'Build healthy habits for Mental, Physical and Social wellbeing',
+        video: 'video_challenges',
+        benefits_1: {
+          b_1: '11 easy-to-do challenges',
+          b_2: 'Based on a daily routine',
+          b_3: 'Provides <b>50+ benefits</b> for your overall and intimate health',
+        },
+        image: 'img_boosts.png'
+      },
+      library: {
+        title: 'Insights Library',
+        description: 'Learn valuable tips and tricks about Sex, Health, Relationships, Nutrition, and more',
+        video: 'video_insights',
+        benefits_1: {
+          b_1: '2-minute reads with engaging illustrations',
+          b_2: 'Verified data from the latest studies in plain language',
+          b_3: '80+ of the most trending topics',
+        },
+      },
+      mindCleaner: {
+        title: 'Mind Cleaner',
+        description: 'Relieve stress and anxiety to improve sexual wellbeing',
+        video: 'video_mind_cleaner',
+        benefits_1: {
+          b_1: 'Simple and effective psychological technique based on freewriting',
+          b_2: 'Relieves inner tensions and worries',
+          b_3: 'Improves mental and sexual wellbeing',
+        },
+      },
+    },
+    mobileApp: {
+      title: 'All of This Available in a Handy Mobile App',
+      description: 'So you can easily improve your sexual health <b>anytime, anywhere</b>',
+      image: 'img_mobile.png',
+      json_title: 'Achieve Improvements Confirmed by User Survey Data',
+      json: 'json_graph',
+      text: 'Most users feel tangible results within just <b>1 month</b>'
     }
 
   },

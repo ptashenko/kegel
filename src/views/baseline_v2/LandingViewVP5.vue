@@ -127,7 +127,7 @@
       <ul class="flex flex-col gap-16px mb-48px">
         <li class="flex justify-between items-center">
           <img
-              src="@/assets/images/icons/icon_5min.svg"
+              src="@/assets/images/svg/baseline_v2/icon_5min.svg"
               class="mr-24px"
           />
           <p
@@ -137,7 +137,7 @@
         </li>
         <li class="flex justify-between items-center">
           <img
-              src="@/assets/images/icons/icon_guide.svg"
+              src="@/assets/images/svg/baseline_v2/icon_guide.svg"
               class="mr-24px"
           />
           <p
@@ -147,7 +147,7 @@
         </li>
         <li class="flex justify-between items-center">
           <img
-              src="@/assets/images/icons/icon_difficulty.svg"
+              src="@/assets/images/svg/baseline_v2/icon_difficulty.svg"
               class="mr-24px"
           />
           <p
@@ -157,7 +157,7 @@
         </li>
         <li class="flex items-center">
           <img
-              src="@/assets/images/icons/icon_schedule.svg"
+              src="@/assets/images/svg/baseline_v2/icon_schedule.svg"
               class="mr-24px"
           />
           <p
@@ -172,7 +172,7 @@
       <ul class="flex flex-col gap-16px">
         <li class="flex justify-between items-center">
           <img
-              src="@/assets/images/icons/icon_exercises.svg"
+              src="@/assets/images/svg/baseline_v2/icon_exercises.svg"
               class="mr-24px"
           />
           <p
@@ -182,7 +182,7 @@
         </li>
         <li class="flex justify-between items-center">
           <img
-              src="@/assets/images/icons/icon_therapist.svg"
+              src="@/assets/images/svg/baseline_v2/icon_therapist.svg"
               class="mr-24px"
           />
           <p
@@ -192,7 +192,7 @@
         </li>
         <li class="flex justify-between items-center">
           <img
-              src="@/assets/images/icons/icon_muscle.svg"
+              src="@/assets/images/svg/baseline_v2/icon_muscle.svg"
               class="mr-24px"
           />
           <p
@@ -210,7 +210,7 @@
           objectFit="fill"
       />
     </div>
-    <div class="bg-[#fff] p-32px relative top-[-35px] z-10 rounded-30px">
+    <div class="bg-[#fff] p-32px pb-13px relative top-[-35px] z-10 rounded-30px">
       <h2 class="text-34px leading-normal font-displayBold text-body mb-16px text-center">{{$t('landingViewVP5_v2.mindTraining.title')}}</h2>
       <p class="text-16px leading-normal font-sans text-center mb-32px">{{$t('landingViewVP5_v2.mindTraining.description')}}</p>
       <video-background
@@ -222,7 +222,7 @@
       <ul class="flex flex-col gap-16px mb-64px">
         <li class="flex justify-between items-center">
           <img
-              src="@/assets/images/icons/icon_certified.svg"
+              src="@/assets/images/svg/baseline_v2/icon_certified.svg"
               class="mr-24px"
           />
           <p
@@ -232,7 +232,7 @@
         </li>
         <li class="flex justify-between items-center">
           <img
-              src="@/assets/images/icons/icon_journey.svg"
+              src="@/assets/images/svg/baseline_v2/icon_journey.svg"
               class="mr-24px"
           />
           <p
@@ -242,7 +242,7 @@
         </li>
         <li class="flex justify-between items-center">
           <img
-              src="@/assets/images/icons/icon_insights.svg"
+              src="@/assets/images/svg/baseline_v2/icon_insights.svg"
               class="mr-24px"
           />
           <p
@@ -252,7 +252,7 @@
         </li>
         <li class="flex items-center">
           <img
-              src="@/assets/images/icons/icon_techniques.svg"
+              src="@/assets/images/svg/baseline_v2/icon_techniques.svg"
               class="mr-24px"
           />
           <p
@@ -269,6 +269,265 @@
           class="text-16px leading-normal font-sans text-center mb-32px"
       />
       <img :src="require(`@/assets/images/content/baseline_v2/${$t('landingViewVP5_v2.mindTraining.allBenefits.image')}`)" />
+    </div>
+    <div>
+      <div class="bg-red py-24px px-32px mb-32px">
+        <h2
+            class="text-[#fff] text-28px font-displayMedium font-600 leading-snug text-center"
+        >
+          {{$t('landingViewVP5_v2.extraTools.title')}}
+        </h2>
+      </div>
+      <ul class="flex flex-col px-32px font-sans">
+        <li>
+          <div class="flex items-center justify-center mb-16px">
+            <img
+                src="@/assets/images/svg/icon_check-red-bg.svg"
+                class="mr-12px"
+            />
+            <h2 class="text-28px leading-snug font-displayBold font-600">
+              {{$t('landingViewVP5_v2.extraTools.tracker.title')}}
+            </h2>
+          </div>
+          <p class="text-16px leading-normal text-center mb-24px">
+            {{$t('landingViewVP5_v2.extraTools.tracker.description')}}
+          </p>
+          <video-background
+              :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.tracker.video')}.mp4`)"
+              :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.tracker.video')}.png`)"
+              class="w-full h-210px"
+              objectFit="fill"
+          />
+          <ul class="flex flex-col gap-16px mt-32px">
+            <li class="flex justify-between items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_progress.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.tracker.benefits_1.b_1')"
+              />
+            </li>
+            <li class="flex justify-between items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_overviews.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.tracker.benefits_1.b_2')"
+              />
+            </li>
+            <li class="flex justify-between items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_motivation.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.tracker.benefits_1.b_3')"
+              />
+            </li>
+          </ul>
+          <hr class="text-[#F1F3F9] mt-32px" />
+        </li>
+        <li class="mt-32px">
+          <div class="flex items-center justify-center mb-16px">
+            <img
+                src="@/assets/images/svg/icon_check-red-bg.svg"
+                class="mr-12px"
+            />
+            <h2 class="text-28px leading-snug font-displayBold font-600">
+              {{$t('landingViewVP5_v2.extraTools.challenges.title')}}
+            </h2>
+          </div>
+          <p class="text-16px leading-normal text-center mb-24px">
+            {{$t('landingViewVP5_v2.extraTools.challenges.description')}}
+          </p>
+          <video-background
+              :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.challenges.video')}.mp4`)"
+              :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.challenges.video')}.png`)"
+              class="w-full h-210px"
+              objectFit="fill"
+          />
+          <ul class="flex flex-col gap-16px mt-32px">
+            <li class="flex items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_challenges.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.challenges.benefits_1.b_1')"
+              />
+            </li>
+            <li class="flex items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_daily_routine.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.challenges.benefits_1.b_2')"
+              />
+            </li>
+            <li class="flex items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_overall_health.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.challenges.benefits_1.b_3')"
+              />
+            </li>
+          </ul>
+          <img
+              :src="require(`@/assets/images/content/baseline_v2/${$t('landingViewVP5_v2.extraTools.challenges.image')}`)"
+              class="mt-48px"
+          />
+          <hr class="text-[#F1F3F9] mt-32px" />
+        </li>
+        <li class="mt-32px">
+          <div class="flex items-center justify-center mb-16px">
+            <img
+                src="@/assets/images/svg/icon_check-red-bg.svg"
+                class="mr-12px"
+            />
+            <h2 class="text-28px leading-snug font-displayBold font-600">
+              {{$t('landingViewVP5_v2.extraTools.library.title')}}
+            </h2>
+          </div>
+          <p class="text-16px leading-normal text-center mb-24px">
+            {{$t('landingViewVP5_v2.extraTools.library.description')}}
+          </p>
+          <video-background
+              :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.library.video')}.mp4`)"
+              :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.library.video')}.png`)"
+              class="w-full h-210px"
+              objectFit="fill"
+          />
+          <ul class="flex flex-col gap-16px mt-32px">
+            <li class="flex justify-between items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_illustrations.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.library.benefits_1.b_1')"
+              />
+            </li>
+            <li class="flex justify-between items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_certified.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.library.benefits_1.b_2')"
+              />
+            </li>
+            <li class="flex justify-between items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_trending.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.library.benefits_1.b_3')"
+              />
+            </li>
+          </ul>
+          <hr class="text-[#F1F3F9] mt-32px" />
+        </li>
+        <li class="mt-32px">
+          <div class="flex items-center justify-center mb-16px">
+            <img
+                src="@/assets/images/svg/icon_check-red-bg.svg"
+                class="mr-12px"
+            />
+            <h2 class="text-28px leading-snug font-displayBold font-600">
+              {{$t('landingViewVP5_v2.extraTools.mindCleaner.title')}}
+            </h2>
+          </div>
+          <p class="text-16px leading-normal text-center mb-24px">
+            {{$t('landingViewVP5_v2.extraTools.mindCleaner.description')}}
+          </p>
+          <video-background
+              :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.mindCleaner.video')}.mp4`)"
+              :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.mindCleaner.video')}.png`)"
+              class="w-full h-210px"
+              objectFit="fill"
+          />
+          <ul class="flex flex-col gap-16px mt-32px">
+            <li class="flex justify-between items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_write.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.mindCleaner.benefits_1.b_1')"
+              />
+            </li>
+            <li class="flex justify-between items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_mind.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.mindCleaner.benefits_1.b_2')"
+              />
+            </li>
+            <li class="flex justify-between items-center">
+              <img
+                  src="@/assets/images/svg/baseline_v2/icon_overall_health.svg"
+                  class="mr-24px"
+              />
+              <p
+                  class="text-[#111113CC] text-16px leading-normal"
+                  v-html="$t('landingViewVP5_v2.extraTools.mindCleaner.benefits_1.b_3')"
+              />
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <img src="@/assets/images/content/baseline_v2/icon_all_of_this.svg" class="mx-auto mt-48px" />
+  </div>
+  <div class="pt-32px">
+    <div class="px-32px">
+      <h2 class="text-28px font-displayBold font-600 leading-snug text-center mb-8px">
+        {{$t('landingViewVP5_v2.mobileApp.title')}}
+      </h2>
+      <p
+          v-html="$t('landingViewVP5_v2.mobileApp.description')"
+          class="text-16px leading-normal text-center mb-32px"
+      />
+    </div>
+    <img
+        :src="require(`@/assets/images/content/baseline_v2/${$t('landingViewVP5_v2.mobileApp.image')}`)"
+        class="mb-48px"
+    />
+    <div class="px-16px">
+      <div class="json-gradient py-32px px-24px rounded-15px">
+        <h2 class="text-20px font-displayBold font-600 leading-snug text-center">
+          {{$t('landingViewVP5_v2.mobileApp.json_title')}}
+        </h2>
+      </div>
+      <div class="mb-32px px-16px">
+        <lottie-animation
+            ref="anim"
+            :animationData="require(`@/assets/images/json/baseline_v2/${$t('landingViewVP5_v2.mobileApp.json')}.json`)"
+        />
+      </div>
+      <p
+          v-html="`<span>${$t('landingViewVP5_v2.mobileApp.text')}</span>`"
+          class="redline flex text-16px leading-normal px-16px"
+      />
     </div>
   </div>
   <div class="max-w-600px mx-auto relative">
@@ -931,5 +1190,10 @@
   background: #E44240;
   border-radius: 10px;
   margin-right: 16px;
+}
+
+.json-gradient {
+  background: rgb(241,243,249);
+  background: linear-gradient(180deg, rgba(241,243,249,1) 0%, rgba(255,255,255,1) 100%);
 }
 </style>

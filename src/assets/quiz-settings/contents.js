@@ -1,6 +1,15 @@
-const versionName = localStorage.getItem('ver')
+const version = new URLSearchParams(window.location.search).get("ver")
 
-const isBaseline = versionName === 'baseline'
+const savedVersion = localStorage.getItem('ver')
+
+if (version && !savedVersion) {
+  console.log('goo')
+  localStorage.setItem('ver', version)
+} else if (!version && !savedVersion) {
+  localStorage.setItem('ver', '1')
+}
+
+const isBaseline = localStorage.getItem('ver') === '1'
 
 export default [{
   id: 1,

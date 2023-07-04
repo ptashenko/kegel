@@ -28,7 +28,7 @@ export default {
       if (clickId.query || clickId.cookies) {
         addItem("b_click_id", clickId.query ? clickId.query : clickId.cookies);
       }
-    }
+    },
   },
   computed: {
     ...mapGetters(['content']),
@@ -76,11 +76,6 @@ export default {
     }
   },
   watch: {
-    $route(to) {
-      if (to.name === 'home') {
-        localStorage.setItem('ver', to.query.ver ? 'baseline_v2' : 'baseline')
-      }
-    }
     // this.$abtest('experiment_1', { Baseline: 50, VariationA: 50 })
     // console.log("created APP")
   },
@@ -98,11 +93,11 @@ export default {
     }
     const version = urlParams.get("ver");
     if (version != null) {
-      addItem("ver", parseInt(version));
+      // addItem("ver", parseInt(version));
       this.mixpanel.people.set({"Version": version})
     } else {
       if (localStorage.getItem('ver') == null) {
-        addItem("ver", 1);
+        // addItem("ver", 1);
         this.mixpanel.people.set({"Version": 1})
       }
     }

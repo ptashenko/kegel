@@ -1,43 +1,43 @@
 <template>
-  <div class="relative mx-auto pb-48px sm:(max-w-600px mt-16px)" id="topPage">
+  <div class="relative mx-auto pb-48px sm:max-w-600px sm:mt-16px" id="topPage">
     <div v-if="active && open == 1" class="px-32px sm:px-40px">
       <h2 class="font-displayBold text-32px leading-normal text-center">{{ $t('planFinalTwo.title') }}</h2>
       <p class="text-20px leading-normal font-displayMedium text-center">{{ $t('planFinalTwo.subtitle') }}</p>
     </div>
     <div v-else-if="open == 2" class="px-32px sm:px-40px">
-      <h2 class="mb-32px font-displayBold text-24px leading-normal text-center sm:(text-30px leading-normal)">
+      <h2 class="mb-32px font-displayBold text-24px leading-normal text-center sm:text-30px sm:leading-normal">
         {{ $t('planFinalTwo.didYouKnow') }}
       </h2>
     </div>
-    <div v-else class="font-displayBold font-bold text-24px leading-normal text-center px-32px sm:(px-40px text-36px leading-normal)" v-html="$t('planFinalTwo.offer')">
+    <div v-else class="font-displayBold font-bold text-24px leading-normal text-center px-32px sm:px-40px sm:text-36px sm:leading-normal" v-html="$t('planFinalTwo.offer')">
     </div>
     <div
         v-if="open !== 2"
-        class="mt-24px mb-32px px-32px sm:(my-32px px-40px)"
+        class="mt-24px mb-32px px-32px sm:my-32px sm:px-40px"
     >
       <video-background
           :src="require('@/assets/video/mini_vid.mp4')"
           :poster="require(`@/assets/video/zaglushki/mini_vid.png`)"
-          class="h-[calc(100dvh)] max-h-210px max-w-full rounded-14px sm:(max-h-280px)"
+          class="h-[calc(100dvh)] max-h-210px max-w-full rounded-14px sm:max-h-280px"
       >
       </video-background>
     </div>
     <div v-if="open !== 2" class="px-32px sm:px-40px">
-      <div v-if="open !== 2" class="text-14px leading-normal flex items-center sm:(text-18px leading-normal)">
+      <div v-if="open !== 2" class="text-14px leading-normal flex items-center sm:text-18px sm:leading-normal">
         <img v-if="open == 1" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
         <img v-if="open > 2" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           {{ $t('planFinalTwo.build') }}
         </p>
       </div>
-      <div v-if="open !== 2" class="mt-16px text-14px leading-normal flex items-center sm:(text-18px leading-normal)">
+      <div v-if="open !== 2" class="mt-16px text-14px leading-normal flex items-center sm:text-18px sm:leading-normal">
         <img v-if="open == 1" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
         <img v-if="open > 2" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">
           {{ $t('planFinalTwo.increase') }}
         </p>
       </div>
-      <div v-if="open !== 2" class="mt-16px text-14px leading-normal flex items-center sm:(text-18px leading-normal)">
+      <div v-if="open !== 2" class="mt-16px text-14px leading-normal flex items-center sm:text-18px sm:leading-normal">
         <img v-if="open == 1" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check">
         <img v-if="open > 2" class="mr-18px w-13px sm:w-18px" src="@/assets/images/svg/icon_check_blue.svg" alt="check">
         <p class="fs-16-14">

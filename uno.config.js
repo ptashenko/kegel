@@ -41,7 +41,7 @@ export default defineConfig({
         },
     },
     shortcuts: {
-        'container-mob': 'max-w-311px relative mx-auto sm:(max-w-520px)',
+        'container-mob': 'max-w-311px relative mx-auto sm:max-w-520px',
     },
     presets: [
         presetAttributify(),

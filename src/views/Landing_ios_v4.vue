@@ -1,14 +1,14 @@
 <template>
-  <div class="relative max-w-full mx-auto pt-12px pb-64px sm:(max-w-600px pt-16px)" >
+  <div class="relative max-w-full mx-auto pt-12px pb-64px sm:max-w-600px sm:pt-16px" >
     <div id="topPage" class="flex flex-col px-32px sm:px-40px">
-      <div class="font-displayBold mt-0 mb-16px mx-auto text-32px font-600 leading-normal text-center sm:(text-30px leading-normal mb-24px)">
+      <div class="font-displayBold mt-0 mb-16px mx-auto text-32px font-600 leading-normal text-center sm:text-30px sm:leading-normal sm:mb-24px">
         {{ $t('landing.title') }}
       </div>
       <div id="trigger1" class="text-center mb-0">
-        <div class="text-16px leading-normal sm:(text-18px leading-normal)">
+        <div class="text-16px leading-normal sm:text-18px sm:leading-normal">
           <p v-html="$t('landing.textFirst')"></p>
         </div>
-        <div class="font-sansBold text-red font-700 text-20px leading-normal flex w-full mx-auto relative justify-center min-h-30px sm:(text-24px leading-normal min-h-36px)">
+        <div class="font-sansBold text-red font-700 text-20px leading-normal flex w-full mx-auto relative justify-center min-h-30px sm:text-24px sm:leading-normal sm:min-h-36px)">
           <transition name="slide-fade">
             <span v-if="show" class="relative transform translate-x-0 translate-y-0">{{ $t('landing.date', { dataPP3 }) }}</span>
           </transition>
@@ -25,12 +25,12 @@
             :speed="1"
         />
         <div class="flex justify-between my-0 mx-33px sm:mx-54px">
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(0,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(1,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(2,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(3,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(4,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(5,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(0,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(1,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(2,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(3,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(4,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(5,'month').format("MMM")}}</p>
         </div>
       </div>
       <p class="text-14px opacity-50 text-center leading-normal font-light font-sansLight sm:(text-16px leading-normal)">{{ $t('landing.diagram') }}</p>

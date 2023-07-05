@@ -1,6 +1,6 @@
 <template>
   <button
-    class="font-sansMedium w-full py-15px pr-60px pl-20px text-14px leading-normal text-left bg-[#F1F3F9] border-none rounded-9px cursor-pointer relative text-[#111113] before:(content-[''] w-23px h-23px bg-white absolute right-20px top-1/2 rounded-1/2 -translate-y-1/2) sm:(text-18px leading-normal)"
+    class="font-sansMedium w-full py-15px pr-60px pl-20px text-14px leading-normal text-left bg-[#F1F3F9] border-none rounded-9px cursor-pointer relative text-[#111113] before:(content-[''] w-23px h-23px bg-white absolute right-20px top-1/2 rounded-1/2 -translate-y-1/2) sm:text-18px sm:leading-normal"
     @click="clickBtn"
   >
     {{ answer }}

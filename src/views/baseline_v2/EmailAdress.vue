@@ -3,10 +3,10 @@
           <div class="h-full flex flex-col justify-between flex-1">
               <div class="max-w-375px mx-auto">
                 <img src="@/assets/images/svg/icon_email-img.svg" alt="email" class="mx-auto block">
-                <div class="fond-displayBold font-bold text-24px leading-normal text-center my-24px mx-auto sm:(text-30px leading-normal mb-16px)">
+                <div class="fond-displayBold font-bold text-24px leading-normal text-center my-24px mx-auto sm:text-30px sm:leading-normal sm:mb-16px">
                   {{ $t('emailAdress_v2.title') }}
                 </div>
-                <p class="font-sans text-14px leading-normal text-body opacity-75 mx-auto text-center max-w-400px mb-32px sm:(text-18px leading-normal)">
+                <p class="font-sans text-14px leading-normal text-body opacity-75 mx-auto text-center max-w-400px mb-32px sm:text-18px sm:leading-normal">
                   <span class="font-bold">{{ $t('emailAdress_v2.textFirst') }}</span> {{ $t('emailAdress_v2.textSecond') }}
                 </p>
                 <BaseInput
@@ -32,17 +32,17 @@
                 {{ $t('emailAdress_v2.plan') }}
                 </div>
 
-                <p class="font-sans font-400 text-10px leading-normal text-center text-body opacity-50 sm:(text-14px leading-normal)">
+                <p class="font-sans font-400 text-10px leading-normal text-center text-body opacity-50 sm:text-14px sm:leading-normal">
                   {{ $t('emailAdress_v2.data') }}
                 </p>
               </div>
               <div>
-              <p class="font-sans font-400 text-10px leading-normal text-center text-body opacity-50 sm:(text-14px leading-normal)">
+              <p class="font-sans font-400 text-10px leading-normal text-center text-body opacity-50 sm:text-14px sm:leading-normal">
                 {{ $t('emailAdress_v2.offers') }}
               </p>
               <div class="mt-16px flex justify-center">
-                <a href="/terms.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 mr-24px sm:(mr-16px text-14px leading-normal)">{{ $t('emailAdress_v2.terms') }}</a>
-                <a href="/privacy-policy.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 sm:(text-14px leading-normal)">{{ $t('emailAdress_v2.policy') }}</a>
+                <a href="/terms.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 mr-24px sm:mr-16px sm:text-14px sm:leading-normal">{{ $t('emailAdress_v2.terms') }}</a>
+                <a href="/privacy-policy.html" target="_blank" class="underline text-body font-sans text-10px leading-normal opacity-50 sm:text-14px sm:leading-normal">{{ $t('emailAdress_v2.policy') }}</a>
               </div>
             </div>
           </div>

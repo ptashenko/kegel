@@ -1,23 +1,23 @@
 <template>
-  <div id="topPage" class="container-mob mx-auto block pb-100px max-w-311px sm:(max-w-520px)">
+  <div id="topPage" class="container-mob mx-auto block pb-100px max-w-311px sm:max-w-520px">
     <div>
       <div
         v-if="active && open == 1"
-        class="mt-0 mb-24px font-displayBold text-24px leading-normal text-center sm:(text-36px leading-normal)"
-        :class="{'mb-32px font-displayBold text-32px leading-normal sm:(text-36px leading-normal)': active}"
+        class="mt-0 mb-24px font-displayBold text-24px leading-normal text-center sm:text-36px sm:leading-normal"
+        :class="{'mb-32px font-displayBold text-32px leading-normal sm:text-36px sm:leading-normal': active}"
       >
         {{ $t('planFinalTwo.title') }}
-        <p class="font-displayMedium text-20px leading-normal sm:(text-24px leading-normal)">to accelerate the result</p>
+        <p class="font-displayMedium text-20px leading-normal sm:text-24px sm:leading-normal">to accelerate the result</p>
       </div>
       <h2
         v-else-if="open == 2"
-        class="font-displayBold mt-0 text-24px leading-normal text-center mb-24px sm:(text-30px leading-normal mb-32px)"
+        class="font-displayBold mt-0 text-24px leading-normal text-center mb-24px sm:text-30px sm:leading-normal sm:mb-32px"
       >
         {{ $t('planFinalTwo.didYouKnow') }}
       </h2>
       <h2
           v-else
-          class="mt-0 mb-32px font-displayBold text-24px leading-normal text-center sm:(text-36px leading-normal)"
+          class="mt-0 mb-32px font-displayBold text-24px leading-normal text-center sm:text-36px sm:leading-normal"
           v-html="$t('planFinalTwo.offer')"
       />
     </div>
@@ -27,22 +27,22 @@
       <video-background
         :src="require('@/assets/video/mini_vid.mp4')"
         :poster="require(`@/assets/video/zaglushki/mini_vid.png`)"
-        class="video h-100vh max-w-full rounded-14px max-h-180px sm:(max-h-280px)"
+        class="video h-100vh max-w-full rounded-14px max-h-180px sm:max-h-280px"
         objectFit="fill"
       >
       </video-background>
     </div>
     <div v-if="open !== 2" class="flex flex-col my-32px">
-      <div v-if="open !== 2" class="text-14px leading-normal sm:(text-18px leading-normal) flex items-center">
+      <div v-if="open !== 2" class="text-14px leading-normal sm:text-18px sm:leading-normal flex items-center">
         <img
           v-if="open == 1"
-          class="w-13px mr-18px sm:(w-18px)"
+          class="w-13px mr-18px sm:w-18px"
           src="@/assets/images/svg/icon_check-no-bg-red.svg"
           alt="check"
         >
         <img
           v-if="open > 2"
-          class="w-13px mr-18px sm:(w-18px)"
+          class="w-13px mr-18px sm:w-18px"
           src="@/assets/images/svg/icon_check_blue.svg"
           alt="check"
         >
@@ -52,16 +52,16 @@
       </div>
       <div
         v-if="open !== 2"
-        class="text-14px leading-normal mt-16px sm:(text-18px leading-normal) flex items-center"
+        class="text-14px leading-normal mt-16px sm:text-18px sm:leading-normal flex items-center"
       >
         <img
           v-if="open == 1"
-          class="w-13px mr-18px sm:(w-18px)"
+          class="w-13px mr-18px sm:w-18px"
           src="@/assets/images/svg/icon_check-no-bg-red.svg" alt="check"
         >
         <img
           v-if="open > 2"
-          class="w-13px mr-18px sm:(w-18px)"
+          class="w-13px mr-18px sm:w-18px"
           src="@/assets/images/svg/icon_check_blue.svg" alt="check"
         >
         <p>
@@ -70,17 +70,17 @@
       </div>
       <div
         v-if="open !== 2"
-        class="text-14px leading-normal mt-16px sm:(text-18px leading-normal) flex items-center"
+        class="text-14px leading-normal mt-16px sm:text-18px sm:leading-normal flex items-center"
       >
         <img
           v-if="open == 1"
-          class="w-13px mr-18px sm:(w-18px)"
+          class="w-13px mr-18px sm:w-18px"
           src="@/assets/images/svg/icon_check-no-bg-red.svg"
           alt="check"
         >
         <img
           v-if="open > 2"
-          class="w-13px mr-18px sm:(w-18px)"
+          class="w-13px mr-18px sm:w-18px"
           src="@/assets/images/svg/icon_check_blue.svg"
           alt="check"
         >
@@ -111,7 +111,7 @@
         alt=""
       >
       <p
-        class="font-sans font-300 text-12px leading-normal text-center text-body opacity-50 mx-auto mt-16px mb-32px sm:(text-16px leading-normal)"
+        class="font-sans font-300 text-12px leading-normal text-center text-body opacity-50 mx-auto mt-16px mb-32px sm:text-16px leading-normal"
       >
       {{ $t('planFinalTwo.diagram') }}
       </p>
@@ -165,7 +165,7 @@
         v-if="active && open == 1"
         :label="$t('planFinalTwo.results')"
         text-only
-        class="font-sansMedium !text-body text-14px leading-normal opacity-50 my-32px sm:(text-16px leading-normal mb-48px)"
+        class="font-sansMedium !text-body text-14px leading-normal opacity-50 my-32px sm:text-16px sm:leading-normal sm:mb-48px"
         @click="showModal"
     />
     <div v-else-if="open == 2" class="text-center">
@@ -182,7 +182,7 @@
         v-else
         :label="$t('planFinalTwo.giveUp')"
         text-only
-        class="font-sansMedium !text-body text-14px leading-normal opacity-50 my-32px sm:(text-16px leading-normal mb-48px)"
+        class="font-sansMedium !text-body text-14px leading-normal opacity-50 my-32px sm:text-16px sm:leading-normal sm:mb-48px"
         @click="withoutUpsaleDiscounted"
     />
       <div>

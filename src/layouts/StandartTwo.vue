@@ -8,7 +8,7 @@
       />
 
       <div v-if="content.title"
-           class="text-center text-[#fff] font-displayBold font-600 text-20px leading-normal mb-32px sm:(text-24px leading-normal)">
+           class="text-center text-[#fff] font-displayBold font-600 text-20px leading-normal mb-32px sm:text-24px sm:leading-normal">
         <h2 v-html="$t(`survey.id_${content.id}.${content.title}`)" />
       </div>
 
@@ -16,7 +16,7 @@
         <video-background
             :src="video($t(`survey.id_${content.id}.${content.video}`))"
             :poster="video($t(`survey.id_${content.id}.${content.poster}`))"
-            class="h-209px rounded-14px max-w-520px w-full sm:(h-340px)" />
+            class="h-209px rounded-14px max-w-520px w-full sm:h-340px" />
       </div>
 
 
@@ -26,7 +26,7 @@
 
 
       <div v-if="content.text"
-           class="font-sans font-400 text-16px leading-normal mt-25px text-center text-[#fff] sm:(text-18px leading-normal)">
+           class="font-sans font-400 text-16px leading-normal mt-25px text-center text-[#fff] sm:text-18px sm:leading-normal">
         <span v-html="$t(`survey.id_${content.id}.text`)" />
       </div>
 

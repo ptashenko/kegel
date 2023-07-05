@@ -2,7 +2,7 @@
     <steps v-if="content.id !== 1" :dark="dark" />
     <transition name="slide" mode="out-in">
       <div v-if="show" class="flex flex-col">
-        <div class="font-displayBold text-20px text-left pb-32px leading-normal sm:(text-left text-24px leading-normal)">
+        <div class="font-displayBold text-20px text-left pb-32px leading-normal sm:text-left sm:text-24px sm:leading-normal">
           {{ $t(`survey.id_${content.id}.${survey.title}`) }}
         </div>
 
@@ -10,7 +10,7 @@
           <video-background
             :src="video($t(`survey.id_${content.id}.${content.video}`))"
             :poster="video($t(`survey.id_${content.id}.${content.poster}`))"
-            class="h-209px rounded-14px max-w-520px w-full sm:(h-340px)"
+            class="h-209px rounded-14px max-w-520px w-full sm:h-340px"
           />
         </div>
 

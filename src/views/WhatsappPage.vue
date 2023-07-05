@@ -1,5 +1,5 @@
 <template>
-  <div class="sm:(min-h-90vh flex flex-col)">
+  <div class="sm:min-h-90vh sm:flex sm:flex-col">
     <div class="container-mob pb-64px">
       <h2 class="font-displayBold text-24px leading-normal sm:(text-36px leading-normal) text-center">
         {{ $t('whatsapp.title') }}</h2>

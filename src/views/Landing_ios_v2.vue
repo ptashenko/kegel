@@ -25,12 +25,12 @@
             :speed="1"
         />
         <div class="flex justify-between my-0 mx-33px sm:mx-54px">
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(0,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(1,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(2,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(3,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(4,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(5,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(0,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(1,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(2,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(3,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(4,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(5,'month').format("MMM")}}</p>
         </div>
       </div>
       <p class="text-14px opacity-50 text-center leading-normal font-light font-sansLight sm:(text-16px leading-normal)">{{ $t('landing.diagram') }}</p>

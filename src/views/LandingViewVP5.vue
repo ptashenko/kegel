@@ -3,8 +3,8 @@
     {{MyScrollFixed}}
     {{btnAddPurpose}}
     {{imagechart}}
-    <div class="relative max-w-600px px-32px mx-auto sm:(px-40px)">
-      <div v-if="subscribe" class="max-w-536px opacity-0 fixed block mx-auto w-full text-center py-16px px-32px bg-body z-2 text-[#fff] top-0 left-0 right-0 sm:(py-21px px-0 max-w-600px)" :class="{'!opacity-100': blockFixed}">
+    <div class="relative max-w-600px px-32px mx-auto sm:px-40px">
+      <div v-if="subscribe" class="max-w-536px opacity-0 fixed block mx-auto w-full text-center py-16px px-32px bg-body z-2 text-[#fff] top-0 left-0 right-0 sm:py-21px sm:px-0 sm:max-w-600px" :class="{'!opacity-100': blockFixed}">
       <p class="p-0 m-0 block font-800">
         <span :class="[superDiscount.theme ? 'text-blue' : 'text-red']">
           {{ $t('landingViewVP5.discount', {discount: pickedTarifParams.discount}) }}
@@ -19,10 +19,10 @@
     </div>
 
     <div id="topPage" class="flex flex-col">
-      <h2 class="m-0 mx-auto mb-24px text-24px leading-normal text-center font-displayBold sm:(text-36px leading-normal)">
+      <h2 class="m-0 mx-auto mb-24px text-24px leading-normal text-center font-displayBold sm:text-36px sm:leading-normal">
         {{ $t('landingViewVP5.title', {purpose: $t(`home.tracks.purpose.${purpose}`)} ) }}
       </h2>
-      <p v-if="subscribe" class="text-14px leading-normal text-center mb-16px sm:(text-18px leading-normal)" v-html="$t('landingViewVP5.offer')">
+      <p v-if="subscribe" class="text-14px leading-normal text-center mb-16px sm:text-18px sm:leading-normal" v-html="$t('landingViewVP5.offer')">
       </p>
       <div id="blockScroll" class="mb-24px font-500 text-14px leading-tight flex items-center rounded-17px bg-body w-full max-w-311px m-0 mx-auto mb-32px text-[#fff]">
         <div class="relative w-84px h-84px ml-10px">
@@ -39,7 +39,7 @@
         </div>
       </div>
       <div id="trigger1" class="text-center mb-0">
-        <div class="text-16px leading-normal sm:(text-20px leading-normal)">
+        <div class="text-16px leading-normal sm:text-20px sm:leading-normal">
           <span
             v-if="AddPurposeCom"
             class="font-sans"
@@ -51,14 +51,14 @@
             v-html="$t('landingViewVP5.goals', {purpose: $t(`home.tracks.purpose.${purpose}`)})"
           />
         </div>
-        <div class="font-sansBold text-red font-700 text-20px leading-normal flex w-full mx-auto relative justify-center min-h-30px sm:(text-24px leading-normal min-h-36px)">
+        <div class="font-sansBold text-red font-700 text-20px leading-normal flex w-full mx-auto relative justify-center min-h-30px sm:text-24px sm:leading-normal sm:min-h-36px">
             <transition name="slide-fade">
               <span v-if="show" class="relative transform translate-x-0 translate-y-0">{{ $t('landingViewVP5.date', { dataPP3 }) }}</span>
             </transition>
         </div>
       </div>
 
-      <div class="mt-32px mb-24px mx-auto text-center w-full sm:(max-w-520px)">
+      <div class="mt-32px mb-24px mx-auto text-center w-full sm:max-w-520px">
         <lottie-animation
           ref="content.ref"
           :animationData="imageitem"
@@ -72,14 +72,14 @@
           @stopped="stopped"
         />
         <div class="flex mt-9px justify-between mx-[12%]">
-          <p class="m-0 text-12px leading-normal text-body sm:(text-18px leading-normal mt-12px)"
+          <p class="m-0 text-12px leading-normal text-body sm:text-18px sm:leading-normal sm:mt-12px"
             v-for="(_, idx) of new Array(6)"
             :key="idx">
             {{setDate(idx)}}
           </p>
         </div>
       </div>
-      <p class="!text-14px !leading-normal max-w-450px mx-auto opacity-50 text-center sm:(max-w-520px)">
+      <p class="!text-14px !leading-normal max-w-450px mx-auto opacity-50 text-center sm:max-w-520px">
         {{ $t('landingViewVP5.diagram') }}
       </p>
       <div id="Benefits" class="mt-32px">

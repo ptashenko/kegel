@@ -4,7 +4,7 @@
       class="fixed z-9999999 w-full p-24px pb-32px bg-[#fff] mx-auto rounded-9px max-h-95vh max-w-311px sm:max-w-452px"
       :class="{
         '!bottom-unset !p-16px !top-32px !max-w-311px !h-fit bg-[#FFE4E4] border-2px border-red': error,
-        '!max-w-full bottom-0 pb-50px !rounded-br-0px !rounded-bl-0px sm:(!max-w-600px)': position === 'bottom'
+        '!max-w-full bottom-0 pb-50px !rounded-br-0px !rounded-bl-0px sm:!max-w-600px': position === 'bottom'
       }"
     >
       <img v-if="closeButton" class="absolute top-5px right-5px cursor-pointer" @click="closePopup" src="@/assets/images/svg/icon_btn-close-window.svg" />

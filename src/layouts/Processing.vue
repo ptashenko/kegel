@@ -5,7 +5,7 @@
       </processing>
 
 
-      <div class="mx-[-30px] sm:(mx-[-32px])">
+      <div class="mx-[-30px] sm:mx-[-32px]">
         <img src="@/assets/images/content/s7.png" alt="" class="block mx-auto sm:max-w-520px">
       </div>
     </div>

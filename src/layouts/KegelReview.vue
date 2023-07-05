@@ -5,7 +5,7 @@
     />
 
     <div class="container-mob pb-30px">
-      <div class="font-sansSemiBold text-20px leading-normal text-center text-[#fff] sm:(text-24px leading-normal)">
+      <div class="font-sansSemiBold text-20px leading-normal text-center text-[#fff] sm:text-24px sm:leading-normal">
         <h2 v-html="$t(`survey.id_${content.id}.title`)" />
       </div>
 

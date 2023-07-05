@@ -3,11 +3,11 @@
     class="h-100px text-center mx-auto mt-25px fixed bottom-0 left-0 right-0"
     :class="[dark ? 'bg-body' : 'footer-bg ']"
   >
-    <div class="flex items-center h-100px justify-between max-w-311px sm:(max-w-322px) mx-auto">
+    <div class="flex items-center h-100px justify-between max-w-311px sm:max-w-322px mx-auto">
       <div class="max-w-153px basis-[49%]">
         <button-field
           :text="buttonBack.text"
-          :theme="buttonBack.theme"
+          :style="buttonBack.style"
           :icon="buttonBack.icon"
           @click="buttonBack.click()"
         />
@@ -16,7 +16,7 @@
         <button-field
           :text="buttonNext.text"
           :disabled="buttonNext.disabled"
-          :theme="buttonNext.theme"
+          :style="buttonNext.style"
           :icon="buttonNext.icon"
           @click="buttonNext.click()"
         />

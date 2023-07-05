@@ -84,41 +84,41 @@
       </p>
       <div id="Benefits" class="mt-32px">
         <h2
-            class="font-displayBold text-20px leading-normal mb-24px mx-auto text-center sm:(text-24px leading-normal mb-52px)"
+            class="font-displayBold text-20px leading-normal mb-24px mx-auto text-center sm:text-24px sm:leading-normal sm:mb-52px"
         >
           {{ $t('landingViewVP5.benefits') }}
         </h2>
-        <ul class="max-w-310px m-0 mx-auto mb-48px p-0 pr-5px sm:(max-w-375px)">
-          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+        <ul class="max-w-310px m-0 mx-auto mb-48px p-0 pr-5px sm:max-w-375px">
+          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:text-18px sm:leading-normal">
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:w-24px sm:h-24px" />
             <p v-html="$t('landingViewVP5.firstBenefit', {purpose: $t(`home.tracks.purpose.${purpose}`)})" />
           </li>
-          <li v-if="!addItem" class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+          <li v-if="!addItem" class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:text-18px sm:leading-normal">
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:w-24px sm:h-24px" />
             <p v-html="$t('landingViewVP5.secondBenefit', {addPurpose: $t(`home.tracks.addpurpose.${addpurpose}`)})" />
           </li>
-          <li v-if="addItem" class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+          <li v-if="addItem" class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:text-18px sm:leading-normal">
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:w-24px sm:h-24px" />
             <p v-html="$t('landingViewVP5.thirdBenefit')" />
           </li>
-          <li v-if="addItem" class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+          <li v-if="addItem" class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:text-18px sm:leading-normal">
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:w-24px sm:h-24px" />
             <p v-html="$t('landingViewVP5.fourthBenefit')" />
           </li>
-          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:text-18px sm:leading-normal">
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:w-24px sm:h-24px" />
             <p>{{ $t('landingViewVP5.fifthBenefit') }}</p>
           </li>
-          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:text-18px sm:leading-normal">
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:w-24px sm:h-24px" />
             <p>{{ $t('landingViewVP5.sixthBenefit') }}</p>
           </li>
-          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:(text-18px leading-normal)">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+          <li class="list-none flex items-center font-sans text-16px leading-normal mb-16px sm:text-18px sm:leading-normal">
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:w-24px sm:h-24px" />
             <p v-html="$t('landingViewVP5.seventhBenefit')" />
           </li>
-          <li class="list-none flex items-center font-sans text-16px leading-normal sm:(text-18px leading-normal)">
-            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:(w-24px h-24px)" />
+          <li class="list-none flex items-center font-sans text-16px leading-normal sm:text-18px sm:leading-normal">
+            <img src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check" class="mr-20px w-16px h-16px block sm:w-24px sm:h-24px" />
             <p>{{ $t('landingViewVP5.eighthBenefit') }}</p>
           </li>
         </ul>
@@ -132,27 +132,27 @@
 
     <div class="max-w-600px mx-auto relative mt-48px">
         <div class="flex flex-col mx-auto mb-40px container-mob">
-          <div class="font-displayBold text-16px leading-normal mb-16px text-center sm:(text-24px leading-normal)">{{ $t('landingViewVP5.reviews') }}</div>
+          <div class="font-displayBold text-16px leading-normal mb-16px text-center sm:text-24px sm:leading-normal">{{ $t('landingViewVP5.reviews') }}</div>
           {{lengthReviews}}
           <template v-for="(item, key) in base" :key="key">
             <div
               v-show="key < this.numreview"
-              class="p-15px rounded-9px mx-auto max-w-370px w-full bg-[#F9F9F9] duration-300 mb-8px sm:(max-w-520px)"
+              class="p-15px rounded-9px mx-auto max-w-370px w-full bg-[#F9F9F9] duration-300 mb-8px sm:max-w-520px"
             >
               <div class="flex justify-between mb-15px">
                 <div>
-                  <div class="text-14px leading-normal font-sansBold sm:(text-18px leading-normal)">{{ $t(`review.${item.title}`)}}</div>
+                  <div class="text-14px leading-normal font-sansBold sm:text-18px sm:leading-normal">{{ $t(`review.${item.title}`)}}</div>
                   <div class="flex mt-5px">
                     <img v-for="i in item.rating" :key="i" src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="w-14px h-14px max-w-14px h-auto">
                   </div>
                 </div>
 
-                <p class="font-500 text-12px leading-normal opacity-50 sm:(text-16px leading-normal)">
+                <p class="font-500 text-12px leading-normal opacity-50 sm:text-16px sm:leading-normal">
                   {{ item.name }}
                 </p>
               </div>
 
-              <p class="text-12px leading-normal font-400 sm:(text-16px leading-normal)">
+              <p class="text-12px leading-normal font-400 sm:text-16px sm:leading-normal">
                 {{ $t(`review.${item.text}`)}}
               </p>
 
@@ -170,18 +170,18 @@
     <div class="absolute top-[100%] w-full h-70px" id="selectPlan"></div>
     </div>
   </div>
-    <div ref="payment-block" class="p-32px max-w-600px mx-auto bg-body sm:(px-40px)">
+    <div ref="payment-block" class="p-32px max-w-600px mx-auto bg-body sm:px-40px">
       <div v-if="superDiscount.theme">
         <SuperDiscountGift
           :discount="pickedTarifParams.discount"
           :discountOriginal="pickedTarifParams.discountOriginal"
           class="m-0 mx-auto mb-32px max-w-311px"
         />
-        <h2 class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-32px text-center font-displayBold sm:(text-36px leading-normal)">
+        <h2 class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-32px text-center font-displayBold sm:text-36px sm:leading-normal">
           {{ $t(`landingViewVP5.plan`)}}
         </h2>
       </div>
-      <h2 v-else class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-32px text-center font-displayBold sm:(text-36px leading-normal)">
+      <h2 v-else class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-32px text-center font-displayBold sm:text-36px sm:leading-normal">
         {{ $t('landingViewVP5.getPlan', {purpose: $t(`home.tracks.purpose.${purpose}`)})}}
       </h2>
       <div v-if="superDiscount.theme" class="flex flex-col max-w-430px mx-auto">
@@ -189,7 +189,7 @@
           v-for="({id, fullprice, cost, text, name, totalCost, superDiscPrice}, idx) of tarifs"
           :key="idx"
           class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px border-1px border-transparent cursor-pointer"
-          :class="{'border-1px border-blue': subscribe === id, 'mb-16px': idx !== tarifs.length - 1}"
+          :class="{'border-1px !border-blue': subscribe === id, 'mb-16px': idx !== tarifs.length - 1}"
         >
           <div class="flex items-center">
             <div>
@@ -261,7 +261,7 @@
           v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs"
           :key="idx"
           class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px border-1px border-transparent cursor-pointer"
-          :class="{'border-1px border-red': subscribe === id, 'mb-16px': idx !== tarifs.length - 1}"
+          :class="{'border-1px !border-red': subscribe === id, 'mb-16px': idx !== tarifs.length - 1}"
         >
           <div class="flex items-center">
             <div>

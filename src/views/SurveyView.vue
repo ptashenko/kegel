@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-600px px-32px mx-auto box-border pb-100px sm:(px-40px)" :class="{'dark-layout': content.dark, 'min-h-700px sm:(min-h-800px)': content.id === 50}" >
+    <div class="max-w-600px px-32px mx-auto box-border pb-100px sm:px-40px" :class="{'dark-layout': content.dark, 'min-h-700px sm:min-h-800px': content.id === 50}" >
         <questions v-if="content && content.answer" :survey="content"  />
         <component v-else :is="content && content.layoutName" :content="content" :dark="content.dark" />
     </div>

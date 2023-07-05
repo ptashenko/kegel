@@ -1,7 +1,14 @@
 import { defineConfig, presetAttributify, presetUno, transformerVariantGroup } from 'unocss'
+import transformerDirectives from '@unocss/transformer-directives'
 import presetWind from '@unocss/preset-wind'
 
 export default defineConfig({
+    rules: [
+        [/^max-h-(\d+)px$/, ([_, num]) => ({ 'max-height': `${num}px` })],
+        [/^min-h-(\d+)px$/, ([_, num]) => ({ 'min-height': `${num}px` })],
+        [/^max-w-(\d+)px$/, ([_, num]) => ({ 'max-width': `${num}px` })],
+        [/^min-w-(\d+)px$/, ([_, num]) => ({ 'min-width': `${num}px` })],
+    ],
     theme: {
         fontFamily: {
             displayMedium: ['SF-Pro-Display-Medium', 'sans-serif'],
@@ -50,5 +57,6 @@ export default defineConfig({
     ],
     transformers: [
         transformerVariantGroup(),
+        transformerDirectives()
     ],
 })

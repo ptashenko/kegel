@@ -1,14 +1,14 @@
 <template>
-  <div class="relative max-w-full mx-auto pt-12px pb-64px sm:(max-w-600px pt-16px)">
+  <div class="relative max-w-full mx-auto pt-12px pb-64px sm:max-w-600px sm:pt-16px">
     <div id="topPage" class="flex flex-col px-32px sm:px-40px">
-      <div class="font-displayBold mt-0 mb-16px mx-auto text-32px font-600 leading-normal text-center sm:(text-30px leading-normal mb-24px)">
+      <div class="font-displayBold mt-0 mb-16px mx-auto text-32px font-600 leading-normal text-center sm:text-30px sm:leading-normal sm:mb-24px">
         {{ $t('landing.title') }}
       </div>
       <div id="trigger1" class="text-center mb-0">
-        <div class="text-16px leading-normal sm:(text-18px leading-normal)">
+        <div class="text-16px leading-normal sm:text-18px sm:leading-normal">
           <p v-html="$t('landing.textFirst')"></p>
         </div>
-        <div class="font-sansBold text-red font-700 text-20px leading-normal flex w-full mx-auto relative justify-center min-h-30px sm:(text-24px leading-normal min-h-36px)">
+        <div class="font-sansBold text-red font-700 text-20px leading-normal flex w-full mx-auto relative justify-center min-h-30px sm:text-24px sm:leading-normal sm:min-h-36px">
           <transition name="slide-fade">
             <span v-if="show" class="relative transform translate-x-0 translate-y-0">{{ $t('landing.date', { dataPP3 }) }}</span>
           </transition>
@@ -25,43 +25,43 @@
             :speed="1"
         />
         <div class="flex justify-between my-0 mx-33px sm:mx-54px">
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(0,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(1,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(2,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(3,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(4,'month').format("MMM")}}</p>
-          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:(text-18px mt-12px mb-0 mx-0) leading-normal">{{$dayjs().add(5,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(0,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(1,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(2,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(3,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(4,'month').format("MMM")}}</p>
+          <p class="mt-9px mb-0 mx-0 text-12px text-[#111113] opacity-75 leading-normal sm:text-18px sm:mt-12px sm:mb-0 sm:mx-0 leading-normal">{{$dayjs().add(5,'month').format("MMM")}}</p>
         </div>
       </div>
-      <p class="text-14px opacity-50 text-center leading-normal font-light font-sansLight sm:(text-16px leading-normal)">{{ $t('landing.diagram') }}</p>
-      <div class="font-displayBold text-20px mt-16px mb-24px text-center leading-normal sm:(text-24px leading-normal mt-32px mb-52px)">
+      <p class="text-14px opacity-50 text-center leading-normal font-light font-sansLight sm:text-16px sm:leading-normal">{{ $t('landing.diagram') }}</p>
+      <div class="font-displayBold text-20px mt-16px mb-24px text-center leading-normal sm:text-24px sm:leading-normal sm:mt-32px sm:mb-52px">
         {{ $t('landing.benefits') }}
       </div>
       <ul class="max-w-310px my-0 mx-auto py-0 px-0">
-        <li class="list-none flex items-center font-sans text-16px mb-15px leading-normal sm:(text-18px leading-normal)">
-          <span class="w-16px flex mr-23px h-auto sm:(w-24px h-24px)"><img class="w-16px h-16px mr-20px block sm:(w-24px h-24px)" src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check"></span>
+        <li class="list-none flex items-center font-sans text-16px mb-15px leading-normal sm:text-18px sm:leading-normal">
+          <span class="w-16px flex mr-23px h-auto sm:w-24px sm:h-24px"><img class="w-16px h-16px mr-20px block sm:w-24px sm:h-24px" src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check"></span>
           <p>{{ $t('landing.firstBenefit') }}</p>
         </li>
-        <li class="list-none flex items-center font-sans text-16px mb-15px leading-normal sm:(text-18px leading-normal)">
-          <span class="w-16px flex mr-23px h-auto sm:(w-24px h-24px)"><img class="w-16px h-16px mr-20px block sm:(w-24px h-24px)" src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check"></span>
+        <li class="list-none flex items-center font-sans text-16px mb-15px leading-normal sm:text-18px sm:leading-normal">
+          <span class="w-16px flex mr-23px h-auto sm:w-24px sm:h-24px"><img class="w-16px h-16px mr-20px block sm:w-24px sm:h-24px" src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check"></span>
           {{ $t('landing.secondBenefit') }}
         </li>
-        <li class="list-none flex items-center font-sans text-16px mb-15px leading-normal sm:(text-18px leading-normal)">
-          <span class="w-16px flex mr-23px h-auto sm:(w-24px h-24px)"><img class="w-16px h-16px mr-20px block sm:(w-24px h-24px)" src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check"></span>
+        <li class="list-none flex items-center font-sans text-16px mb-15px leading-normal sm:text-18px sm:leading-normal">
+          <span class="w-16px flex mr-23px h-auto sm:w-24px sm:h-24px"><img class="w-16px h-16px mr-20px block sm:w-24px sm:h-24px" src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check"></span>
           <span v-html="$t('landing.thirdBenefit')"></span>
         </li>
-        <li class="list-none flex items-center font-sans text-16px leading-normal sm:(text-18px leading-normal)">
-          <span class="w-16px flex mr-23px h-auto sm:(w-24px h-24px)"><img class="w-16px h-16px mr-24px block sm:(w-24px h-24px)" src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check"></span>
+        <li class="list-none flex items-center font-sans text-16px leading-normal sm:text-18px sm:leading-normal">
+          <span class="w-16px flex mr-23px h-auto sm:w-24px sm:h-24px"><img class="w-16px h-16px mr-24px block sm:w-24px sm:h-24px" src="@/assets/images/svg/icon_check-no-bg-black.svg" alt="check"></span>
           {{ $t('landing.fourthBenefit') }}
         </li>
       </ul>
     </div>
     <div class="bg-[#F1F3F9] py-16px px-32px mt-48px mx-auto mb-16px">
-      <div class="font-displaySemiBold text-14px leading-normal sm:(text-16px leading-normal)">
+      <div class="font-displaySemiBold text-14px leading-normal sm:text-16px sm:leading-normal">
         {{ $t('landing.priceToday') }}
       </div>
     </div>
-    <div class="text-14px flex items-center justify-between my-16px mx-auto py-0 px-32px leading-normal sm:(text-16px leading-normal px-38px)">
+    <div class="text-14px flex items-center justify-between my-16px mx-auto py-0 px-32px leading-normal sm:text-16px sm:leading-normal sm:px-38px">
       <div>
         {{ $t('landing.dayTrial') }}
       </div>
@@ -70,28 +70,28 @@
       </div>
     </div>
     <hr class="bg-[#F1F3F9] h-1px max-w-320px my-0 mx-auto px-0 py-0 border-none sm:max-w-520px">
-    <div class="my-16px mx-auto py-0 px-32px pt-16px px-32px pb-0 my-0 mx-auto leading-normal text-14px opacity-50 font-sans sm:(text-16px leading-normal)">
+    <div class="my-16px mx-auto py-0 px-32px pt-16px px-32px pb-0 my-0 mx-auto leading-normal text-14px opacity-50 font-sans sm:text-16px sm:leading-normal">
       <i>{{ $t('landing.trialText') }}</i>
     </div>
     <div class="bg-[#F1F3F9] py-16px px-32px mt-48px mx-auto mb-16px">
-      <div class="font-displaySemiBold text-14px leading-normal sm:(text-16px leading-normal)">
+      <div class="font-displaySemiBold text-14px leading-normal sm:text-16px sm:leading-normal">
         {{ $t('landing.priceAfter') }}
       </div>
     </div>
-    <div class="text-14px flex items-center justify-between my-16px mx-auto py-0 px-32px leading-normal sm:(text-16px leading-normal px-38px)">
+    <div class="text-14px flex items-center justify-between my-16px mx-auto py-0 px-32px leading-normal sm:text-16px sm:leading-normal sm:px-38px">
       <div>
         {{ $t('landing.subscription') }}
       </div>
       <div class="flex flex-col items-end">
         <div class="flex"><span class="opacity-50 mr-4px line-through">$6.6 </span><span class="font-sansSemiBold">&nbsp; $4.2*</span></div>
-        <span class="text-11px leading-normal sm:(text-14px leading-normal)">{{ $t('landing.priceWeek') }}</span>
+        <span class="text-11px leading-normal sm:text-14px sm:leading-normal">{{ $t('landing.priceWeek') }}</span>
       </div>
     </div>
     <hr class="bg-[#F1F3F9] h-1px max-w-320px my-0 mx-auto px-0 py-0 border-none sm:max-w-520px">
-    <div class="my-16px mx-auto py-0 px-32px pt-16px px-32px pb-0 my-0 mx-auto leading-normal text-14px opacity-50 font-sans sm:(text-16px px-38px leading-normal)">
+    <div class="my-16px mx-auto py-0 px-32px pt-16px px-32px pb-0 my-0 mx-auto leading-normal text-14px opacity-50 font-sans sm:text-16px sm:px-38px sm:leading-normal">
       <i v-html="$t('landing.billedOn', {lastDate: $dayjs().add(7,'days').format('MMMM D YYYY, h:mm a')})"></i>
     </div>
-    <div id="paypal" class="px-32px mt-64px sm:(px-40px mt-48px)">
+    <div id="paypal" class="px-32px mt-64px sm:px-40px sm:mt-48px">
       <div class="mx-auto py-0 flex items-center justify-between text-16px leading-normal sm:mt-64px">
         <div>
           <span class="font-sansSemiBold">{{ $t('landing.payment') }}</span>
@@ -100,7 +100,7 @@
           <span class="cursor-pointer opacity-75 text-14px leading-normal font-displaySemiBold" @click="toggleModal">{{ $t('landing.whyNow') }}</span>
         </div>
       </div>
-      <hr class="bg-[#F1F3F9] h-1px max-w-320px my-16px mx-auto border-none sm:(max-w-full)">
+      <hr class="bg-[#F1F3F9] h-1px max-w-320px my-16px mx-auto border-none sm:max-w-full">
 
       <div class="my-0 mx-auto flex flex-col items-center justify-center">
         <PaymentFormCompanent @error="paymentError" @success="nextUrl" @clickButton="closeWindowError" :item="this.item" id="paymentForm"/>
@@ -109,19 +109,19 @@
 
       <div class="mt-48px mb-24px mx-auto py-0 leading-normal">
         <p class="font-displaySemiBold mb-12px">{{ $t('landing.email') }}</p>
-        <p class="text-14px leading-normal sm:(text-16px leading-normal)">{{ $t('landing.emailSubscription') }}</p>
+        <p class="text-14px leading-normal sm:text-16px sm:leading-normal">{{ $t('landing.emailSubscription') }}</p>
       </div>
       <div class="mb-24px mx-auto py-0 leading-normal">
         <p class="font-displaySemiBold mb-12px">{{ $t('landing.safeInfo') }}</p>
-        <p class="text-14px leading-normal sm:(text-16px leading-normal)">{{ $t('landing.info') }}</p>
+        <p class="text-14px leading-normal sm:text-16px sm:leading-normal">{{ $t('landing.info') }}</p>
       </div>
       <div class="mb-24px mx-auto py-0 leading-normal">
         <p class="font-displaySemiBold mb-12px">{{ $t('landing.secure') }}</p>
-        <p class="text-14px leading-normal sm:(text-16px leading-normal)">{{ $t('landing.secureInfo') }}</p>
+        <p class="text-14px leading-normal sm:text-16px sm:leading-normal">{{ $t('landing.secureInfo') }}</p>
       </div>
       <div class="my-0 mx-auto py-0 leading-normal">
         <p class="font-displaySemiBold mb-12px">{{ $t('landing.help') }}</p>
-        <p class="text-14px leading-normal sm:(text-16px leading-normal)" v-html="$t('landing.contact', {email: 'contact@kegel-plan.com'})"></p>
+        <p class="text-14px leading-normal sm:text-16px sm:leading-normal" v-html="$t('landing.contact', {email: 'contact@kegel-plan.com'})"></p>
       </div>
       <base-button
           :label="$t('landing.plan')"
@@ -131,8 +131,8 @@
           :shadow="false"
           url="#paypal"
       />
-      <p class="text-12px leading-normal opacity-50 text-center sm:(text-14px leading-normal)">
-        <span class="font-sansSemiBold text-12px leading-normal sm:(text-14px leading-normal)">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="font-sansSemiBold text-12px leading-normal sm:(text-14px leading-normal)">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="font-sansSemiBold text-12px leading-normal sm:(text-14px leading-normal)">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$4.2) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
+      <p class="text-12px leading-normal opacity-50 text-center sm:text-14px sm:leading-normal">
+        <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">Your 7-day trial will last until {{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}.</span> You may cancel at any time before <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">{{moment().add(7,'days').format('MMMM Do YYYY, h:mm a')}}</span>, and you will not be charged. <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$4.2) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page
       </p>
     </div>
   </div>
@@ -142,10 +142,10 @@
       v-if="modal"
       @closePopup="toggleModal"
   >
-    <p class="opacity-75 mb-16px text-14px leading-normal sm:(text-16px leading-normal)">
+    <p class="opacity-75 mb-16px text-14px leading-normal sm:text-16px sm:leading-normal">
       {{ $t('landing.popupTop') }}
     </p>
-    <p class="opacity-75 text-14px leading-normal sm:(text-16px leading-normal)">
+    <p class="opacity-75 text-14px leading-normal sm:text-16px sm:leading-normal">
       {{ $t('landing.popupBottom') }}
     </p>
     <base-button

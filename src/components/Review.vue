@@ -1,6 +1,6 @@
 <template>
   <div
-    class="review p-15px mx-auto max-w-370px bg-[#F9F9F9] sm:(max-w-520px rounded-11px)"
+    class="review p-15px mx-auto max-w-370px bg-[#F9F9F9] sm:max-w-520px sm:rounded-11px"
     :class="{'!bg-[#1D1D1F] rounded-9px': dark}"
   >
     <div class="flex justify-between mb-15px">
@@ -16,12 +16,12 @@
         </div>
       </div>
 
-      <div class="font-500 text-12px leading-normal opacity-50 sm:(text-16px leading-normal)">
+      <div class="font-500 text-12px leading-normal opacity-50 sm:text-16px sm:leading-normal">
         {{ reviewItem.name }}
       </div>
     </div>
 
-    <div class="font-400 text-12px leading-normal sm:(text-16px leading-normal)">
+    <div class="font-400 text-12px leading-normal sm:text-16px sm:leading-normal">
       {{ $t(`reviewsSurvey.${id}.text`) }}</div>
   </div>
 </template>

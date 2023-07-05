@@ -2,13 +2,13 @@
   <div class="block__steps" :data-step=true>
     <img src="@/assets/images/svg/img_progressbar_final.svg" class="h-18px w-full"/>
   </div>
-  <div class="px-32px mx-auto pb-20 mt-24px sm:(max-w-600px px-40px)">
+  <div class="px-32px mx-auto pb-20 mt-24px sm:max-w-600px sm:px-40px">
 
     <!-- <div class="d-flex  align-items-center justify-content-center flex-column block"> -->
     <div class="flex flex-col">
-      <h2 class="font-displayBold text-24px leading-normal mb-8px text-center sm:(text-36px leading-normal mb-16px)">
+      <h2 class="font-displayBold text-24px leading-normal mb-8px text-center sm:text-36px sm:leading-normal sm:mb-16px">
         {{ $t('address.title') }} </h2>
-      <p class="font-sans text-14px leading-normal text-body opacity-75 text-center sm:(text-20px leading-normal)">
+      <p class="font-sans text-14px leading-normal text-body opacity-75 text-center sm:text-20px sm:leading-normal">
         {{ $t('address.subtitle') }}
       </p>
       <div class="form mt-32px">

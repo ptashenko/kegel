@@ -18,7 +18,7 @@
     >
       <div class="flex items-center w-25rem justify-center" v-if="separations.indexOf(separation) !== -1 || loadPercent >= 100 || finished">
         <img src="@/assets/images/svg/icon_check-no-bg.svg" class="checker" alt="check" v-if="!dark && index !== 0">
-        <img src="@/assets/images/svg/icon_check-no-bg-black.svg" class="checker" :class="{'invert-80': dark}" alt="check" v-if="dark && index !== 0" >
+        <img src="@/assets/images/svg/icon_check-no-bg-black.svg" class="checker" alt="check" v-if="dark && index !== 0" >
       </div>
     </div>
     <span
@@ -58,8 +58,7 @@ export default {
     ...mapGetters(['layoutSeparationsIds','layoutSeparations', 'content', 'separations', 'track']),
     loadPercent() {
       const index = ( this.track.layouts.findIndex((layout) => layout?.id == this.content?.id) ) ;
-      console.log(this.activeDisplay);
-      console.log(this.myStep)
+
       if(index <= this.layoutSeparations[1]){
         this.myStep = (((index / this.layoutSeparations[1]) * 100).toFixed(2))/3;
         if(this.myStep > 31){

@@ -126,7 +126,7 @@ export default {
           text: 'Back',
           icon: 'prev',
           click: this.backHome,
-          theme: 'text-[#4A4A4B] bg-[#F1F3F9] hover:bg-[#E5E9F5]'
+          style: 'back'
         }
     },
     getNextButtonProps() {
@@ -136,7 +136,7 @@ export default {
         icon: 'next',
         disabled: !this.selectedAnswer,
         click: this.nextWait,
-        theme: 'bg-body hover:bg-[#1B1B1E] disabled:opacity-30',
+        style: 'next',
         short: this.content.short
       }
     }

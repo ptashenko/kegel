@@ -13,66 +13,64 @@
   </div>
   <transition name="translate" mode="out-in">
     <div>
-      <div>
-          <img v-if="!device.mobile" src="@/assets/images/header-desktop.jpg" class="inline-block w-full" />
-          <img v-else src="@/assets/images/header.png" class="inline-block w-full" />
-          <div class="relative max-w-311px top-[-16vw] mx-auto sm:(top-[-8vw] px-40px max-w-600px box-border)">
-            <h2 class="font-displayBold text-32px leading-tight text-center text-shadow-title mb-16px sm:(font-600 text-40px leading-tight)" v-html="$t('home.title')" />
-            <h3 class="font-displaySemiBold text-18px leading-normal text-center opacity-76 sm:(font-600 text-24px)">
-              {{$t('home.subtitle')}}
-            </h3>
-            <div class="w-20px h-auto text-center mx-auto my-16px">
-              <lottie-animation
-                ref="arrowmain"
-                :animationData="require(`@/assets/images/json/main_arrow.json`)"
-                :loop="true"
-                :autoPlay="true"
-                :speed="1"
-              />
-            </div>
-          <div>
-                <button
-                  class="relative w-full py-22px duration-400 rounded-9px bg-body cursor-pointer border-none hover:(bg-[#1B1B1E])"
-                  v-for="(track, idx) in tracks"
-                  :key="track.id"
-                  :class="{'mb-15px': idx !== tracks.length -1}"
-                  @click="getData(track)"
-                >
-                  <span class="font-sans font-700 text-16px text-center text-[#fff] sm:(text-22px)">
+      <img v-if="!device.mobile" src="@/assets/images/header-desktop.jpg" class="inline-block w-full" />
+      <img v-else src="@/assets/images/header.png" class="inline-block w-full" />
+      <div class="relative max-w-311px top-[-16vw] mx-auto sm:top-[-8vw] sm:px-40px sm:max-w-600px sm:box-border">
+        <h2 class="font-displayBold text-32px leading-tight text-center text-shadow-title mb-16px sm:font-600 sm:text-40px sm:leading-tight" v-html="$t('home.title')" />
+        <h3 class="font-displaySemiBold text-18px leading-normal text-center opacity-76 sm:font-600 sm:text-24px">
+          {{$t('home.subtitle')}}
+        </h3>
+        <div class="w-20px h-auto text-center mx-auto my-16px">
+          <lottie-animation
+              ref="arrowmain"
+              :animationData="require(`@/assets/images/json/main_arrow.json`)"
+              :loop="true"
+              :autoPlay="true"
+              :speed="1"
+          />
+        </div>
+        <div>
+          <button
+              class="relative w-full py-21px duration-400 rounded-9px bg-body cursor-pointer border-none hover:(bg-[#1B1B1E])"
+              v-for="(track, idx) in tracks"
+              :key="track.id"
+              :class="{'mb-15px': idx !== tracks.length -1}"
+              @click="getData(track)"
+          >
+                  <span class="font-sans font-700 text-16px text-center text-[#fff] sm:text-22px">
                     {{ $t(`home.tracks.titleShortQuiz.${track.titleShortQuiz}`) }}
                   </span>
-                  <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 text-[#fff] sm:(text-18px)">
+            <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 text-[#fff] sm:text-18px">
                     {{ $t(`home.tracks.text.${track.text}`)}}
                   </span>
-                  <lottie-animation
-                    v-if="track.id === 1 && isActiveHand"
-                    class="absolute w-84px h-auto top-0 right-[-10px]"
-                    ref="animhand"
-                    :animationData="require(`@/assets/images/json/main_hand.json`)"
-                    :loop="true"
-                    :autoPlay="true"
-                  />
-                </button>
+            <lottie-animation
+                v-if="track.id === 1 && isActiveHand"
+                class="absolute w-84px h-auto top-0 right-[-10px]"
+                ref="animhand"
+                :animationData="require(`@/assets/images/json/main_hand.json`)"
+                :loop="true"
+                :autoPlay="true"
+            />
+          </button>
 
-              <div class="font-sansLight opacity-50 text-center mx-auto mt-32px text-12px leading-normal sm:(text-14px leading-normal)">
-                {{ $t(`home.description`) }}
-              </div>
+          <div class="font-sansLight opacity-50 text-center mx-auto mt-32px text-12px leading-normal sm:text-14px sm:leading-normal">
+            {{ $t(`home.description`) }}
           </div>
-          </div>
+        </div>
       </div>
-      <div class="pt-48px pb-50px bg-[#C4C4C433] sm:(pt-51px)">
-        <div class="max-w-311px mx-auto box-border sm:(px-40px pb-32px max-w-600px)">
+      <div class="pt-48px pb-50px bg-[#C4C4C433] sm:pt-51px">
+        <div class="max-w-311px mx-auto box-border sm:px-40px sm:pb-32px sm:max-w-600px">
           <div
           v-for="(advantage, idx) in advantages"
             :key="advantage.title"
-            class="text-center mx-auto mb-48px sm:(max-w-373px mb-15px)"
+            class="text-center mx-auto mb-48px sm:max-w-373px sm:mb-15px"
           >
             <img :src="advantage.img" :alt="advantage.title" class="block mx-auto mb-19px" :class="[idx === 0 ? 'w-44px' : 'w-50px']">
-            <div class="font-displayBold font-700 text-20px leading-normal text-center text-shadow-title sm:(font-600 text-24px leading-tight)">
+            <div class="font-displayBold font-700 text-20px leading-normal text-center text-shadow-title sm:font-600 sm:text-24px sm:leading-tight">
               {{ $t(`home.advantages.titles.${advantage.title}`) }}
             </div>
-            <div class="font-sans text-14px font-400 opacity-65 leading-normal mt-8px sm:(text-18px leading-normal p-0)">{{ $t(`home.advantages.texts.${advantage.text}`) }}</div>
-            <p v-if="advantage.email" class="mt-8px block text-red no-underline text-14px sm:(text-18px leading-normal)">{{ advantage.email }}</p>
+            <div class="font-sans text-14px font-400 opacity-65 leading-normal mt-8px sm:text-18px sm:leading-normal sm:p-0">{{ $t(`home.advantages.texts.${advantage.text}`) }}</div>
+            <p v-if="advantage.email" class="font-sans mt-8px block text-red no-underline text-14px sm:text-18px sm:leading-normal">{{ advantage.email }}</p>
           </div>
           <FooterHomeView />
         </div>

@@ -2,7 +2,7 @@
 <Transition name="slider" mode="out-in" appear>
   <div class="container-mob">
       <div class="text-center">
-        <h2 class="m-0 font-displayBold text-20px leading-normal sm:(text-30px leading-normal)" v-html="$t('feelImprovements.title')">
+        <h2 class="m-0 font-displayBold text-20px leading-normal sm:text-30px sm:leading-normal" v-html="$t('feelImprovements.title')">
         </h2>
         <img class="w-full max-w-450px my-32px mx-auto sm:max-w-full" src="@/assets/images/content/baseline_v2/img_f3.png" alt="map">
         <p class="font-sans font-400 text-16px leading-normal text-center" v-html="$t('feelImprovements.text')">

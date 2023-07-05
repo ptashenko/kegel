@@ -1,11 +1,11 @@
 <template>
     <div class="container-mob">
-      <h2 class="font-displayBold text-center text-28px leading-normal mt-24px sm:(text-30px leading-normal)">
+      <h2 class="font-displayBold text-center text-28px leading-normal mt-24px sm:text-30px sm:leading-normal">
         {{ $t('analizAnswer_v2.title') }}
       </h2>
 
-      <div class="max-w-450px mx-auto mt-48px mb-0 w-full sm:(mt-64px)">
-        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'opacity-100': percent > 0}">
+      <div class="max-w-450px mx-auto mt-48px mb-0 w-full sm:mt-64px">
+        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'opacity-100': percent > 0}">
           <div>
             {{ $t('analizAnswer_v2.optimizing') }}
           </div>
@@ -13,7 +13,7 @@
             <div class="flex">
               <lottie-animation
                 v-show="isActiveCheck_1"
-                class="w-16px h-16px sm:(w-20px h-20px)"
+                class="w-16px h-16px sm:w-20px sm:h-20px"
                 ref="animed"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
                 :loop="true"
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
-        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'opacity-100': loadProsentTwo > 0}">
+        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'opacity-100': loadProsentTwo > 0}">
           <div>
             {{ $t('analizAnswer_v2.activity') }}
           </div>
@@ -41,7 +41,7 @@
             <div class="flex">
               <lottie-animation
                 v-show="isActiveCheck_2"
-                class="w-16px h-16px sm:(w-20px h-20px)"
+                class="w-16px h-16px sm:w-20px sm:h-20px"
                 ref="animed"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
                 :loop="true"
@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
-        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'opacity-100': loadProsentTree > 0}">
+        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'opacity-100': loadProsentTree > 0}">
           <div>
             {{ $t('analizAnswer_v2.difficulty') }}
           </div>
@@ -69,7 +69,7 @@
             <div class="flex">
               <lottie-animation
                 v-show="isActiveCheck_3"
-                class="w-16px h-16px sm:(w-20px h-20px)"
+                class="w-16px h-16px sm:w-20px sm:h-20px"
                 ref="animed"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
                 :loop="true"
@@ -89,7 +89,7 @@
         </div>
       </div>
       <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
-        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:(text-18px leading-normal mb-4px)" :class="{'active': loadProsentFoo > 0}">
+        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'active': loadProsentFoo > 0}">
           <div>
             {{ $t('analizAnswer_v2.calibrating') }}
           </div>
@@ -97,7 +97,7 @@
             <div class="flex">
               <lottie-animation
                 v-show="isActiveCheck_4"
-                class="w-16px h-16px sm:(w-20px h-20px)"
+                class="w-16px h-16px sm:w-20px sm:h-20px"
                 :animationData="require(`@/assets/images/json/f5_loader.json`)"
                 :loop="true"
                 :autoPlay="true"
@@ -117,10 +117,10 @@
       </div>
 
       <div v-for="(reviewItem, key) in base" :key="key" >
-        <div v-show="key == this.numreview" class="p-15px rounded-10px mt-48px mx-auto mb-0 max-w-370px bg-[#F1F1F1] sm:(max-w-full)">
+        <div v-show="key == this.numreview" class="p-15px rounded-10px mt-48px mx-auto mb-0 max-w-370px bg-[#F1F1F1] sm:max-w-full">
           <div class="flex justify-between mb-15px">
             <div>
-              <div class="font-700 text-14px leading-normal sm:(text-18px leading-normal)">{{ $t(`review.${reviewItem.title}`)}}</div>
+              <div class="font-700 text-14px leading-normal sm:text-18px sm:leading-normal">{{ $t(`review.${reviewItem.title}`)}}</div>
               <div class="flex mt-5px">
                 <div v-for="i in reviewItem.rating" :key="i" class="w-14px h-14px">
                   <img src="@/assets/images/svg/icon_star.svg" alt="star-yellow" class="max-w-14px h-auto">
@@ -131,12 +131,12 @@
               </div>
             </div>
 
-            <div class="font-500 text-12px leading-normal opacity-50 sm:(text-16px leading-normal)">
+            <div class="font-500 text-12px leading-normal opacity-50 sm:text-16px sm:leading-normal">
               {{ reviewItem.name }}
             </div>
           </div>
 
-          <div class="font-400 text-12px leading-normal sm:(text-16px leading-normal)">
+          <div class="font-400 text-12px leading-normal sm:text-16px sm:leading-normal">
             {{ $t(`review.${reviewItem.text}`)}}
           </div>
         </div>

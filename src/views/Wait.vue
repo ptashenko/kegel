@@ -3,7 +3,7 @@
     <steps finished />
 
     <div class="text-center relative block">
-      <lottie-animation class="flex w-full p-7px max-w-311px mx-auto mt-32px mb-16px sm:(mt-54px)" ref="animJust"
+      <lottie-animation class="flex w-full p-7px max-w-311px mx-auto mt-32px mb-16px sm:mt-54px" ref="animJust"
         :animationData="require(`@/assets/images/json/${$t(`wait.loader`)}`)" :loop="true" :autoPlay="true" />
 
       <template v-for="(step, index) in steps" :key="step.title">
@@ -12,7 +12,7 @@
           <div class="text-center mx-auto my-15px max-w-373px h-auto block relative sm:my-32px">
             <img :src="require(`@/assets/images/wait/${currentImage}.png`)" alt="" class="max-w-full w-full">
           </div>
-          <h2 class="max-w-450px mx-auto font-displayBold text-20px leading-normal px-15px sm:(max-w-full text-30px)">
+          <h2 class="max-w-450px mx-auto font-displayBold text-20px leading-normal px-15px sm:max-w-full sm:text-30px">
             {{ $t(`wait.titles.${step.title}`) }}
           </h2>
         </div>

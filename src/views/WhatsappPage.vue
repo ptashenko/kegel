@@ -1,7 +1,7 @@
 <template>
   <div class="sm:min-h-90vh sm:flex sm:flex-col">
     <div class="container-mob pb-64px">
-      <h2 class="font-displayBold text-24px leading-normal sm:(text-36px leading-normal) text-center">
+      <h2 class="font-displayBold text-24px leading-normal sm:text-36px sm:leading-normal text-center">
         {{ $t('whatsapp.title') }}</h2>
       <p class="font-sans font-400 text-16px leading-normal p-0 pt-24px text-center text-body">
         <span v-html="$t('whatsapp.instruction', {email: this.email})"></span>
@@ -11,14 +11,14 @@
         <div
           class="max-w-full p-16px bg-[#F1F3F9] rounded-9px flex flex-col items-center justify-center mt-32px max-w-390px mx-auto">
           <div
-            class="text-14px leading-normal font-sansSemiBold sm:(text-18px leading-normal) flex items-center justify-center">
+            class="text-14px leading-normal font-sansSemiBold sm:text-18px sm:leading-normal flex items-center justify-center">
             <img class="w-32px h-32px mr-16px" src="@/assets/images/svg/icon_attention-triangle.svg" alt="check">
             <p class="font-sans text-left" v-html="$t('whatsapp.spam')" />
           </div>
         </div>
       </div>
-      <hr class="my-32px opacity-10" />
-      <div class="font-sansSemiBold text-16px leading-normal mb-24px sm:(text-18px leading-normal) text-center">
+      <hr class="my-32px opacity-50" />
+      <div class="font-sansSemiBold text-16px leading-normal mb-24px sm:text-18px sm:leading-normal text-center">
         <p class="font-displayBold font-600 text-18px leading-normal text-body mb-24px flex items-center justify-center">
           <img src="@/assets/images/svg/icon_help.svg" class="mr-12px" />
           {{ $t('whatsapp.questions') }}

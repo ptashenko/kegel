@@ -49,13 +49,13 @@
         text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[0]}`) : 'Back',
         icon: 'prev',
         click: backURL,
-        theme: 'bg-[#282828] hover:bg-[#373737FF]'
+        style: 'back-black'
       }"
         :buttonNext="{
         icon: 'next',
         text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[1]}`) : 'I got it',
         click: nextURL,
-        theme: 'bg-red hover:bg-[#F5423FFF]'
+        style: 'next-black'
       }"
       />
     </div>

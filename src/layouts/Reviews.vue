@@ -1,11 +1,11 @@
 <template>
   {{ imagePE }}
-  <h2 class="mt-0 text-center font-displayBold leading-tight text-24px sm:(text-30px leading-tight font-600)"> {{ $t(`survey.id_${content.id}.title`) }}</h2>
+  <h2 class="mt-0 text-center font-displayBold leading-tight text-24px sm:text-30px sm:leading-tight sm:font-600"> {{ $t(`survey.id_${content.id}.title`) }}</h2>
 
   <div class="mt-15px mb-35px text-center text-18px leading-normal">
-    <h3 class="font-sansSemiBold text-16px leading-normal sm:(text-18px leading-normal)"
-      v-if="AddPurpose && content.id !== 20 && content.id !== 57">
-      <span class="font-sans text-16px sm:(font-400)"
+    <h3 class="font-sansSemiBold text-16px leading-normal sm:text-18px sm:leading-normal"
+      v-if="AddPurpose && content.id !== 20 && content.id !== 57 && track.id !== 3">
+      <span class="font-sans text-16px sm:font-400"
         v-html="$t('reviews.title_add', {
             purpose: $t(`home.tracks.purpose.${track.purpose}`),
             addPurpose: $t(`home.tracks.addpurpose.${track.addpurpose}`)
@@ -14,13 +14,13 @@
     </h3>
     <h3
       v-else
-      class="font-sans text-16px leading-normal sm:(text-18px leading-normal)"
+      class="font-sans text-16px leading-normal sm:text-18px leading-normal"
       v-html="$t('reviews.title', {
         purpose: $t(`home.tracks.purpose.${track.purpose}`)
       })"
     />
     <div
-      class="font-sansBold font-700 text-19px leading-normal text-red flex max-w-170px mx-auto relative justify-center min-h-30px sm:(max-w-190px min-h-36px)">
+      class="font-sansBold font-700 text-19px leading-normal text-red flex max-w-170px mx-auto relative justify-center min-h-30px sm:max-w-190px sm:min-h-36px">
       <transition name="slide-fade">
         <span v-if="show">{{$t('reviews.date', {dates})}}</span>
       </transition>
@@ -28,7 +28,7 @@
   </div>
 
   <div class="text-center">
-    <lottie-animation class="w-full max-w-450px mx-auto sm:(max-w-520px)" :animationData="imageitem"
+    <lottie-animation class="w-full max-w-450px mx-auto sm:max-w-520px" :animationData="imageitem"
       :loop="false" :autoPlay="true" :speed="1" @loopComplete="loopComplete" @complete="complete" @enterFrame="enterFrame"
       @segmentStart="segmentStart" @stopped="stopped" />
     <div>
@@ -38,13 +38,13 @@
         </p>
       </div>
     </div>
-    <p class="font-300 text-14px leading-normal opacity-50 mt-25px mx-auto mb-0 max-w-400px sm:(max-w-full)">
+    <p class="font-300 text-14px leading-normal opacity-50 mt-25px mx-auto mb-0 max-w-400px sm:max-w-full">
       {{ graphText }}
     </p>
   </div>
 
   <div class="pt-50px pb-100px">
-    <h2 class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:(text-16px leading-normal)">
+    <h2 class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:text-16px leading-normal">
     {{$t('reviews.reviewTitle')}}
     </h2>
     <review
@@ -55,18 +55,21 @@
     />
   </div>
 
-  <footer-controls :buttonBack="{
-    text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[0]}`) : 'Back',
-    icon: 'prev',
-    click: back,
-    theme: 'text-[#4A4A4B] bg-[#F1F3F9] hover:bg-[#E5E9F5]'
-  }" :buttonNext="{
-  icon: false,
-  text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[1]}`) : 'Claim my plan',
-  click: next,
-  button: false,
-  theme: 'bg-red hover:bg-[#F5423FFF]'
-}" />
+  <footer-controls
+      :buttonBack="{
+        text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[0]}`) : 'Back',
+        icon: 'prev',
+        click: back,
+        style: 'back-red'
+      }"
+      :buttonNext="{
+        icon: false,
+        text: content.buttonsText ? this.$t(`survey.id_${content.id}.${content.buttonsText[1]}`) : 'Claim my plan',
+        click: next,
+        button: false,
+        style: 'next-red'
+      }"
+  />
 </template>
 
 <script>

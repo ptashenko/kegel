@@ -62,7 +62,7 @@ export default {
     baseClasses() {
       return [
         this.textOnly
-            ? 'text-center text-14px leading-normal font-sansBold text-blue bg-none cursor-pointer w-full sm:(text-18px leading-normal)'
+            ? 'text-center text-14px leading-normal font-sansBold text-blue bg-none cursor-pointer w-full sm:text-18px sm:leading-normal'
             : 'relative min-h-63px font-sans py-20px px-0 w-full mx-auto mt-0 font-700 text-18px leading-tight text-center text-[#fff] border-none block cursor-pointer'
       ]
     },

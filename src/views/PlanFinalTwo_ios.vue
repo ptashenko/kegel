@@ -58,13 +58,13 @@
         class="overflow-y-inherit"
     >
       <div class="px-32px sm:px-40px">
-        <p class="font-sans text-14px leading-normal mb-16px sm:(text-18px leading-normal)">
+        <p class="font-sans text-14px leading-normal mb-16px sm:text-18px sm:leading-normal">
           <span v-html="$t('planFinalTwo.groin')"></span>
         </p>
-        <p class="font-sans text-14px leading-normal mb-27px sm:(text-18px leading-normal)" v-html="$t('planFinalTwo.flow')">
+        <p class="font-sans text-14px leading-normal mb-27px sm:text-18px sm:leading-normal" v-html="$t('planFinalTwo.flow')">
         </p>
-        <img class="w-full mt-0px mx-auto mb-16px flex sm:(my-32px mx-auto)" src="@/assets/images/content/Final_modal.png" alt="">
-        <p class="opacity-50 text-12px leading-normal text-center font-sansLight mb-32px sm:(text-16px leading-normal)">
+        <img class="w-full mt-0px mx-auto mb-16px flex sm:my-32px sm:mx-auto" src="@/assets/images/content/Final_modal.png" alt="">
+        <p class="opacity-50 text-12px leading-normal text-center font-sansLight mb-32px sm:text-16px sm:leading-normal">
           {{ $t('planFinalTwo.diagram') }}
         </p>
       </div>
@@ -74,14 +74,14 @@
           <img :src="require(`@/assets/images/blue-gift.png`)" class="block w-3/4 my-0 mx-auto" />
         </div>
         <div class="flex flex-col justify-center basis-2/3">
-          <p class="text-14px leading-normal font-sans text-[#111113] opacity-100 m-0 sm:(text-18px leading-normal)" v-html="$t('planFinalTwo.discount')">
+          <p class="text-14px leading-normal font-sans text-[#111113] opacity-100 m-0 sm:text-18px sm:leading-normal" v-html="$t('planFinalTwo.discount')">
           </p>
         </div>
       </div>
 
-      <div v-else class="flex items-center justify-around min-h-100px bg-blue border-2px border-[#5773D6] mb-32px py-16px px-32px sm:(py-20px px-40px rounded-9px)">
+      <div v-else class="flex items-center justify-around min-h-100px bg-blue border-2px border-[#5773D6] mb-32px py-16px px-32px sm:py-20px sm:px-40px sm:rounded-9px">
         <img src="@/assets/images/svg/icon_present.svg" alt="">
-        <p class="text-14px leading-normal font-sans text-[#fff] m-0 ml-16px sm:(text-18px leading-normal ml-32px)" v-html="$t('planFinalTwo.offering')">
+        <p class="text-14px leading-normal font-sans text-[#fff] m-0 ml-16px sm:text-18px sm:leading-normal sm:ml-32px" v-html="$t('planFinalTwo.offering')">
         </p>
       </div>
     </div>
@@ -108,7 +108,7 @@
         v-if="active && open == 1"
         :label="$t('planFinalTwo.results')"
         text-only
-        class="font-sansMedium !text-body text-14px leading-normal opacity-50 mb-32px sm:(text-16px leading-normal mb-48px)"
+        class="font-sansMedium !text-body text-14px leading-normal opacity-50 mb-32px sm:text-16px sm:leading-normal sm:mb-48px"
         @click="showModal"
     />
     <div v-else-if="open == 2" class="text-center max-w-311px mt-32px mb-40px sm:max-w-373px mx-auto">
@@ -134,28 +134,28 @@
         v-else
         :label="$t('planFinalTwo.giveUp')"
         text-only
-        class="font-sansMedium !text-body text-14px leading-normal opacity-50 mb-32px sm:(text-16px leading-normal mb-48px)"
+        class="font-sansMedium !text-body text-14px leading-normal opacity-50 mb-32px sm:text-16px sm:leading-normal sm:mb-48px"
         @click="withoutUpsaleDiscounted"
     />
     <div v-if="!ios_v1" class="px-32px sm:px-40px">
       <div v-if="open == 1" class="block my-0 mx-auto">
-        <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0  sm:(text-14px leading-normal)">
+        <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0  sm:text-14px sm:leading-normal">
           {{ $t('planFinalTwo.charged_19') }}
         </div>
       </div>
       <div v-else-if="open == 3" class="block my-0 mx-auto">
-        <div  class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 sm:(text-14px leading-normal)">
+        <div  class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 sm:text-14px sm:leading-normal">
           {{ $t('planFinalTwo.charged_9') }}
         </div>
       </div>
       <div v-else>
         <div v-if="open == 1" class="block my-0 mx-auto">
-          <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 sm:(text-14px leading-normal)">
+          <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 sm:text-14px sm:leading-normal">
             {{ $t('planFinalTwo.charged_1') }}
           </div>
         </div>
         <div v-else-if="open == 3" class="block my-0 mx-auto">
-          <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 pb-48px sm:(text-14px leading-normal)">
+          <div class="font-sansLight text-12px leading-normal opacity-50 text-center px-0 pt-0 pb-48px sm:text-14px sm:leading-normal">
             {{ $t('planFinalTwo.charged_0') }}
           </div>
         </div>

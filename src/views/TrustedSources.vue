@@ -1,6 +1,6 @@
 <template>
     <div class="container-mob">
-      <h2 class="font-displayBold text-center m-0 text-20px leading-normal sm:(text-30px leading-normal)">
+      <h2 class="font-displayBold text-center m-0 text-20px leading-normal sm:text-30px sm:leading-normal">
         {{ $t('trustedSources.title') }}
       </h2>
 
@@ -12,13 +12,13 @@
           text: $t('trustedSources.buttonBack'),
           click: btnBack,
           icon: 'prev',
-          theme: 'text-[#4A4A4B] bg-[#F1F3F9] hover:bg-[#E5E9F5]'
+          style: 'back-red'
         }"
         :buttonNext="{
           icon: 'next',
           text: $t('trustedSources.buttonNext'),
           click: btnClick ,
-          theme: 'bg-red hover:bg-[#F5423FFF]'
+          style: 'next-red'
         }"
       />
     </div>

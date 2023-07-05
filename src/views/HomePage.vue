@@ -38,7 +38,7 @@
                   :class="{'mb-15px': idx !== tracks.length -1}"
                   @click="getData(track)"
                 >
-                  <span class="font-700 text-16px text-center text-[#fff] sm:(text-22px)">
+                  <span class="font-sans font-700 text-16px text-center text-[#fff] sm:(text-22px)">
                     {{ $t(`home.tracks.titleShortQuiz.${track.titleShortQuiz}`) }}
                   </span>
                   <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 text-[#fff] sm:(text-18px)">

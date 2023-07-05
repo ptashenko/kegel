@@ -22,7 +22,8 @@ import '@/assets/scss/fonts.scss';
 import engLocale from '@/locales/en'
 import esLocale from '@/locales/es'
 import vueCountryRegionSelect from 'vue3-country-region-select'
-import 'windi.css'
+import '@unocss/reset/tailwind.css'
+import 'uno.css'
 import { createDeviceDetector } from "next-vue-device-detector";
 const device = createDeviceDetector()
 

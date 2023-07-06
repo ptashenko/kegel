@@ -479,10 +479,7 @@ export default {
       }
     },
     id_39: {
-      title: {
-        t_1: 'Men who perform Kegel exercises can increase their stamina up to <span class="red">7 times</span>',
-        t_2: 'You can strengthen your PF muscles & increase stamina up to <span class="red">7 times</span> by doing Kegel exercises'
-      },
+      title: 'You can strengthen your PF muscles & increase stamina up to <span class="red">7 times</span> by doing Kegel exercises',
       buttons: {
         title: 'the Sapienza University',
         text: 'Source:',

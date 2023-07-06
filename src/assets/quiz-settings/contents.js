@@ -609,9 +609,7 @@ export default [{
 },
 {
   id: 39,
-  title: isBaseline
-    ? 'title.t_1'
-    : 'title.t_2',
+  title: 'title',
   layoutName: 'standart',
   thumbnail: isBaseline ? 'image' : 'image_v2',
   buttons: [{

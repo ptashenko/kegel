@@ -10,6 +10,7 @@
           <video-background
             :src="video($t(`survey.id_${content.id}.${content.video}`))"
             :poster="video($t(`survey.id_${content.id}.${content.poster}`))"
+            objectFit="fill"
             class="h-209px rounded-14px max-w-520px w-full sm:h-340px"
           />
         </div>

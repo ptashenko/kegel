@@ -1,7 +1,7 @@
 <template>
   <div
     class="h-100px text-center mx-auto mt-25px fixed bottom-0 left-0 right-0"
-    :class="[dark ? 'bg-body' : 'footer-bg ']"
+    :class="[dark ? 'dark-gradient' : 'light-gradient']"
   >
     <div class="flex items-center h-100px justify-between max-w-311px sm:max-w-322px mx-auto">
       <div class="max-w-153px basis-[49%]">
@@ -62,16 +62,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.footer-bg {
+.light-gradient {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 29.7%);
+}
 
-  &.dark {
-    background: none;
-
-    &:before {
-      background: #111113;
-    }
-
-  }
+.dark-gradient {
+  background: linear-gradient(180deg, rgba(17, 17, 19, 0.00) 0%, #111113 100%);
 }
 </style>

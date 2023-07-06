@@ -481,7 +481,7 @@ export default {
     id_39: {
       title: {
         t_1: 'Men who perform Kegel exercises can increase their stamina up to <span class="red">7 times</span>',
-        t_2: 'You can strengthen your PF muscles & increase stamina up to <span class="red">7x</span> by doing Kegel exercises'
+        t_2: 'You can strengthen your PF muscles & increase stamina up to <span class="red">7 times</span> by doing Kegel exercises'
       },
       buttons: {
         title: 'the Sapienza University',
@@ -1175,7 +1175,7 @@ export default {
         txt: 'per day',
       },
       agree_1: 'By clicking «Continue», I agree to pay <b>{discPrice}</b> for my plan and that if I do not cancel before the end of the <b>{subscrPeriod}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>30.99 USD</b> every <b>1 month</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.',
-      agree_2: 'By clicking «Continue», I agree to pay <b>{discPrice}</b> for my plan and that if I do not cancel before the end of the <b>{subscrPeriod}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>{fullprice}</b> every <b>1 month</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.',
+      agree_2: 'By clicking «Continue», I agree to pay <b>{discPrice}</b> for my plan and that if I do not cancel before the end of the <b>{subscrPeriod}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>{fullprice}</b> every <b>{subscrPeriod}</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.',
       continue: 'Continue',
     },
     safe: 'Your information is safe',
@@ -1222,7 +1222,7 @@ export default {
       txt: 'per day',
     },
     agree_1: 'By clicking «Get my plan», I agree to pay <b>{discPrice}</b> for my plan and that if I do not cancel before the end of the <b>{subscrPeriod}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>30.99 USD</b> every <b>1 month</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.',
-    agree_2: 'By clicking «Get my plan», I agree to pay <b>{discPrice}</b> for my plan and that if I do not cancel before the end of the <b>{subscrPeriod}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>{fullprice}</b> every <b>1 month</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.',
+    agree_2: 'By clicking «Get my plan», I agree to pay <b>{discPrice}</b> for my plan and that if I do not cancel before the end of the <b>{subscrPeriod}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>{fullprice}</b> every <b>{subscrPeriod}</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.',
     getPlanButton: 'Get my plan',
     notifications: 'Get notifications',
     confirmation: 'You will get an email confirmation every time your subscription renews',

@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-600px px-32px mx-auto sm:px-40px">
-    <div v-if="subscribe" class="bg-red absolute top-[-78px] left-0 right-0 flex flex-col items-center justify-center py-12px duration-500ms z-999" :class="{'!top-0 !fixed': blockFixed}">
+    <div v-if="subscribe" class="bg-red absolute top-[-78px] left-0 right-0 flex flex-col items-center justify-center py-12px duration-500ms z-999" :class="[superDiscount.theme ? '!bg-blue' : '!bg-red', {'!top-0 !fixed': blockFixed}]">
       <p class="p-0 m-0 block font-sansBold font-800 text-18px leading-normal">
         {{ $t('landingViewVP5.discount', {discount: pickedTarifParams.discount}) }}
       </p>
@@ -577,7 +577,7 @@
     </div>
     <Guarantee class="max-w-311px mx-auto" />
   </div>
-  <div id="selectPlan" ref="payment-block" class="px-16px pt-32px max-w-600px mx-auto bg-body sm:px-40px">
+  <div id="selectPlan" class="px-16px pt-32px max-w-600px mx-auto bg-body sm:px-40px">
     <h2
         class="text-26px text-[#fff] font-displayBold font-600 leading-snug mb-16px text-center"
         v-html="$t('landingViewVP5_v2.selectPlan.main_title')"
@@ -585,14 +585,14 @@
     <h3 class="text-16px text-[#fff] font-500 leading-normal text-center mb-32px px-16px">
       {{$t('landingViewVP5_v2.selectPlan.subtitle')}}
     </h3>
-    <img :src="require(`@/assets/images/content/baseline_v2/${$t('landingViewVP5_v2.selectPlan.image')}`)" class="mx-auto" />
+    <img :src="require(`@/assets/images/content/baseline_v2/${$t('landingViewVP5_v2.selectPlan.image')}`)" class="mx-auto mb-48px" />
     <SuperDiscountGift
         v-if="superDiscount.theme"
         :discount="pickedTarifParams.discount"
         :discountOriginal="pickedTarifParams.discountOriginal"
         class="m-0 mx-auto mb-32px max-w-311px"
     />
-    <div class="mt-48px bg rounded-20px pt-32px pb-80px px-16px">
+    <div ref="payment-block" class="bg rounded-20px pt-32px pb-80px px-16px">
       <h2 class="text-28px text-[#fff] font-displayBold font-600 leading-snug text-center mb-32px">
         {{ $t(`landingViewVP5_v2.selectPlan.title`)}}
       </h2>
@@ -600,9 +600,21 @@
         <label
             v-for="({id, fullprice, cost, text, name, totalCost, superDiscPrice}, idx) of tarifs"
             :key="idx"
-            class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
-            :class="{'border-1px border-blue': subscribe === id}"
+            class="relative flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
+            :class="{'!border-1px !border-blue': subscribe === id}"
         >
+          <div
+              v-if="idx === 1"
+              class="absolute top-[-50%] transform translate-y-[125%] left-20px bg-[#29292A] rounded-50px py-1px px-15px"
+              :class="{'!bg-blue': subscribe === id}"
+          >
+            <p
+                class="text-12px font-700 leading-normal text-[#fff] opacity-50"
+                :class="{'!opacity-100': subscribe === id}"
+            >
+              MOST POPULAR
+            </p>
+          </div>
           <div class="flex items-center">
             <div>
               <input
@@ -915,6 +927,14 @@
         numanim: null,
       };
     },
+    beforeRouteLeave(to, from, next) {
+      if (this.paymentPopup) {
+        this.cancelPayment()
+        return false
+      } else {
+        next()
+      }
+    },
     methods: {
       scrollToPaymentBlock() {
         const el = this.$refs["payment-block"];
@@ -1131,7 +1151,7 @@
         return console.log(this.track);  ;
       },
       tarifBlockPosition() {
-        return this.$refs['payment-block'].getBoundingClientRect().top
+        return this.$refs['payment-block'].getBoundingClientRect().y - window.innerHeight
       },
       lottieGraphPosition() {
         return this.$refs['graph'].$el.getBoundingClientRect().y - window.innerHeight
@@ -1141,14 +1161,6 @@
       document.removeEventListener('scroll', this.scrollBorder)
       clearInterval(this.polling)
       clearInterval(this.numanim)
-    },
-    beforeRouteLeave(to, from, next) {
-      if (this.paymentPopup) {
-        this.paymentPopup = false
-        next(false)
-      } else {
-        next()
-      }
     },
     mounted() {
       document.addEventListener('scroll', this.scrollBorder)

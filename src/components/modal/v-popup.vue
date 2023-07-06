@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center fixed z-9 top-0 left-0 right-0 bottom-0 bg-[#11111359]" @click.self="closePopup">
+  <div class="flex justify-center items-center fixed z-9999 top-0 left-0 right-0 bottom-0 bg-[#11111359]" @click.self="closePopup">
     <div
       class="fixed z-9999999 w-full p-24px pb-32px bg-[#fff] mx-auto rounded-9px max-h-95vh max-w-311px sm:max-w-452px"
       :class="{

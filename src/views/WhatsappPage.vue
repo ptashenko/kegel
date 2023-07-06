@@ -71,7 +71,7 @@ export default {
     setTimeout(() => {
       window.scrollTo(0, -100)
       document.body.style.overflow = 'unset'
-      this.email = localStorage.getItem('email').replaceAll('\"', '');
+      this.email = localStorage.getItem('email')?.replaceAll('\"', '');
     }, 100)
   },
   created() {

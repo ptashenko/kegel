@@ -13,13 +13,13 @@
           text: $t('efficacy.buttonBack'),
           click: btnBack,
           icon: 'prev',
-          theme: 'text-[#4A4A4B] bg-[#F1F3F9] hover:bg-[#E5E9F5]'
+          style: 'back-red'
         }"
         :buttonNext="{
           icon: 'next',
           text: $t('efficacy.buttonNext'),
           click: btnClick ,
-          theme: 'bg-red hover:bg-[#F5423FFF]'
+          style: 'next-red'
         }"
       />
   </div>

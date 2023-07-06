@@ -1038,6 +1038,28 @@ export default {
       ch5_3: 'So make following the plan a part of your daily routine, just like brushing your teeth.'
     }
   },
+  faq_v2: {
+    title: 'People often ask',
+    questions: {
+      t_1: 'I can\'t download the app to access my Kegel Plan',
+      ch1_1: 'Studies show that male performance can worsen with age, which can lead to poor stamina & problems with potency.',
+      ch1_2: 'Moreover, even if everything is fine right now, there’s always room for improvement!',
+      ch1_3: 'This plan can help you to keep your performance at a great level. And prevent many male diseases in future.',
+      t_2: 'When will I see the results?',
+      ch2_1: 'It depends on each body in particular, but in general you’ll see the first result in just a few weeks of following the plan.',
+      t_3: 'Do I have to buy anything else to do the exercises?',
+      ch3_1: 'No, you don\'t.',
+      ch3_2: 'The only thing you need is to dedicate 5 min a day to the exercises. ',
+      ch3_3: 'No additional equipment is needed.',
+      t_4: 'Am I too old/young for this plan?',
+      ch4_1: 'Age is not a barrier! Scientific studies have shown that men ages 22-78 all benefited from Kegel exercises, which are included in the Dr. Kegel Plan.',
+      ch4_2: 'That\'s why they are recommended as a daily practice for men of almost any age.',
+      t_5: 'How long do I need to follow the plan?',
+      ch5_1: 'The plan covers many aspects of men\'s health.',
+      ch5_2: 'In order to keep your stamina & potency in a perfect condition, it\'s worth sticking with the plan even after you achieve the desired result.',
+      ch5_3: 'So make following the plan a part of your daily routine, just like brushing your teeth.'
+    }
+  },
   superDiscountGift: {
     discount: 'Get a <span class="opacity-50 line-through">{discountOriginal}%</span><span class="text-blue"> {discount}% discount on your Kegel plan'
   },
@@ -1139,8 +1161,37 @@ export default {
       json_title: 'Achieve Improvements Confirmed by User Survey Data',
       json: 'json_graph',
       text: 'Most users feel tangible results within just <b>1 month</b>'
-    }
-
+    },
+    reviews: 'Here\'s What Users Say',
+    selectPlan: {
+      main_title: 'Join The Top-Class<br>Sexual Wellness Program',
+      subtitle: 'With a holistic approach for your mind and body',
+      image: 'img_general.png',
+      title: 'Choose Your Plan',
+      tarifs: {
+        name_1: '1-WEEK PLAN',
+        name_2: '1-MONTH PLAN',
+        name_3: '3-MONTH PLAN',
+        txt: 'per day',
+      },
+      agree_1: 'By clicking «Continue», I agree to pay <b>{discPrice}</b> for my plan and that if I do not cancel before the end of the <b>{subscrPeriod}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>30.99 USD</b> every <b>1 month</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.',
+      agree_2: 'By clicking «Continue», I agree to pay <b>{discPrice}</b> for my plan and that if I do not cancel before the end of the <b>{subscrPeriod}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>{fullprice}</b> every <b>1 month</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.',
+      continue: 'Continue',
+    },
+    safe: 'Your information is safe',
+    info: 'We will not sell or rent your personal contact information for any marketing purposes.',
+    secure: 'Secure checkout',
+    encrypted: 'All information is encrypted and transmitted using Secure Sockets Layer protocol.',
+    help: 'Need help?',
+    contact: 'Contact us here: <a href="mailto:{email}" class="text-red font-bold">{email}</a>',
+    declined: 'Your payment was declined. Please try again or use a different payment method.',
+    discount: '{discount}% discount',
+    getPlanButton: 'Get my plan',
+  },
+  guarantee_v2: {
+    title: '30-Day Money-Back',
+    subtitle: 'Guarantee Without Questions',
+    text: 'We believe that the Dr. Kegel plan will work for you, and you’ll get tangible improvements within the first month! And we are so confident that we are even ready to <b>return your money without any questions</b>. All you have to do is send an email to {email} <b>within 30 days and ask for a refund</b>. But we are sure that the plan will show its effectiveness and there will be no need for a refund. Find more about the refund process in our <a href="./refund.html" target="_blank" class="underline text-blue">refund policy</a>.'
   },
   landingViewVP5: {
     title: 'Your Kegel Plan to improve {purpose} is ready!',

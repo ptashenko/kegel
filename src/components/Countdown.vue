@@ -30,7 +30,6 @@ export default {
         this.intervalId = setInterval(() => {
           this.timerCount--;
           this.timer = this.formatTime(this.timerCount);
-          console.log(this.timerCount)
 
           if (this.timerCount <= 0) {
             this.stopTimer(this.intervalId);

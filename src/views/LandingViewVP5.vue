@@ -260,9 +260,21 @@
         <label
           v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs"
           :key="idx"
-          class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px border-1px border-transparent cursor-pointer"
+          class="relative flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px border-1px border-transparent cursor-pointer"
           :class="{'border-1px !border-red': subscribe === id, 'mb-16px': idx !== tarifs.length - 1}"
         >
+          <div
+              v-if="idx === 1"
+              class="absolute top-[-50%] transform translate-y-[125%] left-20px bg-[#29292A] rounded-50px py-1px px-15px"
+              :class="{'!bg-red': subscribe === id}"
+          >
+            <p
+                class="text-12px font-700 leading-normal text-[#fff] opacity-50"
+                :class="{'!opacity-100': subscribe === id}"
+            >
+              MOST POPULAR
+            </p>
+          </div>
           <div class="flex items-center">
             <div>
               <input

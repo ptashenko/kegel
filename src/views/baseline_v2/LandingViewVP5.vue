@@ -99,11 +99,11 @@
             <p>{{ $t('landingViewVP5.eighthBenefit') }}</p>
           </li>
         </ul>
-        <img src="@/assets/images/landing/baseline_v2/img_rating_3mil.png" alt="rating" />
+        <img src="@/assets/images/landing/baseline_v2/img_rating_3mil.png" alt="rating" class="mx-auto" />
       </div>
     </div>
   </div>
-  <div class="w-full">
+  <div class="w-full max-w-520px mx-auto">
     <h2 class="text-[#fff] font-displayBold py-18px bg-body text-20px leading-normal text-center">
       {{$t('landingViewVP5_v2.musclesTitle')}}
     </h2>
@@ -111,7 +111,7 @@
       <video-background
           :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.bodyVideo')}.mp4`)"
           :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.bodyVideo')}.png`)"
-          class="w-full h-310px"
+          class="w-full h-310px sm:h-400px"
           objectFit="fill"
       />
     </div>
@@ -121,11 +121,11 @@
       <video-background
           :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.trainingSystem.video')}.mp4`)"
           :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.trainingSystem.video')}.png`)"
-          class="w-full h-210px mb-32px"
+          class="w-full h-210px mb-32px max-w-311px mx-auto"
           objectFit="fill"
       />
       <ul class="flex flex-col gap-16px mb-48px">
-        <li class="flex justify-between items-center">
+        <li class="flex items-center">
           <img
               src="@/assets/images/svg/baseline_v2/icon_5min.svg"
               class="mr-24px"
@@ -135,7 +135,7 @@
               v-html="$t('landingViewVP5_v2.trainingSystem.benefits_1.b_1')"
           />
         </li>
-        <li class="flex justify-between items-center">
+        <li class="flex items-center">
           <img
               src="@/assets/images/svg/baseline_v2/icon_guide.svg"
               class="mr-24px"
@@ -145,7 +145,7 @@
               v-html="$t('landingViewVP5_v2.trainingSystem.benefits_1.b_2')"
           />
         </li>
-        <li class="flex justify-between items-center">
+        <li class="flex items-center">
           <img
               src="@/assets/images/svg/baseline_v2/icon_difficulty.svg"
               class="mr-24px"
@@ -170,7 +170,7 @@
         {{$t('landingViewVP5_v2.trainingSystem.subtitle')}}
       </h2>
       <ul class="flex flex-col gap-16px">
-        <li class="flex justify-between items-center">
+        <li class="flex items-center">
           <img
               src="@/assets/images/svg/baseline_v2/icon_exercises.svg"
               class="mr-24px"
@@ -180,7 +180,7 @@
               v-html="$t('landingViewVP5_v2.trainingSystem.benefits_2.b_1')"
           />
         </li>
-        <li class="flex justify-between items-center">
+        <li class="flex items-center">
           <img
               src="@/assets/images/svg/baseline_v2/icon_therapist.svg"
               class="mr-24px"
@@ -190,7 +190,7 @@
               v-html="$t('landingViewVP5_v2.trainingSystem.benefits_2.b_2')"
           />
         </li>
-        <li class="flex justify-between items-center">
+        <li class="flex items-center">
           <img
               src="@/assets/images/svg/baseline_v2/icon_muscle.svg"
               class="mr-24px"
@@ -206,7 +206,7 @@
       <video-background
           :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.mindVideo')}.mp4`)"
           :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.mindVideo')}.png`)"
-          class="w-full h-310px"
+          class="w-full h-310px sm:h-400px"
           objectFit="fill"
       />
     </div>
@@ -216,7 +216,7 @@
       <video-background
           :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.mindTraining.video')}.mp4`)"
           :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.mindTraining.video')}.png`)"
-          class="w-full h-210px mb-32px"
+          class="w-full h-210px max-w-311px mx-auto mb-32px"
           objectFit="fill"
       />
       <ul class="flex flex-col gap-16px mb-64px">
@@ -295,11 +295,11 @@
           <video-background
               :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.tracker.video')}.mp4`)"
               :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.tracker.video')}.png`)"
-              class="w-full h-210px"
+              class="w-full h-210px max-w-311px mx-auto"
               objectFit="fill"
           />
           <ul class="flex flex-col gap-16px mt-32px">
-            <li class="flex justify-between items-center">
+            <li class="flex items-center">
               <img
                   src="@/assets/images/svg/baseline_v2/icon_progress.svg"
                   class="mr-24px"
@@ -309,7 +309,7 @@
                   v-html="$t('landingViewVP5_v2.extraTools.tracker.benefits_1.b_1')"
               />
             </li>
-            <li class="flex justify-between items-center">
+            <li class="flex items-center">
               <img
                   src="@/assets/images/svg/baseline_v2/icon_overviews.svg"
                   class="mr-24px"
@@ -319,7 +319,7 @@
                   v-html="$t('landingViewVP5_v2.extraTools.tracker.benefits_1.b_2')"
               />
             </li>
-            <li class="flex justify-between items-center">
+            <li class="flex items-center">
               <img
                   src="@/assets/images/svg/baseline_v2/icon_motivation.svg"
                   class="mr-24px"
@@ -348,7 +348,7 @@
           <video-background
               :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.challenges.video')}.mp4`)"
               :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.challenges.video')}.png`)"
-              class="w-full h-210px"
+              class="w-full h-210px sm:h-305px"
               objectFit="fill"
           />
           <ul class="flex flex-col gap-16px mt-32px">
@@ -405,11 +405,11 @@
           <video-background
               :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.library.video')}.mp4`)"
               :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.library.video')}.png`)"
-              class="w-full h-210px"
+              class="w-full h-210px sm:h-305px"
               objectFit="fill"
           />
           <ul class="flex flex-col gap-16px mt-32px">
-            <li class="flex justify-between items-center">
+            <li class="flex items-center">
               <img
                   src="@/assets/images/svg/baseline_v2/icon_illustrations.svg"
                   class="mr-24px"
@@ -419,7 +419,7 @@
                   v-html="$t('landingViewVP5_v2.extraTools.library.benefits_1.b_1')"
               />
             </li>
-            <li class="flex justify-between items-center">
+            <li class="flex items-center">
               <img
                   src="@/assets/images/svg/baseline_v2/icon_certified.svg"
                   class="mr-24px"
@@ -429,7 +429,7 @@
                   v-html="$t('landingViewVP5_v2.extraTools.library.benefits_1.b_2')"
               />
             </li>
-            <li class="flex justify-between items-center">
+            <li class="flex items-center">
               <img
                   src="@/assets/images/svg/baseline_v2/icon_trending.svg"
                   class="mr-24px"
@@ -458,11 +458,11 @@
           <video-background
               :src="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.mindCleaner.video')}.mp4`)"
               :poster="require(`@/assets/video/landing/baseline_v2/${$t('landingViewVP5_v2.extraTools.mindCleaner.video')}.png`)"
-              class="w-full h-210px"
+              class="w-full h-210px sm:h-305px"
               objectFit="fill"
           />
           <ul class="flex flex-col gap-16px mt-32px">
-            <li class="flex justify-between items-center">
+            <li class="flex items-center">
               <img
                   src="@/assets/images/svg/baseline_v2/icon_write.svg"
                   class="mr-24px"
@@ -472,7 +472,7 @@
                   v-html="$t('landingViewVP5_v2.extraTools.mindCleaner.benefits_1.b_1')"
               />
             </li>
-            <li class="flex justify-between items-center">
+            <li class="flex items-center">
               <img
                   src="@/assets/images/svg/baseline_v2/icon_mind.svg"
                   class="mr-24px"
@@ -482,7 +482,7 @@
                   v-html="$t('landingViewVP5_v2.extraTools.mindCleaner.benefits_1.b_2')"
               />
             </li>
-            <li class="flex justify-between items-center">
+            <li class="flex items-center">
               <img
                   src="@/assets/images/svg/baseline_v2/icon_overall_health.svg"
                   class="mr-24px"
@@ -496,9 +496,12 @@
         </li>
       </ul>
     </div>
-    <img src="@/assets/images/content/baseline_v2/icon_all_of_this.svg" class="mx-auto mt-48px" />
+    <img
+        src="@/assets/images/content/baseline_v2/icon_all_of_this.svg"
+        class="mx-auto mt-48px"
+    />
   </div>
-  <div class="pt-32px">
+  <div class="pt-32px max-w-520px mx-auto">
     <div class="px-32px">
       <h2 class="text-28px font-displayBold font-600 leading-snug text-center mb-8px">
         {{$t('landingViewVP5_v2.mobileApp.title')}}
@@ -510,7 +513,7 @@
     </div>
     <img
         :src="require(`@/assets/images/content/baseline_v2/${$t('landingViewVP5_v2.mobileApp.image')}`)"
-        class="mb-48px"
+        class="mb-48px mx-auto"
     />
     <div class="px-16px">
       <div class="json-gradient py-32px px-24px rounded-15px">
@@ -520,7 +523,8 @@
       </div>
       <div class="mb-32px px-16px">
         <lottie-animation
-            ref="anim"
+            ref="graph"
+            :autoPlay="false"
             :animationData="require(`@/assets/images/json/baseline_v2/${$t('landingViewVP5_v2.mobileApp.json')}.json`)"
         />
       </div>
@@ -530,9 +534,13 @@
       />
     </div>
   </div>
-  <div class="max-w-600px mx-auto relative">
+  <div class="max-w-600px mx-auto relative pb-48px">
     <div class="flex flex-col my-16px mt-48px mx-auto mb-40px container-mob">
-      <div class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:text-24px sm:leading-normal">{{ $t('landingViewVP5.reviews') }}</div>
+      <div
+          class="font-displayBold text-20px leading-snug mb-16px text-center font-600 sm:text-24px sm:leading-normal"
+      >
+        {{ $t('landingViewVP5_v2.reviews') }}
+      </div>
       {{lengthReviews}}
       <template v-for="(item, key) in base" :key="key">
         <div
@@ -567,22 +575,26 @@
           text-only
       />
     </div>
-    <div class="absolute top-[100%] w-full h-70px" id="selectPlan"></div>
+    <Guarantee class="max-w-311px mx-auto" />
   </div>
-  <div class="p-32px max-w-600px mx-auto bg-body sm:px-40px"  >
-    <div ref="payment-block">
-      <div v-if="superDiscount.theme">
-        <SuperDiscountGift
-            :discount="pickedTarifParams.discount"
-            :discountOriginal="pickedTarifParams.discountOriginal"
-            class="m-0 mx-auto mb-32px max-w-311px"
-        />
-        <h2 class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-24px text-center font-displayBold sm:text-36px sm:leading-normal">
-          {{ $t(`landingViewVP5.plan`)}}
-        </h2>
-      </div>
-      <h2 v-else class="text-25px leading-normal text-[#fff] m-0 mx-auto mb-24px text-center font-displayBold sm:text-36px sm:leading-normal">
-        {{ $t('landingViewVP5.getPlan', {purpose: $t(`home.tracks.purpose.${purpose}`)})}}
+  <div id="selectPlan" ref="payment-block" class="px-16px pt-32px max-w-600px mx-auto bg-body sm:px-40px">
+    <h2
+        class="text-26px text-[#fff] font-displayBold font-600 leading-snug mb-16px text-center"
+        v-html="$t('landingViewVP5_v2.selectPlan.main_title')"
+    />
+    <h3 class="text-16px text-[#fff] font-500 leading-normal text-center mb-32px px-16px">
+      {{$t('landingViewVP5_v2.selectPlan.subtitle')}}
+    </h3>
+    <img :src="require(`@/assets/images/content/baseline_v2/${$t('landingViewVP5_v2.selectPlan.image')}`)" class="mx-auto" />
+    <SuperDiscountGift
+        v-if="superDiscount.theme"
+        :discount="pickedTarifParams.discount"
+        :discountOriginal="pickedTarifParams.discountOriginal"
+        class="m-0 mx-auto mb-32px max-w-311px"
+    />
+    <div class="mt-48px bg rounded-20px pt-32px pb-80px px-16px">
+      <h2 class="text-28px text-[#fff] font-displayBold font-600 leading-snug text-center mb-32px">
+        {{ $t(`landingViewVP5_v2.selectPlan.title`)}}
       </h2>
       <div v-if="superDiscount.theme" class="flex flex-col max-w-430px mx-auto">
         <label
@@ -602,7 +614,7 @@
               />
               <span
                   class="relative block w-20px h-20px rounded-full border-2px border-[#ffffff26] mr-16px"
-                  :class="{'bg-blue border-none': subscribe === id}"
+                  :class="{'!bg-blue !border-none': subscribe === id}"
               >
                 <img
                     v-if="subscribe === id"
@@ -660,9 +672,21 @@
         <label
             v-for="({id, fullprice, cost, text, name, totalCost, totalDiscCost}, idx) of tarifs"
             :key="idx"
-            class="flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
-            :class="{'border-1px border-red': subscribe === id}"
+            class="relative flex justify-between p-8px pl-16px bg-[#fff] bg-opacity-5 rounded-9px mb-16px border-1px border-transparent cursor-pointer"
+            :class="{'!border-1px !border-red': subscribe === id}"
         >
+          <div
+              v-if="idx === 1"
+              class="absolute top-[-50%] transform translate-y-[125%] left-20px bg-[#29292A] rounded-50px py-1px px-15px"
+              :class="{'!bg-red': subscribe === id}"
+          >
+            <p
+                class="text-12px font-700 leading-normal text-[#fff] opacity-50"
+                :class="{'!opacity-100': subscribe === id}"
+            >
+              MOST POPULAR
+            </p>
+          </div>
           <div class="flex items-center">
             <div>
               <input
@@ -674,7 +698,7 @@
               />
               <span
                   class="relative block w-20px h-20px rounded-full border-2px border-[#ffffff26] mr-16px"
-                  :class="{'bg-red border-none': subscribe === id}"
+                  :class="{'!bg-red !border-none': subscribe === id}"
               >
                 <img
                     v-if="subscribe === id"
@@ -688,7 +712,7 @@
                   class="font-displayBold leading-normal text-[#fff] opacity-50"
                   :class="{ '!opacity-100' : subscribe === id }"
               >
-                {{$t(`landingViewVP5.tarifs.${name}`)}}
+                {{$t(`landingViewVP5_v2.selectPlan.tarifs.${name}`)}}
               </p>
               <p
                   class="font-sans text-10px leading-normal text-[#fff] opacity-25"
@@ -722,7 +746,7 @@
                   class="font-sans font-600 text-12px leading-none text-center text-[#fff] opacity-50"
                   :class="{ '!opacity-100' : subscribe === id }"
               >
-                {{$t(`landingViewVP5.tarifs.txt`)}}
+                {{$t(`landingViewVP5_v2.selectPlan.tarifs.txt`)}}
               </p>
             </div>
           </div>
@@ -731,75 +755,60 @@
       <p
           v-if="pickedTarifParams.discountType === 1"
           class="p-16px my-32px mx-0 font-sans font-400 text-12px leading-normal text-[#fff] opacity-50 border-2px border-[#FFFFFF3F] rounded-9px"
-          v-html="$t('landingViewVP5.agree_1', {discPrice: pickedTarifParams.discountPrice, subscrPeriod: pickedTarifParams.subscriptionPeriod})"
+          v-html="$t('landingViewVP5_v2.selectPlan.agree_1', {discPrice: pickedTarifParams.discountPrice, subscrPeriod: pickedTarifParams.subscriptionPeriod})"
       />
       <p
           v-else
           class="p-16px my-32px mx-0 font-sans font-400 text-12px leading-normal text-[#fff] opacity-50 border-2px border-[#FFFFFF3F] rounded-9px"
-          v-html="$t('landingViewVP5.agree_2', {discPrice: pickedTarifParams.discountPrice, subscrPeriod: pickedTarifParams.subscriptionPeriod, fullprice: pickedTarifParams.fullPrice})"
+          v-html="$t('landingViewVP5_v2.selectPlan.agree_2', {discPrice: pickedTarifParams.discountPrice, subscrPeriod: pickedTarifParams.subscriptionPeriod, fullprice: pickedTarifParams.fullPrice})"
       />
       <base-button
-          :label="$t(`landingViewVP5.getPlanButton`)"
+          :label="$t(`landingViewVP5_v2.selectPlan.continue`)"
           :theme="colorTheme"
           :disabled="!subscribe"
-          class="mb-64px"
           @click="openPaymentPopup"
       />
     </div>
-
-    <Guarantee
-        :borderColor="superDiscount.theme ? '#5773D6' : '#E44240'"
-        textColor="#fff"
-        :icon="superDiscount.theme ? 'blue' : 'red'"
-    />
   </div>
   <div class="py-48px px-32px max-w-600px mx-auto">
     <FaqBlock :items="faqQuestions.faq" />
     <div class="mt-48px">
       <div class="mb-24px">
         <div class="flex items-center mb-12px">
-          <img src="@/assets/images/svg/icon_notification.svg" class="mr-8px" />
-          <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-            {{$t(`landingViewVP5.notifications`)}}
-          </h3>
-        </div>
-        <p class="font-sans font-400 text-14px leading-normal text-body">
-          {{$t(`landingViewVP5.confirmation`)}}
-        </p>
-      </div>
-      <div class="mb-24px">
-        <div class="flex items-center mb-12px">
           <img src="@/assets/images/svg/icon_safe.svg" class="mr-8px" />
-          <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-            {{$t(`landingViewVP5.safe`)}}
+          <h3 class="text-16px font-600 font-displayBold leading-snug">
+            {{$t(`landingViewVP5_v2.safe`)}}
           </h3>
         </div>
-        <p class="font-sans font-400 text-14px leading-normal text-body">
-          {{$t(`landingViewVP5.info`)}}
+        <p class="text-14px font-400 leading-normal">
+          {{$t(`landingViewVP5_v2.info`)}}
         </p>
       </div>
       <div class="mb-24px">
         <div class="flex items-center mb-12px">
           <img src="@/assets/images/svg/icon_secure.svg" class="mr-8px" />
-          <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-            {{$t(`landingViewVP5.secure`)}}
+          <h3 class="text-16px font-600 font-displayBold leading-snug">
+            {{$t(`landingViewVP5_v2.secure`)}}
           </h3>
         </div>
-        <p class="font-sans font-400 text-14px leading-normal text-body">
-          {{$t(`landingViewVP5.encrypted`)}}
+        <p class="text-14px font-400 leading-normal">
+          {{$t(`landingViewVP5_v2.encrypted`)}}
         </p>
       </div>
       <div >
         <div class="flex items-center mb-12px">
           <img src="@/assets/images/svg/icon_help.svg" class="mr-8px" />
-          <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
-            {{$t(`landingViewVP5.help`)}}
+          <h3 class="text-16px font-600 font-displayBold leading-snug">
+            {{$t(`landingViewVP5_v2.help`)}}
           </h3>
         </div>
-        <p class="font-sans font-400 text-14px leading-normal text-body" v-html="$t('landingViewVP5.contact', {email: 'contact@kegel-plan.com'})" />
+        <p
+            class="text-14px font-400 leading-normal"
+            v-html="$t('landingViewVP5.contact', {email: 'contact@kegel-plan.com'})"
+        />
       </div>
       <a @click="scrollToPaymentBlock" class="bg-red rounded-9px py-20px px-0 w-full mx-auto mt-48px mb-0 font-700 text-18px leading-tight text-center text-[#fff] border-none block no-underline cursor-pointer shadow-button-red">
-        {{$t(`landingViewVP5.getPlanButton`)}}
+        {{$t(`landingViewVP5_v2.getPlanButton`)}}
       </a>
     </div>
   </div>
@@ -851,18 +860,15 @@
 </template>
   <script>
   import { mapGetters } from 'vuex';
-  import ButtonField from '@/components/ui/Button.vue';
   import vpopup from '@/components/modal/v-popup.vue';
   import faqQuestions from "@/constants/landingV3";
   import countdown from '@/components/Countdown.vue';
   import SuperDiscountWindow from '@/components/SuperDiscountWindow.vue';
   import SuperDiscountGift from '@/components/SuperDiscountGift.vue';
-  import Guarantee from '@/components/Guarantee.vue';
-  import FaqBlock from '@/components/common/FaqBlock.vue';
+  import Guarantee from '@/components/baseline_v2/Guarantee.vue';
+  import FaqBlock from '@/components/baseline_v2/FaqBlock.vue';
   import Footer from '@/components/Footer.vue';
-  import RatingStars from '@/components/RatingStars.vue';
   import PaymentFormCompanentModal from '@/components/PaymentFormCompanentModal.vue';
-  import { getItem } from '@/common/localStorage';
   import '@/assets/css/animations.css'
   import BaseButton from "@/components/ui/BaseButton.vue";
 
@@ -871,7 +877,6 @@
     inject: ['mixpanel'],
     components: {
       BaseButton,
-      ButtonField,
       vpopup,
       countdown,
       PaymentFormCompanentModal,
@@ -880,7 +885,6 @@
       Guarantee,
       FaqBlock,
       Footer,
-      RatingStars
   },
     data() {
       return {
@@ -919,11 +923,11 @@
         window.scrollTo({top: y, behavior: 'smooth'});
       },
       scrollBorder() {
-        const paymentBlock = this.$refs['payment-block'];
-        const paymentBlockTop = paymentBlock.getBoundingClientRect().top;
-        const paymentBlockHeight = paymentBlock.getBoundingClientRect().height;
-        if (window.scrollY > (paymentBlockTop + paymentBlockHeight)) {
+        if (window.scrollY > this.tarifBlockPosition) {
           this.blockFixed = true
+        }
+        if (window.scrollY > this.lottieGraphPosition) {
+          this.$refs['graph'].play()
         }
       },
       superDiscountCheck() {
@@ -1126,6 +1130,12 @@
         }
         return console.log(this.track);  ;
       },
+      tarifBlockPosition() {
+        return this.$refs['payment-block'].getBoundingClientRect().top
+      },
+      lottieGraphPosition() {
+        return this.$refs['graph'].$el.getBoundingClientRect().y - window.innerHeight
+      }
     },
     beforeUnmount () {
       document.removeEventListener('scroll', this.scrollBorder)
@@ -1142,6 +1152,7 @@
     },
     mounted() {
       document.addEventListener('scroll', this.scrollBorder)
+      console.log()
       this.superDiscountCheck()
       this.apple_pay = true;
       this.numanim = setInterval(() => {
@@ -1195,5 +1206,9 @@
 .json-gradient {
   background: rgb(241,243,249);
   background: linear-gradient(180deg, rgba(241,243,249,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.bg {
+  background: linear-gradient(180deg, rgba(33, 33, 33, 0.70) 0%, #111113 100%);
 }
 </style>

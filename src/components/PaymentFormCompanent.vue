@@ -19,7 +19,7 @@
       :class="{ 'bg-[#5773d61a] border-2px !border-blue': paymentMethodType == 2 }"
       @click="payPalSelect"
     >
-      <img src="@/assets/images/svg/icon_paypal.svg" alt="apple_pay" class="w-full sm:w-153px"/>
+      <img src="@/assets/images/icons/icon_paypal.png" alt="apple_pay" class="w-full sm:w-153px"/>
     </button>
     <button
       class="h-49px border-2px sm:flex sm:items-center sm:justify-center flex-1 cursor-pointer bg-[#F9F9F9] rounded-9px border-[#fff] flex items-center"

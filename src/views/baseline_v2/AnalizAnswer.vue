@@ -1,11 +1,11 @@
 <template>
     <div class="container-mob">
-      <h2 class="font-displayBold text-center text-28px leading-normal mt-24px sm:text-30px sm:leading-normal">
+      <h2 class="font-display font-600 text-center text-28px leading-normal mt-24px sm:text-30px sm:leading-normal">
         {{ $t('analizAnswer_v2.title') }}
       </h2>
 
       <div class="max-w-450px mx-auto mt-48px mb-0 w-full sm:mt-64px">
-        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'!opacity-100': percent > 0}">
+        <div class="text-14px leading-normal font-500 text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'!opacity-100': percent > 0}">
           <div>
             {{ $t('analizAnswer_v2.optimizing') }}
           </div>
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
-        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'!opacity-100': loadProsentTwo > 0}">
+        <div class="text-14px leading-normal font-500 text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'!opacity-100': loadProsentTwo > 0}">
           <div>
             {{ $t('analizAnswer_v2.activity') }}
           </div>
@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
-        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'!opacity-100': loadProsentTree > 0}">
+        <div class="text-14px leading-normal font-500 text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'!opacity-100': loadProsentTree > 0}">
           <div>
             {{ $t('analizAnswer_v2.difficulty') }}
           </div>
@@ -89,7 +89,7 @@
         </div>
       </div>
       <div class="max-w-450px mx-auto mt-24px mb-0 w-full">
-        <div class="text-14px leading-normal font-sansSemiBold text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'active': loadProsentFoo > 0}">
+        <div class="text-14px leading-normal font-500 text-body opacity-75 mb-8px flex justify-between sm:text-18px sm:leading-normal sm:mb-4px" :class="{'active': loadProsentFoo > 0}">
           <div>
             {{ $t('analizAnswer_v2.calibrating') }}
           </div>

@@ -98,7 +98,6 @@ export default {
     }
 
 .card-pay-text {
-  font-family: "SF Pro Text Regular";
   font-style: normal;
   font-weight: 400;
   font-size: 10px;

@@ -2,7 +2,7 @@
     <steps v-if="content.id !== 1" :dark="dark" />
     <transition name="slide" mode="out-in">
       <div v-if="show" class="flex flex-col">
-        <div class="font-displayBold text-20px text-left pb-32px leading-normal sm:text-left sm:text-24px sm:leading-normal">
+        <div class="font-display font-600 text-20px text-left pb-32px leading-normal sm:text-left sm:text-24px sm:leading-normal">
           {{ $t(`survey.id_${content.id}.${survey.title}`) }}
         </div>
 

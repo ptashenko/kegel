@@ -42,7 +42,7 @@ export default {
     },
   },
   footer: {
-    text: 'This service offers health and fitness information and is designed for educational and entertainment purposes only.You should not rely on this information as a substitute for, nor does it replace, professional medical advice, diagnosis, or treatment.It is intended to be provided for informational, educational, and self- empowerment purposes only.If you have any concerns or questions about your health, you should always consult with a physician or other health- care professional.',
+    text: 'This service offers health and fitness information and is designed for educational and entertainment purposes only. You should not rely on this information as a substitute for, nor does it replace, professional medical advice, diagnosis, or treatment. It is intended to be provided for informational, educational, and self-empowerment purposes only. If you have any concerns or questions about your health, you should always consult with a physician or other health-care professional.',
     location: 'Appercut sp z o o<br>Warsaw, Twarda 18, 00-105',
     privacy: 'Privacy Policy',
     terms: 'Terms & Conditions',
@@ -692,7 +692,7 @@ export default {
     },
   },
   reviews: {
-    title: 'Improve <strong>{purpose}</strong>',
+    title: 'Improve {purpose}',
     title_add: 'Improve <strong>{purpose}</strong> and <strong>{addPurpose}</strong>',
     date: 'by {dates}',
     reviewTitle: 'Customer reviews'
@@ -933,12 +933,12 @@ export default {
     secure: 'Secure checkout',
     secureInfo: 'All information is encrypted and transmitted using Secure Sockets Layer protocol.',
     help: 'Need help?',
-    contact: 'Contact us here: <span class="text-[#E44240]"><a href="mailto:{email}">{email}</a></span>',
+    contact: 'Contact us here: <span class="text-red"><a href="mailto:{email}">{email}</a></span>',
     plan: 'Get my plan',
-    trialEnd:'<span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">Your 7-day trial will last until {lastDate}. </span>You may cancel at any time before <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">{lastDate}</span>, and you will not be charged. <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$4.2) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page',
-    trialEnd14_4:'<span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">Your 14-day trial will last until {lastDate}. </span>You may cancel at any time before <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">{lastDate}</span>, and you will not be charged. <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 14-day trial and charge the membership fee (currently US$4) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page',
-    trialEnd14_33:'<span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">Your 14-day trial will last until {lastDate}. </span>You may cancel at any time before <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">{lastDate}</span>, and you will not be charged. <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 14-day trial and charge the membership fee (currently US$3.3) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page',
-    trialEnd14_57:'<span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">Your 14-day trial will last until {lastDate}. </span>You may cancel at any time before <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">{lastDate}</span>, and you will not be charged. <span class="font-sansSemiBold text-12px leading-normal sm:text-14px sm:leading-normal">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 14-day trial and charge the membership fee (currently US$5.97) on a 3-Month basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page',
+    trialEnd:'<span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">Your 7-day trial will last until {lastDate}. </span>You may cancel at any time before <span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">{lastDate}</span>, and you will not be charged. <span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 7-day trial and charge the membership fee (currently US$4.2) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page',
+    trialEnd14_4:'<span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">Your 14-day trial will last until {lastDate}. </span>You may cancel at any time before <span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">{lastDate}</span>, and you will not be charged. <span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 14-day trial and charge the membership fee (currently US$4) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page',
+    trialEnd14_33:'<span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">Your 14-day trial will last until {lastDate}. </span>You may cancel at any time before <span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">{lastDate}</span>, and you will not be charged. <span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 14-day trial and charge the membership fee (currently US$3.3) on a weekly basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page',
+    trialEnd14_57:'<span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">Your 14-day trial will last until {lastDate}. </span>You may cancel at any time before <span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">{lastDate}</span>, and you will not be charged. <span class="font-500 text-12px leading-normal sm:text-14px sm:leading-normal">If you don’t cancel, Appercut sp z o.o. will automatically continue your membership at the end of your 14-day trial and charge the membership fee (currently US$5.97) on a 3-Month basis until you cancel.</span> No partial refunds. You can cancel your subscription anytime on your Subscription Managment page',
     popupTop: 'We ask for your payment information now, so you can enjoy Kegel Plan uninterrupted after your 7-day trial ends.',
     popupTop14: 'We ask for your payment information now, so you can enjoy Kegel Plan uninterrupted after your 14-day trial ends.',
     popupBottom: 'If you cancel anytime before the end of the 7-day trial, you won\'t be charged',
@@ -947,7 +947,10 @@ export default {
     error: 'Your payment was declined. Please try again or use a different payment method.'
   },
   ratingStars: {
-    rating: '<span class="font-sansBold">{amount}</span> 5-star ratings <span class="m-0 mx-5px">&#124;</span><span class="font-sansBold"> {downloads}</span> downloads'
+    rating: '<span class="font-600">{amount}</span> 5-star ratings <span class="m-0 mx-5px">&#124;</span><span class="font-600"> {downloads}</span> downloads'
+  },
+  vPopup: {
+    pay: 'The safer, easier way to pay',
   },
   footer_landing: {
     disclaimer: 'Disclaimer: Each individual’s results may vary from person to person based on health condition, body type, starting point, his or her unique background, dedication, desire, motivation, actions, and numerous other factors. This service offers health and fitness information and is designed for educational and entertainment purposes only. You should not rely on this information as a substitute for, nor does it replace, professional medical advice, diagnosis, or treatment. It is intended to be provided for informational, educational, and self-empowerment purposes only. If you have any concerns or questions about your health, you should always consult with a physician or other health-care professional.',
@@ -1074,6 +1077,7 @@ export default {
     musclesTitle: 'Claim your Plan and get:',
     bodyVideo: 'video_body',
     mindVideo: 'video_mind',
+    mostPopular: 'MOST POPULAR',
     trainingSystem: {
       title: 'Kegel Training System',
       description: 'The core solution to strengthen PF muscles & enhance performance',
@@ -1173,7 +1177,7 @@ export default {
       },
       agree_1: 'By clicking «Continue», I agree to pay <b>{discPrice}</b> for my plan and that if I do not cancel before the end of the <b>{subscrPeriod}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>30.99 USD</b> every <b>1 month</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.',
       agree_2: 'By clicking «Continue», I agree to pay <b>{discPrice}</b> for my plan and that if I do not cancel before the end of the <b>{subscrPeriod}</b> introductory plan, Dr. Kegel will automatically charge my payment method the regular price <b>{fullprice}</b> every <b>{subscrPeriod}</b> thereafter until I cancel. I can cancel online by visiting Billing Center in your personal account on website or in the app to avoid being charged for the next billing cycle.',
-      continue: 'Continue',
+      continue: '<b>Continue</b>',
     },
     safe: 'Your information is safe',
     info: 'We will not sell or rent your personal contact information for any marketing purposes.',
@@ -1209,7 +1213,7 @@ export default {
     seventhBenefit: 'Takes <b>5 min a day</b>',
     eighthBenefit: 'More happiness for you and for your partner',
     reviews: 'Customer reviews',
-    button: 'Show more',
+    button: '<b>Show more</b>',
     plan: 'Choose Your Plan',
     getPlan: 'Get Your Kegel Plan to improve {purpose}',
     tarifs: {
@@ -1247,6 +1251,7 @@ export default {
     offering: 'We want you to be successful, so we\'re offering <b>25%</b> off the Groin Fitness just for you!',
     results: 'I don’t want to accelerate my results ',
     continue: 'Continue',
+    addPlan: 'Add to my plan',
     giveUp: 'I give up accelerated results forever ',
     charged_19: 'Your account will be charged $19.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.',
     charged_9: 'Your account will be charged $9.99 for the selected add-ons as you click Add to My Plan. Items on this page are 3-Month period subscriptions. Each subscription renews automatically at the end of each period, unless you cancel. If you are unsure how to cancel, visit our Terms of Use.',

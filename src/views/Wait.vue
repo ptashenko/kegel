@@ -12,7 +12,7 @@
           <div class="text-center mx-auto my-15px max-w-373px h-auto block relative sm:my-32px">
             <img :src="require(`@/assets/images/wait/${currentImage}.png`)" alt="" class="max-w-full w-full">
           </div>
-          <h2 class="max-w-450px mx-auto font-displayBold text-20px leading-normal px-15px sm:max-w-full sm:text-30px">
+          <h2 class="max-w-450px mx-auto font-display font-600 text-20px leading-normal px-15px sm:max-w-full sm:text-30px">
             {{ $t(`wait.titles.${step.title}`) }}
           </h2>
         </div>

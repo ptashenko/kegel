@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h4 class="font-displayBold text-20px leading-normal mt-0 mb-12px text-center text-body outline-none">
+      <h4 class="font-display font-600 text-20px leading-normal mt-0 mb-12px text-center text-body outline-none">
         {{ $t('faq_v2.title') }}
       </h4>
       <div v-for="(item, id) in items" :key="id">
@@ -10,7 +10,7 @@
             @click="selectId(id)"
             :class="{ 'mb-16px': id !== items.length - 1 }"
         >
-          <h2 class="font-displayBold font-600 text-16px leading-normal">
+          <h2 class="font-display font-600 text-16px leading-normal">
             {{ $t(`faq_v2.questions.${item.title}`) }}
           </h2>
           <img

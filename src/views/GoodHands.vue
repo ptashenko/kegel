@@ -2,11 +2,11 @@
 <Transition name="slider" mode="out-in" appear>
   <div class="container-mob">
       <div class="text-center">
-        <h2 class="m-0 font-displayBold text-20px leading-normal sm:text-30px sm:leading-normal">{{ $t('goodHands.title') }}</h2>
+        <h2 class="m-0 font-display font-600 text-20px leading-normal sm:text-30px sm:leading-normal">{{ $t('goodHands.title') }}</h2>
         <img class="w-full max-w-450px my-32px mx-auto sm:max-w-full" src="@/assets/images/content/map.png" alt="map">
         <p class="text-16px leading-normal sm:text-18px sm:leading-normal">
           {{ $t('goodHands.firstText') }}
-          <span class="font-sansSemiBold">
+          <span class="font-600">
             1.575.179
           </span>
           {{ $t('goodHands.secondText') }}

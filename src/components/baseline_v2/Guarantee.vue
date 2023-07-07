@@ -5,18 +5,18 @@
       />
       <div class="p-31px">
         <h2
-            class="text-26px font-displayBold leading-snug font-600 text-center"
+            class="text-26px font-display font-600 leading-snug font-600 text-center"
         >
           {{$t('guarantee_v2.title')}}
         </h2>
         <h3
-            class="text-16px font-displayBold leading-snug font-500 text-center"
+            class="text-16px font-display font-600 leading-snug font-500 text-center"
         >
           {{$t('guarantee_v2.subtitle')}}
         </h3>
         <p
             v-html="$t('guarantee_v2.text', {email: 'contact@kegel-plan.com'})"
-            class="text-14px leading-normal font-400 mt-24px"
+            class="text-14px leading-normal font-400 mt-24px opacity-80"
         />
       </div>
     </div>

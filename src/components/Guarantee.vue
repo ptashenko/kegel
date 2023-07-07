@@ -1,10 +1,10 @@
 <template>
     <div class="text-body mb-115px sm:mb-60px" :style="{background: bg}">
-        <div class="p-32px pb-39px pl-28px border-2px rounded-9px relative" :style="{borderColor, color: textColor}">
-            <h3 class="font-sansBold mt-0 mb-16px font-600 text-20px leading-normal text-center sm:text-24px sm:leading-normal">{{ $t('guarantee.title')}}</h3>
+        <div class="p-32px pb-39px pr-33px border-2px rounded-9px relative" :style="{borderColor, color: textColor}">
+            <h3 class="font-display font-700 mt-0 mb-16px text-20px leading-normal text-center sm:text-24px sm:leading-normal">{{ $t('guarantee.title')}}</h3>
             <div>
               <p
-                class="font-sans text-14px leading-normal sm:text-16px sm:leading-normal"
+                class="text-14px leading-normal sm:text-16px sm:leading-normal"
                 v-html="$t('guarantee.text')"
               />
               <span :style="{color: borderColor}" v-html="$t('guarantee.refund')"></span>

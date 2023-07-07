@@ -974,7 +974,7 @@ export default {
   },
   guarantee: {
     title: '30-Day Money-Back Guarantee Without Questions',
-    text: 'We believe that our plan may work for you, and you’ll get visible results in a few weeks! And we are so confident that we are even ready to <span class="font-sansBold">return your money without any questions.</span> All you have to do is send an email to {email} <span class="font-sansBold">within 30 days and ask for a refund.</span> But we are sure that the plan will show its effectiveness and there will be no need for a refund. Find more about the refund process in our ',refund: '<a href="./refund.html" target="_blank" class="underline"> refund policy.</a>',
+    text: 'We believe that our plan may work for you, and you’ll get visible results in a few weeks! And we are so confident that we are even ready to <span class="font-600">return your money without any questions.</span> All you have to do is send an email to {email} <span class="font-600">within 30 days and ask for a refund.</span> But we are sure that the plan will show its effectiveness and there will be no need for a refund. Find more about the refund process in our ',refund: '<a href="./refund.html" target="_blank" class="underline"> refund policy.</a>',
   },
   discountGift: {
     title: 'Get your plan with a SUPER Discount!',
@@ -1058,7 +1058,7 @@ export default {
     }
   },
   superDiscountGift: {
-    discount: 'Get a <span class="opacity-50 line-through">{discountOriginal}%</span><span class="text-blue"> {discount}% discount on your Kegel plan'
+    discount: 'Get a <span class="opacity-50 line-through">{discountOriginal}%</span><span class="text-blue"> {discount}% discount</span> on your Kegel plan'
   },
   processing: {
     title: 'Processing...',

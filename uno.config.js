@@ -8,19 +8,9 @@ export default defineConfig({
         [/^min-h-(\d+)px$/, ([_, num]) => ({ 'min-height': `${num}px` })],
         [/^max-w-(\d+)px$/, ([_, num]) => ({ 'max-width': `${num}px` })],
         [/^min-w-(\d+)px$/, ([_, num]) => ({ 'min-width': `${num}px` })],
+        [/^font-display$/, () => ({ 'font-family': '"SFProDisplay", sans-serif' })],
     ],
     theme: {
-        fontFamily: {
-            displayMedium: ['SF-Pro-Display-Medium', 'sans-serif'],
-            displaySemiBold: ['SF-Pro-Display-Semibold', 'sans-serif'],
-            displayBold: ['SF-Pro-Display-Bold', 'sans-serif'],
-            displayHeavy: ['SF-Pro-Display-Heavy', 'sans-serif'],
-            sansLight: ['SF Pro Text Light', 'sans-serif'],
-            sans: ['SF Pro Text Regular', 'sans-serif'],
-            sansMedium: ['SF Pro Text Medium', 'sans-serif'],
-            sansSemiBold: ['SF Pro Text Semibold', 'sans-serif'],
-            sansBold: ['SF Pro Text Bold', 'sans-serif'],
-        },
         textShadow: {
             title: '0 0 17px #fff',
         },

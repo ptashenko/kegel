@@ -52,21 +52,21 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: "SFProDisplay";
-    font-display: block;
-    src: local("SF-Pro-Display-Semibold");
-    src: url("@/assets/fonts/SF-Pro-Display-Semibold.woff2") format("woff2");
-    font-weight: 600;
-    font-style: normal;
-}
+//@font-face {
+//    font-family: "SFProDisplay";
+//    font-display: block;
+//    src: local("SF-Pro-Display-Semibold");
+//    src: url("@/assets/fonts/SF-Pro-Display-Semibold.woff2") format("woff2");
+//    font-weight: 600;
+//    font-style: normal;
+//}
 
 @font-face {
     font-family: "SFProDisplay";
     font-display: block;
     src: local("SF-Pro-Display-Bold");
     src: url("@/assets/fonts/SF-Pro-Display-Bold.woff2") format("woff2");
-    font-weight: 700;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -75,6 +75,6 @@
     font-display: block;
     src: local("SF-Pro-Display-Heavy");
     src: url("@/assets/fonts/SF-Pro-Display-Heavy.woff2") format("woff2");
-    font-weight: 800;
+    font-weight: 700;
     font-style: normal;
 }

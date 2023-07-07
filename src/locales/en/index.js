@@ -1199,6 +1199,7 @@ export default {
     offer: '<b>Limited offer</b> reserved for 15 minutes',
     expires: 'Expires in: ',
     expires2: 'expires in: ',
+    mostPopular: 'MOST POPULAR',
     addGoals: 'Based on your personal goals you can improve <b>{purpose}</b> and <b>{addPurpose}</b>',
     goals: 'Based on your personal goals you can improve <b>{purpose}</b>',
     date: 'by {dataPP3}',
@@ -1263,7 +1264,7 @@ export default {
   },
   whatsapp: {
     title: 'Your Kegel Plan is waiting for you on your email',
-    instruction: 'Instruction on <b>how to access and activate your personal plan</b> has been sent to you at <span class="font-bold text-blue">{email}</span>',
+    instruction: 'Instruction on <b>how to access and activate your personal plan</b> has been sent to you at <span class="font-600 text-blue">{email}</span>',
     spam: 'Check your spam or promotions folder <b>if you can\'t find the instruction in your inbox</b>',
     questions: 'Any questions or concerns?',
     textUs: 'Text us on WhatsApp',

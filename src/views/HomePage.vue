@@ -40,7 +40,7 @@
                   <span class="font-700 text-16px text-center text-[#fff] sm:text-22px">
                     {{ $t(`home.tracks.titleShortQuiz.${track.titleShortQuiz}`) }}
                   </span>
-            <span v-if="track.text" class="font-400 block text-14px mt-4px text-[#fff] sm:text-18px">
+            <span v-if="track.text" class="font-400 block text-14px text-[#fff] sm:text-18px">
                     {{ $t(`home.tracks.text.${track.text}`)}}
                   </span>
             <lottie-animation

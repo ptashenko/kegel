@@ -3,21 +3,21 @@
     <div>
       <div
         v-if="active && open == 1"
-        class="mt-0 mb-24px font-displayBold text-24px leading-normal text-center sm:text-36px sm:leading-normal"
-        :class="{'mb-32px font-displayBold text-32px leading-normal sm:text-36px sm:leading-normal': active}"
+        class="mt-0 mb-24px font-display font-600 text-24px leading-normal text-center sm:text-36px sm:leading-normal"
+        :class="{'mb-32px font-display font-600 text-32px leading-normal sm:text-36px sm:leading-normal': active}"
       >
         {{ $t('planFinalTwo.title') }}
-        <p class="font-displayMedium text-20px leading-normal sm:text-24px sm:leading-normal">to accelerate the result</p>
+        <p class="font-display font-400 text-20px leading-normal sm:text-24px sm:leading-normal">{{ $t('planFinalTwo.subtitle') }}</p>
       </div>
       <h2
         v-else-if="open == 2"
-        class="font-displayBold mt-0 text-24px leading-normal text-center mb-24px sm:text-30px sm:leading-normal sm:mb-32px"
+        class="font-display font-600 mt-0 text-24px leading-normal text-center mb-24px sm:text-30px sm:leading-normal sm:mb-32px"
       >
         {{ $t('planFinalTwo.didYouKnow') }}
       </h2>
       <h2
           v-else
-          class="mt-0 mb-32px font-displayBold text-24px leading-normal text-center sm:text-36px sm:leading-normal"
+          class="mt-0 mb-32px font-display font-600 text-24px leading-normal text-center sm:text-36px sm:leading-normal"
           v-html="$t('planFinalTwo.offer')"
       />
     </div>
@@ -101,9 +101,9 @@
       v-if="open == 2"
       class=""
     >
-      <p class="mb-16px" v-html="$t('planFinalTwo.groin')">
+      <p class="mb-16px text-14px" v-html="$t('planFinalTwo.groin')">
       </p>
-      <p class="mb-24px" v-html="$t('planFinalTwo.flow')">
+      <p class="mb-24px text-14px" v-html="$t('planFinalTwo.flow')">
       </p>
       <img
         class="w-full"
@@ -111,7 +111,7 @@
         alt=""
       >
       <p
-        class="font-sans font-300 text-12px leading-normal text-center text-body opacity-50 mx-auto mt-16px mb-32px sm:text-16px leading-normal"
+        class="font-300 text-12px leading-normal text-center text-body opacity-50 mx-auto mt-16px mb-32px sm:text-16px leading-normal"
       >
       {{ $t('planFinalTwo.diagram') }}
       </p>
@@ -130,7 +130,7 @@
           class="flex flex-col justify-center basis-[65%]"
         >
             <p
-              class="font-400 text-14px leading-tight text-body !m-0"
+              class="text-14px leading-normal text-body !m-0"
               v-html="$t('planFinalTwo.discount')"
             />
         </div>
@@ -143,9 +143,10 @@
         class="max-w-310px mx-auto"
     >
       <base-button
-          label='Add to my plan'
+          :label="$t('planFinalTwo.addPlan')"
           rounded="half"
           :loader="loading"
+          class="font-700"
           @click="addonRequest"
       />
     </div>
@@ -154,10 +155,11 @@
       class="max-w-310px mx-auto"
     >
       <base-button
-          label='Add to my plan'
+          :label="$t('planFinalTwo.addPlan')"
           theme="blue"
           rounded="half"
           :loader="loading"
+          class="font-700"
           @click="addonRequest"
       />
     </div>
@@ -165,14 +167,14 @@
         v-if="active && open == 1"
         :label="$t('planFinalTwo.results')"
         text-only
-        class="font-sansMedium !text-body text-14px leading-normal opacity-50 my-32px sm:text-16px sm:leading-normal sm:mb-48px"
+        class="font-500 !text-body text-14px leading-normal opacity-50 my-32px sm:text-16px sm:leading-normal sm:mb-48px"
         @click="showModal"
     />
     <div v-else-if="open == 2" class="text-center">
       <base-button
           :label="$t('planFinalTwo.continue')"
           theme="blue"
-          class="!mt-32px !mb-40px"
+          class="!mt-32px !mb-40px font-700"
           rounded="half"
           :loader="loading"
           @click="closePopup"
@@ -182,18 +184,18 @@
         v-else
         :label="$t('planFinalTwo.giveUp')"
         text-only
-        class="font-sansMedium !text-body text-14px leading-normal opacity-50 my-32px sm:text-16px sm:leading-normal sm:mb-48px"
+        class="font-500 !text-body text-14px leading-normal opacity-50 my-32px sm:text-16px sm:leading-normal sm:mb-48px"
         @click="withoutUpsaleDiscounted"
     />
       <div>
         <p
           v-if="subscriotionInfo.id === 1 && open !== 2"
-          class="font-sansLight text-12px leading-normal opacity-50 text-center text-14px leading-normal"
+          class="font-300 text-12px leading-normal opacity-50 text-center sm:(text-14px leading-normal)"
           v-html="$t('planFinalTwo.subscription', {date: this.open === 1 ? this.price.discPrice : this.price.superDiscPrice})"
         />
         <p
           v-else-if="subscriotionInfo.id !== 1 && open !== 2"
-          class="font-sansLight text-12px leading-normal opacity-50 text-center text-14px leading-normal"
+          class="font-300 text-12px leading-normal opacity-50 text-center sm:(text-14px leading-normal)"
           v-html="$t('planFinalTwo.subscription', {date: this.open === 1 ? this.price.discPrice : this.price.superDiscPrice})"
         />
       </div>

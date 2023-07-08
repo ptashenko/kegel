@@ -160,7 +160,7 @@
           <base-button
               v-if="this.base.length > this.numreview"
               :label="$t(`landingViewVP5.button`)"
-              class="mt-8px"
+              class="mt-8px font-700"
               @click="showReview"
               text-only
           />
@@ -175,11 +175,11 @@
           :discountOriginal="pickedTarifParams.discountOriginal"
           class="m-0 mx-auto mb-32px max-w-311px"
         />
-        <h2 class="text-28px leading-normal text-[#fff] m-0 mx-auto mb-32px text-center font-display font-700 sm:text-36px sm:leading-normal">
+        <h2 class="text-28px leading-normal text-[#fff] m-0 mx-auto mb-32px text-center font-display font-600 sm:text-36px sm:leading-normal">
           {{ $t(`landingViewVP5.plan`)}}
         </h2>
       </div>
-      <h2 v-else class="text-28px leading-normal text-[#fff] m-0 mx-auto mb-32px text-center font-display font-700 sm:text-36px sm:leading-normal">
+      <h2 v-else class="text-28px leading-normal text-[#fff] m-0 mx-auto mb-32px text-center font-display font-600 sm:text-36px sm:leading-normal">
         {{ $t('landingViewVP5.getPlan', {purpose: $t(`home.tracks.purpose.${purpose}`)})}}
       </h2>
       <div v-if="superDiscount.theme" class="flex flex-col max-w-430px mx-auto">
@@ -223,7 +223,7 @@
             </div>
             <div>
               <p
-                class="font-display font-700 leading-snug text-[#fff] opacity-50"
+                class="font-display font-600 leading-snug text-[#fff] opacity-50"
                 :class="{ '!opacity-100' : subscribe === id }"
               >
               {{$t(`landingViewVP5.tarifs.${name}`)}}
@@ -282,7 +282,7 @@
                 class="text-12px font-700 leading-normal text-[#fff] opacity-50"
                 :class="{'!opacity-100': subscribe === id}"
             >
-              MOST POPULAR
+            {{$t(`landingViewVP5.mostPopular`)}}
             </p>
           </div>
           <div class="flex items-center">
@@ -307,7 +307,7 @@
             </div>
             <div>
               <p
-                class="font-display font-700 leading-snug text-[#fff] opacity-50"
+                class="font-display font-600 leading-snug text-[#fff] opacity-50"
                 :class="{ '!opacity-100' : subscribe === id }"
               >
                 {{$t(`landingViewVP5.tarifs.${name}`)}}
@@ -364,7 +364,7 @@
           :label="$t(`landingViewVP5.getPlanButton`)"
           :theme="colorTheme"
           :disabled="!subscribe"
-          class="mb-64px"
+          class="mb-64px font-700"
           @click="openPaymentPopup"
       />
 
@@ -380,7 +380,7 @@
         <div class="mb-24px">
           <div class="flex items-center mb-12px">
             <img src="../assets/images/svg/icon_notification.svg" class="mr-8px" />
-            <h3 class="m-0 font-display font-700 text-16px leading-normal text-body">
+            <h3 class="m-0 font-display font-600 text-16px leading-normal text-body">
               {{$t(`landingViewVP5.notifications`)}}
             </h3>
           </div>
@@ -391,7 +391,7 @@
         <div class="mb-24px">
           <div class="flex items-center mb-12px">
             <img src="../assets/images/svg/icon_safe.svg" class="mr-8px" />
-            <h3 class="m-0 font-display font-700 text-16px leading-normal text-body">
+            <h3 class="m-0 font-display font-600 text-16px leading-normal text-body">
               {{$t(`landingViewVP5.safe`)}}
             </h3>
           </div>
@@ -402,7 +402,7 @@
         <div class="mb-24px">
           <div class="flex items-center mb-12px">
             <img src="../assets/images/svg/icon_secure.svg" class="mr-8px" />
-            <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
+            <h3 class="m-0 font-display font-600 text-16px leading-normal text-body">
               {{$t(`landingViewVP5.secure`)}}
             </h3>
           </div>
@@ -413,7 +413,7 @@
         <div >
           <div class="flex items-center mb-12px">
             <img src="../assets/images/svg/icon_help.svg" class="mr-8px" />
-            <h3 class="m-0 font-displayBold font-600 text-16px leading-normal text-body">
+            <h3 class="m-0 font-display font-600 text-16px leading-normal text-body">
               {{$t(`landingViewVP5.help`)}}
             </h3>
           </div>

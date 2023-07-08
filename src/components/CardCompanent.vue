@@ -322,7 +322,6 @@ export default {
   font-size: 20px;
   line-height: 24px;
   padding: 15px 65px;
-  font-family: "SF Pro Text Semibold";
   background: #e44240;
   border: 3px solid #e44240;
   max-width: 375px;

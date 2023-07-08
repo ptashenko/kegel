@@ -31,7 +31,7 @@
         :label="$t('cardComponent.continue')"
         button-type="submit"
         :loader="loading"
-        class="card-pay-button"
+        class="card-pay-button font-700"
         @click="authorize"
         :theme="theme ? 'blue' : 'red'"
     />
@@ -331,7 +331,6 @@ export default {
   font-size: 20px;
   line-height: 24px;
   padding: 15px 65px;
-  font-family: "SF Pro Text Semibold";
   max-width: 375px;
 }
 

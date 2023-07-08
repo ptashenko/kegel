@@ -8,16 +8,13 @@
       }"
     >
       <img v-if="closeButton" class="absolute top-5px right-5px cursor-pointer" @click="closePopup" src="@/assets/images/svg/icon_btn-close-window.svg" />
-      <div v-if="textTitle" class="font-displayBold text-20px text-center mb-24px">
+      <div v-if="textTitle" class="font-display font-600 text-20px text-center mb-24px">
         {{textTitle}}
       </div>
       <div
           class="flex flex-col items-center justify-center mt-0"
       >
           <slot></slot>
-      </div>
-      <div class="flex-row items-center justify-center mt-0">
-
       </div>
     </div>
   </div>

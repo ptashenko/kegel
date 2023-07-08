@@ -1,9 +1,9 @@
 <template>
   <div class="sm:min-h-90vh sm:flex sm:flex-col">
     <div class="container-mob pb-64px">
-      <h2 class="font-displayBold text-24px leading-normal sm:text-36px sm:leading-normal text-center">
+      <h2 class="font-display font-600 text-24px leading-normal sm:text-36px sm:leading-normal text-center">
         {{ $t('whatsapp.title') }}</h2>
-      <p class="font-sans font-400 text-16px leading-normal p-0 pt-24px text-center text-body">
+      <p class="font-400 text-16px leading-normal p-0 pt-24px text-center text-body">
         <span v-html="$t('whatsapp.instruction', {email: this.email})"></span>
       </p>
 
@@ -11,20 +11,20 @@
         <div
           class="max-w-full p-16px bg-[#F1F3F9] rounded-9px flex flex-col items-center justify-center mt-32px max-w-390px mx-auto">
           <div
-            class="text-14px leading-normal font-sansSemiBold sm:text-18px sm:leading-normal flex items-center justify-center">
+            class="text-14px leading-normal font-500 sm:text-18px sm:leading-normal flex items-center justify-center">
             <img class="w-32px h-32px mr-16px" src="@/assets/images/svg/icon_attention-triangle.svg" alt="check">
-            <p class="font-sans text-left" v-html="$t('whatsapp.spam')" />
+            <p class="text-left" v-html="$t('whatsapp.spam')" />
           </div>
         </div>
       </div>
       <hr class="my-32px opacity-50" />
-      <div class="font-sansSemiBold text-16px leading-normal mb-24px sm:text-18px sm:leading-normal text-center">
-        <p class="font-displayBold font-600 text-18px leading-normal text-body mb-24px flex items-center justify-center">
+      <div class="font-500 text-16px leading-normal mb-24px sm:text-18px sm:leading-normal text-center">
+        <p class="font-display font-600 text-18px leading-normal text-body mb-24px flex items-center justify-center">
           <img src="@/assets/images/svg/icon_help.svg" class="mr-12px" />
           {{ $t('whatsapp.questions') }}
         </p>
         <button @click="openWhatsapp"
-          class="whatsapp-btn rounded-9px border-none text-[#fff] font-sans font-700 text-18px leading-none p-12px mx-auto flex justify-center cursor-pointer items-center w-full max-w-311px">
+          class="whatsapp-btn rounded-9px border-none text-[#fff] font-700 text-18px leading-none p-12px mx-auto flex justify-center cursor-pointer items-center w-full max-w-311px">
           <img src="@/assets/images/svg/icon_whatsapp.svg" class="w-36px h-36px mr-16px" />
           {{ $t('whatsapp.textUs') }}
         </button>

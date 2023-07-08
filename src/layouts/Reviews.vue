@@ -1,11 +1,11 @@
 <template>
   {{ imagePE }}
-  <h2 class="mt-0 text-center font-displayBold leading-tight text-24px sm:text-30px sm:leading-tight sm:font-600"> {{ $t(`survey.id_${content.id}.title`) }}</h2>
+  <h2 class="mt-0 text-center font-display font-600 leading-tight text-24px sm:text-30px sm:leading-tight"> {{ $t(`survey.id_${content.id}.title`) }}</h2>
 
   <div class="mt-15px mb-35px text-center text-18px leading-normal">
-    <h3 class="font-sansSemiBold text-16px leading-normal sm:text-18px sm:leading-normal"
+    <h3 class="text-16px leading-normal sm:text-18px sm:leading-normal"
       v-if="AddPurpose && content.id !== 20 && content.id !== 57 && track.id !== 3">
-      <span class="font-sans text-16px sm:font-400"
+      <span class="text-16px"
         v-html="$t('reviews.title_add', {
             purpose: $t(`home.tracks.purpose.${track.purpose}`),
             addPurpose: $t(`home.tracks.addpurpose.${track.addpurpose}`)
@@ -14,13 +14,13 @@
     </h3>
     <h3
       v-else
-      class="font-sans text-16px leading-normal sm:text-18px leading-normal"
+      class="font-600 text-16px leading-normal sm:text-18px leading-normal"
       v-html="$t('reviews.title', {
         purpose: $t(`home.tracks.purpose.${track.purpose}`)
       })"
     />
     <div
-      class="font-sansBold font-700 text-19px leading-normal text-red flex max-w-170px mx-auto relative justify-center min-h-30px sm:max-w-190px sm:min-h-36px">
+      class="font-700 text-19px leading-normal text-red flex max-w-170px mx-auto relative justify-center min-h-30px sm:max-w-190px sm:min-h-36px">
       <transition name="slide-fade">
         <span v-if="show">{{$t('reviews.date', {dates})}}</span>
       </transition>
@@ -44,7 +44,7 @@
   </div>
 
   <div class="pt-50px pb-100px">
-    <h2 class="font-displaySemiBold text-16px leading-normal mb-16px text-center sm:text-16px leading-normal">
+    <h2 class="font-display font-600 text-16px leading-normal mb-16px text-center sm:text-16px leading-normal">
     {{$t('reviews.reviewTitle')}}
     </h2>
     <review

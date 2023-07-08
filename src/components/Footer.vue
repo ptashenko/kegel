@@ -1,7 +1,7 @@
 <template>
     <div class="p-32px bg-body">
         <div class="max-w-450px mx-auto">
-            <div v-if="disclaimer" class="font-sans font-400 text-12px leading-normal text-center text-[#fff] opacity-50 mb-32px sm:text-14px sm:leading-normal">
+            <div v-if="disclaimer" class="text-12px leading-normal text-center text-[#fff] opacity-50 mb-32px sm:text-14px sm:leading-normal">
               {{ $t('footer_landing.disclaimer') }}
             </div>
             <div class="flex flex-col items-center font-400 text-14px leading-normal text-center text-[#fff] opacity-50 mb-16px sm:text-16px sm:leading-normal">

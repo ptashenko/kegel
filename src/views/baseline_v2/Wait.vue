@@ -9,7 +9,7 @@
           :key="step.title"
         >
             <div v-if="step.active" class="w-full relative flex flex-col items-stretch justify-between sm:pb-50px" :class="{'animate-seconds': step.active}">
-              <h2 class="max-w-450px mx-auto font-displayBold text-20px leading-normal my-32px sm:max-w-full sm:text-30px sm:leading-normal" v-html="$t(`wait_v2.titles.${step.title}`)" />
+              <h2 class="max-w-450px mx-auto font-display font-600 text-20px leading-normal my-32px sm:max-w-full sm:text-30px sm:leading-normal" v-html="$t(`wait_v2.titles.${step.title}`)" />
               <div class="text-center mx-auto max-w-373px h-auto block relative">
                 <img :src="image" alt="" class="max-w-full w-full">
               </div>

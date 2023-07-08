@@ -16,8 +16,8 @@
       <img v-if="!device.mobile" src="@/assets/images/header-desktop.jpg" class="inline-block w-full" />
       <img v-else src="@/assets/images/header.png" class="inline-block w-full" />
       <div class="relative max-w-311px top-[-16vw] mx-auto sm:top-[-8vw] sm:px-40px sm:max-w-600px sm:box-border">
-        <h2 class="font-displayBold text-32px leading-tight text-center text-shadow-title mb-16px sm:font-600 sm:text-40px sm:leading-tight" v-html="$t('home.title')" />
-        <h3 class="font-displaySemiBold text-18px leading-normal text-center opacity-76 sm:font-600 sm:text-24px">
+        <h2 class="font-display font-600 text-32px leading-tight text-center text-shadow-title mb-16px sm:font-600 sm:text-40px sm:leading-tight" v-html="$t('home.title')" />
+        <h3 class="font-display font-500 text-18px leading-normal text-center opacity-76 sm:font-600 sm:text-24px">
           {{$t('home.subtitle')}}
         </h3>
         <div class="w-20px h-auto text-center mx-auto my-16px">
@@ -37,10 +37,10 @@
               :class="{'mb-15px': idx !== tracks.length -1}"
               @click="getData(track)"
           >
-                  <span class="font-sans font-700 text-16px text-center text-[#fff] sm:text-22px">
+                  <span class="font-700 text-16px text-center text-[#fff] sm:text-22px">
                     {{ $t(`home.tracks.titleShortQuiz.${track.titleShortQuiz}`) }}
                   </span>
-            <span v-if="track.text" class="font-sansMedium block text-14px mt-4px font-500 text-[#fff] sm:text-18px">
+            <span v-if="track.text" class="font-400 block text-14px text-[#fff] sm:text-18px">
                     {{ $t(`home.tracks.text.${track.text}`)}}
                   </span>
             <lottie-animation
@@ -53,7 +53,7 @@
             />
           </button>
 
-          <div class="font-sansLight opacity-50 text-center mx-auto mt-32px text-12px leading-normal sm:text-14px sm:leading-normal">
+          <div class="font-300 opacity-50 text-center mx-auto mt-32px text-12px leading-normal sm:text-14px sm:leading-normal">
             {{ $t(`home.description`) }}
           </div>
         </div>
@@ -66,11 +66,11 @@
             class="text-center mx-auto mb-48px sm:max-w-373px sm:mb-15px"
           >
             <img :src="advantage.img" :alt="advantage.title" class="block mx-auto mb-19px" :class="[idx === 0 ? 'w-44px' : 'w-50px']">
-            <div class="font-displayBold font-700 text-20px leading-normal text-center text-shadow-title sm:font-600 sm:text-24px sm:leading-tight">
+            <div class="font-display font-600 text-20px leading-normal text-center text-shadow-title sm:font-600 sm:text-24px sm:leading-tight">
               {{ $t(`home.advantages.titles.${advantage.title}`) }}
             </div>
-            <div class="font-sans text-14px font-400 opacity-65 leading-normal mt-8px sm:text-18px sm:leading-normal sm:p-0">{{ $t(`home.advantages.texts.${advantage.text}`) }}</div>
-            <p v-if="advantage.email" class="font-sans mt-8px block text-red no-underline text-14px sm:text-18px sm:leading-normal">{{ advantage.email }}</p>
+            <div class="font-400 text-14px opacity-65 leading-normal mt-8px sm:text-18px sm:leading-normal sm:p-0">{{ $t(`home.advantages.texts.${advantage.text}`) }}</div>
+            <p v-if="advantage.email" class="font-500 mt-8px block text-red no-underline text-14px sm:text-18px sm:leading-normal">{{ advantage.email }}</p>
           </div>
           <FooterHomeView />
         </div>

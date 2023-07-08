@@ -1,6 +1,6 @@
 <template>
     <div class="container-mob">
-      <h2 class="font-displayBold text-center m-0 text-20px leading-normal sm:text-30px sm:leading-normal">
+      <h2 class="font-display font-600 text-center m-0 text-20px leading-normal sm:text-30px sm:leading-normal">
         {{ $t('trustedSources.title') }}
       </h2>
 

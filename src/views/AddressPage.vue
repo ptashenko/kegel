@@ -6,25 +6,25 @@
 
     <!-- <div class="d-flex  align-items-center justify-content-center flex-column block"> -->
     <div class="flex flex-col">
-      <h2 class="font-displayBold text-24px leading-normal mb-8px text-center sm:text-36px sm:leading-normal sm:mb-16px">
+      <h2 class="font-display font-600 text-24px leading-normal mb-8px text-center sm:text-36px sm:leading-normal sm:mb-16px">
         {{ $t('address.title') }} </h2>
-      <p class="font-sans text-14px leading-normal text-body opacity-75 text-center sm:text-20px sm:leading-normal">
+      <p class="text-14px leading-normal text-body opacity-75 text-center sm:text-20px sm:leading-normal">
         {{ $t('address.subtitle') }}
       </p>
       <div class="form mt-32px">
-        <div class="font-bold text-14px leading-normal">{{ $t('address.country') }}</div>
+        <div class="font-display font-600 text-14px leading-normal">{{ $t('address.country') }}</div>
         <label>
           <div class="select appereance-none outline-none px-1em mt-8px mb-16px border-2px border-[#F1F3F9] relative flex w-full h-51px rounded-9px overflow-hidden">
-            <country-select v-model="country" :country="country" topCountry="US" class="appearance-none flex-1" />
+            <country-select v-model="country" :country="country" topCountry="US" class="appearance-none flex-1 text-14px" />
           </div>
         </label>
 
-        <div class="font-bold text-14px leading-normal">{{ $t('address.firstAddress') }}</div>
+        <div class="font-display font-600 text-14px leading-normal">{{ $t('address.firstAddress') }}</div>
         <label>
           <input
               v-model="address1"
               id="address1"
-              class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-16px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
+              class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-14px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
               type="address1"
               :placeholder="$t('address.firstStreet')"
               minlength="5"
@@ -32,22 +32,22 @@
               @click="diselect('address1')"
           >
         </label>
-        <div class="font-bold text-14px leading-normal">{{ $t('address.secondAddress') }}</div>
+        <div class="font-display font-600 text-14px leading-normal">{{ $t('address.secondAddress') }}</div>
         <label>
           <input
               v-model="address2"
               id="address2"
-              class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-16px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
+              class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-14px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
               type="address2"
               :placeholder="$t('address.secondStreet')"
           >
         </label>
-        <div class="font-bold text-14px leading-normal">{{ $t('address.city') }}</div>
+        <div class="font-display font-600 text-14px leading-normal">{{ $t('address.city') }}</div>
         <label>
           <input
               v-model="city"
               id="city"
-              class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-16px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
+              class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-14px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
               type="city"
               :placeholder="$t('address.enterCity')"
               minlength="2"
@@ -55,18 +55,18 @@
               @click="diselect('city')"
           >
         </label>
-        <div class="font-bold text-14px leading-normal">{{ $t('address.state') }}</div>
+        <div class="font-display font-600 text-14px leading-normal">{{ $t('address.state') }}</div>
         <label>
           <div id="state" class="select outline-none px-1em mt-8px mb-16px border-2px border-[#F1F3F9] relative flex w-full h-51px rounded-9px overflow-hidden" @click="diselect('state')">
-            <region-select v-model="region" :country="country" :region="region" class="appearance-none flex-1" />
+            <region-select v-model="region" :country="country" :region="region" class="appearance-none flex-1 text-14px" />
           </div>
         </label>
-        <div class="font-bold text-14px leading-normal">{{ $t('address.postalCode') }}</div>
+        <div class="font-display font-600 text-14px leading-normal">{{ $t('address.postalCode') }}</div>
         <label>
           <input
               v-model="post"
               id="post"
-              class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-16px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
+              class="relative px-20px bg-[#F1F3F9] shadow-input rounded-9px border-none text-14px py-15px px-0 leading-normal text-body mt-8px mb-16px w-full focus:border-none active:border-none placeholder-body placeholder-opacity-50"
               type="post"
               :placeholder="$t('address.enterCode')"
               minlength="5"
@@ -77,7 +77,7 @@
         </label>
 
         <div
-            class="border-none rounded-100px p-18px mt-32px font-sansMedium leading-normal text-[#fff] mx-auto text-center max-w-311px sm:mt-48px bg-red cursor-pointer shadow-button-red"
+            class="font-700 text-18px border-none rounded-100px p-18px mt-32px leading-normal text-[#fff] mx-auto text-center max-w-311px sm:mt-48px bg-red cursor-pointer shadow-button-red"
             :class="{ submit: loading }"
             @click="confirm"
         >

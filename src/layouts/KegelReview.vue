@@ -5,7 +5,7 @@
     />
 
     <div class="container-mob pb-30px">
-      <div class="font-sansSemiBold text-20px leading-normal text-center text-[#fff] sm:text-24px sm:leading-normal">
+      <div class="font-display font-600 text-20px leading-normal text-center text-[#fff] sm:text-24px sm:leading-normal">
         <h2 v-html="$t(`survey.id_${content.id}.title`)" />
       </div>
 
@@ -42,8 +42,8 @@
             <img :src="`${buttonIcon(button.logo)}`" :alt="button.title" />
           </div>
           <div class="text-[#fff]">
-            <p class="text-12px leading-tight opacity-70">{{ $t(`survey.id_${content.id}.buttons.text`) }}</p>
-            <p class="text-14px leading-normal font-displaySemiBold">{{ $t(`survey.id_${content.id}.buttons.title`) }}</p>
+            <p class="font-400 text-12px leading-tight opacity-70">{{ $t(`survey.id_${content.id}.buttons.text`) }}</p>
+            <p class="text-14px leading-normal font-display font-500">{{ $t(`survey.id_${content.id}.buttons.title`) }}</p>
           </div>
         </div>
       </div>
